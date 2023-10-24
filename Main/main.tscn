@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://ch5i4ioti32xu"]
+[gd_scene load_steps=2 format=3 uid="uid://ch5i4ioti32xu"]
+
+[ext_resource type="Script" path="res://Main/Main.cs" id="1_1fp3t"]
 
 [node name="Main" type="Node"]
+
+[node name="PlaySprite" type="Sprite2D" parent="."]
+position = Vector2(556, 332)
+texture = ExtResource("1_b5auf")
