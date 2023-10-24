@@ -3,4 +3,3 @@
 [ext_resource type="Script" path="res://Main/Main.cs" id="1_1fp3t"]
 
 [node name="Main" type="Node"]
-script = ExtResource("1_1fp3t")
