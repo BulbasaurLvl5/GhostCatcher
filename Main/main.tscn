@@ -1,3 +1,5 @@
 [gd_scene format=3 uid="uid://ch5i4ioti32xu"]
 
 [node name="Main" type="Node"]
+
+[node name="YouPulledSuccessfully" type="Sprite2D" parent="."]
