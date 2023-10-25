@@ -202,7 +202,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_axrb2")
 hframes = 8
 vframes = 9
-frame = 64
+frame = 45
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="PlayerSprite2D"]
 libraries = {
@@ -239,4 +239,4 @@ script = ExtResource("10_1mtkc")
 
 [node name="GroundCheck" type="RayCast2D" parent="."]
 position = Vector2(0, 64)
-target_position = Vector2(0, 11)
+target_position = Vector2(0, 7)

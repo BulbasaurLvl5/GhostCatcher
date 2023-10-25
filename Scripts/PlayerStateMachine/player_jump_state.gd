@@ -8,4 +8,4 @@ func _animation_finished():
 	anim.play("in-air")
 
 func _physics_process(_delta):
-	pass
+	print("JUMP")

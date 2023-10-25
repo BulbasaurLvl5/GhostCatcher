@@ -4,14 +4,18 @@ extends PlayerState
 func _enter_state() -> void:
 	anim.play("in_air")
 	
-func _process(delta):
-	#do checks
-	if player.is_on_floor() && player.input_direction.x == 0:
+func _do_checks(delta):
+	if !player.is_grounded:
+		fall(delta)
+	elif player.input_direction.x == 0:
 		fsm.change_state(land_state)
-	#else if 
+	else:
+		player_move_states()
 
-func _physics_process(delta):	
+func fall(delta):
 	#fall
-	player.velocity.y += delta * player.player_gravity
+	player.velocity.y += delta * player.gravity
+	if player.input_direction.x != 0:
+		player.velocity.x += delta * player.in_air_speed * player.input_direction.x
 	var motion = player.velocity * delta
 	player.move_and_collide(motion)

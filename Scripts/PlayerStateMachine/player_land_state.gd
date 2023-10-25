@@ -1,11 +1,14 @@
+class_name PlayerLandState
 extends PlayerState
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _enter_state() -> void:
+	anim.play("land")
+	
+func _animation_finished():
+	if Input.is_action_pressed("Jump"):
+		print("LAND LAND LAND")
+		fsm.change_state(jump_state)
+	elif player.input_direction.x != 0:
+		player_move_states()
+	else:
+		fsm.change_state(idle_state)
