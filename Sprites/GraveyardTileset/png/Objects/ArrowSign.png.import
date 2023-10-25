@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnmqo1wywnn57"
-path="res://.godot/imported/play_button_pressed.png-c43a1bfebb4bc3b7302972ebf6369feb.ctex"
+uid="uid://ca1eo6j1g6dy0"
+path="res://.godot/imported/ArrowSign.png-70ab471ead0f43f945b67f583b0c2220.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/play_button_pressed.png"
-dest_files=["res://.godot/imported/play_button_pressed.png-c43a1bfebb4bc3b7302972ebf6369feb.ctex"]
+source_file="res://Sprites/GraveyardTileset/png/Objects/ArrowSign.png"
+dest_files=["res://.godot/imported/ArrowSign.png-70ab471ead0f43f945b67f583b0c2220.ctex"]
 
 [params]
 
