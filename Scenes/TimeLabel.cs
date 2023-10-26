@@ -4,13 +4,17 @@ using System;
 
 public partial class TimeLabel : Label
 {
-	public TimeCounter _time = new TimeCounter();
+	[Export]
+	Vector2 Pos = new Vector2(1200, 50);
+
+	TimeCounter _time = new TimeCounter();
 	string _min;
 	string _sec;
 
 	public void Init(ref TimeCounter time)
 	{
 		_time = time;
+		GlobalPosition = Pos;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,7 +30,7 @@ public partial class TimeLabel : Label
 		else
 			_sec = 0.ToString() + _time.Seconds.ToString();
 
-		Text = _min + ":" + _sec + " " + _time.MiliSeconds.ToString().Substring(2,2);
+		Text = _min + ":" + _sec + "  " + _time.MiliSeconds.ToString().Substring(2,2);
 		Show();
 	}
 }
