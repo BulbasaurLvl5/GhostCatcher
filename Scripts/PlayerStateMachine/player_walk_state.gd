@@ -1,16 +1,15 @@
 class_name PlayerWalkState
 extends PlayerState
 
-@export var walk_speed = 125.0
-@export var walk_acceleration = 50.0
+@export var walk_speed : float = 150.0
 
 func Enter():
-	anim.play("walk")
+	anim.play("walk",-1,1.25)
 	
 func Do_Checks():
 	if !player.is_grounded:
 		Transitioned.emit(self,"InAir")
-	elif Input.is_action_pressed("Jump"):
+	elif Input.is_action_pressed("Jump") && player.can_jump:
 		Transitioned.emit(self,"Jump")
 	elif player.x_input == 0:
 		Transitioned.emit(self,"Idle")

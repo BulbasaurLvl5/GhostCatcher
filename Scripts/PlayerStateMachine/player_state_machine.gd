@@ -4,6 +4,9 @@ extends Node
 @export var initial_state : PlayerState
 @export var current_state : PlayerState
 
+#borrows verbose setting from Player node
+@onready var verbose : bool = $"..".verbose
+
 var states : Dictionary = {}
 
 func _ready():
@@ -15,7 +18,8 @@ func _ready():
 	if initial_state:
 		initial_state.Transition()
 		current_state = initial_state
-		print("Starting in ",current_state.name)
+		if verbose:
+			print("Starting in ",current_state.name)
 
 func _process(delta):
 	if current_state:
@@ -26,9 +30,11 @@ func _physics_process(delta):
 		current_state.Physics_Update(delta)
 	
 func on_child_transition(state, new_state_name):
-	print("Transition called from ",state.name," to ",new_state_name)
+	if verbose:
+		print("Transition called from ",state.name," to ",new_state_name)
 	if state != current_state:
-		print("Transition cancelled because ",state.name," is not the current state.")
+		if verbose:
+			print("Transition cancelled because ",state.name," is not the current state.")
 		return
 	
 	var new_state = states.get(new_state_name.to_lower())

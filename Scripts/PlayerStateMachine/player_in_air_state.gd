@@ -2,25 +2,39 @@ class_name PlayerInAirState
 extends PlayerState
 
 @export var fall_gravity_multiplier: float = .05
-@export var max_fall_time: float = 2.0
+@export var distance_before_medium_landing: float = 300
+@export var distance_before_heavy_landing : float = 600
+@export var distance_before_dying : float = 1000
 
 @onready var fall_gravity : float = ((2 * $"../Jump".jump_height) / ($"../Jump".jump_time_to_descent * $"../Jump".jump_time_to_peak))
 @onready var move_speed : float = $"../Jump".move_speed
 
+var distance_fallen : float
+var height_fallen_from : float
+
 func Enter():
 	anim.play("in_air")
+	height_fallen_from = player.position.y 
 	
 func Do_Checks():
+	distance_fallen = (player.position.y - height_fallen_from)
+	
 	if player.is_grounded:
-		if time_in_current_state > max_fall_time:
+		if verbose:
+			print("distance fallen = ",distance_fallen)
+		
+		if distance_fallen > distance_before_dying:
 			Transitioned.emit(self,"Die")
-		elif player.x_input == 0:
+		elif distance_fallen > distance_before_medium_landing:
+			if distance_fallen > distance_before_heavy_landing:
+				$"../Land".heavy_landing = true
+			else:
+				$"../Land".heavy_landing = false
 			Transitioned.emit(self,"Land")
+		elif player.x_input == 0:
+			Transitioned.emit(self,"Idle")
 		else:
-			player_move_states(self)
-
-func Update(delta):
-	pass
+			Walk_Or_Run(self)
 
 func Physics_Update(delta):
 	player.velocity.y += fall_gravity * fall_gravity_multiplier

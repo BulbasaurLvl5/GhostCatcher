@@ -17,8 +17,9 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=1918
+window/size/viewport_height=1079
+window/size/initial_position_type=0
 window/stretch/mode="canvas_items"
 
 [dotnet]

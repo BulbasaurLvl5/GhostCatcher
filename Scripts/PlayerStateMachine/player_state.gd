@@ -6,6 +6,9 @@ signal Transitioned
 @export var player: Player
 @export var anim: AnimationPlayer
 
+#borrows verbose setting from Player
+@onready var verbose: bool = $"../..".verbose
+
 var time_in_current_state = 0
 
 func _ready():
@@ -13,7 +16,8 @@ func _ready():
 	anim = $"../../PlayerSprite2D/PlayerAnimation"
 	
 func Transition():
-	print("Entering ",self.name)
+	if verbose:
+		print("Entering ",self.name)
 	time_in_current_state = 0
 	Enter()
 
@@ -43,7 +47,7 @@ func Flip_Player():
 		player.facing_direction = player.x_input
 		player.scale.x *= -1
 	
-func player_move_states(current_state: PlayerState):
+func Walk_Or_Run(current_state: PlayerState):
 	if Input.is_action_pressed("Slow"):
 		Transitioned.emit(current_state,"Walk")
 	else:
