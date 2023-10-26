@@ -1,21 +1,22 @@
 class_name PlayerInAirState
 extends PlayerState
 
-func _enter_state() -> void:
+func Enter() -> void:
 	anim.play("in_air")
 	
-func _do_checks(delta):
+func Do_Checks():
 	if !player.is_grounded:
-		fall(delta)
+		fall()
 	elif player.input_direction.x == 0:
-		fsm.change_state(land_state)
+		print("Trying to land...")
+		Transitioned.emit(self,"Land")
 	else:
-		player_move_states()
+		player_move_states(self)
 
-func fall(delta):
-	#fall
-	player.velocity.y += delta * player.gravity
+func fall():
+	#print("Trying to fall...")
+	player.velocity.y += player.gravity
 	if player.input_direction.x != 0:
-		player.velocity.x += delta * player.in_air_speed * player.input_direction.x
-	var motion = player.velocity * delta
+		player.velocity.x += player.in_air_speed * player.input_direction.x
+	var motion = player.velocity
 	player.move_and_collide(motion)

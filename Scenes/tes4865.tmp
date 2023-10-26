@@ -70,5 +70,4 @@ position = Vector2(-0.125, 1)
 shape = SubResource("RectangleShape2D_xv1sb")
 
 [node name="Player" parent="CanvasLayer" instance=ExtResource("1_kfi0p")]
-position = Vector2(903, 337)
-gravity = 0.1
+position = Vector2(935, 668)

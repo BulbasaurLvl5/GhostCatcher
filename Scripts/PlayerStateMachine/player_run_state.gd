@@ -2,19 +2,18 @@ class_name PlayerRunState
 extends PlayerState
 
 
-func _enter_state() -> void:
+func Enter():
 	anim.play("run")
 	
-func _do_checks(delta):
+func Do_Checks():
 	if !player.is_grounded:
-		fsm.change_state(in_air_state)
+		Transitioned.emit(self,"InAir")
 	elif Input.is_action_pressed("Jump"):
-		print("RUN RUN RUN")
-		fsm.change_state(jump_state)
+		Transitioned.emit(self,"Jump")
 	elif player.input_direction.x == 0:
-		fsm.change_state(idle_state)
+		Transitioned.emit(self,"Idle")
 	elif !Input.is_action_pressed("Run"):
-		fsm.change_state(walk_state)
-	else:
-		var motion = Vector2(player.run_speed * delta * player.input_direction.x, 0)
-		player.move_and_collide(motion)
+		Transitioned.emit(self,"Walk")
+	#else:
+		#var motion = Vector2(player.run_speed * delta * player.input_direction.x, 0)
+		#player.move_and_collide(motion)

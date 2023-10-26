@@ -101,7 +101,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../PlayerStateMachine/Jump")
+tracks/1/path = NodePath("../PlayerStateMachine/PlayerJumpState")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -131,7 +131,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../PlayerStateMachine/Land")
+tracks/1/path = NodePath("../PlayerStateMachine/PlayerLandState")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -191,7 +191,6 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_l4530")
-gravity = 0.001
 
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -210,32 +209,31 @@ libraries = {
 "": SubResource("AnimationLibrary_3tts5")
 }
 
-[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("1_dcopr")
-initial_state = NodePath("InAir")
 
 [node name="PlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_8dkiu")
 
-[node name="Idle" type="Node" parent="PlayerStateMachine"]
+[node name="PlayerIdleState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("4_tan8y")
 
-[node name="Walk" type="Node" parent="PlayerStateMachine"]
+[node name="PlayerWalkState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_apjhc")
 
-[node name="Run" type="Node" parent="PlayerStateMachine"]
+[node name="PlayerRunState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("7_71xul")
 
-[node name="Jump" type="Node" parent="PlayerStateMachine"]
+[node name="PlayerJumpState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("7_ofds0")
 
-[node name="InAir" type="Node" parent="PlayerStateMachine"]
+[node name="PlayerInAirState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("8_uctrm")
 
-[node name="Land" type="Node" parent="PlayerStateMachine"]
+[node name="PlayerLandState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_ok23f")
 
-[node name="Die" type="Node" parent="PlayerStateMachine"]
+[node name="PlayerDieState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("10_1mtkc")
 
 [node name="GroundCheck" type="RayCast2D" parent="."]

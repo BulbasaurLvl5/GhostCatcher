@@ -22,4 +22,4 @@ func _process(delta):
 		scale.x *= -1
 	$GroundCheck.force_raycast_update()
 	is_grounded = $GroundCheck.is_colliding()
-	print("grounded ... ",is_grounded)
+	#print("grounded ... ",is_grounded)
