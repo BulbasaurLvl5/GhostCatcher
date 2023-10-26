@@ -115,7 +115,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ohmax"]
 resource_name = "land"
-length = 0.8
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -123,10 +123,10 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [45, 44, 43, 42, 41, 40, 42]
+"values": [43, 42, 41, 40, 42]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -135,7 +135,7 @@ tracks/1/path = NodePath("../PlayerStateMachine/Land")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.7),
+"times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -191,7 +191,6 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_l4530")
-gravity = 0.001
 
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -199,11 +198,12 @@ shape = SubResource("CapsuleShape2D_q5wu2")
 
 [node name="PlayerSprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+position = Vector2(-1, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("1_axrb2")
 hframes = 8
 vframes = 9
-frame = 64
+frame = 16
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="PlayerSprite2D"]
 libraries = {
@@ -214,8 +214,10 @@ libraries = {
 script = ExtResource("1_dcopr")
 initial_state = NodePath("InAir")
 
-[node name="PlayerState" type="Node" parent="PlayerStateMachine"]
+[node name="PlayerState" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player", "anim")]
 script = ExtResource("5_8dkiu")
+player = NodePath("")
+anim = NodePath("")
 
 [node name="Idle" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("4_tan8y")
@@ -239,7 +241,9 @@ script = ExtResource("9_ok23f")
 script = ExtResource("10_1mtkc")
 
 [node name="GroundCheck" type="RayCast2D" parent="."]
-position = Vector2(0, 64)
-target_position = Vector2(0, 11)
+position = Vector2(-26, 62)
+target_position = Vector2(0, 4)
 
-[connection signal="Transitioned" from="PlayerStateMachine/PlayerState" to="PlayerStateMachine" method="_on_player_state_transitioned"]
+[node name="GroundCheck2" type="RayCast2D" parent="."]
+position = Vector2(27, 63)
+target_position = Vector2(0, 3)

@@ -6,46 +6,45 @@ signal Transitioned
 @export var player: Player
 @export var anim: AnimationPlayer
 
+var time_in_current_state = 0
 
-#@onready var fsm = $".." as PlayerStateMachine
-#@onready var idle_state = $"../PlayerIdleState"
-#@onready var walk_state = $"../PlayerWalkState"
-#@onready var run_state = $"../PlayerRunState"
-#@onready var jump_state = $"../PlayerJumpState"
-#@onready var in_air_state = $"../PlayerInAirState"
-#@onready var land_state = $"../PlayerLandState"
-#@onready var die_state = $"../PlayerDieState"
-#
-#signal state_finished
-#
 func _ready():
 	player = $"../.."
-
 	anim = $"../../PlayerSprite2D/PlayerAnimation"
+	
+func Transition():
+	print("Entering ",self.name)
+	time_in_current_state = 0
+	Enter()
 
 func Enter():
-	Do_Checks()
+	pass
 	
 func Exit():
 	pass
-	
-func Update():
-	Do_Checks()
-	
-func Physics_Update():
-	pass
 
+func Initiate_Update(delta):
+	time_in_current_state += delta
+	Flip_Player()
+	Do_Checks()
+	Update(delta)
+	
 func Do_Checks():
 	pass
 	
+func Update(delta):
+	pass
+	
+func Physics_Update(delta):
+	pass
+
+func Flip_Player():
+	if player.facing_direction != player.x_input && abs(player.x_input) == 1:
+		player.facing_direction = player.x_input
+		player.scale.x *= -1
+	
 func player_move_states(current_state: PlayerState):
-	if Input.is_action_pressed("Run"):
-		Transitioned.emit(current_state,"Run")
-	else:
+	if Input.is_action_pressed("Slow"):
 		Transitioned.emit(current_state,"Walk")
-
-#func _process(delta):
-#	if !player.is_exiting_state:
-#		_do_checks(delta)
-
-
+	else:
+		Transitioned.emit(current_state,"Run")

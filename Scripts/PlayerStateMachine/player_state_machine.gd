@@ -2,8 +2,8 @@ class_name PlayerStateMachine
 extends Node
 
 @export var initial_state : PlayerState
+@export var current_state : PlayerState
 
-var current_state : PlayerState
 var states : Dictionary = {}
 
 func _ready():
@@ -13,47 +13,29 @@ func _ready():
 			child.Transitioned.connect(on_child_transition)
 	
 	if initial_state:
-		initial_state.Enter()
+		initial_state.Transition()
 		current_state = initial_state
-		print("Starting in ",current_state)
+		print("Starting in ",current_state.name)
 
 func _process(delta):
 	if current_state:
-			current_state.Update()
+		current_state.Initiate_Update(delta)
 
 func _physics_process(delta):
 	if current_state:
-		current_state.Physics_Update()
+		current_state.Physics_Update(delta)
 	
 func on_child_transition(state, new_state_name):
+	print("Transition called from ",state.name," to ",new_state_name)
 	if state != current_state:
-			return
+		print("Transition cancelled because ",state.name," is not the current state.")
+		return
 	
 	var new_state = states.get(new_state_name.to_lower())
 	if !new_state:
 		return
 		
-	new_state.Enter()
+	new_state.Transition()
 	
 	current_state = new_state
-	print("Transitioning to ",current_state)
-		
-		
-		
-		
-		
-	# OLD VERSION
-#	player_state = $PlayerIdleState
-#	player_state._enter_state()
-#	print("starting in ",player_state)
-#
-#func change_state(new_state: PlayerState):
-#	if player_state != new_state:
-#		player_state._exit_state()
-#		new_state._enter_state()
-#		player_state = new_state
-#		print("player_state switched to ",new_state)
-#
-
-
-
+	

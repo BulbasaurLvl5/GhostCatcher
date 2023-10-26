@@ -1,6 +1,9 @@
 class_name PlayerWalkState
 extends PlayerState
 
+@export var walk_speed = 125.0
+@export var walk_acceleration = 50.0
+
 func Enter():
 	anim.play("walk")
 	
@@ -9,10 +12,11 @@ func Do_Checks():
 		Transitioned.emit(self,"InAir")
 	elif Input.is_action_pressed("Jump"):
 		Transitioned.emit(self,"Jump")
-	elif player.input_direction.x == 0:
+	elif player.x_input == 0:
 		Transitioned.emit(self,"Idle")
-	elif Input.is_action_pressed("Run"):
+	elif !Input.is_action_pressed("Slow"):
 		Transitioned.emit(self,"Run")
-	#else:
-		#var motion = Vector2(player.walk_speed * delta * player.input_direction.x, 0)
-		#player.move_and_collide(motion)
+
+func Physics_Update(delta):
+	var motion = Vector2(walk_speed * delta * player.x_input, 0)
+	player.move_and_collide(motion)

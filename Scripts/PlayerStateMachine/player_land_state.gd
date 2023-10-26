@@ -1,13 +1,13 @@
 class_name PlayerLandState
 extends PlayerState
 
-func Enter() -> void:
+func Enter():
 	anim.play("land")
 	
 func _animation_finished():
 	if Input.is_action_pressed("Jump"):
 		Transitioned.emit(self,"Jump")
-	elif player.input_direction.x != 0:
+	elif abs(player.x_input) == 1:
 		player_move_states(self)
 	else:
 		Transitioned.emit(self,"Idle")

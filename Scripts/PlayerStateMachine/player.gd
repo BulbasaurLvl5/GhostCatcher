@@ -1,25 +1,20 @@
 class_name Player
 extends CharacterBody2D
 
-
-@export var walk_speed = 40.0
-@export var walk_acceleration = 50.0
-@export var run_speed = 70.0
-@export var run_acceleration = 80.0
-@export var jump_velocity = -100.0
-@export var in_air_speed = 50.0
-@export var gravity = 500.0
 @export var facing_direction = 1
 
-@onready var input_direction = Vector2.ZERO
+@onready var x_input = 0
+@onready var y_input = 0
 @onready var is_grounded = true
 @onready var is_exiting_state = false
 
 func _process(delta):
-	input_direction = Input.get_vector("Left", "Right", "Up", "Down").round()
-	if facing_direction != input_direction.x && input_direction.x != 0:
-		facing_direction = input_direction.x
-		scale.x *= -1
+	#input checks
+	var input_direction = Input.get_vector("Left", "Right", "Up", "Down").round()
+	x_input = input_direction.x
+	y_input = input_direction.y
+	#environmental checks
 	$GroundCheck.force_raycast_update()
-	is_grounded = $GroundCheck.is_colliding()
-	#print("grounded ... ",is_grounded)
+	$GroundCheck2.force_raycast_update()	
+	is_grounded = max(int($GroundCheck.is_colliding()), int($GroundCheck2.is_colliding()))
+	#print($GroundCheck.is_colliding(),$GroundCheck2.is_colliding(),is_grounded)

@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://384bmi1nwn2h"]
 
-[ext_resource type="Texture2D" uid="uid://c4072ej0qdna2" path="res://Sprites/starscape_03.png" id="1_b1cb0"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://Scenes/player.tscn" id="1_kfi0p"]
-[ext_resource type="Texture2D" uid="uid://34voiscd6vy" path="res://Sprites/GraveyardTileset/png/Tiles/Tile (2).png" id="2_5abge"]
-[ext_resource type="Texture2D" uid="uid://bbx2wo0ev6ots" path="res://Sprites/GraveyardTileset/png/Objects/TombStone (1).png" id="2_qv6tf"]
-[ext_resource type="Texture2D" uid="uid://6mlfamji5ur5" path="res://Sprites/GraveyardTileset/png/Objects/TombStone (2).png" id="3_lkk81"]
-[ext_resource type="Texture2D" uid="uid://bxeo3xnol8s0o" path="res://Sprites/GraveyardTileset/png/Objects/DeadBush.png" id="4_heqhc"]
-[ext_resource type="Texture2D" uid="uid://ca1eo6j1g6dy0" path="res://Sprites/GraveyardTileset/png/Objects/ArrowSign.png" id="5_77a1n"]
+[ext_resource type="Texture2D" uid="uid://c4072ej0qdna2" path="res://Sprites/Environment/starscape_03.png" id="1_yhqqc"]
+[ext_resource type="Texture2D" uid="uid://bu528on5v84fp" path="res://Sprites/Environment/graveyard_objects/TombStone (1).png" id="2_yijex"]
+[ext_resource type="Texture2D" uid="uid://c0ynsf1lh2ymw" path="res://Sprites/Environment/graveyard_objects/TombStone (2).png" id="3_nhlqm"]
+[ext_resource type="Texture2D" uid="uid://c27q8de5udd8u" path="res://Sprites/Environment/graveyard_objects/DeadBush.png" id="4_w7td6"]
+[ext_resource type="Texture2D" uid="uid://b33o1u51pi5qk" path="res://Sprites/Environment/graveyard_objects/ArrowSign.png" id="5_v02x4"]
+[ext_resource type="Texture2D" uid="uid://ctbovjl1lvhe0" path="res://Sprites/Environment/desert_tiles/2.png" id="6_7fd37"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xv1sb"]
 size = Vector2(128.083, 126)
@@ -19,56 +19,77 @@ size = Vector2(128.083, 126)
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Background"]
 position = Vector2(960, 540)
-texture = ExtResource("1_b1cb0")
+texture = ExtResource("1_yhqqc")
 
 [node name="TombstoneA" type="Sprite2D" parent="CanvasLayer/Background"]
-position = Vector2(1165, 707)
-texture = ExtResource("2_qv6tf")
+position = Vector2(1166, 851.5)
+texture = ExtResource("2_yijex")
 
 [node name="TombstoneA2" type="Sprite2D" parent="CanvasLayer/Background"]
-position = Vector2(1320, 707)
-texture = ExtResource("2_qv6tf")
+position = Vector2(1321, 851.5)
+texture = ExtResource("2_yijex")
 
 [node name="TombstoneB" type="Sprite2D" parent="CanvasLayer/Background"]
-position = Vector2(1243, 697)
-texture = ExtResource("3_lkk81")
+position = Vector2(1244, 841.5)
+texture = ExtResource("3_nhlqm")
 
 [node name="DeadBush" type="Sprite2D" parent="CanvasLayer/Background"]
-position = Vector2(1440, 700)
-texture = ExtResource("4_heqhc")
+position = Vector2(1441, 844.5)
+texture = ExtResource("4_w7td6")
 
 [node name="DeadBush2" type="Sprite2D" parent="CanvasLayer/Background"]
-position = Vector2(407, 702)
-texture = ExtResource("4_heqhc")
+position = Vector2(408, 846.5)
+texture = ExtResource("4_w7td6")
 
 [node name="Sign" type="Sprite2D" parent="CanvasLayer/Background"]
-position = Vector2(537, 694)
-texture = ExtResource("5_77a1n")
+position = Vector2(538, 838.5)
+texture = ExtResource("5_v02x4")
 
 [node name="Platforms" type="Node2D" parent="CanvasLayer"]
 
 [node name="Platform001" type="StaticBody2D" parent="CanvasLayer/Platforms"]
-position = Vector2(927, 924)
-scale = Vector2(12, 3)
+position = Vector2(955, 1070)
+scale = Vector2(20, 3)
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Platforms/Platform001"]
-texture = ExtResource("2_5abge")
+texture = ExtResource("6_7fd37")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Platforms/Platform001"]
-position = Vector2(-0.125, 1)
+position = Vector2(-0.0833359, -1)
 shape = SubResource("RectangleShape2D_xv1sb")
 
 [node name="Platform002" type="StaticBody2D" parent="CanvasLayer/Platforms"]
-position = Vector2(1755, 512)
+position = Vector2(1687, 660)
 scale = Vector2(5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Platforms/Platform002"]
-texture = ExtResource("2_5abge")
+texture = ExtResource("6_7fd37")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Platforms/Platform002"]
 position = Vector2(-0.125, 1)
 shape = SubResource("RectangleShape2D_xv1sb")
 
+[node name="Platform003" type="StaticBody2D" parent="CanvasLayer/Platforms"]
+position = Vector2(1084, 435)
+scale = Vector2(5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Platforms/Platform003"]
+texture = ExtResource("6_7fd37")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Platforms/Platform003"]
+position = Vector2(-0.125, 1)
+shape = SubResource("RectangleShape2D_xv1sb")
+
+[node name="Platform004" type="StaticBody2D" parent="CanvasLayer/Platforms"]
+position = Vector2(503, 179)
+scale = Vector2(5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Platforms/Platform004"]
+texture = ExtResource("6_7fd37")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Platforms/Platform004"]
+position = Vector2(-0.125, 1)
+shape = SubResource("RectangleShape2D_xv1sb")
+
 [node name="Player" parent="CanvasLayer" instance=ExtResource("1_kfi0p")]
-position = Vector2(903, 337)
-gravity = 0.1
+position = Vector2(369, 66)
