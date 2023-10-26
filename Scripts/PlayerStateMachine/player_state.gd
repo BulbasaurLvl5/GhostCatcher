@@ -45,7 +45,7 @@ func Physics_Update(delta):
 func Flip_Player():
 	if player.facing_direction != player.x_input && abs(player.x_input) == 1:
 		player.facing_direction = player.x_input
-		player.scale.x *= -1
+		$"../../PlayerSprite2D".scale.x *= -1
 	
 func Walk_Or_Run(current_state: PlayerState):
 	if Input.is_action_pressed("Slow"):

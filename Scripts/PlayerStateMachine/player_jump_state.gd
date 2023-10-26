@@ -21,7 +21,7 @@ func _animation_finished():
 func Physics_Update(delta):
 	#determine Y velocity
 	#switch to InAir state if falling
-	if player.velocity.y > 0:
+	if player.velocity.y >= 0:
 		Transitioned.emit(self,"InAir")
 	else:
 		player.velocity.y += get_gravity() * delta

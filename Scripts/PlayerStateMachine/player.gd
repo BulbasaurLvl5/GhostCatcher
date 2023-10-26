@@ -18,9 +18,9 @@ func _process(delta):
 		can_jump = true
 	
 	#environmental checks
-	$GroundCheck.force_raycast_update()
-	$GroundCheck2.force_raycast_update()	
-	is_grounded = max(int($GroundCheck.is_colliding()), int($GroundCheck2.is_colliding()))
+	$PlayerSprite2D/GroundCheck.force_raycast_update()
+	$PlayerSprite2D/GroundCheck2.force_raycast_update()	
+	is_grounded = max(int($PlayerSprite2D/GroundCheck.is_colliding()), int($PlayerSprite2D/GroundCheck2.is_colliding()))
 	
 #	if verbose:
 #		print($GroundCheck.is_colliding(),$GroundCheck2.is_colliding(),is_grounded)
