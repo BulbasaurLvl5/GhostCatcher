@@ -222,7 +222,6 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_l4530")
-verbose = true
 
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)

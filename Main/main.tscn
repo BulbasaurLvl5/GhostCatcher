@@ -4,3 +4,7 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_7ow0c")
+
+[node name="World" type="Node" parent="."]
+
+[node name="UI" type="Node" parent="."]

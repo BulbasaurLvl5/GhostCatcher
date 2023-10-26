@@ -1,4 +1,5 @@
 using System;
+using System.Dynamic;
 using System.Threading;
 using Godot;
 
@@ -23,10 +24,15 @@ namespace MyGodotExtentions
 		bool _active = false;
 		double _time = 1;
 		double _stopTime = 0;
-
 		public double Time {get {return _time;}}
 		public double StopTime {get {return _stopTime;}}
 		public bool IsActive {get {return _active;}}
+
+		public int Minutes{get{ return (int)(_time / 60); }}
+
+		public int Seconds{get{ return (int)_time % 60; }}
+
+		public double MiliSeconds{get{ return _time-(int)_time; }}
 
 		// public bool IsReady {get {return _time > _stopTime;}} //same as !IsActive
 
@@ -56,11 +62,11 @@ namespace MyGodotExtentions
 			_stopTime = stopTime;
 		}
 
-		public void Process(double delta)
+		public void Update(double delta)
 		{
 			if(_active)
 			{
-				if(_time < _stopTime)
+				if(_time < _stopTime || _stopTime == 0)
 					_time += delta;
 				else
 					Stop();

@@ -244,6 +244,7 @@ shape = SubResource("CircleShape2D_y1gca")
 
 [node name="Player" parent="." instance=ExtResource("1_kfi0p")]
 position = Vector2(3730, 807)
+verbose = false
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 
