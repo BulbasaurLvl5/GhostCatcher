@@ -22,7 +22,7 @@ namespace MyGodotExtentions
 		*/
 
 		bool _active = false;
-		double _time = 1;
+		double _time = 0;
 		double _stopTime = 0;
 		public double Time {get {return _time;}}
 		public double StopTime {get {return _stopTime;}}
@@ -37,7 +37,10 @@ namespace MyGodotExtentions
 		// public bool IsReady {get {return _time > _stopTime;}} //same as !IsActive
 
 		public Action OnStop;
-		public TimeCounter(){}
+		public TimeCounter()
+		{
+			_time = 0;
+		}
 
 		/*Either add an 	
 		public Action<double> OnProcess; 
@@ -57,9 +60,18 @@ namespace MyGodotExtentions
 
 		public void Start(double stopTime)
 		{
-			_time = 0;
+			if(stopTime >= 0)
+			{
+				_time = 0;
+				_stopTime = stopTime;
+			}
+			else if (stopTime < 0 )
+			{
+				_stopTime = 0;
+				_time = stopTime;
+			}
+
 			_active = true;
-			_stopTime = stopTime;
 		}
 
 		public void Update(double delta)

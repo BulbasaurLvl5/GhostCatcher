@@ -16,6 +16,11 @@ public partial class Main : Node
 	PackedScene packedTimeLabel = ResourceLoader.Load<PackedScene>("res://Scenes/time_label.tscn");
 
 	[Export]
+	PackedScene packedCenterLabel = ResourceLoader.Load<PackedScene>("res://Scenes/center_label.tscn");
+
+	Label _center_label;
+
+	[Export]
 	PackedScene packedPlatforms = ResourceLoader.Load<PackedScene>("res://Scenes/platforms.tscn");
 
 	[Export]
@@ -33,15 +38,17 @@ public partial class Main : Node
 	{
 		GD.Print("Main Ready");
 
-		// getReadyTime.OnStop += () => {
-		// 	//set stop to 9min 59s 9999 and then end mission
-		// 	levelTime.Start(0);
-		// };
+		getReadyTime.OnStop += () => {
+			//set stop to 9min 59s 9999 and then end mission
+			// levelTime.Start(0);
+			_center_label.Visible = false;
+		};
 
-		levelTime.Start(0);
+		// levelTime.Start(0);
 		// levelTime.Pause();
 
-		// getReadyTime.Start(1);
+		getReadyTime.Start(2);
+		levelTime.Start(-2);
 		
 		List<Node> children;
 
@@ -58,6 +65,7 @@ public partial class Main : Node
 	public override void _Process(double delta)
 	{
 		levelTime.Update(delta);
+		getReadyTime.Update(delta);
 	}
 
 	public void GhostTreeExit()
@@ -69,6 +77,9 @@ public partial class Main : Node
 		{
 			levelTime.Pause();
 			FileIO.Save(levelTime.Time);
+
+			_center_label.Visible=true;
+			_center_label.Text = "SUCCESS!";
 		}
 	}
 
@@ -81,6 +92,11 @@ public partial class Main : Node
 		_timeLabel.Init(ref levelTime);
 		// _timeLabel.GlobalPosition = new Vector2(1200,50);
 		UI.AddChild(_timeLabel);
+
+		_center_label = packedCenterLabel.Instantiate<Label>();
+		// _timeLabel.GlobalPosition = new Vector2(1200,50);
+		UI.AddChild(_center_label);
+		_center_label.Text = "Get READY!";
 
 		TileMap platforms = packedPlatforms.Instantiate(World) as TileMap;
 

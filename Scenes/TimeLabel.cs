@@ -11,6 +11,8 @@ public partial class TimeLabel : Label
 	string _min;
 	string _sec;
 
+	string _milisec;
+
 	public void Init(ref TimeCounter time)
 	{
 		_time = time;
@@ -22,19 +24,30 @@ public partial class TimeLabel : Label
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		// if(_time.Minutes > 0)
-		// 	_min = _time.Minutes.ToString();
-		// else
-		// 	_min = 0.ToString();
+		// GD.Print(_time.Time);
+		// GD.Print(_time.MiliSeconds);
+		// GD.Print(_time.Seconds);
+		// GD.Print(_time.Minutes);
 
 		_min = _time.Minutes.ToString();
 
-		if(_time.Seconds >= 10)
-			_sec = _time.Seconds.ToString();
+		if(Math.Abs(_time.Seconds) >= 10)
+			_sec = Math.Abs(_time.Seconds).ToString();
 		else
-			_sec = 0.ToString() + _time.Seconds.ToString();
+			_sec = 0.ToString() + Math.Abs(_time.Seconds).ToString();
 
-		Text = _min + ":" + _sec + "  " + _time.MiliSeconds.ToString().Substring(2,2);
+		if(_time.MiliSeconds > 0)
+			_milisec = _time.MiliSeconds.ToString().Substring(2,2);
+		else if(_time.MiliSeconds == 0)
+			_milisec = "00";
+		else if (_time.MiliSeconds < 0)
+			_milisec = Math.Abs(_time.MiliSeconds).ToString().Substring(2,2);
+
+		if (_time.MiliSeconds >= 0)
+			Text = _min + ":" + _sec + "  " + _milisec;
+		else if (_time.MiliSeconds < 0)
+			Text = "-"+_min + ":" + _sec + "  " + _milisec;
+
 		Show();
 	}
 }
