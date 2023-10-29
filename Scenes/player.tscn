@@ -256,8 +256,8 @@ libraries = {
 }
 
 [node name="WallCheckShoulder" type="RayCast2D" parent="PlayerSprite2D"]
-position = Vector2(9.5, -9.5)
-target_position = Vector2(5, 0)
+position = Vector2(7.5, -8.5)
+target_position = Vector2(6.5, 0)
 
 [node name="WallCheckToe" type="RayCast2D" parent="PlayerSprite2D"]
 position = Vector2(10, 29.5)
@@ -282,10 +282,15 @@ script = ExtResource("7_71xul")
 [node name="Jump" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("7_ofds0")
 move_speed = 420.0
+jump_height = 150.0
 
 [node name="InAir" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("8_uctrm")
+hang_time_duration = 0.05
 fall_gravity_multiplier = 0.06
+distance_before_medium_landing = 500.0
+distance_before_heavy_landing = 1000.0
+distance_before_dying = 2000.0
 
 [node name="Land" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_ok23f")
@@ -295,13 +300,17 @@ script = ExtResource("10_1mtkc")
 
 [node name="Dash" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("12_5jbsb")
+dash_distance = 400.0
+dash_time = 0.2
 
 [node name="WallGrab" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("13_ckika")
 
 [node name="WallJump" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("14_umcf1")
+wall_jump_height = 150.0
+wall_jump_force_duration = 0.15
 
 [node name="CoyoteTime" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.05
 one_shot = true

@@ -18,11 +18,12 @@ extends CharacterBody2D
 
 func _process(delta):
 	#input checks
-	input_direction = Input.get_vector("Left", "Right", "Up", "Down")
-	x_input = round(input_direction.x)
-	y_input = round(input_direction.y)
-	if verbose && (Input.is_action_pressed("Left") || Input.is_action_pressed("Right")) && x_input == 0:
-		print("X INPUT IS NOT REGISTERING!!!")
+	x_input = int(Input.is_action_pressed("Right")) - int(Input.is_action_pressed("Left"))
+	y_input = int(Input.is_action_pressed("Down")) - int(Input.is_action_pressed("Up"))
+#	if verbose:
+#		print(input_direction," turned into ",x_input,y_input)
+#	if verbose && (Input.is_action_pressed("Left") || Input.is_action_pressed("Right")) && x_input == 0:
+#		print("X INPUT IS NOT REGISTERING!!!")
 	if !jump_button_reset && !Input.is_action_pressed("Jump"):
 		jump_button_reset = true
 	if !dash_button_reset && !Input.is_action_pressed("Dash"):

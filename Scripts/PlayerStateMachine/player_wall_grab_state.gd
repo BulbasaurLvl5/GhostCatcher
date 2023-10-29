@@ -9,8 +9,11 @@ func Enter():
 		player.remaining_air_actions = player.max_air_actions
 
 func Do_Checks():
-	
-	if !Input.is_action_pressed("Grab"):
+	if Input.is_action_pressed("Jump") && player.jump_button_reset:
+		Transitioned.emit(self,"WallJump")
+	elif Input.is_action_pressed("Dash") && player.dash_button_reset:
+		Transitioned.emit(self,"WallJump")
+	elif !Input.is_action_pressed("Grab"):
 		release_wall()	
 
 func release_wall():

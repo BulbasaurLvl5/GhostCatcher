@@ -112,7 +112,8 @@ position = Vector2(-0.125, 1)
 shape = SubResource("RectangleShape2D_xv1sb")
 
 [node name="Platform007" type="StaticBody2D" parent="Platforms/Path1"]
-position = Vector2(2767, -295)
+position = Vector2(2653, -586)
+rotation = 1.5708
 scale = Vector2(5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Platforms/Path1/Platform007"]

@@ -21,6 +21,8 @@ func Physics_Update(delta):
 	#determine Y velocity
 	#switch to InAir state if falling
 	if player.velocity.y >= 0:
+		player.velocity.y = 0
+		$"../InAir".hang_time_active = true
 		Transitioned.emit(self,"InAir")
 	else:
 		player.velocity.y += get_gravity() * delta
