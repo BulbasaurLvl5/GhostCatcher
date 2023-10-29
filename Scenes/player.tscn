@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dhow5esn6x7rt"]
+[gd_scene load_steps=26 format=3 uid="uid://dhow5esn6x7rt"]
 
 [ext_resource type="Texture2D" uid="uid://bb0owlsjswb7q" path="res://Sprites/platformer_sprites_base.png" id="1_axrb2"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_state_machine.gd" id="1_dcopr"]
@@ -11,6 +11,9 @@
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_in_air_state.gd" id="8_uctrm"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_land_state.gd" id="9_ok23f"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_die_state.gd" id="10_1mtkc"]
+[ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_dash_state.gd" id="12_5jbsb"]
+[ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_wall_grab_state.gd" id="13_ckika"]
+[ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_wall_jump_state.gd" id="14_umcf1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q5wu2"]
 radius = 18.0
@@ -222,6 +225,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_l4530")
+verbose = true
 
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -236,20 +240,28 @@ hframes = 8
 vframes = 9
 frame = 16
 
-[node name="GroundCheck" type="RayCast2D" parent="PlayerSprite2D"]
-position = Vector2(-12.5, 31)
-scale = Vector2(0.5, 0.5)
-target_position = Vector2(0, 4)
-
-[node name="GroundCheck2" type="RayCast2D" parent="PlayerSprite2D"]
+[node name="GroundCheckFront" type="RayCast2D" parent="PlayerSprite2D"]
 position = Vector2(14, 31.5)
 scale = Vector2(0.5, 0.5)
 target_position = Vector2(0, 3)
+
+[node name="GroundCheckBack" type="RayCast2D" parent="PlayerSprite2D"]
+position = Vector2(-12.5, 31)
+scale = Vector2(0.5, 0.5)
+target_position = Vector2(0, 4)
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="PlayerSprite2D"]
 libraries = {
 "": SubResource("AnimationLibrary_3tts5")
 }
+
+[node name="WallCheckShoulder" type="RayCast2D" parent="PlayerSprite2D"]
+position = Vector2(7.5, -8.5)
+target_position = Vector2(6.5, 0)
+
+[node name="WallCheckToe" type="RayCast2D" parent="PlayerSprite2D"]
+position = Vector2(10, 29.5)
+target_position = Vector2(4.5, 0)
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_dcopr")
@@ -266,18 +278,39 @@ script = ExtResource("6_apjhc")
 
 [node name="Run" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("7_71xul")
-run_speed = 420.0
 
 [node name="Jump" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("7_ofds0")
 move_speed = 420.0
+jump_height = 150.0
 
 [node name="InAir" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("8_uctrm")
+hang_time_duration = 0.05
 fall_gravity_multiplier = 0.06
+distance_before_medium_landing = 500.0
+distance_before_heavy_landing = 1000.0
+distance_before_dying = 2000.0
 
 [node name="Land" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_ok23f")
 
 [node name="Die" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("10_1mtkc")
+
+[node name="Dash" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("12_5jbsb")
+dash_distance = 400.0
+dash_time = 0.2
+
+[node name="WallGrab" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("13_ckika")
+
+[node name="WallJump" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("14_umcf1")
+wall_jump_height = 150.0
+wall_jump_force_duration = 0.15
+
+[node name="CoyoteTime" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true

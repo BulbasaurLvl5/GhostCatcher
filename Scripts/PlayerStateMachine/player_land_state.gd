@@ -13,6 +13,8 @@ func DoChecks(delta):
 	if !heavy_landing:
 		if Input.is_action_pressed("Jump") && player.can_jump:
 			Transitioned.emit(self,"Jump")
+		elif Input.is_action_pressed("Dash") && player.dash_button_reset:
+			Transitioned.emit(self,"Dash")
 		elif abs(player.x_input) == 1:
 			Walk_Or_Run(self)
 

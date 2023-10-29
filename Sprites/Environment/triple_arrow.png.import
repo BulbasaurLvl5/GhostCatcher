@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bio7l2bco1am1"
-path="res://.godot/imported/triple_jump.png-a9db004b95102e1d636f4a4a6c75809d.ctex"
+path="res://.godot/imported/triple_arrow.png-418442cb1bda22e8b5e9aa5e6f4a6d76.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/PracticeTargets/triple_jump.png"
-dest_files=["res://.godot/imported/triple_jump.png-a9db004b95102e1d636f4a4a6c75809d.ctex"]
+source_file="res://Sprites/Environment/triple_arrow.png"
+dest_files=["res://.godot/imported/triple_arrow.png-418442cb1bda22e8b5e9aa5e6f4a6d76.ctex"]
 
 [params]
 
