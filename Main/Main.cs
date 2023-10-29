@@ -5,13 +5,9 @@ using System.Collections.Generic;
 
 public partial class Main : Node
 {
-	// [Export]
-	// PackedScene testScene = ResourceLoader.Load<PackedScene>("res://Scenes/test_level.tscn");
-	// 	testScene.Instantiate(this, new Vector2(0,0), 0);
-
-	List<Node> children = new List<Node>();
-
 	TimeCounter levelTime = new TimeCounter();
+
+	TimeCounter getReadyTime = new TimeCounter();
 
 	Node World;
 	Node UI;
@@ -24,15 +20,30 @@ public partial class Main : Node
 
 	[Export]
 	PackedScene packedPlayer = ResourceLoader.Load<PackedScene>("res://Scenes/player.tscn");
+
+	[Export]
+	PackedScene packedGhost = ResourceLoader.Load<PackedScene>("res://Scenes/ghost.tscn");
+
+	int _ghostCount = 0;
+
+	public int GhostCount {get{return _ghostCount;}}
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		GD.Print("Main Ready");
 
-		// timer should start with delay. some READY! SET! GO! stuff (better: READY! GO!)
-		//set stop to 9min 59s 9999 and then end mission
-		levelTime.Start(0); 
+		// getReadyTime.OnStop += () => {
+		// 	//set stop to 9min 59s 9999 and then end mission
+		// 	levelTime.Start(0);
+		// };
+
+		levelTime.Start(0);
+		// levelTime.Pause();
+
+		// getReadyTime.Start(1);
+		
+		List<Node> children;
 
 		if(this.TryGetChildren(out children))
 		{
@@ -47,9 +58,16 @@ public partial class Main : Node
 	public override void _Process(double delta)
 	{
 		levelTime.Update(delta);
+	}
 
-		if (Input.IsActionPressed("Jump"))
+	public void GhostTreeExit()
+	{
+		_ghostCount -= 1;
+		GD.Print("ghostcount: "+_ghostCount);
+
+		if(_ghostCount == 0)
 		{
+			levelTime.Pause();
 			FileIO.Save(levelTime.Time);
 		}
 	}
@@ -57,15 +75,14 @@ public partial class Main : Node
 	void LoadMission(int level)
 	{
 		//add some input to know which level will be loaded
-		//add switch state that loads the respective JSON
+		//also move code somewhere else. some kind of leveloader class / script. statik class?
 
-		// timeLabel.Instantiate(UI, new Vector2(0,0), 0);
 		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
 		_timeLabel.Init(ref levelTime);
 		// _timeLabel.GlobalPosition = new Vector2(1200,50);
 		UI.AddChild(_timeLabel);
 
-		TileMap platforms = packedPlatforms.Instantiate(World)as TileMap;
+		TileMap platforms = packedPlatforms.Instantiate(World) as TileMap;
 
 		List<Vector2I> tilepositions = new List<Vector2I>()
 		{
@@ -104,8 +121,21 @@ public partial class Main : Node
 		}
 		// platforms.SetCellsTerrainConnect(0, tilepositions, 0, 0); //has to be godot collection. but when done looks like it does not require the foreach loop
 
-		packedPlayer.Instantiate(World, new Vector2(3,7), 0);
+		packedPlayer.Instantiate(World, new Vector2(4*128,7*128), 0);
 
-		//needs to know how many targets there are. likely also input and OnDestroy of each target -1
+		List<Vector2I> ghostPositions = new List<Vector2I>()
+		{
+			new Vector2I(6*128, 4*128),
+			new Vector2I(11*128, 0),
+			new Vector2I(11*128, 5*128),
+			new Vector2I(16*128, 4*128),
+		};
+
+		foreach (var _gp in ghostPositions)
+		{
+			Ghost _g = packedGhost.Instantiate(World, _gp, 0) as Ghost;
+			_g.TreeExited += GhostTreeExit;
+			_ghostCount += 1;
+		}
 	}
 }
