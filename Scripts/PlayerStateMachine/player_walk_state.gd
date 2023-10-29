@@ -8,8 +8,9 @@ func Enter():
 	
 func Do_Checks():
 	if !player.is_grounded:
+		$"../../CoyoteTime".start
 		Transitioned.emit(self,"InAir")
-	elif Input.is_action_pressed("Jump") && player.can_jump:
+	elif Input.is_action_pressed("Jump") && player.jump_button_reset:
 		Transitioned.emit(self,"Jump")
 	elif player.x_input == 0:
 		Transitioned.emit(self,"Idle")

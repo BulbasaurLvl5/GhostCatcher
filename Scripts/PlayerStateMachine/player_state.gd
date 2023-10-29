@@ -23,9 +23,6 @@ func Transition():
 
 func Enter():
 	pass
-	
-func Exit():
-	pass
 
 func Initiate_Update(delta):
 	time_in_current_state += delta
