@@ -150,6 +150,13 @@ namespace MyGodotExtentions
 			
 			return obj;
 		}
+
+		public static Node2D Instantiate(this PackedScene _this, Node _parent)
+		{
+			Node2D obj = _this.Instantiate<Node2D>();
+			_parent.AddChild(obj);
+			return obj;
+		}
 	}
 
 	public static class TileMapFunctions

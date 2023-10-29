@@ -5,7 +5,7 @@ using System;
 public partial class TimeLabel : Label
 {
 	[Export]
-	Vector2 Pos = new Vector2(1200, 50);
+	Vector2 Pos = new Vector2(700, 50);
 
 	TimeCounter _time = new TimeCounter();
 	string _min;
@@ -14,16 +14,20 @@ public partial class TimeLabel : Label
 	public void Init(ref TimeCounter time)
 	{
 		_time = time;
+		// Vector2 screenSize = GetViewportRect().Size;
+		// GlobalPosition = new Vector2(screenSize.X*.8f, 50);
 		GlobalPosition = Pos;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(_time.Minutes > 0)
-			_min = _time.Minutes.ToString();
-		else
-			_min = 0.ToString();
+		// if(_time.Minutes > 0)
+		// 	_min = _time.Minutes.ToString();
+		// else
+		// 	_min = 0.ToString();
+
+		_min = _time.Minutes.ToString();
 
 		if(_time.Seconds >= 10)
 			_sec = _time.Seconds.ToString();
