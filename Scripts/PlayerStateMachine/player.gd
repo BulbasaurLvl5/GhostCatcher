@@ -5,6 +5,10 @@ extends CharacterBody2D
 @export var facing_direction : int = 1
 @export var max_air_actions : int = 2
 
+@export var stefan_screen_size : Vector2i = Vector2i(1152,648)
+@export var daniel_screen_size : Vector2i = Vector2i(1920,1080)
+@export var using_stefan_screen_size : bool = true
+
 @onready var x_input : int = 0
 @onready var y_input : int = 0
 @onready var input_direction : Vector2 = Vector2.ZERO
@@ -15,6 +19,10 @@ extends CharacterBody2D
 @onready var last_touched_wall : bool = false
 @onready var jump_button_reset : bool = false
 @onready var dash_button_reset : bool = false
+@onready var screen_size_button_reset : bool = false
+
+func _ready():
+	set_screen_size(false)
 
 func _process(delta):
 	#input checks
@@ -28,7 +36,11 @@ func _process(delta):
 		jump_button_reset = true
 	if !dash_button_reset && !Input.is_action_pressed("Dash"):
 		dash_button_reset = true
-		
+#	if !screen_size_button_reset && !Input.is_action_pressed("ScreenSize"):
+#		screen_size_button_reset = true
+	if Input.is_action_pressed("ScreenSize"):
+		set_screen_size(true)
+	
 	#environmental checks
 	$PlayerSprite2D/GroundCheckFront.force_raycast_update()	
 	$PlayerSprite2D/GroundCheckBack.force_raycast_update()
@@ -62,3 +74,17 @@ func can_dash() -> bool:
 func air_action():
 	if $CoyoteTime.is_stopped():
 		remaining_air_actions -= 1
+
+func set_screen_size(toggle_screen_size : bool):
+	if toggle_screen_size:
+		if using_stefan_screen_size:
+			using_stefan_screen_size = false
+		else:
+			using_stefan_screen_size = true
+	if verbose:
+		print("using_stefan_screen_size set to ",using_stefan_screen_size)
+	if using_stefan_screen_size:
+		DisplayServer.window_set_size(Vector2i(stefan_screen_size))
+	else:
+		DisplayServer.window_set_size(Vector2i(daniel_screen_size))
+		

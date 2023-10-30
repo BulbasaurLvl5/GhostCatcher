@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://384bmi1nwn2h"]
+[gd_scene load_steps=9 format=3 uid="uid://384bmi1nwn2h"]
 
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://Scenes/player.tscn" id="1_kfi0p"]
 [ext_resource type="Texture2D" uid="uid://bu528on5v84fp" path="res://Sprites/Environment/graveyard_objects/TombStone (1).png" id="2_yijex"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://b33o1u51pi5qk" path="res://Sprites/Environment/graveyard_objects/ArrowSign.png" id="5_v02x4"]
 [ext_resource type="Texture2D" uid="uid://ctbovjl1lvhe0" path="res://Sprites/Environment/desert_tiles/2.png" id="6_7fd37"]
 [ext_resource type="Texture2D" uid="uid://gvbuycv0v6iw" path="res://Sprites/Environment/desert_objects/Tree.png" id="6_tguuh"]
-[ext_resource type="Texture2D" uid="uid://cj1ar64hph4tk" path="res://Sprites/Environment/volcano_tiles/bg_volcano.png" id="7_q1h5s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xv1sb"]
 size = Vector2(128.083, 126)
@@ -248,12 +247,3 @@ shape = SubResource("RectangleShape2D_xv1sb")
 
 [node name="Player" parent="." instance=ExtResource("1_kfi0p")]
 position = Vector2(3730, 807)
-
-[node name="Camera2D2" type="Camera2D" parent="Player"]
-
-[node name="Sky" type="Sprite2D" parent="Player/Camera2D2"]
-z_index = -5
-texture_repeat = 2
-position = Vector2(-3, -236)
-scale = Vector2(2, 2)
-texture = ExtResource("7_q1h5s")
