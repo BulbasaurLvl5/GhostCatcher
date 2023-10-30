@@ -1,9 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://dhow5esn6x7rt"]
+[gd_scene load_steps=35 format=3 uid="uid://dhow5esn6x7rt"]
 
 [ext_resource type="Texture2D" uid="uid://bb0owlsjswb7q" path="res://Sprites/platformer_sprites_base.png" id="1_axrb2"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_state_machine.gd" id="1_dcopr"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player.gd" id="1_l4530"]
+[ext_resource type="Resource" uid="uid://dvbrelm3gvn8b" path="res://Scripts/PlayerData/default.tres" id="2_h06d8"]
 [ext_resource type="Resource" uid="uid://cebdbv30m0kof" path="res://Scripts/PlayerData/unlimited_air_actions.tres" id="2_se3de"]
+[ext_resource type="Resource" uid="uid://cmx84lrwxedgg" path="res://Scripts/PlayerData/speed_demon.tres" id="4_gemo6"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_idle_state.gd" id="4_tan8y"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_state.gd" id="5_8dkiu"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_walk_state.gd" id="6_apjhc"]
@@ -300,7 +302,8 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_l4530")
-data = ExtResource("2_se3de")
+player_data_resources = Array[Resource("res://Scripts/PlayerData/player_data_resource.gd")]([ExtResource("2_h06d8"), ExtResource("2_se3de"), ExtResource("4_gemo6")])
+data = ExtResource("2_h06d8")
 
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)

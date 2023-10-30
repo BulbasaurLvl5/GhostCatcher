@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_xfbip")
-player_data_name_or_description = ""
+player_data_name_or_description = "Unlimited Air Actions"
 walk_speed = 150.0
 run_speed = 420.0
 in_air_horizontal_speed = 350.0

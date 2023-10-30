@@ -14,10 +14,10 @@ signal Transitioned
 func _ready():
 	player = $"../.."
 	anim = $"../../PlayerSprite2D/PlayerAnimation"
-	data = player.data
-	verbose = player.verbose
 	
 func Transition():
+	data = player.data
+	verbose = player.verbose
 	if verbose:
 		print("Entering ",self.name)
 	time_in_current_state = 0

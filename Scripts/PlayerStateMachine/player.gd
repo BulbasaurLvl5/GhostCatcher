@@ -9,10 +9,8 @@ extends CharacterBody2D
 @export var using_stefan_screen_size : bool = true
 @export var stefan_screen_size : Vector2i = Vector2i(1152,648)
 @export var daniel_screen_size : Vector2i = Vector2i(1920,1080)
-
-#player data
-#@export var player_data_sets : Array[PlayerDataResource]
-@export var data : PlayerDataResource
+@export var player_data_resources : Array[PlayerDataResource]
+@export var data : PlayerDataResource 
 
 #player status
 @onready var x_input : int = 0
@@ -25,10 +23,16 @@ extends CharacterBody2D
 @onready var last_touched_wall : bool = false
 @onready var jump_button_reset : bool = false
 @onready var dash_button_reset : bool = false
+@onready var prev_player_data_button_reset : bool = false
+@onready var next_player_data_button_reset : bool = false
 @onready var screen_size_button_reset : bool = false
-@onready var current_player_data_preset : int = 0
+@onready var current_player_data_preset = 0
+
 
 func _ready():
+	if data == null:
+		data = player_data_resources[0]
+		current_player_data_preset = 0
 	set_screen_size(false)
 
 func _process(_delta):
@@ -43,15 +47,19 @@ func _process(_delta):
 		jump_button_reset = true
 	if !dash_button_reset && !Input.is_action_pressed("Dash"):
 		dash_button_reset = true
+	if !prev_player_data_button_reset && !Input.is_action_pressed("PrevPlayerDataPreset"):
+		prev_player_data_button_reset = true
+	if !next_player_data_button_reset && !Input.is_action_pressed("NextPlayerDataPreset"):
+		next_player_data_button_reset = true
 #	if !screen_size_button_reset && !Input.is_action_pressed("ScreenSize"):
 #		screen_size_button_reset = true
 	if Input.is_action_pressed("ScreenSize"):
 		set_screen_size(true)
 	if Input.is_action_pressed("CommandList"):
 		show_command_list()
-	if Input.is_action_pressed("PrevPlayerDataPreset"):
+	if prev_player_data_button_reset && Input.is_action_pressed("PrevPlayerDataPreset"):
 		prev_player_data_preset()
-	if Input.is_action_pressed("NextPlayerDataPreset"):
+	if next_player_data_button_reset && Input.is_action_pressed("NextPlayerDataPreset"):
 		next_player_data_preset()
 	
 	
@@ -117,14 +125,17 @@ func show_command_list():
 	print("  page down  Next PlayerData Preset")
 	
 func prev_player_data_preset():
-#	current_player_data_preset -= 1
-#	if current_player_data_preset < 0:
-#		current_player_data_preset = 0
-	pass
-		
+	current_player_data_preset -= 1
+	if current_player_data_preset < 0:
+		current_player_data_preset = player_data_resources.size()-1
+	data = player_data_resources[current_player_data_preset]
+	print("New player_data_resource: ",current_player_data_preset," - ",data.player_data_name_or_description)
+	prev_player_data_button_reset = false
 
 func next_player_data_preset():
-#	current_player_data_preset += 1
-#	if player_data_sets[current_player_data_preset] == null:
-#		current_player_data_preset -= 1
-	pass
+	current_player_data_preset += 1
+	if current_player_data_preset > player_data_resources.size()-1:
+		current_player_data_preset = 0
+	data = player_data_resources[current_player_data_preset]
+	print("New player_data_resource: ",current_player_data_preset," - ",data.player_data_name_or_description)
+	next_player_data_button_reset = false
