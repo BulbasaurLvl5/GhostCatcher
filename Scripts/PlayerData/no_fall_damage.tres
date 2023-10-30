@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="PlayerDataResource" load_steps=2 format=3 uid="uid://dvbrelm3gvn8b"]
+[gd_resource type="Resource" script_class="PlayerDataResource" load_steps=2 format=3 uid="uid://ch2eu77qsa8qo"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerData/player_data_resource.gd" id="1_6o6l0"]
+[ext_resource type="Script" path="res://Scripts/PlayerData/player_data_resource.gd" id="1_tbucb"]
 
 [resource]
-script = ExtResource("1_6o6l0")
-player_data_name_or_description = "Default"
+script = ExtResource("1_tbucb")
+player_data_name_or_description = "No Fall Damage"
 walk_speed = 150.0
 run_speed = 420.0
 in_air_horizontal_speed = 350.0
@@ -12,8 +12,8 @@ max_air_actions = 2
 hang_time_duration = 0.05
 fall_gravity_multiplier = 20.0
 distance_before_medium_landing = 500.0
-distance_before_heavy_landing = 1000.0
-distance_before_dying = 2000.0
+distance_before_heavy_landing = 2000.0
+distance_before_dying = 1e+07
 jump_height = 150.0
 jump_time_to_peak = 0.2
 jump_hold_multiplier = 2.7

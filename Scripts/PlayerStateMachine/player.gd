@@ -25,15 +25,17 @@ extends CharacterBody2D
 @onready var dash_button_reset : bool = false
 @onready var prev_player_data_button_reset : bool = false
 @onready var next_player_data_button_reset : bool = false
+@onready var command_list_button_reset : bool = false
 @onready var screen_size_button_reset : bool = false
 @onready var current_player_data_preset = 0
-
 
 func _ready():
 	if data == null:
 		data = player_data_resources[0]
 		current_player_data_preset = 0
 	set_screen_size(false)
+	print("PlayerData set to: ",data.player_data_name_or_description)
+	print("Press '0' (zero) to see a list of available commands.")
 
 func _process(_delta):
 	#input checks
@@ -41,27 +43,26 @@ func _process(_delta):
 	y_input = int(Input.is_action_pressed("Down")) - int(Input.is_action_pressed("Up"))
 #	if verbose:
 #		print(input_direction," turned into ",x_input,y_input)
-#	if verbose && (Input.is_action_pressed("Left") || Input.is_action_pressed("Right")) && x_input == 0:
-#		print("X INPUT IS NOT REGISTERING!!!")
 	if !jump_button_reset && !Input.is_action_pressed("Jump"):
 		jump_button_reset = true
 	if !dash_button_reset && !Input.is_action_pressed("Dash"):
 		dash_button_reset = true
+	if !command_list_button_reset && !Input.is_action_pressed("CommandList"):
+		command_list_button_reset = true
 	if !prev_player_data_button_reset && !Input.is_action_pressed("PrevPlayerDataPreset"):
 		prev_player_data_button_reset = true
 	if !next_player_data_button_reset && !Input.is_action_pressed("NextPlayerDataPreset"):
 		next_player_data_button_reset = true
-#	if !screen_size_button_reset && !Input.is_action_pressed("ScreenSize"):
-#		screen_size_button_reset = true
+	if !screen_size_button_reset && !Input.is_action_pressed("ScreenSize"):
+		screen_size_button_reset = true
 	if Input.is_action_pressed("ScreenSize"):
 		set_screen_size(true)
-	if Input.is_action_pressed("CommandList"):
+	if command_list_button_reset && Input.is_action_pressed("CommandList"):
 		show_command_list()
 	if prev_player_data_button_reset && Input.is_action_pressed("PrevPlayerDataPreset"):
 		prev_player_data_preset()
 	if next_player_data_button_reset && Input.is_action_pressed("NextPlayerDataPreset"):
 		next_player_data_preset()
-	
 	
 	#environmental checks
 	$PlayerSprite2D/GroundCheckFront.force_raycast_update()	
@@ -72,7 +73,7 @@ func _process(_delta):
 	is_grounded = max(int($PlayerSprite2D/GroundCheckFront.is_colliding()), int($PlayerSprite2D/GroundCheckBack.is_colliding()))
 	can_touch_wall = int($PlayerSprite2D/WallCheckShoulder.is_colliding())
 	is_facing_wall = max(int(can_touch_wall), int($PlayerSprite2D/WallCheckToe.is_colliding()))
-		
+	
 	if is_grounded:
 		remaining_air_actions = data.max_air_actions
 		last_touched_wall = false
@@ -92,7 +93,7 @@ func can_dash() -> bool:
 		return true
 	else:
 		return false
-		
+
 func air_action():
 	if $CoyoteTime.is_stopped():
 		remaining_air_actions -= 1
@@ -109,8 +110,10 @@ func set_screen_size(toggle_screen_size : bool):
 		DisplayServer.window_set_size(Vector2i(stefan_screen_size))
 	else:
 		DisplayServer.window_set_size(Vector2i(daniel_screen_size))
-		
+
 func show_command_list():
+	command_list_button_reset = false
+	print("")
 	print("AWSD/arrows  Move")
 	print("      space  Jump")
 	print("      enter  Dash")
@@ -123,7 +126,7 @@ func show_command_list():
 	print("        esc  Toggle Screen Size")
 	print("    page up  Prev PlayerData Preset")
 	print("  page down  Next PlayerData Preset")
-	
+
 func prev_player_data_preset():
 	current_player_data_preset -= 1
 	if current_player_data_preset < 0:
