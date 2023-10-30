@@ -14,16 +14,16 @@ extends Resource
 
 @export var jump_height: float = 150
 @export var jump_time_to_peak: float = 0.2
-@export var jump_float_multiplier: float = 2.7
+@export var jump_hold_multiplier: float = 2.7
 
 @export var wall_jump_height: float = 150
 @export var wall_jump_time_to_peak: float = 0.2
 @export var wall_jump_force_duration: float = 0.1
-@export var wall_jump_float_multiplier: float = 2.7
+@export var wall_jump_hold_multiplier: float = 2.7
 
 @export var dash_distance : float = 125
 @export var dash_time : float = 0.2
-@export var dash_push_multiplier = 2.7
+@export var dash_hold_multiplier = 2.7
 
 @export var wall_grab_resets_air_actions : bool = true
 

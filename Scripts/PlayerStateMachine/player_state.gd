@@ -7,13 +7,15 @@ signal Transitioned
 @export var anim : AnimationPlayer
 
 @onready var data : PlayerDataResource
-@onready var verbose : bool = $"../..".verbose
+@onready var verbose : bool 
 
 @onready var time_in_current_state = 0
 
 func _ready():
 	player = $"../.."
 	anim = $"../../PlayerSprite2D/PlayerAnimation"
+	data = player.data
+	verbose = player.verbose
 	
 func Transition():
 	if verbose:
@@ -22,8 +24,8 @@ func Transition():
 	Enter()
 
 func Enter():
-	verbose = $"../..".verbose
-	
+	data = player.data
+	verbose = player.verbose
 
 func Initiate_Update(delta):
 	time_in_current_state += delta

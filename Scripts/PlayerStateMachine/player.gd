@@ -11,9 +11,8 @@ extends CharacterBody2D
 @export var daniel_screen_size : Vector2i = Vector2i(1920,1080)
 
 #player data
-@export var max_air_actions : int = 2
-@export var player_data_sets : Array[PlayerDataResource]
-@onready var data : PlayerDataResource = player_data_sets[0]
+#@export var player_data_sets : Array[PlayerDataResource]
+@export var data : PlayerDataResource
 
 #player status
 @onready var x_input : int = 0
@@ -22,7 +21,7 @@ extends CharacterBody2D
 @onready var is_grounded : bool
 @onready var can_touch_wall : bool
 @onready var is_facing_wall : bool
-@onready var remaining_air_actions : int = max_air_actions
+@onready var remaining_air_actions : int = data.max_air_actions
 @onready var last_touched_wall : bool = false
 @onready var jump_button_reset : bool = false
 @onready var dash_button_reset : bool = false
@@ -67,7 +66,7 @@ func _process(_delta):
 	is_facing_wall = max(int(can_touch_wall), int($PlayerSprite2D/WallCheckToe.is_colliding()))
 		
 	if is_grounded:
-		remaining_air_actions = max_air_actions
+		remaining_air_actions = data.max_air_actions
 		last_touched_wall = false
 
 func can_jump() -> bool:

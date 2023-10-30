@@ -1,11 +1,11 @@
 class_name PlayerWallGrabState
 extends PlayerState
 
-@export var wall_grab_resets_air_actions : bool = true
+#@export var wall_grab_resets_air_actions : bool = true
 
 func Enter():
 	anim.play("wall_grab")
-	if wall_grab_resets_air_actions:
+	if data.wall_grab_resets_air_actions:
 		player.remaining_air_actions = player.max_air_actions
 
 func Do_Checks():

@@ -1,7 +1,7 @@
 class_name PlayerWalkState
 extends PlayerState
 
-@export var walk_speed : float = 150.0
+#@export var walk_speed : float = 150.0
 
 func Enter():
 	anim.play("walk",-1,1.25)
@@ -20,5 +20,5 @@ func Do_Checks():
 		Transitioned.emit(self,"Run")
 
 func Physics_Update(delta):
-	var motion = Vector2(walk_speed * delta * player.x_input, 0)
+	var motion = Vector2(data.walk_speed * delta * player.x_input, 0)
 	player.move_and_collide(motion)

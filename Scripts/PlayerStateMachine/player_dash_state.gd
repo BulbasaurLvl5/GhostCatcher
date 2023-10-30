@@ -1,9 +1,9 @@
 class_name PlayerDashState
 extends PlayerState
 
-@export var dash_distance : float = 200
-@export var dash_time : float = 0.2
-@export var dash_push_multiplier : float = 1.5
+#@export var dash_distance : float = 200
+#@export var dash_time : float = 0.2
+#@export var dash_push_multiplier : float = 1.5
 
 @onready var dash_direction : Vector2 = Vector2.ZERO
 @onready var dash_speed : float
@@ -30,11 +30,11 @@ func get_direction() -> Vector2:
 	return Vector2 ((player.x_input * multiplier),(player.y_input * multiplier))
 
 func Do_Checks():
-	if time_in_current_state >= dash_time:
+	if time_in_current_state >= data.dash_time:
 		complete_dash()
 
 func Physics_Update(_delta):
-	dash_speed = (dash_distance / dash_time)
+	dash_speed = (data.dash_distance / data.dash_time)
 	dash_speed = get_speed()
 	player.velocity = Vector2 ((dash_direction.x * dash_speed), (dash_direction.y * dash_speed))
 	player.move_and_slide()
@@ -49,6 +49,6 @@ func complete_dash():
 		
 func get_speed() -> float:
 	if Input.is_action_pressed("Dash"):
-		return dash_speed * dash_push_multiplier
+		return dash_speed * data.dash_hold_multiplier
 	else:
 		return dash_speed

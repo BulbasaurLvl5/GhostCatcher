@@ -227,7 +227,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_l4530")
-player_data_sets = Array[Resource("res://Scripts/PlayerData/player_data_resource.gd")]([ExtResource("2_5tpro")])
+data = ExtResource("2_5tpro")
 
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -283,12 +283,9 @@ script = ExtResource("7_71xul")
 
 [node name="Jump" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("7_ofds0")
-move_speed = 420.0
-jump_height = 150.0
 
 [node name="InAir" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("8_uctrm")
-fall_gravity_multiplier = 20.0
 
 [node name="Land" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_ok23f")
@@ -298,17 +295,12 @@ script = ExtResource("10_1mtkc")
 
 [node name="Dash" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("12_5jbsb")
-dash_distance = 150.0
-dash_time = 0.25
-dash_push_multiplier = 2.7
 
 [node name="WallGrab" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("13_ckika")
 
 [node name="WallJump" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("14_umcf1")
-wall_jump_height = 150.0
-wall_jump_force_duration = 0.15
 
 [node name="CoyoteTime" type="Timer" parent="."]
 wait_time = 0.05
