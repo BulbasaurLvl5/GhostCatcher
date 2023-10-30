@@ -1,11 +1,11 @@
 class_name PlayerInAirState
 extends PlayerState
 
-@export var hang_time_duration : float = 0.2
-@export var fall_gravity_multiplier : float = .05
-@export var distance_before_medium_landing : float = 300
-@export var distance_before_heavy_landing : float = 600
-@export var distance_before_dying : float = 1000
+@export var hang_time_duration : float = 0.1
+@export var fall_gravity_multiplier : float = 5
+@export var distance_before_medium_landing : float = 500
+@export var distance_before_heavy_landing : float = 1000
+@export var distance_before_dying : float = 2000
 
 @onready var fall_gravity : float = ((1.3 * $"../Jump".jump_height) / ($"../Jump".jump_time_to_peak * $"../Jump".jump_time_to_peak))
 @onready var move_speed : float = $"../Jump".move_speed
@@ -36,7 +36,7 @@ func Do_Checks():
 			Transitioned.emit(self,"Land")
 		elif player.x_input == 0:
 			Transitioned.emit(self,"Idle")
-		else:
+		else: 
 			Walk_Or_Run(self)
 	elif Input.is_action_pressed("Jump") && player.can_jump():
 		player.air_action()
@@ -48,14 +48,14 @@ func Do_Checks():
 		player.velocity = Vector2.ZERO
 		Transitioned.emit(self,"WallGrab")
 		
-func Update(delta):
+func Update(_delta):
 	if hang_time_active && time_in_current_state > hang_time_duration:
 		hang_time_active = false
 
-func Physics_Update(delta):
+func Physics_Update(_delta):
 	if hang_time_active:
 		player.velocity.y = 0
 	else:
-		player.velocity.y += fall_gravity * fall_gravity_multiplier
+		player.velocity.y += fall_gravity * fall_gravity_multiplier * .001
 	player.velocity.x = player.x_input * move_speed
 	player.move_and_slide()

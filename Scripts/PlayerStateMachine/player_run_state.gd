@@ -8,10 +8,12 @@ func Enter():
 	
 func Do_Checks():
 	if !player.is_grounded:
-		$"../../CoyoteTime".start
+		$"../../CoyoteTime".start()
 		Transitioned.emit(self,"InAir")
 	elif Input.is_action_pressed("Jump") && player.jump_button_reset:
 		Transitioned.emit(self,"Jump")
+	elif Input.is_action_pressed("Dash") && player.dash_button_reset:
+		Transitioned.emit(self,"Dash")
 	elif player.x_input == 0:
 		Transitioned.emit(self,"Idle")
 	elif Input.is_action_pressed("Slow"):

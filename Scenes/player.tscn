@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://dhow5esn6x7rt"]
+[gd_scene load_steps=28 format=3 uid="uid://dhow5esn6x7rt"]
 
 [ext_resource type="Texture2D" uid="uid://bb0owlsjswb7q" path="res://Sprites/platformer_sprites_base.png" id="1_axrb2"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_state_machine.gd" id="1_dcopr"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player.gd" id="1_l4530"]
+[ext_resource type="Resource" uid="uid://dvbrelm3gvn8b" path="res://Scripts/PlayerData/player_data_00.tres" id="2_5tpro"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_idle_state.gd" id="4_tan8y"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_state.gd" id="5_8dkiu"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_walk_state.gd" id="6_apjhc"]
@@ -226,7 +227,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_l4530")
-verbose = true
+player_data_sets = Array[Resource("res://Scripts/PlayerData/player_data_resource.gd")]([ExtResource("2_5tpro")])
 
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -287,11 +288,7 @@ jump_height = 150.0
 
 [node name="InAir" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("8_uctrm")
-hang_time_duration = 0.05
-fall_gravity_multiplier = 0.06
-distance_before_medium_landing = 500.0
-distance_before_heavy_landing = 1000.0
-distance_before_dying = 2000.0
+fall_gravity_multiplier = 20.0
 
 [node name="Land" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_ok23f")
@@ -301,8 +298,9 @@ script = ExtResource("10_1mtkc")
 
 [node name="Dash" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("12_5jbsb")
-dash_distance = 400.0
-dash_time = 0.2
+dash_distance = 150.0
+dash_time = 0.25
+dash_push_multiplier = 2.7
 
 [node name="WallGrab" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("13_ckika")

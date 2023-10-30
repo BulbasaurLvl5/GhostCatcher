@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://384bmi1nwn2h"]
+[gd_scene load_steps=9 format=3 uid="uid://de5ppgs1aewt7"]
 
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://Scenes/player.tscn" id="1_kfi0p"]
 [ext_resource type="Texture2D" uid="uid://bu528on5v84fp" path="res://Sprites/Environment/graveyard_objects/TombStone (1).png" id="2_yijex"]

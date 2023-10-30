@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="PlayerDataResource" load_steps=2 format=3 uid="uid://dvbrelm3gvn8b"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerData/player_data_resource.gd" id="1_2lwgt"]
+
+[resource]
+script = ExtResource("1_2lwgt")
+walk_speed = 150.0
+run_speed = 420.0
+in_air_horizontal_speed = 350.0
+max_air_actions = 2
+hang_time_duration = 0.05
+fall_gravity_multiplier = 5.0
+distance_before_medium_landing = 500.0
+distance_before_heavy_landing = 1000.0
+distance_before_dying = 2000.0
+jump_height = 150.0
+jump_time_to_peak = 0.2
+jump_float_multiplier = 2.7
+wall_jump_height = 150.0
+wall_jump_time_to_peak = 0.2
+wall_jump_force_duration = 0.1
+wall_jump_float_multiplier = 2.7
+dash_distance = 150.0
+dash_time = 0.25
+dash_push_multiplier = 2.7
+wall_grab_resets_air_actions = true

@@ -15,18 +15,16 @@ func Enter():
 	player.jump_button_reset = false
 	
 func _animation_finished():
-	anim.play("in-air")
+	anim.play("in_air")
 
-func Physics_Update(delta):
-	#determine Y velocity
-	#switch to InAir state if falling
+func Do_Checks():
 	if player.velocity.y >= 0:
 		player.velocity.y = 0
 		$"../InAir".hang_time_active = true
 		Transitioned.emit(self,"InAir")
-	else:
-		player.velocity.y += get_gravity() * delta
-	#determine X velocity
+
+func Physics_Update(delta):
+	player.velocity.y += get_gravity() * delta
 	player.velocity.x = move_speed * player.x_input
 	player.move_and_slide()
 	

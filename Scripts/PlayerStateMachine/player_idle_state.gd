@@ -6,7 +6,7 @@ func Enter():
 	
 func Do_Checks():
 	if !player.is_grounded && time_in_current_state > 0.1:
-		$"../../CoyoteTime".start
+		$"../../CoyoteTime".start()
 		Transitioned.emit(self,"InAir")
 	elif Input.is_action_pressed("Jump") && player.jump_button_reset:
 		Transitioned.emit(self,"Jump")

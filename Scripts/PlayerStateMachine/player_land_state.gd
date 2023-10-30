@@ -9,7 +9,7 @@ func Enter():
 	else:
 		anim.play("land_medium")
 
-func DoChecks(delta):
+func DoChecks(_delta):
 	if !heavy_landing:
 		if Input.is_action_pressed("Jump") && player.can_jump:
 			Transitioned.emit(self,"Jump")

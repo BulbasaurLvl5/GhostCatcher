@@ -3,13 +3,13 @@ extends Node
 
 signal Transitioned
 
-@export var player: Player
-@export var anim: AnimationPlayer
+@export var player : Player
+@export var anim : AnimationPlayer
 
-#borrows verbose setting from Player
-@onready var verbose: bool = $"../..".verbose
+@onready var data : PlayerDataResource
+@onready var verbose : bool = $"../..".verbose
 
-var time_in_current_state = 0
+@onready var time_in_current_state = 0
 
 func _ready():
 	player = $"../.."
@@ -22,7 +22,8 @@ func Transition():
 	Enter()
 
 func Enter():
-	pass
+	verbose = $"../..".verbose
+	
 
 func Initiate_Update(delta):
 	time_in_current_state += delta
@@ -33,10 +34,10 @@ func Initiate_Update(delta):
 func Do_Checks():
 	pass
 	
-func Update(delta):
+func Update(_delta):
 	pass
 	
-func Physics_Update(delta):
+func Physics_Update(_delta):
 	pass
 
 func Flip_Player():

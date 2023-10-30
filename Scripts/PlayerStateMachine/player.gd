@@ -1,14 +1,21 @@
 class_name Player
 extends CharacterBody2D
 
-@export var verbose : bool = false
+#level-dependent parameters
 @export var facing_direction : int = 1
-@export var max_air_actions : int = 2
 
+#development settings
+@export var verbose : bool = false
+@export var using_stefan_screen_size : bool = true
 @export var stefan_screen_size : Vector2i = Vector2i(1152,648)
 @export var daniel_screen_size : Vector2i = Vector2i(1920,1080)
-@export var using_stefan_screen_size : bool = true
 
+#player data
+@export var max_air_actions : int = 2
+@export var player_data_sets : Array[PlayerDataResource]
+@onready var data : PlayerDataResource = player_data_sets[0]
+
+#player status
 @onready var x_input : int = 0
 @onready var y_input : int = 0
 @onready var input_direction : Vector2 = Vector2.ZERO
@@ -20,11 +27,12 @@ extends CharacterBody2D
 @onready var jump_button_reset : bool = false
 @onready var dash_button_reset : bool = false
 @onready var screen_size_button_reset : bool = false
+@onready var current_player_data_preset : int = 0
 
 func _ready():
 	set_screen_size(false)
 
-func _process(delta):
+func _process(_delta):
 	#input checks
 	x_input = int(Input.is_action_pressed("Right")) - int(Input.is_action_pressed("Left"))
 	y_input = int(Input.is_action_pressed("Down")) - int(Input.is_action_pressed("Up"))
@@ -40,6 +48,13 @@ func _process(delta):
 #		screen_size_button_reset = true
 	if Input.is_action_pressed("ScreenSize"):
 		set_screen_size(true)
+	if Input.is_action_pressed("CommandList"):
+		show_command_list()
+	if Input.is_action_pressed("PrevPlayerDataPreset"):
+		prev_player_data_preset()
+	if Input.is_action_pressed("NextPlayerDataPreset"):
+		next_player_data_preset()
+	
 	
 	#environmental checks
 	$PlayerSprite2D/GroundCheckFront.force_raycast_update()	
@@ -88,3 +103,29 @@ func set_screen_size(toggle_screen_size : bool):
 	else:
 		DisplayServer.window_set_size(Vector2i(daniel_screen_size))
 		
+func show_command_list():
+	print("AWSD/arrows  Move")
+	print("      space  Jump")
+	print("      enter  Dash")
+	print("      shift  Grab Wall")
+	print("    control  Move SLower")
+	print("")
+	print("          0  Show Command List")
+	print("          9  Revive/Die")
+	print("          -  Toggle Player Verbosity")
+	print("        esc  Toggle Screen Size")
+	print("    page up  Prev PlayerData Preset")
+	print("  page down  Next PlayerData Preset")
+	
+func prev_player_data_preset():
+#	current_player_data_preset -= 1
+#	if current_player_data_preset < 0:
+#		current_player_data_preset = 0
+	pass
+		
+
+func next_player_data_preset():
+#	current_player_data_preset += 1
+#	if player_data_sets[current_player_data_preset] == null:
+#		current_player_data_preset -= 1
+	pass

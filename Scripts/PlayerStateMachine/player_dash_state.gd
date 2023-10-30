@@ -2,15 +2,15 @@ class_name PlayerDashState
 extends PlayerState
 
 @export var dash_distance : float = 200
-@export var dash_time : float = 0.5
+@export var dash_time : float = 0.2
+@export var dash_push_multiplier : float = 1.5
 
-@onready var dash_direction : Vector2
+@onready var dash_direction : Vector2 = Vector2.ZERO
+@onready var dash_speed : float
 
 func Enter():
 	player.dash_button_reset = false
 	dash_direction = get_direction()
-#	if verbose:
-#		print("DASH direction = ",dash_direction)
 	set_animation()
 
 func set_animation():
@@ -23,7 +23,7 @@ func set_animation():
 
 func get_direction() -> Vector2:
 	if player.x_input == 0 && player.y_input == 0:
-		return Vector2(1,0)	
+		return Vector2(player.facing_direction,0)	
 	var multiplier : float = 1
 	if player.x_input != 0 && player.y_input != 0:
 		multiplier = 0.707107
@@ -33,8 +33,9 @@ func Do_Checks():
 	if time_in_current_state >= dash_time:
 		complete_dash()
 
-func Physics_Update(delta):
-	var dash_speed = dash_distance / dash_time
+func Physics_Update(_delta):
+	dash_speed = (dash_distance / dash_time)
+	dash_speed = get_speed()
 	player.velocity = Vector2 ((dash_direction.x * dash_speed), (dash_direction.y * dash_speed))
 	player.move_and_slide()
 
@@ -45,3 +46,9 @@ func complete_dash():
 		player.velocity.y = 0
 		$"../InAir".hang_time_active = true
 		Transitioned.emit(self,"InAir")
+		
+func get_speed() -> float:
+	if Input.is_action_pressed("Dash"):
+		return dash_speed * dash_push_multiplier
+	else:
+		return dash_speed
