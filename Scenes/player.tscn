@@ -1,9 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://dhow5esn6x7rt"]
+[gd_scene load_steps=33 format=3 uid="uid://dhow5esn6x7rt"]
 
 [ext_resource type="Texture2D" uid="uid://bb0owlsjswb7q" path="res://Sprites/platformer_sprites_base.png" id="1_axrb2"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_state_machine.gd" id="1_dcopr"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player.gd" id="1_l4530"]
-[ext_resource type="Resource" uid="uid://dvbrelm3gvn8b" path="res://Scripts/PlayerData/player_data_00.tres" id="2_5tpro"]
+[ext_resource type="Resource" uid="uid://cebdbv30m0kof" path="res://Scripts/PlayerData/unlimited_air_actions.tres" id="2_se3de"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_idle_state.gd" id="4_tan8y"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_state.gd" id="5_8dkiu"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_walk_state.gd" id="6_apjhc"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_die_state.gd" id="10_1mtkc"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_dash_state.gd" id="12_5jbsb"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_wall_grab_state.gd" id="13_ckika"]
+[ext_resource type="PackedScene" uid="uid://deim0qaglwinp" path="res://Scenes/dash_ghost.tscn" id="14_q528f"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_wall_jump_state.gd" id="14_umcf1"]
 [ext_resource type="Texture2D" uid="uid://cj1ar64hph4tk" path="res://Sprites/Environment/volcano_tiles/bg_volcano.png" id="15_xv5id"]
 
@@ -212,8 +213,79 @@ tracks/0/keys = {
 "values": [32, 33, 34, 35, 36, 37, 38, 39]
 }
 
+[sub_resource type="Animation" id="Animation_ox0um"]
+resource_name = "dash_up"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [44]
+}
+
+[sub_resource type="Animation" id="Animation_3yqox"]
+resource_name = "dash_down"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [49]
+}
+
+[sub_resource type="Animation" id="Animation_xrsdn"]
+resource_name = "dash_ahead"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [42]
+}
+
+[sub_resource type="Animation" id="Animation_bwgor"]
+resource_name = "wall_grab"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [53]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3tts5"]
 _data = {
+"dash_ahead": SubResource("Animation_xrsdn"),
+"dash_down": SubResource("Animation_3yqox"),
+"dash_up": SubResource("Animation_ox0um"),
 "die": SubResource("Animation_ouu8b"),
 "fall": SubResource("Animation_eerq3"),
 "idle": SubResource("Animation_7lrrn"),
@@ -222,12 +294,13 @@ _data = {
 "land_heavy": SubResource("Animation_ohmax"),
 "land_medium": SubResource("Animation_3mf0q"),
 "run": SubResource("Animation_x8idr"),
-"walk": SubResource("Animation_ggwbc")
+"walk": SubResource("Animation_ggwbc"),
+"wall_grab": SubResource("Animation_bwgor")
 }
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_l4530")
-data = ExtResource("2_5tpro")
+data = ExtResource("2_se3de")
 
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -240,7 +313,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_axrb2")
 hframes = 8
 vframes = 9
-frame = 16
+frame = 43
 
 [node name="GroundCheckFront" type="RayCast2D" parent="PlayerSprite2D"]
 position = Vector2(14, 31.5)
@@ -253,6 +326,7 @@ scale = Vector2(0.5, 0.5)
 target_position = Vector2(0, 4)
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="PlayerSprite2D"]
+audio_max_polyphony = 21
 libraries = {
 "": SubResource("AnimationLibrary_3tts5")
 }
@@ -295,6 +369,7 @@ script = ExtResource("10_1mtkc")
 
 [node name="Dash" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("12_5jbsb")
+dash_ghost_node = ExtResource("14_q528f")
 
 [node name="WallGrab" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("13_ckika")

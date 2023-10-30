@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_6o6l0")
+player_data_name_or_description = "default"
 walk_speed = 150.0
 run_speed = 420.0
 in_air_horizontal_speed = 350.0
@@ -18,9 +19,9 @@ jump_time_to_peak = 0.2
 jump_hold_multiplier = 2.7
 wall_jump_height = 150.0
 wall_jump_time_to_peak = 0.2
-wall_jump_force_duration = 0.1
+wall_jump_force_duration = 0.2
 wall_jump_hold_multiplier = 2.7
-dash_distance = 150.0
+dash_peak_speed = 280.0
 dash_time = 0.25
 dash_hold_multiplier = 2.7
 wall_grab_resets_air_actions = true

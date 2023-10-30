@@ -5,6 +5,9 @@ extends PlayerState
 #@export var dash_time : float = 0.2
 #@export var dash_push_multiplier : float = 1.5
 
+@export var dash_ghost_node : PackedScene
+@onready var ghost_timer : float = 0
+
 @onready var dash_direction : Vector2 = Vector2.ZERO
 @onready var dash_speed : float
 
@@ -12,6 +15,7 @@ func Enter():
 	player.dash_button_reset = false
 	dash_direction = get_direction()
 	set_animation()
+	add_ghost()
 
 func set_animation():
 	if dash_direction.y < -0.6:
@@ -32,11 +36,15 @@ func get_direction() -> Vector2:
 func Do_Checks():
 	if time_in_current_state >= data.dash_time:
 		complete_dash()
+		
+func Update(delta):
+	ghost_timer -= delta
+	if ghost_timer <= 0:
+		add_ghost()
 
 func Physics_Update(_delta):
-	dash_speed = (data.dash_distance / data.dash_time)
 	dash_speed = get_speed()
-	player.velocity = Vector2 ((dash_direction.x * dash_speed), (dash_direction.y * dash_speed))
+	player.velocity = dash_direction * dash_speed
 	player.move_and_slide()
 
 func complete_dash():
@@ -48,7 +56,21 @@ func complete_dash():
 		Transitioned.emit(self,"InAir")
 		
 func get_speed() -> float:
+	if time_in_current_state < data.dash_time * 0.5:
+		dash_speed = 4 * lerp(0, int(data.dash_peak_speed), 0.5-(data.dash_time * 0.5 - time_in_current_state))
+	else:
+		dash_speed = 4 * lerp(int(data.dash_peak_speed), 0, 2 * time_in_current_state / data.dash_time - 1)
 	if Input.is_action_pressed("Dash"):
 		return dash_speed * data.dash_hold_multiplier
 	else:
 		return dash_speed
+
+func add_ghost():
+	var dash_ghost = dash_ghost_node.instantiate()
+	#TODO set dash_ghost sprite to current frame of animation
+	var frame = $"../../PlayerSprite2D".get_frame()
+	
+	dash_ghost.set_property($"../../PlayerSprite2D".texture, $"../../PlayerSprite2D".hframes, $"../../PlayerSprite2D".vframes, $"../../PlayerSprite2D".frame, player.position, $"../../PlayerSprite2D".scale)
+	get_tree().current_scene.add_child((dash_ghost))
+	ghost_timer = 0.02
+

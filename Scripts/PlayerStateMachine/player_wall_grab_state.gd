@@ -6,7 +6,7 @@ extends PlayerState
 func Enter():
 	anim.play("wall_grab")
 	if data.wall_grab_resets_air_actions:
-		player.remaining_air_actions = player.max_air_actions
+		player.remaining_air_actions = data.max_air_actions
 
 func Do_Checks():
 	if Input.is_action_pressed("Jump") && player.jump_button_reset:

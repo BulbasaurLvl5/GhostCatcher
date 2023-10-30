@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="PlayerDataResource" load_steps=2 format=3 uid="uid://cebdbv30m0kof"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerData/player_data_resource.gd" id="1_xfbip"]
+
+[resource]
+script = ExtResource("1_xfbip")
+player_data_name_or_description = ""
+walk_speed = 150.0
+run_speed = 420.0
+in_air_horizontal_speed = 350.0
+max_air_actions = 99999
+hang_time_duration = 0.05
+fall_gravity_multiplier = 20.0
+distance_before_medium_landing = 500.0
+distance_before_heavy_landing = 1000.0
+distance_before_dying = 2000.0
+jump_height = 150.0
+jump_time_to_peak = 0.2
+jump_hold_multiplier = 2.7
+wall_jump_height = 150.0
+wall_jump_time_to_peak = 0.2
+wall_jump_force_duration = 0.2
+wall_jump_hold_multiplier = 2.7
+dash_peak_speed = 280.0
+dash_time = 0.25
+dash_hold_multiplier = 2.7
+wall_grab_resets_air_actions = true

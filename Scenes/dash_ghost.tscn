@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://deim0qaglwinp"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerStateMachine/dash_ghost.gd" id="1_bikfk"]
+
+[node name="DashGhost" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.596078)
+show_behind_parent = true
+position = Vector2(932, 424)
+scale = Vector2(5, 5)
+script = ExtResource("1_bikfk")
