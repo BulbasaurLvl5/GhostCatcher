@@ -13,12 +13,23 @@ public partial class TimeLabel : Label
 
 	string _milisec;
 
-	public void Init(ref TimeCounter time)
+	// public void Init(ref TimeCounter time)
+	// {
+	// 	_time = time;
+	// 	// Vector2 screenSize = GetViewportRect().Size;
+	// 	// GlobalPosition = new Vector2(screenSize.X*.8f, 50);
+	// 	GlobalPosition = Pos;
+	// }
+
+	public override void _Ready()
 	{
-		_time = time;
-		// Vector2 screenSize = GetViewportRect().Size;
-		// GlobalPosition = new Vector2(screenSize.X*.8f, 50);
 		GlobalPosition = Pos;
+
+		Main _main;
+		if(this.TryGetNodeInTree<Main>(out _main))
+		{
+			_time = _main.LevelTime;
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
