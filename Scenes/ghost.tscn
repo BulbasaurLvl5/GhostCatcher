@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dpxeqvv1xxuu2"]
 
 [ext_resource type="Script" path="res://Scripts/Ghost.cs" id="1_3n161"]
-[ext_resource type="Texture2D" uid="uid://b4il41lqiai8o" path="res://Sprites/Ghost.png" id="1_vpdm0"]
+[ext_resource type="SpriteFrames" uid="uid://c8df5cub7xjk8" path="res://Animations/Ghost/ghost.tres" id="2_untcv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1bom"]
 radius = 34.0
@@ -10,9 +10,11 @@ height = 108.0
 [node name="Ghost" type="Area2D"]
 script = ExtResource("1_3n161")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2, 2)
-texture = ExtResource("1_vpdm0")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_untcv")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.671999
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_k1bom")
