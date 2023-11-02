@@ -4,8 +4,8 @@ using System;
 
 public partial class TimeLabel : Label
 {
-	[Export]
-	Vector2 Pos = new Vector2(700, 50);
+	// [Export]
+	// Vector2 Pos = new Vector2(700, 50);
 
 	TimeCounter _time = new TimeCounter();
 	string _min;
@@ -23,7 +23,7 @@ public partial class TimeLabel : Label
 
 	public override void _Ready()
 	{
-		GlobalPosition = Pos;
+		// GlobalPosition = Pos;
 
 		Main _main;
 		if(this.TryGetNodeInTree<Main>(out _main))

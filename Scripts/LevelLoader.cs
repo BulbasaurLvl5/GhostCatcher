@@ -5,13 +5,29 @@ using MyGodotExtentions;
 
 public static class LevelLoader
 {
-		static PackedScene packedPlayer = ResourceLoader.Load<PackedScene>("res://Scenes/player.tscn");
-		static PackedScene packedTimeLabel = ResourceLoader.Load<PackedScene>("res://Scenes/time_label.tscn");
-		static PackedScene packedCenterLabel = ResourceLoader.Load<PackedScene>("res://Scenes/main_label.tscn");
-		static PackedScene packedPlatforms = ResourceLoader.Load<PackedScene>("res://Scenes/platforms.tscn");
-		static PackedScene packedGhost = ResourceLoader.Load<PackedScene>("res://Scenes/ghost.tscn");
+	static PackedScene packedPlayer = ResourceLoader.Load<PackedScene>("res://Scenes/player.tscn");
+	static PackedScene packedTimeLabel = ResourceLoader.Load<PackedScene>("res://Scenes/time_label.tscn");
+	static PackedScene packedCenterLabel = ResourceLoader.Load<PackedScene>("res://Scenes/main_label.tscn");
+	static PackedScene packedPlatforms = ResourceLoader.Load<PackedScene>("res://Scenes/platforms.tscn");
+	static PackedScene packedGhost = ResourceLoader.Load<PackedScene>("res://Scenes/ghost.tscn");
 
-    public static void LoadLevel_0(Main _main)
+	public static readonly int levelCount = 1;
+
+	public static void LoadLevel(Main _main, int _level)
+	{
+		switch(_level)
+		{
+			case 0:
+				LoadLevel_0(_main);
+				break;
+
+			default:
+				GD.Print("Error: level unknown");
+				break;
+		}
+	}
+
+    static void LoadLevel_0(Main _main)
     {
 		_main.SetupLevelLogic();
 

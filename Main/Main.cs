@@ -35,7 +35,8 @@ public partial class Main : Node
 			World = children[0];
 			UI = children[1];
 
-			LevelLoader.LoadLevel_0(this);
+			// LevelLoader.LoadLevel(this, 0);
+			UILoader.LoadLevelSelector(this);
 		}
 	}
 
@@ -59,7 +60,7 @@ public partial class Main : Node
 		}
 	}
 
-	void ClearScenes()
+	public void ClearScenes()
 	{
 		foreach (var _c in World.GetChildren())
 		{
@@ -81,7 +82,10 @@ public partial class Main : Node
 		};
 
 		OnLevelSuccess += () => {successTime.Start(2);};
+
 		successTime.OnStop += ClearScenes;
+		successTime.OnStop += () => {UILoader.LoadLevelSelector(this);};
+		successTime.OnStop += () => {_levelTime.Reset();};
 
 		getReadyTime.Start(2);
 		_levelTime.Start(-2);

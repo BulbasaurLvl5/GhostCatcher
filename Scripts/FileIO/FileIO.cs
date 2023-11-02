@@ -7,7 +7,7 @@ using System.Text.Json;
 public static class FileIO
 {
     private static readonly string _baseSavePath;
-    // private static readonly string _separator = Path.DirectorySeparatorChar.ToString(); //looks like it is not needed
+    // private static readonly string _separator = Path.DirectorySeparatorChar.ToString(); //looks like it is not needed. universal sep is /
 
     static FileIO() //static constructors are executed automatically
     {
@@ -34,5 +34,17 @@ public static class FileIO
 
         string _jsonString = JsonSerializer.Serialize(time);
         File.WriteAllText(_filepath, _jsonString);
+    }
+
+    public static double? Load()
+    {
+        string _filepath = _baseSavePath + "timeSave" + ".json";
+
+        if (File.Exists(_filepath))
+        {
+            string _jsonString = File.ReadAllText(_filepath);
+            return (double)JsonSerializer.Deserialize(_jsonString, typeof(double));
+        }
+        return null;
     }
 }

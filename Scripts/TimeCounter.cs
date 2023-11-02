@@ -81,13 +81,15 @@ namespace MyGodotExtentions
 				if(_time < _stopTime || _stopTime == 0)
 					_time += delta;
 				else
-					Stop();
+					Reset();
 			}
 		}
 
-		public void Stop()
+		public void Reset()
 		{
 			_active = false;
+			_time = 0;
+			_stopTime = 0;
 			if(OnStop != null)
 				OnStop.Invoke();
 		}
@@ -98,7 +100,7 @@ namespace MyGodotExtentions
 			// yield return new Wait... make it pause for certain time. maybe waitforseconds was a unity thing
 		}
 
-		public void Continue()
+		public void UnPause()
 		{
 			_active = true;
 		}
