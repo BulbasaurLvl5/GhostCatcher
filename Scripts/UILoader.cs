@@ -11,31 +11,33 @@ public static class UILoader
     public static void LoadLevelSelector(Main _main)
     {
         Control _leveldataContainer = packedLevelDataContainer.Instantiate<Control>();
-		// _timeLabel.GlobalPosition = new Vector2(1200,50);
 		_main.UI.AddChild(_leveldataContainer);
 
-        Control _leveldata_0 = packedLevelData.Instantiate<Control>();
-		// _timeLabel.GlobalPosition = new Vector2(1200,50);
-		_leveldataContainer.AddChild(_leveldata_0);
-
-        List<Button> _buttons = new List<Button>();
-        if(_leveldata_0.TryGetChildren<Button>(out _buttons))
+        for (int i = 0; i < LevelLoader.LoadLevel.Length; i++)
         {
-            _buttons[0].Text = "Load Level " + 0.ToString();
-            _buttons[1].Text = "Show Level " + 0.ToString();
+            Control _leveldata = packedLevelData.Instantiate<Control>();
+            _leveldataContainer.AddChild(_leveldata);
 
-            _buttons[0].Pressed += () => 
-            { 
-                _main.ClearScenes();
-                LevelLoader.LoadLevel[0](_main);
-            };
-        }
+            List<Button> _buttons = new List<Button>();
+            if(_leveldata.TryGetChildren<Button>(out _buttons))
+            {
+                _buttons[0].Text = "Load Level " + i.ToString();
+                _buttons[1].Text = "Show Level " + i.ToString();
 
-        List<Label> _labels = new List<Label>();
-        if(_leveldata_0.TryGetChildren<Label>(out _labels))
-        {
-            double _loadTime = FileIO.Load();
-            _labels[0].Text = TimeCounter.TimeToClock(_loadTime);
+                Action<Main> _loadlvl = LevelLoader.LoadLevel[i];
+                _buttons[0].Pressed += () => {
+                    _main.ClearScenes();
+                    _loadlvl(_main);
+                };
+            }
+
+            List<Label> _labels = new List<Label>();
+            if(_leveldata.TryGetChildren<Label>(out _labels))
+            {
+                FileIO.SaveGame _save = FileIO.Load();
+                _labels[0].Text = TimeCounter.TimeToClock(_save.LastTimes[i]);
+                _labels[1].Text = TimeCounter.TimeToClock(_save.BestTimes[i]);
+            }
         }
     }
 }

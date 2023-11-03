@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
+// using System.Diagnostics;
+// Debug.WriteLine();
+
 public static class FileIO
 {
     private static readonly string _baseSavePath;
@@ -25,26 +28,52 @@ public static class FileIO
             // Returns the absolute directory path where user data is written (user://).
             _baseSavePath = OS.GetUserDataDir(); 
         }
+
+        string _filepath = _baseSavePath + "Save" + ".json";
+
+        if(!File.Exists(_filepath))
+        {
+            SaveGame _save = new SaveGame{
+                LastTimes = new double[LevelLoader.LoadLevel.Length],
+                BestTimes = new double[LevelLoader.LoadLevel.Length],
+            };
+
+            string _jsonString = JsonSerializer.Serialize(_save);
+            File.WriteAllText(_filepath, _jsonString);
+        }
     }
 
-    public static void Save(double time)
+    public class SaveGame
     {
-        string _filepath = _baseSavePath + "timeSave" + ".json";
+        public double[] LastTimes {get; set;}
+        public double[] BestTimes {get; set;}
+    }
+
+    public static void Save(int lvl, double time)
+    {
+        string _filepath = _baseSavePath + "Save" + ".json";
         GD.Print("saved time to: "+_filepath);
 
-        string _jsonString = JsonSerializer.Serialize(time);
+        SaveGame _save = Load();
+
+        _save.LastTimes[lvl] = time;
+
+        if(time < _save.BestTimes[lvl] || _save.BestTimes[lvl] == 0)
+            _save.BestTimes[lvl] = time;
+
+        string _jsonString = JsonSerializer.Serialize(_save);
         File.WriteAllText(_filepath, _jsonString);
     }
 
-    public static double Load()
+    public static SaveGame Load()
     {
-        string _filepath = _baseSavePath + "timeSave" + ".json";
+        string _filepath = _baseSavePath + "Save" + ".json";
 
         if (File.Exists(_filepath))
         {
             string _jsonString = File.ReadAllText(_filepath);
-            return (double)JsonSerializer.Deserialize(_jsonString, typeof(double));
+            return (SaveGame)JsonSerializer.Deserialize(_jsonString, typeof(SaveGame));
         }
-        return 0;
+        return null;
     }
 }

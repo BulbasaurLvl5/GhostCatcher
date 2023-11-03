@@ -25,6 +25,8 @@ public partial class Main : Node
 	public Action OnLevelSuccess;
 
 	public int GhostCount {get{return _ghostCount;} set{_ghostCount = value;}}
+
+	int Level{ get; set; }
 	
 	public override void _Ready()
 	{		
@@ -43,7 +45,6 @@ public partial class Main : Node
 			_levelTime.Start(599); //mission fails at 10min
 			player.ProcessMode = ProcessModeEnum.Inherit;
 			OnLevelStart?.Invoke();
-			GD.Print("OnLevelStart");
 		};
 
 		OnLevelSuccess += () => {successTime.Start(2);};
@@ -69,7 +70,7 @@ public partial class Main : Node
 		if(_ghostCount == 0)
 		{
 			_levelTime.Pause();
-			FileIO.Save(_levelTime.Time);
+			FileIO.Save(Level, _levelTime.Time);
 			player.ProcessMode = ProcessModeEnum.Disabled;
 			OnLevelSuccess?.Invoke();
 		}
@@ -88,8 +89,9 @@ public partial class Main : Node
 		}
 	}
 
-	public void StartLevelTimes()
+	public void StartLevel(int lvl)
 	{
+		Level = lvl;
 		getReadyTime.Start(2);
 		_levelTime.Start(-2);
 	}

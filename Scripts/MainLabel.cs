@@ -14,12 +14,12 @@ public partial class MainLabel : Label
 		{
 			_main.OnLevelStart += Hide;
 			_main.OnLevelSuccess += Success;
-		}
 
-		TreeExited += () => {
-			_main.OnLevelStart -= Hide;
-			_main.OnLevelSuccess -= Success;
-		};
+			TreeExited += () => {
+				_main.OnLevelStart -= Hide;
+				_main.OnLevelSuccess -= Success;
+			};
+		}
 	}
 
 	void Success()
