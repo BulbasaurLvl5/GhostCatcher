@@ -38,6 +38,21 @@ public partial class Main : Node
 			// LevelLoader.LoadLevel(this, 0);
 			UILoader.LoadLevelSelector(this);
 		}
+
+		getReadyTime.OnStop += () => {
+			_levelTime.Start(599); //mission fails at 10min
+			player.ProcessMode = ProcessModeEnum.Inherit;
+			OnLevelStart?.Invoke();
+			GD.Print("OnLevelStart");
+		};
+
+		OnLevelSuccess += () => {successTime.Start(2);};
+
+		successTime.OnStop += () => {
+			ClearScenes();
+			UILoader.LoadLevelSelector(this);
+			_levelTime.Reset();
+		};
 	}
 
 	public override void _Process(double delta)
@@ -73,20 +88,8 @@ public partial class Main : Node
 		}
 	}
 
-	public void SetupLevelLogic()
+	public void StartLevelTimes()
 	{
-		getReadyTime.OnStop += () => {
-			_levelTime.Start(599); //mission fails at 10min
-			player.ProcessMode = ProcessModeEnum.Inherit;
-			OnLevelStart?.Invoke();
-		};
-
-		OnLevelSuccess += () => {successTime.Start(2);};
-
-		successTime.OnStop += ClearScenes;
-		successTime.OnStop += () => {UILoader.LoadLevelSelector(this);};
-		successTime.OnStop += () => {_levelTime.Reset();};
-
 		getReadyTime.Start(2);
 		_levelTime.Start(-2);
 	}

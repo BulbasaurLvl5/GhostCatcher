@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://banwwaljd2o2j" path="res://Animations/Ghost/Idle/ghost_idle_00.png" id="1_yngcj"]
 
 [node name="LevelData" type="HBoxContainer"]
-anchors_preset = -1
+anchors_preset = 10
 anchor_right = 1.0
 offset_right = -4.0
 offset_bottom = 129.0

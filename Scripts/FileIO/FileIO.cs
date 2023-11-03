@@ -36,7 +36,7 @@ public static class FileIO
         File.WriteAllText(_filepath, _jsonString);
     }
 
-    public static double? Load()
+    public static double Load()
     {
         string _filepath = _baseSavePath + "timeSave" + ".json";
 
@@ -45,6 +45,6 @@ public static class FileIO
             string _jsonString = File.ReadAllText(_filepath);
             return (double)JsonSerializer.Deserialize(_jsonString, typeof(double));
         }
-        return null;
+        return 0;
     }
 }

@@ -104,5 +104,27 @@ namespace MyGodotExtentions
 		{
 			_active = true;
 		}
+
+		public static string TimeToClock(double time)
+		{
+			string _min = ((int)(time / 60)).ToString();
+			string _sec = Math.Abs((int)time % 60) >= 10 ? Math.Abs((int)time % 60).ToString() : 0.ToString() + Math.Abs((int)time % 60).ToString();
+			string _milisec = "00";
+			string _returnText = " ";
+
+			if(time-(int)time > 0)
+				_milisec = (time-(int)time).ToString().Substring(2,2);
+			// else if(time-(int)time == 0)
+			// 	_milisec = "00";
+			else if (time-(int)time < 0)
+				_milisec = Math.Abs(time-(int)time).ToString().Substring(2,2);
+
+			if ((time-(int)time) >= 0)
+				_returnText = _min + ":" + _sec + "  " + _milisec;
+			else if ((time-(int)time) < 0)
+				_returnText = "-"+_min + ":" + _sec + "  " + _milisec;
+
+			return _returnText;
+		}
 	}
 }

@@ -27,14 +27,15 @@ public static class UILoader
             _buttons[0].Pressed += () => 
             { 
                 _main.ClearScenes();
-                LevelLoader.LoadLevel(_main, 0);
+                LevelLoader.LoadLevel[0](_main);
             };
         }
 
         List<Label> _labels = new List<Label>();
         if(_leveldata_0.TryGetChildren<Label>(out _labels))
         {
-            _labels[0].Text = FileIO.Load().ToString();
+            double _loadTime = FileIO.Load();
+            _labels[0].Text = TimeCounter.TimeToClock(_loadTime);
         }
     }
 }

@@ -11,25 +11,14 @@ public static class LevelLoader
 	static PackedScene packedPlatforms = ResourceLoader.Load<PackedScene>("res://Scenes/platforms.tscn");
 	static PackedScene packedGhost = ResourceLoader.Load<PackedScene>("res://Scenes/ghost.tscn");
 
-	public static readonly int levelCount = 1;
 
-	public static void LoadLevel(Main _main, int _level)
-	{
-		switch(_level)
-		{
-			case 0:
-				LoadLevel_0(_main);
-				break;
-
-			default:
-				GD.Print("Error: level unknown");
-				break;
-		}
-	}
+	public static Action<Main>[] LoadLevel = {
+		LoadLevel_0
+		};
 
     static void LoadLevel_0(Main _main)
     {
-		_main.SetupLevelLogic();
+		_main.StartLevelTimes();
 
 		List<Vector2I> tilepositions = new List<Vector2I>()
 		{

@@ -4,27 +4,14 @@ using System;
 
 public partial class TimeLabel : Label
 {
-	// [Export]
-	// Vector2 Pos = new Vector2(700, 50);
-
 	TimeCounter _time = new TimeCounter();
 	string _min;
 	string _sec;
 
 	string _milisec;
 
-	// public void Init(ref TimeCounter time)
-	// {
-	// 	_time = time;
-	// 	// Vector2 screenSize = GetViewportRect().Size;
-	// 	// GlobalPosition = new Vector2(screenSize.X*.8f, 50);
-	// 	GlobalPosition = Pos;
-	// }
-
 	public override void _Ready()
 	{
-		// GlobalPosition = Pos;
-
 		Main _main;
 		if(this.TryGetNodeInTree<Main>(out _main))
 		{
@@ -32,14 +19,8 @@ public partial class TimeLabel : Label
 		}
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	public override void _Process(double _delta)
 	{
-		// GD.Print(_time.Time);
-		// GD.Print(_time.MiliSeconds);
-		// GD.Print(_time.Seconds);
-		// GD.Print(_time.Minutes);
-
 		_min = _time.Minutes.ToString();
 
 		if(Math.Abs(_time.Seconds) >= 10)
@@ -58,6 +39,8 @@ public partial class TimeLabel : Label
 			Text = _min + ":" + _sec + "  " + _milisec;
 		else if (_time.MiliSeconds < 0)
 			Text = "-"+_min + ":" + _sec + "  " + _milisec;
+
+		// Text = TimeCounter.TimeToClock(_time.Time);
 
 		Show();
 	}
