@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://de5ppgs1aewt7"]
+[gd_scene load_steps=8 format=3 uid="uid://de5ppgs1aewt7"]
 
-[ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://Scenes/player.tscn" id="1_kfi0p"]
 [ext_resource type="Texture2D" uid="uid://bu528on5v84fp" path="res://Sprites/Environment/graveyard_objects/TombStone (1).png" id="2_yijex"]
 [ext_resource type="Texture2D" uid="uid://c0ynsf1lh2ymw" path="res://Sprites/Environment/graveyard_objects/TombStone (2).png" id="3_nhlqm"]
 [ext_resource type="Texture2D" uid="uid://c27q8de5udd8u" path="res://Sprites/Environment/graveyard_objects/DeadBush.png" id="4_w7td6"]
@@ -244,7 +243,3 @@ texture = ExtResource("6_7fd37")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Path2/Platform008"]
 position = Vector2(-0.125, 1)
 shape = SubResource("RectangleShape2D_xv1sb")
-
-[node name="Player" parent="." instance=ExtResource("1_kfi0p")]
-position = Vector2(3730, 807)
-data = null
