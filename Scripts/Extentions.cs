@@ -111,6 +111,19 @@ namespace MyGodotExtentions
 			else
 				return false;
 		}
+
+		public static bool TryGetParent<T>(this Node _this, out T parent) where T : Node
+		{
+			var _parent = _this.GetParent();
+
+			if(_parent is T)
+			{
+				parent = _parent as T;
+				return true;
+			}
+			parent = null;
+			return false;
+		}
 	}
 
 	public static class Instantiators

@@ -11,7 +11,7 @@ public partial class Main : Node
 
 	TimeCounter getReadyTime = new TimeCounter();
 
-	TimeCounter successTime = new TimeCounter();
+	TimeCounter endTime = new TimeCounter();
 
 	public Node World;
 	public Node UI;
@@ -22,9 +22,11 @@ public partial class Main : Node
 
 	public Action OnLevelStart;
 
-	public Action OnLevelSuccess;
+	public Action OnLevelSucceed;
 
-	public Action OnGhostTreeExit;
+	public Action OnLevelFail;
+
+	public Action OnGhostCollision;
 
 	public int GhostCount {get{return _ghostCount;} set{_ghostCount = value;}}
 
@@ -49,33 +51,27 @@ public partial class Main : Node
 			OnLevelStart?.Invoke();
 		};
 
-		OnLevelSuccess += () => {successTime.Start(2);};
+		OnLevelSucceed += () => {endTime.Start(2);};
+		OnLevelFail += () => {endTime.Start(2);};
 
-		successTime.OnStop += () => {
-			ClearScenes();
-			UILoader.LoadLevelSelector(this);
-			_levelTime.Reset();
-		};
+		endTime.OnStop += EndLevel;
 	}
 
 	public override void _Process(double delta)
 	{
 		_levelTime.Update(delta);
 		getReadyTime.Update(delta);
-		successTime.Update(delta);
+		endTime.Update(delta);
 	}
 
-	public void GhostTreeExit()
+	public void GhostCollision(Node2D node)
 	{
 		_ghostCount -= 1;
-		OnGhostTreeExit?.Invoke();
-		// GD.Print("ghostcount: "+_ghostCount);
+		OnGhostCollision?.Invoke();
+
 		if(_ghostCount == 0)
 		{
-			_levelTime.Pause();
-			FileIO.Save(Level, _levelTime.Time);
-			player.ProcessMode = ProcessModeEnum.Disabled;
-			OnLevelSuccess?.Invoke();
+			SucceedLevel();
 		}
 	}
 
@@ -95,7 +91,30 @@ public partial class Main : Node
 	public void StartLevel(int lvl)
 	{
 		Level = lvl;
+		GhostCount = 0;
 		getReadyTime.Start(2);
 		_levelTime.Start(-2);
+	}
+
+	public void EndLevel()
+	{
+		ClearScenes();
+		UILoader.LoadLevelSelector(this);
+		_levelTime.Reset();
+	}
+
+	public void SucceedLevel()
+	{
+		_levelTime.Pause();
+		FileIO.Save(Level, _levelTime.Time);
+		player.ProcessMode = ProcessModeEnum.Disabled;
+		OnLevelSucceed?.Invoke();
+	}
+
+	public void FailLevel()
+	{
+		_levelTime.Pause();
+		player.ProcessMode = ProcessModeEnum.Disabled;
+		OnLevelFail?.Invoke();
 	}
 }

@@ -18,18 +18,18 @@ public partial class RemainingGhostDisplay : HBoxContainer
 				AddChild(_ghosticon.Duplicate());
 			}
 
-            _main.OnGhostTreeExit += DeleteIcon;
+			_main.OnGhostCollision += DeleteIcon;
 
 			TreeExited += () => {
-                _main.OnGhostTreeExit -= DeleteIcon;
+				_main.OnGhostCollision -= DeleteIcon;
 			};
 		}
 	}
 
-    void DeleteIcon()
-    {
-        TextureRect _ghosticon;
-        this.TryGetChild(out _ghosticon);
-        _ghosticon.QueueFree();
-    }
+	void DeleteIcon()
+	{
+		TextureRect _ghosticon;
+		this.TryGetChild(out _ghosticon);
+		_ghosticon.QueueFree();
+	}
 }

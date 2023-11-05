@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class Ghost : Area2D
 {
@@ -14,9 +15,11 @@ public partial class Ghost : Area2D
 		//Anim.Play();
 	}
 
-	void PlayerCollision(Node2D player)
+	async void PlayerCollision(Node2D player)
 	{
-		// GD.Print("test from Ghost");
+		//wait a ms, because otherwise it is freed before main registers collision
+		//alternative is to connect main to TreeExit, but then it emits also when the scene is unbuilt
+		await Task.Delay(1);
 		QueueFree();
 	}
 }

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dior82v5t1lqg"]
+
+[ext_resource type="Texture2D" uid="uid://c5l6hjnnrkoho" path="res://Sprites/RedGhost.png" id="1_cpopd"]
+[ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://Scenes/collision_failure.tscn" id="2_vq2xj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ve1nn"]
+radius = 39.0
+height = 112.0
+
+[node name="RedGhost" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 2)
+texture = ExtResource("1_cpopd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ve1nn")
+
+[node name="CollisionFailure" parent="." instance=ExtResource("2_vq2xj")]

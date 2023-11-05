@@ -13,11 +13,13 @@ public partial class MainLabel : Label
 		if(this.TryGetNodeInTree<Main>(out _main))
 		{
 			_main.OnLevelStart += Hide;
-			_main.OnLevelSuccess += Success;
+			_main.OnLevelSucceed += Success;
+			_main.OnLevelFail += Fail;
 
 			TreeExited += () => {
 				_main.OnLevelStart -= Hide;
-				_main.OnLevelSuccess -= Success;
+				_main.OnLevelSucceed -= Success;
+				_main.OnLevelFail -= Fail;
 			};
 		}
 	}
@@ -32,5 +34,11 @@ public partial class MainLabel : Label
 	{
 		Show();
 		Text = "Get READY!";
+	}
+
+	void Fail()
+	{
+		Show();
+		Text = "Failure!";
 	}
 }
