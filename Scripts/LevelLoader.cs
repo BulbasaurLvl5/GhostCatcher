@@ -9,6 +9,8 @@ public static class LevelLoader
 	static PackedScene packedPlayer = ResourceLoader.Load<PackedScene>("res://Scenes/player.tscn");
 	static PackedScene packedTimeLabel = ResourceLoader.Load<PackedScene>("res://Scenes/time_label.tscn");
 	static PackedScene packedCenterLabel = ResourceLoader.Load<PackedScene>("res://Scenes/main_label.tscn");
+
+	static PackedScene packedGhostDisplay = ResourceLoader.Load<PackedScene>("res://Scenes/remaining_ghost_display.tscn");
 	static PackedScene packedPlatforms = ResourceLoader.Load<PackedScene>("res://Scenes/platforms.tscn");
 	static PackedScene packedGhost = ResourceLoader.Load<PackedScene>("res://Scenes/ghost.tscn");
 
@@ -98,6 +100,9 @@ public static class LevelLoader
 		}
 		//like different ghost types will require special code. thats why the region ends below
 
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
 		PlayerDisableDelay(_main, 1);
     }
 
@@ -163,6 +168,9 @@ public static class LevelLoader
 		}
 		//like different ghost types will require special code. thats why the region ends below
 
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
 		PlayerDisableDelay(_main, 1);
     }
 
@@ -185,6 +193,9 @@ public static class LevelLoader
 		Ghost _g = packedGhost.Instantiate(_main.World, new Vector2I(3600, -800), 0) as Ghost;
 		_g.TreeExited += _main.GhostTreeExit;
 		_main.GhostCount += 1;
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
 
 		PlayerDisableDelay(_main, 1);
 	}

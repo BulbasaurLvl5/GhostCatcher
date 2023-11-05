@@ -24,6 +24,8 @@ public partial class Main : Node
 
 	public Action OnLevelSuccess;
 
+	public Action OnGhostTreeExit;
+
 	public int GhostCount {get{return _ghostCount;} set{_ghostCount = value;}}
 
 	int Level{ get; set; }
@@ -66,6 +68,7 @@ public partial class Main : Node
 	public void GhostTreeExit()
 	{
 		_ghostCount -= 1;
+		OnGhostTreeExit?.Invoke();
 		// GD.Print("ghostcount: "+_ghostCount);
 		if(_ghostCount == 0)
 		{
