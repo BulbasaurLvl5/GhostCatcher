@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://fmfvfcierhja"]
 
-[ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Graveyard.tres" id="1_gwdmp"]
+[ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_gwdmp"]
 
 [node name="Platforms" type="TileMap"]
 tile_set = ExtResource("1_gwdmp")

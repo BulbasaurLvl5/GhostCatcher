@@ -11,6 +11,9 @@ public partial class CollisionFailure : Node
 
 		if(this.TryGetParent<Area2D>(out _parent) && this.TryGetNodeInTree<Main>(out _main))
 		{
+			// alternative identifier
+			// GDScript MyGDScript = GD.Load<GDScript>("res://scenes/levels/TestBody.gd");
+			// GD.Print(body.GetScript().As<GDScript>() == MyGDScript);
 			_parent.BodyEntered += (Node2D n) => {if (n is CharacterBody2D) {_main.FailLevel();} };
 		}
 		else

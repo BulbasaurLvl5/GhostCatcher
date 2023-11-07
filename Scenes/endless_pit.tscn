@@ -4,14 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://d22mfo1u7jqs0" path="res://Sprites/Endlesspit.png" id="2_cvn5m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgk45"]
-size = Vector2(46273, 3196.5)
+size = Vector2(46273, 714.5)
 
 [node name="EndlessPit" type="Area2D"]
 
 [node name="CollisionFailure" parent="." instance=ExtResource("1_01f1x")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3287.5, 1602.75)
+position = Vector2(3287.5, 361.75)
 shape = SubResource("RectangleShape2D_tgk45")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
