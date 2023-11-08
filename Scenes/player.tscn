@@ -302,6 +302,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_l4530")
 player_data_resources = Array[Resource("res://Scripts/PlayerData/player_data_resource.gd")]([ExtResource("2_h06d8"), ExtResource("2_se3de"), ExtResource("4_gemo6"), ExtResource("5_yerfu")])
 data = ExtResource("2_h06d8")
