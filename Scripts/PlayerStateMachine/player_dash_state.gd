@@ -26,7 +26,7 @@ func set_animation():
 		anim.play("dash_ahead")
 
 func get_direction() -> Vector2:
-	if player.x_input == 0 && player.y_input == 0:
+	if player.x_input == 0 && player.y_input == 0 || data.only_horizontal_dashing_allowed:
 		return Vector2(player.facing_direction,0)	
 	var multiplier : float = 1
 	if player.x_input != 0 && player.y_input != 0:

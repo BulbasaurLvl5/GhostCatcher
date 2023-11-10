@@ -318,7 +318,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_axrb2")
 hframes = 8
 vframes = 9
-frame = 43
+frame = 53
 
 [node name="GroundCheckFront" type="RayCast2D" parent="PlayerSprite2D"]
 position = Vector2(14, 31.5)

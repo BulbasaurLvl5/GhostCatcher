@@ -21,12 +21,12 @@ extends CharacterBody2D
 @onready var is_facing_wall : bool
 @onready var remaining_air_actions : int = data.max_air_actions
 @onready var last_touched_wall : bool = false
-@onready var jump_button_reset : bool = false
-@onready var dash_button_reset : bool = false
-@onready var prev_player_data_button_reset : bool = false
-@onready var next_player_data_button_reset : bool = false
-@onready var command_list_button_reset : bool = false
-@onready var screen_size_button_reset : bool = false
+@onready var jump_button_reset : bool = true
+@onready var dash_button_reset : bool = true
+@onready var prev_player_data_button_reset : bool = true
+@onready var next_player_data_button_reset : bool = true
+@onready var command_list_button_reset : bool = true
+@onready var screen_size_button_reset : bool = true
 @onready var current_player_data_preset = 0
 
 func _ready():
@@ -117,8 +117,8 @@ func show_command_list():
 	print("AWSD/arrows  Move")
 	print("      space  Jump")
 	print("      enter  Dash")
-	print("      shift  Grab Wall")
-	print("    control  Move SLower")
+#	print("      shift  Grab Wall")
+	print("      shift  Move Slower")
 	print("")
 	print("          0  Show Command List")
 	print("          9  Revive/Die")

@@ -33,7 +33,7 @@ public static class LevelLoader
 	}
 
 	static void LoadLevel_TestScene(Main _main)
-    {
+	{
 		_main.StartLevel(0);
 
 		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(3730,810), 0);
@@ -58,8 +58,8 @@ public static class LevelLoader
 		PlayerDisableDelay(_main, 1);
 	}
 
-    static void LoadLevel_Tutorial(Main _main)
-    {
+	static void LoadLevel_Tutorial(Main _main)
+	{
 		_main.StartLevel(1);
 
 		List<Vector2I> ghostPositions = new List<Vector2I>(){
@@ -93,5 +93,5 @@ public static class LevelLoader
 		_main.UI.AddChild(_ghostDisplay);
 
 		PlayerDisableDelay(_main, 1);
-    }
+	}
 }

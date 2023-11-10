@@ -9,9 +9,14 @@ extends PlayerState
 @onready var jump_velocity : float
 @onready var jump_gravity : float
 @onready var in_air_horizontal_speed : float
+@onready var wall_jump_direction : int
 
 func Enter():
 	anim.play("jump")
+	player.facing_direction *= -1
+	$"../../PlayerSprite2D".scale.x *= -1
+	wall_jump_direction = player.facing_direction
+	
 	player.velocity.y = jump_velocity
 	player.jump_button_reset = false
 	jump_velocity = (-2 * data.wall_jump_height) / data.wall_jump_time_to_peak
@@ -21,18 +26,21 @@ func Enter():
 func _animation_finished():
 	anim.play("in-air")
 
-func Physics_Update(delta):
-	#determine Y velocity
-	#switch to InAir state if falling
+func Do_Checks():
 	if player.velocity.y >= 0:
+		player.velocity.y = 0
+		$"../InAir".hang_time_active = true
 		Transitioned.emit(self,"InAir")
-	else:
-		player.velocity.y += get_gravity() * delta
-	#determine X velocity
-	var momentum : float = 1
+	elif player.can_touch_wall && player.x_input == player.facing_direction:
+		player.velocity = Vector2.ZERO
+		Transitioned.emit(self,"WallGrab")
+
+func Physics_Update(delta):
+	player.velocity.y += get_gravity() * delta
+	var direction : int = wall_jump_direction * 2
 	if time_in_current_state > data.wall_jump_force_duration:
-		momentum = player.x_input
-	player.velocity.x = momentum * data.in_air_horizontal_speed
+		direction = player.facing_direction
+	player.velocity.x = direction * data.in_air_horizontal_speed
 	player.move_and_slide()
 	
 func get_gravity() -> float:
@@ -41,7 +49,6 @@ func get_gravity() -> float:
 	else:
 		return jump_gravity
 
-func Flip_Player():
-	if time_in_current_state > data.wall_jump_force_duration && player.facing_direction != player.x_input && abs(player.x_input) == 1:
-		player.facing_direction = player.x_input
-		$"../../PlayerSprite2D".scale.x *= -1
+#func Flip_Player():
+#		player.facing_direction = -1
+#		$"../../PlayerSprite2D".scale.x *= -1

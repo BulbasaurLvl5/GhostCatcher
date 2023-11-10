@@ -46,7 +46,7 @@ func Do_Checks():
 	elif Input.is_action_pressed("Dash") && player.can_dash():
 		player.air_action()
 		Transitioned.emit(self,"Dash")
-	elif Input.is_action_pressed("Grab") && player.can_touch_wall:
+	elif player.can_touch_wall && player.x_input == player.facing_direction:
 		player.velocity = Vector2.ZERO
 		Transitioned.emit(self,"WallGrab")
 		

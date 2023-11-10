@@ -1,28 +1,29 @@
 class_name PlayerWallGrabState
 extends PlayerState
 
-#@export var wall_grab_resets_air_actions : bool = true
+
+@onready var wall_direction : int
+
 
 func Enter():
 	anim.play("wall_grab")
+	
+	wall_direction = player.facing_direction
+	player.velocity = Vector2.ZERO
 	if data.wall_grab_resets_air_actions:
 		player.remaining_air_actions = data.max_air_actions
+
 
 func Do_Checks():
 	if Input.is_action_pressed("Jump") && player.jump_button_reset:
 		Transitioned.emit(self,"WallJump")
-	elif Input.is_action_pressed("Dash") && player.dash_button_reset:
-		Transitioned.emit(self,"WallJump")
-	elif !Input.is_action_pressed("Grab"):
-		release_wall()	
-
-func release_wall():
-	if player.is_grounded:
-		Transitioned.emit(self,"Idle")
-	else:
+	elif player.x_input != wall_direction:
+		player.facing_direction *= -1
+		$"../../PlayerSprite2D".scale.x *= -1
 		$"../../CoyoteTime".start()
 		player.last_touched_wall = true
-		Transitioned.emit(self,"InAir")
+		Transitioned.emit(self,"InAir")	
+
 
 func Flip_Player():
 	#cannot flip while grabbing wall
