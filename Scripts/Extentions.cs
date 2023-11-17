@@ -6,16 +6,12 @@ using System;
 
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 namespace MyGodotExtentions
 {
   public static class NodeGetters
   {
-		public static void AsignTo<T>(this Node _this, ref T _var) where T : Node
-		{
-			_var = (T)_this;
-		}
-
 		public static bool TryGetNode<T>(this Node _this, string path, out T node) where T : Node
 		{
 			node = _this.GetNode<T>(path);
@@ -82,11 +78,43 @@ namespace MyGodotExtentions
 				return false;
 		}
 
+		public static bool TryGetAllChildren<T>(this Node _this, out List<T> nodes) where T : Node
+		{
+			var _children = _this.GetChildren().ToList();
+			HashSet<Node> _allChildren = new HashSet<Node>();
+
+			while(_children.Count > 0)
+			{
+				List<Node> _subchildren = new List<Node>();
+				for (int i = _children.Count-1; i >= 0; i--)
+				{
+					_allChildren.Add(_children[i]);
+					_subchildren = _subchildren.Concat(_children[i].GetChildren().ToList()).ToList();
+					_children.RemoveAt(i);
+				}
+				_children=_children.Concat(_subchildren).ToList();
+			}
+
+			nodes = new List<T>();
+			foreach (var _child in _allChildren)
+			{
+				if(_child is T)
+				{
+					nodes.Add((T)_child);
+				}
+			}
+
+			if(nodes.Count > 0)
+				return true;
+			else
+				return false;
+		}
+
 		public static bool TryGetNodeInTree<T>(this Node _this, out T node) where T : Node
 		{
-			if(_this.GetTree().Root.TryGetChild<T>(out T _t))
+			if(_this.GetTree().Root.TryGetAllChildren(out List<T> _t))
 			{
-				node = _t;
+				node = _t[0];
 				return true;
 			}
 			else
@@ -98,12 +126,28 @@ namespace MyGodotExtentions
 
 		public static bool TryGetNodesInTree<T>(this Node _this, out List<T> nodes) where T : Node
 		{
-			nodes = new List<T>();
+			var _children = _this.GetTree().Root.GetChildren().ToList();
+			HashSet<Node> _allChildren = new HashSet<Node>();
 
-			foreach (var _child in _this.GetTree().Root.GetChildren())
+			while(_children.Count > 0)
+			{
+				List<Node> _subchildren = new List<Node>();
+				for (int i = _children.Count-1; i >= 0; i--)
+				{
+					_allChildren.Add(_children[i]);
+					_subchildren = _subchildren.Concat(_children[i].GetChildren().ToList()).ToList();
+					_children.RemoveAt(i);
+				}
+				_children=_children.Concat(_subchildren).ToList();
+			}
+
+			nodes = new List<T>();
+			foreach (var _child in _allChildren)
 			{
 				if(_child is T)
+				{
 					nodes.Add((T)_child);
+				}
 			}
 
 			if(nodes.Count > 0)

@@ -9,8 +9,7 @@ public partial class RemainingGhostDisplay : HBoxContainer
 		TextureRect _ghosticon;
 		this.TryGetChild(out _ghosticon);
 
-		Main _main;
-		if(this.TryGetNodeInTree<Main>(out _main))
+		if(this.TryGetNodeInTree<Main>(out Main _main))
 		{
 			int _g = _main.GhostCount;
 			for (int i = 1; i < _g; i++)

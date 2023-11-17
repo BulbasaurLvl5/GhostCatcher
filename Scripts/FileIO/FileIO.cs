@@ -68,6 +68,7 @@ public static class FileIO
     public static SaveGame Load()
     {
         string _filepath = _baseSavePath + "Save" + ".json";
+        // GD.Print(_filepath);
 
         if (File.Exists(_filepath))
         {

@@ -17,11 +17,14 @@ public static class LevelLoader
 
 	//levels
 	static PackedScene packedTestLevel = ResourceLoader.Load<PackedScene>("res://Scenes/test_level.tscn");
-	static PackedScene packedLevel_Tutorial = ResourceLoader.Load<PackedScene>("res://Scenes/Level_tutorial.tscn");
+	static PackedScene packedLevel_Tutorial = ResourceLoader.Load<PackedScene>("res://Scenes/level/Level_tutorial.tscn");
+
+	static PackedScene packedLevel_Platforms = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_platforms.tscn");
 
 	public static Action<Main>[] LoadLevel = {
 		LoadLevel_TestScene,
 		LoadLevel_Tutorial,
+		LoadLevel_Platforms,
 	
 		};
 
@@ -34,8 +37,6 @@ public static class LevelLoader
 
 	static void LoadLevel_TestScene(Main _main)
 	{
-		_main.StartLevel(0);
-
 		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(3730,810), 0);
 		// _main.player.ProcessMode = Node.ProcessModeEnum.Disabled;
 
@@ -49,8 +50,9 @@ public static class LevelLoader
 		Node _testlevel = packedTestLevel.Instantiate(_main.World) as Node;
 
 		Ghost _g = packedGhost.Instantiate(_main.World, new Vector2I(3600, -800), 0) as Ghost;
-		_g.BodyEntered += _main.GhostCollision;
-		_main.GhostCount += 1;
+		// _g.BodyEntered += _main.GhostCollision;
+		// _main.GhostCount += 1;
+		_main.StartLevel(0);
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -60,8 +62,6 @@ public static class LevelLoader
 
 	static void LoadLevel_Tutorial(Main _main)
 	{
-		_main.StartLevel(1);
-
 		List<Vector2I> ghostPositions = new List<Vector2I>(){
 			new Vector2I(6*110, 4*110),
 			new Vector2I(11*110, 0),
@@ -84,10 +84,32 @@ public static class LevelLoader
 		foreach (var _gp in ghostPositions)
 		{
 			Ghost _g = packedGhost.Instantiate(_main.World, _gp, 0) as Ghost;
-			_g.BodyEntered += _main.GhostCollision;
-			_main.GhostCount += 1;
+			// _g.BodyEntered += _main.GhostCollision;
+			// _main.GhostCount += 1;
 		}
 		//like different ghost types will require special code. thats why the region ends below
+
+		_main.StartLevel(1);
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
+		PlayerDisableDelay(_main, 1);
+	}
+
+	static void LoadLevel_Platforms(Main _main)
+	{
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(1*110,-1*110), 0);
+
+		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
+		_main.UI.AddChild(_timeLabel);
+
+		MainLabel _center_label = packedCenterLabel.Instantiate<MainLabel>();
+		_main.UI.AddChild(_center_label);
+
+		packedLevel_Platforms.Instantiate(_main.World);
+
+		_main.StartLevel(2);
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);

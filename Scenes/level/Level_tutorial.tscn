@@ -1,21 +1,21 @@
 [gd_scene load_steps=8 format=3 uid="uid://7gm2em8n2ucc"]
 
-[ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_umcy7"]
-[ext_resource type="Texture2D" uid="uid://cuxeorwpjn2g6" path="res://Sprites/Environment/CoalDrawn/CoalSignpost.png" id="2_2e8t4"]
-[ext_resource type="Texture2D" uid="uid://jbfl0nukjwsw" path="res://Sprites/Environment/CoalDrawn/CoalTree.png" id="3_i0ocj"]
-[ext_resource type="Texture2D" uid="uid://cgbodrcslt8a1" path="res://Sprites/Environment/CoalDrawn/CoalTombStones.png" id="4_na7ap"]
-[ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="5_px72j"]
+[ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_hc42g"]
+[ext_resource type="Texture2D" uid="uid://cuxeorwpjn2g6" path="res://Sprites/Environment/CoalDrawn/CoalSignpost.png" id="2_kymji"]
+[ext_resource type="Texture2D" uid="uid://jbfl0nukjwsw" path="res://Sprites/Environment/CoalDrawn/CoalTree.png" id="3_dxixd"]
+[ext_resource type="Texture2D" uid="uid://cgbodrcslt8a1" path="res://Sprites/Environment/CoalDrawn/CoalTombStones.png" id="4_lqtr1"]
+[ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="5_4gdet"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1fwhv"]
-atlas = ExtResource("4_na7ap")
+atlas = ExtResource("4_lqtr1")
 region = Rect2(20, 17, 109, 123)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gwvkm"]
-atlas = ExtResource("4_na7ap")
+atlas = ExtResource("4_lqtr1")
 region = Rect2(161, 39, 105, 101)
 
 [node name="Tutorial" type="TileMap"]
-tile_set = ExtResource("1_umcy7")
+tile_set = ExtResource("1_hc42g")
 format = 2
 layer_0/tile_data = PackedInt32Array(458756, 65539, 3, 458757, 65539, 3, 458758, 65539, 3, 458759, 65539, 3, 458760, 65539, 3, 458761, 65539, 3, 458762, 65539, 3, 458763, 65539, 3, 458764, 65539, 3, 458765, 65539, 3, 458766, 65539, 3, 458767, 65539, 3, 458768, 65539, 3, 458769, 65539, 3, 458770, 65539, 3, 458771, 65539, 3, 327685, 3, 3, 327686, 65539, 3, 327687, 131075, 3, 131082, 3, 3, 131083, 65539, 3, 131084, 131075, 3, 327695, 3, 3, 327696, 65539, 3, 327697, 131075, 3, 458755, 65539, 3, 458754, 65539, 3, 458772, 65539, 3, 458752, 3, 3, 458753, 65539, 3, 458773, 65539, 3, 458774, 131075, 3)
 
@@ -23,12 +23,12 @@ layer_0/tile_data = PackedInt32Array(458756, 65539, 3, 458757, 65539, 3, 458758,
 z_index = 2
 position = Vector2(79, 618.25)
 scale = Vector2(1, 1.03116)
-texture = ExtResource("2_2e8t4")
+texture = ExtResource("2_kymji")
 
 [node name="Tree" type="Sprite2D" parent="."]
 position = Vector2(1270, 515)
 scale = Vector2(1.50227, 1.50227)
-texture = ExtResource("3_i0ocj")
+texture = ExtResource("3_dxixd")
 
 [node name="tomb_1" type="Sprite2D" parent="."]
 position = Vector2(403, 710)
@@ -38,5 +38,5 @@ texture = SubResource("AtlasTexture_1fwhv")
 position = Vector2(1066, 740)
 texture = SubResource("AtlasTexture_gwvkm")
 
-[node name="EndlessPit" parent="." instance=ExtResource("5_px72j")]
+[node name="EndlessPit" parent="." instance=ExtResource("5_4gdet")]
 position = Vector2(219, 823)

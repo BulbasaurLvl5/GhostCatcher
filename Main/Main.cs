@@ -94,6 +94,15 @@ public partial class Main : Node
 		GhostCount = 0;
 		getReadyTime.Start(2);
 		_levelTime.Start(-2);
+
+		if(World.TryGetAllChildren(out List<Ghost> ghosts))
+		{
+			foreach (var _g in ghosts)
+			{
+				_g.BodyEntered += GhostCollision;
+				GhostCount += 1;
+			}
+		}
 	}
 
 	public void EndLevel()
