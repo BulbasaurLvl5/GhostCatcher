@@ -21,10 +21,13 @@ public static class LevelLoader
 
 	static PackedScene packedLevel_Platforms = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_platforms.tscn");
 
+	static PackedScene packedLevel_Tunnels = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_tunnels.tscn");
+
 	public static Action<Main>[] LoadLevel = {
 		LoadLevel_TestScene,
 		LoadLevel_Tutorial,
 		LoadLevel_Platforms,
+		LoadLevel_Tunnels,
 	
 		};
 
@@ -110,6 +113,26 @@ public static class LevelLoader
 		packedLevel_Platforms.Instantiate(_main.World);
 
 		_main.StartLevel(2);
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
+		PlayerDisableDelay(_main, 1);
+	}
+
+	static void LoadLevel_Tunnels(Main _main)
+	{
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(8*110,-5*110), 0);
+
+		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
+		_main.UI.AddChild(_timeLabel);
+
+		MainLabel _center_label = packedCenterLabel.Instantiate<MainLabel>();
+		_main.UI.AddChild(_center_label);
+
+		packedLevel_Tunnels.Instantiate(_main.World);
+
+		_main.StartLevel(3);
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
