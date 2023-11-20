@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvh68tarfg7ur"]
+[gd_scene load_steps=4 format=3 uid="uid://bvh68tarfg7ur"]
 
 [ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_uko56"]
+[ext_resource type="Texture2D" uid="uid://jbfl0nukjwsw" path="res://Sprites/Environment/CoalDrawn/CoalTree.png" id="3_0p8cl"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="3_ycubw"]
 
 [node name="TileMap" type="TileMap"]
@@ -25,3 +26,28 @@ position = Vector2(-243, -1957)
 
 [node name="Ghost6" parent="." instance=ExtResource("3_ycubw")]
 position = Vector2(430, -2399)
+
+[node name="tree1" type="Sprite2D" parent="."]
+position = Vector2(496, -1234)
+scale = Vector2(0.770454, 0.770454)
+texture = ExtResource("3_0p8cl")
+
+[node name="tree5" type="Sprite2D" parent="."]
+position = Vector2(-281, -1261)
+scale = Vector2(0.961932, 0.961932)
+texture = ExtResource("3_0p8cl")
+
+[node name="tree2" type="Sprite2D" parent="."]
+position = Vector2(337, -2163)
+scale = Vector2(0.447443, 0.447443)
+texture = ExtResource("3_0p8cl")
+
+[node name="tree3" type="Sprite2D" parent="."]
+position = Vector2(1410, -1506)
+scale = Vector2(0.447443, 0.447443)
+texture = ExtResource("3_0p8cl")
+
+[node name="tree4" type="Sprite2D" parent="."]
+position = Vector2(1702, -2227)
+scale = Vector2(0.812358, 0.812358)
+texture = ExtResource("3_0p8cl")
