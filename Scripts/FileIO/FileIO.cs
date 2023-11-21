@@ -31,7 +31,7 @@ public static class FileIO
 
         string _filepath = _baseSavePath + "Save" + ".json";
 
-        if(!File.Exists(_filepath))
+        if(!File.Exists(_filepath) || LevelLoader.LoadLevel.Length != Load().LastTimes.Length)
         {
             SaveGame _save = new SaveGame{
                 LastTimes = new double[LevelLoader.LoadLevel.Length],

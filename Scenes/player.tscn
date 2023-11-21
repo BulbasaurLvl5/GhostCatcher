@@ -306,7 +306,7 @@ _data = {
 z_index = 1
 script = ExtResource("1_l4530")
 player_data_resources = Array[Resource("res://Scripts/PlayerData/player_data_resource.gd")]([ExtResource("2_h06d8"), ExtResource("2_se3de"), ExtResource("4_gemo6"), ExtResource("5_yerfu"), ExtResource("6_844al")])
-data = ExtResource("2_h06d8")
+data = ExtResource("6_844al")
 
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)

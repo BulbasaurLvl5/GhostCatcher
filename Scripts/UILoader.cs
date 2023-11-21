@@ -13,6 +13,8 @@ public static class UILoader
         Control _leveldataContainer = packedLevelDataContainer.Instantiate<Control>();
 		_main.UI.AddChild(_leveldataContainer);
 
+        
+
         for (int i = 0; i < LevelLoader.LoadLevel.Length; i++)
         {
             Control _leveldata = packedLevelData.Instantiate<Control>();
