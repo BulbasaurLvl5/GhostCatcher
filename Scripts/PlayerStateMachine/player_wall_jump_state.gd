@@ -8,7 +8,6 @@ extends PlayerState
 
 @onready var jump_velocity : float
 @onready var jump_gravity : float
-@onready var in_air_horizontal_speed : float
 @onready var wall_jump_direction : int
 
 func Enter():
@@ -17,11 +16,11 @@ func Enter():
 	$"../../PlayerSprite2D".scale.x *= -1
 	wall_jump_direction = player.facing_direction
 	
-	player.velocity.y = jump_velocity
+
 	player.jump_button_reset = false
 	jump_velocity = (-2 * data.wall_jump_height) / data.wall_jump_time_to_peak
 	jump_gravity = (2 * data.wall_jump_height) / (data.wall_jump_time_to_peak * data.wall_jump_time_to_peak)
-	in_air_horizontal_speed = data.in_air_horizontal_speed
+	player.velocity.y = jump_velocity
 	
 func _animation_finished():
 	anim.play("in-air")
