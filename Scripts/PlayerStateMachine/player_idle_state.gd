@@ -10,7 +10,7 @@ func Do_Checks():
 		Transitioned.emit(self,"InAir")
 	elif Input.is_action_pressed("Jump") && player.jump_button_reset:
 		Transitioned.emit(self,"Jump")
-	elif Input.is_action_pressed("Dash") && player.dash_button_reset:
+	elif Input.is_action_pressed("Dash") && player.dash_button_reset && player.last_dash_time + data.ground_dash_cooldown < Time.get_unix_time_from_system():
 		Transitioned.emit(self,"Dash")
 	elif abs(player.x_input) == 1:
 		Walk_Or_Run(self)

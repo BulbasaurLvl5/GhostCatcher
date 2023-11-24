@@ -304,7 +304,6 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_l4530")
-verbose = true
 player_data_resources = Array[Resource("res://Scripts/PlayerData/player_data_resource.gd")]([ExtResource("2_h06d8"), ExtResource("2_se3de"), ExtResource("4_gemo6"), ExtResource("5_yerfu"), ExtResource("6_844al")])
 data = ExtResource("6_844al")
 
@@ -327,7 +326,7 @@ scale = Vector2(0.5, 0.5)
 target_position = Vector2(0, 3)
 
 [node name="GroundCheckBack" type="RayCast2D" parent="PlayerSprite2D"]
-position = Vector2(-9, 29)
+position = Vector2(-10, 29)
 scale = Vector2(0.5, 0.5)
 target_position = Vector2(0, 4)
 
@@ -346,12 +345,8 @@ position = Vector2(5.5, 28)
 target_position = Vector2(4.5, 0)
 
 [node name="WallCheckHeel" type="RayCast2D" parent="PlayerSprite2D"]
-position = Vector2(-8.5, 28)
-scale = Vector2(1, 1.46)
-target_position = Vector2(-2.5, 0)
-
-[node name="WallCheckBack" type="RayCast2D" parent="PlayerSprite2D"]
-target_position = Vector2(-17, 0)
+position = Vector2(-7, 27.5)
+target_position = Vector2(-5.5, 0.5)
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_dcopr")

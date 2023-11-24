@@ -13,6 +13,7 @@ func Enter():
 	jump_gravity = (2 * data.jump_height) / (data.jump_time_to_peak * data.jump_time_to_peak)
 	player.velocity.y = jump_velocity
 	
+	
 func _animation_finished():
 	anim.play("in_air")
 
@@ -22,7 +23,7 @@ func Do_Checks():
 		player.velocity.y = 0
 		$"../InAir".hang_time_active = true
 		Transitioned.emit(self,"InAir")
-	elif player.can_touch_wall && player.x_input == player.facing_direction:
+	elif data.wall_grab_allowed_while_ascending && player.can_touch_wall && player.x_input == player.facing_direction:
 		player.velocity = Vector2.ZERO
 		Transitioned.emit(self,"WallGrab")
 

@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
+
 #level-dependent parameters
 @export var facing_direction : int = 1
 
@@ -19,15 +20,18 @@ extends CharacterBody2D
 @onready var is_grounded : bool
 @onready var can_touch_wall : bool
 @onready var is_facing_wall : bool
+@onready var wall_is_behind : bool
 @onready var remaining_air_actions : int = data.max_air_actions
 @onready var last_touched_wall : bool = false
 @onready var jump_button_reset : bool = true
 @onready var dash_button_reset : bool = true
+@onready var last_dash_time : float
 @onready var prev_player_data_button_reset : bool = true
 @onready var next_player_data_button_reset : bool = true
 @onready var command_list_button_reset : bool = true
 @onready var screen_size_button_reset : bool = true
 @onready var current_player_data_preset = 0
+
 
 func _ready():
 	if data == null:
@@ -36,6 +40,7 @@ func _ready():
 	set_screen_size(false)
 	print("PlayerData set to: ",data.player_data_name_or_description)
 	print("Press '0' (zero) to see a list of available commands.")
+
 
 func _process(_delta):
 	#input checks
@@ -69,14 +74,20 @@ func _process(_delta):
 	$PlayerSprite2D/GroundCheckBack.force_raycast_update()
 	$PlayerSprite2D/WallCheckShoulder.force_raycast_update()
 	$PlayerSprite2D/WallCheckToe.force_raycast_update()
-	
-	is_grounded = max(int($PlayerSprite2D/GroundCheckFront.is_colliding()), int($PlayerSprite2D/GroundCheckBack.is_colliding()))
+	$PlayerSprite2D/WallCheckBack.force_raycast_update()
+		
 	can_touch_wall = int($PlayerSprite2D/WallCheckShoulder.is_colliding())
+	wall_is_behind = int($PlayerSprite2D/WallCheckBack.is_colliding())
 	is_facing_wall = max(int(can_touch_wall), int($PlayerSprite2D/WallCheckToe.is_colliding()))
+	if ($PlayerSprite2D/GroundCheckFront.is_colliding() && !is_facing_wall) || ($PlayerSprite2D/GroundCheckBack.is_colliding() && !wall_is_behind):
+		is_grounded = true
+	else:
+		is_grounded = false	
 	
 	if is_grounded:
 		remaining_air_actions = data.max_air_actions
 		last_touched_wall = false
+
 
 func can_jump() -> bool:
 	if !jump_button_reset:
@@ -86,6 +97,7 @@ func can_jump() -> bool:
 	else:
 		return false
 
+
 func can_dash() -> bool:
 	if !dash_button_reset:
 		return false
@@ -94,9 +106,11 @@ func can_dash() -> bool:
 	else:
 		return false
 
+
 func air_action():
 	if $CoyoteTime.is_stopped():
 		remaining_air_actions -= 1
+
 
 func set_screen_size(toggle_screen_size : bool):
 	if toggle_screen_size:
@@ -110,6 +124,7 @@ func set_screen_size(toggle_screen_size : bool):
 		DisplayServer.window_set_size(Vector2i(stefan_screen_size))
 	else:
 		DisplayServer.window_set_size(Vector2i(daniel_screen_size))
+
 
 func show_command_list():
 	command_list_button_reset = false
@@ -127,6 +142,7 @@ func show_command_list():
 	print("    page up  Prev PlayerData Preset")
 	print("  page down  Next PlayerData Preset")
 
+
 func prev_player_data_preset():
 	current_player_data_preset -= 1
 	if current_player_data_preset < 0:
@@ -134,6 +150,7 @@ func prev_player_data_preset():
 	data = player_data_resources[current_player_data_preset]
 	print("New player_data_resource: ",current_player_data_preset," - ",data.player_data_name_or_description)
 	prev_player_data_button_reset = false
+
 
 func next_player_data_preset():
 	current_player_data_preset += 1

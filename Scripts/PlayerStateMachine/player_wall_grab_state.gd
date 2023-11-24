@@ -17,9 +17,10 @@ func Enter():
 func Do_Checks():
 	if Input.is_action_pressed("Jump") && player.jump_button_reset:
 		Transitioned.emit(self,"WallJump")
-	elif player.x_input != wall_direction:
-		player.facing_direction *= -1
-		$"../../PlayerSprite2D".scale.x *= -1
+	elif player.x_input != wall_direction || !player.is_facing_wall:
+		if player.x_input == player.facing_direction * -1:
+			player.facing_direction *= -1
+			$"../../PlayerSprite2D".scale.x *= -1
 		$"../../CoyoteTime".start()
 		player.last_touched_wall = true
 		Transitioned.emit(self,"InAir")	
