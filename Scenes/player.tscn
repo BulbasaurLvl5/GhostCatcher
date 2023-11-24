@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dhow5esn6x7rt"]
+[gd_scene load_steps=41 format=3 uid="uid://dhow5esn6x7rt"]
 
 [ext_resource type="Texture2D" uid="uid://bb0owlsjswb7q" path="res://Sprites/platformer_sprites_base.png" id="1_axrb2"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_state_machine.gd" id="1_dcopr"]
@@ -21,6 +21,10 @@
 [ext_resource type="PackedScene" uid="uid://deim0qaglwinp" path="res://Scenes/dash_ghost.tscn" id="14_q528f"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_wall_jump_state.gd" id="14_umcf1"]
 [ext_resource type="Texture2D" uid="uid://d0b27a1l8rfxv" path="res://Sprites/Environment/CoalDrawn/CoalBackground.jpg" id="20_jivvr"]
+[ext_resource type="Texture2D" uid="uid://b5xlp7x6bh8wb" path="res://Sprites/Environment/CoalDrawn/CoalSky.png" id="22_fq0q7"]
+[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://Sprites/Environment/CoalDrawn/CoalMountainsFiltered.png" id="22_g4lco"]
+[ext_resource type="Script" path="res://Scripts/ParallaxClouds.gd" id="23_52qlr"]
+[ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://Sprites/Environment/CoalDrawn/CoalSkyFilter.png" id="23_bi7di"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnagu"]
 size = Vector2(30, 110)
@@ -345,11 +349,6 @@ target_position = Vector2(6.5, 0)
 position = Vector2(5.5, 28)
 target_position = Vector2(4.5, 0)
 
-[node name="WallCheckHeel" type="RayCast2D" parent="PlayerSprite2D"]
-position = Vector2(-8.5, 28)
-scale = Vector2(1, 1.46)
-target_position = Vector2(-2.5, 0)
-
 [node name="WallCheckBack" type="RayCast2D" parent="PlayerSprite2D"]
 target_position = Vector2(-17, 0)
 
@@ -398,8 +397,55 @@ one_shot = true
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="Camera2D"]
+visible = false
 z_index = -5
 texture_repeat = 2
 position = Vector2(-3, -102)
 scale = Vector2(2, 2)
 texture = ExtResource("20_jivvr")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2(0.05, 0.05)
+
+[node name="Sky" type="Sprite2D" parent="Camera2D/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(877, 491)
+scale = Vector2(2, 3)
+texture = ExtResource("22_fq0q7")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2(0.08, 0.08)
+motion_mirroring = Vector2(2336, 1652)
+script = ExtResource("23_52qlr")
+automatic_motion = Vector2(-50, -20)
+
+[node name="SkyColor" type="Sprite2D" parent="Camera2D/ParallaxBackground/ParallaxLayer3"]
+self_modulate = Color(1, 1, 1, 0.772549)
+position = Vector2(-9, -42)
+scale = Vector2(2, 2)
+texture = ExtResource("23_bi7di")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2(0.08, 0.08)
+motion_mirroring = Vector2(2336, 1652)
+script = ExtResource("23_52qlr")
+automatic_motion = Vector2(-25, 10)
+
+[node name="SkyColor" type="Sprite2D" parent="Camera2D/ParallaxBackground/ParallaxLayer4"]
+self_modulate = Color(1, 1, 1, 0.454902)
+position = Vector2(-9, -42)
+scale = Vector2(2, 2)
+texture = ExtResource("23_bi7di")
+centered = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+position = Vector2(-148, 102)
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Mountains" type="Sprite2D" parent="Camera2D/ParallaxBackground/ParallaxLayer"]
+position = Vector2(-468, -525)
+scale = Vector2(2.5, 2)
+texture = ExtResource("22_g4lco")
+centered = false
