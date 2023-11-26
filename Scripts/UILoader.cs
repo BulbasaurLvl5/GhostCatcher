@@ -10,13 +10,15 @@ public static class UILoader
 
     public static void LoadLevelSelector(Main _main)
     {
-        Control _leveldataContainer = packedLevelDataContainer.Instantiate<Control>();
+        Node _leveldataContainer = packedLevelDataContainer.Instantiate<Node>();
 		_main.UI.AddChild(_leveldataContainer);
+
+        _leveldataContainer.TryGetAllChildren(out List<VBoxContainer> _boxContainer);
 
         for (int i = 0; i < LevelLoader.LoadLevel.Length; i++)
         {
             Control _leveldata = packedLevelData.Instantiate<Control>();
-            _leveldataContainer.AddChild(_leveldata);
+            _boxContainer[0].AddChild(_leveldata);
 
             List<Button> _buttons = new List<Button>();
             if(_leveldata.TryGetChildren<Button>(out _buttons))
