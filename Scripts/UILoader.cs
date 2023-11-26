@@ -13,8 +13,6 @@ public static class UILoader
         Control _leveldataContainer = packedLevelDataContainer.Instantiate<Control>();
 		_main.UI.AddChild(_leveldataContainer);
 
-        
-
         for (int i = 0; i < LevelLoader.LoadLevel.Length; i++)
         {
             Control _leveldata = packedLevelData.Instantiate<Control>();
@@ -23,8 +21,8 @@ public static class UILoader
             List<Button> _buttons = new List<Button>();
             if(_leveldata.TryGetChildren<Button>(out _buttons))
             {
-                _buttons[0].Text = "Load Level " + i.ToString();
-                _buttons[1].Text = "Show Level " + i.ToString();
+                _buttons[0].Text = "Level " + i.ToString();
+                _buttons[1].Text = "Show " + i.ToString();
 
                 Action<Main> _loadlvl = LevelLoader.LoadLevel[i];
                 _buttons[0].Pressed += () => {

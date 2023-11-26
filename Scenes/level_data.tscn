@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcj5ir1rbt5ac"]
+[gd_scene load_steps=6 format=3 uid="uid://bcj5ir1rbt5ac"]
 
+[ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://Sprites/Environment/CoalDrawn/CoalButton_1.png" id="1_xfacb"]
 [ext_resource type="Texture2D" uid="uid://banwwaljd2o2j" path="res://Animations/Ghost/Idle/ghost_idle_00.png" id="1_yngcj"]
+[ext_resource type="Texture2D" uid="uid://ef1afoq486sc" path="res://Sprites/Environment/CoalDrawn/CoalButton_2.png" id="3_6bhcw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jq5rq"]
 font_size = 48
@@ -23,8 +25,14 @@ alignment = 1
 [node name="StartLevel" type="Button" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.539063, 0.484375, 0.484375, 1)
+theme_override_colors/font_hover_color = Color(0.870588, 0.870588, 0.870588, 1)
 theme_override_font_sizes/font_size = 48
 text = "Hello"
+icon = ExtResource("1_xfacb")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="LastTime" type="Label" parent="."]
 layout_mode = 2
@@ -49,5 +57,11 @@ texture = ExtResource("1_yngcj")
 [node name="ShowLevel" type="Button" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.535156, 0.484375, 0.484375, 1)
+theme_override_colors/font_hover_color = Color(0.870588, 0.870588, 0.870588, 1)
 theme_override_font_sizes/font_size = 48
 text = "show"
+icon = ExtResource("3_6bhcw")
+flat = true
+icon_alignment = 1
+expand_icon = true
