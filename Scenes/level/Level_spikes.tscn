@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://b251x0fap78x8"]
+
+[ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_582l3"]
+[ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="2_shnab"]
+[ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="3_g8wqp"]
+[ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://Scenes/Spikes_large.tscn" id="4_kk47q"]
+[ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://Scenes/Spikes_medium.tscn" id="5_goean"]
+[ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://Scenes/Spikes_small.tscn" id="6_aujlf"]
+
+[node name="TileMap" type="TileMap"]
+tile_set = ExtResource("1_582l3")
+format = 2
+layer_0/tile_data = PackedInt32Array(65533, 3, 3, 65534, 65539, 3, 65535, 65539, 3, 0, 65539, 3, 1, 65539, 3, 2, 65539, 3, 3, 65539, 3, 4, 65539, 3, 5, 65539, 3, 6, 65539, 3, 7, 65539, 3, 8, 131075, 3, -131077, 3, 3, -131076, 65539, 3, -131075, 65539, 3, -131074, 65539, 3, -131073, 65539, 3, -196608, 65539, 3, -196607, 65539, 3, -196606, 65539, 3, -196605, 65539, 3, -196604, 65539, 3, -196603, 65539, 3, -196602, 65539, 3, -196601, 131075, 2, -262137, 196611, 1, -327673, 196611, 1, -393209, 196611, 1, -458745, 196611, 1, -524281, 196611, 0, -458756, 196611, 3, -786432, 196611, 3, -393213, 196611, 3, -917506, 3, 3, -917505, 65539, 3, -983040, 65539, 3, -983039, 65539, 3, -983038, 131075, 3, -131059, 3, 0, -131058, 65539, 0, -131057, 65539, 0, -196592, 3, 1, -196591, 65539, 1, -65523, 3, 2, -65522, 65539, 2, -65521, 65539, 2, -262128, 3, 0, -262127, 65539, 0, -262126, 65539, 0, -262125, 65539, 0, -196590, 65539, 2, -196589, 65539, 2, -131056, 65539, 1, -65520, 65539, 2, -65519, 131075, 2, -131055, 131075, 1, -262124, 131075, 0, -196588, 131075, 2, -393203, 196611, 2, -458739, 196611, 1, -524275, 196611, 1, -589811, 196611, 1, -655347, 196611, 1, -720883, 196611, 1, -786419, 196611, 1, -851955, 196611, 1, -917491, 196611, 1, -983027, 196611, 1, -1048563, 196611, 1, -1114099, 196611, 1, -1179635, 196611, 1, -1245171, 196611, 0, -786413, 196611, 3, -1114097, 196611, 3)
+
+[node name="Ghost" parent="." instance=ExtResource("2_shnab")]
+position = Vector2(1209, -315)
+
+[node name="Ghost2" parent="." instance=ExtResource("2_shnab")]
+position = Vector2(1850, -999)
+
+[node name="Ghost3" parent="." instance=ExtResource("2_shnab")]
+position = Vector2(2128, -2332)
+
+[node name="Ghost4" parent="." instance=ExtResource("2_shnab")]
+position = Vector2(57, -917)
+
+[node name="Ghost5" parent="." instance=ExtResource("2_shnab")]
+position = Vector2(76, -1847)
+
+[node name="Ghost6" parent="." instance=ExtResource("2_shnab")]
+position = Vector2(-1023, -1309)
+
+[node name="EndlessPit" parent="." instance=ExtResource("3_g8wqp")]
+position = Vector2(0, 323)
+
+[node name="Spikes_large" parent="." instance=ExtResource("4_kk47q")]
+position = Vector2(-399, -346)
+
+[node name="Spikes_large2" parent="." instance=ExtResource("4_kk47q")]
+position = Vector2(176, -346)
+
+[node name="Spikes_large3" parent="." instance=ExtResource("4_kk47q")]
+position = Vector2(635, -349)
+
+[node name="Spikes_medium" parent="." instance=ExtResource("5_goean")]
+position = Vector2(400, -351)
+
+[node name="Spikes_medium2" parent="." instance=ExtResource("5_goean")]
+position = Vector2(-145, -349)
+
+[node name="Spikes_small" parent="." instance=ExtResource("6_aujlf")]
+position = Vector2(-28, -351)

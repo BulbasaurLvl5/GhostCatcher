@@ -24,7 +24,8 @@ public static class UILoader
             if(_leveldata.TryGetChildren<Button>(out _buttons))
             {
                 _buttons[0].Text = "Level " + i.ToString();
-                _buttons[1].Text = "Show " + i.ToString();
+                // _buttons[1].Text = "Show " + i.ToString();
+                _buttons[1].Text = "Layout";
 
                 Action<Main> _loadlvl = LevelLoader.LoadLevel[i];
                 _buttons[0].Pressed += () => {
