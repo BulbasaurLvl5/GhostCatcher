@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuy7fj1l11x4v"]
+
+[ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_i2o7l"]
+[ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="2_7wyad"]
+[ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="3_7kpqb"]
+
+[node name="TileMap" type="TileMap"]
+tile_set = ExtResource("1_i2o7l")
+format = 2
+layer_0/tile_data = PackedInt32Array(262143, 3, 1, 196607, 3, 1, 131071, 3, 1, 65535, 3, 1, 0, 131075, 1, 65536, 131075, 1, 131072, 131075, 1, 196608, 131075, 1, 262144, 131075, 2, 327679, 3, 2, 196602, 196611, 1, 262138, 196611, 1, 327674, 196611, 2, 131079, 196611, 1, 196615, 196611, 1, 262151, 196611, 2, 131066, 196611, 0, 65543, 196611, 0, -1, 3, 1, -65537, 3, 0, -131072, 131075, 0, -65536, 131075, 1, -458757, 3, 3, -458756, 65539, 3, -458755, 131075, 3, -1114109, 196611, 0, -1048573, 196611, 1, -983037, 196611, 2, -1441793, 196611, 0, -1376257, 196611, 1, -1310721, 196611, 2, -1769470, 196611, 0, -1703934, 196611, 2, -2097156, 196611, 3, -2490363, 196611, 3, -3014656, 196611, 3)
+
+[node name="Ghost" parent="." instance=ExtResource("2_7wyad")]
+position = Vector2(1359, -230)
+
+[node name="Ghost2" parent="." instance=ExtResource("2_7wyad")]
+position = Vector2(-350, -102)
+
+[node name="Ghost3" parent="." instance=ExtResource("2_7wyad")]
+position = Vector2(-990, -634)
+
+[node name="Ghost4" parent="." instance=ExtResource("2_7wyad")]
+position = Vector2(548, -1686)
+
+[node name="Ghost5" parent="." instance=ExtResource("2_7wyad")]
+position = Vector2(-234, -2370)
+
+[node name="Ghost6" parent="." instance=ExtResource("2_7wyad")]
+position = Vector2(285, -3156)
+
+[node name="Ghost7" parent="." instance=ExtResource("2_7wyad")]
+position = Vector2(-164, -4181)
+
+[node name="Ghost8" parent="." instance=ExtResource("2_7wyad")]
+position = Vector2(968, -5804)
+
+[node name="EndlessPit" parent="." instance=ExtResource("3_7kpqb")]
+position = Vector2(0, 323)
