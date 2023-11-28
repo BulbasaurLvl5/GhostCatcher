@@ -16,7 +16,7 @@ layer_0/tile_data = PackedInt32Array(65533, 3, 3, 65534, 65539, 3, 65535, 65539,
 position = Vector2(1209, -315)
 
 [node name="Ghost2" parent="." instance=ExtResource("2_shnab")]
-position = Vector2(1850, -999)
+position = Vector2(1935, -978)
 
 [node name="Ghost3" parent="." instance=ExtResource("2_shnab")]
 position = Vector2(2128, -2332)
@@ -28,7 +28,7 @@ position = Vector2(57, -917)
 position = Vector2(76, -1847)
 
 [node name="Ghost6" parent="." instance=ExtResource("2_shnab")]
-position = Vector2(-1023, -1309)
+position = Vector2(-1253, -1309)
 
 [node name="EndlessPit" parent="." instance=ExtResource("3_g8wqp")]
 position = Vector2(0, 323)

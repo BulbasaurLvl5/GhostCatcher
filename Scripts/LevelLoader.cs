@@ -22,6 +22,8 @@ public static class LevelLoader
 	static PackedScene packedLevel_Tunnels = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_tunnels.tscn");
 	static PackedScene packedLevel_cliff = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_cliff.tscn");
 	static PackedScene packedLevel_spikes = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_spikes.tscn");
+	static PackedScene packedLevel_MountainSide = ResourceLoader.Load<PackedScene>("res://Scenes/level/Level_MountainSide.tscn");
+	static PackedScene packedLevel_Kaktee = ResourceLoader.Load<PackedScene>("res://Scenes/level/Level_Kaktee.tscn");
 
 	public static Action<Main>[] LoadLevel = {
 		LoadLevel_TestScene,
@@ -30,6 +32,8 @@ public static class LevelLoader
 		LoadLevel_Tunnels,
 		LoadLevel_Cliff,
 		LoadLevel_Spikes,
+		LoadLevel_MountainSide,
+		LoadLevel_Kaktee,
 		};
 
 	public static async void PlayerDisableDelay(Main _main, int milisecdelay)
@@ -175,6 +179,46 @@ public static class LevelLoader
 		packedLevel_spikes.Instantiate(_main.World);
 
 		_main.StartLevel(5);
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
+		PlayerDisableDelay(_main, 1);
+	}
+
+	static void LoadLevel_MountainSide(Main _main)
+	{
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(-1*110,-1*110), 0);
+
+		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
+		_main.UI.AddChild(_timeLabel);
+
+		MainLabel _center_label = packedCenterLabel.Instantiate<MainLabel>();
+		_main.UI.AddChild(_center_label);
+
+		packedLevel_MountainSide.Instantiate(_main.World);
+
+		_main.StartLevel(6);
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
+		PlayerDisableDelay(_main, 1);
+	}
+
+	static void LoadLevel_Kaktee(Main _main)
+	{
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0*110,0*110), 0);
+
+		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
+		_main.UI.AddChild(_timeLabel);
+
+		MainLabel _center_label = packedCenterLabel.Instantiate<MainLabel>();
+		_main.UI.AddChild(_center_label);
+
+		packedLevel_Kaktee.Instantiate(_main.World);
+
+		_main.StartLevel(6);
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
