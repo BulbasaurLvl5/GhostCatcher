@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0gm6kngvdnxc"
-path="res://.godot/imported/CoalMenuBackground.png-d21d4f87275ccd3639eef2cc5bbb0e90.ctex"
+uid="uid://bfjc053hga36v"
+path="res://.godot/imported/Menu_start_Background.png-34a3d5c2458b6e1dc6fe2c453f32684a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Environment/CoalDrawn/CoalMenuBackground.png"
-dest_files=["res://.godot/imported/CoalMenuBackground.png-d21d4f87275ccd3639eef2cc5bbb0e90.ctex"]
+source_file="res://Sprites/Environment/CoalDrawn/Menu_start_Background.png"
+dest_files=["res://.godot/imported/Menu_start_Background.png-34a3d5c2458b6e1dc6fe2c453f32684a.ctex"]
 
 [params]
 

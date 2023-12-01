@@ -6,10 +6,7 @@ public partial class CollisionFailure : Node
 {
 	public override void _Ready()
 	{
-		Area2D _parent;
-		Main _main;
-
-		if(this.TryGetParent<Area2D>(out _parent) && this.TryGetNodeInTree<Main>(out _main))
+		if(this.TryGetParent<Area2D>(out Area2D _parent) && this.TryGetNodeInTree<Main>(out Main _main))
 		{
 			// alternative identifier
 			// GDScript MyGDScript = GD.Load<GDScript>("res://scenes/levels/TestBody.gd");

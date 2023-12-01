@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bq3i5f60hbghq"]
 
-[ext_resource type="Texture2D" uid="uid://b0gm6kngvdnxc" path="res://Sprites/Environment/CoalDrawn/CoalMenuBackground.png" id="1_ap2in"]
+[ext_resource type="Texture2D" uid="uid://b0gm6kngvdnxc" path="res://Sprites/Environment/CoalDrawn/Menu_Levelselection_Background.png" id="1_ap2in"]
 
 [node name="LevelDataContainer" type="Node"]
 

@@ -30,7 +30,9 @@ public partial class Main : Node
 
 	public int GhostCount {get{return _ghostCount;} set{_ghostCount = value;}}
 
-	int Level{ get; set; }
+	public int Level{ get; set; }
+
+	public bool Failed {get; set;}
 	
 	public override void _Ready()
 	{		
@@ -42,7 +44,8 @@ public partial class Main : Node
 			UI = children[1];
 
 			// LevelLoader.LoadLevel(this, 0);
-			UILoader.LoadLevelSelector(this);
+			// UILoader.LoadLevelSelector(this);
+			UILoader.LoadMainMenu(this);
 		}
 
 		getReadyTime.OnStop += () => {
@@ -51,8 +54,8 @@ public partial class Main : Node
 			OnLevelStart?.Invoke();
 		};
 
-		OnLevelSucceed += () => {endTime.Start(2);};
-		OnLevelFail += () => {endTime.Start(2);};
+		OnLevelSucceed += () => {endTime.Start(1);};
+		OnLevelFail += () => {endTime.Start(1);};
 
 		endTime.OnStop += EndLevel;
 	}
@@ -86,6 +89,8 @@ public partial class Main : Node
 		{
 			_c.QueueFree();
 		}
+
+		GD.Print("Clearcount: "+GhostCount);
 	}
 
 	public void StartLevel(int lvl)
@@ -99,16 +104,27 @@ public partial class Main : Node
 		{
 			foreach (var _g in ghosts)
 			{
-				_g.BodyEntered += GhostCollision;
-				GhostCount += 1;
+				/*
+				ok so before start level ClearScenes is called by Levelloader
+				ClearScenes dequeues objects. so they still linger when the next level is loaded and the ghosts are counted
+				one way is to exclude ghosts queed for deletion (solution below)
+				the better solution would be to create a level script and attach it to each level and let them handle the ghost counting themselfs
+				this is likely the result of this simple game becoming too complex already
+				*/
+				if(!_g.IsQueuedForDeletion())
+				{
+					_g.BodyEntered += GhostCollision;
+					GhostCount += 1;
+				}
 			}
 		}
 	}
 
 	public void EndLevel()
 	{
-		ClearScenes();
-		UILoader.LoadLevelSelector(this);
+		// ClearScenes();
+		// UILoader.LoadLevelSelector(this);
+		UILoader.LoadRetryMenu(this);
 		_levelTime.Reset();
 	}
 
@@ -118,6 +134,7 @@ public partial class Main : Node
 		FileIO.Save(Level, _levelTime.Time);
 		player.ProcessMode = ProcessModeEnum.Disabled;
 		OnLevelSucceed?.Invoke();
+		Failed = false;
 	}
 
 	public void FailLevel()
@@ -125,5 +142,6 @@ public partial class Main : Node
 		_levelTime.Pause();
 		player.ProcessMode = ProcessModeEnum.Disabled;
 		OnLevelFail?.Invoke();
+		Failed = true;
 	}
 }
