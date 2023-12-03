@@ -2,7 +2,7 @@ class_name PlayerDieState
 extends PlayerState
 
 func Enter():
-	anim.play("die")
+	anim.play("idle")
 	print("You have died!   Press 9 to revive")
 
 func Do_Checks():

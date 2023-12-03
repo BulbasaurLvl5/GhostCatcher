@@ -15,7 +15,7 @@ func Enter():
 	
 	
 func _animation_finished():
-	anim.play("in_air")
+	anim.play("hover")
 
 
 func Do_Checks():

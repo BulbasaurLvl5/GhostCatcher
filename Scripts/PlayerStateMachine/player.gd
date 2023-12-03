@@ -70,16 +70,16 @@ func _process(_delta):
 		next_player_data_preset()
 	
 	#environmental checks
-	$PlayerSprite2D/GroundCheckFront.force_raycast_update()	
-	$PlayerSprite2D/GroundCheckBack.force_raycast_update()
-	$PlayerSprite2D/WallCheckShoulder.force_raycast_update()
-	$PlayerSprite2D/WallCheckToe.force_raycast_update()
-	$PlayerSprite2D/WallCheckBack.force_raycast_update()
+	$PlayerAnimatedSprite2D/GroundCheckFront.force_raycast_update()	
+	$PlayerAnimatedSprite2D/GroundCheckBack.force_raycast_update()
+	$PlayerAnimatedSprite2D/WallCheckShoulder.force_raycast_update()
+	$PlayerAnimatedSprite2D/WallCheckToe.force_raycast_update()
+	$PlayerAnimatedSprite2D/WallCheckBack.force_raycast_update()
 		
-	can_touch_wall = int($PlayerSprite2D/WallCheckShoulder.is_colliding())
-	wall_is_behind = int($PlayerSprite2D/WallCheckBack.is_colliding())
-	is_facing_wall = max(int(can_touch_wall), int($PlayerSprite2D/WallCheckToe.is_colliding()))
-	if ($PlayerSprite2D/GroundCheckFront.is_colliding() && !is_facing_wall) || ($PlayerSprite2D/GroundCheckBack.is_colliding() && !wall_is_behind):
+	can_touch_wall = int($PlayerAnimatedSprite2D/WallCheckShoulder.is_colliding())
+	wall_is_behind = int($PlayerAnimatedSprite2D/WallCheckBack.is_colliding())
+	is_facing_wall = max(int(can_touch_wall), int($PlayerAnimatedSprite2D/WallCheckToe.is_colliding()))
+	if ($PlayerAnimatedSprite2D/GroundCheckFront.is_colliding() && !is_facing_wall) || ($PlayerAnimatedSprite2D/GroundCheckBack.is_colliding() && !wall_is_behind):
 		is_grounded = true
 	else:
 		is_grounded = false	

@@ -1,10 +1,10 @@
 class_name PlayerWalkState
 extends PlayerState
 
-#@export var walk_speed : float = 150.0
 
 func Enter():
-	anim.play("walk",-1,1.25)
+	anim.play("run")
+	
 	
 func Do_Checks():
 	if !player.is_grounded:
@@ -18,6 +18,7 @@ func Do_Checks():
 		Transitioned.emit(self,"Idle")
 	elif !Input.is_action_pressed("Slow"):
 		Transitioned.emit(self,"Run")
+
 
 func Physics_Update(delta):
 	var motion = Vector2(data.walk_speed * delta * player.x_input, 0)

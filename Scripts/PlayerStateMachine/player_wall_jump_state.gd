@@ -10,7 +10,7 @@ extends PlayerState
 func Enter():
 	anim.play("jump")
 	player.facing_direction *= -1
-	$"../../PlayerSprite2D".scale.x *= -1
+	$"../../PlayerAnimatedSprite2D".scale.x *= -1
 	wall_jump_direction = player.facing_direction
 
 	player.jump_button_reset = false

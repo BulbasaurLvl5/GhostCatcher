@@ -3,13 +3,15 @@ extends PlayerState
 
 var heavy_landing : bool = false
 
+
 func Enter():
 	if heavy_landing:
-		anim.play("land_heavy")
+		anim.play("land")
 	else:
-		anim.play("land_medium")
+		anim.play("land")
 
-func DoChecks(_delta):
+
+func Do_Checks():
 	if !heavy_landing:
 		if Input.is_action_pressed("Jump") && player.can_jump:
 			Transitioned.emit(self,"Jump")
@@ -17,11 +19,15 @@ func DoChecks(_delta):
 			Transitioned.emit(self,"Dash")
 		elif abs(player.x_input) == 1:
 			Walk_Or_Run(self)
-
-func _animation_finished():
-	if Input.is_action_pressed("Jump") && player.can_jump:
-		Transitioned.emit(self,"Jump")
-	elif abs(player.x_input) == 1:
-		Walk_Or_Run(self)
-	else:
-		Transitioned.emit(self,"Idle")
+			
+	if time_in_current_state > 1.0:
+		if Input.is_action_pressed("Jump") && player.can_jump:
+			Transitioned.emit(self,"Jump")
+		elif abs(player.x_input) == 1:
+			Walk_Or_Run(self)
+		else:
+			Transitioned.emit(self,"Idle")
+	
+	if verbose:
+		print("Time in land state: ",time_in_current_state)
+	

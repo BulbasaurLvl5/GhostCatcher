@@ -1,11 +1,6 @@
 class_name PlayerInAirState
 extends PlayerState
 
-#@export var hang_time_duration : float = 0.1
-#@export var fall_gravity_multiplier : float = 5
-#@export var distance_before_medium_landing : float = 500
-#@export var distance_before_heavy_landing : float = 1000
-#@export var distance_before_dying : float = 2000
 
 @onready var fall_gravity : float
 @onready var in_air_horizontal_speed : float
@@ -17,7 +12,10 @@ var time_since_grounded : float
 
 
 func Enter():
-	anim.play("in_air")
+	if player.velocity.y <= 100 || hang_time_active:
+		anim.play("hover")
+	else:
+		anim.play("fall")
 	height_fallen_from = player.position.y
 	fall_gravity = ((1.3 * data.jump_height) / (data.jump_time_to_peak * data.jump_time_to_peak))
 	in_air_horizontal_speed = data.in_air_horizontal_speed
@@ -56,7 +54,7 @@ func Do_Checks():
 func Update(_delta):
 	if hang_time_active && time_in_current_state > data.hang_time_duration:
 		hang_time_active = false
-
+		anim.play("fall", true)
 
 func Physics_Update(_delta):
 	if hang_time_active:

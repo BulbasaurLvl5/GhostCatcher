@@ -21,11 +21,11 @@ func Enter():
 
 func set_animation():
 	if dash_direction.y < -0.6:
-		anim.play("dash_up")
+		anim.play("dash")
 	elif dash_direction.y > 0.6:
-		anim.play("dash_down")
+		anim.play("dash")
 	else:
-		anim.play("dash_ahead")
+		anim.play("dash")
 
 
 func get_direction() -> Vector2:
@@ -80,10 +80,10 @@ func get_speed() -> float:
 
 
 func add_ghost():
-	var dash_ghost = dash_ghost_node.instantiate()
-	var frame = $"../../PlayerSprite2D".get_frame()
-	
-	dash_ghost.set_property($"../../PlayerSprite2D".texture, $"../../PlayerSprite2D".hframes, $"../../PlayerSprite2D".vframes, $"../../PlayerSprite2D".frame, player.position, $"../../PlayerSprite2D".scale)
-	get_tree().current_scene.add_child((dash_ghost))
+#	var dash_ghost = dash_ghost_node.instantiate()
+#	var frame = $"../../PlayerAnimatedSprite2D".get_frame()
+#
+#	dash_ghost.set_property($"../../PlayerAnimatedSprite2D".texture, $"../../PlayerAnimatedSprite2D".hframes, $"../../PlayerAnimatedSprite2D".vframes, $"../../PlayerAnimatedSprite2D".frame, player.position, $"../../PlayerAnimatedSprite2D".scale)
+#	get_tree().current_scene.add_child((dash_ghost))
 	ghost_timer = 0.02
 
