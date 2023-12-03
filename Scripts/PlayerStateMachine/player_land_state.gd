@@ -28,6 +28,3 @@ func Do_Checks():
 		else:
 			Transitioned.emit(self,"Idle")
 	
-	if verbose:
-		print("Time in land state: ",time_in_current_state)
-	

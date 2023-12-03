@@ -56,6 +56,9 @@ func Physics_Update(_delta):
 	if !recovering:
 		dash_speed = get_speed()
 		player.velocity = dash_direction * dash_speed
+		if player.is_grounded:
+			player.velocity += player.movement_adjustment
+			player.movement_adjustment = Vector2.ZERO
 		player.move_and_slide()
 
 

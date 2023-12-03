@@ -1,8 +1,10 @@
 class_name PlayerIdleState
 extends PlayerState
 
+
 func Enter():
 	anim.play("idle")
+	
 	
 func Do_Checks():
 	if !player.is_grounded && time_in_current_state > 0.1:
@@ -18,3 +20,9 @@ func Do_Checks():
 		Transitioned.emit(self,"Die")
 	else:
 		player.move_and_collide(Vector2.ZERO)
+
+
+func Physics_Update(_delta):
+	player.move_and_collide(player.movement_adjustment)
+	player.movement_adjustment = Vector2.ZERO		
+
