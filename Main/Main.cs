@@ -80,17 +80,25 @@ public partial class Main : Node
 
 	public void ClearScenes()
 	{
-		foreach (var _c in World.GetChildren())
+		if(World.TryGetAllChildren(out List<Ghost> ghosts))
 		{
+			foreach (var _g in ghosts)
+			{
+				_g.QueueFree(); //this loop is necessary because godots GetChildren() has difficulties with nested scenes
+				_g.BodyEntered -= GhostCollision;
+			}
+		}
+
+		foreach (var _c in World.GetChildren(true))
+		{
+			GD.Print(_c.Name);
 			_c.QueueFree();
 		}
 
-		foreach (var _c in UI.GetChildren())
+		foreach (var _c in UI.GetChildren(true))
 		{
 			_c.QueueFree();
 		}
-
-		GD.Print("Clearcount: "+GhostCount);
 	}
 
 	public void StartLevel(int lvl)
