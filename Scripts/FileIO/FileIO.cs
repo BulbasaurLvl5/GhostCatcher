@@ -77,4 +77,9 @@ public static class FileIO
         }
         return null;
     }
+
+    public static void GDTest()
+    {
+        GD.Print("Called a static c# function");
+    }
 }
