@@ -12,6 +12,8 @@ public static class UILoader
     static PackedScene packedRetryMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menu_Retry.tscn");
     static PackedScene packedMainMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menu_Main.tscn");
 
+    static PackedScene packedOptionsMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menu_Options.tscn");
+
     public static void LoadLevelSelector(Main _main)
     {
         Node _leveldataContainer = packedLevelDataContainer.Instantiate<Node>();
@@ -103,7 +105,8 @@ public static class UILoader
             };
 
             _buttons[1].Pressed += () => {
-
+                _main.ClearScenes();
+                LoadOptionsMenu(_main);
             };
 
             _buttons[2].Pressed += () => {
@@ -112,6 +115,38 @@ public static class UILoader
             };
 
             _buttons[0].GrabFocus();
+        }
+    }
+
+    public static void LoadOptionsMenu(Main _main)
+    {
+        Node _optionsMenu = packedOptionsMenu.Instantiate<Node>();
+            _main.UI.AddChild(_optionsMenu);
+
+        if(_optionsMenu.TryGetChildren(out List<Button> _buttons))
+        {
+            //back
+            _buttons[0].Pressed += () => {
+                _main.ClearScenes();
+                LoadMainMenu(_main);                
+            };
+
+            //video
+            _buttons[1].FocusEntered += () => {
+                GD.Print("Video focused");
+            };
+
+            //Audio
+            _buttons[2].FocusEntered += () => {
+
+            };
+
+            //Controls
+            _buttons[3].FocusEntered += () => {
+
+            };
+
+            _buttons[1].GrabFocus();
         }
     }
 }

@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvhs4ygoitiwu"]
+[gd_scene load_steps=5 format=3 uid="uid://cvhs4ygoitiwu"]
 
 [ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://Sprites/Environment/CoalDrawn/Menu_retry_Background.png" id="1_aci5v"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://Sprites/Environment/CoalDrawn/CoalButton_1.png" id="3_fa8ui"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hfucu"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_aouf0"]
+events = [SubResource("InputEventKey_hfucu")]
 
 [node name="Menu_main" type="Node"]
 
@@ -54,6 +61,7 @@ theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
+shortcut = SubResource("Shortcut_aouf0")
 text = "Quit"
 icon = ExtResource("3_fa8ui")
 flat = true
