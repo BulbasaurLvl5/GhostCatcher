@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkoe1u7tyl8x3"]
+[gd_scene load_steps=8 format=3 uid="uid://dkoe1u7tyl8x3"]
 
 [ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://Sprites/Environment/CoalDrawn/Menu_retry_Background.png" id="1_ygx0m"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://Sprites/Environment/CoalDrawn/CoalButton_1.png" id="2_utsy3"]
@@ -10,6 +10,15 @@ keycode = 4194305
 [sub_resource type="Shortcut" id="Shortcut_4vorc"]
 events = [SubResource("InputEventKey_cffll")]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1nj4r"]
+texture = ExtResource("2_utsy3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_52cbp"]
+texture = ExtResource("2_utsy3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vvy66"]
+texture = ExtResource("2_utsy3")
+
 [node name="Menu_Options" type="Node"]
 
 [node name="Crow_background" type="TextureRect" parent="."]
@@ -18,6 +27,7 @@ offset_bottom = 1080.0
 texture = ExtResource("1_ygx0m")
 
 [node name="ColorRect" type="ColorRect" parent="Crow_background"]
+layout_mode = 0
 offset_left = 307.0
 offset_top = 425.0
 offset_right = 1666.0
@@ -55,8 +65,10 @@ theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
-text = "Video"
-icon = ExtResource("2_utsy3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_1nj4r")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_52cbp")
+theme_override_styles/focus = SubResource("StyleBoxTexture_vvy66")
+text = "VideoVideoVideo"
 flat = true
 icon_alignment = 1
 expand_icon = true
