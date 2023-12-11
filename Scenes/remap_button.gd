@@ -28,22 +28,29 @@ func update_button():
 			break
 		count += 1
 	if !name_was_shortened && event_name.length() > 12:
-		print(event_name," needs to be added to the input name-shortening database")
+		print(event_name," should be added to the input name-shortening database.")
 	text = event_name
 
 
 func _process(_delta):
+	if visible:
+		_update()
+
+
+func _update():
 	if button_pressed:
-		if !%RemapButtonManager.is_remapping_button:
-			%RemapButtonManager.is_remapping_button = true
-			text = "..."
-			release_focus()
+		release_focus()
+		if !remap_button_manager.is_remapping_button:
+			remap_button_manager.is_remapping_button = true
+			text = "....."
 			set_process_unhandled_input(true)
-		else:
-			release_focus()
 
 
 func _unhandled_input(event):
+	Input.flush_buffered_events()
+	if event.as_text() == InputMap.action_get_events(action)[event_index].as_text():
+		change_input_event(event)
+		return
 	if event is InputEventKey || event is InputEventJoypadButton:
 		check_input(event)
 		return
@@ -58,13 +65,14 @@ func _unhandled_input(event):
 	
 func check_input(event):	
 	set_process_unhandled_input(false)
+	event.set_pressed(false)
 	var action_is_available : bool = true
 	var actions = InputMap.get_actions()
 	for a in actions:
 		if !a.begins_with("ui"):
 			var events = InputMap.action_get_events(a)
 			for e in events:
-				if e == event:
+				if e.as_text() == event.as_text():
 					action_is_available = false
 					if e is InputEventJoypadMotion:
 						if event.get_axis_value() != e.get_axis_value():
@@ -84,13 +92,14 @@ func change_input_event(event):
 		InputMap.action_add_event(action, e)
 	button_pressed = false
 	update_button()
-	%RemapButtonManager.is_remapping_button = false
+	remap_button_manager.is_remapping_button = false
 	grab_focus()
 	
 
 func reject_event(event):
-	#DISPLAY MESSAGE
-	print(event," IS ASSIGNED TO ANOTHER ACTION")
-	Input.flush_buffered_events()
+	#THIS MESSAGE SHOULD BE DISPLAYED TO THE PLAYER
+	#THIS MESSAGE SHOULD BE DISPLAYED TO THE PLAYER
+	#THIS MESSAGE SHOULD BE DISPLAYED TO THE PLAYER
+	print(event," is already assigned. Please choose a different input.")
 	set_process_unhandled_input(true)
 	
