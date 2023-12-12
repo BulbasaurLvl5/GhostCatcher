@@ -69,7 +69,6 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_1nj4r")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_52cbp")
 theme_override_styles/focus = SubResource("StyleBoxTexture_vvy66")
 text = "VideoVideoVideo"
-flat = true
 icon_alignment = 1
 expand_icon = true
 
