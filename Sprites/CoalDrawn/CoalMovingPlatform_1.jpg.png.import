@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0b27a1l8rfxv"
-path="res://.godot/imported/CoalBackground.jpg-d893ca9c8eecee398e86c7a99eec1305.ctex"
+uid="uid://dj8s374f232pa"
+path="res://.godot/imported/CoalMovingPlatform_1.jpg.png-b4a8340cd1fe16cc9da5b78369c00afc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Environment/CoalDrawn/CoalBackground.jpg"
-dest_files=["res://.godot/imported/CoalBackground.jpg-d893ca9c8eecee398e86c7a99eec1305.ctex"]
+source_file="res://Sprites/CoalDrawn/CoalMovingPlatform_1.jpg.png"
+dest_files=["res://.godot/imported/CoalMovingPlatform_1.jpg.png-b4a8340cd1fe16cc9da5b78369c00afc.ctex"]
 
 [params]
 

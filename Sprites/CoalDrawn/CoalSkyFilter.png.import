@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b45783jgjjb85"
-path="res://.godot/imported/Reaper_cutout.png-d306fe5692d558f34624c64889d6b313.ctex"
+uid="uid://dgcvubx0m724q"
+path="res://.godot/imported/CoalSkyFilter.png-01bbc9fe3b7cb7cc7bd8b79752ea1ee8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Environment/CoalDrawn/Reaper_cutout.png"
-dest_files=["res://.godot/imported/Reaper_cutout.png-d306fe5692d558f34624c64889d6b313.ctex"]
+source_file="res://Sprites/CoalDrawn/CoalSkyFilter.png"
+dest_files=["res://.godot/imported/CoalSkyFilter.png-01bbc9fe3b7cb7cc7bd8b79752ea1ee8.ctex"]
 
 [params]
 

@@ -1,16 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bokl5cktpsr6n"]
+[gd_scene load_steps=5 format=3 uid="uid://bokl5cktpsr6n"]
 
-[ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://Sprites/Environment/CoalDrawn/Menu_retry_Background.png" id="1_ew2yk"]
-[ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://Sprites/Environment/CoalDrawn/CoalButton_1.png" id="2_ptye7"]
-[ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://Sprites/Environment/CoalDrawn/Reaper_cutout.png" id="2_qvais"]
+[ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://Sprites/CoalDrawn/Menu_retry_Background.png" id="1_h6wog"]
+[ext_resource type="Script" path="res://Scripts/MenuRetry.cs" id="1_kt2lo"]
+[ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://Sprites/CoalDrawn/Reaper_cutout.png" id="2_bnm5d"]
+[ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://Sprites/CoalDrawn/CoalButton_1.png" id="3_kykr8"]
 
 [node name="Retry_Menu" type="Node"]
+script = ExtResource("1_kt2lo")
 
 [node name="Crow_background" type="TextureRect" parent="."]
 visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("1_ew2yk")
+texture = ExtResource("1_h6wog")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1920.0
@@ -22,7 +24,7 @@ offset_left = 39.0
 offset_top = -57.0
 offset_right = 709.0
 offset_bottom = 1185.0
-texture = ExtResource("2_qvais")
+texture = ExtResource("2_bnm5d")
 
 [node name="Retry_Button" type="Button" parent="."]
 offset_left = 1548.0
@@ -36,7 +38,7 @@ theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Retry"
-icon = ExtResource("2_ptye7")
+icon = ExtResource("3_kykr8")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -53,7 +55,7 @@ theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Levels"
-icon = ExtResource("2_ptye7")
+icon = ExtResource("3_kykr8")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -70,7 +72,7 @@ theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Menu"
-icon = ExtResource("2_ptye7")
+icon = ExtResource("3_kykr8")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -87,7 +89,7 @@ theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Quit"
-icon = ExtResource("2_ptye7")
+icon = ExtResource("3_kykr8")
 flat = true
 icon_alignment = 1
 expand_icon = true

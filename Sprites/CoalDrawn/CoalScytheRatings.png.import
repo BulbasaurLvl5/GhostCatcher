@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0gm6kngvdnxc"
-path="res://.godot/imported/Menu_Levelselection_Background.png-c5a04945561b15c69d285a737b06ae40.ctex"
+uid="uid://cjgix0ricfbuc"
+path="res://.godot/imported/CoalScytheRatings.png-02b959b55b09a93ca668d680676a5efa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Environment/CoalDrawn/Menu_Levelselection_Background.png"
-dest_files=["res://.godot/imported/Menu_Levelselection_Background.png-c5a04945561b15c69d285a737b06ae40.ctex"]
+source_file="res://Sprites/CoalDrawn/CoalScytheRatings.png"
+dest_files=["res://.godot/imported/CoalScytheRatings.png-02b959b55b09a93ca668d680676a5efa.ctex"]
 
 [params]
 

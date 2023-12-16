@@ -38,10 +38,6 @@ public partial class Main : Node
 	{		
 		List<Node> children;
 
-		// Godot loads the Resource when it executes this line.
-		GDSCommunicator test = GD.Load<GDSCommunicator>("res://GDSCommunicator.tres");
-		test.GDTest();
-
 		if(this.TryGetChildren(out children))
 		{
 			World = children[0];

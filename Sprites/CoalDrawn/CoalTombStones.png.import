@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf4v12pncxudv"
-path="res://.godot/imported/CoalTileSet_1.png-5cc50774d1f481d3cf078bce0868fd8b.ctex"
+uid="uid://cgbodrcslt8a1"
+path="res://.godot/imported/CoalTombStones.png-e2664ba700d794e0b084eb2be8622467.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Environment/CoalDrawn/CoalTileSet_1.png"
-dest_files=["res://.godot/imported/CoalTileSet_1.png-5cc50774d1f481d3cf078bce0868fd8b.ctex"]
+source_file="res://Sprites/CoalDrawn/CoalTombStones.png"
+dest_files=["res://.godot/imported/CoalTombStones.png-e2664ba700d794e0b084eb2be8622467.ctex"]
 
 [params]
 

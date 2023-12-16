@@ -52,46 +52,6 @@ public static class UILoader
         }
     }
 
-    public static void LoadRetryMenu(Main _main)
-    {
-        Node _retryMenu = packedRetryMenu.Instantiate<Node>();
-            _main.UI.AddChild(_retryMenu);
-
-        if(_retryMenu.TryGetChildren(out List<Button> _buttons))
-        {
-            _buttons[0].Pressed += () => {
-                _main.ClearScenes();
-                // await Task.Delay(1); //waiting 1ms so the QueueFree in ClearScenes can do its job
-                LevelLoader.LoadLevel[_main.Level].Invoke(_main);
-            };
-
-            _buttons[1].Pressed += () => {
-                _main.ClearScenes();
-                LoadLevelSelector(_main);
-            };
-
-            _buttons[2].Pressed += () => {
-                _main.ClearScenes();
-                LoadMainMenu(_main);
-            };
-
-            _buttons[3].Pressed += () => {
-                _main.GetTree().Root.PropagateNotification((int)Node.NotificationWMCloseRequest);
-                _main.GetTree().Quit();
-            };
-
-            _buttons[0].GrabFocus();
-
-            if(_retryMenu.TryGetChild(out Label _deathsOpinion))
-            {
-                if(_main.Failed)
-                    _deathsOpinion.Text = "I am not mad, \ni am disappointed";
-                else
-                    _deathsOpinion.Text = "Its been about time";
-            }
-        }
-    }
-
     public static void LoadMainMenu(Main _main)
     {
         Node _mainMenu = packedMainMenu.Instantiate<Node>();
@@ -122,31 +82,11 @@ public static class UILoader
     {
         Node _optionsMenu = packedOptionsMenu.Instantiate<Node>();
             _main.UI.AddChild(_optionsMenu);
+    }
 
-        if(_optionsMenu.TryGetChildren(out List<Button> _buttons))
-        {
-            //back
-            _buttons[0].Pressed += () => {
-                _main.ClearScenes();
-                LoadMainMenu(_main);                
-            };
-
-            //video
-            _buttons[1].FocusEntered += () => {
-                GD.Print("Video focused");
-            };
-
-            //Audio
-            _buttons[2].FocusEntered += () => {
-
-            };
-
-            //Controls
-            _buttons[3].FocusEntered += () => {
-
-            };
-
-            _buttons[1].GrabFocus();
-        }
+    public static void LoadRetryMenu(Main _main)
+    {
+        Node _retryMenu = packedRetryMenu.Instantiate<Node>();
+            _main.UI.AddChild(_retryMenu);
     }
 }

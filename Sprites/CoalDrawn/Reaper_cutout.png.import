@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://demejjeb4ocbk"
-path="res://.godot/imported/CoalMovingPlatform_2.jpg.png-61c8e2ed85feab8909d96cb4636154c7.ctex"
+uid="uid://b45783jgjjb85"
+path="res://.godot/imported/Reaper_cutout.png-4ce1e057cb5e981f347ee753618a4f3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Environment/CoalDrawn/CoalMovingPlatform_2.jpg.png"
-dest_files=["res://.godot/imported/CoalMovingPlatform_2.jpg.png-61c8e2ed85feab8909d96cb4636154c7.ctex"]
+source_file="res://Sprites/CoalDrawn/Reaper_cutout.png"
+dest_files=["res://.godot/imported/Reaper_cutout.png-4ce1e057cb5e981f347ee753618a4f3e.ctex"]
 
 [params]
 

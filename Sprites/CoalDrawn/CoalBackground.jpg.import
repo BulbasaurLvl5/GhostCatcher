@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b05a0db2rhgv2"
-path="res://.godot/imported/CoalSpikes_large.jpg.png-5a68502a3346bd020a9bc212588a2741.ctex"
+uid="uid://d0b27a1l8rfxv"
+path="res://.godot/imported/CoalBackground.jpg-38337bd6cd148cd9cc377f843a059836.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Environment/CoalDrawn/CoalSpikes_large.jpg.png"
-dest_files=["res://.godot/imported/CoalSpikes_large.jpg.png-5a68502a3346bd020a9bc212588a2741.ctex"]
+source_file="res://Sprites/CoalDrawn/CoalBackground.jpg"
+dest_files=["res://.godot/imported/CoalBackground.jpg-38337bd6cd148cd9cc377f843a059836.ctex"]
 
 [params]
 

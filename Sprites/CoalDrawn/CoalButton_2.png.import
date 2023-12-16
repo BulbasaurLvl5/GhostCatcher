@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jbfl0nukjwsw"
-path="res://.godot/imported/CoalTree.png-f3991f63453112bd17ab57c111e0606b.ctex"
+uid="uid://ef1afoq486sc"
+path="res://.godot/imported/CoalButton_2.png-50485b0ff0b50c6fbf6ab5f8d7d365e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Environment/CoalDrawn/CoalTree.png"
-dest_files=["res://.godot/imported/CoalTree.png-f3991f63453112bd17ab57c111e0606b.ctex"]
+source_file="res://Sprites/CoalDrawn/CoalButton_2.png"
+dest_files=["res://.godot/imported/CoalButton_2.png-50485b0ff0b50c6fbf6ab5f8d7d365e8.ctex"]
 
 [params]
 

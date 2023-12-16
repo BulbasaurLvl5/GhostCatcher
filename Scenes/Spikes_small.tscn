@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cokkthd0l6fyj"]
 
-[ext_resource type="Texture2D" uid="uid://rfa8aih1g07h" path="res://Sprites/Environment/CoalDrawn/CoalSpikes_small.jpg.png" id="1_la27r"]
+[ext_resource type="Texture2D" uid="uid://rfa8aih1g07h" path="res://Sprites/CoalDrawn/CoalSpikes_small.jpg.png" id="1_la27r"]
 [ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://Scenes/collision_failure.tscn" id="2_yxwa0"]
 
 [node name="Spikes_small" type="Area2D"]

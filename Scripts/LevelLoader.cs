@@ -17,15 +17,15 @@ public static class LevelLoader
 
 	//levels
 	static PackedScene packedTestLevel = ResourceLoader.Load<PackedScene>("res://Scenes/test_level.tscn");
-	static PackedScene packedLevel_Tutorial = ResourceLoader.Load<PackedScene>("res://Scenes/level/Level_tutorial.tscn");
+	static PackedScene packedLevel_Tutorial = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_tutorial.tscn");
 	static PackedScene packedLevel_Platforms = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_platforms.tscn");
 	static PackedScene packedLevel_Tunnels = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_tunnels.tscn");
 	static PackedScene packedLevel_cliff = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_cliff.tscn");
 	static PackedScene packedLevel_spikes = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_spikes.tscn");
-	static PackedScene packedLevel_MountainSide = ResourceLoader.Load<PackedScene>("res://Scenes/level/Level_MountainSide.tscn");
-	static PackedScene packedLevel_Kaktee = ResourceLoader.Load<PackedScene>("res://Scenes/level/Level_Kaktee.tscn");
-	static PackedScene packedLevel_Vertical = ResourceLoader.Load<PackedScene>("res://Scenes/level/Level_Vertical.tscn");
-	static PackedScene packedLevel_DeepPit = ResourceLoader.Load<PackedScene>("res://Scenes/level/Level_DeepPit.tscn");
+	static PackedScene packedLevel_MountainSide = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_mountainSide.tscn");
+	static PackedScene packedLevel_Kaktee = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_kaktee.tscn");
+	static PackedScene packedLevel_Vertical = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_vertical.tscn");
+	static PackedScene packedLevel_DeepPit = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_deepPit.tscn");
 
 	public static Action<Main>[] LoadLevel = {
 		LoadLevel_TestScene,
