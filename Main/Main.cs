@@ -35,7 +35,7 @@ public partial class Main : Node
 	public bool Failed {get; set;}
 	
 	public override void _Ready()
-	{		
+	{
 		List<Node> children;
 
 		if(this.TryGetChildren(out children))
@@ -58,6 +58,12 @@ public partial class Main : Node
 		OnLevelFail += () => {endTime.Start(1);};
 
 		endTime.OnStop += EndLevel;
+
+		//load video settings
+		FileIO.PlayerPrefs _playerPrefs = FileIO.LoadPlayerPrefs();
+		VideoSettings.SetVsync(VideoSettings.VsyncOptions[_playerPrefs.VideoSettings[0]]);
+		VideoSettings.SetWindowMode(VideoSettings.WindowOptions[_playerPrefs.VideoSettings[1]]);
+		VideoSettings.SetWindowSize(VideoSettings.ResolutionOptions[_playerPrefs.VideoSettings[2]]);
 	}
 
 	public override void _Process(double delta)

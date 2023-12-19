@@ -12,10 +12,8 @@ keycode = 4194305
 [sub_resource type="Shortcut" id="Shortcut_4vorc"]
 events = [SubResource("InputEventKey_cffll")]
 
-[node name="Menu_Options" type="Node" node_paths=PackedStringArray("_VideoOptions", "_WindowModeButton")]
+[node name="Menu_Options" type="Node"]
 script = ExtResource("1_qbfve")
-_VideoOptions = NodePath("VideoOptions")
-_WindowModeButton = NodePath("VideoOptions/OptionButton")
 
 [node name="Crow_background" type="TextureRect" parent="."]
 offset_right = 1920.0
@@ -56,7 +54,7 @@ offset_bottom = 572.0
 focus_neighbor_left = NodePath("../Control_Button")
 focus_neighbor_top = NodePath("../Back_Button")
 focus_neighbor_right = NodePath("../Audio_Button")
-focus_neighbor_bottom = NodePath("../Back_Button")
+focus_neighbor_bottom = NodePath("../VideoOptions/OptionButton")
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
@@ -125,9 +123,10 @@ text = "Vsync"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CheckBox" type="CheckBox" parent="VideoOptions"]
+[node name="OptionButton" type="OptionButton" parent="VideoOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../Video_Button")
 
 [node name="Label2" type="Label" parent="VideoOptions"]
 layout_mode = 2
@@ -139,10 +138,9 @@ text = "Window mode"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OptionButton" type="OptionButton" parent="VideoOptions"]
+[node name="OptionButton2" type="OptionButton" parent="VideoOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
 
 [node name="Label3" type="Label" parent="VideoOptions"]
 layout_mode = 2
@@ -154,12 +152,72 @@ text = "Resolution"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OptionButton2" type="OptionButton" parent="VideoOptions"]
+[node name="OptionButton3" type="OptionButton" parent="VideoOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-item_count = 2
-popup/item_0/text = "1900x1200"
-popup/item_0/id = 0
-popup/item_1/text = "1200x800"
-popup/item_1/id = 1
+
+[node name="AudioOptions" type="GridContainer" parent="."]
+visible = false
+offset_left = 400.0
+offset_top = 650.0
+offset_right = 1500.0
+offset_bottom = 950.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 15
+columns = 3
+
+[node name="Label" type="Label" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Main"
+
+[node name="VSeparator" type="VSeparator" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSlider" type="HSlider" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Effect"
+
+[node name="VSeparator2" type="VSeparator" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSlider2" type="HSlider" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label3" type="Label" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Music"
+
+[node name="VSeparator3" type="VSeparator" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSlider3" type="HSlider" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label4" type="Label" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "UI"
+
+[node name="VSeparator4" type="VSeparator" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSlider4" type="HSlider" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3

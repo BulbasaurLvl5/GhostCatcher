@@ -17,6 +17,7 @@ public static class FileIO
         // By default, the user:// folder is created within Godot's editor data path in the app_userdata/[project_name] folder
         // thus: //C:/Users/John/AppData/LocalLow/DefaultCompany/ARPG
         // _baseSavePath = ProjectSettings.GlobalizePath("user://");
+        string _filepath;
 
         // from https://docs.godotengine.org/en/stable/classes/class_projectsettings.html#class-projectsettings-method-globalize-path
         if (OS.HasFeature("editor"))
@@ -29,8 +30,7 @@ public static class FileIO
             _baseSavePath = OS.GetUserDataDir(); 
         }
 
-        string _filepath = _baseSavePath + "Save" + ".json";
-
+        _filepath = _baseSavePath + "Save" + ".json";
         if(!File.Exists(_filepath) || LevelLoader.LoadLevel.Length != Load().LastTimes.Length)
         {
             SaveGame _save = new SaveGame{
@@ -39,6 +39,17 @@ public static class FileIO
             };
 
             string _jsonString = JsonSerializer.Serialize(_save);
+            File.WriteAllText(_filepath, _jsonString);
+        }
+
+        _filepath = _baseSavePath + "PlayerPrefs" + ".json";
+        if(!File.Exists(_filepath))
+        {
+            PlayerPrefs _playerPrefs = new PlayerPrefs{
+                VideoSettings = new int[3],
+            };
+
+            string _jsonString = JsonSerializer.Serialize(_playerPrefs);
             File.WriteAllText(_filepath, _jsonString);
         }
     }
@@ -81,5 +92,37 @@ public static class FileIO
     public static void GDTest()
     {
         GD.Print("Called a static c# function");
+    }
+
+    public class PlayerPrefs
+    {
+        public int[] VideoSettings {get; set;}
+        // public int[] AudioSettings {get; set;}
+        // public int[] ControllSettings {get; set;}
+    }
+
+    public static void SavePlayerPrefs(int[] videoSettings)
+    {
+        string _filepath = _baseSavePath + "PlayerPrefs" + ".json";
+        GD.Print("saved player prefs to: "+_filepath);
+
+        PlayerPrefs _playerPrefs = LoadPlayerPrefs();
+
+        _playerPrefs.VideoSettings = videoSettings;
+
+        string _jsonString = JsonSerializer.Serialize(_playerPrefs);
+        File.WriteAllText(_filepath, _jsonString);
+    }
+
+    public static PlayerPrefs LoadPlayerPrefs()
+    {
+        string _filepath = _baseSavePath + "PlayerPrefs" + ".json";
+
+        if (File.Exists(_filepath))
+        {
+            string _jsonString = File.ReadAllText(_filepath);
+            return (PlayerPrefs)JsonSerializer.Deserialize(_jsonString, typeof(PlayerPrefs));
+        }
+        return null;
     }
 }
