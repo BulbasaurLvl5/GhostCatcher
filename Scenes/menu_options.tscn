@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkoe1u7tyl8x3"]
+[gd_scene load_steps=10 format=3 uid="uid://dkoe1u7tyl8x3"]
 
 [ext_resource type="Script" path="res://Scripts/MenuOptions.cs" id="1_qbfve"]
 [ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://Sprites/CoalDrawn/Menu_retry_Background.png" id="2_7cifs"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://Sprites/CoalDrawn/CoalButton_1.png" id="3_2sycy"]
 [ext_resource type="StyleBox" uid="uid://kae7nrb6cknu" path="res://Resources/Button_StyleBoxTexture.tres" id="4_onq2y"]
+[ext_resource type="PackedScene" uid="uid://djie5vk4sptw6" path="res://Scenes/remap_button_manager.tscn" id="5_dv24k"]
+[ext_resource type="PackedScene" uid="uid://du04dff2n46ag" path="res://Scenes/remap_button.tscn" id="5_qadum"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_cffll"]
 device = -1
@@ -11,6 +13,8 @@ keycode = 4194305
 
 [sub_resource type="Shortcut" id="Shortcut_4vorc"]
 events = [SubResource("InputEventKey_cffll")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tuf4i"]
 
 [node name="Menu_Options" type="Node"]
 script = ExtResource("1_qbfve")
@@ -105,6 +109,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="VideoOptions" type="GridContainer" parent="."]
+visible = false
 offset_left = 400.0
 offset_top = 650.0
 offset_right = 1500.0
@@ -221,3 +226,218 @@ size_flags_horizontal = 3
 [node name="HSlider4" type="HSlider" parent="AudioOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="ControlOptions" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 370.0
+offset_top = 600.0
+offset_right = -344.0
+offset_bottom = -106.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColumnTitles" type="GridContainer" parent="ControlOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 15
+columns = 3
+
+[node name="Label" type="Label" parent="ControlOptions/ColumnTitles"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.639216, 0.584314, 1)
+theme_override_font_sizes/font_size = 48
+text = "Action"
+
+[node name="Label2" type="Label" parent="ControlOptions/ColumnTitles"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.639216, 0.584314, 1)
+theme_override_font_sizes/font_size = 48
+text = "Input 1"
+
+[node name="Label3" type="Label" parent="ControlOptions/ColumnTitles"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.639216, 0.584314, 1)
+theme_override_font_sizes/font_size = 48
+text = "Input 2"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ControlOptions"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="ControlOptions/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+columns = 3
+
+[node name="Label" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Left"
+
+[node name="RemapButton" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
+alignment = 0
+action = "Left1"
+
+[node name="RemapButton2" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
+alignment = 0
+action = "Left2"
+
+[node name="Label2" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Right"
+
+[node name="RemapButton3" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
+alignment = 0
+action = "Right1"
+
+[node name="RemapButton4" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
+alignment = 0
+action = "Right2"
+
+[node name="Label3" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Up"
+
+[node name="RemapButton5" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
+alignment = 0
+action = "Up1"
+
+[node name="RemapButton6" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
+alignment = 0
+action = "Up2"
+
+[node name="Label4" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Down"
+
+[node name="RemapButton7" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
+alignment = 0
+action = "Down1"
+
+[node name="RemapButton8" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
+alignment = 0
+action = "Down2"
+
+[node name="Label5" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Jump"
+
+[node name="RemapButton9" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
+alignment = 0
+action = "Jump1"
+
+[node name="RemapButton10" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
+alignment = 0
+action = "Jump2"
+
+[node name="Label6" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Dash"
+
+[node name="RemapButton11" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
+alignment = 0
+action = "Dash1"
+
+[node name="RemapButton12" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
+alignment = 0
+action = "Dash2"
+
+[node name="RemapButtonManager" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_dv24k")]
+
+[node name="Label7" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+
+[node name="ResetButton" type="Button" parent="ControlOptions/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "RESET ALL"
+
+[node name="Label8" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+
+[connection signal="visibility_changed" from="ControlOptions" to="ControlOptions/ScrollContainer/GridContainer/RemapButtonManager" method="_on_control_options_visibility_changed"]
+[connection signal="pressed" from="ControlOptions/ScrollContainer/GridContainer/ResetButton" to="ControlOptions/ScrollContainer/GridContainer/RemapButtonManager" method="_on_reset_button_pressed"]

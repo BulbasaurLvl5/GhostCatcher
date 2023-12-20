@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dhow5esn6x7rt"]
+[gd_scene load_steps=26 format=3 uid="uid://dhow5esn6x7rt"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_state_machine.gd" id="1_dcopr"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player.gd" id="1_l4530"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_state.gd" id="5_8dkiu"]
 [ext_resource type="Resource" uid="uid://ch2eu77qsa8qo" path="res://Scripts/PlayerData/no_fall_damage.tres" id="5_yerfu"]
 [ext_resource type="Resource" uid="uid://w41b5sixixwk" path="res://Scripts/PlayerData/stefans_playerdataresource.tres" id="6_844al"]
-[ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_walk_state.gd" id="6_apjhc"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_run_state.gd" id="7_71xul"]
 [ext_resource type="SpriteFrames" uid="uid://byt3hw2l4n5l5" path="res://Animations/oriette.tres" id="7_o6e6r"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_jump_state.gd" id="7_ofds0"]
@@ -20,11 +19,11 @@
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_wall_grab_state.gd" id="13_ckika"]
 [ext_resource type="PackedScene" uid="uid://deim0qaglwinp" path="res://Scenes/dash_ghost.tscn" id="14_q528f"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_wall_jump_state.gd" id="14_umcf1"]
-[ext_resource type="Texture2D" uid="uid://d0b27a1l8rfxv" path="res://Sprites/Environment/CoalDrawn/CoalBackground.jpg" id="20_jivvr"]
-[ext_resource type="Texture2D" uid="uid://b5xlp7x6bh8wb" path="res://Sprites/Environment/CoalDrawn/CoalSky.png" id="22_fq0q7"]
-[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://Sprites/Environment/CoalDrawn/CoalMountainsFiltered.png" id="22_g4lco"]
+[ext_resource type="Texture2D" uid="uid://d0b27a1l8rfxv" path="res://Sprites/CoalDrawn/CoalBackground.jpg" id="20_jivvr"]
+[ext_resource type="Texture2D" uid="uid://b5xlp7x6bh8wb" path="res://Sprites/CoalDrawn/CoalSky.png" id="22_fq0q7"]
+[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://Sprites/CoalDrawn/CoalMountainsFiltered.png" id="22_g4lco"]
 [ext_resource type="Script" path="res://Scripts/ParallaxClouds.gd" id="23_52qlr"]
-[ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://Sprites/Environment/CoalDrawn/CoalSkyFilter.png" id="23_bi7di"]
+[ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://Sprites/CoalDrawn/CoalSkyFilter.png" id="23_bi7di"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnagu"]
 size = Vector2(24, 108.5)
@@ -103,9 +102,6 @@ script = ExtResource("5_8dkiu")
 [node name="Idle" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("4_tan8y")
 
-[node name="Walk" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("6_apjhc")
-
 [node name="Run" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("7_71xul")
 
@@ -127,6 +123,7 @@ dash_ghost_node = ExtResource("14_q528f")
 
 [node name="WallGrab" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("13_ckika")
+visual_offset = -20.0
 
 [node name="WallJump" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("14_umcf1")

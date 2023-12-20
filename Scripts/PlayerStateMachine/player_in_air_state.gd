@@ -39,11 +39,11 @@ func Do_Checks():
 		elif player.x_input == 0:
 			Transitioned.emit(self,"Idle")
 		else: 
-			Walk_Or_Run(self)
-	elif Input.is_action_pressed("Jump") && player.can_jump():
+			Transitioned.emit(self,"Run")
+	elif player.jump_input && player.can_jump():
 		player.air_action()
 		Transitioned.emit(self,"Jump")
-	elif Input.is_action_pressed("Dash") && player.can_dash():
+	elif player.dash_input && player.can_dash():
 		player.air_action()
 		Transitioned.emit(self,"Dash")
 	elif player.can_touch_wall && player.x_input == player.facing_direction:

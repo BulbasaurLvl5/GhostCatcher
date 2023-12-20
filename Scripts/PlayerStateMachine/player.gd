@@ -13,6 +13,8 @@ extends CharacterBody2D
 #player status
 @onready var x_input : int = 0
 @onready var y_input : int = 0
+@onready var jump_input : bool = false
+@onready var dash_input : bool = false
 @onready var input_direction : Vector2 = Vector2.ZERO
 @onready var is_grounded : bool
 @onready var can_touch_wall : bool
@@ -43,14 +45,28 @@ func _ready():
 
 func _process(_delta):
 	#input checks
-	x_input = int(Input.is_action_pressed("Right")) - int(Input.is_action_pressed("Left"))
-	y_input = int(Input.is_action_pressed("Down")) - int(Input.is_action_pressed("Up"))
-#	if verbose:
-#		print(input_direction," turned into ",x_input,y_input)
-	if !jump_button_reset && !Input.is_action_pressed("Jump"):
+	x_input = 0
+	y_input = 0
+	if Input.is_action_pressed("Left1") || Input.is_action_pressed("Left2"):
+		x_input -= 1
+	if Input.is_action_pressed("Right1") || Input.is_action_pressed("Right2"):
+		x_input += 1
+	if Input.is_action_pressed("Up1") || Input.is_action_pressed("Up2"):
+		y_input -= 1
+	if Input.is_action_pressed("Down1") || Input.is_action_pressed("Down2"):
+		y_input += 1
+		
+	jump_input = false
+	dash_input = false
+	if Input.is_action_pressed("Jump1") || Input.is_action_pressed("Jump2"):
+		jump_input = true
+	if Input.is_action_pressed("Dash1") || Input.is_action_pressed("Dash2"):
+		dash_input = true	
+	if !jump_button_reset && !jump_input:
 		jump_button_reset = true
-	if !dash_button_reset && !Input.is_action_pressed("Dash"):
+	if !dash_button_reset && !dash_input:
 		dash_button_reset = true
+		
 	if !command_list_button_reset && !Input.is_action_pressed("CommandList"):
 		command_list_button_reset = true
 	if !prev_player_data_button_reset && !Input.is_action_pressed("PrevPlayerDataPreset"):

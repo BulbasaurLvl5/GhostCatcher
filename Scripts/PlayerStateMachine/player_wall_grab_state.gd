@@ -2,12 +2,15 @@ class_name PlayerWallGrabState
 extends PlayerState
 
 
+@export var visual_offset : float = 0
+
+
 @onready var wall_direction : int
 @onready var wall : Node
 #@onready var wall_is_moving : bool = false
 
 func Enter():
-	$"../../PlayerAnimatedSprite2D".offset.x += 40
+	$"../../PlayerAnimatedSprite2D".offset.x += visual_offset
 	anim.play("wall_grab")
 	$"../../PlayerAnimatedSprite2D/StickyGroundCheckFront".force_raycast_update()	
 	$"../../PlayerAnimatedSprite2D/StickyGroundCheckBack".force_raycast_update() 
@@ -25,8 +28,8 @@ func Enter():
 
 
 func Do_Checks():
-	if Input.is_action_pressed("Jump") && player.jump_button_reset:
-		$"../../PlayerAnimatedSprite2D".offset.x -= 40
+	if player.jump_input && player.jump_button_reset:
+		$"../../PlayerAnimatedSprite2D".offset.x -= visual_offset
 		Transitioned.emit(self,"WallJump")
 	elif player.x_input != wall_direction || !player.is_facing_wall:
 		if player.x_input == player.facing_direction * -1:
@@ -34,7 +37,7 @@ func Do_Checks():
 			$"../../PlayerAnimatedSprite2D".scale.x *= -1
 		$"../../CoyoteTime".start()
 		player.last_touched_wall = true
-		$"../../PlayerAnimatedSprite2D".offset.x -= 40
+		$"../../PlayerAnimatedSprite2D".offset.x -= visual_offset
 		Transitioned.emit(self,"InAir")	
 		
 		

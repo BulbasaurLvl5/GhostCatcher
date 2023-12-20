@@ -76,7 +76,7 @@ func get_speed() -> float:
 		dash_speed = 4 * lerp(0, int(data.dash_peak_speed), 0.5-(data.dash_time * 0.5 - time_in_current_state))
 	else:
 		dash_speed = 4 * lerp(int(data.dash_peak_speed), 0, 2 * time_in_current_state / data.dash_time - 1)
-	if Input.is_action_pressed("Dash"):
+	if player.dash_input:
 		return dash_speed * data.dash_hold_multiplier
 	else:
 		return dash_speed

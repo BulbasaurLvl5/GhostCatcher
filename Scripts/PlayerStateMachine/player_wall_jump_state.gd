@@ -43,7 +43,7 @@ func Physics_Update(delta):
 	
 	
 func get_gravity() -> float:
-	if Input.is_action_pressed("Jump"):
+	if player.jump_input:
 		return jump_gravity/data.wall_jump_hold_multiplier
 	else:
 		return jump_gravity

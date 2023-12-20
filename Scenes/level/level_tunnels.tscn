@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvh68tarfg7ur"]
 
 [ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_uko56"]
-[ext_resource type="Texture2D" uid="uid://jbfl0nukjwsw" path="res://Sprites/Environment/CoalDrawn/CoalTree.png" id="3_0p8cl"]
+[ext_resource type="Texture2D" uid="uid://jbfl0nukjwsw" path="res://Sprites/CoalDrawn/CoalTree.png" id="3_0p8cl"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="3_ycubw"]
 
 [node name="TileMap" type="TileMap"]
