@@ -7,11 +7,13 @@
 size = Vector2(46273, 714.5)
 
 [node name="EndlessPit" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionFailure" parent="." instance=ExtResource("1_01f1x")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3287.5, 361.75)
+position = Vector2(3301, 734)
 shape = SubResource("RectangleShape2D_tgk45")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

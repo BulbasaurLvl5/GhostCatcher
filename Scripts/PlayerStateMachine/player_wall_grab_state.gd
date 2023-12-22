@@ -4,25 +4,16 @@ extends PlayerState
 
 @export var visual_offset : float = 0
 
-
 @onready var wall_direction : int
 @onready var wall : Node
-#@onready var wall_is_moving : bool = false
+
 
 func Enter():
+	player.is_grabbing_wall = true
 	$"../../PlayerAnimatedSprite2D".offset.x += visual_offset
 	anim.play("wall_grab")
-	$"../../PlayerAnimatedSprite2D/StickyGroundCheckFront".force_raycast_update()	
-	$"../../PlayerAnimatedSprite2D/StickyGroundCheckBack".force_raycast_update() 
-	if $"../../PlayerAnimatedSprite2D/StickyWallCheck1".is_colliding():
-		player.link_to_moving_platform($"../../PlayerAnimatedSprite2D/StickyWallCheck1".get_collider())
-	elif $"../../PlayerAnimatedSprite2D/StickyWallCheck2".is_colliding():
-		player.link_to_moving_platform($"../../PlayerAnimatedSprite2D/StickyWallCheck2".get_collider())
-	elif player.is_on_moving_platform:
-		player.unlink_from_moving_platform()
-		
 	wall_direction = player.facing_direction
-	player.velocity = Vector2.ZERO
+	player.stop_motion()
 	if data.wall_grab_resets_air_actions:
 		player.remaining_air_actions = data.max_air_actions
 
@@ -30,6 +21,7 @@ func Enter():
 func Do_Checks():
 	if player.jump_input && player.jump_button_reset:
 		$"../../PlayerAnimatedSprite2D".offset.x -= visual_offset
+		player.is_grabbing_wall = false
 		Transitioned.emit(self,"WallJump")
 	elif player.x_input != wall_direction || !player.is_facing_wall:
 		if player.x_input == player.facing_direction * -1:
@@ -38,13 +30,9 @@ func Do_Checks():
 		$"../../CoyoteTime".start()
 		player.last_touched_wall = true
 		$"../../PlayerAnimatedSprite2D".offset.x -= visual_offset
+		player.is_grabbing_wall = false
 		Transitioned.emit(self,"InAir")	
 		
-		
-func Physics_Update(_delta):
-	player.move_and_collide(player.movement_adjustment)
-	player.movement_adjustment = Vector2.ZERO		
-
 
 func Flip_Player():
 	#cannot flip while grabbing wall

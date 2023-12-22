@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ctbovjl1lvhe0" path="res://Sprites/Environment/desert_tiles/2.png" id="6_7fd37"]
 [ext_resource type="Texture2D" uid="uid://gvbuycv0v6iw" path="res://Sprites/Environment/desert_objects/Tree.png" id="6_tguuh"]
 [ext_resource type="PackedScene" uid="uid://dior82v5t1lqg" path="res://Scenes/red_ghost.tscn" id="7_ps0it"]
-[ext_resource type="PackedScene" uid="uid://vhc2a0nt18ep" path="res://Scenes/moving_platform.tscn" id="7_yrq7l"]
+[ext_resource type="PackedScene" uid="uid://vhc2a0nt18ep" path="res://Scenes/moving_platform_horizontal.tscn" id="7_yrq7l"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="8_iepyx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xv1sb"]
@@ -248,8 +248,12 @@ position = Vector2(-0.125, 1)
 shape = SubResource("RectangleShape2D_xv1sb")
 
 [node name="MovingPlatform" parent="Platforms" instance=ExtResource("7_yrq7l")]
-position = Vector2(3163, 551)
+position = Vector2(3168, 599)
 path_pos = Array[Vector2]([Vector2(0, 0), Vector2(500, 0)])
+
+[node name="MovingPlatform2" parent="Platforms" instance=ExtResource("7_yrq7l")]
+position = Vector2(4449, 369)
+path_pos = Array[Vector2]([Vector2(0, 0), Vector2(0, -500)])
 
 [node name="RedGhosts" type="Node2D" parent="."]
 

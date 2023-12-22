@@ -10,7 +10,7 @@ public partial class Ghost : Area2D
 		
 	public override void _Ready()
 	{
-		BodyEntered += PlayerCollision;
+		AreaEntered += PlayerCollision;
 		//Anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		//Anim.Play();
 	}

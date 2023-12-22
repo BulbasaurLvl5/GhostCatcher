@@ -12,7 +12,7 @@ var time_since_grounded : float
 
 
 func Enter():
-	if player.velocity.y <= 100 || hang_time_active:
+	if player.momentum.y <= 100 || hang_time_active:
 		anim.play("hover")
 	else:
 		anim.play("fall")
@@ -47,7 +47,7 @@ func Do_Checks():
 		player.air_action()
 		Transitioned.emit(self,"Dash")
 	elif player.can_touch_wall && player.x_input == player.facing_direction:
-		player.velocity = Vector2.ZERO
+		player.stop_motion()
 		Transitioned.emit(self,"WallGrab")
 	
 		
@@ -56,10 +56,12 @@ func Update(_delta):
 		hang_time_active = false
 		anim.play("fall", true)
 
-func Physics_Update(_delta):
+
+func Physics_Update(delta):
+	var motion = Vector2.ZERO
 	if hang_time_active:
-		player.velocity.y = 0
+		motion.y = 0
 	else:
-		player.velocity.y += fall_gravity * data.fall_gravity_multiplier * .001
-	player.velocity.x = player.x_input * data.in_air_horizontal_speed
-	player.move_and_slide()
+		motion.y = move_toward(player.momentum.y, data.max_fall_speed, data.gravity * delta)
+	motion.x = player.x_input * data.in_air_horizontal_speed * delta
+	player.move_xy(motion)

@@ -5,18 +5,15 @@ extends PlayerState
 @onready var jump_velocity : float
 @onready var jump_gravity : float
 @onready var wall_jump_direction : int
-
+var hold_time_remaining : float
 
 func Enter():
 	anim.play("jump")
+	hold_time_remaining = data.jump_max_hold_time
 	player.facing_direction *= -1
 	$"../../PlayerAnimatedSprite2D".scale.x *= -1
 	wall_jump_direction = player.facing_direction
-
 	player.jump_button_reset = false
-	jump_velocity = (-2 * data.wall_jump_height) / data.wall_jump_time_to_peak
-	jump_gravity = (2 * data.wall_jump_height) / (data.wall_jump_time_to_peak * data.wall_jump_time_to_peak)
-	player.velocity.y = jump_velocity
 	
 	
 func _animation_finished():
@@ -24,31 +21,24 @@ func _animation_finished():
 
 
 func Do_Checks():
-	if player.velocity.y >= 0:
-		player.velocity.y = 0
+	if player.momentum.y >= 0:
 		$"../InAir".hang_time_active = true
 		Transitioned.emit(self,"InAir")
 	elif data.wall_grab_allowed_while_ascending && player.can_touch_wall && player.x_input == player.facing_direction && time_in_current_state > 0.05:
-		player.velocity = Vector2.ZERO
+		player.stop_motion()
 		Transitioned.emit(self,"WallGrab")
 
 
 func Physics_Update(delta):
-	player.velocity.y += get_gravity() * delta
+	var motion = Vector2.ZERO
+	if player.jump_input && hold_time_remaining > 0:
+		motion.y = data.jump_force * delta
+		hold_time_remaining -= delta
+	else:
+		hold_time_remaining = 0
+		motion.y = move_toward(player.momentum.y, data.max_fall_speed, data.gravity * delta)
 	var direction : int = wall_jump_direction * 2
 	if time_in_current_state > data.wall_jump_force_duration:
 		direction = player.facing_direction
-	player.velocity.x = direction * data.in_air_horizontal_speed
-	player.move_and_slide()
-	
-	
-func get_gravity() -> float:
-	if player.jump_input:
-		return jump_gravity/data.wall_jump_hold_multiplier
-	else:
-		return jump_gravity
-
-
-#func Flip_Player():
-#		player.facing_direction = -1
-#		$"../../PlayerSprite2D".scale.x *= -1
+	motion.x = direction * data.in_air_horizontal_speed * delta
+	player.move_xy(motion)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dhow5esn6x7rt"]
+[gd_scene load_steps=28 format=3 uid="uid://dhow5esn6x7rt"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_state_machine.gd" id="1_dcopr"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player.gd" id="1_l4530"]
@@ -28,69 +28,41 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnagu"]
 size = Vector2(24, 108.5)
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_07f6o"]
+size = Vector2(20, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3oskv"]
+size = Vector2(5, 50)
+
+[node name="Player" type="Area2D" node_paths=PackedStringArray("wall_grab_shape_cast", "shape_cast")]
 z_index = 1
 script = ExtResource("1_l4530")
+wall_grab_shape_cast = NodePath("PlayerAnimatedSprite2D/WallGrabShapeCast2D")
 player_data_resources = Array[Resource("res://Scripts/PlayerData/player_data_resource.gd")]([ExtResource("2_h06d8"), ExtResource("2_se3de"), ExtResource("4_gemo6"), ExtResource("5_yerfu"), ExtResource("6_844al")])
 data = ExtResource("6_844al")
+shape_cast = NodePath("ShapeCast2D")
 
-[node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 3.75)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nnagu")
 
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_07f6o")
+target_position = Vector2(0, 0)
+collision_mask = 5
+collide_with_areas = true
+
 [node name="PlayerAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -12)
+position = Vector2(0, -17)
 scale = Vector2(0.3, 0.3)
 sprite_frames = ExtResource("7_o6e6r")
 animation = &"idle"
 offset = Vector2(-40, 0)
 
-[node name="GroundCheckFront" type="RayCast2D" parent="PlayerAnimatedSprite2D"]
-position = Vector2(33.3333, 230)
-scale = Vector2(3.33333, 3.33333)
-target_position = Vector2(3.8147e-06, 4)
-collision_mask = 65535
-
-[node name="GroundCheckBack" type="RayCast2D" parent="PlayerAnimatedSprite2D"]
-position = Vector2(-46.6667, 230)
-scale = Vector2(3.33333, 3.33333)
-target_position = Vector2(0, 5.00001)
-collision_mask = 65535
-
-[node name="WallCheckShoulder" type="RayCast2D" parent="PlayerAnimatedSprite2D"]
-position = Vector2(33.3333, 60)
-target_position = Vector2(16.6667, 0)
-collision_mask = 65535
-
-[node name="WallCheckToe" type="RayCast2D" parent="PlayerAnimatedSprite2D"]
-position = Vector2(30, 213.333)
-scale = Vector2(6.66667, 6.66667)
-target_position = Vector2(3.5, 1.90735e-06)
-collision_mask = 65535
-
-[node name="WallCheckBack" type="RayCast2D" parent="PlayerAnimatedSprite2D"]
-position = Vector2(-46.6667, 223.333)
-scale = Vector2(6.66667, 6.66667)
-target_position = Vector2(-3, 0)
-collision_mask = 65535
-
-[node name="StickyGroundCheckFront" type="RayCast2D" parent="PlayerAnimatedSprite2D"]
-position = Vector2(33.3333, 230)
-collision_mask = 4096
-
-[node name="StickyGroundCheckBack" type="RayCast2D" parent="PlayerAnimatedSprite2D"]
-position = Vector2(-46.6667, 230)
-collision_mask = 4096
-
-[node name="StickyWallCheck1" type="RayCast2D" parent="PlayerAnimatedSprite2D"]
-position = Vector2(43.3333, 60)
-target_position = Vector2(126.667, 0)
-collision_mask = 4096
-
-[node name="StickyWallCheck2" type="RayCast2D" parent="PlayerAnimatedSprite2D"]
-position = Vector2(30, 223.333)
-target_position = Vector2(126.667, 0)
-collision_mask = 4096
+[node name="WallGrabShapeCast2D" type="ShapeCast2D" parent="PlayerAnimatedSprite2D"]
+position = Vector2(46.6667, 106.667)
+shape = SubResource("RectangleShape2D_3oskv")
+target_position = Vector2(0, 0)
+collision_mask = 5
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_dcopr")

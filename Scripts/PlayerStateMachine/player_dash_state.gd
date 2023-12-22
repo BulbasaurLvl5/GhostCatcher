@@ -52,21 +52,19 @@ func Update(delta):
 			add_ghost()
 
 
-func Physics_Update(_delta):
+func Physics_Update(delta):
+	var motion : Vector2
 	if !recovering:
 		dash_speed = get_speed()
-		player.velocity = dash_direction * dash_speed
-		if player.is_grounded:
-			player.velocity += player.movement_adjustment
-			player.movement_adjustment = Vector2.ZERO
-		player.move_and_slide()
+		motion = dash_direction * dash_speed * delta
+	player.move_xy(motion)
 
 
 func complete_dash():	
 	if player.is_grounded:
 		Transitioned.emit(self,"Idle")
 	else:
-		player.velocity.y = 0
+		player.stop_motion()
 		$"../InAir".hang_time_active = true
 		Transitioned.emit(self,"InAir")
 		

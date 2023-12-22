@@ -1,9 +1,10 @@
 class_name Player
-extends CharacterBody2D
+extends Actor
 
 
 #level-dependent parameters
 @export var facing_direction : int = 1
+@export var wall_grab_shape_cast : ShapeCast2D
 
 #development settings
 @export var verbose : bool = false
@@ -11,28 +12,27 @@ extends CharacterBody2D
 @export var data : PlayerDataResource 
 
 #player status
-@onready var x_input : int = 0
-@onready var y_input : int = 0
-@onready var jump_input : bool = false
-@onready var dash_input : bool = false
-@onready var input_direction : Vector2 = Vector2.ZERO
-@onready var is_grounded : bool
-@onready var can_touch_wall : bool
-@onready var is_facing_wall : bool
-@onready var wall_is_behind : bool
+var x_input : int = 0
+var y_input : int = 0
+var jump_input : bool = false
+var dash_input : bool = false
+var input_direction : Vector2 = Vector2.ZERO
+var is_grounded : bool
+var can_touch_wall : bool
+var is_facing_wall : bool
+var wall_is_behind : bool
+var last_touched_wall : bool = false
+var jump_button_reset : bool = true
+var dash_button_reset : bool = true
+var last_dash_time : float
+var prev_player_data_button_reset : bool = true
+var next_player_data_button_reset : bool = true
+var command_list_button_reset : bool = true
+var current_player_data_preset : int = 0
+var is_grabbing_wall : bool = false
+var moving_platform : MovingObject = null
+
 @onready var remaining_air_actions : int = data.max_air_actions
-@onready var last_touched_wall : bool = false
-@onready var jump_button_reset : bool = true
-@onready var dash_button_reset : bool = true
-@onready var last_dash_time : float
-@onready var prev_player_data_button_reset : bool = true
-@onready var next_player_data_button_reset : bool = true
-@onready var command_list_button_reset : bool = true
-@onready var current_player_data_preset = 0
-@onready var is_on_moving_platform : bool = false
-@onready var ground : Node
-@onready var attached_platform : Node
-@onready var movement_adjustment : Vector2 = Vector2.ZERO
 
 
 func _ready():
@@ -81,78 +81,41 @@ func _process(_delta):
 		next_player_data_preset()
 	
 	#environmental checks
-	$PlayerAnimatedSprite2D/WallCheckShoulder.force_raycast_update()
-	$PlayerAnimatedSprite2D/WallCheckToe.force_raycast_update()
-	$PlayerAnimatedSprite2D/WallCheckBack.force_raycast_update()
-		
-	can_touch_wall = int($PlayerAnimatedSprite2D/WallCheckShoulder.is_colliding())
-	wall_is_behind = int($PlayerAnimatedSprite2D/WallCheckBack.is_colliding())
-	is_facing_wall = max(int(can_touch_wall), int($PlayerAnimatedSprite2D/WallCheckToe.is_colliding()))
-	
-	$PlayerAnimatedSprite2D/GroundCheckFront.force_raycast_update()	
-	$PlayerAnimatedSprite2D/GroundCheckBack.force_raycast_update()
-	$PlayerAnimatedSprite2D/StickyGroundCheckFront.force_raycast_update()	
-	$PlayerAnimatedSprite2D/StickyGroundCheckBack.force_raycast_update()
-	#set is_grounded (and ground if applies)
-	if $PlayerAnimatedSprite2D/GroundCheckFront.is_colliding() && !is_facing_wall:
-		ground = ($PlayerAnimatedSprite2D/GroundCheckFront.get_collider())
-		examine_ground()
-	elif $PlayerAnimatedSprite2D/GroundCheckBack.is_colliding() && !wall_is_behind:
-		ground = ($PlayerAnimatedSprite2D/GroundCheckBack.get_collider())
-		examine_ground()
+	var collisions = get_collisions(Vector2.DOWN)
+	if collisions:
+		is_grounded = true
+		print("checking collisions: ",collisions)
+		moving_platform = check_platform(collisions)
 	else:
 		is_grounded = false
-		if !is_above_sticky_ground():
-			if is_on_moving_platform:
-				unlink_from_moving_platform()
 	
+	if get_collisions(Vector2(facing_direction, 0)):
+		is_facing_wall = true
+		if is_grabbing_wall:
+			moving_platform = check_platform(collisions)
+	else:
+		is_facing_wall = false
+		
+	if get_collisions(Vector2(-1 * facing_direction, 0)):
+		wall_is_behind = true
+	else:
+		wall_is_behind = false
+	
+	can_touch_wall = false
+	if is_facing_wall:
+		if wall_grab_shape_cast.is_colliding():
+			can_touch_wall = true
 		
 	if is_grounded:
 		remaining_air_actions = data.max_air_actions
 		last_touched_wall = false
 
 
-func examine_ground():
-	is_grounded = true
-	if is_above_sticky_ground():
-		examine_sticky_ground()
-	elif is_on_moving_platform:
-		unlink_from_moving_platform()
-
-
-func is_above_sticky_ground() -> bool:
-	if $PlayerAnimatedSprite2D/StickyGroundCheckFront.is_colliding():
-		ground = ($PlayerAnimatedSprite2D/StickyGroundCheckFront.get_collider())
-		return true
-	elif $PlayerAnimatedSprite2D/StickyGroundCheckBack.is_colliding():
-		ground = ($PlayerAnimatedSprite2D/StickyGroundCheckBack.get_collider())
-		return true
-	else:
-		return false
-		
-		
-func examine_sticky_ground():
-	if ground.type == ("MovingPlatform") && !is_on_moving_platform:
-		link_to_moving_platform(ground)
-		
-		
-func link_to_moving_platform(node: Node):
-	attached_platform = node
-	attached_platform.Moving.connect(adjust_movement)
-	is_on_moving_platform = true
-	if verbose:
-		print(self.name," linking to ",attached_platform)
-
-
-func unlink_from_moving_platform():
-	is_on_moving_platform = false
-	attached_platform.Moving.disconnect(adjust_movement)
-	if verbose:
-		print(self.name," unlinking from ",attached_platform)
-	
-	
-func adjust_movement(motion : Vector2):
-	movement_adjustment += motion
+func check_platform(collisions) -> MovingObject:
+	for c in collisions:
+		if c is MovingObject:
+			return c
+	return null
 
 
 func can_jump() -> bool:

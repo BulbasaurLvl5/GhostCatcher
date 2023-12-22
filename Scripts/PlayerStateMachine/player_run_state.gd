@@ -19,6 +19,5 @@ func Do_Checks():
 		
 		
 func Physics_Update(delta):
-	var motion = Vector2(data.run_speed * delta * player.x_input, 0) + player.movement_adjustment
-	player.movement_adjustment = Vector2.ZERO
-	player.move_and_collide(motion)
+	var motion = Vector2(data.run_speed * delta * player.x_input, 0)
+	player.move_xy(motion)

@@ -1,5 +1,5 @@
 class_name MovingPlatform
-extends AnimatableBody2D
+extends MovingObject
 
 signal Moving
 
@@ -9,14 +9,14 @@ signal Moving
 @export var pause_duration : float = 2.0
 @export var verbose : bool = false
 
-@onready var global_starting_pos : Vector2
-@onready var target_pos_index : int = 1
-@onready var target_pos : Vector2
-@onready var previous_pos : Vector2
-@onready var is_moving : bool = false
-@onready var movement_start_time : float
-@onready var type : String = "MovingPlatform"
-
+var global_starting_pos : Vector2
+var target_pos_index : int = 1
+var target_pos : Vector2
+var previous_pos : Vector2
+var is_moving : bool = false
+var movement_start_time : float
+var stored_motion : Vector2 = Vector2.ZERO
+var type : String = "MovingPlatform"
 
 
 func _ready():
@@ -40,14 +40,13 @@ func _process(_delta):
 
 
 func _physics_process(delta):
-	var motion = Vector2.ZERO
+	var motion = stored_motion
 	if is_moving:
-		motion = (target_pos - previous_pos) * delta / time_between_pos
-	
-		
-	Moving.emit(motion)
-	self.move_and_collide(motion)
-	
+		stored_motion = (target_pos - previous_pos) * delta / time_between_pos
+	else:
+		stored_motion = Vector2.ZERO	
+	Moving.emit(stored_motion)
+	self.move_xy(motion)
 
 
 func start_moving():

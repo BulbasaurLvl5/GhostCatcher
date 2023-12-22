@@ -13,6 +13,8 @@ radius = 39.0
 height = 116.0
 
 [node name="Ghost" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_3n161")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

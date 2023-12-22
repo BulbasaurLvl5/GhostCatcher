@@ -2,16 +2,14 @@ class_name PlayerJumpState
 extends PlayerState
 
 
-@onready var jump_velocity : float 
-@onready var jump_gravity : float 
+var hold_time_remaining : float
 
 
 func Enter():
 	anim.play("jump")
 	player.jump_button_reset = false
-	jump_velocity = (-2 * data.jump_height) / data.jump_time_to_peak
-	jump_gravity = (2 * data.jump_height) / (data.jump_time_to_peak * data.jump_time_to_peak)
-	player.velocity.y = jump_velocity
+	hold_time_remaining = data.jump_max_hold_time
+	player.momentum.y = data.jump_force
 	
 	
 func _animation_finished():
@@ -19,23 +17,30 @@ func _animation_finished():
 
 
 func Do_Checks():
-	if player.velocity.y >= 0:
-		player.velocity.y = 0
+	if hold_time_remaining <= 0:
+		if player.jump_input && player.can_jump():
+			player.air_action()
+			Transitioned.emit(self,"Jump")
+		elif player.dash_input && player.can_dash():
+			player.air_action()
+			Transitioned.emit(self,"Dash") 
+
+	var collisions = player.get_collisions(Vector2.UP)
+	if collisions || player.momentum.y >= 0:
 		$"../InAir".hang_time_active = true
 		Transitioned.emit(self,"InAir")
 	elif data.wall_grab_allowed_while_ascending && player.can_touch_wall && player.x_input == player.facing_direction:
-		player.velocity = Vector2.ZERO
+		player.stop_motion()
 		Transitioned.emit(self,"WallGrab")
-
-
+		
+		
 func Physics_Update(delta):
-	player.velocity.y += get_gravity() * delta
-	player.velocity.x = data.in_air_horizontal_speed * player.x_input
-	player.move_and_slide()
-
-	
-func get_gravity() -> float:
-	if player.jump_input:
-		return jump_gravity/data.jump_hold_multiplier
+	var motion = Vector2.ZERO
+	if player.jump_input && hold_time_remaining > 0:
+		motion.y = data.jump_force * delta
+		hold_time_remaining -= delta
 	else:
-		return jump_gravity
+		hold_time_remaining = 0
+		motion.y = move_toward(player.momentum.y, data.max_fall_speed, data.gravity * delta)
+	motion.x = data.in_air_horizontal_speed * player.x_input * delta
+	player.move_xy(motion)
