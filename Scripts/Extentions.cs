@@ -264,15 +264,15 @@ namespace MyGodotExtentions
 		{
 			"Full-screen",
 			"Window",
-			"Full-screen borderless",
-			"Window borderless",
+			// "Full-screen borderless",
+			// "Window borderless",
 		};
 
 		public static List<string> WindowOptions { get{return _windowOptions;} }
 
 		static List<string> _resolutionOptions = new List<string>()
 		{
-			"800 x 600 (4:3) SVGA",
+			// "800 x 600 (4:3) SVGA",
 			"1024 x 768 (4:3) XGA",
 			"1152 x 648",
 			"1280 × 720 (16:9) HD",
@@ -317,7 +317,7 @@ namespace MyGodotExtentions
 			{
 				case "Full-screen":
 					DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
-					DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, false);
+					DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, true);
 					break;
 
 				case "Window":
@@ -325,15 +325,15 @@ namespace MyGodotExtentions
 					DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, false);
 					break;
 
-				case "Full-screen borderless":
-					DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
-					DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, true);
-					break;
+				// case "Full-screen borderless":
+				// 	DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+				// 	DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, true);
+				// 	break;
 
-				case "Window borderless":
-					DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-					DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, true);
-					break;
+				// case "Window borderless":
+				// 	DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+				// 	DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, true);
+				// 	break;
 
 				default: 
 					GD.Print("ERROR: SetWindowMode undefined behaviour");
@@ -344,9 +344,9 @@ namespace MyGodotExtentions
 		public static void SetWindowSize(string _windowsize){
 			switch(_windowsize)
 			{
-				case "800 x 600 (4:3) SVGA":
-					DisplayServer.WindowSetSize(new Vector2I(800,600));
-					break;
+				// case "800 x 600 (4:3) SVGA":
+				// 	DisplayServer.WindowSetSize(new Vector2I(800,600));
+				// 	break;
 
 				case "1024 x 768 (4:3) XGA":
 					DisplayServer.WindowSetSize(new Vector2I(1024,768));

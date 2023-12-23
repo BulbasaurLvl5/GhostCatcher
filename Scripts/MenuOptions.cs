@@ -39,6 +39,9 @@ using System.Collections.Generic;
 	VSYNC_MAILBOX: Displays the most recent image with the frame rate being unlimited. The image is rendered as fast as possible which could reduce input lag but no guarantees are made. This mode is also known as “Fast” Vsync and works best when your frame rate is at least twice that of the monitor refresh rate
 */
 
+/* possible solution for brightness and contrast
+	https://forum.godotengine.org/t/how-to-use-worldenvironment-node-in-2d/27288
+*/
 
 public partial class MenuOptions : Node
 {

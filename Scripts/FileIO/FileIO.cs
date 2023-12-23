@@ -46,7 +46,7 @@ public static class FileIO
 		if(!File.Exists(_filepath))
 		{
 			PlayerPrefs _playerPrefs = new PlayerPrefs{
-				VideoSettings = new int[3],
+				VideoSettings = new int[3]{1,0,6}, //vsync enabled, fullscreen, 1920x1080
 			};
 
 			string _jsonString = JsonSerializer.Serialize(_playerPrefs);
