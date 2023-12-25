@@ -14,6 +14,7 @@ func Enter():
 	$"../../PlayerAnimatedSprite2D".scale.x *= -1
 	wall_jump_direction = player.facing_direction
 	player.jump_button_reset = false
+	print("ATTEMPTING WALL JUMP direction = ",wall_jump_direction)
 	
 	
 func _animation_finished():
@@ -21,11 +22,13 @@ func _animation_finished():
 
 
 func Do_Checks():
-	if player.momentum.y >= 0:
+	if player.momentum.y > 0:
 		$"../InAir".hang_time_active = true
+		print("back to IN AIR")
 		Transitioned.emit(self,"InAir")
-	elif data.wall_grab_allowed_while_ascending && player.can_touch_wall && player.x_input == player.facing_direction && time_in_current_state > 0.05:
+	elif data.wall_grab_allowed_while_ascending && player.can_touch_wall && player.x_input == player.facing_direction && time_in_current_state > 0.2:
 		player.stop_motion()
+		print("back to WALL JUMP")
 		Transitioned.emit(self,"WallGrab")
 
 
@@ -42,3 +45,5 @@ func Physics_Update(delta):
 		direction = player.facing_direction
 	motion.x = direction * data.in_air_horizontal_speed * delta
 	player.move_xy(motion)
+
+

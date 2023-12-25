@@ -8,7 +8,7 @@ func Enter():
 	
 	
 func Do_Checks():
-	if !player.is_grounded && player.moving_platform == null:
+	if !player.is_grounded:
 		$"../../CoyoteTime".start()
 		Transitioned.emit(self,"InAir")
 	elif player.jump_input && player.jump_button_reset:

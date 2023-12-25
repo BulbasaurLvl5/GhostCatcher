@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://Sprites/CoalDrawn/Menu_retry_Background.png" id="2_7cifs"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://Sprites/CoalDrawn/CoalButton_1.png" id="3_2sycy"]
 [ext_resource type="StyleBox" uid="uid://kae7nrb6cknu" path="res://Resources/Button_StyleBoxTexture.tres" id="4_onq2y"]
-[ext_resource type="PackedScene" path="res://Scenes/remap_button_manager.tscn" id="5_dv24k"]
+[ext_resource type="PackedScene" uid="uid://djie5vk4sptw6" path="res://Scenes/remap_button_manager.tscn" id="5_dv24k"]
 [ext_resource type="PackedScene" uid="uid://du04dff2n46ag" path="res://Scenes/remap_button.tscn" id="5_qadum"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_cffll"]

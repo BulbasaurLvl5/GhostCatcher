@@ -127,7 +127,7 @@ public partial class Main : Node
 				*/
 				if(!_g.IsQueuedForDeletion())
 				{
-					_g.BodyEntered += GhostCollision;
+					_g.AreaEntered += GhostCollision;
 					GhostCount += 1;
 				}
 			}

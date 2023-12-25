@@ -10,19 +10,21 @@ size = Vector2(285, 95)
 size = Vector2(285, 95)
 
 [node name="MovingPlatformHorizontal" type="Area2D" node_paths=PackedStringArray("shape_cast")]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_whp25")
 path_pos = Array[Vector2]([Vector2(0, 0), Vector2(0, 0)])
 shape_cast = NodePath("ShapeCast2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, -0.5)
 shape = SubResource("RectangleShape2D_l57e3")
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 shape = SubResource("RectangleShape2D_yadhs")
 target_position = Vector2(0, 0)
-collision_mask = 7
+collision_mask = 2
 collide_with_areas = true
+collide_with_bodies = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0.988235, 0.835294, 0.619608, 1)

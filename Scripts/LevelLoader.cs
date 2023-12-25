@@ -26,6 +26,7 @@ public static class LevelLoader
 	static PackedScene packedLevel_Kaktee = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_kaktee.tscn");
 	static PackedScene packedLevel_Vertical = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_vertical.tscn");
 	static PackedScene packedLevel_DeepPit = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_deepPit.tscn");
+	static PackedScene packedLevel_Columns = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_columns.tscn");
 
 	public static Action<Main>[] LoadLevel = {
 		LoadLevel_TestScene,
@@ -38,6 +39,7 @@ public static class LevelLoader
 		LoadLevel_Kaktee,
 		LoadLevel_Vertical,
 		LoadLevel_DeepPit,
+		LoadLevel_Columns
 		};
 
 	public static async void PlayerDisableDelay(Main _main, int milisecdelay)
@@ -261,6 +263,26 @@ public static class LevelLoader
 		_main.UI.AddChild(_center_label);
 
 		packedLevel_DeepPit.Instantiate(_main.World);
+
+		_main.StartLevel(9);
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
+		PlayerDisableDelay(_main, 1);
+	}
+	
+	static void LoadLevel_Columns(Main _main)
+	{
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(100, -1200), 0);
+
+		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
+		_main.UI.AddChild(_timeLabel);
+
+		MainLabel _center_label = packedCenterLabel.Instantiate<MainLabel>();
+		_main.UI.AddChild(_center_label);
+
+		packedLevel_Columns.Instantiate(_main.World);
 
 		_main.StartLevel(9);
 

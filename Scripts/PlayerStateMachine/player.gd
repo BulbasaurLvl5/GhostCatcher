@@ -84,8 +84,8 @@ func _process(_delta):
 	var collisions = get_collisions(Vector2.DOWN)
 	if collisions:
 		is_grounded = true
-		print("checking collisions: ",collisions)
 		moving_platform = check_platform(collisions)
+#		print("ON MOVING PLATFORM")
 	else:
 		is_grounded = false
 	

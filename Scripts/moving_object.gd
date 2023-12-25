@@ -31,7 +31,7 @@ func move_x(amount : float):
 func move_x_exact(amount : int):
 	var step = sign(amount)
 	while(amount != 0):
-		shape_cast.position.x += step
+		shape_cast.position.x += (step * 5)
 		shape_cast.force_shapecast_update()
 		if shape_cast.is_colliding():
 			var collisions = get_collisions(Vector2(step, 0))
@@ -41,7 +41,7 @@ func move_x_exact(amount : int):
 				for c in collisions:
 					if c is Actor:
 						c.move_x(amount)
-		shape_cast.position.x -= step
+		shape_cast.position.x -= (step * 5)
 		position.x += step
 		amount -= step
 
@@ -61,7 +61,7 @@ func move_y(amount : float):
 func move_y_exact(amount : int):
 	var step = sign(amount)
 	while(amount != 0):
-		shape_cast.position.y += step
+		shape_cast.position.y += (step * 3)
 		shape_cast.force_shapecast_update()
 		if shape_cast.is_colliding():
 			var collisions = get_collisions(Vector2(0, step))
@@ -71,7 +71,7 @@ func move_y_exact(amount : int):
 				for c in collisions:
 					if c is Actor:
 						c.move_y(amount)
-		shape_cast.position.y -= step
+		shape_cast.position.y -= (step * 3)
 		position.y += step
 		amount -= step
 
@@ -91,13 +91,17 @@ func get_collisions(offset : Vector2) -> Array:
 
 
 func check_for_rider() -> Actor:
-	shape_cast.set_margin(10.0)
+	shape_cast.set_margin(20.0)
 	var collisions = get_collisions(Vector2.ZERO)
 	shape_cast.set_margin(0.0)
 	if collisions:
+#		print("DETECTING SOMETHING..........")
 		for c in collisions:
+#			print("checking ",c)
 			if c is Player:
+#				print("PLAYER DETECTED")
 				if c.moving_platform == self:
+#					print("PLAYER--PLATFORM CONNECTION ATTEMPTED")
 					return c
 	return null
 

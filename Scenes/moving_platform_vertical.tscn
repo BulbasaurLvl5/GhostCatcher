@@ -10,6 +10,8 @@ size = Vector2(70, 315)
 size = Vector2(70, 315)
 
 [node name="MovingPlatformVertical" type="Area2D" node_paths=PackedStringArray("shape_cast")]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_j5ie1")
 path_pos = Array[Vector2]([Vector2(0, 0), Vector2(500, 0)])
 shape_cast = NodePath("ShapeCast2D")

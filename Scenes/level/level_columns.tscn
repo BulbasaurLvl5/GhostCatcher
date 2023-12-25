@@ -1,48 +1,106 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7jtexb81575j"]
+[gd_scene load_steps=7 format=3 uid="uid://b7jtexb81575j"]
 
 [ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_c81fx"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="2_nlt5q"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="3_nvhrl"]
-[ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://Scenes/player.tscn" id="4_u12cb"]
+[ext_resource type="PackedScene" uid="uid://vhc2a0nt18ep" path="res://Scenes/moving_platform_horizontal.tscn" id="5_ganci"]
+[ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://Scenes/Spikes_large.tscn" id="6_in5s8"]
+[ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://Scenes/Spikes_small.tscn" id="7_q1xog"]
 
-[node name="LevelColumns" type="Node"]
-
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap"]
+modulate = Color(0.823529, 0.890196, 0.729412, 1)
 tile_set = ExtResource("1_c81fx")
 format = 2
-layer_0/tile_data = PackedInt32Array(65536, 131075, 3, 131071, 65539, 3, 65534, 196611, 1, -1, 65539, 3, -65536, 131075, 3, -65532, 3, 3, -65531, 65539, 3, -131066, 196611, 1, -196603, 65539, 3, -196604, 3, 3, -262145, 65539, 3, -327680, 65539, 3, -327679, 131075, 3, -262146, 65539, 3, -262147, 3, 3, -851971, 3, 0, -851970, 131075, 0, -786434, 131075, 2, -786435, 3, 2, -589830, 3, 3, -589829, 131075, 3, -524297, 196611, 0, -458761, 196611, 2, -131081, 196611, 3, 65525, 196611, 3, -655375, 3, 3, -655374, 65539, 3, -655373, 65539, 3, -655372, 131075, 3, -1048591, 196611, 0, -983055, 196611, 2, -1376272, 196611, 0, -1310736, 196611, 2, -983050, 196611, 3, -1245196, 196611, 3, -1441800, 196611, 3, -1179652, 196611, 3, -1048577, 3, 3, -1114112, 65539, 3, -1114111, 65539, 3, -1114110, 65539, 3, -1114109, 131075, 3, -1245182, 3, 3, -1245181, 65539, 3, -1245180, 65539, 3, -1245179, 65539, 3, -1245178, 131075, 3, -1376251, 3, 3, -1376250, 65539, 3, -1376249, 65539, 3, -1376248, 65539, 3, -1376247, 131075, 3, -2, 3, 0, 131070, 3, 2, -196602, 131075, 0, -65530, 131075, 2, -1572866, 3, 0, -1507330, 3, 2, -1507329, 65539, 2, -1572865, 65539, 0, -1638400, 131075, 0, -1572864, 131075, 2, -1638397, 3, 0, -1638396, 65539, 0, -1638395, 131075, 0, -1572861, 3, 2, -1572860, 65539, 2, -1572859, 131075, 2)
+layer_0/tile_data = PackedInt32Array(-458758, 196611, 2, -524283, 196611, 2, -524273, 3, 2, -458767, 131075, 1, -524286, 131075, 3, -524287, 65539, 3, -524288, 65539, 3, -458753, 65539, 3, -458754, 65539, 3, -458755, 3, 3, -524272, 65539, 1, -524271, 131075, 1, -458768, 65539, 1, -458769, 3, 1, -458737, 3, 2, -393233, 3, 2, -393232, 65539, 2, -393231, 131075, 2, -458735, 131075, 2, -458736, 65539, 2, -524304, 65539, 1, -589840, 65539, 1, -655376, 65539, 1, -720912, 65539, 1, -786448, 65539, 1, -851984, 65539, 1, -589808, 65539, 1, -655344, 65539, 1, -720880, 65539, 1, -786416, 65539, 1, -851952, 65539, 1, -917488, 65539, 1, -917487, 131075, 1, -851951, 131075, 1, -786415, 131075, 1, -720879, 131075, 1, -655343, 131075, 1, -589807, 131075, 1, -851983, 131075, 1, -786447, 131075, 1, -720911, 131075, 1, -655375, 131075, 1, -589839, 131075, 1, -524303, 131075, 1, -851985, 3, 1, -786449, 3, 1, -720913, 3, 1, -655377, 3, 1, -589841, 3, 1, -524305, 3, 1, -524294, 196611, 1, -589830, 196611, 1, -655366, 196611, 1, -720902, 196611, 1, -786438, 196611, 1, -851974, 196611, 1, -589819, 196611, 1, -655355, 196611, 1, -720891, 196611, 1, -786427, 196611, 1, -851963, 196611, 1, -917499, 196611, 1, -983035, 196611, 1, -1048571, 196611, 1, -983046, 196611, 1, -917510, 196611, 1, -1048581, 131075, 2, -1114108, 3, 2, -1114116, 131075, 2, -1179645, 3, 2, -1114117, 65539, 1, -1048582, 65539, 1, -1179644, 65539, 1, -1114107, 65539, 1, -1179651, 65539, 2, -1179650, 65539, 2, -1179649, 65539, 2, -1245184, 65539, 2, -1245183, 65539, 2, -1245182, 65539, 2, -1179652, 65539, 1, -1245181, 65539, 1)
 
-[node name="EndlessPit" parent="TileMap" instance=ExtResource("3_nvhrl")]
-position = Vector2(0, 323)
+[node name="EndlessPit" parent="." instance=ExtResource("3_nvhrl")]
+position = Vector2(25, 171)
 
-[node name="Player" parent="TileMap" instance=ExtResource("4_u12cb")]
-position = Vector2(-5, 34)
+[node name="LevelColumns" type="Node" parent="."]
 
-[node name="Ghosts" type="Node" parent="."]
+[node name="Ghosts" type="Node" parent="LevelColumns"]
 
-[node name="Ghost" parent="Ghosts" instance=ExtResource("2_nlt5q")]
-position = Vector2(575, -187)
+[node name="Ghost" parent="LevelColumns/Ghosts" instance=ExtResource("2_nlt5q")]
+position = Vector2(-579, -3322)
 
-[node name="Ghost2" parent="Ghosts" instance=ExtResource("2_nlt5q")]
-position = Vector2(-1705, -492)
+[node name="Ghost2" parent="LevelColumns/Ghosts" instance=ExtResource("2_nlt5q")]
+position = Vector2(562, -3345)
 
-[node name="Ghost3" parent="Ghosts" instance=ExtResource("2_nlt5q")]
-position = Vector2(-1724, -1178)
+[node name="Ghost3" parent="LevelColumns/Ghosts" instance=ExtResource("2_nlt5q")]
+position = Vector2(1, -1820)
 
-[node name="Ghost4" parent="Ghosts" instance=ExtResource("2_nlt5q")]
-position = Vector2(-1745, -1762)
+[node name="Platforms" type="Node" parent="LevelColumns"]
 
-[node name="Ghost5" parent="Ghosts" instance=ExtResource("2_nlt5q")]
-position = Vector2(-1873, -2457)
+[node name="MovePlat1" parent="LevelColumns/Platforms" instance=ExtResource("5_ganci")]
+modulate = Color(1, 0.839216, 0.843137, 1)
+position = Vector2(-500, -207)
+path_pos = Array[Vector2]([Vector2(0, 0), Vector2(1000, 0)])
+time_between_pos = 3.0
 
-[node name="Ghost6" parent="Ghosts" instance=ExtResource("2_nlt5q")]
-position = Vector2(-864, -2051)
+[node name="MovePlat2" parent="LevelColumns/Platforms" instance=ExtResource("5_ganci")]
+position = Vector2(-450, -317)
+path_pos = Array[Vector2]([Vector2(0, 0), Vector2(-1000, 0)])
+time_between_pos = 3.0
 
-[node name="Ghost7" parent="Ghosts" instance=ExtResource("2_nlt5q")]
-position = Vector2(-549, -1372)
+[node name="MovePlat3" parent="LevelColumns/Platforms" instance=ExtResource("5_ganci")]
+position = Vector2(1545, -317)
+path_pos = Array[Vector2]([Vector2(0, 0), Vector2(-1000, 0)])
+time_between_pos = 3.0
 
-[node name="Ghost8" parent="Ghosts" instance=ExtResource("2_nlt5q")]
-position = Vector2(852, -2500)
+[node name="MovePlat4-Obstacle" parent="LevelColumns/Platforms" instance=ExtResource("5_ganci")]
+position = Vector2(-350, -950)
+path_pos = Array[Vector2]([Vector2(0, 0), Vector2(700, 0)])
+time_between_pos = 3.0
+pause_duration = 0.0
 
-[node name="Ghost9" parent="Ghosts" instance=ExtResource("2_nlt5q")]
-position = Vector2(86, -2978)
+[node name="Spikes_small2" parent="LevelColumns/Platforms/MovePlat4-Obstacle" instance=ExtResource("7_q1xog")]
+position = Vector2(-176, -3)
+rotation = 1.5708
+scale = Vector2(2, -1.5)
+
+[node name="Spikes_small3" parent="LevelColumns/Platforms/MovePlat4-Obstacle" instance=ExtResource("7_q1xog")]
+position = Vector2(169, -4)
+rotation = 1.5708
+scale = Vector2(2, 1.5)
+
+[node name="MovePlat5-Obstacle" parent="LevelColumns/Platforms" instance=ExtResource("5_ganci")]
+position = Vector2(-250, -1500)
+path_pos = Array[Vector2]([Vector2(0, 0), Vector2(500, 0)])
+time_between_pos = 2.0
+pause_duration = 0.0
+
+[node name="Spikes_small2" parent="LevelColumns/Platforms/MovePlat5-Obstacle" instance=ExtResource("7_q1xog")]
+position = Vector2(-176, -3)
+rotation = 1.5708
+scale = Vector2(2, -1.5)
+
+[node name="Spikes_small3" parent="LevelColumns/Platforms/MovePlat5-Obstacle" instance=ExtResource("7_q1xog")]
+position = Vector2(169, -4)
+rotation = 1.5708
+scale = Vector2(2, 1.5)
+
+[node name="Spikes_large" parent="LevelColumns/Platforms/MovePlat5-Obstacle" instance=ExtResource("6_in5s8")]
+position = Vector2(-4, 54)
+scale = Vector2(0.82, -1)
+
+[node name="Spikes" type="Node" parent="LevelColumns"]
+
+[node name="Spikes_large" parent="LevelColumns/Spikes" instance=ExtResource("6_in5s8")]
+position = Vector2(-46, -792)
+scale = Vector2(1, -1)
+
+[node name="Spikes_large4" parent="LevelColumns/Spikes" instance=ExtResource("6_in5s8")]
+position = Vector2(44, -792)
+scale = Vector2(-1, -1)
+
+[node name="Spikes_large2" parent="LevelColumns/Spikes" instance=ExtResource("6_in5s8")]
+position = Vector2(-183, -1981)
+scale = Vector2(1, -1)
+
+[node name="Spikes_large3" parent="LevelColumns/Spikes" instance=ExtResource("6_in5s8")]
+position = Vector2(185, -1979)
+scale = Vector2(-1, -1)
+
+[node name="Spikes_small" parent="LevelColumns/Spikes" instance=ExtResource("7_q1xog")]
+position = Vector2(-8, -1966)
+scale = Vector2(1.5, -1.5)
