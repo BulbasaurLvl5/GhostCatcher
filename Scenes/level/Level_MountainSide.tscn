@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctnkgowthunhp"]
+[gd_scene load_steps=7 format=3 uid="uid://ctnkgowthunhp"]
 
 [ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_g6qat"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="2_ih1xp"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="3_ikpru"]
 [ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://Scenes/Spikes_large.tscn" id="4_htv2b"]
 [ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://Scenes/Spikes_medium.tscn" id="5_dcj2l"]
+[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://Sprites/CoalDrawn/CoalMountainsFiltered.png" id="6_eqy5b"]
 
 [node name="TileMap" type="TileMap"]
 tile_set = ExtResource("1_g6qat")
@@ -37,20 +38,27 @@ position = Vector2(0, 323)
 
 [node name="Spikes_large" parent="." instance=ExtResource("4_htv2b")]
 position = Vector2(895, -459)
-collision_layer = 0
 
 [node name="Spikes_large2" parent="." instance=ExtResource("4_htv2b")]
 position = Vector2(1344, -456)
-collision_layer = 0
 
 [node name="Spikes_large3" parent="." instance=ExtResource("4_htv2b")]
 position = Vector2(1841, -456)
-collision_layer = 0
 
 [node name="Spikes_medium" parent="." instance=ExtResource("5_dcj2l")]
 position = Vector2(1589, -457)
-collision_layer = 0
 
 [node name="Spikes_medium2" parent="." instance=ExtResource("5_dcj2l")]
 position = Vector2(1115, -459)
-collision_layer = 0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-148, 102)
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Mountains" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-468, -525)
+scale = Vector2(3, 2)
+texture = ExtResource("6_eqy5b")
+centered = false

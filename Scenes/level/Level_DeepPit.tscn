@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://0kk8iv71b00t"]
+[gd_scene load_steps=8 format=3 uid="uid://0kk8iv71b00t"]
 
 [ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_sdu27"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="2_6v0j7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://Scenes/Spikes_large.tscn" id="4_0wjow"]
 [ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://Scenes/Spikes_medium.tscn" id="5_frs0q"]
 [ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://Scenes/Spikes_small.tscn" id="6_vwrhl"]
+[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://Sprites/CoalDrawn/CoalMountainsFiltered.png" id="7_bu2tv"]
 
 [node name="TileMap" type="TileMap"]
 tile_set = ExtResource("1_sdu27")
@@ -53,196 +54,167 @@ position = Vector2(0, 323)
 
 [node name="Spikes_large" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(286, -4093)
-collision_layer = 0
 
 [node name="Spikes_large2" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(480, -2774)
-collision_layer = 0
 
 [node name="Spikes_large3" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(622, -6171)
-collision_layer = 0
 
 [node name="Spikes_large4" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(-735, -2427)
 rotation = 3.14159
-collision_layer = 0
 
 [node name="Spikes_large18" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(304, -2403)
 rotation = 3.14159
-collision_layer = 0
 
 [node name="Spikes_large19" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(699, -2403)
 rotation = 3.14159
-collision_layer = 0
 
 [node name="Spikes_large5" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(442, -6308)
 rotation = 1.5708
-collision_layer = 0
 
 [node name="Spikes_large6" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(-877, -5163)
 rotation = 1.5708
-collision_layer = 0
 
 [node name="Spikes_large7" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(-879, -5519)
 rotation = 1.5708
-collision_layer = 0
 
 [node name="Spikes_large13" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(740, -4448)
 rotation = 2.8763
-collision_layer = 0
 
 [node name="Spikes_large20" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(382, -4451)
 rotation = 3.42608
-collision_layer = 0
 
 [node name="Spikes_large9" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(748, -4975)
 rotation = 0.884882
-collision_layer = 0
 
 [node name="Spikes_large10" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(363, -4869)
 rotation = 5.26217
-collision_layer = 0
 
 [node name="Spikes_large11" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(437, -5179)
 rotation = 4.71239
-collision_layer = 0
 
 [node name="Spikes_large12" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(879, -5113)
 rotation = 4.71239
-collision_layer = 0
 
 [node name="Spikes_large21" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(879, -5521)
 rotation = 4.71239
-collision_layer = 0
 
 [node name="Spikes_large17" parent="." instance=ExtResource("4_0wjow")]
 position = Vector2(106, -2617)
 rotation = 4.71239
-collision_layer = 0
 
 [node name="Spikes_medium" parent="." instance=ExtResource("5_frs0q")]
 position = Vector2(887, -6181)
-collision_layer = 0
 
 [node name="Spikes_medium5" parent="." instance=ExtResource("5_frs0q")]
 position = Vector2(-874, -4937)
 rotation = 1.5708
-collision_layer = 0
 
 [node name="Spikes_medium6" parent="." instance=ExtResource("5_frs0q")]
 position = Vector2(-872, -5921)
 rotation = 1.5708
-collision_layer = 0
 
 [node name="Spikes_medium3" parent="." instance=ExtResource("5_frs0q")]
 position = Vector2(-462, -2425)
 rotation = 3.14159
-collision_layer = 0
 
 [node name="Spikes_medium9" parent="." instance=ExtResource("5_frs0q")]
 position = Vector2(-254, -2436)
 rotation = 3.14159
-collision_layer = 0
 
 [node name="Spikes_medium8" parent="." instance=ExtResource("5_frs0q")]
 position = Vector2(670, -3169)
 rotation = 3.14159
-collision_layer = 0
 
 [node name="Spikes_medium10" parent="." instance=ExtResource("5_frs0q")]
 position = Vector2(454, -3283)
 rotation = 3.14159
-collision_layer = 0
 
 [node name="Spikes_medium11" parent="." instance=ExtResource("5_frs0q")]
 position = Vector2(115, -3389)
 rotation = 3.14159
-collision_layer = 0
 
 [node name="Spikes_medium13" parent="." instance=ExtResource("5_frs0q")]
 position = Vector2(-577, -3059)
 rotation = 3.14159
-collision_layer = 0
 
 [node name="Spikes_medium14" parent="." instance=ExtResource("5_frs0q")]
 position = Vector2(-349, -3164)
 rotation = 3.14159
-collision_layer = 0
 
 [node name="Spikes_medium12" parent="." instance=ExtResource("5_frs0q")]
 position = Vector2(121, -4492)
 rotation = 3.14159
-collision_layer = 0
 
 [node name="Spikes_medium2" parent="." instance=ExtResource("5_frs0q")]
 position = Vector2(763, -2666)
-collision_layer = 0
 
 [node name="Spikes_medium7" parent="." instance=ExtResource("5_frs0q")]
 position = Vector2(211, -2881)
-collision_layer = 0
 
 [node name="Spikes_medium15" parent="." instance=ExtResource("5_frs0q")]
 position = Vector2(-622, -2665)
-collision_layer = 0
 
 [node name="Spikes_small2" parent="." instance=ExtResource("6_vwrhl")]
 position = Vector2(-873, -5753)
 rotation = 1.5708
-collision_layer = 0
 
 [node name="Spikes_small5" parent="." instance=ExtResource("6_vwrhl")]
 position = Vector2(439, -6489)
 rotation = 0.785398
-collision_layer = 0
 
 [node name="Spikes_small6" parent="." instance=ExtResource("6_vwrhl")]
 position = Vector2(324, -6511)
-collision_layer = 0
 
 [node name="Spikes_small7" parent="." instance=ExtResource("6_vwrhl")]
 position = Vector2(224, -6489)
 rotation = -0.785398
-collision_layer = 0
 
 [node name="Spikes_small10" parent="." instance=ExtResource("6_vwrhl")]
 position = Vector2(-434, -2747)
 rotation = 0.785398
-collision_layer = 0
 
 [node name="Spikes_small11" parent="." instance=ExtResource("6_vwrhl")]
 position = Vector2(-492, -2774)
-collision_layer = 0
 
 [node name="Spikes_small12" parent="." instance=ExtResource("6_vwrhl")]
 position = Vector2(-551, -2747)
 rotation = -0.785398
-collision_layer = 0
 
 [node name="Spikes_small3" parent="." instance=ExtResource("6_vwrhl")]
 position = Vector2(283, -3389)
 rotation = 3.14159
-collision_layer = 0
 
 [node name="Spikes_small4" parent="." instance=ExtResource("6_vwrhl")]
 position = Vector2(-736, -2948)
 rotation = 3.14159
-collision_layer = 0
 
 [node name="Spikes_small9" parent="." instance=ExtResource("6_vwrhl")]
 position = Vector2(-832, -2840)
 rotation = 3.14159
-collision_layer = 0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-148, 102)
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Mountains" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-468, -525)
+scale = Vector2(3, 2)
+texture = ExtResource("7_bu2tv")
+centered = false

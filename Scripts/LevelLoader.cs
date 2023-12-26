@@ -27,7 +27,8 @@ public static class LevelLoader
 	static PackedScene packedLevel_Vertical = ResourceLoader.Load<PackedScene>("res://Scenes/level/Level_Vertical.tscn");
 	static PackedScene packedLevel_DeepPit = ResourceLoader.Load<PackedScene>("res://Scenes/level/Level_DeepPit.tscn");
 	static PackedScene packedLevel_Columns = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_columns.tscn");
-
+	static PackedScene packedLevel_Treeson = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_treeson.tscn");
+	
 	public static Action<Main>[] LoadLevel = {
 		LoadLevel_TestScene,
 		LoadLevel_Tutorial,
@@ -39,7 +40,8 @@ public static class LevelLoader
 		LoadLevel_Kaktee,
 		LoadLevel_Vertical,
 		LoadLevel_DeepPit,
-		LoadLevel_Columns
+		LoadLevel_Columns,
+		LoadLevel_Treeson
 		};
 
 	public static async void PlayerDisableDelay(Main _main, int milisecdelay)
@@ -285,6 +287,26 @@ public static class LevelLoader
 		packedLevel_Columns.Instantiate(_main.World);
 
 		_main.StartLevel(10);
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
+		PlayerDisableDelay(_main, 1);
+	}
+	
+	static void LoadLevel_Treeson(Main _main)
+	{
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(-5300, -100), 0);
+
+		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
+		_main.UI.AddChild(_timeLabel);
+
+		MainLabel _center_label = packedCenterLabel.Instantiate<MainLabel>();
+		_main.UI.AddChild(_center_label);
+
+		packedLevel_Treeson.Instantiate(_main.World);
+
+		_main.StartLevel(11);
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
