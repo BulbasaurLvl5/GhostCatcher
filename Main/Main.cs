@@ -91,7 +91,7 @@ public partial class Main : Node
 			foreach (var _g in ghosts)
 			{
 				_g.QueueFree(); //this loop is necessary because godots GetChildren() has difficulties with nested scenes
-				_g.BodyEntered -= GhostCollision;
+				_g.AreaEntered -= GhostCollision;
 			}
 		}
 

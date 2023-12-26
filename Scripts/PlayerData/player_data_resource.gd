@@ -12,7 +12,7 @@ extends Resource
 @export var in_air_horizontal_speed: float = 350.0
 @export var max_air_actions : int = 2
 @export var gravity : int = 100
-@export var max_fall_speed : int = 160
+@export var max_fall_speed : int = 120
 @export var hang_time_duration : float = 0.05
 @export var fall_gravity_multiplier : float = 20.0
 @export var distance_before_medium_landing : float = 500.0

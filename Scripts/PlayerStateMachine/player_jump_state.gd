@@ -20,13 +20,13 @@ func _animation_finished():
 
 
 func Do_Checks():
-	if hold_time_remaining <= 0:
-		if player.jump_input && player.can_jump():
-			player.air_action()
-			Transitioned.emit(self,"Jump")
-		elif player.dash_input && player.can_dash():
-			player.air_action()
-			Transitioned.emit(self,"Dash") 
+#	if hold_time_remaining <= 0:
+	if player.jump_input && player.can_jump():
+		player.air_action()
+		Transitioned.emit(self,"Jump")
+	elif player.dash_input && player.can_dash():
+		player.air_action()
+		Transitioned.emit(self,"Dash") 
 
 	var collisions = player.get_collisions(Vector2.UP)
 	if collisions || player.momentum.y >= 0:
