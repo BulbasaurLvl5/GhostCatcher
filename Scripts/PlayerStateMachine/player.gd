@@ -89,17 +89,17 @@ func _process(_delta):
 	else:
 		is_grounded = false
 	
-	if get_collisions(Vector2(facing_direction, 0)):
+	if get_collisions(Vector2((facing_direction * 2), 0)):
 		is_facing_wall = true
 		if is_grabbing_wall:
 			moving_platform = check_platform(collisions)
 	else:
 		is_facing_wall = false
 		
-	if get_collisions(Vector2(-1 * facing_direction, 0)):
-		wall_is_behind = true
-	else:
-		wall_is_behind = false
+#	if get_collisions(Vector2(-1 * facing_direction, 0)):
+#		wall_is_behind = true
+#	else:
+#		wall_is_behind = false
 	
 	can_touch_wall = false
 	if is_facing_wall:

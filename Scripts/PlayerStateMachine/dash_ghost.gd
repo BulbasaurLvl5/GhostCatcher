@@ -1,13 +1,10 @@
 class_name DashGhost
-extends Sprite2D
+extends AnimatedSprite2D
 
 func _ready():
 	ghosting()
 
-func set_property(g_texture, g_hframes, g_vframes, g_frame, g_position, g_scale):
-	set_texture(g_texture)
-	set_hframes(g_hframes)
-	set_vframes(g_vframes)
+func set_property(g_frame, g_position, g_scale):
 	set_frame(g_frame)
 	set_position(g_position)
 	set_scale(g_scale)

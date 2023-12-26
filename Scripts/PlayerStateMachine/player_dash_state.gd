@@ -38,6 +38,8 @@ func get_direction() -> Vector2:
 
 
 func Do_Checks():
+	if player.is_facing_wall:
+		Transitioned.emit(self,"WallGrab")
 	if time_in_current_state >= data.dash_time + data.dash_recovery_time:
 		complete_dash()
 	elif !recovering && time_in_current_state >= data.dash_time:
@@ -81,10 +83,12 @@ func get_speed() -> float:
 
 
 func add_ghost():
-#	var dash_ghost = dash_ghost_node.instantiate()
-#	var frame = $"../../PlayerAnimatedSprite2D".get_frame()
-#
-#	dash_ghost.set_property($"../../PlayerAnimatedSprite2D".texture, $"../../PlayerAnimatedSprite2D".hframes, $"../../PlayerAnimatedSprite2D".vframes, $"../../PlayerAnimatedSprite2D".frame, player.position, $"../../PlayerAnimatedSprite2D".scale)
-#	get_tree().current_scene.add_child((dash_ghost))
+	var dash_ghost = dash_ghost_node.instantiate()
+	dash_ghost.set_property(anim.frame, player.position, anim.scale)
+	get_tree().current_scene.add_child((dash_ghost))
 	ghost_timer = 0.02
 
+
+func Flip_Player():
+	#cannot flip while dashing
+	pass

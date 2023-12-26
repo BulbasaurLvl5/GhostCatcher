@@ -274,7 +274,7 @@ public static class LevelLoader
 	
 	static void LoadLevel_Columns(Main _main)
 	{
-		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(100, -1200), 0);
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, -6500), 0);
 
 		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
 		_main.UI.AddChild(_timeLabel);
@@ -284,7 +284,7 @@ public static class LevelLoader
 
 		packedLevel_Columns.Instantiate(_main.World);
 
-		_main.StartLevel(9);
+		_main.StartLevel(10);
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);

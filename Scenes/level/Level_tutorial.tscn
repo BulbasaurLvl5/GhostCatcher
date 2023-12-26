@@ -19,24 +19,26 @@ tile_set = ExtResource("1_hc42g")
 format = 2
 layer_0/tile_data = PackedInt32Array(458756, 65539, 3, 458757, 65539, 3, 458758, 65539, 3, 458759, 65539, 3, 458760, 65539, 3, 458761, 65539, 3, 458762, 65539, 3, 458763, 65539, 3, 458764, 65539, 3, 458765, 65539, 3, 458766, 65539, 3, 458767, 65539, 3, 458768, 65539, 3, 458769, 65539, 3, 458770, 65539, 3, 458771, 65539, 3, 327685, 3, 3, 327686, 65539, 3, 327687, 131075, 3, 131082, 3, 3, 131083, 65539, 3, 131084, 131075, 3, 327695, 3, 3, 327696, 65539, 3, 327697, 131075, 3, 458755, 65539, 3, 458754, 65539, 3, 458772, 65539, 3, 458752, 3, 3, 458753, 65539, 3, 458773, 65539, 3, 458774, 131075, 3)
 
-[node name="Sign" type="Sprite2D" parent="."]
+[node name="EndlessPit" parent="." instance=ExtResource("5_4gdet")]
+position = Vector2(217, 915)
+
+[node name="Scenery" type="Node" parent="."]
+
+[node name="Sign" type="Sprite2D" parent="Scenery"]
 z_index = 2
 position = Vector2(79, 618.25)
 scale = Vector2(1, 1.03116)
 texture = ExtResource("2_sb4be")
 
-[node name="Tree" type="Sprite2D" parent="."]
+[node name="Tree" type="Sprite2D" parent="Scenery"]
 position = Vector2(1270, 515)
 scale = Vector2(1.50227, 1.50227)
 texture = ExtResource("3_7tbeq")
 
-[node name="tomb_1" type="Sprite2D" parent="."]
+[node name="tomb_1" type="Sprite2D" parent="Scenery"]
 position = Vector2(403, 710)
 texture = SubResource("AtlasTexture_1fwhv")
 
-[node name="tomb_2" type="Sprite2D" parent="."]
+[node name="tomb_2" type="Sprite2D" parent="Scenery"]
 position = Vector2(1066, 740)
 texture = SubResource("AtlasTexture_gwvkm")
-
-[node name="EndlessPit" parent="." instance=ExtResource("5_4gdet")]
-position = Vector2(217, 915)

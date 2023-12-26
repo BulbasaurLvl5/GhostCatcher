@@ -47,6 +47,10 @@ func move_x_exact(amount : int):
 		shape_cast.position.x += step
 		shape_cast.force_shapecast_update()
 		if shape_cast.is_colliding():
+			var c = shape_cast.get_collision_count() - 1
+			while c >= 0:
+#				print("X MOVEMENT BLOCKED BY ",shape_cast.get_collider(c))
+				c -= 1
 			shape_cast.position.x -= step
 			motion_remainder.x = 0
 			amount = 0

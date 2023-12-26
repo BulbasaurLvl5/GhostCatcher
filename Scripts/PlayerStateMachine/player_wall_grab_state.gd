@@ -23,6 +23,12 @@ func Do_Checks():
 		$"../../PlayerAnimatedSprite2D".offset.x -= visual_offset
 		player.is_grabbing_wall = false
 		Transitioned.emit(self,"WallJump")
+	elif player.dash_input && player.dash_button_reset:
+		$"../../PlayerAnimatedSprite2D".offset.x -= visual_offset
+		player.is_grabbing_wall = false
+		player.facing_direction *= -1
+		$"../../PlayerAnimatedSprite2D".scale.x *= -1
+		Transitioned.emit(self,"Dash")
 	elif player.x_input != wall_direction || !player.is_facing_wall:
 		if player.x_input == player.facing_direction * -1:
 			player.facing_direction *= -1

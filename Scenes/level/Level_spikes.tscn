@@ -35,18 +35,24 @@ position = Vector2(0, 323)
 
 [node name="Spikes_large" parent="." instance=ExtResource("4_kk47q")]
 position = Vector2(-399, -346)
+collision_layer = 0
 
 [node name="Spikes_large2" parent="." instance=ExtResource("4_kk47q")]
 position = Vector2(176, -346)
+collision_layer = 0
 
 [node name="Spikes_large3" parent="." instance=ExtResource("4_kk47q")]
 position = Vector2(635, -349)
+collision_layer = 0
 
 [node name="Spikes_medium" parent="." instance=ExtResource("5_goean")]
 position = Vector2(400, -351)
+collision_layer = 0
 
 [node name="Spikes_medium2" parent="." instance=ExtResource("5_goean")]
 position = Vector2(-145, -349)
+collision_layer = 0
 
 [node name="Spikes_small" parent="." instance=ExtResource("6_aujlf")]
 position = Vector2(-28, -351)
+collision_layer = 0

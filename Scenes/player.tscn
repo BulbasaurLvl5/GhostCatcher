@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://Sprites/CoalDrawn/CoalSkyFilter.png" id="23_bi7di"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnagu"]
-size = Vector2(24, 108.5)
+size = Vector2(20, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_07f6o"]
 size = Vector2(20, 110)

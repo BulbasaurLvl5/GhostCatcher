@@ -37,15 +37,20 @@ position = Vector2(0, 323)
 
 [node name="Spikes_large" parent="." instance=ExtResource("4_htv2b")]
 position = Vector2(895, -459)
+collision_layer = 0
 
 [node name="Spikes_large2" parent="." instance=ExtResource("4_htv2b")]
 position = Vector2(1344, -456)
+collision_layer = 0
 
 [node name="Spikes_large3" parent="." instance=ExtResource("4_htv2b")]
 position = Vector2(1841, -456)
+collision_layer = 0
 
 [node name="Spikes_medium" parent="." instance=ExtResource("5_dcj2l")]
 position = Vector2(1589, -457)
+collision_layer = 0
 
 [node name="Spikes_medium2" parent="." instance=ExtResource("5_dcj2l")]
 position = Vector2(1115, -459)
+collision_layer = 0

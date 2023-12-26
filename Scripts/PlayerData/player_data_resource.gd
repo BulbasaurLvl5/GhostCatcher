@@ -36,7 +36,7 @@ extends Resource
 
 @export var dash_peak_speed : float = 280.0
 @export var dash_time : float = 0.25
-@export var dash_recovery_time : float = 0.25
+@export var dash_recovery_time : float = 0.1
 @export var dash_hold_multiplier : float = 2.7
 @export var ground_dash_cooldown : float = 2.0
 @export var only_horizontal_dashing_allowed : bool = false
