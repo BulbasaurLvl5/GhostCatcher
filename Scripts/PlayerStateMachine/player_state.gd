@@ -3,18 +3,19 @@ extends Node
 
 signal Transitioned
 
-@export var player : Player
-@export var anim : AnimatedSprite2D
+var player : Player
+var anim : AnimatedSprite2D
+var sfx : Node
 
 @onready var data : PlayerDataResource
 @onready var verbose : bool 
-
 @onready var time_in_current_state = 0
 
 
 func _ready():
 	player = $"../.."
-	anim = $"../../PlayerAnimatedSprite2D"
+	anim = %PlayerAnimatedSprite2D
+	sfx = %SFX
 	
 	
 func Transition():

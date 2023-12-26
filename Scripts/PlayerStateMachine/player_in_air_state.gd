@@ -43,8 +43,10 @@ func Do_Checks():
 				%Land.heavy_landing = false
 			Transitioned.emit(self,"Land")
 		elif player.x_input == 0:
+			$"../../SFX/Land1".play()
 			Transitioned.emit(self,"Idle")
 		else: 
+			$"../../SFX/Land1".play()
 			Transitioned.emit(self,"Run")
 	elif player.jump_input && player.can_jump():
 		player.air_action()

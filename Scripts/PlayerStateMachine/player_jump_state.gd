@@ -3,15 +3,22 @@ extends PlayerState
 
 
 var hold_time_remaining : float
+@onready var jump_noise : int = 1
 
 
 func Enter():
 	anim.play("jump")
+	if jump_noise == 1:
+		$"../../SFX/Jump1".play()
+		jump_noise = 2
+	else:
+		$"../../SFX/Jump2".play()
+		jump_noise = 1
 	player.jump_button_reset = false
 	hold_time_remaining = data.jump_max_hold_time
 	player.momentum.y = data.jump_force
-	if player.verbose && player.moving_platform != null:
-		print("Player is LEAVING moving platform ",player.moving_platform)
+#	if player.verbose && player.moving_platform != null:
+#		print("Player is LEAVING moving platform ",player.moving_platform)
 	player.moving_platform = null
 	
 	

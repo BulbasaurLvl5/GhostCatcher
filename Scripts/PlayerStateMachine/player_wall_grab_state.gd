@@ -14,6 +14,7 @@ func Enter():
 #		print("Is grabbing wall!!!!!!!!!!!")
 	anim.offset.x += visual_offset
 	anim.play("wall_grab")
+	$"../../SFX/WallGrab".play()
 	wall_direction = player.facing_direction
 	player.stop_motion()
 	if data.wall_grab_resets_air_actions:

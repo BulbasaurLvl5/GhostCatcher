@@ -17,8 +17,9 @@ func Enter():
 	dash_direction = get_direction()
 	set_animation()
 	add_ghost()
-	if player.verbose && player.moving_platform != null:
-		print("Player is LEAVING moving platform ",player.moving_platform)
+	$"../../SFX/Dash".play()
+#	if player.verbose && player.moving_platform != null:
+#		print("Player is LEAVING moving platform ",player.moving_platform)
 	player.moving_platform = null
 
 

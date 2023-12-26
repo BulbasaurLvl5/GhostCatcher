@@ -3,13 +3,13 @@ extends PlayerState
 
 var heavy_landing : bool = false
 
-
 func Enter():
 	if heavy_landing:
 		anim.play("land")
+		$"../../SFX/Land3".play()
 	else:
 		anim.play("land")
-
+		$"../../SFX/Land2".play()
 
 func Do_Checks():
 	if !heavy_landing:
