@@ -11,7 +11,7 @@ var is_pushing_rider
 func move_xy(amount : Vector2):
 	rider = check_for_rider()
 	if rider:
-		var was_pushing_rider = is_pushing_rider
+#		var was_pushing_rider = is_pushing_rider
 		is_pushing_rider = check_rider_direction(amount)
 #		if !was_pushing_rider && is_pushing_rider:
 #			print("               Now PUSHING RIDER")
@@ -108,12 +108,12 @@ func check_for_rider() -> Actor:
 			if c is Player:
 #				print("PLAYER DETECTED")
 				if c.moving_platform == self:
-					if rider == null:
-						print("Found rider ",c)
+#					if rider == null:
+#						print("Found rider ",c)
 #					print("PLAYER--PLATFORM CONNECTION ATTEMPTED")
 					return c
-	if rider != null:
-		print("Losing rider ",rider)
+#	if rider != null:
+#		print("Losing rider ",rider)
 	return null
 
 

@@ -12,7 +12,7 @@ public static class UILoader
 	static PackedScene packedRetryMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menu_Retry.tscn");
 	static PackedScene packedMainMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menu_Main.tscn");
 
-	static PackedScene packedOptionsMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menu_Options.tscn");
+	static PackedScene packedOptionsMenu = ResourceLoader.Load<PackedScene>("res://Scenes/menu_options.tscn");
 
 	public static void LoadLevelSelector(Main _main)
 	{

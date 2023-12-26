@@ -35,7 +35,7 @@ func move_xy(amount : Vector2):
 
 func move_x(amount : float):
 #	print("Player moving ",amount)
-	var step = sign(amount)
+#	var step = sign(amount)
 	motion_remainder.x += amount
 	var move : int = round(motion_remainder.x)
 	motion_remainder.x -= move
@@ -70,7 +70,7 @@ func move_x_exact(amount : int):
 		
 
 func move_y(amount : float):
-	var step = sign(amount)
+#	var step = sign(amount)
 	motion_remainder.y += amount
 	var move : int = round(motion_remainder.y)
 	motion_remainder.y -= move

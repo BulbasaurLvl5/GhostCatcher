@@ -132,38 +132,38 @@ func check_platform(collisions) -> MovingObject:
 	return null
 
 
-func approach_moving_object(object : MovingObject, range : Vector2):
+func approach_moving_object(object : MovingObject, check_area : Vector2):
 	if moving_platform == object:
 		return
 #	if verbose:
 #		print("APPROACHING MOVING OBJECT")
 
-	if range.y > 0:
+	if check_area.y > 0:
 #		if verbose && moving_platform != object:
 #			print("Player found MOVING OBJECT ",object)
 		moving_platform = object
-		var step = sign(range.y)
-		var count = range.y
+		var step = sign(check_area.y)
+		var count = check_area.y
 		while count > 0:
 			if get_collisions(Vector2(0, step * count)) == null:
 				position.y += (step * count) 
 				%PlayerState.Transitioned.emit(self,"Land")
 				return
 			count -= 1
-	elif range.y < 0:
+	elif check_area.y < 0:
 		%PlayerState.Transitioned.emit(self,"InAir")
 	else:
 		moving_platform = object
-		var step = sign(range.x)
-		var count = abs(range.x)
+		var step = sign(check_area.x)
+		var count = abs(check_area.x)
 		while count > 0:
 			wall_grab_shape_cast.position.x += step
 			wall_grab_shape_cast.force_shapecast_update()
 			if wall_grab_shape_cast.is_colliding() == null:
 				wall_grab_shape_cast.position.x = 50
 				position.x += step * count
-				if verbose:
-					print("grabbing wall from PLAYER")
+#				if verbose:
+#					print("grabbing wall from PLAYER")
 				%PlayerState.Transitioned.emit(self,"WallGrab")
 				return
 			count -= 1
