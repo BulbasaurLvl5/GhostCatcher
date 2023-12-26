@@ -68,6 +68,12 @@ position = Vector2(259, -5854)
 [node name="Ghost13" parent="Ghosts" instance=ExtResource("2_nlt5q")]
 position = Vector2(836, -4132)
 
+[node name="MovingPlatformHorizontal" parent="." instance=ExtResource("5_ganci")]
+position = Vector2(-795, -6022)
+path_pos = Array[Vector2]([Vector2(0, 0), Vector2(-400, 0)])
+time_between_pos = 2.0
+pause_duration = 0.0
+
 [node name="Platforms" type="Node" parent="."]
 
 [node name="MovePlat1" parent="Platforms" instance=ExtResource("5_ganci")]
@@ -96,7 +102,7 @@ position = Vector2(-1500, -2870)
 path_pos = Array[Vector2]([Vector2(0, 0), Vector2(1750, 0)])
 
 [node name="MovePlat4-Obstacle" parent="Platforms" instance=ExtResource("5_ganci")]
-position = Vector2(-450, -950)
+position = Vector2(-420, -950)
 path_pos = Array[Vector2]([Vector2(0, 0), Vector2(840, 0)])
 time_between_pos = 3.0
 pause_duration = 0.0
@@ -137,21 +143,11 @@ path_pos = Array[Vector2]([Vector2(0, 0), Vector2(-700, 0)])
 time_between_pos = 3.0
 pause_duration = 0.0
 
-[node name="Spikes_large" parent="Platforms/MovePlat6-Obstacle" instance=ExtResource("6_in5s8")]
-visible = false
-position = Vector2(0, 53)
-scale = Vector2(0.84, -1)
-
 [node name="MovePlat7-Obstacle" parent="Platforms" instance=ExtResource("5_ganci")]
 position = Vector2(-1505, -1476)
 path_pos = Array[Vector2]([Vector2(0, 0), Vector2(700, 0)])
 time_between_pos = 3.0
 pause_duration = 0.0
-
-[node name="Spikes_large" parent="Platforms/MovePlat7-Obstacle" instance=ExtResource("6_in5s8")]
-visible = false
-position = Vector2(-1, 55)
-scale = Vector2(-0.84, -1)
 
 [node name="MovePlat8-Obstacle" parent="Platforms" instance=ExtResource("5_ganci")]
 position = Vector2(-816, -856)
@@ -159,16 +155,7 @@ path_pos = Array[Vector2]([Vector2(0, 0), Vector2(-700, 0)])
 time_between_pos = 3.0
 pause_duration = 0.0
 
-[node name="Spikes_large" parent="Platforms/MovePlat8-Obstacle" instance=ExtResource("6_in5s8")]
-visible = false
-position = Vector2(2, 53)
-scale = Vector2(0.84, -1)
-
 [node name="Spikes" type="Node" parent="."]
-
-[node name="Spikes_small3" parent="Spikes" instance=ExtResource("7_q1xog")]
-position = Vector2(-608, -754)
-scale = Vector2(1.25, -1.25)
 
 [node name="Spikes_medium6" parent="Spikes" instance=ExtResource("7_klhxv")]
 position = Vector2(102, -2426)
@@ -275,11 +262,6 @@ rotation = 1.5708
 position = Vector2(2, -2773)
 scale = Vector2(1.25, 1.25)
 
-[node name="Spikes_small2" parent="Spikes" instance=ExtResource("7_q1xog")]
-position = Vector2(437, -2234)
-rotation = 1.5708
-scale = Vector2(1.25, 1)
-
 [node name="Spikes_large14" parent="Spikes" instance=ExtResource("6_in5s8")]
 position = Vector2(1652, -1978)
 rotation = 4.71239
@@ -384,10 +366,6 @@ rotation = 1.5708
 [node name="Spikes_large20" parent="Spikes" instance=ExtResource("6_in5s8")]
 position = Vector2(-1810, -657)
 scale = Vector2(-0.8, -1)
-
-[node name="Spikes_small4" parent="Spikes" instance=ExtResource("7_q1xog")]
-position = Vector2(601, -754)
-scale = Vector2(1.25, -1.25)
 
 [node name="Spikes_large30" parent="Spikes" instance=ExtResource("6_in5s8")]
 position = Vector2(-707, 331)

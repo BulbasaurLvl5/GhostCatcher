@@ -30,7 +30,6 @@ var next_player_data_button_reset : bool = true
 var command_list_button_reset : bool = true
 var current_player_data_preset : int = 0
 var is_grabbing_wall : bool = false
-var moving_platform : MovingObject = null
 
 @onready var remaining_air_actions : int = data.max_air_actions
 
@@ -44,7 +43,11 @@ func _ready():
 
 
 func _process(_delta):
-	#input checks
+	check_input()
+	check_environment()
+
+	
+func check_input():
 	x_input = 0
 	y_input = 0
 	if Input.is_action_pressed("Left1") || Input.is_action_pressed("Left2"):
@@ -80,32 +83,43 @@ func _process(_delta):
 	if next_player_data_button_reset && Input.is_action_pressed("NextPlayerDataPreset"):
 		next_player_data_preset()
 	
-	#environmental checks
-	var collisions = get_collisions(Vector2.DOWN)
+
+func check_environment():
+	var collisions : Array = []
+	if moving_platform == null:	
+		collisions = get_collisions(Vector2.DOWN)
+	else:
+		collisions = get_collisions(Vector2(0, 10))
+		
 	if collisions:
 		is_grounded = true
 		moving_platform = check_platform(collisions)
 #		print("ON MOVING PLATFORM")
 	else:
 		is_grounded = false
-	
+
 	if get_collisions(Vector2((facing_direction * 2), 0)):
 		is_facing_wall = true
 		if is_grabbing_wall:
 			moving_platform = check_platform(collisions)
 	else:
 		is_facing_wall = false
-		
-#	if get_collisions(Vector2(-1 * facing_direction, 0)):
-#		wall_is_behind = true
-#	else:
-#		wall_is_behind = false
 	
-	can_touch_wall = false
-	if is_facing_wall:
-		if wall_grab_shape_cast.is_colliding():
-			can_touch_wall = true
-		
+#	if verbose:
+#		print("Can touch wall is ",can_touch_wall," and WG shapecast is @ ",wall_grab_shape_cast.position)
+	if wall_grab_shape_cast.is_colliding():
+#		if verbose && !can_touch_wall:
+#			print("CAN TOUCH WALL BECAUSE WG shape cast is colliding:")
+#		var count = wall_grab_shape_cast.get_collision_count()
+#		while count > 0:
+#			print("wall grab shape cast detects:        ",wall_grab_shape_cast.get_collider(count - 1))
+#			count -= 1
+		can_touch_wall = true
+	else:
+#		if verbose:
+#			print("can't touch wall")
+		can_touch_wall = false
+	
 	if is_grounded:
 		remaining_air_actions = data.max_air_actions
 		last_touched_wall = false
@@ -116,6 +130,44 @@ func check_platform(collisions) -> MovingObject:
 		if c is MovingObject:
 			return c
 	return null
+
+
+func approach_moving_object(object : MovingObject, range : Vector2):
+	if moving_platform == object:
+		return
+#	if verbose:
+#		print("APPROACHING MOVING OBJECT")
+
+	if range.y > 0:
+#		if verbose && moving_platform != object:
+#			print("Player found MOVING OBJECT ",object)
+		moving_platform = object
+		var step = sign(range.y)
+		var count = range.y
+		while count > 0:
+			if get_collisions(Vector2(0, step * count)) == null:
+				position.y += (step * count) 
+				%PlayerState.Transitioned.emit(self,"Land")
+				return
+			count -= 1
+	elif range.y < 0:
+		%PlayerState.Transitioned.emit(self,"InAir")
+	else:
+		moving_platform = object
+		var step = sign(range.x)
+		var count = abs(range.x)
+		while count > 0:
+			wall_grab_shape_cast.position.x += step
+			wall_grab_shape_cast.force_shapecast_update()
+			if wall_grab_shape_cast.is_colliding() == null:
+				wall_grab_shape_cast.position.x = 50
+				position.x += step * count
+				if verbose:
+					print("grabbing wall from PLAYER")
+				%PlayerState.Transitioned.emit(self,"WallGrab")
+				return
+			count -= 1
+		wall_grab_shape_cast.position.x = 50
 
 
 func can_jump() -> bool:

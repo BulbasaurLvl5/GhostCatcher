@@ -10,7 +10,9 @@ extends PlayerState
 
 func Enter():
 	player.is_grabbing_wall = true
-	$"../../PlayerAnimatedSprite2D".offset.x += visual_offset
+#	if verbose:
+#		print("Is grabbing wall!!!!!!!!!!!")
+	anim.offset.x += visual_offset
 	anim.play("wall_grab")
 	wall_direction = player.facing_direction
 	player.stop_motion()
@@ -20,26 +22,41 @@ func Enter():
 
 func Do_Checks():
 	if player.jump_input && player.jump_button_reset:
-		$"../../PlayerAnimatedSprite2D".offset.x -= visual_offset
+		anim.offset.x -= visual_offset
 		player.is_grabbing_wall = false
+#		if verbose:
+#			print("IS NOT GRABBING WALL")
 		Transitioned.emit(self,"WallJump")
 	elif player.dash_input && player.dash_button_reset:
-		$"../../PlayerAnimatedSprite2D".offset.x -= visual_offset
+		anim.offset.x -= visual_offset
 		player.is_grabbing_wall = false
+#		if verbose:
+#			print("IS NOT GRABBING WALL")
 		player.facing_direction *= -1
-		$"../../PlayerAnimatedSprite2D".scale.x *= -1
+		anim.scale.x *= -1
 		Transitioned.emit(self,"Dash")
-	elif player.x_input != wall_direction || !player.is_facing_wall:
-		if player.x_input == player.facing_direction * -1:
-			player.facing_direction *= -1
-			$"../../PlayerAnimatedSprite2D".scale.x *= -1
+	elif player.x_input != wall_direction || !player.can_touch_wall:
+		if player.x_input == wall_direction && player.moving_platform != null:
+			check_moving_platform_grab()
+#		if player.x_input == player.facing_direction * -1:
+#			player.facing_direction *= -1
+#			$"../../PlayerAnimatedSprite2D".scale.x *= -1
 		$"../../CoyoteTime".start()
 		player.last_touched_wall = true
-		$"../../PlayerAnimatedSprite2D".offset.x -= visual_offset
+		anim.offset.x -= visual_offset
 		player.is_grabbing_wall = false
+#		if verbose:
+#			print("IS NOT GRABBING WALL because x_input = ",player.x_input," & wall_direction = ",wall_direction)
+#		if player.facing_direction != player.x_input && abs(player.x_input) == 1:
+#			player.facing_direction *= -1
+#			anim.scale.x *= -1
 		Transitioned.emit(self,"InAir")	
-		
 
+
+func check_moving_platform_grab():
+	pass
+
+		
 func Flip_Player():
 	#cannot flip while grabbing wall
 	pass

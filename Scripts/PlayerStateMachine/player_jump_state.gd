@@ -10,6 +10,9 @@ func Enter():
 	player.jump_button_reset = false
 	hold_time_remaining = data.jump_max_hold_time
 	player.momentum.y = data.jump_force
+	if player.verbose && player.moving_platform != null:
+		print("Player is LEAVING moving platform ",player.moving_platform)
+	player.moving_platform = null
 	
 	
 func _animation_finished():
@@ -27,7 +30,7 @@ func Do_Checks():
 
 	var collisions = player.get_collisions(Vector2.UP)
 	if collisions || player.momentum.y >= 0:
-		$"../InAir".hang_time_active = true
+		%InAir.hang_time_active = true
 		Transitioned.emit(self,"InAir")
 	elif data.wall_grab_allowed_while_ascending && player.can_touch_wall && player.x_input == player.facing_direction:
 		player.stop_motion()

@@ -14,6 +14,9 @@ func Enter():
 	$"../../PlayerAnimatedSprite2D".scale.x *= -1
 	wall_jump_direction = player.facing_direction
 	player.jump_button_reset = false
+	if player.verbose && player.moving_platform != null:
+		print("Player is LEAVING moving platform ",player.moving_platform)
+	player.moving_platform = null
 	
 	
 func _animation_finished():

@@ -32,7 +32,7 @@ size = Vector2(20, 110)
 size = Vector2(20, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3oskv"]
-size = Vector2(5, 50)
+size = Vector2(10, 50)
 
 [node name="Player" type="Area2D" node_paths=PackedStringArray("wall_grab_shape_cast", "shape_cast")]
 z_index = 1
@@ -40,6 +40,7 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_l4530")
 wall_grab_shape_cast = NodePath("PlayerAnimatedSprite2D/WallGrabShapeCast2D")
+verbose = true
 player_data_resources = Array[Resource("res://Scripts/PlayerData/player_data_resource.gd")]([ExtResource("2_h06d8"), ExtResource("2_se3de"), ExtResource("4_gemo6"), ExtResource("5_yerfu"), ExtResource("6_844al")])
 data = ExtResource("6_844al")
 shape_cast = NodePath("ShapeCast2D")
@@ -48,6 +49,7 @@ shape_cast = NodePath("ShapeCast2D")
 shape = SubResource("RectangleShape2D_nnagu")
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_07f6o")
 target_position = Vector2(0, 0)
 collision_mask = 5
@@ -61,45 +63,57 @@ animation = &"idle"
 offset = Vector2(-40, 0)
 
 [node name="WallGrabShapeCast2D" type="ShapeCast2D" parent="PlayerAnimatedSprite2D"]
-position = Vector2(46.6667, 106.667)
+position = Vector2(50, 100)
 shape = SubResource("RectangleShape2D_3oskv")
 target_position = Vector2(0, 0)
 collision_mask = 5
+collide_with_areas = true
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
 script = ExtResource("1_dcopr")
 initial_state = NodePath("InAir")
 
 [node name="PlayerState" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("5_8dkiu")
 
 [node name="Idle" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("4_tan8y")
 
 [node name="Run" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("7_71xul")
 
 [node name="Jump" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("7_ofds0")
 
 [node name="InAir" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("8_uctrm")
 
 [node name="Land" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("9_ok23f")
 
 [node name="Die" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("10_1mtkc")
 
 [node name="Dash" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("12_5jbsb")
 dash_ghost_node = ExtResource("14_q528f")
 
 [node name="WallGrab" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("13_ckika")
 visual_offset = -20.0
 
 [node name="WallJump" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("14_umcf1")
 
 [node name="CoyoteTime" type="Timer" parent="."]

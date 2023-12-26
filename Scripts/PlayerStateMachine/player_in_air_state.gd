@@ -6,35 +6,41 @@ extends PlayerState
 @onready var in_air_horizontal_speed : float
 @onready var hang_time_active : bool = false
 
-var distance_fallen : float
 var height_fallen_from : float
 var time_since_grounded : float
 
 
 func Enter():
+	player.can_touch_wall = false
 	if player.momentum.y <= 100 || hang_time_active:
 		anim.play("hover")
 	else:
 		anim.play("fall")
+	Flip_Player()
 	height_fallen_from = player.position.y
 	fall_gravity = ((1.3 * data.jump_height) / (data.jump_time_to_peak * data.jump_time_to_peak))
 	in_air_horizontal_speed = data.in_air_horizontal_speed
+#	if player.verbose && player.moving_platform != null:
+#		print("Player is LEAVING moving platform ",player.moving_platform)
+	player.moving_platform = null
 	
 	
 func Do_Checks():
-	distance_fallen = (player.position.y - height_fallen_from)
+	if height_fallen_from > player.position.y:
+		height_fallen_from = player.position.y
 	
 	if player.is_grounded:
 		hang_time_active = false
-		if verbose:
-			print("distance fallen = ",distance_fallen)
+		var distance_fallen = (player.position.y - height_fallen_from)
+#		if verbose:
+#			print("distance fallen = ",distance_fallen)
 		if distance_fallen > data.distance_before_dying:
 			Transitioned.emit(self,"Die")
 		elif distance_fallen > data.distance_before_medium_landing:
 			if distance_fallen > data.distance_before_heavy_landing:
-				$"../Land".heavy_landing = true
+				%Land.heavy_landing = true
 			else:
-				$"../Land".heavy_landing = false
+				%Land.heavy_landing = false
 			Transitioned.emit(self,"Land")
 		elif player.x_input == 0:
 			Transitioned.emit(self,"Idle")
@@ -48,6 +54,8 @@ func Do_Checks():
 		Transitioned.emit(self,"Dash")
 	elif player.can_touch_wall && player.x_input == player.facing_direction:
 		player.stop_motion()
+		if verbose:
+			print("grabbing wall from IN AIR    ......    can_touch_wall is ",player.can_touch_wall)
 		Transitioned.emit(self,"WallGrab")
 	
 		

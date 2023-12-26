@@ -23,12 +23,13 @@ func Transition():
 	if verbose:
 		print("Entering ",self.name)
 	time_in_current_state = 0
+#	if verbose:
+#		print("shape_cast offset = ",%ShapeCast2D.position)	
 	Enter()
 
 
 func Enter():
-	data = player.data
-	verbose = player.verbose
+	pass
 
 
 func Initiate_Update(delta):
@@ -51,4 +52,4 @@ func Physics_Update(_delta):
 func Flip_Player():
 	if player.facing_direction != player.x_input && abs(player.x_input) == 1:
 		player.facing_direction *= -1
-		$"../../PlayerAnimatedSprite2D".scale.x *= -1
+		anim.scale.x *= -1

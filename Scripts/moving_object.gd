@@ -11,7 +11,12 @@ var is_pushing_rider
 func move_xy(amount : Vector2):
 	rider = check_for_rider()
 	if rider:
+		var was_pushing_rider = is_pushing_rider
 		is_pushing_rider = check_rider_direction(amount)
+#		if !was_pushing_rider && is_pushing_rider:
+#			print("               Now PUSHING RIDER")
+#		elif was_pushing_rider && !is_pushing_rider:
+#			print("               Now Puuuuulllllling RIDER")
 	move_x(amount.x)
 	move_y(amount.y)
 
@@ -20,11 +25,13 @@ func move_x(amount : float):
 	motion_remainder.x += amount
 	var move : int = round(motion_remainder.x)
 	if(move != 0):
-		if rider && is_pushing_rider:
+		if rider != null && is_pushing_rider:
+#			print("Pushing ",rider," ",move)
 			rider.move_x(move)
 		motion_remainder.x -= move
 		move_x_exact(move)
-		if rider && !is_pushing_rider:
+		if rider != null && !is_pushing_rider:
+#			print("Pulling ",rider," ",move)
 			rider.move_x(move)
 
 
@@ -91,7 +98,7 @@ func get_collisions(offset : Vector2) -> Array:
 
 
 func check_for_rider() -> Actor:
-	shape_cast.set_margin(20.0)
+	shape_cast.set_margin(50.0)
 	var collisions = get_collisions(Vector2.ZERO)
 	shape_cast.set_margin(0.0)
 	if collisions:
@@ -101,8 +108,12 @@ func check_for_rider() -> Actor:
 			if c is Player:
 #				print("PLAYER DETECTED")
 				if c.moving_platform == self:
+					if rider == null:
+						print("Found rider ",c)
 #					print("PLAYER--PLATFORM CONNECTION ATTEMPTED")
 					return c
+	if rider != null:
+		print("Losing rider ",rider)
 	return null
 
 
