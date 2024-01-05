@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_6o6l0")
 player_data_name_or_description = "Default"
-run_speed = 600.0
+run_speed = 800.0
 in_air_horizontal_speed = 600.0
 max_air_actions = 2
 gravity = 3000

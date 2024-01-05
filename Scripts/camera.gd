@@ -2,6 +2,9 @@ class_name Camera
 extends Camera2D
 
 
+signal Zoomed(amount : Vector2)
+
+
 @export var max_distance : Vector2 = Vector2(500,300)
 @export var max_zoom : float = .25
 @export var zoom_out_duration = 2.5
@@ -44,7 +47,7 @@ func _process(delta):
 		offset = random_offset()
 
 
-func _physics_process(delta):
+#func _physics_process(delta):
 	if zoom_is_active && zoom.x > max_zoom:
 		zoom_out(delta)
 	if !zoom_is_active && zoom.x < 1:
@@ -77,11 +80,13 @@ func set_zoom_in():
 func zoom_out(delta : float):
 	var new : Vector2 = get_zoom().lerp(Vector2(max_zoom, max_zoom), 2*delta/current_zoom_duration)
 	set_zoom(new)
+	Zoomed.emit(new)
 	
 	
 func zoom_in(delta : float):
 	var new : Vector2 = get_zoom().lerp(Vector2.ONE, 2*delta/current_zoom_duration)
 	set_zoom(new)
+	Zoomed.emit(new)
 
 
 func apply_shake(shake_multiplier : float = 1.0):

@@ -24,6 +24,7 @@ var could_grab_wall : bool
 var is_grabbing_wall : bool = false
 
 @onready var remaining_air_actions : int = data.max_air_actions
+#@onready var camera : Camera = %Camera2D
 
 
 func _ready():

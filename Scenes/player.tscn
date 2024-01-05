@@ -138,6 +138,7 @@ drag_top_margin = 0.3
 drag_right_margin = 0.3
 drag_bottom_margin = 0.3
 script = ExtResource("16_1amk7")
+zoom_in_duration = 1.25
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
 scroll_ignore_camera_zoom = true
