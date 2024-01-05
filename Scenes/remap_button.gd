@@ -2,8 +2,8 @@ class_name RemapButton
 extends Button
 
 
-@export var action : String
-@export var event_index : int
+@export var actions : Array[String]
+@export var event_indexes : Array[int]
 
 var remap_button_manager : RemapButtonManager
 
@@ -18,7 +18,7 @@ func _ready():
 
 func update_button():
 	set_process_unhandled_input(false)
-	var event_name : String = "%s" % InputMap.action_get_events(action)[event_index].as_text()
+	var event_name : String = "%s" % InputMap.action_get_events(actions[0])[event_indexes[0]].as_text()
 	var count : int = 0
 	var name_was_shortened : bool = false
 	for string in remap_button_manager.input_name_substitutions:
@@ -48,7 +48,7 @@ func _update():
 
 func _unhandled_input(event):
 	Input.flush_buffered_events()
-	if event.as_text() == InputMap.action_get_events(action)[event_index].as_text():
+	if event.as_text() == InputMap.action_get_events(actions[0])[event_indexes[0]].as_text():
 		change_input_event(event)
 		return
 	if event is InputEventKey || event is InputEventJoypadButton:
@@ -67,8 +67,8 @@ func check_input(event):
 	set_process_unhandled_input(false)
 	event.set_pressed(false)
 	var action_is_available : bool = true
-	var actions = InputMap.get_actions()
-	for a in actions:
+	var event_actions = InputMap.get_actions()
+	for a in event_actions:
 		if !a.begins_with("ui"):
 			var events = InputMap.action_get_events(a)
 			for e in events:
@@ -84,12 +84,14 @@ func check_input(event):
 
 
 func change_input_event(event):
-	var events = InputMap.action_get_events(action)
-	InputMap.action_erase_events(action)
-	events.remove_at(event_index)
-	events.insert(event_index, event)
-	for e in events:
-		InputMap.action_add_event(action, e)
+	var count = 0
+	for a in actions:
+		var events = InputMap.action_get_events(a)
+		InputMap.action_erase_events(a)
+		events.remove_at(event_indexes[count])
+		events.insert(event_indexes[count], event)
+		for e in events:
+			InputMap.action_add_event(a, e)
 	button_pressed = false
 	update_button()
 	remap_button_manager.is_remapping_button = false

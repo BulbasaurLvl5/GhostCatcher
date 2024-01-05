@@ -10,12 +10,12 @@ public partial class Ghost : Area2D
 		
 	public override void _Ready()
 	{
-		AreaEntered += PlayerCollision;
+		BodyEntered += PlayerCollision;
 		//Anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		//Anim.Play();
 	}
 
-	async void PlayerCollision(Area2D player)
+	async void PlayerCollision(Node2D player)
 	{
 		//wait a ms, because otherwise it is freed before main registers collision
 		//alternative is to connect main to TreeExit, but then it emits also when the scene is unbuilt

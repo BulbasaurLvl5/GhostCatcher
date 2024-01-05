@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7jtexb81575j"]
+[gd_scene load_steps=27 format=3 uid="uid://b7jtexb81575j"]
 
 [ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_c81fx"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="2_nlt5q"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="3_nvhrl"]
-[ext_resource type="PackedScene" uid="uid://vhc2a0nt18ep" path="res://Scenes/moving_platform_horizontal.tscn" id="5_ganci"]
+[ext_resource type="Script" path="res://Scenes/MovingPlatforms/platform_movement.gd" id="4_0btod"]
+[ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://Scenes/MovingPlatforms/wide_platform_01.tscn" id="5_rli4x"]
 [ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://Scenes/Spikes_large.tscn" id="6_in5s8"]
 [ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://Scenes/Spikes_medium.tscn" id="7_klhxv"]
 [ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://Scenes/Spikes_small.tscn" id="7_q1xog"]
@@ -11,9 +12,93 @@
 [ext_resource type="Texture2D" uid="uid://cuxeorwpjn2g6" path="res://Sprites/CoalDrawn/CoalSignpost.png" id="9_mgfby"]
 [ext_resource type="Texture2D" uid="uid://cgbodrcslt8a1" path="res://Sprites/CoalDrawn/CoalTombStones.png" id="10_4hncm"]
 
+[sub_resource type="Curve2D" id="Curve2D_qtbcs"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -700, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_pqij8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 700, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_se7gx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -700, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_hi60y"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_3aoct"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -770, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_dkg2q"]
 atlas = ExtResource("10_4hncm")
 region = Rect2(20, 17, 109, 123)
+
+[sub_resource type="Curve2D" id="Curve2D_egogw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1800, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_vveun"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1800, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_jdmmc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_27ikw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1000, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_d6ngg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1000, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_e3jg8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_s80gr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1000, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_w1aau"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_0qp2l"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
 
 [node name="TileMap" type="TileMap"]
 modulate = Color(0.823529, 0.890196, 0.780392, 1)
@@ -70,108 +155,208 @@ position = Vector2(836, -4132)
 
 [node name="Platforms" type="Node" parent="."]
 
-[node name="MovePlat1" parent="Platforms" instance=ExtResource("5_ganci")]
-modulate = Color(1, 0.839216, 0.843137, 1)
-position = Vector2(-500, -207)
-path_pos = Array[Vector2]([Vector2(0, 0), Vector2(1000, 0)])
-time_between_pos = 3.0
+[node name="Left" type="Node" parent="Platforms"]
 
-[node name="MovePlat2" parent="Platforms" instance=ExtResource("5_ganci")]
-position = Vector2(-450, -317)
-path_pos = Array[Vector2]([Vector2(0, 0), Vector2(-1000, 0)])
-time_between_pos = 3.0
+[node name="Path2D" type="Path2D" parent="Platforms/Left"]
+position = Vector2(-810, -2100)
+curve = SubResource("Curve2D_qtbcs")
 
-[node name="MovePlat3" parent="Platforms" instance=ExtResource("5_ganci")]
-position = Vector2(1525, -317)
-path_pos = Array[Vector2]([Vector2(0, 0), Vector2(-1000, 0)])
-time_between_pos = 3.0
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Left/Path2D" node_paths=PackedStringArray("platform")]
+rotates = false
+script = ExtResource("4_0btod")
+platform = NodePath("../WidePlatform01")
 
-[node name="System" type="Node" parent="Platforms"]
+[node name="WidePlatform01" parent="Platforms/Left/Path2D" instance=ExtResource("5_rli4x")]
+collision_layer = 5
 
-[node name="SystemPlat1" parent="Platforms/System" node_paths=PackedStringArray("shape_cast") instance=ExtResource("5_ganci")]
-position = Vector2(275, -2870)
-path_pos = Array[Vector2]([Vector2(0, 0), Vector2(-1775, 0)])
-shape_cast = NodePath("../../MovePlat3/ShapeCast2D")
+[node name="Path2D2" type="Path2D" parent="Platforms/Left"]
+position = Vector2(-1510, -1460)
+curve = SubResource("Curve2D_pqij8")
 
-[node name="SystemPlat2" parent="Platforms/System" instance=ExtResource("5_ganci")]
-position = Vector2(600, -2870)
-path_pos = Array[Vector2]([Vector2(0, 0), Vector2(0, -1775)])
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Left/Path2D2" node_paths=PackedStringArray("platform")]
+rotates = false
+script = ExtResource("4_0btod")
+platform = NodePath("../WidePlatform01")
 
-[node name="MovePlat6" parent="Platforms" instance=ExtResource("5_ganci")]
-position = Vector2(-1806, -560)
-path_pos = Array[Vector2]([Vector2(0, 0), Vector2(1000, 0)])
-time_between_pos = 3.0
-pause_duration = 0.0
+[node name="WidePlatform01" parent="Platforms/Left/Path2D2" instance=ExtResource("5_rli4x")]
+collision_layer = 5
 
-[node name="MovePlat7" parent="Platforms" instance=ExtResource("5_ganci")]
-position = Vector2(1832, -560)
-path_pos = Array[Vector2]([Vector2(0, 0), Vector2(-1000, 0)])
-time_between_pos = 3.0
-pause_duration = 0.0
+[node name="Path2D3" type="Path2D" parent="Platforms/Left"]
+position = Vector2(-810, -850)
+curve = SubResource("Curve2D_se7gx")
 
-[node name="MovePlat4-Obstacle" parent="Platforms" instance=ExtResource("5_ganci")]
-position = Vector2(-420, -950)
-path_pos = Array[Vector2]([Vector2(0, 0), Vector2(840, 0)])
-time_between_pos = 3.0
-pause_duration = 0.0
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Left/Path2D3" node_paths=PackedStringArray("platform")]
+rotates = false
+script = ExtResource("4_0btod")
+platform = NodePath("../WidePlatform01")
 
-[node name="Sign2" type="Sprite2D" parent="Platforms/MovePlat4-Obstacle"]
+[node name="WidePlatform01" parent="Platforms/Left/Path2D3" instance=ExtResource("5_rli4x")]
+collision_layer = 5
+
+[node name="Middle" type="Node" parent="Platforms"]
+
+[node name="Path2D" type="Path2D" parent="Platforms/Middle"]
+position = Vector2(-400, -940)
+curve = SubResource("Curve2D_hi60y")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Middle/Path2D" node_paths=PackedStringArray("platform")]
+rotates = false
+script = ExtResource("4_0btod")
+platform = NodePath("../WidePlatform01")
+pause_locations = Array[float]([])
+pause_durations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Middle/Path2D" instance=ExtResource("5_rli4x")]
+collision_layer = 5
+
+[node name="Sign2" type="Sprite2D" parent="Platforms/Middle/Path2D/WidePlatform01"]
 z_index = -2
-position = Vector2(-12, -197)
+position = Vector2(-8, -200)
 scale = Vector2(1, 1.03116)
 texture = ExtResource("9_mgfby")
 
-[node name="MovePlat5-Obstacle" parent="Platforms" instance=ExtResource("5_ganci")]
-position = Vector2(-250, -1500)
-path_pos = Array[Vector2]([Vector2(0, 0), Vector2(500, 0)])
-time_between_pos = 2.0
-pause_duration = 0.0
+[node name="Path2D2" type="Path2D" parent="Platforms/Middle"]
+position = Vector2(370, -1480)
+curve = SubResource("Curve2D_3aoct")
 
-[node name="Spikes_small2" parent="Platforms/MovePlat5-Obstacle" instance=ExtResource("7_q1xog")]
-position = Vector2(-160, 14)
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Middle/Path2D2" node_paths=PackedStringArray("platform")]
+rotates = false
+script = ExtResource("4_0btod")
+platform = NodePath("../WidePlatform01")
+pause_locations = Array[float]([])
+pause_durations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Middle/Path2D2" instance=ExtResource("5_rli4x")]
+collision_layer = 5
+
+[node name="Spikes_small2" parent="Platforms/Middle/Path2D2/WidePlatform01" instance=ExtResource("7_q1xog")]
+position = Vector2(-162, 10)
 rotation = 1.5708
 scale = Vector2(1.5, -1)
 
-[node name="Spikes_small3" parent="Platforms/MovePlat5-Obstacle" instance=ExtResource("7_q1xog")]
+[node name="Spikes_small3" parent="Platforms/Middle/Path2D2/WidePlatform01" instance=ExtResource("7_q1xog")]
 position = Vector2(159, 9)
 rotation = 1.5708
 scale = Vector2(1.5, 1)
 
-[node name="Spikes_large" parent="Platforms/MovePlat5-Obstacle" instance=ExtResource("6_in5s8")]
-position = Vector2(-4, 54)
+[node name="Spikes_large" parent="Platforms/Middle/Path2D2/WidePlatform01" instance=ExtResource("6_in5s8")]
+position = Vector2(-4, 63)
 scale = Vector2(0.82, -1)
 
-[node name="tomb_5" type="Sprite2D" parent="Platforms/MovePlat5-Obstacle"]
-position = Vector2(1, -106)
+[node name="tomb_5" type="Sprite2D" parent="Platforms/Middle/Path2D2/WidePlatform01"]
+z_index = -5
+position = Vector2(1, -104)
 texture = SubResource("AtlasTexture_dkg2q")
 
-[node name="MovePlat6-Obstacle" parent="Platforms" instance=ExtResource("5_ganci")]
-position = Vector2(-821, -2095)
-path_pos = Array[Vector2]([Vector2(0, 0), Vector2(-700, 0)])
-time_between_pos = 3.0
-pause_duration = 0.0
+[node name="Path2D3" type="Path2D" parent="Platforms/Middle"]
+position = Vector2(300, -2870)
+curve = SubResource("Curve2D_egogw")
 
-[node name="MovePlat7-Obstacle" parent="Platforms" instance=ExtResource("5_ganci")]
-position = Vector2(-1505, -1476)
-path_pos = Array[Vector2]([Vector2(0, 0), Vector2(700, 0)])
-time_between_pos = 3.0
-pause_duration = 0.0
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Middle/Path2D3" node_paths=PackedStringArray("platform")]
+rotates = false
+script = ExtResource("4_0btod")
+platform = NodePath("../WidePlatform01")
 
-[node name="MovePlat8-Obstacle" parent="Platforms" instance=ExtResource("5_ganci")]
-position = Vector2(-816, -856)
-path_pos = Array[Vector2]([Vector2(0, 0), Vector2(-700, 0)])
-time_between_pos = 3.0
-pause_duration = 0.0
+[node name="WidePlatform01" parent="Platforms/Middle/Path2D3" instance=ExtResource("5_rli4x")]
+collision_layer = 5
 
-[node name="MovingPlatformHorizontal2" parent="Platforms" instance=ExtResource("5_ganci")]
-position = Vector2(-711, 420)
-path_pos = Array[Vector2]([Vector2(0, 0), Vector2(-775, 0)])
-pause_duration = 0.0
+[node name="Path2D4" type="Path2D" parent="Platforms/Middle"]
+position = Vector2(600, -2870)
+curve = SubResource("Curve2D_vveun")
 
-[node name="MovingPlatformHorizontal" parent="Platforms" instance=ExtResource("5_ganci")]
-position = Vector2(725, 420)
-path_pos = Array[Vector2]([Vector2(0, 0), Vector2(775, 0)])
-pause_duration = 0.0
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Middle/Path2D4" node_paths=PackedStringArray("platform")]
+rotates = false
+script = ExtResource("4_0btod")
+platform = NodePath("../WidePlatform01")
+
+[node name="WidePlatform01" parent="Platforms/Middle/Path2D4" instance=ExtResource("5_rli4x")]
+collision_layer = 5
+
+[node name="Bottom" type="Node" parent="Platforms"]
+
+[node name="Path2D" type="Path2D" parent="Platforms/Bottom"]
+position = Vector2(-500, -200)
+curve = SubResource("Curve2D_jdmmc")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Bottom/Path2D" node_paths=PackedStringArray("platform")]
+rotates = false
+script = ExtResource("4_0btod")
+platform = NodePath("../WidePlatform01")
+
+[node name="WidePlatform01" parent="Platforms/Bottom/Path2D" instance=ExtResource("5_rli4x")]
+collision_layer = 5
+
+[node name="Path2D2" type="Path2D" parent="Platforms/Bottom"]
+position = Vector2(-500, -310)
+curve = SubResource("Curve2D_27ikw")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Bottom/Path2D2" node_paths=PackedStringArray("platform")]
+rotates = false
+script = ExtResource("4_0btod")
+platform = NodePath("../WidePlatform01")
+
+[node name="WidePlatform01" parent="Platforms/Bottom/Path2D2" instance=ExtResource("5_rli4x")]
+collision_layer = 5
+
+[node name="Path2D3" type="Path2D" parent="Platforms/Bottom"]
+position = Vector2(1500, -300)
+curve = SubResource("Curve2D_d6ngg")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Bottom/Path2D3" node_paths=PackedStringArray("platform")]
+rotates = false
+script = ExtResource("4_0btod")
+platform = NodePath("../WidePlatform01")
+
+[node name="WidePlatform01" parent="Platforms/Bottom/Path2D3" instance=ExtResource("5_rli4x")]
+collision_layer = 5
+
+[node name="Path2D4" type="Path2D" parent="Platforms/Bottom"]
+position = Vector2(-1820, -570)
+curve = SubResource("Curve2D_e3jg8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Bottom/Path2D4" node_paths=PackedStringArray("platform")]
+rotates = false
+script = ExtResource("4_0btod")
+platform = NodePath("../WidePlatform01")
+
+[node name="WidePlatform01" parent="Platforms/Bottom/Path2D4" instance=ExtResource("5_rli4x")]
+collision_layer = 5
+
+[node name="Path2D5" type="Path2D" parent="Platforms/Bottom"]
+position = Vector2(1820, -570)
+curve = SubResource("Curve2D_s80gr")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Bottom/Path2D5" node_paths=PackedStringArray("platform")]
+rotates = false
+script = ExtResource("4_0btod")
+platform = NodePath("../WidePlatform01")
+
+[node name="WidePlatform01" parent="Platforms/Bottom/Path2D5" instance=ExtResource("5_rli4x")]
+collision_layer = 5
+
+[node name="Path2D6" type="Path2D" parent="Platforms/Bottom"]
+position = Vector2(-710, 420)
+curve = SubResource("Curve2D_w1aau")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Bottom/Path2D6" node_paths=PackedStringArray("platform")]
+rotates = false
+script = ExtResource("4_0btod")
+platform = NodePath("../WidePlatform01")
+
+[node name="WidePlatform01" parent="Platforms/Bottom/Path2D6" instance=ExtResource("5_rli4x")]
+collision_layer = 5
+
+[node name="Path2D7" type="Path2D" parent="Platforms/Bottom"]
+position = Vector2(710, 420)
+curve = SubResource("Curve2D_0qp2l")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Bottom/Path2D7" node_paths=PackedStringArray("platform")]
+rotates = false
+script = ExtResource("4_0btod")
+platform = NodePath("../WidePlatform01")
+
+[node name="WidePlatform01" parent="Platforms/Bottom/Path2D7" instance=ExtResource("5_rli4x")]
+collision_layer = 5
 
 [node name="Spikes" type="Node" parent="."]
 

@@ -18,9 +18,6 @@ func Enter():
 	set_animation()
 	add_ghost()
 	$"../../SFX/Dash".play()
-#	if player.verbose && player.moving_platform != null:
-#		print("Player is LEAVING moving platform ",player.moving_platform)
-	player.moving_platform = null
 
 
 func set_animation():
@@ -42,13 +39,12 @@ func get_direction() -> Vector2:
 
 
 func Do_Checks():
-	if player.is_facing_wall:
+	if player.can_grab_wall():
 		Transitioned.emit(self,"WallGrab")
 	if time_in_current_state >= data.dash_time + data.dash_recovery_time:
 		complete_dash()
 	elif !recovering && time_in_current_state >= data.dash_time:
 		recovering = true
-	
 		
 		
 func Update(delta):
@@ -58,24 +54,25 @@ func Update(delta):
 			add_ghost()
 
 
-func Physics_Update(delta):
-	var motion : Vector2
+func Physics_Update(_delta):
 	if !recovering:
 		dash_speed = get_speed()
-		motion = dash_direction * dash_speed * delta
-	player.move_xy(motion)
+		player.velocity = dash_direction * dash_speed 
+	player.move_and_slide()
 
 
 func complete_dash():	
-	if player.is_grounded:
+	if player.is_grounded():
 		Transitioned.emit(self,"Idle")
 	else:
 		player.stop_motion()
-		$"../InAir".hang_time_active = true
+		%InAir.hang_time_active = true
 		Transitioned.emit(self,"InAir")
 		
 		
 func get_speed() -> float:
+	#WOULD A TWEEN BE BETTER HERE?
+	
 	if time_in_current_state < data.dash_time * 0.5:
 		dash_speed = 4 * lerp(0, int(data.dash_peak_speed), 0.5-(data.dash_time * 0.5 - time_in_current_state))
 	else:

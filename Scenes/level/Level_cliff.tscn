@@ -41,13 +41,14 @@ position = Vector2(86, -2978)
 position = Vector2(0, 323)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_offset = Vector2(8640, 4860)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(-148, 102)
 motion_scale = Vector2(0.1, 0.1)
 
 [node name="Mountains" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(-468, -525)
+position = Vector2(-1940, -1254)
 scale = Vector2(3, 2)
 texture = ExtResource("4_fhwel")
 centered = false

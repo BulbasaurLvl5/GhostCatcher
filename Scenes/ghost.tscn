@@ -26,8 +26,7 @@ autoplay = "idle"
 frame_progress = 0.671999
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, 5)
-scale = Vector2(0.496951, 0.496951)
+scale = Vector2(0.5, 0.5)
 texture = SubResource("AtlasTexture_mnq0f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

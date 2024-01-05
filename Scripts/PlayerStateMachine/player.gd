@@ -1,52 +1,43 @@
 class_name Player
-extends Actor
+extends CharacterBody2D
 
 
 #level-dependent parameters
 @export var facing_direction : int = 1
-@export var wall_grab_shape_cast : ShapeCast2D
+@export var cast : ShapeCast2D
+@export var grab_cast : ShapeCast2D
 
 #development settings
 @export var verbose : bool = false
-@export var player_data_resources : Array[PlayerDataResource]
 @export var data : PlayerDataResource 
 
-#player status
 var x_input : int = 0
 var y_input : int = 0
 var jump_input : bool = false
-var dash_input : bool = false
-var input_direction : Vector2 = Vector2.ZERO
-var is_grounded : bool
-var can_touch_wall : bool
-var is_facing_wall : bool
-var wall_is_behind : bool
-var last_touched_wall : bool = false
 var jump_button_reset : bool = true
+var dash_input : bool = false
 var dash_button_reset : bool = true
 var last_dash_time : float
-var prev_player_data_button_reset : bool = true
-var next_player_data_button_reset : bool = true
-var command_list_button_reset : bool = true
-var current_player_data_preset : int = 0
+#var input_direction : Vector2 = Vector2.ZERO
+var was_grounded : bool
+var could_grab_wall : bool
 var is_grabbing_wall : bool = false
 
 @onready var remaining_air_actions : int = data.max_air_actions
 
 
 func _ready():
-	if data == null:
-		data = player_data_resources[0]
-		current_player_data_preset = 0
-	print("PlayerData set to: ",data.player_data_name_or_description)
-	print("Press '0' (zero) to see a list of available commands.")
+	if !cast && %ShapeCast2D:
+		cast = %ShapeCast2D
+	if !grab_cast && %GrabShapeCast2D:
+		grab_cast = %GrabShapeCast2D
 
 
 func _process(_delta):
 	check_input()
 	check_environment()
 
-	
+
 func check_input():
 	x_input = 0
 	y_input = 0
@@ -59,169 +50,83 @@ func check_input():
 	if Input.is_action_pressed("Down1") || Input.is_action_pressed("Down2"):
 		y_input += 1
 		
-	jump_input = false
-	dash_input = false
 	if Input.is_action_pressed("Jump1") || Input.is_action_pressed("Jump2"):
 		jump_input = true
+	else:
+		jump_input = false
+		if !jump_button_reset:
+			jump_button_reset = true
 	if Input.is_action_pressed("Dash1") || Input.is_action_pressed("Dash2"):
 		dash_input = true	
-	if !jump_button_reset && !jump_input:
-		jump_button_reset = true
-	if !dash_button_reset && !dash_input:
-		dash_button_reset = true
-		
-	if !command_list_button_reset && !Input.is_action_pressed("CommandList"):
-		command_list_button_reset = true
-	if !prev_player_data_button_reset && !Input.is_action_pressed("PrevPlayerDataPreset"):
-		prev_player_data_button_reset = true
-	if !next_player_data_button_reset && !Input.is_action_pressed("NextPlayerDataPreset"):
-		next_player_data_button_reset = true
-	if command_list_button_reset && Input.is_action_pressed("CommandList"):
-		show_command_list()
-	if prev_player_data_button_reset && Input.is_action_pressed("PrevPlayerDataPreset"):
-		prev_player_data_preset()
-	if next_player_data_button_reset && Input.is_action_pressed("NextPlayerDataPreset"):
-		next_player_data_preset()
-	
+	else:
+		dash_input = false
+		if !dash_button_reset:
+			dash_button_reset = true
 
+	if Input.is_action_pressed("Zoom1") || Input.is_action_pressed("Zoom2"):
+		%Camera2D.camera_zoom(true)
+	else:
+		%Camera2D.camera_zoom(false)
+
+	
 func check_environment():
-	var collisions : Array = []
-	if moving_platform == null:	
-		collisions = get_collisions(Vector2.DOWN)
-	else:
-		collisions = get_collisions(Vector2(0, 10))
-		
-	if collisions:
-		is_grounded = true
-		moving_platform = check_platform(collisions)
-#		print("ON MOVING PLATFORM")
-	else:
-		is_grounded = false
-
-	if get_collisions(Vector2((facing_direction * 2), 0)):
-		is_facing_wall = true
-		if is_grabbing_wall:
-			moving_platform = check_platform(collisions)
-	else:
-		is_facing_wall = false
+	was_grounded = is_grounded()
+	could_grab_wall = can_grab_wall()
 	
-#	if verbose:
-#		print("Can touch wall is ",can_touch_wall," and WG shapecast is @ ",wall_grab_shape_cast.position)
-	if wall_grab_shape_cast.is_colliding():
-#		if verbose && !can_touch_wall:
-#			print("CAN TOUCH WALL BECAUSE WG shape cast is colliding:")
-#		var count = wall_grab_shape_cast.get_collision_count()
-#		while count > 0:
-#			print("wall grab shape cast detects:        ",wall_grab_shape_cast.get_collider(count - 1))
-#			count -= 1
-		can_touch_wall = true
-	else:
-#		if verbose:
-#			print("can't touch wall")
-		can_touch_wall = false
-	
-	if is_grounded:
+func is_grounded() -> bool:
+	if get_collisions(Vector2.DOWN * 2):
 		remaining_air_actions = data.max_air_actions
-		last_touched_wall = false
-
-
-func check_platform(collisions) -> MovingObject:
-	for c in collisions:
-		if c is MovingObject:
-			return c
-	return null
-
-
-func approach_moving_object(object : MovingObject, check_area : Vector2):
-	if moving_platform == object:
-		return
-#	if verbose:
-#		print("APPROACHING MOVING OBJECT")
-
-	if check_area.y > 0:
-#		if verbose && moving_platform != object:
-#			print("Player found MOVING OBJECT ",object)
-		moving_platform = object
-		var step = sign(check_area.y)
-		var count = check_area.y
-		while count > 0:
-			if get_collisions(Vector2(0, step * count)) == null:
-				position.y += (step * count) 
-				%PlayerState.Transitioned.emit(self,"Land")
-				return
-			count -= 1
-	elif check_area.y < 0:
-		%PlayerState.Transitioned.emit(self,"InAir")
+		return true
 	else:
-		moving_platform = object
-		var step = sign(check_area.x)
-		var count = abs(check_area.x)
-		while count > 0:
-			wall_grab_shape_cast.position.x += step
-			wall_grab_shape_cast.force_shapecast_update()
-			if wall_grab_shape_cast.is_colliding() == null:
-				wall_grab_shape_cast.position.x = 50
-				position.x += step * count
-#				if verbose:
-#					print("grabbing wall from PLAYER")
-				%PlayerState.Transitioned.emit(self,"WallGrab")
-				return
-			count -= 1
-		wall_grab_shape_cast.position.x = 50
+		return false
 
+func can_grab_wall() -> bool:
+	if get_collisions(Vector2(facing_direction * 10, 0), grab_cast) && x_input == facing_direction:
+		return true
+	else:
+#		if !get_collisions(Vector2(facing_direction, 0), grab_cast) && x_input == facing_direction:
+#			print("cannot wall grab because no wall detected")
+		return false
 
 func can_jump() -> bool:
-	if !jump_button_reset:
+	if !jump_input || !jump_button_reset:
 		return false
-	if is_grounded || remaining_air_actions > 0 || !$CoyoteTime.is_stopped():
+	if !$CoyoteTime.is_stopped() || remaining_air_actions > 0 || is_grounded():
 		return true
 	else:
 		return false
-
 
 func can_dash() -> bool:
-	if !dash_button_reset:
+	if !dash_input || !dash_button_reset:
 		return false
-	if is_grounded || remaining_air_actions > 0 || !$CoyoteTime.is_stopped():
+	if !$CoyoteTime.is_stopped() || remaining_air_actions > 0:
+		return true
+	if is_grounded() && last_dash_time + data.ground_dash_cooldown < Time.get_unix_time_from_system():
 		return true
 	else:
 		return false
-
 
 func air_action():
 	if $CoyoteTime.is_stopped():
 		remaining_air_actions -= 1
 
-
-func show_command_list():
-	command_list_button_reset = false
-	print("")
-	print("AWSD/arrows  Move")
-	print("      space  Jump")
-	print("      enter  Dash")
-#	print("      shift  Grab Wall")
-#	print("      shift  Move Slower")
-	print("")
-	print("          0  Show Command List")
-	print("          9  Revive/Die")
-	print("          -  Toggle Player Verbosity")
-	print("    page up  Prev PlayerData Preset")
-	print("  page down  Next PlayerData Preset")
+func stop_motion():
+	velocity = Vector2.ZERO
+	move_and_slide()
 
 
-func prev_player_data_preset():
-	current_player_data_preset -= 1
-	if current_player_data_preset < 0:
-		current_player_data_preset = player_data_resources.size()-1
-	data = player_data_resources[current_player_data_preset]
-	print("New player_data_resource: ",current_player_data_preset," - ",data.player_data_name_or_description)
-	prev_player_data_button_reset = false
-
-
-func next_player_data_preset():
-	current_player_data_preset += 1
-	if current_player_data_preset > player_data_resources.size()-1:
-		current_player_data_preset = 0
-	data = player_data_resources[current_player_data_preset]
-	print("New player_data_resource: ",current_player_data_preset," - ",data.player_data_name_or_description)
-	next_player_data_button_reset = false
+func get_collisions(offset : Vector2 = Vector2.ZERO, shape_cast : ShapeCast2D = cast) -> Array:
+	var array : Array = []
+	shape_cast.position += offset
+	shape_cast.force_shapecast_update()
+	if shape_cast.is_colliding():
+		var total = shape_cast.get_collision_count()
+		var count = 0
+		while count < total:
+			array.append(shape_cast.get_collider(count))
+			count += 1
+	if shape_cast == cast:
+		cast.position = Vector2.ZERO
+	else:
+		shape_cast.position -= offset
+	return array

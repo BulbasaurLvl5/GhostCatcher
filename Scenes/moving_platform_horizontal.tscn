@@ -4,17 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://bf7v0jvhoklvw" path="res://Sprites/Environment/MovingPlatforms/MovingPlatform_H_01.png" id="2_blfrr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l57e3"]
-size = Vector2(285, 95)
+size = Vector2(284, 94)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yadhs"]
-size = Vector2(285, 95)
+size = Vector2(282, 92)
 
-[node name="MovingPlatformHorizontal" type="Area2D" node_paths=PackedStringArray("shape_cast")]
+[node name="MovingPlatformHorizontal" type="AnimatableBody2D"]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_whp25")
 path_pos = Array[Vector2]([Vector2(0, 0), Vector2(0, 0)])
-shape_cast = NodePath("ShapeCast2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_l57e3")
