@@ -86,7 +86,7 @@ public partial class Main : Node
 
 	public void ClearScenes()
 	{
-		if(World.TryGetAllChildren(out List<Ghost> ghosts))
+		if(World.TryGetNestedChildren(out List<Ghost> ghosts))
 		{
 			foreach (var _g in ghosts)
 			{
@@ -114,7 +114,7 @@ public partial class Main : Node
 		getReadyTime.Start(2);
 		_levelTime.Start(-2);
 
-		if(World.TryGetAllChildren(out List<Ghost> ghosts))
+		if(World.TryGetNestedChildren(out List<Ghost> ghosts))
 		{
 			foreach (var _g in ghosts)
 			{

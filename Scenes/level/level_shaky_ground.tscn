@@ -1,0 +1,269 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2xhyj1jgx5fr"]
+
+[ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_arfy4"]
+[ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="2_vn8ee"]
+[ext_resource type="Script" path="res://Scripts/ghost_movement.gd" id="3_d304m"]
+[ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="3_otjgh"]
+[ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://Scenes/MovingPlatforms/wide_platform_01.tscn" id="3_y03pk"]
+[ext_resource type="PackedScene" uid="uid://bb51nanisbo4s" path="res://Scenes/clyde_the_ghost.tscn" id="5_nkcng"]
+[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://Sprites/CoalDrawn/CoalMountainsFiltered.png" id="7_fkw55"]
+
+[sub_resource type="Curve2D" id="Curve2D_6tq0f"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 500, -150, 0, 0, 0, 0, 500, 150, 0, 0, 0, 0, 0, -150, 0)
+}
+point_count = 3
+
+[node name="TileMap" type="TileMap"]
+self_modulate = Color(0.870588, 1, 0.87451, 1)
+show_behind_parent = true
+tile_set = ExtResource("1_arfy4")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65503, 196611, 3, -65501, 3, 3, -4, 196611, 3, -6, 131075, 3, -7, 65539, 3, -8, 65539, 3, -9, 3, 3, -65499, 65539, 3, -65500, 65539, 3, -65498, 131075, 3)
+
+[node name="EndlessPit" parent="." instance=ExtResource("2_vn8ee")]
+position = Vector2(-4599, 566)
+
+[node name="Ghosts" type="Node" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Ghosts"]
+position = Vector2(0, -1200)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+
+[node name="Ghost" parent="Ghosts/Path2D/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D2" type="Path2D" parent="Ghosts"]
+position = Vector2(800, -1200)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D2"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = -0.12
+
+[node name="Ghost" parent="Ghosts/Path2D2/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D3" type="Path2D" parent="Ghosts"]
+position = Vector2(1600, -1200)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D3"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = 0.08
+
+[node name="Ghost" parent="Ghosts/Path2D3/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D4" type="Path2D" parent="Ghosts"]
+position = Vector2(2400, -1200)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D4"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = -0.11
+
+[node name="Ghost" parent="Ghosts/Path2D4/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D5" type="Path2D" parent="Ghosts"]
+position = Vector2(3200, -1200)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D5"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = 0.13
+
+[node name="Ghost" parent="Ghosts/Path2D5/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D6" type="Path2D" parent="Ghosts"]
+position = Vector2(400, -1100)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D6"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = -0.09
+
+[node name="Ghost" parent="Ghosts/Path2D6/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D7" type="Path2D" parent="Ghosts"]
+position = Vector2(1200, -1100)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D7"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = 0.125
+
+[node name="Ghost" parent="Ghosts/Path2D7/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D8" type="Path2D" parent="Ghosts"]
+position = Vector2(2000, -1100)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D8"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = -0.1
+
+[node name="Ghost" parent="Ghosts/Path2D8/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D9" type="Path2D" parent="Ghosts"]
+position = Vector2(2800, -1100)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D9"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = 0.075
+
+[node name="Ghost" parent="Ghosts/Path2D9/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="ClydeTheGhost" parent="Ghosts" instance=ExtResource("5_nkcng")]
+top_level = true
+z_index = 200
+position = Vector2(25, -274)
+scale = Vector2(3, 3)
+idle_speed = 100.0
+time_between_turns = 10.0
+detection_range = Vector2(3000, 1000)
+needs_line_of_sight = false
+
+[node name="ClydeTheGhost2" parent="Ghosts" instance=ExtResource("5_nkcng")]
+top_level = true
+z_index = 50
+position = Vector2(2887, -1388)
+scale = Vector2(3, 3)
+
+[node name="FalliingPlatforms" type="Node" parent="."]
+
+[node name="WidePlatform01" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+sink_distance = 2000.0
+sink_delay = 1.0
+delay_wobble = 10.0
+sink_speed = 1000.0
+
+[node name="WidePlatform02" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(300, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+delay_wobble = 10.0
+sink_speed = 1000.0
+
+[node name="WidePlatform03" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(600, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+delay_wobble = 10.0
+sink_speed = 1000.0
+
+[node name="WidePlatform04" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(900, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+delay_wobble = 10.0
+sink_speed = 1000.0
+
+[node name="WidePlatform05" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(1200, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+delay_wobble = 10.0
+sink_speed = 1000.0
+
+[node name="WidePlatform06" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(1500, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+delay_wobble = 10.0
+sink_speed = 1000.0
+
+[node name="WidePlatform07" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(1800, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+delay_wobble = 10.0
+sink_speed = 1000.0
+
+[node name="WidePlatform08" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(2100, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+delay_wobble = 10.0
+sink_speed = 1000.0
+
+[node name="WidePlatform09" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(2400, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+delay_wobble = 10.0
+sink_speed = 1000.0
+
+[node name="WidePlatform10" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(2700, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+delay_wobble = 10.0
+sink_speed = 1000.0
+
+[node name="WidePlatform11" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(3000, 0)
+sink_distance = 1000.0
+sink_delay = 1.0
+delay_wobble = 10.0
+sink_speed = 1000.0
+
+[node name="WidePlatform12" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(3300, 0)
+sink_distance = 1000.0
+sink_delay = 1.0
+delay_wobble = 10.0
+sink_speed = 1000.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_offset = Vector2(8640, 4860)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-148, 102)
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Mountains" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-1858, -2067)
+scale = Vector2(6, 4)
+texture = ExtResource("7_fkw55")
+centered = false

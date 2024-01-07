@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://du04dff2n46ag"]
 
-[ext_resource type="Script" path="res://Scenes/remap_button.gd" id="1_h4lbb"]
+[ext_resource type="Script" path="res://Scripts/remap_button.gd" id="1_h4lbb"]
 
 [node name="RemapButton" type="Button"]
 anchors_preset = 15

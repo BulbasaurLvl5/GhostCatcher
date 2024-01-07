@@ -47,6 +47,7 @@ public partial class MenuOptions : Node
 {
 	GridContainer _videoOptions;
 	GridContainer _audioOptions;
+	GridContainer _controlOptions;
 	OptionButton _vsyncButton;
 	OptionButton _windowModeButton;
 
@@ -54,18 +55,18 @@ public partial class MenuOptions : Node
 
 	public override void _Ready()
 	{
-		if(this.TryGetAllChildren(out List<GridContainer> _gridcontainer))
+		if(this.TryGetChildren(out List<GridContainer> _gridcontainer))
 		{
-			_videoOptions = _gridcontainer[1];
-			_audioOptions = _gridcontainer[0];
+			_videoOptions = _gridcontainer[0];
+			_audioOptions = _gridcontainer[1];
+			_controlOptions = _gridcontainer[2];
 		}
 
-		if(this.TryGetAllChildren(out List<OptionButton> _optionButton))
+		if(_videoOptions.TryGetChildren(out List<OptionButton> _optionButton)) //should be part of videooptions script but who cares
 		{
-			//i dont know why. ordner ingame is different
-			_vsyncButton = _optionButton[2];
+			_vsyncButton = _optionButton[0];
 			_windowModeButton = _optionButton[1];
-			_windowSizeButton = _optionButton[0];
+			_windowSizeButton = _optionButton[2];
 		}
 
 		if(this.TryGetChildren(out List<Button> _buttons) && this.TryGetNodeInTree(out Main _main))
@@ -84,18 +85,21 @@ public partial class MenuOptions : Node
 			_buttons[1].FocusEntered += () => {
 				_videoOptions.Show();
 				_audioOptions.Hide();
+				_controlOptions.Hide();
 			};
 
 			//Audio
 			_buttons[2].FocusEntered += () => {
 				_videoOptions.Hide();
 				_audioOptions.Show();
+				_controlOptions.Hide();
 			};
 
 			//Controls
 			_buttons[3].FocusEntered += () => {
 				_videoOptions.Hide();
 				_audioOptions.Hide();
+				_controlOptions.Show();
 			};
 
 			foreach (var _ in VideoSettings.VsyncOptions)

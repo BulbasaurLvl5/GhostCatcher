@@ -3,28 +3,23 @@ extends PlayerState
 
 var heavy_landing : bool = false
 
-
 func Enter():
 	if heavy_landing:
+		%Camera2D.apply_shake()
 		anim.play("land")
+		$"../../SFX/Land3".play()
 	else:
 		anim.play("land")
-
+		$"../../SFX/Land2".play()
 
 func Do_Checks():
-	if !heavy_landing:
-		if player.jump_input && player.can_jump:
+	if !heavy_landing || time_in_current_state > 1.0:
+		if player.can_jump():
 			Transitioned.emit(self,"Jump")
-		elif player.dash_input && player.dash_button_reset&& player.last_dash_time + data.ground_dash_cooldown < Time.get_unix_time_from_system():
+		elif player.can_dash():
 			Transitioned.emit(self,"Dash")
 		elif abs(player.x_input) == 1:
 			Transitioned.emit(self,"Run")
-			
-	if time_in_current_state > 1.0:
-		if player.jump_input && player.can_jump:
-			Transitioned.emit(self,"Jump")
-		elif abs(player.x_input) == 1:
-			Transitioned.emit(self,"Run")
-		else:
+		elif time_in_current_state > 1.0:
 			Transitioned.emit(self,"Idle")
 	

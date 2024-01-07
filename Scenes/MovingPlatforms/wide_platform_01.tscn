@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddyxra2k5n5yj"]
+
+[ext_resource type="Script" path="res://Scenes/MovingPlatforms/platform.gd" id="1_5njel"]
+[ext_resource type="Texture2D" uid="uid://bf7v0jvhoklvw" path="res://Sprites/Environment/MovingPlatforms/MovingPlatform_H_01.png" id="1_yiudd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_151hl"]
+size = Vector2(284, 94)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrq05"]
+size = Vector2(292, 98)
+
+[node name="WidePlatform01" type="AnimatableBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_5njel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_151hl")
+
+[node name="PlayerDetector" type="ShapeCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_xrq05")
+target_position = Vector2(0, 0)
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.988235, 0.835294, 0.619608, 1)
+texture = ExtResource("1_yiudd")

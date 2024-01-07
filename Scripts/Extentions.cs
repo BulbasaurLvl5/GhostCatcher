@@ -78,7 +78,7 @@ namespace MyGodotExtentions
 				return false;
 		}
 
-		public static bool TryGetAllChildren<T>(this Node _this, out List<T> nodes) where T : Node
+		public static bool TryGetNestedChildren<T>(this Node _this, out List<T> nodes) where T : Node
 		{
 			var _children = _this.GetChildren().ToList();
 			HashSet<Node> _allChildren = new HashSet<Node>();
@@ -112,7 +112,7 @@ namespace MyGodotExtentions
 
 		public static bool TryGetNodeInTree<T>(this Node _this, out T node) where T : Node
 		{
-			if(_this.GetTree().Root.TryGetAllChildren(out List<T> _t))
+			if(_this.GetTree().Root.TryGetNestedChildren(out List<T> _t))
 			{
 				node = _t[0];
 				return true;
@@ -382,4 +382,5 @@ namespace MyGodotExtentions
 			}
 		}
 	}
+	
 }

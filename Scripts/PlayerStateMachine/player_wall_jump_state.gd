@@ -11,9 +11,12 @@ func Enter():
 	anim.play("jump")
 	hold_time_remaining = data.jump_max_hold_time
 	player.facing_direction *= -1
-	$"../../PlayerAnimatedSprite2D".scale.x *= -1
+	anim.scale.x *= -1
 	wall_jump_direction = player.facing_direction
 	player.jump_button_reset = false
+#	if player.verbose && player.moving_platform != null:
+#		print("Player is LEAVING moving platform ",player.moving_platform)
+#	player.moving_platform = null
 	
 	
 func _animation_finished():
@@ -21,24 +24,24 @@ func _animation_finished():
 
 
 func Do_Checks():
-	if player.momentum.y >= 0:
-		$"../InAir".hang_time_active = true
+	if player.velocity.y > 0:
+		%InAir.hang_time_active = true
 		Transitioned.emit(self,"InAir")
-	elif data.wall_grab_allowed_while_ascending && player.can_touch_wall && player.x_input == player.facing_direction && time_in_current_state > 0.05:
+	elif data.wall_grab_allowed_while_ascending && player.can_grab_wall() && time_in_current_state > 0.05:
 		player.stop_motion()
 		Transitioned.emit(self,"WallGrab")
 
 
 func Physics_Update(delta):
-	var motion = Vector2.ZERO
 	if player.jump_input && hold_time_remaining > 0:
-		motion.y = data.jump_force * delta
+		player.velocity.y = data.jump_force
 		hold_time_remaining -= delta
 	else:
 		hold_time_remaining = 0
-		motion.y = move_toward(player.momentum.y, data.max_fall_speed, data.gravity * delta)
-	var direction : int = wall_jump_direction * 2
+		player.velocity.y += data.gravity * delta
+
+	var direction : int = wall_jump_direction * int(data.wall_jump_horizontal_force_multiplier)
 	if time_in_current_state > data.wall_jump_force_duration:
 		direction = player.facing_direction
-	motion.x = direction * data.in_air_horizontal_speed * delta
-	player.move_xy(motion)
+	player.velocity.x = direction * data.in_air_horizontal_speed
+	player.move_and_slide()

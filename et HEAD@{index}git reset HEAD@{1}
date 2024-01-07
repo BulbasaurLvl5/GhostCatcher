@@ -1,0 +1,53 @@
+[33m8dfae6b[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: commit: a commit to make sure we are on the same version
+[33m1048937[m HEAD@{1}: pull: Fast-forward
+[33mad0009e[m HEAD@{2}: commit: small adjustment to video menu: defaults, less options
+[33m8f85b59[m HEAD@{3}: pull: Fast-forward
+[33m532ef4c[m HEAD@{4}: pull: Fast-forward
+[33m8665cec[m HEAD@{5}: commit: finished work and the video settings. all intended settings are present now. they are saved and loaded when game starts. logic is mainly in a new class in Extentions.cs
+[33m1d84046[m HEAD@{6}: commit: further work on the menu. started to add functionality to video settings. BEWARE restructured some folders
+[33mbf9cefb[m HEAD@{7}: commit: added GDSCommunicator
+[33mec63d4b[m HEAD@{8}: pull: Fast-forward
+[33m3aa134b[m HEAD@{9}: commit: working with styleboxtextures
+[33m60136ed[m HEAD@{10}: commit: more work on menus and start of working on the options
+[33md4a98b4[m HEAD@{11}: commit: a test function in FileIO
+[33m4cddacb[m HEAD@{12}: commit: small bug fix regarding ghost counting
+[33m5b19ea6[m HEAD@{13}: pull: Fast-forward
+[33m23066ec[m HEAD@{14}: commit: added menus: main menu and retry menu. Menus can be navigated via wasd
+[33mc2a0377[m HEAD@{15}: commit: two more levels: Vertical and RageQuit
+[33m55ad9eb[m HEAD@{16}: commit: two more levels
+[33m66a4875[m HEAD@{17}: commit: another level
+[33ma608beb[m HEAD@{18}: commit: spikes and scrollbar
+[33mbfec586[m HEAD@{19}: commit: menu v0.2
+[33m6b1c8de[m HEAD@{20}: pull: Fast-forward
+[33m13be37f[m HEAD@{21}: pull: Fast-forward
+[33ma9a0b00[m HEAD@{22}: commit: adjusted stefans playerdataresource to my liking and set it default. Created new level: cliff. fixed fileIO bug when new level is added. added buttons for changing playerdataresource
+[33m29eed27[m HEAD@{23}: reset: moving to HEAD
+[33m29eed27[m HEAD@{24}: commit: added new playerdata resource
+[33m1280023[m HEAD@{25}: commit: another level: tunnels
+[33mc731c8b[m HEAD@{26}: commit: changed main to catch ghosts by itself (ghosts can now be added manually to level). added new level
+[33m888c16d[m HEAD@{27}: pull: Fast-forward
+[33m03d4862[m HEAD@{28}: commit: minor changes to scenes
+[33m0922023[m HEAD@{29}: commit: new sprites
+[33m83bbdd7[m HEAD@{30}: commit: added level failure
+[33m7d65e64[m HEAD@{31}: commit: added UI for remaining ghosts
+[33md53ea3c[m HEAD@{32}: commit: added test level as level_2
+[33m8456e1a[m HEAD@{33}: commit: added support to load and save multiple levels + small bug fixes
+[33m3a0c8e9[m HEAD@{34}: commit: small bug fixes and code clean up
+[33m6038daf[m HEAD@{35}: commit: started work on the level selection menu
+[33mbc8fbc6[m HEAD@{36}: pull: Fast-forward
+[33m3c1a922[m HEAD@{37}: commit: major refactor of main.cs. moved a lot of logic to other scripts. most important introduction of static levelloader class
+[33me51a241[m HEAD@{38}: pull: Fast-forward
+[33m7eb50ba[m HEAD@{39}: commit: set up start and end of mission
+[33me0b102e[m HEAD@{40}: commit: added ghosts to level. main keeps count of them
+[33md075d13[m HEAD@{41}: reset: moving to HEAD
+[33md075d13[m HEAD@{42}: pull: Merge made by the 'ort' strategy.
+[33m3e5f5e7[m HEAD@{43}: commit: started work on the level generation and save system
+[33m74a7cdf[m HEAD@{44}: commit: created in-mission timer
+[33m7e973b8[m HEAD@{45}: commit: created in-mission timer
+[33m51a1893[m HEAD@{46}: pull: Fast-forward
+[33mce07125[m HEAD@{47}: reset: moving to HEAD
+[33mce07125[m HEAD@{48}: pull: Fast-forward
+[33mfb22485[m HEAD@{49}: reset: moving to HEAD
+[33mfb22485[m HEAD@{50}: pull: Fast-forward
+[33mb92f274[m HEAD@{51}: commit: added some support scripts
+[33m4281b76[m HEAD@{52}: clone: from https://github.com/BulbasaurLvl5/GhostCatcher

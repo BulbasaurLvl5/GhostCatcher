@@ -1,14 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://dhow5esn6x7rt"]
+[gd_scene load_steps=31 format=3 uid="uid://dhow5esn6x7rt"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_state_machine.gd" id="1_dcopr"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player.gd" id="1_l4530"]
 [ext_resource type="Resource" uid="uid://dvbrelm3gvn8b" path="res://Scripts/PlayerData/default.tres" id="2_h06d8"]
-[ext_resource type="Resource" uid="uid://cebdbv30m0kof" path="res://Scripts/PlayerData/unlimited_air_actions.tres" id="2_se3de"]
-[ext_resource type="Resource" uid="uid://cmx84lrwxedgg" path="res://Scripts/PlayerData/speed_demon.tres" id="4_gemo6"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_idle_state.gd" id="4_tan8y"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_state.gd" id="5_8dkiu"]
-[ext_resource type="Resource" uid="uid://ch2eu77qsa8qo" path="res://Scripts/PlayerData/no_fall_damage.tres" id="5_yerfu"]
-[ext_resource type="Resource" uid="uid://w41b5sixixwk" path="res://Scripts/PlayerData/stefans_playerdataresource.tres" id="6_844al"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_run_state.gd" id="7_71xul"]
 [ext_resource type="SpriteFrames" uid="uid://byt3hw2l4n5l5" path="res://Animations/oriette.tres" id="7_o6e6r"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_jump_state.gd" id="7_ofds0"]
@@ -19,102 +15,133 @@
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_wall_grab_state.gd" id="13_ckika"]
 [ext_resource type="PackedScene" uid="uid://deim0qaglwinp" path="res://Scenes/dash_ghost.tscn" id="14_q528f"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_wall_jump_state.gd" id="14_umcf1"]
-[ext_resource type="Texture2D" uid="uid://d0b27a1l8rfxv" path="res://Sprites/CoalDrawn/CoalBackground.jpg" id="20_jivvr"]
+[ext_resource type="Script" path="res://Scripts/camera.gd" id="16_1amk7"]
 [ext_resource type="Texture2D" uid="uid://b5xlp7x6bh8wb" path="res://Sprites/CoalDrawn/CoalSky.png" id="22_fq0q7"]
-[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://Sprites/CoalDrawn/CoalMountainsFiltered.png" id="22_g4lco"]
 [ext_resource type="Script" path="res://Scripts/ParallaxClouds.gd" id="23_52qlr"]
+[ext_resource type="AudioStream" uid="uid://cwsp84bs3pl3t" path="res://SFX/dash.wav" id="23_88l4k"]
 [ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://Sprites/CoalDrawn/CoalSkyFilter.png" id="23_bi7di"]
+[ext_resource type="AudioStream" uid="uid://uq5et6s242vd" path="res://SFX/footsteps_run.wav" id="23_w5fng"]
+[ext_resource type="AudioStream" uid="uid://ds6q1gtu3k5od" path="res://SFX/land1.wav" id="25_30yjq"]
+[ext_resource type="AudioStream" uid="uid://dnpsnujvbysq3" path="res://SFX/wall_grab.wav" id="25_w1gwg"]
+[ext_resource type="AudioStream" uid="uid://dnv0cfvaki7r1" path="res://SFX/land2.wav" id="26_0mo7c"]
+[ext_resource type="AudioStream" uid="uid://dd5e54lddsty0" path="res://SFX/land3.wav" id="28_nnnah"]
+[ext_resource type="AudioStream" uid="uid://cyhu3bovbds5j" path="res://SFX/jump1.wav" id="29_encxm"]
+[ext_resource type="AudioStream" uid="uid://k64hklsvjtl" path="res://SFX/jump2.wav" id="30_jjlcu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnagu"]
-size = Vector2(24, 108.5)
+size = Vector2(24, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_07f6o"]
-size = Vector2(20, 110)
+size = Vector2(22, 108)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3oskv"]
-size = Vector2(5, 50)
+size = Vector2(22, 16)
 
-[node name="Player" type="Area2D" node_paths=PackedStringArray("wall_grab_shape_cast", "shape_cast")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cast", "grab_cast")]
 z_index = 1
+collision_layer = 2
+collision_mask = 5
+floor_stop_on_slope = false
+floor_block_on_wall = false
+platform_on_leave = 1
+platform_floor_layers = 5
+platform_wall_layers = 5
 script = ExtResource("1_l4530")
-wall_grab_shape_cast = NodePath("PlayerAnimatedSprite2D/WallGrabShapeCast2D")
-player_data_resources = Array[Resource("res://Scripts/PlayerData/player_data_resource.gd")]([ExtResource("2_h06d8"), ExtResource("2_se3de"), ExtResource("4_gemo6"), ExtResource("5_yerfu"), ExtResource("6_844al")])
-data = ExtResource("6_844al")
-shape_cast = NodePath("ShapeCast2D")
+cast = NodePath("ShapeCast2D")
+grab_cast = NodePath("GrabShapeCast2D")
+data = ExtResource("2_h06d8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nnagu")
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_07f6o")
 target_position = Vector2(0, 0)
 collision_mask = 5
 collide_with_areas = true
 
-[node name="PlayerAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="GrabShapeCast2D" type="ShapeCast2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, -17)
-scale = Vector2(0.3, 0.3)
-sprite_frames = ExtResource("7_o6e6r")
-animation = &"idle"
-offset = Vector2(-40, 0)
-
-[node name="WallGrabShapeCast2D" type="ShapeCast2D" parent="PlayerAnimatedSprite2D"]
-position = Vector2(46.6667, 106.667)
 shape = SubResource("RectangleShape2D_3oskv")
 target_position = Vector2(0, 0)
 collision_mask = 5
+collide_with_areas = true
+
+[node name="PlayerAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.3, 0.3)
+sprite_frames = ExtResource("7_o6e6r")
+animation = &"idle"
+offset = Vector2(-40, -50)
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
 script = ExtResource("1_dcopr")
 initial_state = NodePath("InAir")
 
 [node name="PlayerState" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("5_8dkiu")
 
 [node name="Idle" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("4_tan8y")
 
 [node name="Run" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("7_71xul")
 
 [node name="Jump" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("7_ofds0")
 
 [node name="InAir" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("8_uctrm")
 
 [node name="Land" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("9_ok23f")
 
 [node name="Die" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("10_1mtkc")
 
 [node name="Dash" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("12_5jbsb")
 dash_ghost_node = ExtResource("14_q528f")
 
 [node name="WallGrab" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("13_ckika")
 visual_offset = -20.0
 
 [node name="WallJump" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
 script = ExtResource("14_umcf1")
 
 [node name="CoyoteTime" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.05
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Background" type="Sprite2D" parent="Camera2D"]
-visible = false
-z_index = -5
-texture_repeat = 2
-position = Vector2(-3, -102)
-scale = Vector2(2, 2)
-texture = ExtResource("20_jivvr")
+unique_name_in_owner = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.3
+drag_top_margin = 0.3
+drag_right_margin = 0.3
+drag_bottom_margin = 0.3
+script = ExtResource("16_1amk7")
+zoom_in_duration = 1.25
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
+scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
 motion_scale = Vector2(0.05, 0.05)
@@ -150,12 +177,42 @@ scale = Vector2(2, 2)
 texture = ExtResource("23_bi7di")
 centered = false
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
-position = Vector2(-148, 102)
-motion_scale = Vector2(0.1, 0.1)
+[node name="SFX" type="Node" parent="."]
+unique_name_in_owner = true
 
-[node name="Mountains" type="Sprite2D" parent="Camera2D/ParallaxBackground/ParallaxLayer"]
-position = Vector2(-468, -525)
-scale = Vector2(2.5, 2)
-texture = ExtResource("22_g4lco")
-centered = false
+[node name="AudioListener2D" type="AudioListener2D" parent="SFX"]
+current = true
+
+[node name="Run" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("23_w5fng")
+volume_db = -0.223
+pitch_scale = 1.23
+area_mask = 2
+
+[node name="Dash" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("23_88l4k")
+area_mask = 2
+
+[node name="WallGrab" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("25_w1gwg")
+area_mask = 2
+
+[node name="Land1" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("25_30yjq")
+area_mask = 2
+
+[node name="Land2" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("26_0mo7c")
+area_mask = 2
+
+[node name="Land3" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("28_nnnah")
+area_mask = 2
+
+[node name="Jump1" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("29_encxm")
+area_mask = 2
+
+[node name="Jump2" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("30_jjlcu")
+area_mask = 2

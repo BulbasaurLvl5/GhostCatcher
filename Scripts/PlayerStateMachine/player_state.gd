@@ -3,18 +3,19 @@ extends Node
 
 signal Transitioned
 
-@export var player : Player
-@export var anim : AnimatedSprite2D
+var player : Player
+var anim : AnimatedSprite2D
+var sfx : Node
 
 @onready var data : PlayerDataResource
 @onready var verbose : bool 
-
 @onready var time_in_current_state = 0
 
 
 func _ready():
 	player = $"../.."
-	anim = $"../../PlayerAnimatedSprite2D"
+	anim = %PlayerAnimatedSprite2D
+	sfx = %SFX
 	
 	
 func Transition():
@@ -23,12 +24,13 @@ func Transition():
 	if verbose:
 		print("Entering ",self.name)
 	time_in_current_state = 0
+#	if verbose:
+#		print("shape_cast offset = ",%ShapeCast2D.position)	
 	Enter()
 
 
 func Enter():
-	data = player.data
-	verbose = player.verbose
+	pass
 
 
 func Initiate_Update(delta):
@@ -51,4 +53,4 @@ func Physics_Update(_delta):
 func Flip_Player():
 	if player.facing_direction != player.x_input && abs(player.x_input) == 1:
 		player.facing_direction *= -1
-		$"../../PlayerAnimatedSprite2D".scale.x *= -1
+		anim.scale.x *= -1

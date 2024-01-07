@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpan51idmxlnu"]
+[gd_scene load_steps=8 format=3 uid="uid://dpan51idmxlnu"]
 
 [ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_1odv3"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="2_h656o"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://Scenes/Spikes_large.tscn" id="4_cglv2"]
 [ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://Scenes/Spikes_medium.tscn" id="5_vt6pm"]
 [ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://Scenes/Spikes_small.tscn" id="6_27lrm"]
+[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://Sprites/CoalDrawn/CoalMountainsFiltered.png" id="7_iqrv4"]
 
 [node name="TileMap" type="TileMap"]
 tile_set = ExtResource("1_1odv3")
@@ -163,3 +164,15 @@ rotation = 4.71239
 [node name="Spikes_small8" parent="." instance=ExtResource("6_27lrm")]
 position = Vector2(-5, -2359)
 rotation = 4.71239
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-148, 102)
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Mountains" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-468, -525)
+scale = Vector2(3, 2)
+texture = ExtResource("7_iqrv4")
+centered = false

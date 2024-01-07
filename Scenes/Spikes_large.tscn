@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://Scenes/collision_failure.tscn" id="2_u34e7"]
 
 [node name="Spikes_large" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_j6veh")

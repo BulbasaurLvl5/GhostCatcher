@@ -17,6 +17,7 @@ func Enter():
 	dash_direction = get_direction()
 	set_animation()
 	add_ghost()
+	$"../../SFX/Dash".play()
 
 
 func set_animation():
@@ -38,11 +39,12 @@ func get_direction() -> Vector2:
 
 
 func Do_Checks():
+	if player.can_grab_wall():
+		Transitioned.emit(self,"WallGrab")
 	if time_in_current_state >= data.dash_time + data.dash_recovery_time:
 		complete_dash()
 	elif !recovering && time_in_current_state >= data.dash_time:
 		recovering = true
-	
 		
 		
 func Update(delta):
@@ -52,24 +54,25 @@ func Update(delta):
 			add_ghost()
 
 
-func Physics_Update(delta):
-	var motion : Vector2
+func Physics_Update(_delta):
 	if !recovering:
 		dash_speed = get_speed()
-		motion = dash_direction * dash_speed * delta
-	player.move_xy(motion)
+		player.velocity = dash_direction * dash_speed 
+	player.move_and_slide()
 
 
 func complete_dash():	
-	if player.is_grounded:
+	if player.is_grounded():
 		Transitioned.emit(self,"Idle")
 	else:
 		player.stop_motion()
-		$"../InAir".hang_time_active = true
+		%InAir.hang_time_active = true
 		Transitioned.emit(self,"InAir")
 		
 		
 func get_speed() -> float:
+	#WOULD A TWEEN BE BETTER HERE?
+	
 	if time_in_current_state < data.dash_time * 0.5:
 		dash_speed = 4 * lerp(0, int(data.dash_peak_speed), 0.5-(data.dash_time * 0.5 - time_in_current_state))
 	else:
@@ -81,10 +84,12 @@ func get_speed() -> float:
 
 
 func add_ghost():
-#	var dash_ghost = dash_ghost_node.instantiate()
-#	var frame = $"../../PlayerAnimatedSprite2D".get_frame()
-#
-#	dash_ghost.set_property($"../../PlayerAnimatedSprite2D".texture, $"../../PlayerAnimatedSprite2D".hframes, $"../../PlayerAnimatedSprite2D".vframes, $"../../PlayerAnimatedSprite2D".frame, player.position, $"../../PlayerAnimatedSprite2D".scale)
-#	get_tree().current_scene.add_child((dash_ghost))
+	var dash_ghost = dash_ghost_node.instantiate()
+	dash_ghost.set_property(anim.frame, player.position, anim.scale)
+	get_tree().current_scene.add_child((dash_ghost))
 	ghost_timer = 0.02
 
+
+func Flip_Player():
+	#cannot flip while dashing
+	pass

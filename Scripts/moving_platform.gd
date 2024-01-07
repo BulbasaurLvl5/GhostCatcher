@@ -1,7 +1,6 @@
 class_name MovingPlatform
-extends MovingObject
+extends AnimatableBody2D
 
-signal Moving
 
 
 @export var path_pos : Array[Vector2]
@@ -39,14 +38,14 @@ func _process(_delta):
 		$PauseTimer.start(pause_duration)
 
 
-func _physics_process(delta):
-	var motion = stored_motion
-	if is_moving:
-		stored_motion = (target_pos - previous_pos) * delta / time_between_pos
-	else:
-		stored_motion = Vector2.ZERO	
-	Moving.emit(stored_motion)
-	self.move_xy(motion)
+#func _physics_process(delta):
+#	var motion = stored_motion
+#	if is_moving:
+#		stored_motion = (target_pos - previous_pos) * delta / time_between_pos
+#	else:
+#		stored_motion = Vector2.ZERO	
+#	Moving.emit(stored_motion)
+#	self.move_xy(motion)
 
 
 func start_moving():
