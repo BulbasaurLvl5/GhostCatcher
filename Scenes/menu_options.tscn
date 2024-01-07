@@ -1,20 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://dkoe1u7tyl8x3"]
 
-<<<<<<< HEAD
 [ext_resource type="Script" path="res://Scripts/MenuOptions.cs" id="1_bq5w5"]
 [ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://Sprites/CoalDrawn/Menu_retry_Background.png" id="2_jxlmb"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://Sprites/CoalDrawn/CoalButton_1.png" id="3_fls4t"]
 [ext_resource type="StyleBox" uid="uid://kae7nrb6cknu" path="res://Resources/Button_StyleBoxTexture.tres" id="4_0iuct"]
 [ext_resource type="PackedScene" uid="uid://du04dff2n46ag" path="res://Scenes/remap_button.tscn" id="5_fyq06"]
 [ext_resource type="PackedScene" uid="uid://djie5vk4sptw6" path="res://Scenes/remap_button_manager.tscn" id="6_v3otw"]
-=======
-[ext_resource type="Script" path="res://Scripts/MenuOptions.cs" id="1_qbfve"]
-[ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://Sprites/CoalDrawn/Menu_retry_Background.png" id="2_7cifs"]
-[ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://Sprites/CoalDrawn/CoalButton_1.png" id="3_2sycy"]
-[ext_resource type="StyleBox" uid="uid://kae7nrb6cknu" path="res://Resources/Button_StyleBoxTexture.tres" id="4_onq2y"]
-[ext_resource type="PackedScene" uid="uid://djie5vk4sptw6" path="res://Scenes/remap_button_manager.tscn" id="5_dv24k"]
-[ext_resource type="PackedScene" uid="uid://du04dff2n46ag" path="res://Scenes/remap_button.tscn" id="5_qadum"]
->>>>>>> ca40a566b6534853d03fc33baa4ccada14758154
 
 [sub_resource type="InputEventKey" id="InputEventKey_cffll"]
 device = -1
@@ -458,37 +449,6 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
-<<<<<<< HEAD
-actions = Array[String](["Zoom1"])
-=======
-actions = Array[String](["Dash1"])
->>>>>>> ca40a566b6534853d03fc33baa4ccada14758154
-event_indexes = Array[int]([0])
-
-[node name="RemapButton14" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-<<<<<<< HEAD
-=======
-actions = Array[String](["Dash2"])
-
-[node name="Label9" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
-text = "Zoom"
-
-[node name="RemapButton13" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
 actions = Array[String](["Zoom1"])
 event_indexes = Array[int]([0])
 
@@ -499,7 +459,6 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
->>>>>>> ca40a566b6534853d03fc33baa4ccada14758154
 actions = Array[String](["Zoom2"])
 event_indexes = Array[int]([0])
 
