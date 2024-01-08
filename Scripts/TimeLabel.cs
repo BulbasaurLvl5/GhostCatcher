@@ -29,11 +29,11 @@ public partial class TimeLabel : Label
 			_sec = 0.ToString() + Math.Abs(_time.Seconds).ToString();
 
 		if(_time.MiliSeconds > 0)
-			_milisec = _time.MiliSeconds.ToString().Substring(1,2);
+			_milisec = _time.MiliSeconds.ToString().Substring(2,2);
 		else if(_time.MiliSeconds == 0)
 			_milisec = "00";
 		else if (_time.MiliSeconds < 0)
-			_milisec = Math.Abs(_time.MiliSeconds).ToString().Substring(1,2);
+			_milisec = Math.Abs(_time.MiliSeconds).ToString().Substring(2,2);
 
 		if (_time.MiliSeconds >= 0)
 			Text = _min + ":" + _sec + "  " + _milisec;
