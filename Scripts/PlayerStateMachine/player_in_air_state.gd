@@ -3,43 +3,38 @@ extends PlayerState
 
 
 var hang_time_active : bool = false
-var height_fallen_from : float = 0.0
 
 
-func Enter():
+func Enter(_from : PlayerState = null):
 	if player.velocity.y <= 100 || hang_time_active:
 		anim.play("hover")
 	else:
 		anim.play("fall")
 	Flip_Player()
-	height_fallen_from = player.position.y
-	
-	
+	Check_Altitude()
+
 func Do_Checks():
-	if height_fallen_from > player.position.y:
-		height_fallen_from = player.position.y
-	
+	Flip_Player()
+	Check_Altitude()
+
 	if player.is_on_floor():
 		hang_time_active = false
-		var distance_fallen = (player.position.y - height_fallen_from)
-		if distance_fallen > data.distance_before_medium_landing:
-			if distance_fallen > data.distance_before_heavy_landing:
-				%Land.heavy_landing = true
-			else:
-				%Land.heavy_landing = false
+		if player.position.y - player.height_fallen_from > data.distance_before_medium_landing:
 			Transitioned.emit(self,"Land")
-		elif player.x_input == 0:
-			$"../../SFX/Land1".play()
-			Transitioned.emit(self,"Idle")
 		else: 
 			$"../../SFX/Land1".play()
-			Transitioned.emit(self,"Run")
+			if player.x_input == 0:
+				Transitioned.emit(self,"Idle")
+			else: 
+				Transitioned.emit(self,"Run")
 	elif player.can_jump():
 		player.air_action()
 		Transitioned.emit(self,"Jump")
 	elif player.can_dash():
 		player.air_action()
 		Transitioned.emit(self,"Dash")
+	elif player.can_stomp():
+		Transitioned.emit(self,"Stomp")
 	elif player.can_grab_wall():
 		player.stop_motion()
 		Transitioned.emit(self,"WallGrab")
@@ -55,7 +50,12 @@ func Physics_Update(delta):
 	if hang_time_active:
 		player.velocity.y = 0
 	else:
-		player.velocity.y += data.gravity * delta
+		if player.velocity.y < 200:
+			player.velocity.y += 0.5 * data.gravity * delta
+		elif player.velocity.y < 400:
+			player.velocity.y += 0.75 * data.gravity * delta
+		else:
+			player.velocity.y += data.gravity * delta
 		if player.velocity.y > data.max_fall_speed:
 			player.velocity.y = data.max_fall_speed
 	player.velocity.x = player.x_input * data.in_air_horizontal_speed

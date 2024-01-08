@@ -10,11 +10,9 @@ extends PlayerState
 @onready var recovering : bool
 
 
-func Enter():
+func Enter(_from : PlayerState = null):
 	recovering = false
-	player.last_dash_time = Time.get_unix_time_from_system()
 	player.dash_button_reset = false
-	dash_direction = get_direction()
 	set_animation()
 	add_ghost()
 	$"../../SFX/Dash".play()
@@ -27,15 +25,6 @@ func set_animation():
 		anim.play("dash")
 	else:
 		anim.play("dash")
-
-
-func get_direction() -> Vector2:
-	if player.x_input == 0 && player.y_input == 0 || data.only_horizontal_dashing_allowed:
-		return Vector2(player.facing_direction,0)	
-	var multiplier : float = 1
-	if player.x_input != 0 && player.y_input != 0:
-		multiplier = 0.707107
-	return Vector2 ((player.x_input * multiplier),(player.y_input * multiplier))
 
 
 func Do_Checks():
@@ -55,9 +44,10 @@ func Update(delta):
 
 
 func Physics_Update(_delta):
+	player.velocity = Vector2.ZERO
 	if !recovering:
 		dash_speed = get_speed()
-		player.velocity = dash_direction * dash_speed 
+		player.velocity.x = player.facing_direction * dash_speed 
 	player.move_and_slide()
 
 
@@ -89,7 +79,5 @@ func add_ghost():
 	get_tree().current_scene.add_child((dash_ghost))
 	ghost_timer = 0.02
 
-
-func Flip_Player():
-	#cannot flip while dashing
-	pass
+func Exit():
+	player.last_dash_time = Time.get_unix_time_from_system()

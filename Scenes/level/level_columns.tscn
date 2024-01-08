@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_scene load_steps=13 format=3 uid="uid://b7jtexb81575j"]
-=======
-[gd_scene load_steps=27 format=3 uid="uid://b7jtexb81575j"]
->>>>>>> ca40a566b6534853d03fc33baa4ccada14758154
+[gd_scene load_steps=28 format=3 uid="uid://bxm41jont7157"]
 
 [ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_c81fx"]
 [ext_resource type="Script" path="res://Scripts/Level.cs" id="2_dyopg"]

@@ -5,16 +5,15 @@ extends PlayerState
 var timer : float = 42.0
 
 
-func Enter():
+func Enter(_from : PlayerState = null):
 	anim.play("idle")
 	player.stop_motion()
 	
 	
 func Do_Checks():
-#	if player.is_on_floor():
-#		print("PLAYER IS ON FLOOR")
-	
+	Flip_Player()
 	if !player.is_on_floor():
+		%CoyoteTime.set_wait_time(data.coyote_time_ground)
 		%CoyoteTime.start()
 		Transitioned.emit(self,"InAir")
 	elif player.can_jump():
@@ -35,7 +34,9 @@ func Update(delta):
 		
 
 func Physics_Update(_delta):
-	player.velocity.y = 100
-#	print("player vwelocity = = = = = ",player.velocity)
+#	player.velocity.y = 100
 	player.move_and_slide()
-	
+
+
+func Exit():
+	player.height_fallen_from = player.position.y

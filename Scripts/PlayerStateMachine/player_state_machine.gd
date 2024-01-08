@@ -18,7 +18,7 @@ func _ready():
 			child.Transitioned.connect(on_child_transition)
 	
 	if initial_state:
-		initial_state.Transition()
+		initial_state.Initiate_Enter()
 		current_state = initial_state
 		if verbose:
 			print("Starting in ",current_state.name)
@@ -45,7 +45,11 @@ func on_child_transition(state, new_state_name):
 	var new_state = states.get(new_state_name.to_lower())
 	if !new_state:
 		return
-		
-	new_state.Transition()
+	
+	if current_state:
+		current_state.Initiate_Exit()
+		new_state.Initiate_Enter(current_state)
+	else:
+		new_state.Initiate_Enter()
 	
 	current_state = new_state

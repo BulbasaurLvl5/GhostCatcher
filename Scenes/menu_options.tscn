@@ -292,7 +292,7 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Left1", "ui_left"])
-event_indexes = Array[int]([0, 2])
+event_indexes = Array[int]([0, 0])
 
 [node name="RemapButton2" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
 layout_mode = 2
@@ -432,6 +432,33 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Dash2"])
+event_indexes = Array[int]([0])
+
+[node name="Label10" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Stomp"
+
+[node name="RemapButton15" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
+alignment = 0
+actions = Array[String](["Stomp1"])
+event_indexes = Array[int]([0])
+
+[node name="RemapButton16" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
+alignment = 0
+actions = Array[String](["Stomp2"])
+event_indexes = Array[int]([0])
 
 [node name="Label9" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
 layout_mode = 2
@@ -477,5 +504,4 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 
-[connection signal="visibility_changed" from="ControlOptions" to="ControlOptions/ScrollContainer/GridContainer/RemapButtonManager" method="_on_control_options_visibility_changed"]
 [connection signal="pressed" from="ControlOptions/ScrollContainer/GridContainer/ResetButton" to="ControlOptions/ScrollContainer/GridContainer/RemapButtonManager" method="_on_reset_button_pressed"]

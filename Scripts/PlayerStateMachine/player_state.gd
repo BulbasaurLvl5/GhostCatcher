@@ -18,27 +18,24 @@ func _ready():
 	sfx = %SFX
 	
 	
-func Transition():
+func Initiate_Enter(from : PlayerState = null):
 	data = player.data
 	verbose = player.verbose
 	if verbose:
-		print("Entering ",self.name)
+		if from:
+			print("Transitioning from ",from.name," to ",self.name)
+		else:
+			print("Entering ",self.name)
 	time_in_current_state = 0
-#	if verbose:
-#		print("shape_cast offset = ",%ShapeCast2D.position)	
-	Enter()
-
-
-func Enter():
+	Enter(from)
+	
+func Enter(_from : PlayerState):
 	pass
-
-
+	
 func Initiate_Update(delta):
 	time_in_current_state += delta
-	Flip_Player()
 	Do_Checks()
 	Update(delta)
-	
 	
 func Do_Checks():
 	pass
@@ -49,8 +46,17 @@ func Update(_delta):
 func Physics_Update(_delta):
 	pass
 
+func Initiate_Exit():
+	Exit()
 
-func Flip_Player():
-	if player.facing_direction != player.x_input && abs(player.x_input) == 1:
+func Exit():
+	pass
+
+func Flip_Player(force_flip : bool = false):
+	if force_flip || (player.facing_direction != player.x_input && abs(player.x_input) == 1):
 		player.facing_direction *= -1
 		anim.scale.x *= -1
+
+func Check_Altitude():
+	if player.position.y < player.height_fallen_from:
+		player.height_fallen_from = player.position.y	

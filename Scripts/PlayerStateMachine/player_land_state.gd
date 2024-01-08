@@ -1,19 +1,34 @@
 class_name PlayerLandState
 extends PlayerState
 
-var heavy_landing : bool = false
 
-func Enter():
-	if heavy_landing:
-		%Camera2D.apply_shake()
+var distance_fallen : float
+
+
+func Enter(from : PlayerState = null):
+	distance_fallen = player.position.y - player.height_fallen_from
+	if verbose:
+		print("Distance fallen = ",distance_fallen)
+	var impact : float = 0.5
+	if from:
+		if from.name == "Stomp" && distance_fallen >= 220.0:
+			impact += 0.5
+	if distance_fallen >= data.distance_before_heavy_landing:
+		impact += 0.5 * distance_fallen / data.distance_before_heavy_landing
+	if impact < 1.0:
+		anim.play("land")
+		$"../../SFX/Land2".play()	
+	else:
+		player.heavy_landing_factor = impact
+		%Camera2D.apply_shake( impact)
 		anim.play("land")
 		$"../../SFX/Land3".play()
-	else:
-		anim.play("land")
-		$"../../SFX/Land2".play()
+
 
 func Do_Checks():
-	if !heavy_landing || time_in_current_state > 1.0:
+	if !player.is_on_floor() && !player.is_grounded():
+		Transitioned.emit(self,"InAir")
+	elif time_in_current_state > player.heavy_landing_factor:
 		if player.can_jump():
 			Transitioned.emit(self,"Jump")
 		elif player.can_dash():
@@ -23,3 +38,7 @@ func Do_Checks():
 		elif time_in_current_state > 1.0:
 			Transitioned.emit(self,"Idle")
 	
+	
+func Exit():
+	player.heavy_landing_factor = 0
+	player.height_fallen_from = player.position.y

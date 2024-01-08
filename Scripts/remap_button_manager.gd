@@ -133,7 +133,8 @@ func _on_reset_button_pressed():
 
 func get_event_name_array():
 	input_name_substitutions.clear()
-	input_name_substitutions += ["Joypad Button 0 ", "Bottom Action",
+	input_name_substitutions += [
+		"Joypad Button 0 ", "Bottom Action",
 		"Joypad Button 1 ", "Right Action",
 		"Joypad Button 2 ", "Left Action",
 		"Joypad Button 3 ", "Top Action",
@@ -171,4 +172,5 @@ func get_event_name_array():
 		"Joypad Motion on Axis 1 (Left Stick Y-Axis, Joystick 0 Y-Axis) with Value -1", "LS Up",
 		"Joypad Motion on Axis 1 (Left Stick Y-Axis, Joystick 0 Y-Axis) with Value 1", "LS Down",
 		"Joypad Motion on Axis 0 (Left Stick X-Axis, Joystick 0 X-Axis) with Value -1", "LS Left",
-		"Joypad Motion on Axis 0 (Left Stick X-Axis, Joystick 0 X-Axis) with Value 1", "LS Right"]
+		"Joypad Motion on Axis 0 (Left Stick X-Axis, Joystick 0 X-Axis) with Value 1", "LS Right"
+		]

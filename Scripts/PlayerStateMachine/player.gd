@@ -17,14 +17,16 @@ var jump_input : bool = false
 var jump_button_reset : bool = true
 var dash_input : bool = false
 var dash_button_reset : bool = true
-var last_dash_time : float
-#var input_direction : Vector2 = Vector2.ZERO
-var was_grounded : bool
-var could_grab_wall : bool
+var stomp_input : bool = false
+var stomp_input_reset : bool = true
+var last_dash_time : float = 0
+var height_fallen_from : float = 0
+var heavy_landing_factor : float = 0
+var was_grounded : bool = false
+var could_grab_wall : bool = false
 var is_grabbing_wall : bool = false
 
 @onready var remaining_air_actions : int = data.max_air_actions
-#@onready var camera : Camera = %Camera2D
 
 
 func _ready():
@@ -63,13 +65,13 @@ func check_input():
 		dash_input = false
 		if !dash_button_reset:
 			dash_button_reset = true
-
-	if Input.is_action_pressed("Zoom1") || Input.is_action_pressed("Zoom2"):
-		%Camera2D.camera_zoom(true)
+	if Input.is_action_pressed("Stomp1") || Input.is_action_pressed("Stomp2"):
+		stomp_input = true	
 	else:
-		%Camera2D.camera_zoom(false)
+		stomp_input = false
+		if !stomp_input_reset:
+			stomp_input_reset = true
 
-	
 func check_environment():
 	was_grounded = is_grounded()
 	could_grab_wall = can_grab_wall()
@@ -106,6 +108,11 @@ func can_dash() -> bool:
 		return true
 	else:
 		return false
+		
+func can_stomp() -> bool:
+	if stomp_input && stomp_input_reset && !is_on_floor():
+		return true
+	return false
 
 func air_action():
 	if $CoyoteTime.is_stopped():
