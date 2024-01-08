@@ -27,7 +27,7 @@ texture = ExtResource("2_7cifs")
 [node name="ColorRect" type="ColorRect" parent="Crow_background"]
 layout_mode = 0
 offset_left = 307.0
-offset_top = 425.0
+offset_top = 348.0
 offset_right = 1666.0
 offset_bottom = 1006.0
 color = Color(0.164706, 0.164706, 0.164706, 0.784314)
@@ -52,9 +52,9 @@ expand_icon = true
 
 [node name="Video_Button" type="Button" parent="."]
 offset_left = 373.0
-offset_top = 458.0
+offset_top = 375.0
 offset_right = 623.0
-offset_bottom = 572.0
+offset_bottom = 489.0
 focus_neighbor_left = NodePath("../Control_Button")
 focus_neighbor_top = NodePath("../Back_Button")
 focus_neighbor_right = NodePath("../Audio_Button")
@@ -71,13 +71,13 @@ expand_icon = true
 
 [node name="Audio_Button" type="Button" parent="."]
 offset_left = 856.0
-offset_top = 458.0
+offset_top = 375.0
 offset_right = 1106.0
-offset_bottom = 572.0
+offset_bottom = 489.0
 focus_neighbor_left = NodePath("../Video_Button")
 focus_neighbor_top = NodePath("../Back_Button")
 focus_neighbor_right = NodePath("../Control_Button")
-focus_neighbor_bottom = NodePath("../Back_Button")
+focus_neighbor_bottom = NodePath("../AudioOptions/HSlider")
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
@@ -90,13 +90,13 @@ expand_icon = true
 
 [node name="Control_Button" type="Button" parent="."]
 offset_left = 1332.0
-offset_top = 458.0
+offset_top = 375.0
 offset_right = 1582.0
-offset_bottom = 572.0
+offset_bottom = 489.0
 focus_neighbor_left = NodePath("../Audio_Button")
 focus_neighbor_top = NodePath("../Back_Button")
 focus_neighbor_right = NodePath("../Video_Button")
-focus_neighbor_bottom = NodePath("../Back_Button")
+focus_neighbor_bottom = NodePath("../ControlOptions/ScrollContainer/GridContainer/RemapButton")
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
@@ -111,7 +111,7 @@ expand_icon = true
 [node name="VideoOptions" type="GridContainer" parent="."]
 visible = false
 offset_left = 400.0
-offset_top = 650.0
+offset_top = 559.0
 offset_right = 1500.0
 offset_bottom = 950.0
 theme_override_constants/h_separation = 0
@@ -164,9 +164,10 @@ size_flags_horizontal = 3
 [node name="AudioOptions" type="GridContainer" parent="."]
 visible = false
 offset_left = 400.0
-offset_top = 650.0
+offset_top = 554.0
 offset_right = 1500.0
-offset_bottom = 950.0
+offset_bottom = 975.0
+focus_neighbor_bottom = NodePath("HSlider")
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 15
 columns = 3
@@ -184,6 +185,7 @@ size_flags_horizontal = 3
 [node name="HSlider" type="HSlider" parent="AudioOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../Audio_Button")
 
 [node name="Label2" type="Label" parent="AudioOptions"]
 layout_mode = 2
@@ -227,19 +229,19 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ControlOptions" type="VBoxContainer" parent="."]
-visible = false
+[node name="ControlOptions" type="GridContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 370.0
-offset_top = 600.0
+offset_top = 515.0
 offset_right = -344.0
-offset_bottom = -106.0
+offset_bottom = -82.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColumnTitles" type="GridContainer" parent="ControlOptions"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 0
@@ -268,6 +270,7 @@ theme_override_font_sizes/font_size = 48
 text = "Input 2"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ControlOptions"]
+custom_minimum_size = Vector2(1200, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -281,14 +284,15 @@ columns = 3
 [node name="Label" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 text = "Left"
 
 [node name="RemapButton" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+focus_neighbor_top = NodePath("../../../../Control_Button")
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Left1", "ui_left"])
@@ -298,7 +302,7 @@ event_indexes = Array[int]([0, 0])
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Left2", "ui_left"])
@@ -307,14 +311,14 @@ event_indexes = Array[int]([0, 3])
 [node name="Label2" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 text = "Right"
 
 [node name="RemapButton3" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Right1", "ui_right"])
@@ -324,7 +328,7 @@ event_indexes = Array[int]([0, 2])
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Right2", "ui_right"])
@@ -333,14 +337,14 @@ event_indexes = Array[int]([0, 3])
 [node name="Label3" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 text = "Up"
 
 [node name="RemapButton5" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Up1", "ui_up"])
@@ -350,7 +354,7 @@ event_indexes = Array[int]([0, 2])
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Up2", "ui_up"])
@@ -359,14 +363,14 @@ event_indexes = Array[int]([0, 3])
 [node name="Label4" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 text = "Down"
 
 [node name="RemapButton7" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Down1", "ui_down"])
@@ -376,7 +380,7 @@ event_indexes = Array[int]([0, 2])
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Down2", "ui_down"])
@@ -385,14 +389,14 @@ event_indexes = Array[int]([0, 3])
 [node name="Label5" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 text = "Jump"
 
 [node name="RemapButton9" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Jump1", "ui_accept", "ui_select"])
@@ -402,7 +406,7 @@ event_indexes = Array[int]([0, 2, 2])
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Jump2", "ui_accept", "ui_select"])
@@ -411,14 +415,14 @@ event_indexes = Array[int]([0, 3, 3])
 [node name="Label6" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 text = "Dash"
 
 [node name="RemapButton11" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Dash1"])
@@ -428,7 +432,7 @@ event_indexes = Array[int]([0])
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Dash2"])
@@ -437,14 +441,14 @@ event_indexes = Array[int]([0])
 [node name="Label10" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 text = "Stomp"
 
 [node name="RemapButton15" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Stomp1"])
@@ -454,7 +458,7 @@ event_indexes = Array[int]([0])
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Stomp2"])
@@ -463,14 +467,14 @@ event_indexes = Array[int]([0])
 [node name="Label9" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 text = "Zoom"
 
 [node name="RemapButton13" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Zoom1"])
@@ -480,7 +484,7 @@ event_indexes = Array[int]([0])
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
 alignment = 0
 actions = Array[String](["Zoom2"])
@@ -491,17 +495,17 @@ event_indexes = Array[int]([0])
 [node name="Label7" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 
 [node name="ResetButton" type="Button" parent="ControlOptions/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 text = "RESET ALL"
 
 [node name="Label8" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 
 [connection signal="pressed" from="ControlOptions/ScrollContainer/GridContainer/ResetButton" to="ControlOptions/ScrollContainer/GridContainer/RemapButtonManager" method="_on_reset_button_pressed"]
