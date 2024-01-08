@@ -4,7 +4,7 @@ extends AnimatableBody2D
 
 @export var sink_distance : float = 0.0
 @export var sink_delay : float = 0.25
-@export var delay_wobble : float = 30.0
+@export var delay_wobble : float = 10.0
 @export var sink_speed : float = 100
 @export var rise_speed : float = 0.0
 

@@ -113,11 +113,11 @@ namespace MyGodotExtentions
 			string _returnText = " ";
 
 			if(time-(int)time > 0)
-				_milisec = (time-(int)time).ToString().Substring(2,2);
+				_milisec = (time-(int)time).ToString().Substring(1,2);
 			// else if(time-(int)time == 0)
 			// 	_milisec = "00";
 			else if (time-(int)time < 0)
-				_milisec = Math.Abs(time-(int)time).ToString().Substring(2,2);
+				_milisec = Math.Abs(time-(int)time).ToString().Substring(1,2);
 
 			if ((time-(int)time) >= 0)
 				_returnText = _min + ":" + _sec + "  " + _milisec;

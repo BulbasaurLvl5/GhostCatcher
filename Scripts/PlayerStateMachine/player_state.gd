@@ -3,6 +3,7 @@ extends Node
 
 signal Transitioned
 
+
 var player : Player
 var anim : AnimatedSprite2D
 var sfx : Node
@@ -21,11 +22,11 @@ func _ready():
 func Initiate_Enter(from : PlayerState = null):
 	data = player.data
 	verbose = player.verbose
-	if verbose:
-		if from:
-			print("Transitioning from ",from.name," to ",self.name)
-		else:
-			print("Entering ",self.name)
+#	if verbose:
+#		if from:
+#			print("Transitioning from ",from.name," to ",self.name)
+#		else:
+#			print("Entering ",self.name)
 	time_in_current_state = 0
 	Enter(from)
 	

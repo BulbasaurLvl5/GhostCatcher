@@ -164,7 +164,6 @@ scale = Vector2(3, 3)
 modulate = Color(1, 0.772549, 0.772549, 1)
 sink_distance = 2000.0
 sink_delay = 1.0
-delay_wobble = 10.0
 sink_speed = 1000.0
 
 [node name="WidePlatform02" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
@@ -172,7 +171,6 @@ modulate = Color(1, 0.772549, 0.772549, 1)
 position = Vector2(300, 0)
 sink_distance = 2000.0
 sink_delay = 1.0
-delay_wobble = 10.0
 sink_speed = 1000.0
 
 [node name="WidePlatform03" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
@@ -180,7 +178,6 @@ modulate = Color(1, 0.772549, 0.772549, 1)
 position = Vector2(600, 0)
 sink_distance = 2000.0
 sink_delay = 1.0
-delay_wobble = 10.0
 sink_speed = 1000.0
 
 [node name="WidePlatform04" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
@@ -188,7 +185,6 @@ modulate = Color(1, 0.772549, 0.772549, 1)
 position = Vector2(900, 0)
 sink_distance = 2000.0
 sink_delay = 1.0
-delay_wobble = 10.0
 sink_speed = 1000.0
 
 [node name="WidePlatform05" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
@@ -196,7 +192,6 @@ modulate = Color(1, 0.772549, 0.772549, 1)
 position = Vector2(1200, 0)
 sink_distance = 2000.0
 sink_delay = 1.0
-delay_wobble = 10.0
 sink_speed = 1000.0
 
 [node name="WidePlatform06" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
@@ -204,7 +199,6 @@ modulate = Color(1, 0.772549, 0.772549, 1)
 position = Vector2(1500, 0)
 sink_distance = 2000.0
 sink_delay = 1.0
-delay_wobble = 10.0
 sink_speed = 1000.0
 
 [node name="WidePlatform07" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
@@ -212,7 +206,6 @@ modulate = Color(1, 0.772549, 0.772549, 1)
 position = Vector2(1800, 0)
 sink_distance = 2000.0
 sink_delay = 1.0
-delay_wobble = 10.0
 sink_speed = 1000.0
 
 [node name="WidePlatform08" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
@@ -220,7 +213,6 @@ modulate = Color(1, 0.772549, 0.772549, 1)
 position = Vector2(2100, 0)
 sink_distance = 2000.0
 sink_delay = 1.0
-delay_wobble = 10.0
 sink_speed = 1000.0
 
 [node name="WidePlatform09" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
@@ -228,7 +220,6 @@ modulate = Color(1, 0.772549, 0.772549, 1)
 position = Vector2(2400, 0)
 sink_distance = 2000.0
 sink_delay = 1.0
-delay_wobble = 10.0
 sink_speed = 1000.0
 
 [node name="WidePlatform10" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
@@ -236,7 +227,6 @@ modulate = Color(1, 0.772549, 0.772549, 1)
 position = Vector2(2700, 0)
 sink_distance = 2000.0
 sink_delay = 1.0
-delay_wobble = 10.0
 sink_speed = 1000.0
 
 [node name="WidePlatform11" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
@@ -244,7 +234,6 @@ modulate = Color(1, 0.772549, 0.772549, 1)
 position = Vector2(3000, 0)
 sink_distance = 1000.0
 sink_delay = 1.0
-delay_wobble = 10.0
 sink_speed = 1000.0
 
 [node name="WidePlatform12" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
@@ -252,7 +241,6 @@ modulate = Color(1, 0.772549, 0.772549, 1)
 position = Vector2(3300, 0)
 sink_distance = 1000.0
 sink_delay = 1.0
-delay_wobble = 10.0
 sink_speed = 1000.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]

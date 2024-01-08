@@ -10,14 +10,14 @@
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_jump_state.gd" id="7_ofds0"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_in_air_state.gd" id="8_uctrm"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_land_state.gd" id="9_ok23f"]
-[ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_die_state.gd" id="10_1mtkc"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_dash_state.gd" id="12_5jbsb"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_wall_grab_state.gd" id="13_ckika"]
 [ext_resource type="PackedScene" uid="uid://deim0qaglwinp" path="res://Scenes/dash_ghost.tscn" id="14_q528f"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_wall_jump_state.gd" id="14_umcf1"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="16_1amk7"]
+[ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_stomp_state.gd" id="16_hlspe"]
+[ext_resource type="Script" path="res://Animations/Parallax/parallax_clouds.gd" id="18_ompfa"]
 [ext_resource type="Texture2D" uid="uid://b5xlp7x6bh8wb" path="res://Sprites/CoalDrawn/CoalSky.png" id="22_fq0q7"]
-[ext_resource type="Script" path="res://Scripts/ParallaxClouds.gd" id="23_52qlr"]
 [ext_resource type="AudioStream" uid="uid://cwsp84bs3pl3t" path="res://SFX/dash.wav" id="23_88l4k"]
 [ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://Sprites/CoalDrawn/CoalSkyFilter.png" id="23_bi7di"]
 [ext_resource type="AudioStream" uid="uid://uq5et6s242vd" path="res://SFX/footsteps_run.wav" id="23_w5fng"]
@@ -105,10 +105,6 @@ script = ExtResource("8_uctrm")
 unique_name_in_owner = true
 script = ExtResource("9_ok23f")
 
-[node name="Die" type="Node" parent="PlayerStateMachine"]
-unique_name_in_owner = true
-script = ExtResource("10_1mtkc")
-
 [node name="Dash" type="Node" parent="PlayerStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("12_5jbsb")
@@ -123,6 +119,10 @@ visual_offset = -20.0
 unique_name_in_owner = true
 script = ExtResource("14_umcf1")
 
+[node name="Stomp" type="Node" parent="PlayerStateMachine"]
+unique_name_in_owner = true
+script = ExtResource("16_hlspe")
+
 [node name="CoyoteTime" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.05
@@ -131,14 +131,14 @@ one_shot = true
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
 position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.3
 drag_top_margin = 0.3
 drag_right_margin = 0.3
-drag_bottom_margin = 0.3
+drag_bottom_margin = 0.4
 script = ExtResource("16_1amk7")
-zoom_in_duration = 1.25
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
 scroll_ignore_camera_zoom = true
@@ -154,7 +154,7 @@ texture = ExtResource("22_fq0q7")
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
 motion_scale = Vector2(0.08, 0.08)
 motion_mirroring = Vector2(2336, 1652)
-script = ExtResource("23_52qlr")
+script = ExtResource("18_ompfa")
 automatic_motion = Vector2(-50, -20)
 
 [node name="SkyColor" type="Sprite2D" parent="Camera2D/ParallaxBackground/ParallaxLayer3"]
@@ -167,7 +167,7 @@ centered = false
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
 motion_scale = Vector2(0.08, 0.08)
 motion_mirroring = Vector2(2336, 1652)
-script = ExtResource("23_52qlr")
+script = ExtResource("18_ompfa")
 automatic_motion = Vector2(-25, 10)
 
 [node name="SkyColor" type="Sprite2D" parent="Camera2D/ParallaxBackground/ParallaxLayer4"]
