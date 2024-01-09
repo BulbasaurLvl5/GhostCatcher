@@ -32,7 +32,7 @@ namespace MyGodotExtentions
 
 		public int Seconds{get{ return (int)_time % 60; }}
 
-		public double MiliSeconds{get{ return _time-(int)_time; }}
+		public double MiliSeconds{get{ return (_time-(int)_time)*1000; }}
 
 		// public bool IsReady {get {return _time > _stopTime;}} //same as !IsActive
 
@@ -113,11 +113,11 @@ namespace MyGodotExtentions
 			string _returnText = " ";
 
 			if(time-(int)time > 0)
-				_milisec = (time-(int)time).ToString().Substring(2,2);
+				_milisec = ((time-(int)time)*1000).ToString().Substring(0,2);
 			// else if(time-(int)time == 0)
 			// 	_milisec = "00";
 			else if (time-(int)time < 0)
-				_milisec = Math.Abs(time-(int)time).ToString().Substring(2,2);
+				_milisec = Math.Abs((time-(int)time)*1000).ToString().Substring(0,2);
 
 			if ((time-(int)time) >= 0)
 				_returnText = _min + ":" + _sec + "  " + _milisec;
