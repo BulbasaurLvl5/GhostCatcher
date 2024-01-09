@@ -6,7 +6,7 @@ extends Area2D
 @export var idle_speed : float = 50.0
 @export var time_between_turns : float = 3.0
 @export var detection_range : Vector2 = Vector2(1000, 500)
-@export var needs_line_of_sight : bool = true
+var needs_line_of_sight : bool = false
 @export var can_see_behind : bool = false
 
 
@@ -35,7 +35,7 @@ func _physics_process(delta):
 	if player:
 		target_path = player.position - position 
 		if can_see_player():
-			print("PLAYER SPOTTED!!!!!!!")
+#			print("PLAYER SPOTTED!!!!!!!")
 			is_idling = false
 			time_until_turn = time_between_turns
 			move_towards_player(delta)
@@ -47,13 +47,13 @@ func _physics_process(delta):
 			
 func can_see_player() -> bool:
 	if needs_line_of_sight && !line_of_sight:
-		print("need line of sight but have none")
+#		print("need line of sight but have none")
 		return false
 	if !can_see_behind && abs(target_path.x) > 500 && sign(target_path.x) != facing_direction:
-		print("can't see behind")
+#		print("can't see behind")
 		return false
 	if abs(target_path.x) > detection_range.x || abs(target_path.y) > detection_range.y:
-		print(target_path," is out of range of ",detection_range," from ",position)
+#		print(target_path," is out of range of ",detection_range," from ",position)
 		return false
 	return true
 

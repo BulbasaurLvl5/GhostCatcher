@@ -130,6 +130,7 @@ one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
@@ -141,6 +142,7 @@ drag_bottom_margin = 0.4
 script = ExtResource("16_1amk7")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
+process_mode = 3
 scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]

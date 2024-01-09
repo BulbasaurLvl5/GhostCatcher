@@ -36,8 +36,23 @@ var zoom_is_changing : bool = false
 var rng = RandomNumberGenerator.new()
 var shake_strength : float = 0.0
 
+
+func _ready():
+	set_camera_follow(false)
+	position = Vector2(0, -200)
+
+
+func set_camera_follow(enabled : bool = true):
+	position_smoothing_enabled = enabled
+	drag_horizontal_enabled = enabled
+	drag_vertical_enabled = enabled
+	
+
 #PROCESS
 func _process(delta):
+	if !position_smoothing_enabled:
+		set_camera_follow(true)
+		position = Vector2.ZERO
 	zoom_input = get_zoom_input()
 	if sticky_zoom || toggled_zoom:
 		check_sticky_and_toggled()

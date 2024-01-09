@@ -16,9 +16,9 @@ func _ready():
 	get_event_name_array()
 	var menu_items : Array[Node]
 	menu_items = $"..".get_children()
-	for item in menu_items:
-		if item is RemapButton:
-			remap_buttons.append(item)
+	for i in menu_items:
+		if i is RemapButton:
+			remap_buttons.append(i)
 	restore_input_events_from_save()
 	update_buttons()
 	
@@ -28,28 +28,33 @@ func _exit_tree():
 	
 	
 func update_buttons():
-	for item in remap_buttons:
-		item.update_button()
+	for b in remap_buttons:
+		b.update_button()
 		
 
 func save_input_events_to_disk():
 	var type_array : Array = []
 	var id_array : Array = []
-	for button in remap_buttons:
-		var event = InputMap.action_get_events(button.action)[button.event_index]
-		if event is InputEventKey:
-			type_array.append("Key")
-			id_array.append(event.keycode)
-		elif event is InputEventJoypadButton:
-			type_array.append("JoypadButton")
-			id_array.append(event.button_index)
-		elif event is InputEventJoypadMotion:
-			type_array.append("JoypadMotion")
-			id_array.append((event.axis + 1) * event.axis_value)
-		else:
-			type_array.append("Null")
-			id_array.append("Null")
-			print("Custom input entry is null")
+	for b in remap_buttons:
+		var actions = b.actions
+		var event_indexes = b.event_indexes
+		var count = 0
+		for a in actions:
+			var event = InputMap.action_get_events(a)[event_indexes[count]]
+			if event is InputEventKey:
+				type_array.append("Key")
+				id_array.append(event.keycode)
+			elif event is InputEventJoypadButton:
+				type_array.append("JoypadButton")
+				id_array.append(event.button_index)
+			elif event is InputEventJoypadMotion:
+				type_array.append("JoypadMotion")
+				id_array.append((event.axis + 1) * event.axis_value)
+			else:
+				type_array.append("Null")
+				id_array.append("Null")
+				print("Custom input entry is null")
+			count += 1
 
 	var file = FileAccess.open_encrypted_with_pass(save_dir + file_name, FileAccess.WRITE, security_key)
 	if file == null:
@@ -88,26 +93,31 @@ func restore_input_events_from_save():
 		var id_array = data.custom_inputs.id_data
 
 		if type_array.size() == remap_buttons.size():
-			var count : int = 0
-			for button in remap_buttons:
-				var event
-				if type_array[count] == "Key":
-					event = InputEventKey.new()
-					event.set_keycode(id_array[count])	
-				elif type_array[count] == "JoypadButton":
-					event = InputEventJoypadButton.new()
-					event.set_button_index(id_array[count])
-				elif type_array[count] == "JoypadMotion":
-					event = InputEventJoypadMotion.new()
-					event.set_axis(abs(id_array[count])-1)
-					if id_array[count] > 0:
-						event.set_axis_value(1)
+			var index : int = 0
+			for b in remap_buttons:
+				var actions = b.actions
+				var event_indexes = b.event_indexes
+				var count = 0
+				for a in actions:
+					var event
+					if type_array[index] == "Key":
+						event = InputEventKey.new()
+						event.set_keycode(id_array[index])	
+					elif type_array[index] == "JoypadButton":
+						event = InputEventJoypadButton.new()
+						event.set_button_index(id_array[index])
+					elif type_array[index] == "JoypadMotion":
+						event = InputEventJoypadMotion.new()
+						event.set_axis(abs(id_array[index])-1)
+						if id_array[index] > 0:
+							event.set_axis_value(1)
+						else:
+							event.set_axis_value(-1)
 					else:
-						event.set_axis_value(-1)
-				else:
-					print(button," custom input could not be retrieved")
-				change_input_event(button.action, button.event_index, event)
-				count += 1
+						print(b," custom input could not be retrieved")
+					change_input_event(a, event_indexes[count], event)
+					index += 1
+					count += 1
 			print("restored custom inputs from: ",save_dir + file_name)
 		else:
 			print("Could not restore input settings. Incorrect number of items in saved array.")
