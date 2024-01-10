@@ -9,6 +9,9 @@ public partial class MenuPause : Node
 	{
 		if(this.TryGetChildren(out List<Button> _buttons) && this.TryGetNodeInTree(out Main _main))
 		{
+			GetParent().RemoveChild(this);
+			_main.UI.AddChild(this);
+
 			GetTree().Paused = true;
 
 			//resume

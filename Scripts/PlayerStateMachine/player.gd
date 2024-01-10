@@ -1,8 +1,6 @@
 class_name Player
 extends CharacterBody2D
 
-signal Pause
-
 #level-dependent parameters
 @export var facing_direction : int = 1
 @export var cast : ShapeCast2D
@@ -43,13 +41,18 @@ func _process(_delta):
 
 
 func pause_game():
-#	Engine.time_scale = 0
+	var path = "res://Scenes/Menu_Pause.tscn"
+	if ResourceLoader.exists(path) : 
+		var pause_menu_packedscene = load(path)
+		var pause_menu = pause_menu_packedscene.instantiate()
+		add_child(pause_menu) # make the pause menu reparent itself to main - UI
+	else : 
+		print("Error: in play.gd.pause_game() loading scene: ", path)
 	pass
 
 
 func check_input():
 	if Input.is_action_pressed("Pause1") || Input.is_action_pressed(("Pause2")):
-		Pause.emit()
 		pause_game()
 	
 	x_input = 0

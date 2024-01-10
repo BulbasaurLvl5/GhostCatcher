@@ -15,7 +15,7 @@ public static class FileIO
 	static FileIO() //static constructors are executed automatically
 	{
 		// By default, the user:// folder is created within Godot's editor data path in the app_userdata/[project_name] folder
-		// thus: //C:/Users/John/AppData/LocalLow/DefaultCompany/ARPG
+		// thus: C:/Users/John/AppData/Roaming/Godot/app_userdata/GhostCatcher/
 		// _baseSavePath = ProjectSettings.GlobalizePath("user://");
 		string _filepath;
 
@@ -29,6 +29,9 @@ public static class FileIO
 			// Returns the absolute directory path where user data is written (user://).
 			_baseSavePath = OS.GetUserDataDir(); 
 		}
+
+		// GD.Print("Save data found in: "+_baseSavePath);
+		// C:/Users/John/AppData/Roaming/Godot/app_userdata/GhostCatcher/
 
 		_filepath = _baseSavePath + "Save" + ".json";
 		if(!File.Exists(_filepath) || LevelLoader.LoadLevel.Length != Load().LastTimes.Length)
