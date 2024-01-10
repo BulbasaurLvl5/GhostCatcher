@@ -17,16 +17,16 @@
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="16_1amk7"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_stomp_state.gd" id="16_hlspe"]
 [ext_resource type="Script" path="res://Animations/Parallax/parallax_clouds.gd" id="18_ompfa"]
+[ext_resource type="AudioStream" uid="uid://uq5et6s242vd" path="res://Audio/SFX/Player/footsteps_run.wav" id="20_ect3d"]
+[ext_resource type="AudioStream" uid="uid://cwsp84bs3pl3t" path="res://Audio/SFX/Player/dash.wav" id="21_ndd64"]
 [ext_resource type="Texture2D" uid="uid://b5xlp7x6bh8wb" path="res://Sprites/CoalDrawn/CoalSky.png" id="22_fq0q7"]
-[ext_resource type="AudioStream" uid="uid://cwsp84bs3pl3t" path="res://SFX/dash.wav" id="23_88l4k"]
+[ext_resource type="AudioStream" uid="uid://dnpsnujvbysq3" path="res://Audio/SFX/Player/wall_grab.wav" id="22_uuv3o"]
+[ext_resource type="AudioStream" uid="uid://ds6q1gtu3k5od" path="res://Audio/SFX/Player/land1.wav" id="23_0ful8"]
 [ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://Sprites/CoalDrawn/CoalSkyFilter.png" id="23_bi7di"]
-[ext_resource type="AudioStream" uid="uid://uq5et6s242vd" path="res://SFX/footsteps_run.wav" id="23_w5fng"]
-[ext_resource type="AudioStream" uid="uid://ds6q1gtu3k5od" path="res://SFX/land1.wav" id="25_30yjq"]
-[ext_resource type="AudioStream" uid="uid://dnpsnujvbysq3" path="res://SFX/wall_grab.wav" id="25_w1gwg"]
-[ext_resource type="AudioStream" uid="uid://dnv0cfvaki7r1" path="res://SFX/land2.wav" id="26_0mo7c"]
-[ext_resource type="AudioStream" uid="uid://dd5e54lddsty0" path="res://SFX/land3.wav" id="28_nnnah"]
-[ext_resource type="AudioStream" uid="uid://cyhu3bovbds5j" path="res://SFX/jump1.wav" id="29_encxm"]
-[ext_resource type="AudioStream" uid="uid://k64hklsvjtl" path="res://SFX/jump2.wav" id="30_jjlcu"]
+[ext_resource type="AudioStream" uid="uid://dnv0cfvaki7r1" path="res://Audio/SFX/Player/land2.wav" id="24_yjcr4"]
+[ext_resource type="AudioStream" uid="uid://dd5e54lddsty0" path="res://Audio/SFX/Player/land3.wav" id="25_ghg03"]
+[ext_resource type="AudioStream" uid="uid://cyhu3bovbds5j" path="res://Audio/SFX/Player/jump1.wav" id="26_06bty"]
+[ext_resource type="AudioStream" uid="uid://k64hklsvjtl" path="res://Audio/SFX/Player/jump2.wav" id="27_bp2dj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnagu"]
 size = Vector2(24, 110)
@@ -186,35 +186,35 @@ unique_name_in_owner = true
 current = true
 
 [node name="Run" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource("23_w5fng")
+stream = ExtResource("20_ect3d")
 volume_db = -0.223
 pitch_scale = 1.23
 area_mask = 2
 
 [node name="Dash" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource("23_88l4k")
+stream = ExtResource("21_ndd64")
 area_mask = 2
 
 [node name="WallGrab" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource("25_w1gwg")
+stream = ExtResource("22_uuv3o")
 area_mask = 2
 
 [node name="Land1" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource("25_30yjq")
+stream = ExtResource("23_0ful8")
 area_mask = 2
 
 [node name="Land2" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource("26_0mo7c")
+stream = ExtResource("24_yjcr4")
 area_mask = 2
 
 [node name="Land3" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource("28_nnnah")
+stream = ExtResource("25_ghg03")
 area_mask = 2
 
 [node name="Jump1" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource("29_encxm")
+stream = ExtResource("26_06bty")
 area_mask = 2
 
 [node name="Jump2" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource("30_jjlcu")
+stream = ExtResource("27_bp2dj")
 area_mask = 2

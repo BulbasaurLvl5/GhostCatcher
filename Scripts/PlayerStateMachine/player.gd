@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
+signal Pause
 
 #level-dependent parameters
 @export var facing_direction : int = 1
@@ -41,7 +42,16 @@ func _process(_delta):
 	check_environment()
 
 
+func pause_game():
+#	Engine.time_scale = 0
+	pass
+
+
 func check_input():
+	if Input.is_action_pressed("Pause1") || Input.is_action_pressed(("Pause2")):
+		Pause.emit()
+		pause_game()
+	
 	x_input = 0
 	y_input = 0
 	if Input.is_action_pressed("Left1") || Input.is_action_pressed("Left2"):
@@ -84,7 +94,7 @@ func is_grounded() -> bool:
 		return false
 
 func can_grab_wall() -> bool:
-	if get_collisions(Vector2(facing_direction * 10, 0), grab_cast) && x_input == facing_direction:
+	if get_collisions(Vector2(facing_direction * 5, 0), grab_cast) && x_input == facing_direction:
 		return true
 	else:
 #		if !get_collisions(Vector2(facing_direction, 0), grab_cast) && x_input == facing_direction:

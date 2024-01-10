@@ -2,7 +2,6 @@ class_name PlayerJumpState
 extends PlayerState
 
 
-var hold_time_remaining : float
 @onready var jump_noise : int = 1
 
 
@@ -15,7 +14,6 @@ func Enter(_from : PlayerState = null):
 		$"../../SFX/Jump2".play()
 		jump_noise = 1
 	player.jump_button_reset = false
-	hold_time_remaining = data.jump_max_hold_time
 	player.velocity.y = data.jump_force
 	
 	
@@ -45,15 +43,12 @@ func Do_Checks():
 		
 		
 func Physics_Update(delta):
-	if player.jump_input && hold_time_remaining > 0:
+	if player.jump_input && time_in_current_state < data.jump_max_hold_time:
 		player.velocity.y = data.jump_force 
-		hold_time_remaining -= delta
 	else:
-		hold_time_remaining = 0
 		player.velocity.y += data.gravity * delta
 		if player.velocity.y > data.max_fall_speed:
-			player.velocity.y = data.max_fall_speed
-			
+			player.velocity.y = data.max_fall_speed		
 	player.velocity.x = data.in_air_horizontal_speed * player.x_input 
 	player.move_and_slide()
 

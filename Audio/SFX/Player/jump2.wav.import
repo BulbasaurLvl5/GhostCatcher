@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dd5e54lddsty0"
-path="res://.godot/imported/land3.wav-54511a11e9de70d906075684f6890e61.sample"
+uid="uid://k64hklsvjtl"
+path="res://.godot/imported/jump2.wav-80ffd842c65b0f0ac198a407a6ff07be.sample"
 
 [deps]
 
-source_file="res://SFX/land3.wav"
-dest_files=["res://.godot/imported/land3.wav-54511a11e9de70d906075684f6890e61.sample"]
+source_file="res://Audio/SFX/Player/jump2.wav"
+dest_files=["res://.godot/imported/jump2.wav-80ffd842c65b0f0ac198a407a6ff07be.sample"]
 
 [params]
 

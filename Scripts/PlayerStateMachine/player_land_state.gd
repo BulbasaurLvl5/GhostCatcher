@@ -14,13 +14,14 @@ func Enter(from : PlayerState = null):
 		if from.name == "Stomp" && distance_fallen >= 220.0:
 			impact += 0.5
 	if distance_fallen >= data.distance_before_heavy_landing:
-		impact += 0.5 * distance_fallen / data.distance_before_heavy_landing
+		impact += 0.25 + 0.25 * distance_fallen / data.distance_before_heavy_landing
 	if impact < 1.0:
 		anim.play("land")
 		$"../../SFX/Land2".play()	
 	else:
+		impact = min(2.0, impact)
 		player.heavy_landing_factor = impact
-		%Camera2D.apply_shake( impact)
+		%Camera2D.apply_shake(impact)
 		anim.play("land")
 		$"../../SFX/Land3".play()
 

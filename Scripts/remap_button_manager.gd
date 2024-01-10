@@ -92,35 +92,33 @@ func restore_input_events_from_save():
 		var type_array = data.custom_inputs.type_data
 		var id_array = data.custom_inputs.id_data
 
-		if type_array.size() == remap_buttons.size():
-			var index : int = 0
-			for b in remap_buttons:
-				var actions = b.actions
-				var event_indexes = b.event_indexes
-				var count = 0
-				for a in actions:
-					var event
-					if type_array[index] == "Key":
-						event = InputEventKey.new()
-						event.set_keycode(id_array[index])	
-					elif type_array[index] == "JoypadButton":
-						event = InputEventJoypadButton.new()
-						event.set_button_index(id_array[index])
-					elif type_array[index] == "JoypadMotion":
-						event = InputEventJoypadMotion.new()
-						event.set_axis(abs(id_array[index])-1)
-						if id_array[index] > 0:
-							event.set_axis_value(1)
-						else:
-							event.set_axis_value(-1)
+		var index : int = 0
+		for b in remap_buttons:
+			var actions = b.actions
+			var event_indexes = b.event_indexes
+			var count = 0
+			for a in actions:
+				var event
+				if type_array[index] == "Key":
+					event = InputEventKey.new()
+					event.set_keycode(id_array[index])	
+				elif type_array[index] == "JoypadButton":
+					event = InputEventJoypadButton.new()
+					event.set_button_index(id_array[index])
+				elif type_array[index] == "JoypadMotion":
+					event = InputEventJoypadMotion.new()
+					event.set_axis(abs(id_array[index])-1)
+					if id_array[index] > 0:
+						event.set_axis_value(1)
 					else:
-						print(b," custom input could not be retrieved")
-					change_input_event(a, event_indexes[count], event)
-					index += 1
-					count += 1
-			print("restored custom inputs from: ",save_dir + file_name)
-		else:
-			print("Could not restore input settings. Incorrect number of items in saved array.")
+						event.set_axis_value(-1)
+				else:
+					print(b," custom input could not be retrieved")
+				change_input_event(a, event_indexes[count], event)
+				index += 1
+				count += 1
+		print("restored custom inputs from: ",save_dir + file_name)
+
 		update_buttons()
 
 	else:

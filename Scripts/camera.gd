@@ -38,20 +38,20 @@ var shake_strength : float = 0.0
 
 
 func _ready():
-	set_camera_follow(false)
+	enable_smooth_and_drag(false)
 	position = Vector2(0, -200)
 
 
-func set_camera_follow(enabled : bool = true):
-	position_smoothing_enabled = enabled
-	drag_horizontal_enabled = enabled
-	drag_vertical_enabled = enabled
+func enable_smooth_and_drag(enable : bool = true):
+	position_smoothing_enabled = enable
+	drag_horizontal_enabled = enable
+	drag_vertical_enabled = enable
 	
 
 #PROCESS
 func _process(delta):
 	if !position_smoothing_enabled:
-		set_camera_follow(true)
+		enable_smooth_and_drag(true)
 		position = Vector2.ZERO
 	zoom_input = get_zoom_input()
 	if sticky_zoom || toggled_zoom:

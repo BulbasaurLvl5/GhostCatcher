@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dnpsnujvbysq3"
-path="res://.godot/imported/wall_grab.wav-2f655b5d084d51e14d7c1493d44b2087.sample"
+uid="uid://cyhu3bovbds5j"
+path="res://.godot/imported/jump1.wav-d91e5f0514f4d08466f7079b6e65d310.sample"
 
 [deps]
 
-source_file="res://SFX/wall_grab.wav"
-dest_files=["res://.godot/imported/wall_grab.wav-2f655b5d084d51e14d7c1493d44b2087.sample"]
+source_file="res://Audio/SFX/Player/jump1.wav"
+dest_files=["res://.godot/imported/jump1.wav-d91e5f0514f4d08466f7079b6e65d310.sample"]
 
 [params]
 
