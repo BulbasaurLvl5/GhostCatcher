@@ -105,10 +105,12 @@ public static class UILoader
 		}
 	}
 
-	public static void LoadOptionsMenu(Main _main)
+	public static Node LoadOptionsMenu(Main _main)
 	{
+		//returns _optionsMenu bc main menu has to load it quickly once when started to load input settings
 		Node _optionsMenu = packedOptionsMenu.Instantiate<Node>();
 			_main.UI.AddChild(_optionsMenu);
+		return _optionsMenu;
 	}
 
 	public static void LoadRetryMenu(Main _main)
