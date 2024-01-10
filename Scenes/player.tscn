@@ -189,32 +189,40 @@ current = true
 stream = ExtResource("20_ect3d")
 volume_db = -0.223
 pitch_scale = 1.23
+bus = &"SFX"
 area_mask = 2
 
 [node name="Dash" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("21_ndd64")
+bus = &"SFX"
 area_mask = 2
 
 [node name="WallGrab" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("22_uuv3o")
+bus = &"SFX"
 area_mask = 2
 
 [node name="Land1" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("23_0ful8")
+bus = &"SFX"
 area_mask = 2
 
 [node name="Land2" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("24_yjcr4")
+bus = &"SFX"
 area_mask = 2
 
 [node name="Land3" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("25_ghg03")
+bus = &"SFX"
 area_mask = 2
 
 [node name="Jump1" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("26_06bty")
+bus = &"SFX"
 area_mask = 2
 
 [node name="Jump2" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("27_bp2dj")
+bus = &"SFX"
 area_mask = 2
