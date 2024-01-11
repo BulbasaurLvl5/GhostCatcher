@@ -92,6 +92,7 @@ func change_input_event(event):
 		events.insert(event_indexes[count], event)
 		for e in events:
 			InputMap.action_add_event(a, e)
+		count += 1
 	button_pressed = false
 	update_button()
 	remap_button_manager.is_remapping_button = false
