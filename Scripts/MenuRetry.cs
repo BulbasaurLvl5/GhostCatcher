@@ -7,7 +7,10 @@ public partial class MenuRetry : Node
 {
 	public override void _Ready()
 	{
-		if(this.TryGetChildren(out List<Button> _buttons) && this.TryGetNodeInTree(out Main _main))
+		this.TryGetNodeInTree(out Main _main);
+			
+		//button set up
+		if(this.TryGetChildren(out List<Button> _buttons))
 		{
 			_buttons[0].Pressed += () => {
 				_main.ClearScenes();
@@ -31,7 +34,28 @@ public partial class MenuRetry : Node
 			};
 
 			_buttons[0].GrabFocus();
+		}
 
+		//rating
+		if(this.TryGetChildren(out List<TextureRect> _textures))
+		{
+			GD.Print(_textures[2].Name); //rating image
+
+			AtlasTexture _rating = _textures[2].Texture as AtlasTexture;
+			// GD.Print(_rating.Region);
+			// GD.Print(_main.LevelTime.Time);
+
+			double _time = _main.LevelTime.Time;
+			Vector2I _size = new Vector2I(254, 254);
+
+			if(_time < 5)
+				_rating.Region = new Rect2(new Vector2I(508, 0), _size);
+			else if(_time < 10)
+				_rating.Region = new Rect2(new Vector2I(254, 0), _size);
+			else
+				_rating.Region = new Rect2(new Vector2I(0, 0), _size);
+
+			//deaths comment
 			if(this.TryGetChildren(out List<Label> _labels))
 			{
 				if(_main.Failed)
