@@ -5,6 +5,17 @@ using System.Collections.Generic;
 
 public partial class MenuRetry : Node
 {
+	Dictionary<int, int[]> leveltimedata = new Dictionary<int, int[]>()
+	{
+		{0,new int[2]{5,10}},
+	};
+
+	public int ReturnScore(int level, double time)
+	{
+		//returns 0,1,2 depending on level and time
+		return 0;
+	}
+
 	public override void _Ready()
 	{
 		this.TryGetNodeInTree(out Main _main);
@@ -39,11 +50,12 @@ public partial class MenuRetry : Node
 		//rating
 		if(this.TryGetChildren(out List<TextureRect> _textures))
 		{
-			GD.Print(_textures[2].Name); //rating image
+			// GD.Print(_textures[2].Name); //rating image
+			// GD.Print(_main.LevelTime.Time);
+			// GD.Print(_main.Level);
 
 			AtlasTexture _rating = _textures[2].Texture as AtlasTexture;
 			// GD.Print(_rating.Region);
-			// GD.Print(_main.LevelTime.Time);
 
 			double _time = _main.LevelTime.Time;
 			Vector2I _size = new Vector2I(254, 254);

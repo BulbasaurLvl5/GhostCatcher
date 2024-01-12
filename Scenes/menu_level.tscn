@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bq3i5f60hbghq"]
+[gd_scene load_steps=6 format=3 uid="uid://bq3i5f60hbghq"]
 
-[ext_resource type="Texture2D" uid="uid://b0gm6kngvdnxc" path="res://Sprites/CoalDrawn/Menu_Levelselection_Background.png" id="1_ap2in"]
-[ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://Sprites/CoalDrawn/CoalButton_1.png" id="2_gsiau"]
+[ext_resource type="Script" path="res://Scripts/MenuLevel.cs" id="1_87cnt"]
+[ext_resource type="Texture2D" uid="uid://b0gm6kngvdnxc" path="res://Sprites/CoalDrawn/Menu_Levelselection_Background.png" id="1_kteng"]
+[ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://Sprites/CoalDrawn/CoalButton_1.png" id="2_8irtk"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_cffll"]
 device = -1
@@ -10,12 +11,13 @@ keycode = 4194305
 [sub_resource type="Shortcut" id="Shortcut_ntweh"]
 events = [SubResource("InputEventKey_cffll")]
 
-[node name="LevelDataContainer" type="Node"]
+[node name="menu_level" type="Node"]
+script = ExtResource("1_87cnt")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("1_ap2in")
+texture = ExtResource("1_kteng")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 offset_left = 333.0
@@ -40,7 +42,7 @@ theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 shortcut = SubResource("Shortcut_ntweh")
 text = "Back"
-icon = ExtResource("2_gsiau")
+icon = ExtResource("2_8irtk")
 flat = true
 icon_alignment = 1
 expand_icon = true
