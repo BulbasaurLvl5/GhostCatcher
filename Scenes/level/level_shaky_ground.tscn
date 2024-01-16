@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://b2xhyj1jgx5fr"]
 
-[ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_arfy4"]
+[ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://Scenes/Tilesets/original_simple_48.tres" id="1_qysqh"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="2_vn8ee"]
 [ext_resource type="Script" path="res://Scripts/ghost_movement.gd" id="3_d304m"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="3_otjgh"]
@@ -17,9 +17,9 @@ point_count = 3
 [node name="TileMap" type="TileMap"]
 self_modulate = Color(0.870588, 1, 0.87451, 1)
 show_behind_parent = true
-tile_set = ExtResource("1_arfy4")
+tile_set = ExtResource("1_qysqh")
 format = 2
-layer_0/tile_data = PackedInt32Array(-65503, 196611, 3, -65501, 3, 3, -4, 196611, 3, -6, 131075, 3, -7, 65539, 3, -8, 65539, 3, -9, 3, 3, -65499, 65539, 3, -65500, 65539, 3, -65498, 131075, 3)
+layer_0/tile_data = PackedInt32Array(-65503, 0, 3, -65501, 65536, 3, -4, 0, 3, -6, 196608, 3, -7, 131072, 3, -8, 131072, 3, -9, 65536, 3, -65499, 131072, 3, -65500, 131072, 3, -65498, 196608, 3)
 
 [node name="EndlessPit" parent="." instance=ExtResource("2_vn8ee")]
 position = Vector2(-4599, 566)
