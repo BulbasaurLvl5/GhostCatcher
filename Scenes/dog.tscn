@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://5qmp4wtv4vhb"]
+
+[ext_resource type="Script" path="res://Scripts/Dog.cs" id="1_rrpi6"]
+[ext_resource type="SpriteFrames" uid="uid://c8df5cub7xjk8" path="res://Animations/Ghost/ghost.tres" id="2_vs8h2"]
+[ext_resource type="Texture2D" uid="uid://ca5xi54asa8ua" path="res://Sprites/CoalDrawn/dog.png" id="3_4jb3s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3h8i7"]
+radius = 221.815
+
+[node name="dog" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_rrpi6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-1, 5)
+sprite_frames = ExtResource("2_vs8h2")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.671999
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_4jb3s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3h8i7")
+
+[node name="Speech" type="Node2D" parent="."]
+visible = false
+
+[node name="TextBack" type="Polygon2D" parent="Speech"]
+position = Vector2(219, -399)
+color = Color(0, 0, 0, 0.552941)
+polygon = PackedVector2Array(-147, 190, -194, 377, -144, 325, 13, 339, 115, 207)
+
+[node name="Back1" type="Polygon2D" parent="Speech"]
+position = Vector2(55.75, -306.423)
+scale = Vector2(0.75, 0.807693)
+color = Color(0.617188, 0.578125, 0.582031, 1)
+polygon = PackedVector2Array(-66, 110, -105, 146, -45, 185, 124, 180, 168, 107)
+
+[node name="Back2" type="Polygon2D" parent="Speech"]
+position = Vector2(57.3084, -281.59)
+scale = Vector2(0.641029, 0.64103)
+color = Color(0.175781, 0.121094, 0.109375, 1)
+polygon = PackedVector2Array(-66, 110, -105, 146, -45, 185, 124, 180, 168, 107)
+
+[node name="Dog" type="Label" parent="Speech"]
+offset_left = 44.0003
+offset_top = -209.0
+offset_right = 201.0
+offset_bottom = -139.0
+theme_override_colors/font_color = Color(0.619608, 0.580392, 0.584314, 1)
+theme_override_font_sizes/font_size = 24
+text = "Dog"
+
+[node name="Quote" type="Label" parent="Speech"]
+offset_left = 171.0
+offset_top = -188.0
+offset_right = 560.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 24
+text = "*woof*"
+
+[node name="Quote2" type="Label" parent="Speech"]
+offset_left = 64.0
+offset_top = -144.0
+offset_right = 453.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 24
+text = "*woof*"
+
+[node name="Quote3" type="Label" parent="Speech"]
+offset_left = 163.0
+offset_top = -117.0
+offset_right = 552.0
+offset_bottom = 93.0
+theme_override_font_sizes/font_size = 24
+text = "*pet*"
