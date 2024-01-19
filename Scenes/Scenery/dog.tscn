@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://5qmp4wtv4vhb"]
+[gd_scene load_steps=7 format=3 uid="uid://5qmp4wtv4vhb"]
 
 [ext_resource type="Script" path="res://Scripts/Dog.cs" id="1_rrpi6"]
 [ext_resource type="SpriteFrames" uid="uid://c8df5cub7xjk8" path="res://Animations/Ghost/ghost.tres" id="2_vs8h2"]
 [ext_resource type="Texture2D" uid="uid://ca5xi54asa8ua" path="res://Sprites/CoalDrawn/dog.png" id="3_4jb3s"]
+[ext_resource type="AudioStream" uid="uid://cygbrya0tehy2" path="res://Audio/SFX/dog-barking-70772.mp3" id="4_pvp2f"]
+[ext_resource type="AudioStream" uid="uid://74g75i3ck0mj" path="res://Audio/SFX/whining-dog-6110.mp3" id="5_grn0l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3h8i7"]
-radius = 221.815
+radius = 134.06
 
 [node name="dog" type="Area2D"]
 collision_layer = 0
@@ -33,49 +35,43 @@ visible = false
 [node name="TextBack" type="Polygon2D" parent="Speech"]
 position = Vector2(219, -399)
 color = Color(0, 0, 0, 0.552941)
-polygon = PackedVector2Array(-147, 190, -194, 377, -144, 325, 13, 339, 115, 207)
+polygon = PackedVector2Array(-159, 249, -194, 377, -144, 325, 43, 336, 116, 236)
 
 [node name="Back1" type="Polygon2D" parent="Speech"]
-position = Vector2(55.75, -306.423)
+position = Vector2(89.75, -281.423)
 scale = Vector2(0.75, 0.807693)
 color = Color(0.617188, 0.578125, 0.582031, 1)
 polygon = PackedVector2Array(-66, 110, -105, 146, -45, 185, 124, 180, 168, 107)
 
 [node name="Back2" type="Polygon2D" parent="Speech"]
-position = Vector2(57.3084, -281.59)
+position = Vector2(91.3084, -256.59)
 scale = Vector2(0.641029, 0.64103)
 color = Color(0.175781, 0.121094, 0.109375, 1)
 polygon = PackedVector2Array(-66, 110, -105, 146, -45, 185, 124, 180, 168, 107)
 
 [node name="Dog" type="Label" parent="Speech"]
-offset_left = 44.0003
-offset_top = -209.0
-offset_right = 201.0
-offset_bottom = -139.0
+offset_left = 78.0
+offset_top = -185.0
+offset_right = 235.0
+offset_bottom = -115.0
 theme_override_colors/font_color = Color(0.619608, 0.580392, 0.584314, 1)
 theme_override_font_sizes/font_size = 24
 text = "Dog"
 
 [node name="Quote" type="Label" parent="Speech"]
-offset_left = 171.0
-offset_top = -188.0
-offset_right = 560.0
-offset_bottom = 22.0
+offset_left = 72.0
+offset_top = -132.0
+offset_right = 461.0
+offset_bottom = 78.0
 theme_override_font_sizes/font_size = 24
-text = "*woof*"
+text = "*you pet the dog*"
 
-[node name="Quote2" type="Label" parent="Speech"]
-offset_left = 64.0
-offset_top = -144.0
-offset_right = 453.0
-offset_bottom = 66.0
-theme_override_font_sizes/font_size = 24
-text = "*woof*"
+[node name="Bark" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pvp2f")
+volume_db = -0.1
+autoplay = true
+bus = &"SFX"
 
-[node name="Quote3" type="Label" parent="Speech"]
-offset_left = 163.0
-offset_top = -117.0
-offset_right = 552.0
-offset_bottom = 93.0
-theme_override_font_sizes/font_size = 24
-text = "*pet*"
+[node name="Whining" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_grn0l")
+bus = &"SFX"

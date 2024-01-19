@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://7gm2em8n2ucc"]
+[gd_scene load_steps=10 format=3 uid="uid://7gm2em8n2ucc"]
 
 [ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_hc42g"]
 [ext_resource type="Texture2D" uid="uid://cuxeorwpjn2g6" path="res://Sprites/CoalDrawn/CoalSignpost.png" id="2_sb4be"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cgbodrcslt8a1" path="res://Sprites/CoalDrawn/CoalTombStones.png" id="4_5vi2q"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="5_4gdet"]
 [ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://Sprites/CoalDrawn/CoalMountainsFiltered.png" id="6_2jgbw"]
+[ext_resource type="PackedScene" uid="uid://5qmp4wtv4vhb" path="res://Scenes/Scenery/dog.tscn" id="7_ygbby"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1fwhv"]
 atlas = ExtResource("4_5vi2q")
@@ -55,3 +56,6 @@ position = Vector2(-468, -525)
 scale = Vector2(3, 2)
 texture = ExtResource("6_2jgbw")
 centered = false
+
+[node name="dog" parent="." instance=ExtResource("7_ygbby")]
+position = Vector2(713, 733)
