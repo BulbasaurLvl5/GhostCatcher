@@ -179,7 +179,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("23_bi7di")
 centered = false
 
-[node name="SFX" type="Node" parent="."]
+[node name="SFX" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [node name="AudioListener2D" type="AudioListener2D" parent="SFX"]

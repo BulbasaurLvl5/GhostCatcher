@@ -70,6 +70,9 @@ text = "*you pet the dog*"
 stream = ExtResource("4_pvp2f")
 volume_db = -0.1
 autoplay = true
+max_distance = 1000.0
+attenuation = 2.73208
+panning_strength = 2.67
 bus = &"SFX"
 
 [node name="Whining" type="AudioStreamPlayer2D" parent="."]
