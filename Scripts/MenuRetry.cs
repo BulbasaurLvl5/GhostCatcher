@@ -50,10 +50,12 @@ public partial class MenuRetry : Node
 			// GD.Print(_main.Level);
 
 			int score = LevelTimesData.ReturnScore(_main.Level, _main.LevelTime.Time);
-			GD.Print(score);
 
-			token = source.Token;
-			DisplayScore(score, 333, _textures, token);
+			if(!_main.Failed)
+			{
+				token = source.Token;
+				DisplayScore(score, 333, _textures, token);
+			}
 
 			//deaths comment
 			if(this.TryGetChildren(out List<Label> _labels))
