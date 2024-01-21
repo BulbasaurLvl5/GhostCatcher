@@ -69,12 +69,14 @@ text = "*you pet the dog*"
 [node name="Bark" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_pvp2f")
 volume_db = -0.1
+pitch_scale = 1.4
 autoplay = true
-max_distance = 1000.0
-attenuation = 2.73208
-panning_strength = 2.67
 bus = &"SFX"
+area_mask = 2
 
 [node name="Whining" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_grn0l")
+volume_db = -0.5
+pitch_scale = 0.63
 bus = &"SFX"
+area_mask = 2
