@@ -15,6 +15,8 @@ public static class UILoader
 
 	static PackedScene packedPauseMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menu_Pause.tscn");
 
+	static PackedScene packedIntroMenu = ResourceLoader.Load<PackedScene>("res://Scenes/menu_intro.tscn");
+
 	public static void LoadLevelSelector(Main _main)
 	{
 		Node _menu_level = packed_menu_level.Instantiate<Node>();
@@ -65,5 +67,11 @@ public static class UILoader
 	{
 		Node _pauseMenu = packedPauseMenu.Instantiate<Node>();
 			_main.UI.AddChild(_pauseMenu);
+	}
+
+	public static void LoadIntroMenu(Main _main)
+	{
+		Node _introMenu = packedIntroMenu.Instantiate<Node>();
+		_main.UI.AddChild(_introMenu);
 	}
 }

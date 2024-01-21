@@ -85,6 +85,10 @@ public static class LevelLoader
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
 
+		FileIO.SaveGame _save = FileIO.Load();
+        if(_save.LastTimes[0] == 0)
+			UILoader.LoadIntroMenu(_main);
+
 		PlayerDisableDelay(_main, 1);
 	}
 

@@ -2,20 +2,15 @@ using Godot;
 using System;
 using MyGodotExtentions;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 public partial class MenuRetry : Node
 {
-	Dictionary<int, int[]> leveltimedata = new Dictionary<int, int[]>()
-	{
-		{0,new int[2]{5,10}},
-	};
-
-	public int ReturnScore(int level, double time)
-	{
-		//returns 0,1,2 depending on level and time
-		return 0;
-	}
-
+	CancellationTokenSource source = new CancellationTokenSource();
+	CancellationToken token;
 	public override void _Ready()
 	{
 		this.TryGetNodeInTree(out Main _main);
@@ -50,22 +45,15 @@ public partial class MenuRetry : Node
 		//rating
 		if(this.TryGetChildren(out List<TextureRect> _textures))
 		{
-			// GD.Print(_textures[2].Name); //rating image
+			// GD.Print(_textures[0].Name); death
 			// GD.Print(_main.LevelTime.Time);
 			// GD.Print(_main.Level);
 
-			AtlasTexture _rating = _textures[2].Texture as AtlasTexture;
-			// GD.Print(_rating.Region);
+			int score = LevelTimesData.ReturnScore(_main.Level, _main.LevelTime.Time);
+			GD.Print(score);
 
-			double _time = _main.LevelTime.Time;
-			Vector2I _size = new Vector2I(254, 254);
-
-			if(_time < 5)
-				_rating.Region = new Rect2(new Vector2I(508, 0), _size);
-			else if(_time < 10)
-				_rating.Region = new Rect2(new Vector2I(254, 0), _size);
-			else
-				_rating.Region = new Rect2(new Vector2I(0, 0), _size);
+			token = source.Token;
+			DisplayScore(score, 333, _textures, token);
 
 			//deaths comment
 			if(this.TryGetChildren(out List<Label> _labels))
@@ -76,5 +64,30 @@ public partial class MenuRetry : Node
 					_labels[1].Text = "Its been about time";
 			}
 		}
+	}
+
+	public static async void DisplayScore(int score, int milisecdelay, List<TextureRect> _textures, CancellationToken token)
+	{
+		for (int i = 0; i < score; i++)
+		{
+			if(token.IsCancellationRequested)
+				return;
+
+			try
+			{
+				await Task.Delay(milisecdelay, token);
+				_textures[i+1].Show(); //i+1 because first image in scene is death
+			}
+			catch(OperationCanceledException)
+			{
+				return;
+			}
+		}
+	}
+
+	public override void _ExitTree()
+	{
+		source.Cancel();
+		base._ExitTree();
 	}
 }

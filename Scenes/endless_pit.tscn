@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d22mfo1u7jqs0" path="res://Sprites/Endlesspit.png" id="2_cvn5m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgk45"]
-size = Vector2(46273, 714.5)
+size = Vector2(46273, 995.25)
 
 [node name="EndlessPit" type="Area2D"]
 collision_layer = 0
@@ -13,7 +13,7 @@ collision_mask = 2
 [node name="CollisionFailure" parent="." instance=ExtResource("1_01f1x")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3301, 734)
+position = Vector2(3301, 593.625)
 shape = SubResource("RectangleShape2D_tgk45")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -97,6 +97,20 @@ public static class FileIO
 		GD.Print("Called a static c# function");
 	}
 
+	public static void ResetSave()
+	{
+		string _filepath = _baseSavePath + "Save" + ".json";
+		GD.Print("save file reseted: "+_filepath);
+
+		SaveGame _save = new SaveGame{
+				LastTimes = new double[LevelLoader.LoadLevel.Length],
+				BestTimes = new double[LevelLoader.LoadLevel.Length],
+			};
+
+		string _jsonString = JsonSerializer.Serialize(_save);
+		File.WriteAllText(_filepath, _jsonString);
+	}
+
 	public class PlayerPrefs
 	{
 		public int[] VideoSettings {get; set;}

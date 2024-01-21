@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Dog.cs" id="1_rrpi6"]
 [ext_resource type="SpriteFrames" uid="uid://c8df5cub7xjk8" path="res://Animations/Ghost/ghost.tres" id="2_vs8h2"]
-[ext_resource type="Texture2D" uid="uid://ca5xi54asa8ua" path="res://Sprites/CoalDrawn/dog.png" id="3_4jb3s"]
+[ext_resource type="Texture2D" uid="uid://gu03b8itgr5c" path="res://Sprites/CoalDrawn/dog_2.png" id="3_trjff"]
 [ext_resource type="AudioStream" uid="uid://cygbrya0tehy2" path="res://Audio/SFX/dog-barking-70772.mp3" id="4_pvp2f"]
 [ext_resource type="AudioStream" uid="uid://74g75i3ck0mj" path="res://Audio/SFX/whining-dog-6110.mp3" id="5_grn0l"]
 
@@ -24,7 +24,7 @@ frame_progress = 0.671999
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_4jb3s")
+texture = ExtResource("3_trjff")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3h8i7")

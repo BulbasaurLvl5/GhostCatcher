@@ -1,23 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bokl5cktpsr6n"]
+[gd_scene load_steps=5 format=3 uid="uid://bokl5cktpsr6n"]
 
-[ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://Sprites/CoalDrawn/Menu_retry_Background.png" id="1_h6wog"]
 [ext_resource type="Script" path="res://Scripts/MenuRetry.cs" id="1_kt2lo"]
 [ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://Sprites/CoalDrawn/Reaper_cutout.png" id="2_bnm5d"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://Sprites/CoalDrawn/CoalButton_1.png" id="3_kykr8"]
-[ext_resource type="Texture2D" uid="uid://cjgix0ricfbuc" path="res://Sprites/CoalDrawn/CoalScytheRatings.png" id="5_xonhc"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eyhx0"]
-atlas = ExtResource("5_xonhc")
-region = Rect2(0, 0, 254, 254)
+[ext_resource type="Texture2D" uid="uid://ddtr0bjb6f4r3" path="res://Sprites/CoalDrawn/star_1.png" id="5_4mxct"]
 
 [node name="Retry_Menu" type="Node"]
 script = ExtResource("1_kt2lo")
-
-[node name="Crow_background" type="TextureRect" parent="."]
-visible = false
-offset_right = 1920.0
-offset_bottom = 1080.0
-texture = ExtResource("1_h6wog")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1920.0
@@ -132,9 +121,26 @@ offset_bottom = 258.0
 theme_override_font_sizes/font_size = 48
 text = "Hi"
 
-[node name="Rating" type="TextureRect" parent="."]
-offset_left = 850.0
-offset_top = 395.0
-offset_right = 1400.0
-offset_bottom = 945.0
-texture = SubResource("AtlasTexture_eyhx0")
+[node name="Rating_1" type="TextureRect" parent="."]
+visible = false
+offset_left = 905.0
+offset_top = 670.0
+offset_right = 1085.0
+offset_bottom = 850.0
+texture = ExtResource("5_4mxct")
+
+[node name="Rating_2" type="TextureRect" parent="."]
+visible = false
+offset_left = 1038.0
+offset_top = 548.0
+offset_right = 1218.0
+offset_bottom = 728.0
+texture = ExtResource("5_4mxct")
+
+[node name="Rating_3" type="TextureRect" parent="."]
+visible = false
+offset_left = 1159.0
+offset_top = 721.0
+offset_right = 1339.0
+offset_bottom = 901.0
+texture = ExtResource("5_4mxct")
