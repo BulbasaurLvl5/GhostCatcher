@@ -1,6 +1,67 @@
-[gd_scene load_steps=2 format=3 uid="uid://ggh2sv225mm7"]
+[gd_scene load_steps=6 format=3 uid="uid://ggh2sv225mm7"]
 
 [ext_resource type="Script" path="res://Main/Main.cs" id="1_7ow0c"]
+[ext_resource type="Script" path="res://Scripts/BackgroundMusic.cs" id="2_tf5ul"]
+
+[sub_resource type="Animation" id="Animation_5bdi0"]
+resource_name = "FadeToChannel1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Channel_1:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(6, 1),
+"update": 0,
+"values": [-80.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Channel_2:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.163229, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+
+[sub_resource type="Animation" id="Animation_v6pb5"]
+resource_name = "FadeToChannel2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Channel_1:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.166, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Channel_2:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(6, 1),
+"update": 0,
+"values": [-80.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vuefd"]
+_data = {
+"FadeToChannel1": SubResource("Animation_5bdi0"),
+"FadeToChannel2": SubResource("Animation_v6pb5")
+}
 
 [node name="Main" type="Node"]
 script = ExtResource("1_7ow0c")
@@ -8,3 +69,20 @@ script = ExtResource("1_7ow0c")
 [node name="World" type="Node" parent="."]
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Music" type="Node" parent="."]
+script = ExtResource("2_tf5ul")
+
+[node name="Channel_1" type="AudioStreamPlayer" parent="Music"]
+autoplay = true
+bus = &"Music"
+
+[node name="Channel_2" type="AudioStreamPlayer" parent="Music"]
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Music"]
+libraries = {
+"": SubResource("AnimationLibrary_vuefd")
+}

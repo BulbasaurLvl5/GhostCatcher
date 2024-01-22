@@ -16,6 +16,8 @@ public partial class Main : Node
 	public Node World;
 	public Node UI;
 
+	public BackgroundMusic Music;
+
 	public Node2D player;
 
 	int _ghostCount = 0;
@@ -42,6 +44,7 @@ public partial class Main : Node
 		{
 			World = children[0];
 			UI = children[1];
+			Music = children[2] as BackgroundMusic;
 
 			// LevelLoader.LoadLevel(this, 0);
 			// UILoader.LoadLevelSelector(this);
