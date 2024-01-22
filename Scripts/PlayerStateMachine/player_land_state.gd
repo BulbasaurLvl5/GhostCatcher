@@ -2,6 +2,7 @@ class_name PlayerLandState
 extends PlayerState
 
 
+@export var shockwave_scene : PackedScene
 var distance_fallen : float
 
 
@@ -11,8 +12,9 @@ func Enter(from : PlayerState = null):
 		print("Distance fallen = ",distance_fallen)
 	var impact : float = 0.5
 	if from:
-		if from.name == "Stomp" && distance_fallen >= 220.0:
+		if from.name == "Stomp" && distance_fallen >= 110.0:
 			impact += 0.5
+			create_shockwave()
 	if distance_fallen >= data.distance_before_heavy_landing:
 		impact += 0.25 + 0.25 * distance_fallen / data.distance_before_heavy_landing
 	if impact < 1.0:
@@ -24,6 +26,12 @@ func Enter(from : PlayerState = null):
 		%Camera2D.apply_shake(impact)
 		anim.play("land")
 		$"../../SFX/Land3".play()
+
+
+func create_shockwave():
+	var shockwave = shockwave_scene.instantiate()
+	get_tree().current_scene.add_child(shockwave)
+	shockwave.position = Vector2(player.position.x, player.position.y + 55.0)
 
 
 func Do_Checks():

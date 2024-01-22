@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dhow5esn6x7rt"]
+[gd_scene load_steps=32 format=3 uid="uid://dhow5esn6x7rt"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_state_machine.gd" id="1_dcopr"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player.gd" id="1_l4530"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_jump_state.gd" id="7_ofds0"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_in_air_state.gd" id="8_uctrm"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_land_state.gd" id="9_ok23f"]
+[ext_resource type="PackedScene" uid="uid://b88d6031uj744" path="res://Scripts/PlayerStateMachine/stomp_shockwave.tscn" id="11_euytq"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_dash_state.gd" id="12_5jbsb"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_wall_grab_state.gd" id="13_ckika"]
 [ext_resource type="PackedScene" uid="uid://deim0qaglwinp" path="res://Scenes/dash_ghost.tscn" id="14_q528f"]
@@ -104,6 +105,7 @@ script = ExtResource("8_uctrm")
 [node name="Land" type="Node" parent="PlayerStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("9_ok23f")
+shockwave_scene = ExtResource("11_euytq")
 
 [node name="Dash" type="Node" parent="PlayerStateMachine"]
 unique_name_in_owner = true
@@ -135,10 +137,10 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_left_margin = 0.3
-drag_top_margin = 0.3
-drag_right_margin = 0.3
-drag_bottom_margin = 0.4
+drag_left_margin = 0.15
+drag_top_margin = 0.4
+drag_right_margin = 0.15
+drag_bottom_margin = 0.3
 script = ExtResource("16_1amk7")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]

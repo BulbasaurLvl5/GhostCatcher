@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://c33brbbnr771"]
+
+[ext_resource type="Script" path="res://Scripts/MobAI/flaming_skull_ai.gd" id="1_mkvfy"]
+[ext_resource type="Script" path="res://Scripts/MobAI/mob_state_machine.gd" id="2_oduli"]
+[ext_resource type="Script" path="res://Scripts/MobAI/States/air_patrol_state.gd" id="3_tnp4g"]
+[ext_resource type="Script" path="res://Scripts/MobAI/States/skull_chase_state.gd" id="5_hq6k1"]
+[ext_resource type="Script" path="res://Scripts/MobAI/States/stunned_state.gd" id="5_i20n3"]
+[ext_resource type="Texture2D" uid="uid://cugtpajv1xxje" path="res://Sprites/Bubble-PLACEHOLDER-ART.png" id="6_aq4w2"]
+[ext_resource type="Script" path="res://Scripts/MobAI/States/flaming_rage_state.gd" id="6_hcva6"]
+[ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://Scenes/collision_failure.tscn" id="8_r0bl5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g5k2k"]
+radius = 19.0
+height = 48.0
+
+[node name="FlamingSkull" type="Area2D"]
+collision_layer = 16
+collision_mask = 7
+script = ExtResource("1_mkvfy")
+vision_ahead = 500.0
+vision_behind = 500.0
+vision_above = 500.0
+vision_below = 500.0
+x_ray_vision = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_g5k2k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2.395)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_aq4w2")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+target_position = Vector2(0, 0)
+collision_mask = 2
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("ai", "initial_state")]
+unique_name_in_owner = true
+script = ExtResource("2_oduli")
+ai = NodePath("..")
+initial_state = NodePath("AirPatrol")
+
+[node name="AirPatrol" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("3_tnp4g")
+patrol_speed = 50.0
+pause_before_travel = 0.0
+pause_after_travel = 0.0
+patrol_direction = Vector2(0, 1)
+
+[node name="AirChase" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("5_hq6k1")
+attack_range = 200.0
+chase_speed = 200.0
+
+[node name="FlamingRage" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("6_hcva6")
+warning_duration = 1.0
+scale_increase = 1.5
+attack_speed = 500.0
+attack_duration = 0.8
+
+[node name="Stunned" type="Node" parent="StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("5_i20n3")
+knockback_speed = 750.0
+
+[node name="CollisionFailure" parent="." instance=ExtResource("8_r0bl5")]

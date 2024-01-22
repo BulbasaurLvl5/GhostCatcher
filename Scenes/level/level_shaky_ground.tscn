@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/ghost_movement.gd" id="3_d304m"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="3_otjgh"]
 [ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://Scenes/MovingPlatforms/wide_platform_01.tscn" id="3_y03pk"]
-[ext_resource type="PackedScene" uid="uid://bb51nanisbo4s" path="res://Scenes/clyde_the_ghost.tscn" id="5_nkcng"]
+[ext_resource type="PackedScene" uid="uid://cau04hgcii1cn" path="res://Scenes/giant_ghost.tscn" id="5_3svs3"]
 [ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://Sprites/CoalDrawn/CoalMountainsFiltered.png" id="7_fkw55"]
 
 [sub_resource type="Curve2D" id="Curve2D_6tq0f"]
@@ -142,20 +142,11 @@ speed = 0.075
 
 [node name="Ghost" parent="Ghosts/Path2D9/PathFollow2D" instance=ExtResource("3_otjgh")]
 
-[node name="ClydeTheGhost" parent="Ghosts" instance=ExtResource("5_nkcng")]
-top_level = true
-z_index = 200
+[node name="GiantGhost" parent="Ghosts" instance=ExtResource("5_3svs3")]
 position = Vector2(25, -274)
-scale = Vector2(3, 3)
-idle_speed = 100.0
-time_between_turns = 10.0
-detection_range = Vector2(3000, 1000)
 
-[node name="ClydeTheGhost2" parent="Ghosts" instance=ExtResource("5_nkcng")]
-top_level = true
-z_index = 50
+[node name="GiantGhost2" parent="Ghosts" instance=ExtResource("5_3svs3")]
 position = Vector2(2887, -1388)
-scale = Vector2(3, 3)
 
 [node name="FalliingPlatforms" type="Node" parent="."]
 
