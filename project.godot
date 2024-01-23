@@ -174,9 +174,10 @@ Pause2={
 2d_physics/layer_1="Platforms"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="MovingPlatforms"
-2d_physics/layer_4="Ghosts"
-2d_physics/layer_5="Enemies"
-2d_physics/layer_6="Friends"
+2d_physics/layer_4="BasicGhosts"
+2d_physics/layer_5="EnemyGhosts"
+2d_physics/layer_6="SolidEnemies"
+2d_physics/layer_7="Friends"
 
 [physics]
 

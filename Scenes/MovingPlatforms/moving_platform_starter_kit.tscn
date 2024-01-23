@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://t7lwptrobxw8"]
 
-[ext_resource type="Script" path="res://Scenes/MovingPlatforms/platform_movement.gd" id="1_8egp7"]
 [ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://Scenes/MovingPlatforms/wide_platform_01.tscn" id="1_k4roo"]
+[ext_resource type="Script" path="res://Scenes/MovingPlatforms/path_follow_manager.gd" id="1_unuu3"]
 [ext_resource type="PackedScene" uid="uid://crxh8tb8lf8kr" path="res://Scenes/MovingPlatforms/tall_platform_01.tscn" id="2_gdn1g"]
 
 [sub_resource type="Curve2D" id="Curve2D_oc8qy"]
@@ -13,14 +13,13 @@ point_count = 5
 [node name="Path2D" type="Path2D"]
 curve = SubResource("Curve2D_oc8qy")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="." node_paths=PackedStringArray("platform")]
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
 rotates = false
-script = ExtResource("1_8egp7")
-platform = NodePath("../WidePlatform01")
+script = ExtResource("1_unuu3")
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="."]
 rotates = false
-script = ExtResource("1_8egp7")
+script = ExtResource("1_unuu3")
 
 [node name="WidePlatform01" parent="." instance=ExtResource("1_k4roo")]
 collision_layer = 5

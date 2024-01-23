@@ -9,7 +9,7 @@ extends MobState
 func Update(_delta):
 	if ai.current_hesitation <= 0.0:
 		if can_lose_player && !ai.can_see_player():
-			Transitioned.emit(self, "AirPatrol")
+			Transitioned.emit(self, "Patrol")
 		elif ai.current_hesitation <= 0.0:
 			if ai.facing_direction != sign(ai.target_path.x):
 				ai.Flip_Mob()
@@ -20,6 +20,7 @@ func Extra_Checks():
 	pass
 
 	
-func Physics_Update(delta):
+func Physics_Update(_delta):
 	if ai.current_hesitation <= 0.0:
-		ai.position += Vector2.ZERO.direction_to(ai.target_path) * chase_speed * delta
+		ai.velocity = Vector2.ZERO.direction_to(ai.target_path) * chase_speed
+		ai.move_and_slide()

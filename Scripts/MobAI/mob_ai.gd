@@ -1,7 +1,8 @@
 class_name MobAI
-extends Area2D
+extends CharacterBody2D
 
 
+@export var path : PathFollowManager
 @export var facing_direction : int = 1
 @export_range(0.0, 2000.0, 0.0, "or_greater", "suffix:pixels") var vision_ahead : float = 1000.0
 @export_range(0.0, 2000.0, 0.0, "or_greater", "suffix:pixels") var vision_behind : float = 300.0
@@ -25,7 +26,7 @@ func _process(delta):
 	if !player:
 		find_node()
 	else:
-		target_path = player.position - position
+		target_path = player.position - global_position
 	Update(delta)
 
 func Update(_delta):

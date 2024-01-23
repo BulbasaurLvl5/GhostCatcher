@@ -17,6 +17,7 @@ func _ready():
 
 func Initiate_Enter(from : MobState = null):
 	time_in_current_state = 0
+	print(ai.name," entering ",self.name)
 	Enter(from)
 	
 func Enter(_from : MobState):

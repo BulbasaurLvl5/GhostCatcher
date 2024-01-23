@@ -1,12 +1,49 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2m8h34yt10sh"]
+[gd_scene load_steps=15 format=3 uid="uid://d2m8h34yt10sh"]
 
 [ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_r5rfl"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="2_hfwfp"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="3_wpbfl"]
 [ext_resource type="Texture2D" uid="uid://cuxeorwpjn2g6" path="res://Sprites/CoalDrawn/CoalSignpost.png" id="4_wng46"]
 [ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://Sprites/CoalDrawn/CoalMountainsFiltered.png" id="5_553wy"]
+[ext_resource type="Script" path="res://Scenes/MovingPlatforms/path_follow_manager.gd" id="6_qvtoj"]
 [ext_resource type="PackedScene" uid="uid://c33brbbnr771" path="res://Scenes/flaming_skull.tscn" id="6_s7nyc"]
 [ext_resource type="PackedScene" uid="uid://cau04hgcii1cn" path="res://Scenes/giant_ghost.tscn" id="7_4xek7"]
+
+[sub_resource type="Curve2D" id="Curve2D_so5fl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 900, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_361ak"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 600, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_2cu88"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_qpbo3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_q2q1l"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 300, 0, 0, -300, 0, 300, 0, 500, 800, 0, 300, 0, 300, 1000, 0, 300, 0, -300, 0, 500, 800, 0, 300, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_iyavr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 200, 0, 0, 0, 200, 0, -200, 300, 0, 0, -200, 0, 0, 0, 0)
+}
+point_count = 3
 
 [node name="TileMap" type="TileMap"]
 tile_set = ExtResource("1_r5rfl")
@@ -47,30 +84,81 @@ scale = Vector2(3, 2)
 texture = ExtResource("5_553wy")
 centered = false
 
-[node name="FlamingSkull" parent="." instance=ExtResource("6_s7nyc")]
-position = Vector2(308, 576)
+[node name="EnemiesTemporary" type="Node" parent="."]
 
-[node name="FlamingSkull2" parent="." instance=ExtResource("6_s7nyc")]
-position = Vector2(1774, 1434)
+[node name="Path2D" type="Path2D" parent="EnemiesTemporary"]
+position = Vector2(252, 153)
+curve = SubResource("Curve2D_so5fl")
 
-[node name="FlamingSkull3" parent="." instance=ExtResource("6_s7nyc")]
-position = Vector2(572, 1772)
+[node name="PathFollow2D" type="PathFollow2D" parent="EnemiesTemporary/Path2D" node_paths=PackedStringArray("node")]
+rotates = false
+script = ExtResource("6_qvtoj")
+node = NodePath("../FlamingSkull")
+speed = 0.08
 
-[node name="FlamingSkull4" parent="." instance=ExtResource("6_s7nyc")]
-position = Vector2(1458, 366)
+[node name="FlamingSkull" parent="EnemiesTemporary/Path2D" instance=ExtResource("6_s7nyc")]
+path = NodePath("")
 
-[node name="FlamingSkull5" parent="." instance=ExtResource("6_s7nyc")]
-position = Vector2(1826, 2730)
+[node name="Path2D2" type="Path2D" parent="EnemiesTemporary"]
+position = Vector2(1093, 616)
+curve = SubResource("Curve2D_361ak")
 
-[node name="FlamingSkull6" parent="." instance=ExtResource("6_s7nyc")]
-position = Vector2(2238, 2546)
+[node name="PathFollow2D" type="PathFollow2D" parent="EnemiesTemporary/Path2D2" node_paths=PackedStringArray("node")]
+rotates = false
+script = ExtResource("6_qvtoj")
+node = NodePath("../FlamingSkull")
 
-[node name="GiantGhost" parent="." instance=ExtResource("7_4xek7")]
-position = Vector2(988, -182)
+[node name="FlamingSkull" parent="EnemiesTemporary/Path2D2" instance=ExtResource("6_s7nyc")]
+path = NodePath("")
 
-[node name="GiantGhost2" parent="." instance=ExtResource("7_4xek7")]
-position = Vector2(448, 990)
-facing_direction = -1
+[node name="Path2D3" type="Path2D" parent="EnemiesTemporary"]
+position = Vector2(1776, 1411)
+curve = SubResource("Curve2D_2cu88")
 
-[node name="GiantGhost3" parent="." instance=ExtResource("7_4xek7")]
-position = Vector2(898, 1872)
+[node name="PathFollow2D" type="PathFollow2D" parent="EnemiesTemporary/Path2D3" node_paths=PackedStringArray("node")]
+rotates = false
+script = ExtResource("6_qvtoj")
+node = NodePath("../FlamingSkull")
+
+[node name="FlamingSkull" parent="EnemiesTemporary/Path2D3" instance=ExtResource("6_s7nyc")]
+path = NodePath("")
+
+[node name="Path2D4" type="Path2D" parent="EnemiesTemporary"]
+position = Vector2(204, 1769)
+curve = SubResource("Curve2D_qpbo3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="EnemiesTemporary/Path2D4" node_paths=PackedStringArray("node")]
+rotates = false
+script = ExtResource("6_qvtoj")
+node = NodePath("../FlamingSkull")
+
+[node name="FlamingSkull" parent="EnemiesTemporary/Path2D4" instance=ExtResource("6_s7nyc")]
+path = NodePath("")
+
+[node name="Path2D5" type="Path2D" parent="EnemiesTemporary"]
+position = Vector2(1567, 1838)
+curve = SubResource("Curve2D_q2q1l")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="EnemiesTemporary/Path2D5" node_paths=PackedStringArray("node")]
+rotates = false
+script = ExtResource("6_qvtoj")
+node = NodePath("../FlamingSkull")
+speed = 0.07
+
+[node name="FlamingSkull" parent="EnemiesTemporary/Path2D5" instance=ExtResource("6_s7nyc")]
+path = NodePath("")
+
+[node name="Path2D6" type="Path2D" parent="EnemiesTemporary"]
+position = Vector2(1250, -339)
+curve = SubResource("Curve2D_iyavr")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="EnemiesTemporary/Path2D6" node_paths=PackedStringArray("node")]
+position = Vector2(299.97, -3.43001)
+progress = 479.16
+rotates = false
+script = ExtResource("6_qvtoj")
+node = NodePath("../GiantGhost")
+pause_locations = Array[float]([])
+pause_durations = Array[float]([])
+
+[node name="GiantGhost" parent="EnemiesTemporary/Path2D6" instance=ExtResource("7_4xek7")]

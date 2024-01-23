@@ -13,7 +13,6 @@ extends MobState
 
 var attack_direction : Vector2 = Vector2.ZERO
 
-
 func Enter(_from : MobState):
 	attack_direction = Vector2.ZERO
 	var count : int = 3
@@ -30,11 +29,13 @@ func Update(_delta):
 			start_attack()
 		elif time_in_current_state > warning_duration + attack_duration:
 			ai.current_hesitation = recovery_duration
-			Transitioned.emit(self, "AirChase")
+			Transitioned.emit(self, "Chase")
 
 func start_attack():
-	attack_direction = ai.position.direction_to(ai.player.position)
+	attack_direction = ai.global_position.direction_to(ai.player.position)
 
 func Physics_Update(delta):
-	ai.position += attack_direction * attack_speed * delta
+	ai.move_and_collide(attack_direction * attack_speed * delta)
 	
+func Exit():
+	ai.rage_cooldown_remaining = attack_cooldown
