@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ggh2sv225mm7"]
+[gd_scene load_steps=8 format=3 uid="uid://ggh2sv225mm7"]
 
 [ext_resource type="Script" path="res://Main/Main.cs" id="1_7ow0c"]
 [ext_resource type="Script" path="res://Scripts/BackgroundMusic.cs" id="2_tf5ul"]
@@ -14,7 +14,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.166, 1),
 "update": 0,
 "values": [-80.0, 0.0]
 }
@@ -26,7 +26,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(2, 1),
+"transitions": PackedFloat32Array(6, 1),
 "update": 0,
 "values": [0.0, -80.0]
 }
@@ -42,7 +42,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(2, 1),
+"transitions": PackedFloat32Array(6, 1),
 "update": 0,
 "values": [0.0, -80.0]
 }
@@ -54,15 +54,49 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.166, 1),
 "update": 0,
 "values": [-80.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_kcs8d"]
+resource_name = "FadeoutChannel1"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Channel_1:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(6, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+
+[sub_resource type="Animation" id="Animation_6nx5y"]
+resource_name = "FadeoutChannel2"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Channel_2:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(6, 1),
+"update": 0,
+"values": [0.0, -80.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vuefd"]
 _data = {
 "FadeToChannel1": SubResource("Animation_5bdi0"),
-"FadeToChannel2": SubResource("Animation_v6pb5")
+"FadeToChannel2": SubResource("Animation_v6pb5"),
+"FadeoutChannel1": SubResource("Animation_kcs8d"),
+"FadeoutChannel2": SubResource("Animation_6nx5y")
 }
 
 [node name="Main" type="Node"]
@@ -76,7 +110,6 @@ script = ExtResource("1_7ow0c")
 script = ExtResource("2_tf5ul")
 
 [node name="Channel_1" type="AudioStreamPlayer" parent="Music"]
-volume_db = -80.0
 bus = &"Music"
 
 [node name="Channel_2" type="AudioStreamPlayer" parent="Music"]

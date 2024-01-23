@@ -142,7 +142,7 @@ public partial class Main : Node
 			}
 		}
 
-		BackgroundMusic.ChangeSongTo(BackgroundMusic.SongNames.labyrinthofdespair);
+		BackgroundMusic.FadeoutToPlay(BackgroundMusic.SongNames.labyrinthofdespair);
 	}
 
 	public void EndLevel()

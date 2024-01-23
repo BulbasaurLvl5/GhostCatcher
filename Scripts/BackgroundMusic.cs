@@ -8,6 +8,9 @@ public partial class BackgroundMusic : Node
     AudioStreamPlayer channel_1;
     AudioStreamPlayer channel_2;
 
+    AudioStreamPlayer activeChannel;
+    AudioStreamPlayer inactiveChannel;
+
     AnimationPlayer animationPlayer;
 
     public enum SongNames
@@ -38,6 +41,25 @@ public partial class BackgroundMusic : Node
         // GD.Print(channel_1.Playing);
     }
 
+    void SetActiveChannel()
+    {
+        if (channel_1.VolumeDb > -5 && channel_2.VolumeDb < -75)
+        {
+            activeChannel = channel_1;
+            inactiveChannel = channel_2;
+        }
+        else if (channel_1.VolumeDb < -75 && channel_2.VolumeDb > -5)
+        {
+            activeChannel = channel_2;
+            inactiveChannel = channel_1;
+        }
+        else //this may happen during cross fade. it remains to be seen if this solution is a problem
+        {
+            activeChannel = channel_1;
+            inactiveChannel = channel_2;
+        }
+    }
+
     AudioStream SongFile(SongNames song)
     {
         switch(song) 
@@ -52,31 +74,37 @@ public partial class BackgroundMusic : Node
         }
     }
 
-    public void ChangeSongTo(SongNames song)
+    public void CrossfadeTo(SongNames songname)
     {
-        //they are both playing anyway as i see it, because only their volumne is changed
-        // if (channel_1.Playing && channel_2.Playing)
-		//     return; //both channels playing. find a solution for this
+        SetActiveChannel();
+        inactiveChannel.Stream = SongFile(songname);
+        inactiveChannel.Play();
+
         
-        if (channel_1.VolumeDb > -5 && channel_2.VolumeDb < -75)
+        if (activeChannel == channel_1)
         {
-            //set song to channel 2
-            channel_2.Stream = SongFile(song);
-            //start playing of channel2
-            channel_2.Play();
-            //call correct animation player : animationPlayer.Play("FadeToChannel2");
-            // channel_1.Stop();
             animationPlayer.Play("FadeToChannel2");
         }
-        else if (channel_1.VolumeDb < -75 && channel_2.VolumeDb > -5)
+        else if (activeChannel == channel_2)
         {
-            //set song to channel 2
-            channel_1.Stream = SongFile(song);
-            //start playing of channel2
-            channel_1.Play();
-            //call correct animation player : animationPlayer.Play("FadeToChannel2");
-            // channel_2.Stop();
             animationPlayer.Play("FadeToChannel1");
+        }
+    }
+
+    public void FadeoutToPlay(SongNames songname)
+    {
+        SetActiveChannel();
+        inactiveChannel.Stream = SongFile(songname);
+        inactiveChannel.Play();
+        inactiveChannel.VolumeDb = 0;
+        
+        if (activeChannel == channel_1)
+        {
+            animationPlayer.Play("FadeoutChannel1");
+        }
+        else if (activeChannel == channel_2)
+        {
+            animationPlayer.Play("FadeoutChannel2");
         }
     }
 }
