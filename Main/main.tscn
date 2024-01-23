@@ -5,6 +5,7 @@
 
 [sub_resource type="Animation" id="Animation_5bdi0"]
 resource_name = "FadeToChannel1"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -12,8 +13,8 @@ tracks/0/path = NodePath("Channel_1:volume_db")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(6, 1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [-80.0, 0.0]
 }
@@ -24,14 +25,15 @@ tracks/1/path = NodePath("Channel_2:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(0.163229, 1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2, 1),
 "update": 0,
 "values": [0.0, -80.0]
 }
 
 [sub_resource type="Animation" id="Animation_v6pb5"]
 resource_name = "FadeToChannel2"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -39,8 +41,8 @@ tracks/0/path = NodePath("Channel_1:volume_db")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(0.166, 1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2, 1),
 "update": 0,
 "values": [0.0, -80.0]
 }
@@ -51,8 +53,8 @@ tracks/1/path = NodePath("Channel_2:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(6, 1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [-80.0, 0.0]
 }
@@ -74,12 +76,10 @@ script = ExtResource("1_7ow0c")
 script = ExtResource("2_tf5ul")
 
 [node name="Channel_1" type="AudioStreamPlayer" parent="Music"]
-autoplay = true
+volume_db = -80.0
 bus = &"Music"
 
 [node name="Channel_2" type="AudioStreamPlayer" parent="Music"]
-volume_db = -80.0
-autoplay = true
 bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Music"]

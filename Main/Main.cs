@@ -16,7 +16,7 @@ public partial class Main : Node
 	public Node World;
 	public Node UI;
 
-	public BackgroundMusic Music;
+	public BackgroundMusic BackgroundMusic;
 
 	public Node2D player;
 
@@ -44,7 +44,7 @@ public partial class Main : Node
 		{
 			World = children[0];
 			UI = children[1];
-			Music = children[2] as BackgroundMusic;
+			BackgroundMusic = children[2] as BackgroundMusic;
 
 			// LevelLoader.LoadLevel(this, 0);
 			// UILoader.LoadLevelSelector(this);
@@ -141,6 +141,8 @@ public partial class Main : Node
 				}
 			}
 		}
+
+		BackgroundMusic.ChangeSongTo(BackgroundMusic.SongNames.labyrinthofdespair);
 	}
 
 	public void EndLevel()

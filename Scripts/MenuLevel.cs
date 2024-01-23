@@ -24,6 +24,8 @@ public partial class MenuLevel : Node
 		FileIO.SaveGame _save = FileIO.Load();
 		this.TryGetNodeInTree(out Main _main);
 
+		_main.BackgroundMusic.ChangeSongTo(BackgroundMusic.SongNames.phantomx27);
+
 		if(this.TryGetChildren(out List<Button> _baseButtons)) //&& this.TryGetNodeInTree(out Main _main) <- code for migrating code into its own script
 		{
 			//back button

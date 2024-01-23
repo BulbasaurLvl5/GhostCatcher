@@ -28,6 +28,8 @@ public static class UILoader
 		Node _mainMenu = packedMainMenu.Instantiate<Node>();
 			_main.UI.AddChild(_mainMenu);
 
+		_main.BackgroundMusic.ChangeSongTo(BackgroundMusic.SongNames.phantomx27);
+
 		if(_mainMenu.TryGetChildren(out List<Button> _buttons))
 		{
 			_buttons[0].Pressed += () => {
