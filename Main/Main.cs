@@ -62,17 +62,13 @@ public partial class Main : Node
 
 		endTime.OnStop += EndLevel;
 
-		//load video settings
-		FileIO.PlayerPrefs _playerPrefs = FileIO.LoadPlayerPrefs();
-		VideoSettings.SetVsync(VideoSettings.VsyncOptions[_playerPrefs.VideoSettings[0]]);
-		VideoSettings.SetWindowMode(VideoSettings.WindowOptions[_playerPrefs.VideoSettings[1]]);
-		VideoSettings.SetWindowSize(VideoSettings.ResolutionOptions[_playerPrefs.VideoSettings[2]]);
-
-		//load input settings
-		//because of the set up (GDS+C# + how remap button works) we have to quickly load the whole menu...
+		//because of the set up (GDS+C# + how remap button works) we quickly load the whole menu
+		//for consistency all settings are loaded in _ready of menuoptions
 		Node _optionsmenu = UILoader.LoadOptionsMenu(this);
 		_optionsmenu.QueueFree();
-		if(this.TryGetNestedChildren(out List<Button> _buttons)){ _buttons[2].GrabFocus(); } //select level select button
+
+		if(this.TryGetNestedChildren(out List<Button> _buttons))
+			_buttons[2].GrabFocus();//select level select button
 	}
 
 	public override void _Process(double delta)

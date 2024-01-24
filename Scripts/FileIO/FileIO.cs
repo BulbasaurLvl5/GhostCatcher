@@ -36,6 +36,7 @@ public static class FileIO
 		_filepath = _baseSavePath + "Save" + ".json";
 		if(!File.Exists(_filepath) || LevelLoader.LoadLevel.Length != Load().LastTimes.Length)
 		{
+			GD.Print("Created new save file");
 			SaveGame _save = new SaveGame{
 				LastTimes = new double[LevelLoader.LoadLevel.Length],
 				BestTimes = new double[LevelLoader.LoadLevel.Length],
@@ -46,10 +47,12 @@ public static class FileIO
 		}
 
 		_filepath = _baseSavePath + "PlayerPrefs" + ".json";
-		if(!File.Exists(_filepath))
+		if(!File.Exists(_filepath) || LoadPlayerPrefs().VideoSettings == null || LoadPlayerPrefs().AudioSettings == null)
 		{
+			GD.Print("Created new player prefs");
 			PlayerPrefs _playerPrefs = new PlayerPrefs{
 				VideoSettings = new int[3]{1,0,6}, //vsync enabled, fullscreen, 1920x1080
+				AudioSettings =  new double[4]{1,1,1,1} //main, effect, music, ui
 			};
 
 			string _jsonString = JsonSerializer.Serialize(_playerPrefs);
@@ -114,11 +117,11 @@ public static class FileIO
 	public class PlayerPrefs
 	{
 		public int[] VideoSettings {get; set;}
-		// public int[] AudioSettings {get; set;}
+		public double[] AudioSettings {get; set;}
 		// public int[] ControllSettings {get; set;}
 	}
 
-	public static void SavePlayerPrefs(int[] videoSettings)
+	public static void SavePlayerPrefs(int[] videoSettings, double[] audiosettings)
 	{
 		string _filepath = _baseSavePath + "PlayerPrefs" + ".json";
 		GD.Print("saved player prefs to: "+_filepath);
@@ -126,6 +129,7 @@ public static class FileIO
 		PlayerPrefs _playerPrefs = LoadPlayerPrefs();
 
 		_playerPrefs.VideoSettings = videoSettings;
+		_playerPrefs.AudioSettings = audiosettings;
 
 		string _jsonString = JsonSerializer.Serialize(_playerPrefs);
 		File.WriteAllText(_filepath, _jsonString);

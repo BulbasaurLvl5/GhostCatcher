@@ -53,6 +53,12 @@ public partial class MenuOptions : Node
 
 	OptionButton _windowSizeButton;
 
+	HSlider _mainSlider;
+	HSlider _effectSlider;
+	HSlider _musicSlider;
+	HSlider _uiSlider;
+
+
 	public override void _Ready()
 	{
 		if(this.TryGetChildren(out List<GridContainer> _gridcontainer))
@@ -62,13 +68,85 @@ public partial class MenuOptions : Node
 			_controlOptions = _gridcontainer[2];
 		}
 
-		if(_videoOptions.TryGetChildren(out List<OptionButton> _optionButton)) //should be part of videooptions script but who cares
+		//videooptions, should be part of own script but who cares
+		if(_videoOptions.TryGetChildren(out List<OptionButton> _optionButton)) 
 		{
 			_vsyncButton = _optionButton[0];
 			_windowModeButton = _optionButton[1];
 			_windowSizeButton = _optionButton[2];
+
+			foreach (var _ in VideoSettings.VsyncOptions)
+			{
+				_vsyncButton.AddItem(_);
+			}
+
+			_vsyncButton.ItemSelected += (_index) => {
+				// string _key = _vsyncButton.GetItemText((int)_index);
+				// DisplayServer.WindowSetVsyncMode(_vsyncDict[_key]);
+				// GD.Print("Changed vsync to:", _vsyncDict[_key]);
+				VideoSettings.SetVsync(_vsyncButton.GetItemText((int)_index));
+			};
+
+			foreach (var _ in VideoSettings.WindowOptions)
+			{
+				_windowModeButton.AddItem(_);
+			}
+
+			_windowModeButton.ItemSelected += (_index) =>{
+				GD.Print("_WindowModeButton selected:", _index);
+				VideoSettings.SetWindowMode(_windowModeButton.GetItemText((int)_index));
+			};
+
+			foreach (var _ in VideoSettings.ResolutionOptions)
+			{
+				_windowSizeButton.AddItem(_);
+			}
+
+			_windowSizeButton.ItemSelected += (_index) => {
+				// string _key = _windowSizeButton.GetItemText((int)_index);
+				// DisplayServer.WindowSetSize(_resolutionDict[_key]);
+				VideoSettings.SetWindowSize(_windowSizeButton.GetItemText((int)_index));
+			};
 		}
 
+		//audio options
+		if(_audioOptions.TryGetChildren(out List<HSlider> _audioSliders)) 
+		{
+			// for (int i = 0; i < _audioSliders.Count; i++)
+			// {
+			// 	GD.Print(i + _audioSliders[i].Name);
+			// }
+			_mainSlider = _audioSliders[0];
+			_effectSlider = _audioSliders[1];
+			_musicSlider = _audioSliders[2];
+			_uiSlider = _audioSliders[3];
+			
+			_mainSlider.ValueChanged += (_value) => {
+				float _t = Mathf.Clamp((float)_value*.01f, .001f, 1);
+				// GD.Print("-----------------------------");
+				// GD.Print("main slider value: "+_value);
+				// GD.Print("_playerPrefs.AudioSettings: "+_t);
+				// GD.Print("Mathf.LinearToDb: "+Mathf.LinearToDb(_t));
+				AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(_t));
+				};
+
+			_effectSlider.ValueChanged += (_value) => {
+				float _t = Mathf.Clamp((float)_value*.01f, .001f, 1);
+				AudioServer.SetBusVolumeDb(1, Mathf.LinearToDb(_t));
+				};
+
+			_musicSlider.ValueChanged += (_value) => {
+				float _t = Mathf.Clamp((float)_value*.01f, .001f, 1);
+				AudioServer.SetBusVolumeDb(2, Mathf.LinearToDb(_t));
+				};
+
+			_uiSlider.ValueChanged += (_value) => {
+				float _t = Mathf.Clamp((float)_value*.01f, .001f, 1);
+				AudioServer.SetBusVolumeDb(3, Mathf.LinearToDb(_t));
+				};
+		}
+
+		//general buttons + saving loading
 		if(this.TryGetChildren(out List<Button> _buttons) && this.TryGetNodeInTree(out Main _main))
 		{
 			//back
@@ -77,7 +155,8 @@ public partial class MenuOptions : Node
 				UILoader.LoadMainMenu(_main);
 
 				FileIO.SavePlayerPrefs(
-					new int[3]{_vsyncButton.GetSelectedId(), _windowModeButton.GetSelectedId(),_windowSizeButton.GetSelectedId()}
+					new int[3]{_vsyncButton.GetSelectedId(), _windowModeButton.GetSelectedId(),_windowSizeButton.GetSelectedId()},
+					new double[4]{_mainSlider.Value, _effectSlider.Value, _musicSlider.Value, _uiSlider.Value}
 					);
 			};
 
@@ -102,45 +181,31 @@ public partial class MenuOptions : Node
 				_controlOptions.Show();
 			};
 
-			foreach (var _ in VideoSettings.VsyncOptions)
-			{
-				_vsyncButton.AddItem(_);
-			}
-
-			_vsyncButton.ItemSelected += (_index) => {
-				// string _key = _vsyncButton.GetItemText((int)_index);
-				// DisplayServer.WindowSetVsyncMode(_vsyncDict[_key]);
-				// GD.Print("Changed vsync to:", _vsyncDict[_key]);
-				VideoSettings.SetVsync(_vsyncButton.GetItemText((int)_index));
-			};
-
-			foreach (var _ in VideoSettings.WindowOptions)
-			{
-				_windowModeButton.AddItem(_);
-			}
-
-			_windowModeButton.ItemSelected += (_index) =>{
-				// GD.Print("_WindowModeButton selected:", _index);
-				VideoSettings.SetWindowMode(_windowModeButton.GetItemText((int)_index));
-			};
-
-			foreach (var _ in VideoSettings.ResolutionOptions)
-			{
-				_windowSizeButton.AddItem(_);
-			}
-
-			_windowSizeButton.ItemSelected += (_index) => {
-				// string _key = _windowSizeButton.GetItemText((int)_index);
-				// DisplayServer.WindowSetSize(_resolutionDict[_key]);
-				VideoSettings.SetWindowSize(_windowSizeButton.GetItemText((int)_index));
-			};
-
 			_buttons[1].GrabFocus();
 
+			//this block here is called, because the menu is loaded for a split second at game start and is thus a valid way to load settings
 			FileIO.PlayerPrefs _playerPrefs = FileIO.LoadPlayerPrefs();
 			_vsyncButton.Select(_playerPrefs.VideoSettings[0]);
 			_windowModeButton.Select(_playerPrefs.VideoSettings[1]);
 			_windowSizeButton.Select(_playerPrefs.VideoSettings[2]);
+
+			VideoSettings.SetVsync(VideoSettings.VsyncOptions[_playerPrefs.VideoSettings[0]]);
+			VideoSettings.SetWindowMode(VideoSettings.WindowOptions[_playerPrefs.VideoSettings[1]]);
+			VideoSettings.SetWindowSize(VideoSettings.ResolutionOptions[_playerPrefs.VideoSettings[2]]);
+
+			_mainSlider.Value = _playerPrefs.AudioSettings[0];
+			_effectSlider.Value = _playerPrefs.AudioSettings[1];
+			_musicSlider.Value = _playerPrefs.AudioSettings[2];
+			_uiSlider.Value = _playerPrefs.AudioSettings[3];
+
+			float _t = Mathf.Clamp((float)_playerPrefs.AudioSettings[0]*.01f, .001f, 1);
+			AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(_t));
+			_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[1]*.01f, .001f, 1);
+			AudioServer.SetBusVolumeDb(1, Mathf.LinearToDb(_t));
+			_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[2]*.01f, .001f, 1);
+			AudioServer.SetBusVolumeDb(2, Mathf.LinearToDb(_t));
+			_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[3]*.01f, .001f, 1);
+			AudioServer.SetBusVolumeDb(3, Mathf.LinearToDb(_t));
 		}
 	}
 }

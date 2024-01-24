@@ -77,7 +77,7 @@ offset_bottom = 489.0
 focus_neighbor_left = NodePath("../Video_Button")
 focus_neighbor_top = NodePath("../Back_Button")
 focus_neighbor_right = NodePath("../Control_Button")
-focus_neighbor_bottom = NodePath("../AudioOptions/HSlider")
+focus_neighbor_bottom = NodePath("../AudioOptions/MainHSlider")
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
@@ -162,12 +162,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="AudioOptions" type="GridContainer" parent="."]
-visible = false
 offset_left = 400.0
 offset_top = 554.0
 offset_right = 1500.0
 offset_bottom = 975.0
-focus_neighbor_bottom = NodePath("HSlider")
+focus_neighbor_bottom = NodePath("MainHSlider")
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 15
 columns = 3
@@ -182,7 +181,7 @@ text = "Main"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSlider" type="HSlider" parent="AudioOptions"]
+[node name="MainHSlider" type="HSlider" parent="AudioOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_top = NodePath("../../Audio_Button")
@@ -197,7 +196,7 @@ text = "Effect"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSlider2" type="HSlider" parent="AudioOptions"]
+[node name="EffectHSlider" type="HSlider" parent="AudioOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -211,7 +210,7 @@ text = "Music"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSlider3" type="HSlider" parent="AudioOptions"]
+[node name="MusicSlider" type="HSlider" parent="AudioOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -225,7 +224,7 @@ text = "UI"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSlider4" type="HSlider" parent="AudioOptions"]
+[node name="UIHSlider" type="HSlider" parent="AudioOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
 
