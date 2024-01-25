@@ -2,22 +2,22 @@
 
 [ext_resource type="Script" path="res://Scripts/MobAI/flaming_skull_ai.gd" id="1_mkvfy"]
 [ext_resource type="Script" path="res://Scripts/MobAI/mob_state_machine.gd" id="2_oduli"]
+[ext_resource type="Texture2D" uid="uid://cxp6qr5x3lquj" path="res://Sprites/CoalDrawn/skull_1.png" id="3_pomug"]
 [ext_resource type="Script" path="res://Scripts/MobAI/States/air_patrol_state.gd" id="3_tnp4g"]
 [ext_resource type="Script" path="res://Scripts/MobAI/States/skull_chase_state.gd" id="5_hq6k1"]
 [ext_resource type="Script" path="res://Scripts/MobAI/States/stunned_state.gd" id="5_i20n3"]
-[ext_resource type="Texture2D" uid="uid://cugtpajv1xxje" path="res://Sprites/Bubble-PLACEHOLDER-ART.png" id="6_aq4w2"]
 [ext_resource type="Script" path="res://Scripts/MobAI/States/flaming_rage_state.gd" id="6_hcva6"]
 [ext_resource type="Script" path="res://Scripts/MobAI/States/path_state.gd" id="8_l8htg"]
 [ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://Scenes/collision_failure.tscn" id="8_r0bl5"]
 [ext_resource type="Script" path="res://Scripts/MobAI/States/air_return_state.gd" id="9_ej7hy"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g5k2k"]
-radius = 12.0
-height = 34.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6h1h"]
 radius = 19.0
 height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g5k2k"]
+radius = 22.0
+height = 62.0
 
 [node name="FlamingSkull" type="CharacterBody2D"]
 collision_layer = 32
@@ -31,9 +31,6 @@ vision_above = 500.0
 vision_below = 500.0
 x_ray_vision = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_g5k2k")
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
@@ -44,9 +41,11 @@ shape = SubResource("CapsuleShape2D_v6h1h")
 [node name="CollisionFailure" parent="Area2D" instance=ExtResource("8_r0bl5")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -2.395)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("6_aq4w2")
+texture = ExtResource("3_pomug")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_g5k2k")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("ai", "initial_state")]
 unique_name_in_owner = true
