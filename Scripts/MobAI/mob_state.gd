@@ -25,10 +25,10 @@ func Enter(_from : MobState):
 	
 func Initiate_Update(delta):
 	time_in_current_state += delta
-	Do_Checks()
+	Do_Checks(delta)
 	Update(delta)
 	
-func Do_Checks():
+func Do_Checks(_delta):
 	pass
 	
 func Update(_delta):
