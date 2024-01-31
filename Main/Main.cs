@@ -89,7 +89,7 @@ public partial class Main : Node
 		}
 	}
 
-	public void ClearScenes()
+	public async void ClearScenes()
 	{
 		if(World.TryGetNestedChildren(out List<Ghost> ghosts))
 		{
@@ -110,6 +110,10 @@ public partial class Main : Node
 		{
 			_c.QueueFree();
 		}
+
+		// GD.Print("frame#: "+GetTree().GetFrame());
+		await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+		// GD.Print("frame#: "+GetTree().GetFrame());
 	}
 
 	public void StartLevel(int lvl)

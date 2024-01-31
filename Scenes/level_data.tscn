@@ -55,6 +55,7 @@ layout_mode = 2
 texture = ExtResource("2_y1rdw")
 
 [node name="ShowLevel" type="Button" parent="."]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.535156, 0.484375, 0.484375, 1)

@@ -74,13 +74,30 @@ public partial class BackgroundMusic : Node
         }
     }
 
+    SongNames GetCurrentSong()
+    {
+        // GD.Print("song: "+activeChannel.Stream.ResourcePath);
+        // if(activeChannel.Stream.ResourcePath.Contains("phantom"))
+        //     GD.Print("song is phantom");
+        string _path = activeChannel.Stream.ResourcePath;
+
+        if(_path.Contains("phantom"))
+            return SongNames.phantomx27;
+        else if(_path.Contains("labyrinth"))
+            return SongNames.labyrinthofdespair;
+        else
+            return SongNames.phantomx27;
+    }
+
     public void CrossfadeTo(SongNames songname)
     {
         SetActiveChannel();
+        if(GetCurrentSong() == songname)
+            return; //skip if already in menu
+        
         inactiveChannel.Stream = SongFile(songname);
         inactiveChannel.Play();
 
-        
         if (activeChannel == channel_1)
         {
             animationPlayer.Play("FadeToChannel2");

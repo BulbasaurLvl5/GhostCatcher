@@ -122,7 +122,6 @@ theme_override_font_sizes/font_size = 48
 text = "Hi"
 
 [node name="Rating_1" type="TextureRect" parent="."]
-visible = false
 offset_left = 905.0
 offset_top = 670.0
 offset_right = 1085.0
@@ -130,7 +129,6 @@ offset_bottom = 850.0
 texture = ExtResource("5_4mxct")
 
 [node name="Rating_2" type="TextureRect" parent="."]
-visible = false
 offset_left = 1038.0
 offset_top = 548.0
 offset_right = 1218.0
@@ -138,7 +136,6 @@ offset_bottom = 728.0
 texture = ExtResource("5_4mxct")
 
 [node name="Rating_3" type="TextureRect" parent="."]
-visible = false
 offset_left = 1159.0
 offset_top = 721.0
 offset_right = 1339.0
