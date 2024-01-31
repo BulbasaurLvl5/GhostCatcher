@@ -3,6 +3,8 @@ extends PlayerState
 
 
 @export var dash_ghost_node : PackedScene
+@export var shockwave_scene : PackedScene
+
 @onready var ghost_timer : float = 0
 
 @onready var dash_direction : Vector2 = Vector2.ZERO
@@ -10,10 +12,12 @@ extends PlayerState
 @onready var recovering : bool
 
 
-func Enter(_from : PlayerState = null):
+func Enter(from : PlayerState = null):
 	recovering = false
 	player.dash_button_reset = false
 	set_animation()
+	if from.name != "WallGrab":
+		create_shockwave()
 	add_ghost()
 	$"../../SFX/Dash".play()
 
@@ -78,5 +82,13 @@ func add_ghost():
 	get_tree().current_scene.add_child((dash_ghost))
 	ghost_timer = 0.02
 
+func create_shockwave():
+	var shockwave = shockwave_scene.instantiate()
+	get_tree().current_scene.add_child(shockwave)
+	shockwave.facing_direction = player.facing_direction
+	shockwave.position = Vector2(player.position.x, player.position.y)
+	shockwave.motion = Vector2(player.facing_direction * -100, 0)
+	shockwave.start()
+	
 func Exit():
 	player.last_dash_time = Time.get_unix_time_from_system()

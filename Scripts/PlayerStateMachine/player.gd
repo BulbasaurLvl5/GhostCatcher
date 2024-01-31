@@ -35,8 +35,6 @@ var is_grabbing_wall : bool = false
 func _ready():
 	if !cast && %ShapeCast2D:
 		cast = %ShapeCast2D
-	if !grab_cast && %GrabShapeCast2D:
-		grab_cast = %GrabShapeCast2D
 
 
 func set_level_boundary(top : float, left : float, right : float, bottom : float):
@@ -118,33 +116,63 @@ func is_grounded() -> bool:
 		return false
 
 func can_grab_wall() -> bool:
-	if get_collisions(Vector2(facing_direction * 5, 0), grab_cast) && x_input == facing_direction:
-		return true
-	else:
-#		if !get_collisions(Vector2(facing_direction, 0), grab_cast) && x_input == facing_direction:
-#			print("cannot wall grab because no wall detected")
+	if x_input != facing_direction:
 		return false
+	%GrabCheckTop.force_raycast_update()
+	%GrabCheckInsideTop.force_raycast_update()
+	%GrabCheckInsideBottom.force_raycast_update()
+	%GrabCheckBottom.force_raycast_update()
+	if %GrabCheckTop.is_colliding() && %GrabCheckBottom.is_colliding():
+		return true
+	if %GrabCheckTop.is_colliding() && %GrabCheckInsideBottom.is_colliding():
+		var count = 0
+		while !%GrabCheckBottom.is_colliding():
+			position.y += -1
+			%GrabCheckBottom.force_raycast_update()
+			count += 1
+			if count > 12:
+				print("Player is being adjusted more than intended attempting to wall grab.")
+				return false
+		print("Player adjusted UP to grab wall.  pixels: ",count)
+		return true
+	if %GrabCheckBottom.is_colliding() && %GrabCheckInsideTop.is_colliding():
+		var count = 0
+		while !%GrabCheckTop.is_colliding():
+			position.y += 1
+			%GrabCheckTop.force_raycast_update()
+			count += 1
+			if count > 12:
+				print("Player is being adjusted more than intended attempting to wall grab.")
+				return false
+		print("Player adjusted DOWN to grab wall.  pixels: ",count)
+		return true
+	return false
 
 func can_jump() -> bool:
 	if !jump_input || !jump_button_reset:
 		return false
 	if !$CoyoteTime.is_stopped() || remaining_air_actions > 0 || is_grounded():
 		return true
-	else:
-		return false
+	return false
 
 func can_dash() -> bool:
 	if !dash_input || !dash_button_reset:
 		return false
-	if !$CoyoteTime.is_stopped() || remaining_air_actions > 0:
+	if !is_grounded() && (!$CoyoteTime.is_stopped() || remaining_air_actions > 0):
 		return true
 	if is_grounded() && last_dash_time + data.ground_dash_cooldown < Time.get_unix_time_from_system():
 		return true
-	else:
-		return false
+	return false
 		
 func can_stomp() -> bool:
 	if stomp_input && stomp_input_reset && !is_on_floor():
+		return true
+	return false
+
+func is_bumping_head() -> bool:
+	%HeadBumpCheckFront.force_raycast_update()
+	%HeadBumpCheckBack.force_raycast_update()
+	if %HeadBumpCheckFront.is_colliding() || %HeadBumpCheckBack.is_colliding():
 		return true
 	return false
 

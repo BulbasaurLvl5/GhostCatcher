@@ -42,12 +42,12 @@ func Do_Checks():
 		Transitioned.emit(self,"Dash")
 	elif player.can_stomp() && !player.jump_input:
 		Transitioned.emit(self,"Stomp")
-	elif player.velocity.y >= 0 || player.get_collisions(Vector2.UP):
+	elif player.velocity.y > 0 || player.is_bumping_head():
 		Transitioned.emit(self,"InAir")
-	elif player.can_grab_wall() && player.y_input >= 0 && time_in_current_state > 0.05:
-		player.stop_motion()
-		Transitioned.emit(self,"WallGrab")
-	elif time_in_current_state > data.wall_jump_force_duration || !player.jump_input:
+	elif player.y_input >= 0 && time_in_current_state > 0.2:
+		if player.can_grab_wall():
+			Transitioned.emit(self,"WallGrab")
+	if time_in_current_state > data.wall_jump_force_duration || !player.jump_input:
 		Flip_Player()
 		
 	

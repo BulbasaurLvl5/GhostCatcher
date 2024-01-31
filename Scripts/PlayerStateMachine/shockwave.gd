@@ -1,4 +1,4 @@
-class_name StompShockwave
+class_name Shockwave
 extends Area2D
 
 
@@ -7,18 +7,26 @@ extends Area2D
 
 @onready var duration_remaining : float = shockwave_duration
 @onready var final_scale : Vector2 = scale * scale_multiplier
+@onready var facing_direction : int = 1
 
+var start_signal = false
 var shocked_mobs : Array[MobAI]
+var motion : Vector2 = Vector2.ZERO
 
 
-func _ready():
+func start():
 	var tween_scale = get_tree().create_tween()
 	var tween_fade = get_tree().create_tween()
-	tween_scale.tween_property(self, "scale", final_scale, shockwave_duration)
+	tween_scale.tween_property(self, "scale", Vector2(final_scale.x * facing_direction, final_scale.y), shockwave_duration)
 	tween_fade.tween_property(self, "modulate", Color(1, 1, 1, 0), shockwave_duration)
 	await tween_fade.finished
 	queue_free()
 
+
+func _physics_process(delta):
+	if motion != Vector2.ZERO:
+		position += motion * delta
+#		print("Shockwave scale.x = ",scale.x)
 
 #func _on_area_entered(area):
 ##	print("AREA detected by shockwave")

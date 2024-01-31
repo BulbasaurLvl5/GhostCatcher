@@ -33,6 +33,7 @@ func create_shockwave():
 	var shockwave = shockwave_scene.instantiate()
 	get_tree().current_scene.add_child(shockwave)
 	shockwave.position = Vector2(player.position.x, player.position.y + 55.0)
+	shockwave.start()
 
 
 func Do_Checks():
@@ -49,7 +50,7 @@ func Do_Checks():
 			Transitioned.emit(self,"Idle")
 
 
-func Physocs_Update():
+func Physics_Update(_delta):
 	player.move()
 
 	

@@ -22,11 +22,11 @@ func _ready():
 func Initiate_Enter(from : PlayerState = null):
 	data = player.data
 	verbose = player.verbose
-#	if verbose:
-#		if from:
-#			print("Transitioning from ",from.name," to ",self.name)
-#		else:
-#			print("Entering ",self.name)
+	if verbose:
+		if from:
+			print("Transitioning from ",from.name," to ",self.name)
+		else:
+			print("Entering ",self.name)
 	time_in_current_state = 0
 	Enter(from)
 	
@@ -57,7 +57,8 @@ func Flip_Player(force_flip : bool = false):
 	if force_flip || (player.facing_direction != player.x_input && abs(player.x_input) == 1):
 		player.facing_direction *= -1
 		anim.scale.x *= -1
-
+		%RayCasts.scale.x *= -1
+		
 func Check_Altitude():
 	if player.position.y < player.height_fallen_from:
 		player.height_fallen_from = player.position.y	

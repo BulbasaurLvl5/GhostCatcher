@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://df28o2fggrbi0"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerStateMachine/shockwave.gd" id="1_crkg0"]
+[ext_resource type="Texture2D" uid="uid://q0bl4cxj6s5d" path="res://Sprites/dash_shockwave.png" id="1_h7tu1"]
+
+[node name="DashShockwave" type="Area2D"]
+light_mask = 4
+scale = Vector2(0.02, 0.02)
+collision_layer = 0
+collision_mask = 48
+monitorable = false
+script = ExtResource("1_crkg0")
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
+polygon = PackedVector2Array(-2, -257, 1, 257, -90, 241, -185, 182, -239, 95, -259, 0, -242, -95, -191, -176, -106, -236)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.545098)
+light_mask = 4
+position = Vector2(-129, 0)
+texture = ExtResource("1_h7tu1")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-129, 0)
+color = Color(0.74902, 0.529412, 0, 1)
+energy = 16.0
+range_item_cull_mask = 4
+texture = ExtResource("1_h7tu1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
