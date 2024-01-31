@@ -9,8 +9,9 @@ public partial class MenuPause : Node
 	{
 		if(this.TryGetChildren(out List<Button> _buttons) && this.TryGetNodeInTree(out Main _main))
 		{
-			GetParent().RemoveChild(this);
-			_main.UI.AddChild(this);
+			// GetParent().RemoveChild(this);
+			// _main.UI.AddChild(this); // it calls AddChild thus is added a second time to the tree while the old version lingers and this now messes with the button sounds
+			this.Reparent(_main.UI);
 
 			GetTree().Paused = true;
 

@@ -66,7 +66,7 @@ func pause_game():
 		var pause_menu = pause_menu_packedscene.instantiate()
 		add_child(pause_menu) # make the pause menu reparent itself to main - UI
 	else : 
-		print("Error: in play.gd.pause_game() loading scene: ", path)
+		print("Error: in player.gd.pause_game() loading scene: ", path)
 	pass
 
 

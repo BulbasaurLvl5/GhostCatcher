@@ -92,7 +92,7 @@ public partial class BackgroundMusic : Node
     public void CrossfadeTo(SongNames songname)
     {
         SetActiveChannel();
-        if(GetCurrentSong() == songname)
+        if(GetCurrentSong() == SongNames.phantomx27)
             return; //skip if already in menu
         
         inactiveChannel.Stream = SongFile(songname);
