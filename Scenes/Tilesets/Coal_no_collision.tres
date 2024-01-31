@@ -1,9 +1,10 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://brbylls8dxopb"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dbaiua2cy5u0f"]
 
-[ext_resource type="Texture2D" uid="uid://cf4v12pncxudv" path="res://Sprites/CoalDrawn/CoalTileSet_1.png" id="1_dkf74"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wab57"]
+load_path = "res://.godot/imported/CoalTileSet_1.png-406b671f37020c296982b0a9e028b3f0.ctex"
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xf4dy"]
-texture = ExtResource("1_dkf74")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sub0u"]
+texture = SubResource("CompressedTexture2D_wab57")
 texture_region_size = Vector2i(110, 110)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -136,10 +137,10 @@ texture_region_size = Vector2i(110, 110)
 
 [resource]
 tile_size = Vector2i(110, 110)
-physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 103
+physics_layer_0/collision_layer = 0
+physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.678431, 0, 0.470588, 1)
-sources/3 = SubResource("TileSetAtlasSource_xf4dy")
+sources/3 = SubResource("TileSetAtlasSource_sub0u")
 tile_proxies/coords_level = [[1, Vector2i(0, 0)], [17, Vector2i(0, 0)], [2, Vector2i(0, 0)], [17, Vector2i(1, 0)]]

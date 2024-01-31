@@ -37,4 +37,4 @@ func Physics_Update(delta):
 	if player.velocity.y > 1.5 * data.max_fall_speed:
 		player.velocity.y = 1.5 * data.max_fall_speed
 	player.velocity.x = player.x_input * data.in_air_horizontal_speed
-	player.move_and_slide()
+	player.move()

@@ -7,6 +7,7 @@ var distance_fallen : float
 
 
 func Enter(from : PlayerState = null):
+	player.stop_motion()
 	distance_fallen = player.position.y - player.height_fallen_from
 	if verbose:
 		print("Distance fallen = ",distance_fallen)
@@ -46,7 +47,11 @@ func Do_Checks():
 			Transitioned.emit(self,"Run")
 		elif time_in_current_state > 1.0:
 			Transitioned.emit(self,"Idle")
-	
+
+
+func Physocs_Update():
+	player.move()
+
 	
 func Exit():
 	player.heavy_landing_factor = 0

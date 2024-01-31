@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpxeqvv1xxuu2"]
+[gd_scene load_steps=8 format=3 uid="uid://dpxeqvv1xxuu2"]
 
 [ext_resource type="Script" path="res://Scripts/Ghost.cs" id="1_3n161"]
 [ext_resource type="SpriteFrames" uid="uid://c8df5cub7xjk8" path="res://Animations/Ghost/ghost.tres" id="2_untcv"]
@@ -12,7 +12,19 @@ region = Rect2(304, 3, 164, 252)
 radius = 39.0
 height = 116.0
 
+[sub_resource type="Gradient" id="Gradient_m56u2"]
+offsets = PackedFloat32Array(0, 0.696221)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_77yvn"]
+gradient = SubResource("Gradient_m56u2")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Ghost" type="Area2D"]
+light_mask = 8
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_3n161")
@@ -26,8 +38,17 @@ autoplay = "idle"
 frame_progress = 0.671999
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.670588)
+light_mask = 8
 scale = Vector2(0.5, 0.5)
 texture = SubResource("AtlasTexture_mnq0f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_k1bom")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+energy = 0.88
+range_item_cull_mask = 8
+texture = SubResource("GradientTexture2D_77yvn")

@@ -5,10 +5,13 @@ extends CharacterBody2D
 @export var facing_direction : int = 1
 @export var cast : ShapeCast2D
 @export var grab_cast : ShapeCast2D
+@export var canvas_mod_node : PackedScene
 
 #development settings
 @export var verbose : bool = false
 @export var data : PlayerDataResource 
+
+var level_boundary : Array[float]
 
 var x_input : int = 0
 var y_input : int = 0
@@ -26,6 +29,7 @@ var could_grab_wall : bool = false
 var is_grabbing_wall : bool = false
 
 @onready var remaining_air_actions : int = data.max_air_actions
+@onready var canvas_mod_dispatched : bool = false
 
 
 func _ready():
@@ -35,9 +39,26 @@ func _ready():
 		grab_cast = %GrabShapeCast2D
 
 
+func set_level_boundary(top : float, left : float, right : float, bottom : float):
+	level_boundary = [top + 110, left + 110, right - 110, bottom - 110]
+
+
 func _process(_delta):
+	if !canvas_mod_dispatched:
+		check_canvas_mod()
 	check_input()
 	check_environment()
+
+
+func check_canvas_mod():
+	var children = $"..".get_children()
+	for c in children:
+		if c is CanvasMod:
+			return
+	if children:
+		var canvas_mod = canvas_mod_node.instantiate()
+		$"..".add_child(canvas_mod)
+		canvas_mod_dispatched = true
 
 
 func pause_game():
@@ -135,6 +156,18 @@ func stop_motion():
 	velocity = Vector2.ZERO
 	move_and_slide()
 
+func move():
+	if level_boundary:
+		if position.y <= level_boundary[0] && velocity.y < 0:
+			velocity.y = 0
+		if position.x <= level_boundary[1] && velocity.x < 0:
+			velocity.x = 0
+		if position.x >= level_boundary[2] && velocity.x > 0:
+			velocity.x = 0
+		if position.y >= level_boundary[3] && velocity.y > 0:
+			velocity.y = 0
+	move_and_slide()
+	
 
 func get_collisions(offset : Vector2 = Vector2.ZERO, shape_cast : ShapeCast2D = cast) -> Array:
 	var array : Array = []

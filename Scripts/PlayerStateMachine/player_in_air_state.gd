@@ -5,13 +5,25 @@ extends PlayerState
 var hang_time_active : bool = false
 
 
-func Enter(_from : PlayerState = null):
-	if player.velocity.y <= 100 || hang_time_active:
-		anim.play("hover")
+func Enter(from : PlayerState = null):
+	if from:
+		var states = ["Run", "Jump", "Dash", "WallGrab", "WallJump"]
+		if states.has(from.name):
+			hang(true)
+		else:
+			hang(false)
 	else:
-		anim.play("fall")
+		hang(false)
 	Flip_Player()
 	Check_Altitude()
+
+func hang(active : bool):
+	hang_time_active = active
+	if active:
+			anim.play("hover")
+	else:
+			anim.play("fall")
+
 
 func Do_Checks():
 	Flip_Player()
@@ -59,4 +71,4 @@ func Physics_Update(delta):
 		if player.velocity.y > data.max_fall_speed:
 			player.velocity.y = data.max_fall_speed
 	player.velocity.x = player.x_input * data.in_air_horizontal_speed
-	player.move_and_slide()
+	player.move()

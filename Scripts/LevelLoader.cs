@@ -54,15 +54,15 @@ public static class LevelLoader
 	static void LoadLevel_Tutorial(Main _main)
 	{
 		List<Vector2I> ghostPositions = new List<Vector2I>(){
-			new Vector2I(6*110, 4*110),
-			new Vector2I(11*110, 0),
-			new Vector2I(11*110, 5*110),
-			new Vector2I(16*110, 4*110),
+			new Vector2I(6*110, -3*110),
+			new Vector2I(11*110, -7*110),
+			new Vector2I(11*110, -2*110),
+			new Vector2I(16*110, -3*110),
 		};
 		//rotating ghost positions
 		//pathGhostPositions
 
-		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(1*110,5*110), 0);
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(2*110,-3*110), 0);
 
 		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
 		_main.UI.AddChild(_timeLabel);
@@ -86,7 +86,7 @@ public static class LevelLoader
 		_main.UI.AddChild(_ghostDisplay);
 
 		FileIO.SaveGame _save = FileIO.Load();
-        if(_save.LastTimes[0] == 0)
+		if(_save.LastTimes[0] == 0)
 			UILoader.LoadIntroMenu(_main);
 
 		PlayerDisableDelay(_main, 1);

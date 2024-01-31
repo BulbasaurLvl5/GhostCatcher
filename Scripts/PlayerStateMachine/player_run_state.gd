@@ -31,7 +31,7 @@ func Do_Checks():
 		
 func Physics_Update(_delta):
 	player.velocity = Vector2(data.run_speed * player.x_input, 0)
-	player.move_and_slide()
+	player.move()
 
 
 func Exit():

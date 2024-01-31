@@ -38,7 +38,7 @@ func Do_Checks():
 func Physics_Update(_delta):
 #	player.velocity.y = -1
 #	print("player velocity = = = = = ",player.velocity)
-	player.move_and_slide()
+	player.move()
 
 
 func Exit():

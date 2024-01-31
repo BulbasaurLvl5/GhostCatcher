@@ -1,14 +1,23 @@
 [gd_scene load_steps=5 format=3 uid="uid://baaqkrwpxi1lt"]
 
 [ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_6ldtr"]
+[ext_resource type="Script" path="res://Scripts/level_data.gd" id="2_cq8x2"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="2_il1r1"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="3_3isdd"]
-[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://Sprites/CoalDrawn/CoalMountainsFiltered.png" id="4_fhwel"]
 
 [node name="TileMap" type="TileMap"]
+position = Vector2(0, -440)
 tile_set = ExtResource("1_6ldtr")
 format = 2
 layer_0/tile_data = PackedInt32Array(65536, 131075, 3, 131071, 65539, 3, 65534, 196611, 1, -1, 65539, 3, -65536, 131075, 3, -65532, 3, 3, -65531, 65539, 3, -131066, 196611, 1, -196603, 65539, 3, -196604, 3, 3, -262145, 65539, 3, -327680, 65539, 3, -327679, 131075, 3, -262146, 65539, 3, -262147, 3, 3, -589825, 196611, 0, -524289, 196611, 1, -458753, 196611, 2, -851971, 3, 0, -851970, 131075, 0, -786434, 131075, 2, -786435, 3, 2, -589830, 3, 3, -589829, 131075, 3, -524297, 196611, 0, -458761, 196611, 2, -131081, 196611, 3, 65525, 196611, 3, -131089, 3, 3, -131088, 65539, 3, -131087, 131075, 3, -655375, 3, 3, -655374, 65539, 3, -655373, 65539, 3, -655372, 131075, 3, -1048591, 196611, 0, -983055, 196611, 2, -1376272, 196611, 0, -1310736, 196611, 2, -983050, 196611, 3, -1245196, 196611, 3, -1441800, 196611, 3, -1179652, 196611, 3, -1048577, 3, 3, -1114112, 65539, 3, -1114111, 65539, 3, -1114110, 65539, 3, -1114109, 131075, 3, -1245182, 3, 3, -1245181, 65539, 3, -1245180, 65539, 3, -1245179, 65539, 3, -1245178, 131075, 3, -1376251, 3, 3, -1376250, 65539, 3, -1376249, 65539, 3, -1376248, 65539, 3, -1376247, 131075, 3, -2, 3, 0, 131070, 3, 2, -196602, 131075, 0, -65530, 131075, 2, -1572866, 3, 0, -1507330, 3, 2, -1507329, 131075, 2, -1572865, 131075, 0)
+
+[node name="LvlData" type="Node2D" parent="."]
+script = ExtResource("2_cq8x2")
+top_boundary = 41.0
+left_boundary = 24.0
+right_boundary = 17.0
+bottom_boundary = 6.0
+show_boundary_in_editor = false
 
 [node name="Ghost" parent="." instance=ExtResource("2_il1r1")]
 position = Vector2(575, -187)
@@ -39,46 +48,3 @@ position = Vector2(86, -2978)
 
 [node name="EndlessPit" parent="." instance=ExtResource("3_3isdd")]
 position = Vector2(0, 323)
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-scroll_base_offset = Vector2(106.667, 60)
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(-148, 102)
-motion_scale = Vector2(0.9, 0.9)
-
-[node name="Mountains" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(-1940, -1254)
-scale = Vector2(3, 2)
-texture = ExtResource("4_fhwel")
-centered = false
-
-[node name="Borders" type="Node" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="Borders"]
-offset_left = -7536.0
-offset_top = 1128.0
-offset_right = 6984.0
-offset_bottom = 3664.0
-color = Color(0.301961, 0.215686, 0.0588235, 1)
-
-[node name="ColorRect2" type="ColorRect" parent="Borders"]
-offset_left = -7408.0
-offset_top = -8512.0
-offset_right = 6664.0
-offset_bottom = -4160.0
-color = Color(0.301961, 0.215686, 0.0588235, 1)
-
-[node name="ColorRect3" type="ColorRect" parent="Borders"]
-offset_left = -7320.0
-offset_top = -5224.0
-offset_right = -2096.0
-offset_bottom = 2000.0
-color = Color(0.301961, 0.215686, 0.0588235, 1)
-
-[node name="ColorRect4" type="ColorRect" parent="Borders"]
-offset_left = 1352.0
-offset_top = -4904.0
-offset_right = 6880.0
-offset_bottom = 1584.0
-color = Color(0.301961, 0.215686, 0.0588235, 1)

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp3hm754d5ple"]
+
+[ext_resource type="Script" path="res://Scripts/canvas_mod.gd" id="1_p282i"]
+
+[node name="CanvasMod" type="CanvasModulate"]
+color = Color(0.501961, 0.501961, 0.501961, 1)
+script = ExtResource("1_p282i")

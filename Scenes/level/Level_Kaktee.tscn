@@ -1,17 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpan51idmxlnu"]
+[gd_scene load_steps=9 format=3 uid="uid://dpan51idmxlnu"]
 
 [ext_resource type="TileSet" uid="uid://brbylls8dxopb" path="res://Scenes/Tilesets/Coal.tres" id="1_1odv3"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://Scenes/ghost.tscn" id="2_h656o"]
+[ext_resource type="Script" path="res://Scripts/level_data.gd" id="2_llgga"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="3_0b16j"]
-[ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://Scenes/Spikes_large.tscn" id="4_cglv2"]
-[ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://Scenes/Spikes_medium.tscn" id="5_vt6pm"]
-[ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://Scenes/Spikes_small.tscn" id="6_27lrm"]
+[ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://Scenes/Scenery/Spikes_large.tscn" id="4_cglv2"]
+[ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://Scenes/Scenery/Spikes_medium.tscn" id="5_vt6pm"]
+[ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://Scenes/Scenery/Spikes_small.tscn" id="6_27lrm"]
 [ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://Sprites/CoalDrawn/CoalMountainsFiltered.png" id="7_iqrv4"]
 
 [node name="TileMap" type="TileMap"]
 tile_set = ExtResource("1_1odv3")
 format = 2
 layer_0/tile_data = PackedInt32Array(65536, 65539, 0, 65537, 131075, 0, 131073, 131075, 2, 131072, 65539, 2, 196607, 65539, 2, 196606, 65539, 2, 131070, 65539, 0, 131071, 65539, 0, 131069, 65539, 0, 196605, 65539, 2, 196604, 65539, 2, 131068, 65539, 1, 65532, 131075, 1, -4, 131075, 1, -65540, 65539, 1, -65539, 65539, 2, -65538, 65539, 2, -65537, 65539, 2, -131072, 65539, 2, -131071, 65539, 2, -131070, 65539, 2, -131069, 65539, 2, -131068, 65539, 2, -131067, 131075, 1, -65531, 196611, 2, -196603, 131075, 0, -196604, 65539, 0, -196605, 65539, 0, -196606, 65539, 0, -196607, 65539, 0, -196608, 65539, 0, -131073, 65539, 0, -131074, 65539, 0, -131075, 65539, 0, -131076, 65539, 0, -131077, 3, 0, -65541, 3, 1, -5, 3, 1, 65531, 3, 1, 131067, 3, 1, 196603, 3, 2, 131082, 196611, 3, -458745, 3, 0, -458744, 131075, 0, -393208, 131075, 1, -393209, 3, 1, -327673, 3, 2, -327672, 131075, 2, -1507320, 196611, 3, -1769469, 3, 3, -1769468, 65539, 3, -1769467, 131075, 3, -1703936, 196611, 0, -1638400, 196611, 1, -1572864, 196611, 1, -1507328, 196611, 1, -1441792, 196611, 1, -1376256, 196611, 1, -1310720, 196611, 1, -1245184, 196611, 1, -1179648, 196611, 1, -1114112, 196611, 1, -1048576, 196611, 1, -983040, 196611, 1, -917504, 196611, 1, -851968, 131075, 1, -786432, 196611, 1, -720896, 196611, 1, -655360, 196611, 1, -589824, 196611, 1, -524288, 196611, 1, -458752, 196611, 2, -1048579, 196611, 0, -983043, 196611, 1, -917507, 196611, 1, -851971, 196611, 1, -786435, 3, 2, -786434, 65539, 3, -786433, 65539, 3, -589831, 131075, 3, -589832, 65539, 3, -589833, 65539, 3, -589834, 3, 0, -524298, 196611, 1, -458762, 196611, 1, -393226, 3, 2, -393225, 65539, 3, -393224, 65539, 3, -393223, 131075, 3, -1048573, 3, 0, -983037, 3, 1, -917501, 3, 1, -851965, 3, 2, -851964, 131075, 2, -917500, 131075, 1, -983036, 131075, 1, -1048572, 131075, 0, -1310715, 196611, 3)
+
+[node name="LvlData" type="Node2D" parent="."]
+script = ExtResource("2_llgga")
+top_boundary = 42.0
+left_boundary = 17.0
+right_boundary = 19.0
+bottom_boundary = 5.0
+show_boundary_in_editor = false
 
 [node name="Ghost" parent="." instance=ExtResource("2_h656o")]
 position = Vector2(1155, 62)

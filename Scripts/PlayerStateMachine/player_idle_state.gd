@@ -35,7 +35,7 @@ func Update(delta):
 
 func Physics_Update(_delta):
 #	player.velocity.y = 100
-	player.move_and_slide()
+	player.move()
 
 
 func Exit():

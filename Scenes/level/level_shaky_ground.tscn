@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2xhyj1jgx5fr"]
+[gd_scene load_steps=13 format=3 uid="uid://b2xhyj1jgx5fr"]
 
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://Scenes/Tilesets/original_simple_48.tres" id="1_qysqh"]
+[ext_resource type="Script" path="res://Scripts/level_data.gd" id="2_1i7jb"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="2_vn8ee"]
 [ext_resource type="Script" path="res://Scripts/ghost_movement.gd" id="3_d304m"]
 [ext_resource type="Script" path="res://Scenes/MovingPlatforms/path_follow_manager.gd" id="3_kf6fm"]
@@ -34,6 +35,14 @@ tile_set = ExtResource("1_qysqh")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65503, 0, 3, -65501, 65536, 3, -4, 0, 3, -6, 196608, 3, -7, 131072, 3, -8, 131072, 3, -9, 65536, 3, -65499, 131072, 3, -65500, 131072, 3, -65498, 196608, 3)
 
+[node name="LvlData" type="Node2D" parent="."]
+script = ExtResource("2_1i7jb")
+top_boundary = 30.0
+left_boundary = 12.0
+right_boundary = 42.0
+bottom_boundary = 8.0
+show_boundary_in_editor = false
+
 [node name="EndlessPit" parent="." instance=ExtResource("2_vn8ee")]
 position = Vector2(-4599, 566)
 
@@ -56,7 +65,7 @@ position = Vector2(3208, -1525)
 curve = SubResource("Curve2D_g58am")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D2" node_paths=PackedStringArray("node")]
-position = Vector2(-734.905, 9.28961)
+position = Vector2(-734.905, 9.28965)
 progress = 800.0
 rotates = false
 script = ExtResource("3_kf6fm")

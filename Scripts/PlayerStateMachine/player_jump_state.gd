@@ -35,7 +35,6 @@ func Do_Checks():
 	elif player.can_stomp():
 		Transitioned.emit(self,"Stomp")
 	elif player.velocity.y >= 0 || player.get_collisions(Vector2.UP):
-		%InAir.hang_time_active = true
 		Transitioned.emit(self,"InAir")
 	elif player.can_grab_wall() && player.y_input >= 0:
 		player.stop_motion()
@@ -50,7 +49,7 @@ func Physics_Update(delta):
 		if player.velocity.y > data.max_fall_speed:
 			player.velocity.y = data.max_fall_speed		
 	player.velocity.x = data.in_air_horizontal_speed * player.x_input 
-	player.move_and_slide()
+	player.move()
 
 
 func Exit():

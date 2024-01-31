@@ -48,7 +48,7 @@ func Physics_Update(_delta):
 	if !recovering:
 		dash_speed = get_speed()
 		player.velocity.x = player.facing_direction * dash_speed 
-	player.move_and_slide()
+	player.move()
 
 
 func complete_dash():	
@@ -56,7 +56,6 @@ func complete_dash():
 		Transitioned.emit(self,"Idle")
 	else:
 		player.stop_motion()
-		%InAir.hang_time_active = true
 		Transitioned.emit(self,"InAir")
 		
 		

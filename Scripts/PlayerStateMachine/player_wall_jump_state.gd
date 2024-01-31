@@ -14,6 +14,12 @@ func Enter(_from : PlayerState = null):
 		Transitioned.emit(self,"Jump")
 		return
 	anim.play("jump")
+	if %Jump.jump_noise == 1:
+		$"../../SFX/Jump1".play()
+		%Jump.jump_noise = 2
+	else:
+		$"../../SFX/Jump2".play()
+		%Jump.jump_noise = 1
 	hold_time_remaining = data.jump_max_hold_time
 	Flip_Player(true)
 	wall_jump_direction = player.facing_direction
@@ -27,7 +33,6 @@ func _animation_finished():
 func Do_Checks():
 	Check_Altitude()
 	if player.velocity.y > 0:
-		%InAir.hang_time_active = true
 		Transitioned.emit(self,"InAir")
 	elif player.can_jump():
 		player.air_action()
@@ -38,7 +43,6 @@ func Do_Checks():
 	elif player.can_stomp() && !player.jump_input:
 		Transitioned.emit(self,"Stomp")
 	elif player.velocity.y >= 0 || player.get_collisions(Vector2.UP):
-		%InAir.hang_time_active = true
 		Transitioned.emit(self,"InAir")
 	elif player.can_grab_wall() && player.y_input >= 0 && time_in_current_state > 0.05:
 		player.stop_motion()
@@ -56,4 +60,4 @@ func Physics_Update(delta):
 		player.velocity.y += data.gravity * delta
 
 	player.velocity.x = player.facing_direction * data.in_air_horizontal_speed
-	player.move_and_slide()
+	player.move()
