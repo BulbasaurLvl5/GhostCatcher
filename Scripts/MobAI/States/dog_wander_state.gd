@@ -2,7 +2,7 @@ class_name DogWanderState
 extends MobState
 
 
-@export_range(0.0, 1000.0, 0.0, "or_greater", "suffix:pixels/second") var wander_speed : float = 200.0
+@export_range(0.0, 1000.0, 1.0, "or_greater", "suffix:pixels/second") var wander_speed : float = 200.0
 
 
 func Enter(_from):

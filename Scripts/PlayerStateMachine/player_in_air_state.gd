@@ -20,9 +20,9 @@ func Enter(from : PlayerState = null):
 func hang(active : bool):
 	hang_time_active = active
 	if active:
-			anim.play("hover")
+		anim.play("hover")
 	else:
-			anim.play("fall")
+		anim.play("fall")
 
 
 func Do_Checks():

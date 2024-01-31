@@ -133,7 +133,7 @@ func can_grab_wall() -> bool:
 			if count > 12:
 				print("Player is being adjusted more than intended attempting to wall grab.")
 				return false
-		print("Player adjusted UP to grab wall.  pixels: ",count)
+#		print("Player adjusted UP to grab wall.  pixels: ",count)
 		return true
 	if %GrabCheckBottom.is_colliding() && %GrabCheckInsideTop.is_colliding():
 		var count = 0
@@ -144,7 +144,7 @@ func can_grab_wall() -> bool:
 			if count > 12:
 				print("Player is being adjusted more than intended attempting to wall grab.")
 				return false
-		print("Player adjusted DOWN to grab wall.  pixels: ",count)
+#		print("Player adjusted DOWN to grab wall.  pixels: ",count)
 		return true
 	return false
 

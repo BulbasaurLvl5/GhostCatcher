@@ -3,7 +3,7 @@ extends MobState
 
 
 @export var can_lose_player : bool = true
-@export_range(0.0, 500.0, 0.0, "or_greater", "suffix:pixels/second") var chase_speed : float = 300.0
+@export_range(0.0, 500.0, 1.0, "or_greater", "suffix:pixels/second") var chase_speed : float = 300.0
 
 
 func Update(_delta):

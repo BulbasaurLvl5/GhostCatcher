@@ -2,12 +2,12 @@ class_name AirPatrolState
 extends MobState
 
 
-@export_range(0.0, 30.0, 0.0, "or_greater", "suffix:seconds  IF APPLICABLE") var time_before_returning : float = 5.0
-@export_range(0.0, 500.0, 0.0, "or_greater", "suffix:pixels/second") var patrol_speed : float = 200.0
-@export_range(0.0, 30.0, 0.0, "or_greater", "suffix:seconds") var travel_duration : float = 5.0
-@export_range(0.0, 10.0, 0.0, "or_greater", "suffix:seconds") var pause_before_travel : float = 1.0
-@export_range(0.0, 10.0, 0.0, "or_greater", "suffix:seconds") var pause_after_travel : float = 1.0
-@export var patrol_direction : Vector2 = Vector2.RIGHT
+@export_range(0.0, 30.0, 0.01, "or_greater", "suffix:seconds  IF APPLICABLE") var time_before_returning : float = 5.0
+@export_range(0.0, 500.0, 1.0, "or_greater", "suffix:pixels/second") var patrol_speed : float = 200.0
+@export_range(0.0, 30.0, 0.01, "or_greater", "suffix:seconds") var travel_duration : float = 5.0
+@export_range(0.0, 10.0, 0.01, "or_greater", "suffix:seconds") var pause_before_travel : float = 1.0
+@export_range(0.0, 10.0, 0.01, "or_greater", "suffix:seconds") var pause_after_travel : float = 1.0
+#@export var patrol_direction : Vector2 = Vector2.RIGHT
 
 var pause_time_remaining : float
 var travel_time_remaining : float
@@ -18,10 +18,10 @@ var current_direction : Vector2
 func Enter(_from : MobState):
 	pause_time_remaining = pause_before_travel
 	travel_time_remaining = travel_duration
-	current_direction = Vector2.ZERO.direction_to(patrol_direction)
-	if sign(current_direction.x) != ai.facing_direction:
-		current_direction.x *= -1
-		current_direction.y *= -1
+	current_direction = Vector2.ZERO.direction_to(ai.velocity)
+#	if sign(current_direction.x) != ai.facing_direction:
+#		current_direction.x *= -1
+#		current_direction.y *= -1
 	
 
 func Update(delta):

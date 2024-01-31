@@ -2,7 +2,7 @@ class_name DogBluffChargeState
 extends MobState
 
 
-@export_range(0.0, 1000.0, 0.0, "or_greater", "suffix:pixels/second") var charge_speed : float = 200.0
+@export_range(0.0, 1000.0, 1.0, "or_greater", "suffix:pixels/second") var charge_speed : float = 200.0
 
 var time_missing_player : float = 0.0
 

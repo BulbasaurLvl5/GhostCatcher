@@ -2,7 +2,7 @@ class_name AirReturnState
 extends MobState
 
 
-@export_range(0.0, 1000.0, 0.0, "or_greater", "suffix:pixels/second") var return_speed : float = 200.0
+@export_range(0.0, 1000.0, 1.0, "or_greater", "suffix:pixels/second") var return_speed : float = 200.0
 @export var mob_size : Vector2 = Vector2(100.0, 100.0)
 
 var warp_check_delay : float = 0.1

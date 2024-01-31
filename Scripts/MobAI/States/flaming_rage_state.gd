@@ -2,12 +2,12 @@ class_name FlamingRageState
 extends MobState
 
 
-@export_range(0.0, 10.0, 0.0, "or_greater", "suffix:seconds") var warning_duration : float = 1.5
-@export_range(1.0, 2.0, 0.0, "or_greater", "suffix:X") var scale_increase : float = 1.25 
-@export_range(0.0, 2000.0, 0.0, "or_greater", "suffix:pixels/second") var attack_speed : float = 1000.0
-@export_range(0.0, 10.0, 0.0, "or_greater", "suffix:seconds") var attack_duration : float = 1.5
-@export_range(0.0, 10.0, 0.0, "or_greater", "suffix:seconds") var recovery_duration : float = 1.0
-@export_range(0.0, 10.0, 0.0, "or_greater", "suffix:seconds") var attack_cooldown : float = 4.0
+@export_range(0.0, 10.0, 0.01, "or_greater", "suffix:seconds") var warning_duration : float = 1.5
+@export_range(1.0, 2.0, 0.01, "or_greater", "suffix:X") var scale_increase : float = 1.25 
+@export_range(0.0, 2000.0, 1.0, "or_greater", "suffix:pixels/second") var attack_speed : float = 1000.0
+@export_range(0.0, 10.0, 0.01, "or_greater", "suffix:seconds") var attack_duration : float = 1.5
+@export_range(0.0, 10.0, 0.01, "or_greater", "suffix:seconds") var recovery_duration : float = 1.0
+@export_range(0.0, 10.0, 0.01, "or_greater", "suffix:seconds") var attack_cooldown : float = 4.0
 
 @onready var pulse_duration : float = warning_duration / 5.0
 

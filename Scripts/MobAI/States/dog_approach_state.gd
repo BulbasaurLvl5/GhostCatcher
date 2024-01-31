@@ -2,7 +2,7 @@ class_name DogApproachState
 extends MobState
 
 
-@export_range(0.0, 60.0, 0.0, "or_greater", "suffix:seconds") var time_to_calm : float = 10.0
+@export_range(0.0, 60.0, 0.01, "or_greater", "suffix:seconds") var time_to_calm : float = 10.0
 
 var started_approach : bool = false
 

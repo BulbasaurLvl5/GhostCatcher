@@ -2,9 +2,9 @@ class_name DogAI
 extends GroundMobAI
 
 
-@export_range(0.0, 2000.0, 0.0, "or_greater", "suffix:pixels") var pet_range : float = 50.0
-@export_range(0.0, 2000.0, 0.0, "or_greater", "suffix:pixels") var bark_distance_min : float = 400.0
-@export_range(0.0, 2000.0, 0.0, "or_greater", "suffix:pixels") var bark_distance_max : float = 700.0
+@export_range(0.0, 2000.0, 1.0, "or_greater", "suffix:pixels") var pet_range : float = 50.0
+@export_range(0.0, 2000.0, 1.0, "or_greater", "suffix:pixels") var bark_distance_min : float = 400.0
+@export_range(0.0, 2000.0, 1.0, "or_greater", "suffix:pixels") var bark_distance_max : float = 700.0
 
 
 var has_been_calmed : bool = false
@@ -21,7 +21,7 @@ func bark(active : bool = true):
 		$SFX/Bark.stop()
 
 
-func Knockback(source_pos : Vector2, magnifier : float = 1):
+func Knockback(_source_pos : Vector2, _magnifier : float = 1):
 	#Used for knockback & stun effects from player stomping
 	pass
 

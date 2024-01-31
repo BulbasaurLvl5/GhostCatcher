@@ -2,9 +2,9 @@ class_name StunnedState
 extends MobState
 
 
-@export_range(0.0, 10.0, 0.0, "or_greater", "suffix:seconds") var stun_duration : float = 2.0
-@export_range(0.0, 10.0, 0.0, "or_greater", "suffix:seconds") var knockback_duration : float = 1.0
-@export_range(0.0, 500.0, 0.0, "or_greater", "suffix:pixels/second") var knockback_speed : float = 100.0
+@export_range(0.0, 10.0, 0.01, "or_greater", "suffix:seconds") var stun_duration : float = 2.0
+@export_range(0.0, 10.0, 0.01, "or_greater", "suffix:seconds") var knockback_duration : float = 1.0
+@export_range(0.0, 500.0, 1.0, "or_greater", "suffix:pixels/second") var knockback_speed : float = 100.0
 
 var stun_remaining : float
 var knockback_remaining : float

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://l2r2lkfst37p"]
+[gd_scene load_steps=19 format=3 uid="uid://l2r2lkfst37p"]
 
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://Scenes/Tilesets/original_simple_48.tres" id="1_nbaf7"]
 [ext_resource type="Script" path="res://Scripts/level_data.gd" id="2_gkmk6"]
@@ -12,8 +12,6 @@
 [ext_resource type="Script" path="res://Animations/Parallax/parallax_clouds.gd" id="9_vpryo"]
 [ext_resource type="Texture2D" uid="uid://bjc2obas242sw" path="res://Sprites/CoalDrawn/moon_1.png" id="10_q8yse"]
 [ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://Sprites/CoalDrawn/CoalSkyFilter.png" id="10_wbkwf"]
-[ext_resource type="Texture2D" uid="uid://h47qc5sepbts" path="res://Sprites/CoalDrawn/Mountains.png" id="11_vwfmf"]
-[ext_resource type="Texture2D" uid="uid://2aallu2iht5l" path="res://Sprites/CoalDrawn/hills.png" id="12_542qi"]
 [ext_resource type="TileSet" uid="uid://cw3o76pijp4kj" path="res://Scenes/Tilesets/simple_48_no_collision.tres" id="13_17nd2"]
 [ext_resource type="Texture2D" uid="uid://d22mfo1u7jqs0" path="res://Sprites/Endlesspit.png" id="15_mqbr0"]
 [ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://Scenes/collision_failure.tscn" id="16_0yups"]
@@ -151,52 +149,17 @@ scroll_base_offset = Vector2(8640, 4860)
 position = Vector2(0, 144)
 motion_scale = Vector2(0.1, 0.1)
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2/Parallax_1_Horizon/ParallaxLayer"]
-texture = ExtResource("11_vwfmf")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax2/Parallax_1_Horizon/ParallaxLayer"]
-position = Vector2(-1121, -18)
-texture = ExtResource("11_vwfmf")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Parallax2/Parallax_1_Horizon/ParallaxLayer"]
-position = Vector2(1106, 0)
-texture = ExtResource("11_vwfmf")
-
 [node name="Parallax_25" type="ParallaxBackground" parent="Parallax2"]
 scroll_base_offset = Vector2(2880, 1620)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax2/Parallax_25"]
 motion_scale = Vector2(0.25, 0.25)
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2/Parallax_25/ParallaxLayer"]
-position = Vector2(0, 304)
-texture = ExtResource("12_542qi")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax2/Parallax_25/ParallaxLayer"]
-position = Vector2(-1077, 285)
-texture = ExtResource("12_542qi")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Parallax2/Parallax_25/ParallaxLayer"]
-position = Vector2(1103, 293)
-texture = ExtResource("12_542qi")
-
 [node name="Parallax_5" type="ParallaxBackground" parent="Parallax2"]
 scroll_base_offset = Vector2(960, 540)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax2/Parallax_5"]
 motion_scale = Vector2(0.5, 0.5)
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2/Parallax_5/ParallaxLayer"]
-position = Vector2(-129, 354)
-texture = ExtResource("12_542qi")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax2/Parallax_5/ParallaxLayer"]
-position = Vector2(-1206, 335)
-texture = ExtResource("12_542qi")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Parallax2/Parallax_5/ParallaxLayer"]
-position = Vector2(974, 343)
-texture = ExtResource("12_542qi")
 
 [node name="Parallax_8_Close" type="ParallaxBackground" parent="Parallax2"]
 scroll_base_offset = Vector2(240, 135)

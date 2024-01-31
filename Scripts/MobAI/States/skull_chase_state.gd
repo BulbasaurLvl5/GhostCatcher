@@ -2,7 +2,7 @@ class_name SkullChaseState
 extends AirChaseState
 
 
-@export_range(0.0, 500.0, 0.0, "or_greater", "suffix:pixels") var attack_range : float = 250.0
+@export_range(0.0, 500.0, 1.0, "or_greater", "suffix:pixels") var attack_range : float = 250.0
 
 
 func Extra_Checks():

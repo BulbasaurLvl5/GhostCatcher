@@ -3,7 +3,7 @@ extends MobAI
 
 
 
-func Knockback(source_pos : Vector2, magnifier : float = 1):
+func Knockback(_source_pos : Vector2, _magnifier : float = 1):
 	#Used for knockback & stun effects from player stomping
 	pass
 
