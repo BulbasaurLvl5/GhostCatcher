@@ -28,6 +28,13 @@ public static class LevelLoader
 	static PackedScene packedLevel_Columns = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_columns.tscn");
 	static PackedScene packedLevel_Treeson = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_treeson.tscn");
 	static PackedScene packedLevel_ShakyGround = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_shaky_ground.tscn");
+	static PackedScene packedLevel_Breakthrough = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_breakthrough.tscn");
+	static PackedScene packedLevel_Caves = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_caves.tscn");
+	static PackedScene packedLevel_FactoryYard = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_factory_yard.tscn");
+	static PackedScene packedLevel_Forest = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_forest.tscn");
+	static PackedScene packedLevel_NewGround = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_new_ground.tscn");
+	static PackedScene packedLevel_RingOfFire = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_ring_of_fire.tscn");
+	static PackedScene packedLevel_SkullCap = ResourceLoader.Load<PackedScene>("res://Scenes/level/level_skull_cap.tscn");
 	
 	public static Action<Main>[] LoadLevel = {
 		LoadLevel_Tutorial,
@@ -41,7 +48,14 @@ public static class LevelLoader
 		LoadLevel_DeepPit,
 		LoadLevel_Columns,
 		LoadLevel_Treeson,
-		LoadLevel_ShakyGround
+		LoadLevel_ShakyGround,
+		LoadLevel_Breakthrough,
+		LoadLevel_Caves,
+		LoadLevel_FactoryYard,
+		LoadLevel_Forest,
+		LoadLevel_NewGround,
+		LoadLevel_RingOfFire,
+		LoadLevel_SkullCap
 		};
 
 	public static async void PlayerDisableDelay(Main _main, int milisecdelay)
@@ -54,15 +68,15 @@ public static class LevelLoader
 	static void LoadLevel_Tutorial(Main _main)
 	{
 		List<Vector2I> ghostPositions = new List<Vector2I>(){
-			new Vector2I(6*110, -3*110),
-			new Vector2I(11*110, -7*110),
-			new Vector2I(11*110, -2*110),
-			new Vector2I(16*110, -3*110),
+			new Vector2I(-5*110, -3*110),
+			new Vector2I(0*110, -7*110),
+			new Vector2I(0*110, -2*110),
+			new Vector2I(5*110, -3*110),
 		};
 		//rotating ghost positions
 		//pathGhostPositions
 
-		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(2*110,-3*110), 0);
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(-9*110,-3*110), 0);
 
 		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
 		_main.UI.AddChild(_timeLabel);
@@ -306,6 +320,146 @@ public static class LevelLoader
 		packedLevel_ShakyGround.Instantiate(_main.World);
 
 		_main.StartLevel(11);
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
+		PlayerDisableDelay(_main, 1);
+	}
+
+		static void LoadLevel_Breakthrough(Main _main)
+	{
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, -220), 0);
+
+		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
+		_main.UI.AddChild(_timeLabel);
+
+		MainLabel _center_label = packedCenterLabel.Instantiate<MainLabel>();
+		_main.UI.AddChild(_center_label);
+
+		packedLevel_ShakyGround.Instantiate(_main.World);
+
+		_main.StartLevel(12);
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
+		PlayerDisableDelay(_main, 1);
+	}
+
+		static void LoadLevel_Caves(Main _main)
+	{
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, 0), 0);
+
+		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
+		_main.UI.AddChild(_timeLabel);
+
+		MainLabel _center_label = packedCenterLabel.Instantiate<MainLabel>();
+		_main.UI.AddChild(_center_label);
+
+		packedLevel_ShakyGround.Instantiate(_main.World);
+
+		_main.StartLevel(13);
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
+		PlayerDisableDelay(_main, 1);
+	}
+
+		static void LoadLevel_FactoryYard(Main _main)
+	{
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, 0), 0);
+
+		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
+		_main.UI.AddChild(_timeLabel);
+
+		MainLabel _center_label = packedCenterLabel.Instantiate<MainLabel>();
+		_main.UI.AddChild(_center_label);
+
+		packedLevel_ShakyGround.Instantiate(_main.World);
+
+		_main.StartLevel(14);
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
+		PlayerDisableDelay(_main, 1);
+	}
+
+		static void LoadLevel_Forest(Main _main)
+	{
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, 0), 0);
+
+		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
+		_main.UI.AddChild(_timeLabel);
+
+		MainLabel _center_label = packedCenterLabel.Instantiate<MainLabel>();
+		_main.UI.AddChild(_center_label);
+
+		packedLevel_ShakyGround.Instantiate(_main.World);
+
+		_main.StartLevel(15);
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
+		PlayerDisableDelay(_main, 1);
+	}
+	
+		static void LoadLevel_NewGround(Main _main)
+	{
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, 0), 0);
+
+		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
+		_main.UI.AddChild(_timeLabel);
+
+		MainLabel _center_label = packedCenterLabel.Instantiate<MainLabel>();
+		_main.UI.AddChild(_center_label);
+
+		packedLevel_ShakyGround.Instantiate(_main.World);
+
+		_main.StartLevel(16);
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
+		PlayerDisableDelay(_main, 1);
+	}
+	
+		static void LoadLevel_RingOfFire(Main _main)
+	{
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, 0), 0);
+
+		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
+		_main.UI.AddChild(_timeLabel);
+
+		MainLabel _center_label = packedCenterLabel.Instantiate<MainLabel>();
+		_main.UI.AddChild(_center_label);
+
+		packedLevel_ShakyGround.Instantiate(_main.World);
+
+		_main.StartLevel(17);
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
+		PlayerDisableDelay(_main, 1);
+	}
+	
+		static void LoadLevel_SkullCap(Main _main)
+	{
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, 0), 0);
+
+		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
+		_main.UI.AddChild(_timeLabel);
+
+		MainLabel _center_label = packedCenterLabel.Instantiate<MainLabel>();
+		_main.UI.AddChild(_center_label);
+
+		packedLevel_ShakyGround.Instantiate(_main.World);
+
+		_main.StartLevel(18);
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);

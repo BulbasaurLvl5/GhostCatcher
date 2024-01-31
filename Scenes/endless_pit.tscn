@@ -7,6 +7,7 @@
 size = Vector2(46273, 995.25)
 
 [node name="EndlessPit" type="Area2D"]
+z_index = 120
 collision_layer = 0
 collision_mask = 2
 
@@ -17,6 +18,7 @@ position = Vector2(3301, 593.625)
 shape = SubResource("RectangleShape2D_tgk45")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 120
 position = Vector2(3393.5, 386)
 scale = Vector2(60, 2)
 texture = ExtResource("2_cvn5m")

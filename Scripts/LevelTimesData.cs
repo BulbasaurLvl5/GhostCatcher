@@ -19,6 +19,13 @@ public static class LevelTimesData
 			{8,new int[2]{20,25}},
 			{9,new int[2]{20,25}},
 			{10,new int[2]{20,25}},
+			{11,new int[2]{20,25}},
+			{12,new int[2]{20,25}},
+			{13,new int[2]{20,25}},
+			{14,new int[2]{20,25}},
+			{15,new int[2]{20,25}},
+			{16,new int[2]{20,25}},
+			{17,new int[2]{20,25}},
 		};
 		
 		if(level >= _leveltimedata.Count || time == 0)

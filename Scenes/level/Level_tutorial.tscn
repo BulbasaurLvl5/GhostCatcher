@@ -1,21 +1,19 @@
-[gd_scene load_steps=23 format=3 uid="uid://7gm2em8n2ucc"]
+[gd_scene load_steps=20 format=3 uid="uid://7gm2em8n2ucc"]
 
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://Scenes/Tilesets/original_simple_48.tres" id="1_q1odp"]
 [ext_resource type="Texture2D" uid="uid://cuxeorwpjn2g6" path="res://Sprites/CoalDrawn/CoalSignpost.png" id="2_sb4be"]
 [ext_resource type="Texture2D" uid="uid://jbfl0nukjwsw" path="res://Sprites/CoalDrawn/CoalTree.png" id="3_7tbeq"]
 [ext_resource type="Texture2D" uid="uid://cgbodrcslt8a1" path="res://Sprites/CoalDrawn/CoalTombStones.png" id="4_5vi2q"]
-[ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="5_4gdet"]
 [ext_resource type="PackedScene" uid="uid://5qmp4wtv4vhb" path="res://Scenes/Scenery/dog.tscn" id="7_ygbby"]
 [ext_resource type="Texture2D" uid="uid://b5xlp7x6bh8wb" path="res://Sprites/CoalDrawn/CoalSky.png" id="8_wuoda"]
 [ext_resource type="Script" path="res://Animations/Parallax/parallax_clouds.gd" id="9_jfr8n"]
 [ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://Sprites/CoalDrawn/CoalSkyFilter.png" id="10_370jf"]
 [ext_resource type="Script" path="res://Scripts/moon.gd" id="11_ffry1"]
 [ext_resource type="Texture2D" uid="uid://bjc2obas242sw" path="res://Sprites/CoalDrawn/moon_1.png" id="12_5orw1"]
-[ext_resource type="Texture2D" uid="uid://h47qc5sepbts" path="res://Sprites/CoalDrawn/Mountains.png" id="13_qng4c"]
-[ext_resource type="Texture2D" uid="uid://2aallu2iht5l" path="res://Sprites/CoalDrawn/hills.png" id="14_ckofe"]
+[ext_resource type="Texture2D" uid="uid://br7gis8rcn7xp" path="res://Sprites/CoalDrawn/Mountains.png" id="13_qng4c"]
+[ext_resource type="Texture2D" uid="uid://b8xoka0m1lmq5" path="res://Sprites/CoalDrawn/hills.png" id="14_ckofe"]
 [ext_resource type="TileSet" uid="uid://cw3o76pijp4kj" path="res://Scenes/Tilesets/simple_48_no_collision.tres" id="15_1l5s1"]
-[ext_resource type="Texture2D" uid="uid://d22mfo1u7jqs0" path="res://Sprites/Endlesspit.png" id="16_wwefm"]
-[ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://Scenes/collision_failure.tscn" id="17_u77x7"]
+[ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="15_g02ft"]
 [ext_resource type="Script" path="res://Scripts/level_data.gd" id="18_nhrqg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1fwhv"]
@@ -36,26 +34,19 @@ point_count = 2
 atlas = ExtResource("4_5vi2q")
 region = Rect2(20, 17, 109, 123)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3na26"]
-size = Vector2(46273, 995.25)
-
 [node name="Tutorial" type="TileMap"]
-position = Vector2(0, -770)
 tile_set = ExtResource("1_q1odp")
 format = 2
 layer_0/modulate = Color(0.67451, 0.67451, 0.67451, 1)
-layer_0/tile_data = PackedInt32Array(458756, 131072, 3, 458757, 131072, 3, 458758, 131072, 3, 458759, 131072, 3, 458760, 131072, 3, 458761, 131072, 3, 458762, 131072, 3, 458763, 131072, 3, 458764, 131072, 3, 458765, 131072, 3, 458766, 131072, 3, 458767, 131072, 3, 458768, 131072, 3, 458769, 131072, 3, 458770, 131072, 3, 458771, 131072, 3, 327685, 65536, 3, 327686, 131072, 3, 327687, 196608, 3, 131082, 65536, 3, 131083, 131072, 3, 131084, 196608, 3, 327695, 65536, 3, 327696, 131072, 3, 327697, 196608, 3, 458755, 131072, 3, 458754, 131072, 3, 458772, 131072, 3, 458752, 65536, 3, 458753, 131072, 3, 458773, 131072, 3, 458774, 196608, 3)
+layer_0/tile_data = PackedInt32Array(458756, 131072, 3, 458757, 131072, 3, 458758, 131072, 3, 458759, 131072, 3, 458760, 131072, 3, 458761, 131072, 3, 458762, 131072, 3, 458763, 131072, 3, 458764, 131072, 3, 458765, 131072, 3, 458766, 131072, 3, 458767, 131072, 3, 458768, 131072, 3, 458769, 131072, 3, 458770, 131072, 3, 458771, 131072, 3, 327685, 65536, 3, 327686, 131072, 3, 327687, 196608, 3, 131082, 65536, 3, 131083, 131072, 3, 131084, 196608, 3, 327695, 65536, 3, 327696, 131072, 3, 327697, 196608, 3, 458755, 131072, 3, 458754, 131072, 3, 458772, 131072, 3, 458752, 65536, 3, 458753, 131072, 3, 458773, 131072, 3, 458774, 196608, 3, -327679, 196608, 3, -327680, 131072, 3, -262145, 65536, 3, -131068, 65536, 3, -131067, 131072, 3, -131066, 196608, 3, -65540, 196608, 3, -65542, 65536, 3, -65541, 131072, 3, 5, 131072, 3, 6, 131072, 3, 7, 131072, 3, 8, 131072, 3, 9, 131072, 3, 10, 131072, 3, 11, 196608, 3, 65529, 131072, 3, 65528, 131072, 3, 65526, 131072, 3, 65527, 131072, 3, 65525, 65536, 3, 65530, 131072, 3, 65531, 131072, 3, 65532, 131072, 3, 65533, 131072, 3, 65534, 131072, 3, 65535, 131072, 3, 0, 131072, 3, 1, 131072, 3, 2, 131072, 3, 3, 131072, 3, 4, 131072, 3)
 
 [node name="LvlData" type="Node2D" parent="."]
 script = ExtResource("18_nhrqg")
-top_boundary = 17.0
-left_boundary = 10.0
-right_boundary = 32.0
-bottom_boundary = 12.0
-
-[node name="EndlessPit" parent="." instance=ExtResource("5_4gdet")]
-visible = false
-position = Vector2(141, 1980)
+top_boundary = 30.0
+left_boundary = 18.0
+right_boundary = 19.0
+bottom_boundary = 4.0
+show_boundary_in_editor = false
 
 [node name="Scenery" type="Node2D" parent="."]
 z_index = -5
@@ -63,25 +54,25 @@ z_index = -5
 [node name="Sign" type="Sprite2D" parent="Scenery"]
 light_mask = 0
 z_index = 6
-position = Vector2(96, 633)
+position = Vector2(-1114, -137)
 scale = Vector2(1, 1.03116)
 texture = ExtResource("2_sb4be")
 
 [node name="Tree" type="Sprite2D" parent="Scenery"]
 z_index = -1
-position = Vector2(1225, 537)
+position = Vector2(15, -233)
 scale = Vector2(1.50227, 1.50227)
 texture = ExtResource("3_7tbeq")
 
 [node name="tomb_1" type="Sprite2D" parent="Scenery"]
 z_index = -1
-position = Vector2(399, 728)
+position = Vector2(-811, -42)
 texture = SubResource("AtlasTexture_1fwhv")
 
 [node name="tomb_2" type="Sprite2D" parent="Scenery"]
 light_mask = 0
 z_index = 26
-position = Vector2(1039, 752)
+position = Vector2(-171, -18)
 texture = SubResource("AtlasTexture_gwvkm")
 
 [node name="dog" parent="." instance=ExtResource("7_ygbby")]
@@ -157,15 +148,31 @@ position = Vector2(0, 144)
 motion_scale = Vector2(0.1, 0.1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax_1_Horizon/ParallaxLayer"]
-position = Vector2(531, -19)
+position = Vector2(-3389, 33)
 texture = ExtResource("13_qng4c")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Parallax/Parallax_1_Horizon/ParallaxLayer"]
-position = Vector2(-590, -37)
+position = Vector2(-2221, 33)
 texture = ExtResource("13_qng4c")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Parallax/Parallax_1_Horizon/ParallaxLayer"]
-position = Vector2(1637, -19)
+position = Vector2(-1053, 33)
+texture = ExtResource("13_qng4c")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax/Parallax_1_Horizon/ParallaxLayer"]
+position = Vector2(115, 33)
+texture = ExtResource("13_qng4c")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/Parallax_1_Horizon/ParallaxLayer"]
+position = Vector2(1283, 33)
+texture = ExtResource("13_qng4c")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Parallax/Parallax_1_Horizon/ParallaxLayer"]
+position = Vector2(2451, 33)
+texture = ExtResource("13_qng4c")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/Parallax_1_Horizon/ParallaxLayer"]
+position = Vector2(3619, 33)
 texture = ExtResource("13_qng4c")
 
 [node name="Parallax_25" type="ParallaxBackground" parent="Parallax"]
@@ -176,15 +183,31 @@ modulate = Color(0.466667, 0.317647, 0.317647, 1)
 motion_scale = Vector2(0.25, 0.25)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax_25/ParallaxLayer"]
-position = Vector2(952, 339)
+position = Vector2(-3404, 375)
 texture = ExtResource("14_ckofe")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Parallax/Parallax_25/ParallaxLayer"]
-position = Vector2(-125, 320)
+position = Vector2(-2236, 375)
 texture = ExtResource("14_ckofe")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Parallax/Parallax_25/ParallaxLayer"]
-position = Vector2(2055, 328)
+position = Vector2(-1068, 375)
+texture = ExtResource("14_ckofe")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax/Parallax_25/ParallaxLayer"]
+position = Vector2(100, 375)
+texture = ExtResource("14_ckofe")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/Parallax_25/ParallaxLayer"]
+position = Vector2(1268, 375)
+texture = ExtResource("14_ckofe")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Parallax/Parallax_25/ParallaxLayer"]
+position = Vector2(2436, 375)
+texture = ExtResource("14_ckofe")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/Parallax_25/ParallaxLayer"]
+position = Vector2(3604, 375)
 texture = ExtResource("14_ckofe")
 
 [node name="Parallax_5" type="ParallaxBackground" parent="Parallax"]
@@ -196,15 +219,31 @@ position = Vector2(0, -50)
 motion_scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax_5/ParallaxLayer"]
-position = Vector2(944, 415)
+position = Vector2(-3630, 436)
 texture = ExtResource("14_ckofe")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Parallax/Parallax_5/ParallaxLayer"]
-position = Vector2(-133, 396)
+position = Vector2(-2462, 436)
 texture = ExtResource("14_ckofe")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Parallax/Parallax_5/ParallaxLayer"]
-position = Vector2(2047, 404)
+position = Vector2(-1294, 436)
+texture = ExtResource("14_ckofe")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax/Parallax_5/ParallaxLayer"]
+position = Vector2(-126, 436)
+texture = ExtResource("14_ckofe")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/Parallax_5/ParallaxLayer"]
+position = Vector2(1042, 436)
+texture = ExtResource("14_ckofe")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Parallax/Parallax_5/ParallaxLayer"]
+position = Vector2(2210, 436)
+texture = ExtResource("14_ckofe")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/Parallax_5/ParallaxLayer"]
+position = Vector2(3378, 436)
 texture = ExtResource("14_ckofe")
 
 [node name="Parallax_8_Close" type="ParallaxBackground" parent="Parallax"]
@@ -261,27 +300,6 @@ position = Vector2(-3166, -40)
 rotation = -0.113446
 texture = SubResource("AtlasTexture_wjkx0")
 
-[node name="PitLayer" type="ParallaxBackground" parent="Parallax"]
-layer = 0
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/PitLayer"]
-position = Vector2(0, 22)
-
-[node name="EndlessPit" type="Area2D" parent="Parallax/PitLayer/ParallaxLayer"]
-position = Vector2(-78, 967)
-scale = Vector2(1, 4)
-collision_layer = 0
-collision_mask = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/PitLayer/ParallaxLayer/EndlessPit"]
-z_index = 200
-position = Vector2(3393.5, 380.5)
-scale = Vector2(60, 2)
-texture = ExtResource("16_wwefm")
-
-[node name="CollisionFailure" parent="Parallax/PitLayer/ParallaxLayer/EndlessPit" instance=ExtResource("17_u77x7")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Parallax/PitLayer/ParallaxLayer/EndlessPit"]
-z_index = 120
-position = Vector2(3301, 593.625)
-shape = SubResource("RectangleShape2D_3na26")
+[node name="EndlessPit1" parent="Parallax" instance=ExtResource("15_g02ft")]
+position = Vector2(-5, 204)
+scale = Vector2(1, 0.5)

@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_wall_grab_state.gd" id="13_ckika"]
 [ext_resource type="PackedScene" uid="uid://deim0qaglwinp" path="res://Scenes/dash_ghost.tscn" id="14_q528f"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_wall_jump_state.gd" id="14_umcf1"]
-[ext_resource type="PackedScene" uid="uid://df28o2fggrbi0" path="res://Scripts/PlayerStateMachine/dash_shockwave.tscn" id="15_ixq3s"]
+[ext_resource type="PackedScene" uid="uid://df28o2fggrbi0" path="res://Scripts/PlayerStateMachine/dash_shockwave.tscn" id="15_jrri0"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="16_1amk7"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateMachine/player_stomp_state.gd" id="16_hlspe"]
 [ext_resource type="AudioStream" uid="uid://uq5et6s242vd" path="res://Audio/SFX/Player/footsteps_run.wav" id="20_ect3d"]
@@ -46,7 +46,7 @@ use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cast", "grab_cast")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cast")]
 light_mask = 2
 visibility_layer = 2
 z_index = 1
@@ -59,7 +59,6 @@ platform_floor_layers = 5
 platform_wall_layers = 5
 script = ExtResource("1_l4530")
 cast = NodePath("ShapeCast2D")
-grab_cast = NodePath("")
 canvas_mod_node = ExtResource("2_hrds7")
 verbose = true
 data = ExtResource("2_h06d8")
@@ -115,7 +114,7 @@ shockwave_scene = ExtResource("11_euytq")
 unique_name_in_owner = true
 script = ExtResource("12_5jbsb")
 dash_ghost_node = ExtResource("14_q528f")
-shockwave_scene = ExtResource("15_ixq3s")
+shockwave_scene = ExtResource("15_jrri0")
 
 [node name="WallGrab" type="Node" parent="PlayerStateMachine"]
 unique_name_in_owner = true
