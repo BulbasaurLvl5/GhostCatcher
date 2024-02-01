@@ -37,11 +37,12 @@ layer_0/tile_data = PackedInt32Array(-65503, 0, 3, -65501, 65536, 3, -4, 1, 3, -
 
 [node name="LvlData" type="Node2D" parent="."]
 script = ExtResource("2_1i7jb")
-top_boundary = 30.0
-left_boundary = 12.0
+top_boundary = -39.0
+left_boundary = -12.5
 right_boundary = 42.0
 bottom_boundary = 8.0
-show_boundary_in_editor = false
+starting_position_x = null
+starting_position_y = null
 
 [node name="EndlessPit" parent="." instance=ExtResource("2_vn8ee")]
 position = Vector2(-4599, 566)

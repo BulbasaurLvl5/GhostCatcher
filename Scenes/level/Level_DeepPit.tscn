@@ -16,8 +16,8 @@ layer_0/tile_data = PackedInt32Array(131070, 65539, 3, 131071, 65539, 3, 65536, 
 
 [node name="LvlData" type="Node2D" parent="."]
 script = ExtResource("2_drv5s")
-top_boundary = 80.0
-left_boundary = 16.0
+top_boundary = -100.0
+left_boundary = -17.0
 right_boundary = 16.0
 bottom_boundary = 5.0
 

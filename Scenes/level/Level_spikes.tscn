@@ -16,11 +16,10 @@ layer_0/tile_data = PackedInt32Array(65533, 3, 3, 65534, 65539, 3, 65535, 65539,
 
 [node name="LvlData" type="Node2D" parent="."]
 script = ExtResource("2_br6uw")
-top_boundary = 31.0
-left_boundary = 10.0
-right_boundary = 26.0
+top_boundary = -40.0
+left_boundary = -18.0
+right_boundary = 28.0
 bottom_boundary = 5.0
-show_boundary_in_editor = false
 
 [node name="Ghost" parent="." instance=ExtResource("2_shnab")]
 position = Vector2(1209, -315)

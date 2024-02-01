@@ -71,7 +71,7 @@ func save_input_events_to_disk():
 	var json_string = JSON.stringify(data, "\t")
 	file.store_string(json_string)
 	file.close()
-	print("saved custom inputs to: ",save_dir + file_name)
+#	print("saved custom inputs to: ",save_dir + file_name)
 
 
 func restore_input_events_from_save():
@@ -117,7 +117,7 @@ func restore_input_events_from_save():
 				change_input_event(a, event_indexes[count], event)
 				index += 1
 				count += 1
-		print("restored custom inputs from: ",save_dir + file_name)
+#		print("restored custom inputs from: ",save_dir + file_name)
 
 		update_buttons()
 

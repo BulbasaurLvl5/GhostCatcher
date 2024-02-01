@@ -14,7 +14,7 @@ collision_mask = 2
 [node name="CollisionFailure" parent="." instance=ExtResource("1_01f1x")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3301, 593.625)
+position = Vector2(3173, 360)
 shape = SubResource("RectangleShape2D_tgk45")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

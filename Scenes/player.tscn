@@ -205,9 +205,8 @@ area_mask = 2
 [node name="PointLight2D" type="PointLight2D" parent="."]
 light_mask = 2
 visibility_layer = 2
-energy = 0.92
-range_layer_min = -7
-range_layer_max = 10
+range_layer_min = -30
+shadow_color = Color(0, 0, 0, 0.72549)
 texture = SubResource("GradientTexture2D_0ihpg")
 
 [node name="RayCasts" type="Node2D" parent="."]

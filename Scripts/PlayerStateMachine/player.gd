@@ -12,6 +12,9 @@ extends CharacterBody2D
 @export var data : PlayerDataResource 
 
 var level_boundary : Array[float]
+var canvas_mod_dispatched : bool = false
+var starting_position : Vector2
+var starting_position_set : bool = false
 
 var x_input : int = 0
 var y_input : int = 0
@@ -29,21 +32,32 @@ var could_grab_wall : bool = false
 var is_grabbing_wall : bool = false
 
 @onready var remaining_air_actions : int = data.max_air_actions
-@onready var canvas_mod_dispatched : bool = false
 
+
+func _enter_tree():
+	check_canvas_mod()
+#	check_start_pos()
 
 func _ready():
 	if !cast && %ShapeCast2D:
 		cast = %ShapeCast2D
-
+	if !canvas_mod_dispatched:
+		check_canvas_mod()
+#	if !starting_position_set:
+#		check_start_pos()
 
 func set_level_boundary(top : float, left : float, right : float, bottom : float):
 	level_boundary = [top + 110, left + 110, right - 110, bottom - 110]
+
+#func set_starting_position(pos : Vector2):
+#	starting_position = pos
 
 
 func _process(_delta):
 	if !canvas_mod_dispatched:
 		check_canvas_mod()
+#	if !starting_position_set:
+#		check_start_pos()
 	check_input()
 	check_environment()
 
@@ -58,6 +72,12 @@ func check_canvas_mod():
 		$"..".add_child(canvas_mod)
 		canvas_mod_dispatched = true
 
+
+#func check_start_pos():
+#	if starting_position != Vector2.ZERO:
+#		position = starting_position
+#		print("Moved player to starting position ",starting_position)
+#		starting_position_set = true		
 
 func pause_game():
 	var path = "res://Scenes/Menu_Pause.tscn"

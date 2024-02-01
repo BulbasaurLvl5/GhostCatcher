@@ -10,6 +10,8 @@
 radius = 134.06
 
 [node name="dog" type="Area2D"]
+z_index = 24
+z_as_relative = false
 collision_layer = 32
 collision_mask = 7
 script = ExtResource("1_rrpi6")
@@ -31,6 +33,7 @@ shape = SubResource("CircleShape2D_3h8i7")
 
 [node name="Speech" type="Node2D" parent="."]
 visible = false
+z_index = 100
 
 [node name="TextBack" type="Polygon2D" parent="Speech"]
 position = Vector2(219, -399)

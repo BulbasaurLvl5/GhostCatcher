@@ -131,7 +131,8 @@ top_boundary = 77.0
 left_boundary = 30.0
 right_boundary = 30.0
 bottom_boundary = 11.0
-show_boundary_in_editor = false
+starting_position_x = null
+starting_position_y = null
 
 [node name="EndlessPit" parent="." instance=ExtResource("3_nvhrl")]
 position = Vector2(65, 912)

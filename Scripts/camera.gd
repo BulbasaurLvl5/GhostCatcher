@@ -37,26 +37,31 @@ var rng = RandomNumberGenerator.new()
 var shake_strength : float = 0.0
 
 var level_boundary : Rect2
-var boundary_updated : bool = false
+var data_updated : bool
+
+
+func _enter_tree():
+	find_level_data()
 
 
 func _ready():
-	boundary_updated = false
 	enable_smooth_and_drag(false)
 	position = Vector2(0, -200)
-	find_level_boundary()
+	if !data_updated:
+		find_level_data()
 	
 
-func find_level_boundary():
+func find_level_data():
 	var level_data : LevelData = get_tree().root.find_child("LvlData", true, false)
 	if level_data:
-		limit_top = int(level_data.top_boundary * -110)
-		limit_left = int(level_data.left_boundary * -110)
+		limit_top = int(level_data.top_boundary * 110)
+		limit_left = int(level_data.left_boundary * 110)
 		limit_right = int(level_data.right_boundary * 110.0)
 		limit_bottom = int(level_data.bottom_boundary * 110.0)
 #		print("Boundary = ",limit_left, limit_top, limit_right, limit_bottom)
 		$"..".set_level_boundary(limit_top, limit_left, limit_right, limit_bottom)
-		boundary_updated = true
+#		$"..".set_starting_position(Vector2(level_data.starting_position_x * 110, level_data.starting_position_y * 110))
+		data_updated = true
 
 
 func enable_smooth_and_drag(enable : bool = true):
@@ -67,8 +72,8 @@ func enable_smooth_and_drag(enable : bool = true):
 
 #PROCESS
 func _process(delta):
-	if !boundary_updated:
-		find_level_boundary()
+	if !data_updated:
+		find_level_data()
 	if !position_smoothing_enabled:
 		enable_smooth_and_drag(true)
 		position = Vector2.ZERO

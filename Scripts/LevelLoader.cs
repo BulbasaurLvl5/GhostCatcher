@@ -76,7 +76,7 @@ public static class LevelLoader
 		//rotating ghost positions
 		//pathGhostPositions
 
-		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(-9*110,-3*110), 0);
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(-23*110,-1*110), 0);
 
 		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
 		_main.UI.AddChild(_timeLabel);
@@ -289,7 +289,7 @@ public static class LevelLoader
 	
 	static void LoadLevel_Treeson(Main _main)
 	{
-		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(-5300, -100), 0);
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(-3960, -220), 0);
 
 		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
 		_main.UI.AddChild(_timeLabel);
