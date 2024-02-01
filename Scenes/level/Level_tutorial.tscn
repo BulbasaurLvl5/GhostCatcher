@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://7gm2em8n2ucc"]
+[gd_scene load_steps=23 format=3 uid="uid://7gm2em8n2ucc"]
 
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://Scenes/Tilesets/original_simple_48.tres" id="1_q1odp"]
 [ext_resource type="Texture2D" uid="uid://cuxeorwpjn2g6" path="res://Sprites/CoalDrawn/CoalSignpost.png" id="2_sb4be"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c4whnquieckb8" path="res://Sprites/CoalDrawn/Tree_7.png" id="15_715er"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://Scenes/endless_pit.tscn" id="15_g02ft"]
 [ext_resource type="Script" path="res://Scripts/level_data.gd" id="18_nhrqg"]
+[ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://Scenes/player.tscn" id="19_wu4gt"]
 
 [sub_resource type="Curve2D" id="Curve2D_xo4x1"]
 _data = {
@@ -673,3 +674,6 @@ position = Vector2(-308, 282)
 [node name="dog" parent="." instance=ExtResource("7_ygbby")]
 z_index = 10
 position = Vector2(1694, -22)
+
+[node name="Player" parent="." instance=ExtResource("19_wu4gt")]
+position = Vector2(-30, -292)

@@ -69,7 +69,7 @@ func check_canvas_mod():
 			return
 	if children:
 		var canvas_mod = canvas_mod_node.instantiate()
-		$"..".add_child(canvas_mod)
+		$"..".add_child.call_deferred(canvas_mod)
 		canvas_mod_dispatched = true
 
 

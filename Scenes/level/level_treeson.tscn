@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://l2r2lkfst37p"]
+[gd_scene load_steps=17 format=3 uid="uid://l2r2lkfst37p"]
 
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://Scenes/Tilesets/original_simple_48.tres" id="1_nbaf7"]
 [ext_resource type="Script" path="res://Scripts/level_data.gd" id="2_gkmk6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b5xlp7x6bh8wb" path="res://Sprites/CoalDrawn/CoalSky.png" id="8_h5lq6"]
 [ext_resource type="Script" path="res://Scripts/moon.gd" id="9_psfa5"]
 [ext_resource type="Script" path="res://Animations/Parallax/parallax_clouds.gd" id="9_vpryo"]
+[ext_resource type="Texture2D" uid="uid://d4gkg7aoym7pe" path="res://Sprites/fog.png" id="10_ilfh5"]
 [ext_resource type="Texture2D" uid="uid://bjc2obas242sw" path="res://Sprites/CoalDrawn/moon_1.png" id="10_q8yse"]
 [ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://Sprites/CoalDrawn/CoalSkyFilter.png" id="10_wbkwf"]
 [ext_resource type="Texture2D" uid="uid://br7gis8rcn7xp" path="res://Sprites/CoalDrawn/Mountains.png" id="11_mpuye"]
@@ -165,12 +166,28 @@ texture = ExtResource("11_mpuye")
 position = Vector2(3617, 101)
 texture = ExtResource("11_mpuye")
 
-[node name="Distance2" type="ParallaxBackground" parent="Parallax"]
+[node name="Haze2" type="ParallaxBackground" parent="Parallax"]
+layer = -80
 scroll_base_offset = Vector2(3840, 1080)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Distance2"]
-modulate = Color(0.188235, 0.188235, 0.180392, 1)
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Haze2"]
+modulate = Color(0.615686, 0.615686, 0.615686, 0.101961)
 motion_scale = Vector2(0.2, 0.333)
+motion_mirroring = Vector2(3840, 2160)
+script = ExtResource("9_vpryo")
+
+[node name="Fog" type="Sprite2D" parent="Parallax/Haze2/ParallaxLayer"]
+texture = ExtResource("10_ilfh5")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Parallax/Haze2"]
+modulate = Color(0.67451, 0.67451, 0.67451, 0.0862745)
+motion_scale = Vector2(0.2, 0.333)
+motion_mirroring = Vector2(3840, 2160)
+script = ExtResource("9_vpryo")
+automatic_motion = Vector2(-10, -15)
+
+[node name="Fog" type="Sprite2D" parent="Parallax/Haze2/ParallaxLayer2"]
+texture = ExtResource("10_ilfh5")
 
 [node name="Far" type="ParallaxBackground" parent="Parallax"]
 layer = -60
@@ -224,12 +241,29 @@ rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("12_vit3i")
 
-[node name="Distance1" type="ParallaxBackground" parent="Parallax"]
+[node name="Haze1" type="ParallaxBackground" parent="Parallax"]
+layer = -50
 scroll_base_offset = Vector2(1440, 550)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Distance1"]
-modulate = Color(0.188235, 0.188235, 0.180392, 1)
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Haze1"]
+modulate = Color(0.654902, 0.654902, 0.654902, 0.0823529)
 motion_scale = Vector2(0.4, 0.5)
+motion_mirroring = Vector2(3840, 2160)
+script = ExtResource("9_vpryo")
+automatic_motion = Vector2(20, -5)
+
+[node name="Fog" type="Sprite2D" parent="Parallax/Haze1/ParallaxLayer"]
+texture = ExtResource("10_ilfh5")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Parallax/Haze1"]
+modulate = Color(0.678431, 0.678431, 0.678431, 0.0901961)
+motion_scale = Vector2(0.4, 0.5)
+motion_mirroring = Vector2(3840, 2160)
+script = ExtResource("9_vpryo")
+automatic_motion = Vector2(35, -12)
+
+[node name="Fog" type="Sprite2D" parent="Parallax/Haze1/ParallaxLayer2"]
+texture = ExtResource("10_ilfh5")
 
 [node name="Middle" type="ParallaxBackground" parent="Parallax"]
 layer = -40

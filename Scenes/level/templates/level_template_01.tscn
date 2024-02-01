@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bbnn6f0drt4rs"]
+[gd_scene load_steps=21 format=3 uid="uid://bbnn6f0drt4rs"]
 
 [ext_resource type="Script" path="res://Scripts/level_data.gd" id="1_6myoa"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://Scenes/Tilesets/original_simple_48.tres" id="1_8pseg"]
@@ -12,9 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cgbodrcslt8a1" path="res://Sprites/CoalDrawn/CoalTombStones.png" id="6_4hr5e"]
 [ext_resource type="Texture2D" uid="uid://b8xoka0m1lmq5" path="res://Sprites/CoalDrawn/hills.png" id="6_u55bp"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://Scenes/player.tscn" id="7_h6ru3"]
-[ext_resource type="Texture2D" uid="uid://dwyx8hmrnmjki" path="res://Sprites/CoalDrawn/church.png" id="10_4ngvu"]
+[ext_resource type="Texture2D" uid="uid://d4gkg7aoym7pe" path="res://Sprites/fog.png" id="9_du3b1"]
 [ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://Scenes/collision_failure.tscn" id="10_ksj2v"]
-[ext_resource type="Texture2D" uid="uid://kvsjs4tacowj" path="res://Sprites/CoalDrawn/house_1.png" id="10_qmskq"]
 [ext_resource type="Texture2D" uid="uid://d22mfo1u7jqs0" path="res://Sprites/Endlesspit.png" id="11_7lpgy"]
 [ext_resource type="Texture2D" uid="uid://67522rgm3ol5" path="res://Sprites/CoalDrawn/Tree_6.png" id="11_u76yv"]
 [ext_resource type="Texture2D" uid="uid://c4whnquieckb8" path="res://Sprites/CoalDrawn/Tree_7.png" id="12_wkb2h"]
@@ -37,8 +36,8 @@ metadata/_edit_vertical_guides_ = []
 
 [node name="LvlData" type="Node2D" parent="."]
 script = ExtResource("1_6myoa")
-top_boundary = 80.0
-left_boundary = 40.0
+top_boundary = -80.0
+left_boundary = -39.0
 right_boundary = 40.0
 bottom_boundary = 2.0
 
@@ -153,12 +152,28 @@ texture = ExtResource("5_4eyx5")
 position = Vector2(3617, 101)
 texture = ExtResource("5_4eyx5")
 
-[node name="Distance2" type="ParallaxBackground" parent="Parallax"]
+[node name="Haze2" type="ParallaxBackground" parent="Parallax"]
+layer = -80
 scroll_base_offset = Vector2(3840, 1080)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Distance2"]
-modulate = Color(0.188235, 0.188235, 0.180392, 1)
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Haze2"]
+modulate = Color(0.615686, 0.615686, 0.615686, 0.101961)
 motion_scale = Vector2(0.2, 0.333)
+motion_mirroring = Vector2(3840, 2160)
+script = ExtResource("2_vgdxy")
+
+[node name="Fog" type="Sprite2D" parent="Parallax/Haze2/ParallaxLayer"]
+texture = ExtResource("9_du3b1")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Parallax/Haze2"]
+modulate = Color(0.67451, 0.67451, 0.67451, 0.0862745)
+motion_scale = Vector2(0.2, 0.333)
+motion_mirroring = Vector2(3840, 2160)
+script = ExtResource("2_vgdxy")
+automatic_motion = Vector2(-10, -15)
+
+[node name="Fog" type="Sprite2D" parent="Parallax/Haze2/ParallaxLayer2"]
+texture = ExtResource("9_du3b1")
 
 [node name="Far" type="ParallaxBackground" parent="Parallax"]
 layer = -60
@@ -212,12 +227,29 @@ rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("6_u55bp")
 
-[node name="Distance1" type="ParallaxBackground" parent="Parallax"]
+[node name="Haze1" type="ParallaxBackground" parent="Parallax"]
+layer = -50
 scroll_base_offset = Vector2(1440, 550)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Distance1"]
-modulate = Color(0.188235, 0.188235, 0.180392, 1)
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Haze1"]
+modulate = Color(0.654902, 0.654902, 0.654902, 0.0823529)
 motion_scale = Vector2(0.4, 0.5)
+motion_mirroring = Vector2(3840, 2160)
+script = ExtResource("2_vgdxy")
+automatic_motion = Vector2(20, -5)
+
+[node name="Fog" type="Sprite2D" parent="Parallax/Haze1/ParallaxLayer"]
+texture = ExtResource("9_du3b1")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Parallax/Haze1"]
+modulate = Color(0.678431, 0.678431, 0.678431, 0.0901961)
+motion_scale = Vector2(0.4, 0.5)
+motion_mirroring = Vector2(3840, 2160)
+script = ExtResource("2_vgdxy")
+automatic_motion = Vector2(35, -12)
+
+[node name="Fog" type="Sprite2D" parent="Parallax/Haze1/ParallaxLayer2"]
+texture = ExtResource("9_du3b1")
 
 [node name="Middle" type="ParallaxBackground" parent="Parallax"]
 layer = -40
@@ -248,28 +280,6 @@ texture = ExtResource("6_u55bp")
 position = Vector2(2971, 353.714)
 scale = Vector2(2, 1)
 texture = ExtResource("6_u55bp")
-
-[node name="Church" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer"]
-self_modulate = Color(0.490196, 0.505882, 0.54902, 1)
-position = Vector2(-1741, -203.286)
-rotation = -0.0558505
-scale = Vector2(-0.5, 0.5)
-texture = ExtResource("10_4ngvu")
-
-[node name="tomb_1" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer"]
-self_modulate = Color(0.490196, 0.505882, 0.54902, 1)
-light_mask = 0
-position = Vector2(-1968, 7.99998)
-rotation = 0.0872665
-scale = Vector2(0.3, 0.3)
-texture = SubResource("AtlasTexture_dla42")
-
-[node name="House" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer"]
-self_modulate = Color(0.411765, 0.341176, 0.258824, 1)
-position = Vector2(2192, 0.713776)
-rotation = 0.0575959
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_qmskq")
 
 [node name="Near" type="ParallaxBackground" parent="Parallax"]
 layer = -20
