@@ -102,7 +102,7 @@ public partial class Main : Node
 
 		foreach (var _c in World.GetChildren(true))
 		{
-			GD.Print(_c.Name);
+			// GD.Print(_c.Name);
 			_c.QueueFree();
 		}
 
