@@ -93,7 +93,7 @@ public partial class MenuOptions : Node
 			}
 
 			_windowModeButton.ItemSelected += (_index) =>{
-				GD.Print("_WindowModeButton selected:", _index);
+				// GD.Print("_WindowModeButton selected:", _index);
 				VideoSettings.SetWindowMode(_windowModeButton.GetItemText((int)_index));
 			};
 

@@ -316,7 +316,7 @@ namespace MyGodotExtentions
 			switch(_windowmode)
 			{
 				case "Full-screen":
-					DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+					DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
 					DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, true);
 					break;
 
