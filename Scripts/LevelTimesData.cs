@@ -8,24 +8,8 @@ public static class LevelTimesData
 	{
 		Dictionary<int, int[]> _leveltimedata = new Dictionary<int, int[]>()
 		{
-			{0,new int[2]{5,10}},
-			{1,new int[2]{20,25}},
-			{2,new int[2]{20,25}},
-			{3,new int[2]{20,25}},
-			{4,new int[2]{20,25}},
-			{5,new int[2]{20,25}},
-			{6,new int[2]{20,25}},
-			{7,new int[2]{20,25}},
-			{8,new int[2]{20,25}},
-			{9,new int[2]{20,25}},
-			{10,new int[2]{20,25}},
-			{11,new int[2]{20,25}},
-			{12,new int[2]{20,25}},
-			{13,new int[2]{20,25}},
-			{14,new int[2]{20,25}},
-			{15,new int[2]{20,25}},
-			{16,new int[2]{20,25}},
-			{17,new int[2]{20,25}},
+			//times for rating from better to worse. i.e. first is max stars
+			{0,new int[5]{4,5,6,7,8}},
 		};
 		
 		if(level >= _leveltimedata.Count || time == 0)
@@ -34,10 +18,15 @@ public static class LevelTimesData
 		for (int i = 0; i < _leveltimedata[level].Length; i++)
 		{
 			if(time < _leveltimedata[level][i])
-			{
-				return _leveltimedata[level].Length-i+1; //higher rating is better, e.g. best = 3 stars
+			{	
+				// GD.Print("level: "+level);
+				// GD.Print("i: "+i);
+				// GD.Print("time: "+time);
+				// GD.Print("_leveltimedata: "+_leveltimedata[level][i]);
+				// GD.Print("return: "+(_leveltimedata[level].Length-i));
+				return _leveltimedata[level].Length-i; //higher rating is better
 			}
 		}
-		return 1;        
+		return 0;        
 	}
 }

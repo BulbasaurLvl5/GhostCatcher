@@ -14,6 +14,8 @@ public partial class MenuRetry : Node
 	public override void _Ready()
 	{
 		this.TryGetNodeInTree(out Main _main);
+
+		token = source.Token;
 			
 		//button set up
 		if(this.TryGetChildren(out List<Button> _buttons))
@@ -53,7 +55,6 @@ public partial class MenuRetry : Node
 
 			if(!_main.Failed)
 			{
-				token = source.Token;
 				DisplayScore(score, 333, _textures, token);
 			}
 
@@ -72,13 +73,13 @@ public partial class MenuRetry : Node
 	{
 		for (int i = 0; i < score; i++)
 		{
-			if(token.IsCancellationRequested)
-				return;
-
 			try
 			{
 				await Task.Delay(milisecdelay, token);
-				_textures[i+1].Show(); //i+1 because first image in scene is death
+				if(token.IsCancellationRequested)
+					return;
+
+				_textures[i+2].Show(); //i+1 because first image in scene is death
 			}
 			catch(OperationCanceledException)
 			{

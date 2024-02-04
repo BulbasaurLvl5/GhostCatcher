@@ -84,7 +84,8 @@ func pause_game():
 	if ResourceLoader.exists(path) : 
 		var pause_menu_packedscene = load(path)
 		var pause_menu = pause_menu_packedscene.instantiate()
-		add_child(pause_menu) # make the pause menu reparent itself to main - UI
+		var parent = get_tree().get_root().get_node("Main/UI")
+		parent.add_child(pause_menu)
 	else : 
 		print("Error: in player.gd.pause_game() loading scene: ", path)
 	pass

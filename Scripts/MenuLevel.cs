@@ -19,6 +19,12 @@ public partial class MenuLevel : Node
 	[Export]
 	Texture2D rating_3 = ResourceLoader.Load<Texture2D>("res://Sprites/CoalDrawn/star_rating_3.png");
 
+	[Export]
+	Texture2D rating_4 = ResourceLoader.Load<Texture2D>("res://Sprites/CoalDrawn/star_rating_4.png");
+
+	[Export]
+	Texture2D rating_5 = ResourceLoader.Load<Texture2D>("res://Sprites/CoalDrawn/star_rating_5.png");
+
 	public override void _Ready()
 	{
 		FileIO.SaveGame _save = FileIO.Load();
@@ -79,6 +85,10 @@ public partial class MenuLevel : Node
 					ratingsprite.Texture = rating_2;
 				else if(LevelTimesData.ReturnScore(0, _save.BestTimes[0]) == 3)
 					ratingsprite.Texture = rating_3;
+				else if(LevelTimesData.ReturnScore(0, _save.BestTimes[0]) == 4)
+					ratingsprite.Texture = rating_4;
+				else if(LevelTimesData.ReturnScore(0, _save.BestTimes[0]) == 5)
+					ratingsprite.Texture = rating_5;
 			}
 		}
 
@@ -119,6 +129,10 @@ public partial class MenuLevel : Node
 					ratingsprite.Texture = rating_2;
 				else if(LevelTimesData.ReturnScore(i, _save.BestTimes[i]) == 3)
 					ratingsprite.Texture = rating_3;
+				else if(LevelTimesData.ReturnScore(i, _save.BestTimes[i]) == 4)
+					ratingsprite.Texture = rating_4;
+				else if(LevelTimesData.ReturnScore(i, _save.BestTimes[i]) == 5)
+					ratingsprite.Texture = rating_5;
 			}
 		}
 	}
