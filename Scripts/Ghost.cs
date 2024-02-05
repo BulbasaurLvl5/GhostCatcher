@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Threading.Tasks;
+using MyGodotExtentions;
 
 public partial class Ghost : Area2D
 {
@@ -17,6 +18,19 @@ public partial class Ghost : Area2D
 
 	async void PlayerCollision(Node2D player)
 	{
+		if(this.TryGetChild(out GpuParticles2D _particles))
+		{
+			// GD.Print(_particles.Name);
+			_particles.Emitting = true;
+			_particles.Reparent(GetParent());
+		}
+
+		if(this.TryGetChild(out AudioStreamPlayer _audio))
+		{
+			// GD.Print(_particles.Name);
+			_audio.Playing = true;
+			_audio.Reparent(GetParent(),true);
+		}
 		//wait a ms, because otherwise it is freed before main registers collision
 		//alternative is to connect main to TreeExit, but then it emits also when the scene is unbuilt
 		await Task.Delay(1);
