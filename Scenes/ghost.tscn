@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://c8df5cub7xjk8" path="res://Animations/Ghost/ghost.tres" id="2_untcv"]
 [ext_resource type="Texture2D" uid="uid://cpmrv0l6lhuk7" path="res://Sprites/CoalDrawn/CoalGhosts.png" id="3_0gxxf"]
 [ext_resource type="PackedScene" uid="uid://cmqkgnm0iqmry" path="res://Scenes/particle_effects/dust_explosion.tscn" id="4_gucmp"]
-[ext_resource type="AudioStream" uid="uid://cnax5hl88qfqy" path="res://Audio/SFX/cute-character-wee-1-188162.mp3" id="5_bjqfl"]
+[ext_resource type="AudioStream" uid="uid://bx6wq32vtiv2s" path="res://Audio/SFX/pop-up-something-160353.mp3" id="5_n3s2p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mnq0f"]
 atlas = ExtResource("3_0gxxf")
@@ -59,6 +59,5 @@ texture = SubResource("GradientTexture2D_77yvn")
 lifetime = 0.7
 
 [node name="weehee" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_bjqfl")
-volume_db = -15.0
+stream = ExtResource("5_n3s2p")
 bus = &"SFX"
