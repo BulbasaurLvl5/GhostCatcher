@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b4il41lqiai8o" path="res://Sprites/Ghost.png" id="1_avfdw"]
 
 [node name="RemainingGhostDisplay" type="HBoxContainer"]
+visible = false
 offset_left = 100.0
 offset_top = 50.0
 offset_right = 360.0

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cmqkgnm0iqmry" path="res://Scenes/particle_effects/dust_explosion.tscn" id="4_gucmp"]
 [ext_resource type="AudioStream" uid="uid://bx6wq32vtiv2s" path="res://Audio/SFX/pop-up-something-160353.mp3" id="5_n3s2p"]
 [ext_resource type="Script" path="res://Scripts/homing_beacon_2d.gd" id="6_0dk3p"]
-[ext_resource type="Texture2D" uid="uid://ci8b2b4sodqk0" path="res://Sprites/simple_arrow.png" id="7_ioi2o"]
+[ext_resource type="Texture2D" uid="uid://b4il41lqiai8o" path="res://Sprites/Ghost.png" id="7_m78bk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mnq0f"]
 atlas = ExtResource("3_0gxxf")
@@ -66,6 +66,7 @@ bus = &"SFX"
 
 [node name="HomingBeacon2D" type="Node2D" parent="."]
 script = ExtResource("6_0dk3p")
-pointer_texture = ExtResource("7_ioi2o")
+pointer_texture = ExtResource("7_m78bk")
+pointer_rotates = false
 pointer_color_mod = Color(1, 1, 1, 0.545098)
 pointer_scale = Vector2(0.25, 0.35)
