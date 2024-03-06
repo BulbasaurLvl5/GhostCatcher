@@ -41,36 +41,26 @@ func _ready():
 	var w = ProjectSettings.get_setting("display/window/size/viewport_width")
 	var h = ProjectSettings.get_setting("display/window/size/viewport_height")
 	viewport_size = Vector2(w, h)
-#	if !radar:
-#		add_to_group("idle_beacons")
 
 
 func _process(_delta):
 	last_position = global_position
-#	print("screen_center_pos = ", screen_center_pos)
-#	print(name, " global position = ", global_position)
 	if !radar:
 		radar = get_tree().get_first_node_in_group("radar_2d")
 		if radar:
-			print(name," connected to Radar2D!")
 			radar.tree_exiting.connect(_on_radar_tree_exiting)
 	if radar && !pointer:
 		create_pointer()
 
 
 func create_pointer():
-#	if pointer:
-#		pointer.queue_free()
-#		pointer = null
 	pointer = RadarPointer2D.new()
-	radar.control.add_child(pointer)
-	print(pointer.name," is a child of ",pointer.get_parent().name)
+	radar.canvas.add_child(pointer)
 	pointer.beacon = self
 	pointer.texture = pointer_texture
 	pointer.rotates = pointer_rotates
 	pointer.self_modulate = pointer_color_mod
 	pointer.scale = pointer_scale
-	print("Viewport size = ",viewport_size)
 	pointer.radius_from_center = viewport_size / 2.0 - radar.pointer_margin
 	pointer.beacon_active = active
 	self.tree_exiting.connect(pointer._on_beacon_exiting_tree)

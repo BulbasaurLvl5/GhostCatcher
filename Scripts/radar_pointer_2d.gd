@@ -42,8 +42,6 @@ func update_pointer():
 	else:
 		factor = radius_from_center.y
 	position = direction * factor + radius_from_center + Vector2(25, 25)
-	print(position, " = ", direction, " * ", factor, " + ", radius_from_center + Vector2(50, 50))
-
 	if rotates:
 		rotation = Vector2.UP.angle_to(direction)
 

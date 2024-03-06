@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://o3aqqevfkm6s"]
-
-[ext_resource type="Script" path="res://Scripts/radar_pointer_2d.gd" id="1_xlvyv"]
-
-[node name="RadarPointer2D" type="Sprite2D"]
-script = ExtResource("1_xlvyv")

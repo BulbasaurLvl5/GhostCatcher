@@ -27,7 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://dd5e54lddsty0" path="res://Audio/SFX/Player/land3.wav" id="25_ghg03"]
 [ext_resource type="AudioStream" uid="uid://cyhu3bovbds5j" path="res://Audio/SFX/Player/jump1.wav" id="26_06bty"]
 [ext_resource type="AudioStream" uid="uid://k64hklsvjtl" path="res://Audio/SFX/Player/jump2.wav" id="27_bp2dj"]
-[ext_resource type="PackedScene" uid="uid://cjc32kgg4866m" path="res://Scripts/radar_2d.tscn" id="28_on5li"]
+[ext_resource type="Script" path="res://Scripts/radar_2d.gd" id="28_tmfgi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnagu"]
 size = Vector2(24, 110)
@@ -249,5 +249,7 @@ position = Vector2(12, 51)
 target_position = Vector2(3, 0)
 collision_mask = 5
 
-[node name="Radar2D" parent="." instance=ExtResource("28_on5li")]
+[node name="Radar2D" type="Node2D" parent="."]
+script = ExtResource("28_tmfgi")
+radar_active = true
 pointer_margin = Vector2(25, 25)
