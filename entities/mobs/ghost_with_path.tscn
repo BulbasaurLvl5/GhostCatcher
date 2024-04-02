@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbt8j0i5nq5j1"]
+
+[ext_resource type="Script" path="res://entities/mobs/ghost_movement.gd" id="1_tqp0h"]
+[ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="2_16gih"]
+
+[sub_resource type="Curve2D" id="Curve2D_6tq0f"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 500, -150, 0, 0, 0, 0, 500, 150, 0, 0, 0, 0, 0, -150, 0)
+}
+point_count = 3
+
+[node name="Path2D" type="Path2D"]
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-150, 0)
+rotates = false
+script = ExtResource("1_tqp0h")
+
+[node name="Ghost" parent="PathFollow2D" instance=ExtResource("2_16gih")]

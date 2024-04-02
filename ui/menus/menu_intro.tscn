@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc6kq8sjed6db"]
+
+[ext_resource type="Script" path="res://ui/menus/MenuIntro.cs" id="1_mwfa4"]
+[ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://resources/sprites/coal/reaper_cutout.png" id="2_bl5rh"]
+[ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="3_f4p84"]
+[ext_resource type="Texture2D" uid="uid://ddtr0bjb6f4r3" path="res://resources/sprites/coal/star_1.png" id="4_blk7x"]
+
+[node name="intro_Menu" type="Node"]
+process_mode = 3
+script = ExtResource("1_mwfa4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.164706, 0.164706, 0.164706, 0.784314)
+
+[node name="Death" type="TextureRect" parent="."]
+offset_left = 39.0
+offset_top = -57.0
+offset_right = 709.0
+offset_bottom = 1185.0
+texture = ExtResource("2_bl5rh")
+
+[node name="Start_Button" type="Button" parent="."]
+offset_left = 1548.0
+offset_top = 928.0
+offset_right = 1798.0
+offset_bottom = 1042.0
+theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_font_sizes/font_size = 48
+text = "Start"
+icon = ExtResource("3_f4p84")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="TextBack" type="Polygon2D" parent="."]
+position = Vector2(683, 55)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-105, 58, -12, 418, 1002, 534, 923, -6)
+
+[node name="DeathBack1" type="Polygon2D" parent="."]
+position = Vector2(666, -58.2051)
+scale = Vector2(1.09524, 1.17949)
+color = Color(0.617188, 0.578125, 0.582031, 1)
+polygon = PackedVector2Array(-66, 110, -105, 146, -45, 185, 124, 180, 168, 107)
+
+[node name="DeathBack2" type="Polygon2D" parent="."]
+position = Vector2(669, -32)
+color = Color(0.175781, 0.121094, 0.109375, 1)
+polygon = PackedVector2Array(-66, 110, -105, 146, -45, 185, 124, 180, 168, 107)
+
+[node name="DEATH" type="Label" parent="."]
+offset_left = 618.0
+offset_top = 79.0
+offset_right = 775.0
+offset_bottom = 149.0
+theme_override_colors/font_color = Color(0.619608, 0.580392, 0.584314, 1)
+theme_override_font_sizes/font_size = 48
+text = "DEATH"
+
+[node name="Quote" type="Label" parent="."]
+offset_left = 747.0
+offset_top = 167.0
+offset_right = 1572.0
+offset_bottom = 447.0
+theme_override_font_sizes/font_size = 48
+text = "Wellcome temp and enjoy your stay
+
+Get Ghosts as quickly as 
+safety regulation allow"
+
+[node name="you" type="Label" parent="."]
+offset_left = 1040.0
+offset_top = 660.0
+offset_right = 1865.0
+offset_bottom = 940.0
+theme_override_font_sizes/font_size = 48
+text = "<- you"
+
+[node name="Rating_1" type="TextureRect" parent="."]
+visible = false
+offset_left = 905.0
+offset_top = 670.0
+offset_right = 1085.0
+offset_bottom = 850.0
+texture = ExtResource("4_blk7x")
+
+[node name="Rating_2" type="TextureRect" parent="."]
+visible = false
+offset_left = 1038.0
+offset_top = 548.0
+offset_right = 1218.0
+offset_bottom = 728.0
+texture = ExtResource("4_blk7x")
+
+[node name="Rating_3" type="TextureRect" parent="."]
+visible = false
+offset_left = 1159.0
+offset_top = 721.0
+offset_right = 1339.0
+offset_bottom = 901.0
+texture = ExtResource("4_blk7x")

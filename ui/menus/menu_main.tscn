@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvhs4ygoitiwu"]
+
+[ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://resources/sprites/coal/menu_retry_background.png" id="1_jqpoe"]
+[ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="2_mjfcm"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hfucu"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_aouf0"]
+events = [SubResource("InputEventKey_hfucu")]
+
+[node name="Menu_main" type="Node"]
+
+[node name="Crow_background" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_jqpoe")
+
+[node name="Selection_Button" type="Button" parent="."]
+offset_left = 1224.0
+offset_top = 608.0
+offset_right = 1474.0
+offset_bottom = 722.0
+focus_neighbor_bottom = NodePath("../Options_Button")
+theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_font_sizes/font_size = 48
+text = "Levels"
+icon = ExtResource("2_mjfcm")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Options_Button" type="Button" parent="."]
+offset_left = 1224.0
+offset_top = 722.0
+offset_right = 1474.0
+offset_bottom = 836.0
+focus_neighbor_top = NodePath("../Selection_Button")
+focus_neighbor_bottom = NodePath("../Quit_Button")
+theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_font_sizes/font_size = 48
+text = "Options"
+icon = ExtResource("2_mjfcm")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Quit_Button" type="Button" parent="."]
+offset_left = 1224.0
+offset_top = 836.0
+offset_right = 1474.0
+offset_bottom = 950.0
+focus_neighbor_top = NodePath("../Options_Button")
+focus_neighbor_bottom = NodePath("../Selection_Button")
+theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_font_sizes/font_size = 48
+shortcut = SubResource("Shortcut_aouf0")
+text = "Quit"
+icon = ExtResource("2_mjfcm")
+flat = true
+icon_alignment = 1
+expand_icon = true

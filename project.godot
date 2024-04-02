@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="GhostCatcher"
-run/main_scene="res://Main/main.tscn"
+run/main_scene="res://main/main.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
-config/icon="res://Sprites/Ghost.png"
+config/icon="res://resources/sprites/ghost.png"
 
 [audio]
 
-buses/default_bus_layout="res://Audio/audio_bus_layout.tres"
+buses/default_bus_layout="res://resources/audio/audio_bus_layout.tres"
 
 [display]
 

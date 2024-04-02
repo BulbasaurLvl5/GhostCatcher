@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://b251x0fap78x8"]
+
+[ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_tri76"]
+[ext_resource type="Script" path="res://resources/level_data.gd" id="2_br6uw"]
+[ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="2_shnab"]
+[ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="3_g8wqp"]
+[ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://environment/spikes_large.tscn" id="4_kk47q"]
+[ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://environment/spikes_medium.tscn" id="5_goean"]
+[ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://environment/spikes_small.tscn" id="6_aujlf"]
+[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="7_c874y"]
+
+[node name="TileMap" type="TileMap"]
+tile_set = ExtResource("1_tri76")
+format = 2
+layer_0/tile_data = PackedInt32Array(-983038, 196608, 3, -983039, 131073, 3, -983040, 131073, 3, -917505, 131072, 3, -917506, 65537, 3, -196601, 196609, 2, -262137, 0, 1, -327673, 0, 1, -393209, 1, 1, -458745, 1, 1, -524281, 1, 0, -196602, 131072, 3, -196603, 131073, 3, -196604, 131072, 3, -196605, 131073, 3, -196606, 131072, 3, -196607, 131073, 3, -196608, 131072, 3, -131073, 131073, 3, -131074, 131072, 3, -131075, 131073, 3, -131076, 131073, 3, -131077, 65536, 3, -393213, 1, 3, -458756, 1, 3, -786432, 1, 3, -393203, 1, 2, -458739, 1, 1, -524275, 0, 1, -589811, 0, 1, -655347, 0, 1, -720883, 0, 1, -786419, 1, 1, -851955, 1, 1, -917491, 0, 1, -983027, 1, 1, -1048563, 0, 1, -1114099, 0, 1, -1179635, 0, 1, -1245171, 1, 0, -1114097, 0, 3, -786413, 0, 3, -196588, 720897, 3, -262124, 720897, 0, -196589, 589824, 3, -262125, 655360, 0, -196590, 589824, 3, -262126, 655360, 0, -196591, 393216, 2, -262127, 655360, 0, -196592, 524289, 1, -262128, 524289, 0, -65519, 720896, 3, -131055, 720896, 2, -65520, 589825, 3, -131056, 327681, 1, -65521, 589824, 3, -131057, 655361, 0, -65522, 589825, 3, -131058, 655361, 0, -65523, 524288, 3, -131059, 524289, 0, 8, 196609, 3, 7, 131073, 3, 6, 131073, 3, 5, 131072, 3, 4, 131072, 3, 3, 131073, 3, 2, 131073, 3, 1, 131072, 3, 0, 131072, 3, 65535, 131073, 3, 65534, 131072, 3, 65533, 65536, 3)
+
+[node name="LvlData" type="Node2D" parent="."]
+script = ExtResource("2_br6uw")
+top_boundary = -40.0
+left_boundary = -18.0
+right_boundary = 28.0
+bottom_boundary = 5.0
+
+[node name="EndlessPit" parent="." instance=ExtResource("3_g8wqp")]
+position = Vector2(0, 323)
+
+[node name="Ghosts" type="Node" parent="."]
+
+[node name="Ghost" parent="Ghosts" instance=ExtResource("2_shnab")]
+position = Vector2(1209, -315)
+
+[node name="Ghost2" parent="Ghosts" instance=ExtResource("2_shnab")]
+position = Vector2(1935, -978)
+
+[node name="Ghost3" parent="Ghosts" instance=ExtResource("2_shnab")]
+position = Vector2(2128, -2332)
+
+[node name="Ghost4" parent="Ghosts" instance=ExtResource("2_shnab")]
+position = Vector2(57, -917)
+
+[node name="Ghost5" parent="Ghosts" instance=ExtResource("2_shnab")]
+position = Vector2(76, -1847)
+
+[node name="Ghost6" parent="Ghosts" instance=ExtResource("2_shnab")]
+position = Vector2(-1253, -1309)
+
+[node name="Spikes" type="Node" parent="."]
+
+[node name="Spikes_large" parent="Spikes" instance=ExtResource("4_kk47q")]
+position = Vector2(-399, -346)
+
+[node name="Spikes_large2" parent="Spikes" instance=ExtResource("4_kk47q")]
+position = Vector2(176, -346)
+
+[node name="Spikes_large3" parent="Spikes" instance=ExtResource("4_kk47q")]
+position = Vector2(635, -349)
+
+[node name="Spikes_medium" parent="Spikes" instance=ExtResource("5_goean")]
+position = Vector2(400, -351)
+
+[node name="Spikes_medium2" parent="Spikes" instance=ExtResource("5_goean")]
+position = Vector2(-145, -349)
+
+[node name="Spikes_small" parent="Spikes" instance=ExtResource("6_aujlf")]
+position = Vector2(-28, -351)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-148, 102)
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Mountains" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-468, -525)
+scale = Vector2(3, 2)
+texture = ExtResource("7_c874y")
+centered = false

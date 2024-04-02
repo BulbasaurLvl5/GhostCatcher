@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using MyGodotExtentions;
+using MyGodotExtensions;
 using System.Collections.Generic;
 
 public partial class Main : Node

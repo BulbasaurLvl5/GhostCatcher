@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://dpxeqvv1xxuu2"]
+
+[ext_resource type="Script" path="res://entities/mobs/Ghost.cs" id="1_t1pw5"]
+[ext_resource type="SpriteFrames" uid="uid://c8df5cub7xjk8" path="res://entities/mobs/anim/ghosts/anim/ghost.tres" id="2_ipf0g"]
+[ext_resource type="Texture2D" uid="uid://cpmrv0l6lhuk7" path="res://resources/sprites/coal/coal_ghosts.png" id="3_s2mxk"]
+[ext_resource type="PackedScene" uid="uid://cmqkgnm0iqmry" path="res://resources/particle_effects/dust_explosion.tscn" id="4_cggt7"]
+[ext_resource type="AudioStream" uid="uid://bx6wq32vtiv2s" path="res://resources/audio/sfx/pop-up-something-160353.mp3" id="5_00vpq"]
+[ext_resource type="Script" path="res://ui/radar_beacon_2d.gd" id="6_hu6h0"]
+[ext_resource type="Texture2D" uid="uid://b4il41lqiai8o" path="res://resources/sprites/ghost.png" id="7_nrq4r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnq0f"]
+atlas = ExtResource("3_s2mxk")
+region = Rect2(304, 3, 164, 252)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1bom"]
+radius = 39.0
+height = 116.0
+
+[sub_resource type="Gradient" id="Gradient_m56u2"]
+offsets = PackedFloat32Array(0, 0.696221)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_77yvn"]
+gradient = SubResource("Gradient_m56u2")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Ghost" type="Area2D"]
+light_mask = 8
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_t1pw5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-1, 5)
+sprite_frames = ExtResource("2_ipf0g")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.671999
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.670588)
+light_mask = 8
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_mnq0f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_k1bom")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+energy = 0.88
+range_item_cull_mask = 8
+texture = SubResource("GradientTexture2D_77yvn")
+
+[node name="dust" parent="." instance=ExtResource("4_cggt7")]
+lifetime = 0.7
+
+[node name="pop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_00vpq")
+bus = &"SFX"
+
+[node name="RadarBeacon2D" type="Node2D" parent="."]
+script = ExtResource("6_hu6h0")
+pointer_texture = ExtResource("7_nrq4r")
+pointer_rotates = false
+pointer_scale = Vector2(0.25, 0.35)

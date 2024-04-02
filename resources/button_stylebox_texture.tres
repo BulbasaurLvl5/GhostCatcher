@@ -1,0 +1,8 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://kae7nrb6cknu"]
+
+[ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="1_wigrc"]
+
+[resource]
+texture = ExtResource("1_wigrc")
+texture_margin_left = 10.0
+texture_margin_right = 10.0
