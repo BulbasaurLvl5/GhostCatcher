@@ -36,6 +36,8 @@ top_boundary = -80.0
 left_boundary = -41.0
 right_boundary = 50.0
 bottom_boundary = 4.0
+starting_position_x = -35.0
+starting_position_y = -2.0
 
 [node name="Ghosts" type="Node" parent="."]
 

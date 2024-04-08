@@ -13,8 +13,6 @@ extends CharacterBody2D
 
 var level_boundary : Array[float]
 var canvas_mod_dispatched : bool = false
-var starting_position : Vector2
-var starting_position_set : bool = false
 
 var x_input : int = 0
 var y_input : int = 0
@@ -35,22 +33,38 @@ var is_grabbing_wall : bool = false
 
 
 func _enter_tree():
+	print("ENTERING TREE")
 	check_canvas_mod()
-#	check_start_pos()
 
+
+func find_starting_pos() -> Vector2:
+	var pos : Vector2 = Vector2.ZERO
+	var level_data : LevelData = get_tree().root.find_child("LvlData", true, false)
+	if level_data:
+		pos = level_data.starting_pos
+		if level_data.flip_player_direction:
+			facing_direction = -1
+			%PlayerAnimatedSprite2D.scale.x = -1
+			%RayCasts.scale.x = -1
+	else:
+		print("LevelData node not found by player.gd")
+	return pos
+		
+		
 func _ready():
+	print("READY")
+
+	global_position = find_starting_pos()
+	print("starting position found is ",find_starting_pos())
+
 	if !cast && %ShapeCast2D:
 		cast = %ShapeCast2D
 	if !canvas_mod_dispatched:
 		check_canvas_mod()
-#	if !starting_position_set:
-#		check_start_pos()
+
 
 func set_level_boundary(top : float, left : float, right : float, bottom : float):
 	level_boundary = [top + 110, left + 110, right - 110, bottom - 110]
-
-#func set_starting_position(pos : Vector2):
-#	starting_position = pos
 
 
 func _process(_delta):
@@ -73,14 +87,8 @@ func check_canvas_mod():
 		canvas_mod_dispatched = true
 
 
-#func check_start_pos():
-#	if starting_position != Vector2.ZERO:
-#		position = starting_position
-#		print("Moved player to starting position ",starting_position)
-#		starting_position_set = true		
-
 func pause_game():
-	var path = "res://ui/menus/menu_puse.tscn"
+	var path = "res://ui/menus/menu_pause.tscn"
 	if ResourceLoader.exists(path) : 
 		var pause_menu_packedscene = load(path)
 		var pause_menu = pause_menu_packedscene.instantiate()

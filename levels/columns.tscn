@@ -131,6 +131,8 @@ top_boundary = 77.0
 left_boundary = 30.0
 right_boundary = 30.0
 bottom_boundary = 11.0
+starting_position_y = -58.0
+flip_player_direction = true
 
 [node name="EndlessPit" parent="." instance=ExtResource("3_nvhrl")]
 position = Vector2(65, 912)

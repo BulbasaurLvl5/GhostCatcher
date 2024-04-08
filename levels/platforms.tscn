@@ -57,6 +57,8 @@ top_boundary = -18.5
 left_boundary = -9.5
 right_boundary = 25.0
 bottom_boundary = 30.0
+starting_position_x = 1.0
+starting_position_y = -1.0
 
 [node name="EnemiesTemporary" type="Node" parent="."]
 

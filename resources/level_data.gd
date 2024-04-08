@@ -3,8 +3,10 @@ class_name LevelData
 extends Node2D
 
 
-@export var show_data_in_editor : bool = true:
+@export var show_data_in_editor : bool = false:
 	set(value):
+		if show_data_in_editor == value:
+			return
 		show_data_in_editor = value
 		queue_redraw()
 
@@ -26,7 +28,7 @@ extends Node2D
 		bottom_boundary = value
 		calculate_boundary()
 
-@export_category("Player Starting Position (Inactive)")
+@export_category("Player Starting Position)")
 @export_range(-50.0, 50.0, 0.5, "or_less", "or_greater", "suffix:tiles") var starting_position_x : float = 0.0:
 	set(value):
 		starting_position_x = value
@@ -35,6 +37,7 @@ extends Node2D
 	set(value):
 		starting_position_y = value
 		calculate_starting_pos()
+@export var flip_player_direction : bool = false
 
 var level_boundary : Rect2:
 	set(value):
@@ -48,10 +51,14 @@ var starting_pos : Vector2:
 
 func calculate_boundary():
 	level_boundary = Rect2(left_boundary * 110, top_boundary * 110, (right_boundary - left_boundary) * 110, (bottom_boundary - top_boundary) * 110)
+	show_data_in_editor = true
 
 func calculate_starting_pos():
 	starting_pos = Vector2(starting_position_x * 110, starting_position_y * 110)
+	show_data_in_editor = true
 
+func _ready():
+	show_data_in_editor = false
 
 func _draw():
 	if Engine.is_editor_hint() && show_data_in_editor:

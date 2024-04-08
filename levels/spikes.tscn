@@ -20,6 +20,7 @@ top_boundary = -40.0
 left_boundary = -18.0
 right_boundary = 28.0
 bottom_boundary = 5.0
+starting_position_y = -1.0
 
 [node name="EndlessPit" parent="." instance=ExtResource("3_g8wqp")]
 position = Vector2(0, 323)

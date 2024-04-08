@@ -13,7 +13,6 @@ layer_0/tile_data = PackedInt32Array(-524289, 131073, 3, -65538, 524288, 3, -655
 [node name="LvlData" type="Node2D" parent="."]
 position = Vector2(0, -440)
 script = ExtResource("2_cq8x2")
-show_data_in_editor = false
 left_boundary = -22.5
 right_boundary = 15.0
 bottom_boundary = 9.5
