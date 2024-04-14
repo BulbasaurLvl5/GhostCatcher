@@ -1,0 +1,533 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8ougtxq4fr8u"]
+
+[ext_resource type="Script" path="res://addons/parallax_wizard/plugin/pw_settings.gd" id="1_mbpxi"]
+[ext_resource type="StyleBox" uid="uid://bjynr2jf23aw5" path="res://addons/parallax_wizard/plugin/pw_style_box_flat_medium.tres" id="2_oljxh"]
+
+[node name="ParallaxWizardSettingsMenu" type="Panel"]
+clip_contents = true
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.1
+anchor_right = 0.7
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_mbpxi")
+
+[node name="Margin_Outer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 21
+theme_override_constants/margin_top = 21
+theme_override_constants/margin_right = 21
+theme_override_constants/margin_bottom = 21
+
+[node name="Panel" type="Panel" parent="Margin_Outer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_oljxh")
+
+[node name="Margin_Inner" type="MarginContainer" parent="Margin_Outer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBox" type="VBoxContainer" parent="Margin_Outer/Panel/Margin_Inner"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label_Title" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox"]
+layout_mode = 2
+text = "PARALLAX WIZARD - PLUGIN SETTINGS
+"
+horizontal_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+scroll_vertical = 46
+
+[node name="VBox" type="VBoxContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="VBox_Checks" type="VBoxContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="CheckBox_AutomaticConvert" type="CheckBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_Checks"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "Automatically convert loaded scenes to use this plugin"
+
+[node name="CheckBox_PositionWhenScaling" type="CheckBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_Checks"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "Node2Ds maintain global positions when scaling"
+
+[node name="Grid_MotionScale" type="GridContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+columns = 2
+
+[node name="Label" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_MotionScale"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Foreground motion scale max:"
+
+[node name="SpinBox_FGMotionMax" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_MotionScale"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 11
+min_value = 1.0
+max_value = 2.0
+step = 0.0
+value = 1.25
+alignment = 2
+
+[node name="Label2" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_MotionScale"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Background motion scale min:"
+
+[node name="SpinBox_BGMotionMin" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_MotionScale"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 11
+max_value = 1.0
+step = 0.0
+value = 0.1
+alignment = 2
+
+[node name="Label3" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_MotionScale"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cloud motion scale:"
+
+[node name="SpinBox_CloudMotionScale" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_MotionScale"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 11
+max_value = 0.1
+step = 0.0
+value = 0.05
+alignment = 2
+custom_arrow_step = 0.01
+
+[node name="Label4" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_MotionScale"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Star motion scale:"
+
+[node name="SpinBox_StarMotionScale" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_MotionScale"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 11
+max_value = 0.1
+step = 0.0
+value = 0.01
+alignment = 2
+custom_arrow_step = 0.01
+
+[node name="VBox_MotionScale" type="HBoxContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_MotionScale"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Motion scale multipliers:"
+
+[node name="Grid" type="GridContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_MotionScale"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 10
+columns = 2
+
+[node name="Label_X" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_MotionScale/Grid"]
+layout_mode = 2
+text = "X"
+
+[node name="SpinBox_MotionScaleX" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_MotionScale/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 11
+max_value = 2.0
+step = 0.0
+value = 1.0
+alignment = 2
+custom_arrow_step = 0.001
+
+[node name="Label_Y" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_MotionScale/Grid"]
+layout_mode = 2
+text = "Y"
+
+[node name="SpinBox_MotionScaleY" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_MotionScale/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 11
+max_value = 2.0
+step = 0.0
+value = 0.5
+alignment = 2
+
+[node name="VBox_ZValues" type="VBoxContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox"]
+layout_mode = 2
+
+[node name="CheckBox_AutomaticZValues" type="CheckBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "Automatically set Z-indexes of ParallaxLayers"
+
+[node name="Grid_ZValues" type="GridContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 10
+columns = 2
+
+[node name="Label" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Foreground Z-index min:"
+
+[node name="SpinBox_FGZMin" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -4000.0
+max_value = 4000.0
+value = -1000.0
+alignment = 2
+
+[node name="Label2" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Foreground Z-index max:"
+
+[node name="SpinBox_FGZMax" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -4000.0
+max_value = 4000.0
+value = -11.0
+alignment = 2
+
+[node name="Label3" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Background Z-index min:"
+
+[node name="SpinBox_BGZMin" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -4000.0
+max_value = 4000.0
+value = 11.0
+alignment = 2
+
+[node name="Label4" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Background Z-index max:"
+
+[node name="SpinBox_BGZMax" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -4000.0
+max_value = 4000.0
+value = 1000.0
+alignment = 2
+
+[node name="Label5" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cloud Z-index:"
+justification_flags = 35
+
+[node name="SpinBox_CloudZ" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -4000.0
+max_value = 4000.0
+value = 1001.0
+alignment = 2
+
+[node name="Label6" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Star Z-index:"
+justification_flags = 35
+
+[node name="SpinBox_StarZ" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -4000.0
+max_value = 4000.0
+value = 2000.0
+alignment = 2
+
+[node name="VBox_ScriptsAndMotion" type="VBoxContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBox" type="HBoxContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ParallaxLayer movement script:"
+
+[node name="OptionButton_MotionScript" type="OptionButton" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Default"
+popup/item_0/id = 0
+popup/item_1/text = "Custom"
+popup/item_1/id = 1
+
+[node name="Margin_CustomMotion" type="MarginContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 40
+
+[node name="VBox" type="HBoxContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_CustomMotion"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_CustomMotion/VBox"]
+layout_mode = 2
+text = "Custom script file:"
+
+[node name="ScriptButton_CustomMotion" type="Button" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_CustomMotion/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[none selected]"
+alignment = 2
+
+[node name="Margin_DefaultMotion" type="MarginContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 40
+
+[node name="Grid" type="GridContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+columns = 3
+
+[node name="Label" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Default speed:"
+horizontal_alignment = 2
+
+[node name="SpinBox_DefaultSpeed" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 500.0
+allow_greater = true
+alignment = 2
+suffix = "px/s"
+
+[node name="CheckBox_RandomSpeed" type="CheckBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Randomize"
+
+[node name="Label_SpeedRange" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Range:"
+horizontal_alignment = 2
+
+[node name="SpinBox_SpeedRange" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 500.0
+allow_greater = true
+alignment = 2
+prefix = "±"
+suffix = "px/s"
+
+[node name="CheckBox_SpeedFluctuate" type="CheckBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fluctuate"
+
+[node name="Label4" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Default direction:"
+horizontal_alignment = 2
+
+[node name="VBox_Input" type="VBoxContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid"]
+layout_mode = 2
+
+[node name="SpinBox_Direction_X" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid/VBox_Input"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -1.0
+max_value = 1.0
+step = 0.0
+allow_greater = true
+allow_lesser = true
+alignment = 2
+prefix = "X ="
+custom_arrow_step = 0.01
+
+[node name="SpinBox_Direction_Y" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid/VBox_Input"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -1.0
+max_value = 1.0
+step = 0.0
+allow_greater = true
+allow_lesser = true
+alignment = 2
+prefix = "Y ="
+custom_arrow_step = 0.01
+
+[node name="CheckBox_RandomDirection" type="CheckBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Randomize"
+
+[node name="Label_DirectionRange" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Range:"
+horizontal_alignment = 2
+
+[node name="SpinBox_DirectionRange" type="SpinBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 360.0
+allow_greater = true
+alignment = 2
+prefix = "±"
+suffix = "°"
+
+[node name="CheckBox_DirectionFluctuate" type="CheckBox" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fluctuate"
+
+[node name="Grid_NodeNames" type="GridContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_NodeNames"]
+layout_mode = 2
+text = "Default background name:  "
+
+[node name="LineEdit_BackgroundName" type="LineEdit" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_NodeNames"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ParallaxWizardBackground"
+alignment = 3
+
+[node name="Label2" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_NodeNames"]
+layout_mode = 2
+text = "Default layer name:  "
+
+[node name="LineEdit_LayerName" type="LineEdit" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_NodeNames"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ParallaxLayer"
+alignment = 3
+
+[node name="HBox_Buttons" type="HBoxContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 64
+
+[node name="Button_RestoreDefault" type="Button" parent="Margin_Outer/Panel/Margin_Inner/VBox/HBox_Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "  RESTORE DEFAULTS  "
+
+[node name="Button_Exit" type="Button" parent="Margin_Outer/Panel/Margin_Inner/VBox/HBox_Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "  EXIT  "
+
+[connection signal="toggled" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_Checks/CheckBox_AutomaticConvert" to="." method="_on_check_box_automatic_convert_toggled"]
+[connection signal="toggled" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_Checks/CheckBox_PositionWhenScaling" to="." method="_on_check_box_position_when_scaling_toggled"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_MotionScale/SpinBox_FGMotionMax" to="." method="_on_spin_box_fg_motion_max_value_changed"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_MotionScale/SpinBox_BGMotionMin" to="." method="_on_spin_box_bg_motion_min_value_changed"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_MotionScale/SpinBox_CloudMotionScale" to="." method="_on_spin_box_cloud_motion_scale_value_changed"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_MotionScale/SpinBox_StarMotionScale" to="." method="_on_spin_box_star_motion_scale_value_changed"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_MotionScale/Grid/SpinBox_MotionScaleX" to="." method="_on_spin_box_motion_scale_x_value_changed"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_MotionScale/Grid/SpinBox_MotionScaleY" to="." method="_on_spin_box_motion_scale_y_value_changed"]
+[connection signal="toggled" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/CheckBox_AutomaticZValues" to="." method="_on_check_box_automatic_z_values_toggled"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues/SpinBox_FGZMin" to="." method="_on_spin_box_fgz_min_value_changed"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues/SpinBox_FGZMax" to="." method="_on_spin_box_fgz_max_value_changed"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues/SpinBox_BGZMin" to="." method="_on_spin_box_bgz_min_value_changed"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues/SpinBox_BGZMax" to="." method="_on_spin_box_bgz_max_value_changed"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues/SpinBox_CloudZ" to="." method="_on_spin_box_cloud_z_value_changed"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ZValues/Grid_ZValues/SpinBox_StarZ" to="." method="_on_spin_box_star_z_value_changed"]
+[connection signal="item_selected" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/HBox/OptionButton_MotionScript" to="." method="_on_option_button_motion_script_item_selected"]
+[connection signal="pressed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_CustomMotion/VBox/ScriptButton_CustomMotion" to="." method="_on_script_button_custom_motion_pressed"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid/SpinBox_DefaultSpeed" to="." method="_on_spin_box_default_speed_value_changed"]
+[connection signal="toggled" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid/CheckBox_RandomSpeed" to="." method="_on_check_box_random_speed_toggled"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid/SpinBox_SpeedRange" to="." method="_on_spin_box_speed_range_value_changed"]
+[connection signal="toggled" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid/CheckBox_SpeedFluctuate" to="." method="_on_check_box_speed_fluctuate_toggled"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid/VBox_Input/SpinBox_Direction_X" to="." method="_on_spin_box_direction_x_value_changed"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid/VBox_Input/SpinBox_Direction_Y" to="." method="_on_spin_box_direction_y_value_changed"]
+[connection signal="toggled" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid/CheckBox_RandomDirection" to="." method="_on_check_box_random_direction_toggled"]
+[connection signal="value_changed" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid/SpinBox_DirectionRange" to="." method="_on_spin_box_direction_range_value_changed"]
+[connection signal="toggled" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/VBox_ScriptsAndMotion/Margin_DefaultMotion/Grid/CheckBox_DirectionFluctuate" to="." method="_on_check_box_direction_fluctuate_toggled"]
+[connection signal="text_submitted" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_NodeNames/LineEdit_BackgroundName" to="." method="_on_line_edit_background_name_text_submitted"]
+[connection signal="text_submitted" from="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_NodeNames/LineEdit_LayerName" to="." method="_on_line_edit_layer_name_text_submitted"]
+[connection signal="pressed" from="Margin_Outer/Panel/Margin_Inner/VBox/HBox_Buttons/Button_RestoreDefault" to="." method="_on_button_restore_default_pressed"]
+[connection signal="pressed" from="Margin_Outer/Panel/Margin_Inner/VBox/HBox_Buttons/Button_Exit" to="." method="_on_button_exit_pressed"]

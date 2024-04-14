@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://hurs4ju6m15p"]
+
+[sub_resource type="GDScript" id="GDScript_tblsj"]
+script/source = "extends Button
+
+signal id_button_pressed
+
+@export var id : int
+
+
+#func _process(_delta):
+	
+func _on_is_pressed():
+	id_button_pressed.emit(id)
+"
+
+[sub_resource type="GDScript" id="GDScript_by2rs"]
+script/source = "extends LineEdit
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="PWCategoryButtons" type="Node"]
+
+[node name="Button_CatUp" type="Button" parent="."]
+text = "^"
+script = SubResource("GDScript_tblsj")
+
+[node name="Button_CatDown" type="Button" parent="."]
+text = "v"
+
+[node name="LineEdit_CatName" type="LineEdit" parent="."]
+text = "my_skies"
+placeholder_text = "[no name]"
+alignment = 1
+expand_to_text_length = true
+script = SubResource("GDScript_by2rs")
+
+[node name="Button_EditCat" type="Button" parent="."]
+text = "ITEMS"
+
+[node name="Button_DeleteCat" type="Button" parent="."]
+text = "DELETE"

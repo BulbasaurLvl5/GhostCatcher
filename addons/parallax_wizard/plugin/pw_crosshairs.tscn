@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://grehcx87iwtt"]
+
+[ext_resource type="Texture2D" uid="uid://2vli13eikw8n" path="res://addons/parallax_wizard/plugin/pw_crosshairs_256.png" id="1_3j2rc"]
+
+[node name="ParallaxWizardCrosshairs" type="Node2D"]
+z_index = 3000
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.537255)
+self_modulate = Color(1, 0, 0, 1)
+light_mask = 0
+visibility_layer = 1048575
+z_index = 300
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_3j2rc")

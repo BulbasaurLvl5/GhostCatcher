@@ -33,7 +33,7 @@ var is_grabbing_wall : bool = false
 
 
 func _enter_tree():
-	print("ENTERING TREE")
+#	print("ENTERING TREE")
 	check_canvas_mod()
 
 
@@ -52,10 +52,10 @@ func find_starting_pos() -> Vector2:
 		
 		
 func _ready():
-	print("READY")
+#	print("READY")
 
 	global_position = find_starting_pos()
-	print("starting position found is ",find_starting_pos())
+#	print("starting position found is ",find_starting_pos())
 
 	if !cast && %ShapeCast2D:
 		cast = %ShapeCast2D

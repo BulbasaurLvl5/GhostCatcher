@@ -1,0 +1,193 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd60pm3iw1dbs"]
+
+[ext_resource type="Script" path="res://addons/parallax_wizard/plugin/pw_custom.gd" id="1_2hhwr"]
+[ext_resource type="StyleBox" uid="uid://bjynr2jf23aw5" path="res://addons/parallax_wizard/plugin/pw_style_box_flat_medium.tres" id="2_njlp3"]
+
+[node name="ParallaxWizardCustomMenu" type="Panel"]
+clip_contents = true
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.1
+anchor_right = 0.7
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_2hhwr")
+
+[node name="Margin_Outer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 21
+theme_override_constants/margin_top = 21
+theme_override_constants/margin_right = 21
+theme_override_constants/margin_bottom = 21
+
+[node name="Panel" type="Panel" parent="Margin_Outer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_njlp3")
+
+[node name="Margin_Inner" type="MarginContainer" parent="Margin_Outer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBox" type="VBoxContainer" parent="Margin_Outer/Panel/Margin_Inner"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label_CatTitle" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "PARALLAX WIZARD - CUSTOM CATEGORIES
+"
+horizontal_alignment = 1
+
+[node name="VBox_ItemsTitle" type="VBoxContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label_Items" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/VBox_ItemsTitle"]
+layout_mode = 2
+text = "PARALLAX WIZARD - CUSTOM ITEMS
+"
+horizontal_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/VBox_ItemsTitle"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/VBox_ItemsTitle/HBox"]
+layout_mode = 2
+text = "Category:"
+
+[node name="LineEdit_CatName" type="LineEdit" parent="Margin_Outer/Panel/Margin_Inner/VBox/VBox_ItemsTitle/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CUSTOM_01"
+alignment = 1
+expand_to_text_length = true
+
+[node name="Scroll" type="ScrollContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+
+[node name="VBox" type="VBoxContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Grid_Categories" type="GridContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/h_separation = 10
+columns = 5
+
+[node name="Label" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_Categories"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_Categories"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_Categories"]
+layout_mode = 2
+text = "Name:"
+
+[node name="Label4" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_Categories"]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_Categories"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Grid_Items" type="GridContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/h_separation = 10
+columns = 5
+
+[node name="Label" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_Items"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_Items"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_Items"]
+layout_mode = 2
+text = "Item name:"
+
+[node name="Label4" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_Items"]
+layout_mode = 2
+text = "File:"
+
+[node name="Label5" type="Label" parent="Margin_Outer/Panel/Margin_Inner/VBox/Scroll/VBox/Grid_Items"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="VBox_Bottom" type="VBoxContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox"]
+layout_mode = 2
+
+[node name="Button_AddCat" type="Button" parent="Margin_Outer/Panel/Margin_Inner/VBox/VBox_Bottom"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "  Add new category  "
+
+[node name="VBox_AddItems" type="VBoxContainer" parent="Margin_Outer/Panel/Margin_Inner/VBox/VBox_Bottom"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Button_AddItems" type="Button" parent="Margin_Outer/Panel/Margin_Inner/VBox/VBox_Bottom/VBox_AddItems"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "  Add .tscn file from res://  "
+
+[node name="Button_CreateItem" type="Button" parent="Margin_Outer/Panel/Margin_Inner/VBox/VBox_Bottom/VBox_AddItems"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+text = "  Create .tscn from selected node  "
+
+[node name="Button_Exit" type="Button" parent="Margin_Outer/Panel/Margin_Inner/VBox/VBox_Bottom"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "  EXIT  "
+
+[connection signal="text_submitted" from="Margin_Outer/Panel/Margin_Inner/VBox/VBox_ItemsTitle/HBox/LineEdit_CatName" to="." method="_on_line_edit_cat_name_text_submitted"]
+[connection signal="pressed" from="Margin_Outer/Panel/Margin_Inner/VBox/VBox_Bottom/Button_AddCat" to="." method="_on_button_add_cat_pressed"]
+[connection signal="pressed" from="Margin_Outer/Panel/Margin_Inner/VBox/VBox_Bottom/VBox_AddItems/Button_AddItems" to="." method="_on_button_add_items_pressed"]
+[connection signal="pressed" from="Margin_Outer/Panel/Margin_Inner/VBox/VBox_Bottom/VBox_AddItems/Button_CreateItem" to="." method="_on_button_create_item_pressed"]
+[connection signal="button_down" from="Margin_Outer/Panel/Margin_Inner/VBox/VBox_Bottom/Button_Exit" to="." method="_on_button_exit_button_down"]
