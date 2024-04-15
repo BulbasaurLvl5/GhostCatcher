@@ -179,7 +179,7 @@ func do_checks():
 func check_layers():
 	if !active_scene_root:
 		return
-	var nodes = active_scene_root.get_children(true)
+	var nodes = get_all_children(active_scene_root)
 	for n in nodes:
 		if n is ParallaxPlus:
 			if !scene_layers.has(n):
@@ -525,9 +525,7 @@ func convert_and_refresh_project():
 
 func convert_scene():
 	if active_scene_root:
-		print("attempting to convert scene")
 		var nodes = get_all_children(active_scene_root)
-		print(nodes)
 		for n in nodes:
 			if n is ParallaxBackground:
 				convert_background(n)
@@ -563,16 +561,15 @@ func convert_background(background : ParallaxBackground):
 	for c in children:
 		if c is ParallaxLayer:
 			convert_layer(c, background)
-	children = background.get_children()
-	for c in children:
-		background.remove_child(c)
-		parent.add_child(c)
-		c.owner = active_scene_root
-		var all_children = get_all_children(c)
-		for ac in all_children:
-			ac.owner = active_scene_root
+	var replacement = Node.new()
+	background.replace_by(replacement, true)
+	replacement.name = background.name
+	replacement.owner = active_scene_root
 	background.queue_free()
-
+	
+	children = get_all_children(replacement)
+	for c in children:
+		c.owner = active_scene_root
 	
 func convert_layer(layer : Node, background : ParallaxBackground = null):
 	if !layer is Parallax2D && !layer is ParallaxLayer:
@@ -582,9 +579,7 @@ func convert_layer(layer : Node, background : ParallaxBackground = null):
 	replacement.name = layer.name
 	replacement.owner = active_scene_root
 	
-	var children = replacement.get_children(true)
-	print("children = ",children)
-	active_scene_root.print_tree()
+	var children = get_all_children(replacement)
 	for c in children:
 		c.owner = active_scene_root
 	
@@ -623,9 +618,7 @@ func convert_layer(layer : Node, background : ParallaxBackground = null):
 		replacement._on_plugin_scroll_lock_moved(scroll_lock_target)
 	scroll_lock_toggled.connect(replacement._on_plugin_scroll_lock_toggled)
 	scroll_lock_moved.connect(replacement._on_plugin_scroll_lock_moved)
-	var old_name = layer.name
 	layer.queue_free()
-	replacement.name = old_name
 
 
 func add_custom_item(item : PackedScene):

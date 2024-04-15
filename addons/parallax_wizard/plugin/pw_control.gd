@@ -34,7 +34,6 @@ var scroll_lock_sliders : Vector2 = Vector2.ZERO:
 			return
 		scroll_lock_sliders = value
 		if scroll_lock_shifting:
-			print("scroll_lock_sliders updated")
 			pw.update_scroll_lock_target(scroll_lock_sliders * Vector2(1.0, -1.0))
 		else:
 			%VSlider_Scroll.value = scroll_lock_sliders.y
@@ -44,7 +43,6 @@ var scroll_lock_shifting : bool = false:
 		if scroll_lock_shifting == value:
 			return
 		scroll_lock_shifting = value
-		print("Scroll lock shifting set to ", value)
 var color_tool_open : bool = false:
 	set(value):
 		color_tool_open = value
@@ -111,8 +109,7 @@ func set_up(pw_instance : Node):
 		var b = add_custom_button("  CUSTOM " + str(menu_count + 1) + "  ")
 		b.disabled = true
 		menu_count += 1
-		
-
+	
 
 
 func add_custom_button(text : String) -> MenuButton:

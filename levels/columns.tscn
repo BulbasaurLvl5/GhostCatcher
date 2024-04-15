@@ -11,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://environment/spikes_small.tscn" id="7_q1xog"]
 [ext_resource type="Texture2D" uid="uid://cgbodrcslt8a1" path="res://resources/sprites/coal/coal_tombstones.png" id="10_t74wp"]
 [ext_resource type="Texture2D" uid="uid://jbfl0nukjwsw" path="res://resources/sprites/coal/coal_tree.png" id="12_83a2g"]
+[ext_resource type="Script" path="res://addons/parallax_wizard/plugin/parallax_plus.gd" id="13_pcsxy"]
 [ext_resource type="Texture2D" uid="uid://b5xlp7x6bh8wb" path="res://resources/sprites/coal/coal_sky.png" id="13_v2ykm"]
-[ext_resource type="Script" path="res://environment/parallax/parallax_clouds.gd" id="14_qqeu6"]
 [ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://resources/sprites/coal/coal_sky_filter.png" id="15_1puvy"]
 [ext_resource type="Script" path="res://environment/parallax/moon.gd" id="16_2slil"]
 [ext_resource type="Texture2D" uid="uid://bjc2obas242sw" path="res://resources/sprites/coal/moon_1.png" id="17_yu20f"]
@@ -122,9 +122,9 @@ layer_0/tile_data = PackedInt32Array(-458758, 0, 2, -524283, 0, 2, -524273, 5242
 
 [node name="LvlData" type="Node2D" parent="."]
 script = ExtResource("2_dlir4")
-top_boundary = 77.0
-left_boundary = 30.0
-right_boundary = 30.0
+top_boundary = -73.0
+left_boundary = -32.5
+right_boundary = 31.5
 bottom_boundary = 11.0
 starting_position_y = -58.0
 flip_player_direction = true
@@ -637,26 +637,32 @@ texture = SubResource("AtlasTexture_dkg2q")
 
 [node name="Parallax" type="Node2D" parent="."]
 
-[node name="Parallax_0_Sky" type="ParallaxBackground" parent="Parallax"]
-process_mode = 3
-scroll_ignore_camera_zoom = true
+[node name="Sky" type="Node2D" parent="Parallax"]
+z_index = -2000
+z_as_relative = false
+position = Vector2(281.239, -4816.87)
+script = ExtResource("13_pcsxy")
+distance = 888.0
+type = 3
+scroll_scale = Vector2(0.01, 0.01)
+screen_offset = Vector2(284.08, -4865.52)
 
-[node name="ParallaxLayer1" type="ParallaxLayer" parent="Parallax/Parallax_0_Sky"]
-modulate = Color(1, 0.352941, 0.286275, 1)
-motion_scale = Vector2(0.05, 0.05)
-
-[node name="Sky" type="Sprite2D" parent="Parallax/Parallax_0_Sky/ParallaxLayer1"]
+[node name="Sky" type="Sprite2D" parent="Parallax/Sky"]
 position = Vector2(877, 491)
 scale = Vector2(2, 3)
 texture = ExtResource("13_v2ykm")
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Parallax/Parallax_0_Sky"]
-motion_scale = Vector2(0.08, 0.08)
-motion_mirroring = Vector2(2336, 1652)
-script = ExtResource("14_qqeu6")
-automatic_motion = Vector2(-50, -20)
+[node name="SkyFilter" type="Node2D" parent="Parallax"]
+z_index = -2000
+position = Vector2(281.239, -4816.87)
+script = ExtResource("13_pcsxy")
+distance = 888.0
+type = 3
+scroll_scale = Vector2(0.01, 0.01)
+screen_offset = Vector2(284.08, -4865.52)
 
-[node name="SkyColor" type="Sprite2D" parent="Parallax/Parallax_0_Sky/ParallaxLayer2"]
+[node name="SkyColor" type="Sprite2D" parent="Parallax/SkyFilter"]
+visible = false
 modulate = Color(0.808218, 0, 0.00640505, 1)
 self_modulate = Color(1, 1, 1, 0.482353)
 position = Vector2(-9, -42)
@@ -664,145 +670,150 @@ scale = Vector2(2, 2)
 texture = ExtResource("15_1puvy")
 centered = false
 
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="Parallax/Parallax_0_Sky"]
-position = Vector2(2204, 0)
-motion_scale = Vector2(0.05, 0.05)
+[node name="Moon" type="Node2D" parent="Parallax"]
+z_index = -2000
+position = Vector2(281.239, -4816.87)
+script = ExtResource("13_pcsxy")
+distance = 888.0
+type = 3
+scroll_scale = Vector2(0.01, 0.01)
+screen_offset = Vector2(284.08, -4865.52)
 
-[node name="Path2D" type="Path2D" parent="Parallax/Parallax_0_Sky/ParallaxLayer4"]
+[node name="Path2D" type="Path2D" parent="Parallax/Moon"]
 scale = Vector2(-1, 1)
 curve = SubResource("Curve2D_7nuvp")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Parallax/Parallax_0_Sky/ParallaxLayer4/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Parallax/Moon/Path2D"]
 position = Vector2(1189, 679)
 rotation = -1.36358
 loop = false
 script = ExtResource("16_2slil")
 
-[node name="Moon" type="Sprite2D" parent="Parallax/Parallax_0_Sky/ParallaxLayer4/Path2D/PathFollow2D"]
+[node name="Moon" type="Sprite2D" parent="Parallax/Moon/Path2D/PathFollow2D"]
 self_modulate = Color(1, 0, 0, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("17_yu20f")
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="Parallax/Parallax_0_Sky"]
-motion_scale = Vector2(0.08, 0.08)
-motion_mirroring = Vector2(2336, 1652)
-script = ExtResource("14_qqeu6")
-automatic_motion = Vector2(-25, 10)
+[node name="SkyFilter2" type="Node2D" parent="Parallax"]
+z_index = -2000
+position = Vector2(281.239, -4816.87)
+script = ExtResource("13_pcsxy")
+distance = 888.0
+type = 3
+scroll_scale = Vector2(0.01, 0.01)
+screen_offset = Vector2(284.08, -4865.52)
 
-[node name="SkyColor" type="Sprite2D" parent="Parallax/Parallax_0_Sky/ParallaxLayer3"]
+[node name="SkyColor" type="Sprite2D" parent="Parallax/SkyFilter2"]
 self_modulate = Color(1, 1, 1, 0.290196)
 position = Vector2(-9, -42)
 scale = Vector2(2, 2)
 texture = ExtResource("15_1puvy")
 centered = false
 
-[node name="Parallax_1_Horizon" type="ParallaxBackground" parent="Parallax"]
-scroll_base_offset = Vector2(8640, 4860)
+[node name="Mountains" type="Node2D" parent="Parallax"]
+z_index = -894
+position = Vector2(228.307, -1955.15)
+script = ExtResource("13_pcsxy")
+distance = 0.89297
+scroll_scale = Vector2(0.196327, 0.598163)
+screen_offset = Vector2(284.08, -4865.52)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Parallax_1_Horizon"]
-modulate = Color(0.388235, 0.262745, 0.262745, 1)
-position = Vector2(0, 144)
-motion_scale = Vector2(0.1, 0.1)
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax_1_Horizon/ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Mountains"]
 position = Vector2(-3389, 33)
 texture = ExtResource("18_0lqrr")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax/Parallax_1_Horizon/ParallaxLayer"]
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax/Mountains"]
 position = Vector2(-2221, 33)
 texture = ExtResource("18_0lqrr")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Parallax/Parallax_1_Horizon/ParallaxLayer"]
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/Mountains"]
 position = Vector2(-1053, 33)
 texture = ExtResource("18_0lqrr")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Parallax/Parallax_1_Horizon/ParallaxLayer"]
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax/Mountains"]
 position = Vector2(115, 33)
 texture = ExtResource("18_0lqrr")
 
-[node name="Sprite2D5" type="Sprite2D" parent="Parallax/Parallax_1_Horizon/ParallaxLayer"]
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/Mountains"]
 position = Vector2(1283, 33)
 texture = ExtResource("18_0lqrr")
 
-[node name="Sprite2D6" type="Sprite2D" parent="Parallax/Parallax_1_Horizon/ParallaxLayer"]
+[node name="Sprite2D6" type="Sprite2D" parent="Parallax/Mountains"]
 position = Vector2(2451, 33)
 texture = ExtResource("18_0lqrr")
 
-[node name="Sprite2D7" type="Sprite2D" parent="Parallax/Parallax_1_Horizon/ParallaxLayer"]
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/Mountains"]
 position = Vector2(3619, 33)
 texture = ExtResource("18_0lqrr")
 
-[node name="Parallax_25" type="ParallaxBackground" parent="Parallax"]
-scroll_base_offset = Vector2(2880, 1620)
+[node name="HillsFar" type="Node2D" parent="Parallax"]
+z_index = -519
+position = Vector2(131.354, -1124.87)
+script = ExtResource("13_pcsxy")
+distance = 0.51376
+scroll_scale = Vector2(0.537616, 0.768808)
+screen_offset = Vector2(284.08, -4865.52)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Parallax_25"]
-modulate = Color(0.466667, 0.317647, 0.317647, 1)
-motion_scale = Vector2(0.25, 0.25)
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax_25/ParallaxLayer"]
-position = Vector2(-3404, 375)
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/HillsFar"]
+position = Vector2(-3547.79, 545.029)
 texture = ExtResource("19_i7sbg")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax/Parallax_25/ParallaxLayer"]
-position = Vector2(-2236, 375)
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax/HillsFar"]
+position = Vector2(-2379.79, 545.029)
 texture = ExtResource("19_i7sbg")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Parallax/Parallax_25/ParallaxLayer"]
-position = Vector2(-1068, 375)
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/HillsFar"]
+position = Vector2(-1211.79, 545.029)
 texture = ExtResource("19_i7sbg")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Parallax/Parallax_25/ParallaxLayer"]
-position = Vector2(100, 375)
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax/HillsFar"]
+position = Vector2(-43.7891, 545.029)
 texture = ExtResource("19_i7sbg")
 
-[node name="Sprite2D5" type="Sprite2D" parent="Parallax/Parallax_25/ParallaxLayer"]
-position = Vector2(1268, 375)
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/HillsFar"]
+position = Vector2(1124.21, 545.029)
 texture = ExtResource("19_i7sbg")
 
-[node name="Sprite2D6" type="Sprite2D" parent="Parallax/Parallax_25/ParallaxLayer"]
-position = Vector2(2436, 375)
+[node name="Sprite2D6" type="Sprite2D" parent="Parallax/HillsFar"]
+position = Vector2(2292.21, 545.029)
 texture = ExtResource("19_i7sbg")
 
-[node name="Sprite2D7" type="Sprite2D" parent="Parallax/Parallax_25/ParallaxLayer"]
-position = Vector2(3604, 375)
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/HillsFar"]
+position = Vector2(3460.21, 545.029)
 texture = ExtResource("19_i7sbg")
 
-[node name="Parallax_5" type="ParallaxBackground" parent="Parallax"]
-scroll_base_offset = Vector2(960, 540)
+[node name="HillsNear" type="Node2D" parent="Parallax"]
+z_index = -283
+position = Vector2(70.3686, -602.615)
+script = ExtResource("13_pcsxy")
+distance = 0.27523
+scroll_scale = Vector2(0.752293, 0.876146)
+screen_offset = Vector2(284.08, -4865.52)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Parallax_5"]
-modulate = Color(0.592157, 0.423529, 0.419608, 1)
-position = Vector2(0, -50)
-motion_scale = Vector2(0.5, 0.5)
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/Parallax_5/ParallaxLayer"]
-position = Vector2(-3630, 436)
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/HillsNear"]
+position = Vector2(-3638.57, 775.823)
 texture = ExtResource("19_i7sbg")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax/Parallax_5/ParallaxLayer"]
-position = Vector2(-2462, 436)
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax/HillsNear"]
+position = Vector2(-2470.57, 775.823)
 texture = ExtResource("19_i7sbg")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Parallax/Parallax_5/ParallaxLayer"]
-position = Vector2(-1294, 436)
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/HillsNear"]
+position = Vector2(-1302.57, 775.823)
 texture = ExtResource("19_i7sbg")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Parallax/Parallax_5/ParallaxLayer"]
-position = Vector2(-126, 436)
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax/HillsNear"]
+position = Vector2(-134.573, 775.823)
 texture = ExtResource("19_i7sbg")
 
-[node name="Sprite2D5" type="Sprite2D" parent="Parallax/Parallax_5/ParallaxLayer"]
-position = Vector2(1042, 436)
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/HillsNear"]
+position = Vector2(1033.43, 775.823)
 texture = ExtResource("19_i7sbg")
 
-[node name="Sprite2D6" type="Sprite2D" parent="Parallax/Parallax_5/ParallaxLayer"]
-position = Vector2(2210, 436)
+[node name="Sprite2D6" type="Sprite2D" parent="Parallax/HillsNear"]
+position = Vector2(2201.43, 775.823)
 texture = ExtResource("19_i7sbg")
 
-[node name="Sprite2D7" type="Sprite2D" parent="Parallax/Parallax_5/ParallaxLayer"]
-position = Vector2(3378, 436)
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/HillsNear"]
+position = Vector2(3369.43, 775.823)
 texture = ExtResource("19_i7sbg")
-
-[node name="EndlessPit1" parent="Parallax" instance=ExtResource("3_nvhrl")]
-position = Vector2(-5, 204)
-scale = Vector2(1, 0.5)
