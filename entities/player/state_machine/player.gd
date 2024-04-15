@@ -11,7 +11,11 @@ extends CharacterBody2D
 @export var verbose : bool = false
 @export var data : PlayerDataResource 
 
-var level_boundary : Array[float]
+var level_boundary : Rect2:
+	set(value):
+		level_boundary = value
+		if verbose:
+			print("player.gd level boundary was successfully updated!!!")
 var canvas_mod_dispatched : bool = false
 
 var x_input : int = 0
@@ -33,38 +37,43 @@ var is_grabbing_wall : bool = false
 
 
 func _enter_tree():
-#	print("ENTERING TREE")
+	#if verbose:
+		#print("player.gd _enter_tree has been called")
 	check_canvas_mod()
 
 
-func find_starting_pos() -> Vector2:
-	var pos : Vector2 = Vector2.ZERO
-	var level_data : LevelData = get_tree().root.find_child("LvlData", true, false)
-	if level_data:
-		pos = level_data.starting_pos
-		if level_data.flip_player_direction:
-			facing_direction = -1
-			%PlayerAnimatedSprite2D.scale.x = -1
-			%RayCasts.scale.x = -1
-	else:
-		print("LevelData node not found by player.gd")
-	return pos
+#func find_level_parameters():
+	#var level_parameters : LevelData
+	#var nodes : Array = get_all_children(get_tree().root)
+	#for n in nodes:
+		#if n is LevelData:
+			#level_parameters = n
+			#break
+	#if level_parameters:
+		#if verbose:
+			#print("PLAYER position is ", self.position)
+		#self.position = level_parameters.starting_pos
+		##facing_direction = 1
+		##%PlayerAnimatedSprite2D.scale.x = abs(%PlayerAnimatedSprite2D.scale.x)
+		##%RayCasts.scale.x = abs(%RayCasts.scale.x)
+		##if level_parameters.flip_player_direction:
+			##facing_direction = -1
+			##%PlayerAnimatedSprite2D.scale.x *= -1
+			##%RayCasts.scale.x *= -1
+		#if verbose:
+			#print("player.gd find_level_parameters() moved PLAYER to ", self.position, " facing ", facing_direction)
+	#else:
+		#print("LevelParameters node not found by player.gd")
 		
 		
 func _ready():
-#	print("READY")
-
-	global_position = find_starting_pos()
-#	print("starting position found is ",find_starting_pos())
+	if verbose:
+		print("player.gd _ready has been called")
 
 	if !cast && %ShapeCast2D:
 		cast = %ShapeCast2D
 	if !canvas_mod_dispatched:
 		check_canvas_mod()
-
-
-func set_level_boundary(top : float, left : float, right : float, bottom : float):
-	level_boundary = [top + 110, left + 110, right - 110, bottom - 110]
 
 
 func _process(_delta):
@@ -133,16 +142,19 @@ func check_input():
 		if !stomp_input_reset:
 			stomp_input_reset = true
 
+
 func check_environment():
 	was_grounded = is_grounded()
 	could_grab_wall = can_grab_wall()
 	
+	
 func is_grounded() -> bool:
-	if get_collisions(Vector2.DOWN * 2):
+	if get_collisions(Vector2.DOWN * 2.0):
 		remaining_air_actions = data.max_air_actions
 		return true
 	else:
 		return false
+
 
 func can_grab_wall() -> bool:
 	if x_input != facing_direction:
@@ -177,12 +189,14 @@ func can_grab_wall() -> bool:
 		return true
 	return false
 
+
 func can_jump() -> bool:
 	if !jump_input || !jump_button_reset:
 		return false
 	if !$CoyoteTime.is_stopped() || remaining_air_actions > 0 || is_grounded():
 		return true
 	return false
+
 
 func can_dash() -> bool:
 	if !dash_input || !dash_button_reset:
@@ -192,11 +206,13 @@ func can_dash() -> bool:
 	if is_grounded() && last_dash_time + data.ground_dash_cooldown < Time.get_unix_time_from_system():
 		return true
 	return false
-		
+
+
 func can_stomp() -> bool:
 	if stomp_input && stomp_input_reset && !is_on_floor():
 		return true
 	return false
+
 
 func is_bumping_head() -> bool:
 	%HeadBumpCheckFront.force_raycast_update()
@@ -205,23 +221,26 @@ func is_bumping_head() -> bool:
 		return true
 	return false
 
+
 func air_action():
 	if $CoyoteTime.is_stopped():
 		remaining_air_actions -= 1
+
 
 func stop_motion():
 	velocity = Vector2.ZERO
 	move_and_slide()
 
+
 func move():
 	if level_boundary:
-		if position.y <= level_boundary[0] && velocity.y < 0:
+		if position.y <= level_boundary.position.y && velocity.y < 0:
 			velocity.y = 0
-		if position.x <= level_boundary[1] && velocity.x < 0:
+		if position.x <= level_boundary.position.x && velocity.x < 0:
 			velocity.x = 0
-		if position.x >= level_boundary[2] && velocity.x > 0:
+		if position.x >= level_boundary.end.x && velocity.x > 0:
 			velocity.x = 0
-		if position.y >= level_boundary[3] && velocity.y > 0:
+		if position.y >= level_boundary.end.y && velocity.y > 0:
 			velocity.y = 0
 	move_and_slide()
 	
@@ -241,3 +260,17 @@ func get_collisions(offset : Vector2 = Vector2.ZERO, shape_cast : ShapeCast2D = 
 	else:
 		shape_cast.position -= offset
 	return array
+
+
+#func get_all_children(node) -> Array:
+	#if !node:
+		#return []
+	#var all_children : Array = []
+	#var children = node.get_children()
+	#for c in children:
+		#if c.get_child_count() > 0:
+			#all_children.append(c)
+			#all_children.append_array(get_all_children(c))
+		#else:
+			#all_children.append(c)
+	#return all_children

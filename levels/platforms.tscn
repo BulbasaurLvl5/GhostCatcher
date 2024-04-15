@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://d2m8h34yt10sh"]
 
+[ext_resource type="Script" path="res://main/level.gd" id="1_j32q3"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_mnvng"]
-[ext_resource type="Script" path="res://resources/level_data.gd" id="2_6cgt5"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="2_hfwfp"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="3_wpbfl"]
 [ext_resource type="Texture2D" uid="uid://cuxeorwpjn2g6" path="res://resources/sprites/coal/coal_signpost.png" id="4_wng46"]
@@ -46,19 +46,37 @@ _data = {
 }
 point_count = 3
 
-[node name="TileMap" type="TileMap"]
-tile_set = ExtResource("1_mnvng")
-format = 2
-layer_0/tile_data = PackedInt32Array(11, 196609, 3, 10, 131073, 3, 9, 131073, 3, 8, 131073, 3, 7, 131072, 3, 6, 131072, 3, 5, 131073, 3, 4, 131072, 3, 3, 131073, 3, 2, 131073, 3, 1, 65537, 3, 17, 196609, 3, 16, 131072, 3, 15, 131073, 3, 14, 65537, 3, 262159, 196608, 3, 262158, 131073, 3, 262157, 131072, 3, 262156, 131073, 3, 262155, 131072, 3, 262154, 131073, 3, 262153, 131072, 3, 262152, 131073, 3, 262151, 131073, 3, 262150, 131072, 3, 262149, 131072, 3, 262148, 65536, 3, 393221, 196608, 3, 393220, 131073, 3, 393219, 131072, 3, 393218, 131072, 3, 393217, 65537, 3, 589832, 196608, 3, 589831, 131072, 3, 589830, 65536, 3, 458765, 196608, 3, 458764, 131073, 3, 458763, 65537, 3, 720900, 196609, 3, 720899, 131073, 3, 720898, 65537, 3, 786443, 196608, 3, 786442, 131072, 3, 786441, 131072, 3, 786440, 131073, 3, 786439, 131072, 3, 786438, 65536, 3, 917520, 196609, 3, 917519, 131072, 3, 917518, 131072, 3, 917517, 131072, 3, 917516, 65537, 3, 1114117, 196608, 3, 1114116, 131073, 3, 1114115, 131073, 3, 1114114, 131073, 3, 1114113, 65536, 3, 1245194, 196608, 3, 1245193, 131073, 3, 1245192, 131073, 3, 1245191, 65536, 3, 1441802, 196608, 3, 1441801, 131073, 3, 1441800, 131073, 3, 1441799, 65537, 3)
-
-[node name="LvlData" type="Node2D" parent="."]
-script = ExtResource("2_6cgt5")
+[node name="Platforms" type="Node2D"]
+script = ExtResource("1_j32q3")
+level_name = "Platforms"
+starting_position_x = 1.0
+starting_position_y = -1.0
 top_boundary = -18.5
 left_boundary = -9.5
 right_boundary = 25.0
 bottom_boundary = 30.0
-starting_position_x = 1.0
-starting_position_y = -1.0
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_mnvng")
+format = 2
+layer_0/tile_data = PackedInt32Array(11, 196609, 3, 10, 131073, 3, 9, 131073, 3, 8, 131073, 3, 7, 131072, 3, 6, 131072, 3, 5, 131073, 3, 4, 131072, 3, 3, 131073, 3, 2, 131073, 3, 1, 65537, 3, 17, 196609, 3, 16, 131072, 3, 15, 131073, 3, 14, 65537, 3, 262159, 196608, 3, 262158, 131073, 3, 262157, 131072, 3, 262156, 131073, 3, 262155, 131072, 3, 262154, 131073, 3, 262153, 131072, 3, 262152, 131073, 3, 262151, 131073, 3, 262150, 131072, 3, 262149, 131072, 3, 262148, 65536, 3, 393221, 196608, 3, 393220, 131073, 3, 393219, 131072, 3, 393218, 131072, 3, 393217, 65537, 3, 589832, 196608, 3, 589831, 131072, 3, 589830, 65536, 3, 458765, 196608, 3, 458764, 131073, 3, 458763, 65537, 3, 720900, 196609, 3, 720899, 131073, 3, 720898, 65537, 3, 786443, 196608, 3, 786442, 131072, 3, 786441, 131072, 3, 786440, 131073, 3, 786439, 131072, 3, 786438, 65536, 3, 917520, 196609, 3, 917519, 131072, 3, 917518, 131072, 3, 917517, 131072, 3, 917516, 65537, 3, 1114117, 196608, 3, 1114116, 131073, 3, 1114115, 131073, 3, 1114114, 131073, 3, 1114113, 65536, 3, 1245194, 196608, 3, 1245193, 131073, 3, 1245192, 131073, 3, 1245191, 65536, 3, 1441802, 196608, 3, 1441801, 131073, 3, 1441800, 131073, 3, 1441799, 65537, 3)
+
+[node name="Ghosts" type="Node" parent="."]
+
+[node name="Ghost2" parent="Ghosts" instance=ExtResource("2_hfwfp")]
+position = Vector2(1394, 665)
+
+[node name="Ghost3" parent="Ghosts" instance=ExtResource("2_hfwfp")]
+position = Vector2(1636, 1170)
+
+[node name="Ghost4" parent="Ghosts" instance=ExtResource("2_hfwfp")]
+position = Vector2(386, 1386)
+
+[node name="Ghost5" parent="Ghosts" instance=ExtResource("2_hfwfp")]
+position = Vector2(2060, 2411)
+
+[node name="Ghost" parent="Ghosts" instance=ExtResource("2_hfwfp")]
+position = Vector2(877, 263)
 
 [node name="EnemiesTemporary" type="Node" parent="."]
 
@@ -139,37 +157,24 @@ pause_durations = Array[float]([])
 
 [node name="GiantGhost" parent="EnemiesTemporary/Path2D6" instance=ExtResource("7_4xek7")]
 
-[node name="Ghosts" type="Node" parent="."]
+[node name="Scenery" type="Node" parent="."]
 
-[node name="Ghost2" parent="Ghosts" instance=ExtResource("2_hfwfp")]
-position = Vector2(1394, 665)
-
-[node name="Ghost3" parent="Ghosts" instance=ExtResource("2_hfwfp")]
-position = Vector2(1636, 1170)
-
-[node name="Ghost4" parent="Ghosts" instance=ExtResource("2_hfwfp")]
-position = Vector2(386, 1386)
-
-[node name="Ghost5" parent="Ghosts" instance=ExtResource("2_hfwfp")]
-position = Vector2(2060, 2411)
-
-[node name="Ghost" parent="Ghosts" instance=ExtResource("2_hfwfp")]
-position = Vector2(877, 263)
+[node name="Sign" type="Sprite2D" parent="Scenery"]
+position = Vector2(1636, -159)
+texture = ExtResource("4_wng46")
 
 [node name="EndlessPit" parent="." instance=ExtResource("3_wpbfl")]
 position = Vector2(-6, 3009)
 
-[node name="Sign" type="Sprite2D" parent="."]
-position = Vector2(1636, -159)
-texture = ExtResource("4_wng46")
+[node name="Parallax" type="Node" parent="."]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
 position = Vector2(-148, 102)
 motion_scale = Vector2(0.1, 0.1)
 
-[node name="Mountains" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
 position = Vector2(-468, -525)
 scale = Vector2(3, 2)
 texture = ExtResource("5_553wy")

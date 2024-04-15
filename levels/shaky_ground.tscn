@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b2xhyj1jgx5fr"]
 
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_qysqh"]
-[ext_resource type="Script" path="res://resources/level_data.gd" id="2_1i7jb"]
+[ext_resource type="Script" path="res://main/level.gd" id="1_rbfi6"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="2_vn8ee"]
 [ext_resource type="Script" path="res://entities/mobs/ghost_movement.gd" id="3_d304m"]
 [ext_resource type="Script" path="res://resources/path_follow_manager.gd" id="3_kf6fm"]
@@ -28,24 +28,22 @@ _data = {
 }
 point_count = 3
 
-[node name="TileMap" type="TileMap"]
+[node name="ShakyGround" type="Node2D"]
+script = ExtResource("1_rbfi6")
+level_name = "ShakyGround"
+starting_position_x = -7.0
+starting_position_y = -2.0
+top_boundary = -39.0
+left_boundary = -12.5
+right_boundary = 42.0
+bottom_boundary = 8.0
+
+[node name="TileMap" type="TileMap" parent="."]
 self_modulate = Color(0.870588, 1, 0.87451, 1)
 show_behind_parent = true
 tile_set = ExtResource("1_qysqh")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65503, 0, 3, -65501, 65536, 3, -4, 1, 3, -6, 196609, 3, -7, 131072, 3, -8, 131073, 3, -9, 65536, 3, -65499, 131073, 3, -65500, 131073, 3, -65498, 196609, 3)
-
-[node name="LvlData" type="Node2D" parent="."]
-script = ExtResource("2_1i7jb")
-top_boundary = -39.0
-left_boundary = -12.5
-right_boundary = 42.0
-bottom_boundary = 8.0
-starting_position_x = -7.0
-starting_position_y = -2.0
-
-[node name="EndlessPit" parent="." instance=ExtResource("2_vn8ee")]
-position = Vector2(-4599, 566)
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -277,14 +275,19 @@ sink_distance = 1000.0
 sink_delay = 1.0
 sink_speed = 1000.0
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="EndlessPit" parent="." instance=ExtResource("2_vn8ee")]
+position = Vector2(-4599, 566)
+
+[node name="Parallax" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
 scroll_base_offset = Vector2(8640, 4860)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
 position = Vector2(-148, 102)
 motion_scale = Vector2(0.1, 0.1)
 
-[node name="Mountains" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
 position = Vector2(-1858, -2067)
 scale = Vector2(6, 4)
 texture = ExtResource("7_fkw55")

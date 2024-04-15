@@ -7,6 +7,9 @@ extends Parallax2D
 enum Types {DEFAULT, HAZE, CLOUDS, SKY}
 @export_range(-1.0, 1.0, 0.00001, "or_less", "or_greater") var distance : float = 0.0:
 	set(value):
+		if !ProjectSettings.get_setting("parallax_wizard/parallax/scroll_scale/xy_ratio"):
+			#print("Parallax Wizard settings are not available. Activate the addon to use this feature.")
+			return
 		if distance == value:
 			return
 		if type == Types.CLOUDS:
@@ -15,10 +18,13 @@ enum Types {DEFAULT, HAZE, CLOUDS, SKY}
 		if type == Types.SKY:
 			distance = 888.0
 			return
-		distance = clamp(value, -1.0, 1.0)	
+		distance = clamp(value, -1.0, 1.0)
 		_update_parallax_layer()
 @export_enum("default", "haze", "clouds", "sky") var type : int = Types.DEFAULT:
 	set(value):
+		if !ProjectSettings.get_setting("parallax_wizard/parallax/scroll_scale/xy_ratio"):
+			#print("Parallax Wizard settings are not available. Activate the addon to use this feature.")
+			return
 		if value == type:
 			return
 		type = value
@@ -45,7 +51,6 @@ func _update_parallax_layer():
 	if !Engine.is_editor_hint():
 		return
 	if !ProjectSettings.get_setting("parallax_wizard/parallax/scroll_scale/xy_ratio"):
-		print("Parallax Wizard settings are not available. Activate the addon to use this feature.")
 		return
 		
 	_update_scroll_scale()

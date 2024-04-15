@@ -4,15 +4,17 @@ extends Camera2D
 signal Zoomed(new_zoom_setting : Vector2)
 
 
+@export var verbose : bool = false
+
 @export_group("Zoom")
-@export_range (0.0, 1.0, 0.0, "suffix:X") var max_zoom_out : float = .25
+@export_range (0.0, 1.0, 0.001, "suffix:X") var max_zoom_out : float = .25
 #Smaller numbers bring the camera away from the action.
 
-@export_range (1.0, 64.0, 0.0, "suffix:X") var max_zoom_in_not_used_yet : float = 1.0
+@export_range (1.0, 64.0, 0.001, "suffix:X") var max_zoom_in_not_used_yet : float = 1.0
 #Larger numbers move the camera towards the action.
 
-@export_range (0.0, 10.0, 0.0, "or_greater", "suffix:seconds") var zoom_out_duration : float = 2.5
-@export_range (0.0, 10.0, 0.0, "or_greater", "suffix:seconds") var zoom_reset_duration : float = 0.75
+@export_range (0.0, 10.0, 0.001, "or_greater", "suffix:seconds") var zoom_out_duration : float = 2.5
+@export_range (0.0, 10.0, 0.001, "or_greater", "suffix:seconds") var zoom_reset_duration : float = 0.75
 @export var sticky_zoom : bool = true
 #Zooming will stop whenever the player releases the button.
 #Overrides toggled_zoom if both are activated.
@@ -22,8 +24,8 @@ signal Zoomed(new_zoom_setting : Vector2)
 #Overridden by sticky_zoom if both are activated.
 
 @export_group("Shake")
-@export_range (0.0, 128.0, 0.0, "or_greater", "suffix:pixels maximum") var default_shake_strength : float = 32.0
-@export_range (0.0, 16.0, 0.0, "or_greater", "suffix:pixels per second") var default_shake_fade : float = 5.0
+@export_range (0.0, 128.0, 0.001, "or_greater", "suffix:pixels maximum") var default_shake_strength : float = 32.0
+@export_range (0.0, 16.0, 0.001, "or_greater", "suffix:pixels per second") var default_shake_fade : float = 5.0
 
 #ZOOM
 var zoom_input : bool = false
@@ -36,44 +38,38 @@ var zoom_is_changing : bool = false
 var rng = RandomNumberGenerator.new()
 var shake_strength : float = 0.0
 
-var level_boundary : Rect2
-var data_updated : bool
+var level_boundary : Rect2:
+	set(value):
+		if level_boundary == value:
+			return
+		level_boundary = value
+		limit_top = int(level_boundary.position.y)
+		limit_left = int(level_boundary.position.x)
+		limit_right = int(level_boundary.end.x)
+		limit_bottom = int(level_boundary.end.y)
+		if verbose:
+			print("camera.gd level_boundary was successfully updated!!!")
 
 
 func _enter_tree():
-	find_level_data()
+	print("camera.gd _enter_tree()")
 
 
 func _ready():
+	print("camera.gd _ready()")
 	enable_smooth_and_drag(false)
 	position = Vector2(0, -200)
-	if !data_updated:
-		find_level_data()
-	
-
-func find_level_data():
-	var level_data : LevelData = get_tree().root.find_child("LvlData", true, false)
-	if level_data:
-		limit_top = int(level_data.top_boundary * 110)
-		limit_left = int(level_data.left_boundary * 110)
-		limit_right = int(level_data.right_boundary * 110.0)
-		limit_bottom = int(level_data.bottom_boundary * 110.0)
-#		print("Boundary = ",limit_left, limit_top, limit_right, limit_bottom)
-		$"..".set_level_boundary(limit_top, limit_left, limit_right, limit_bottom)
-#		$"..".set_starting_position(Vector2(level_data.starting_position_x * 110, level_data.starting_position_y * 110))
-		data_updated = true
 
 
 func enable_smooth_and_drag(enable : bool = true):
 	position_smoothing_enabled = enable
 	drag_horizontal_enabled = enable
 	drag_vertical_enabled = enable
-	
 
 #PROCESS
 func _process(delta):
-	if !data_updated:
-		find_level_data()
+	#if !level_parameters_updated:
+		#find_level_parameters()
 	if !position_smoothing_enabled:
 		enable_smooth_and_drag(true)
 		position = Vector2.ZERO
@@ -91,7 +87,7 @@ func _process(delta):
 			new = get_zoom().lerp(Vector2(max_zoom_out, max_zoom_out), 2*delta/current_zoom_duration)
 		set_zoom(new)
 		Zoomed.emit(new)
-#SHAKE
+	#SHAKE
 	if shake_strength > 0:
 		shake_strength = lerpf(shake_strength, 0, default_shake_fade * delta)
 		offset = random_offset()
