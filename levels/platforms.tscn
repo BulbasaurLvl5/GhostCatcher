@@ -91,7 +91,6 @@ node = NodePath("../FlamingSkull")
 speed = 0.08
 
 [node name="FlamingSkull" parent="EnemiesTemporary/Path2D" instance=ExtResource("6_s7nyc")]
-path = NodePath("")
 
 [node name="Path2D2" type="Path2D" parent="EnemiesTemporary"]
 position = Vector2(1093, 616)
@@ -103,7 +102,6 @@ script = ExtResource("6_qvtoj")
 node = NodePath("../FlamingSkull")
 
 [node name="FlamingSkull" parent="EnemiesTemporary/Path2D2" instance=ExtResource("6_s7nyc")]
-path = NodePath("")
 
 [node name="Path2D3" type="Path2D" parent="EnemiesTemporary"]
 position = Vector2(1776, 1411)
@@ -115,7 +113,6 @@ script = ExtResource("6_qvtoj")
 node = NodePath("../FlamingSkull")
 
 [node name="FlamingSkull" parent="EnemiesTemporary/Path2D3" instance=ExtResource("6_s7nyc")]
-path = NodePath("")
 
 [node name="Path2D4" type="Path2D" parent="EnemiesTemporary"]
 position = Vector2(204, 1769)
@@ -127,7 +124,6 @@ script = ExtResource("6_qvtoj")
 node = NodePath("../FlamingSkull")
 
 [node name="FlamingSkull" parent="EnemiesTemporary/Path2D4" instance=ExtResource("6_s7nyc")]
-path = NodePath("")
 
 [node name="Path2D5" type="Path2D" parent="EnemiesTemporary"]
 position = Vector2(1567, 1838)
@@ -140,7 +136,6 @@ node = NodePath("../FlamingSkull")
 speed = 0.07
 
 [node name="FlamingSkull" parent="EnemiesTemporary/Path2D5" instance=ExtResource("6_s7nyc")]
-path = NodePath("")
 
 [node name="Path2D6" type="Path2D" parent="EnemiesTemporary"]
 position = Vector2(1250, -339)

@@ -3,7 +3,7 @@ extends PathFollow2D
 
 
 @export var node : Node2D
-@export_range(0.0, 1.0, 0.0, "or_greater", "suffix:path cycles/second") var speed : float = 0.1
+@export_range(0.0, 1.0, 0.001, "or_greater", "suffix:path cycles/second") var speed : float = 0.1
 @export var pause_locations : Array[float] = [0.0, 0.5]
 @export var pause_durations : Array[float] = [2.0]
 

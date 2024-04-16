@@ -47,7 +47,6 @@ const TILE_SIZE : float = 110.0
 		bottom_boundary = value
 		calculate_boundary()
 
-
 var level_boundary : Rect2:
 	set(value):
 		level_boundary = value
@@ -65,7 +64,6 @@ var player : Player:
 			player = value
 			player.position = starting_pos
 			player.level_boundary = level_boundary
-			print("level_parameters updated player.gd")
 var camera : Camera2D:
 	set(value):
 		if camera == value:
@@ -73,7 +71,6 @@ var camera : Camera2D:
 		else:
 			camera = value
 			camera.level_boundary = level_boundary
-			print("level_parameters updated camera.gd")
 
 
 func calculate_boundary():

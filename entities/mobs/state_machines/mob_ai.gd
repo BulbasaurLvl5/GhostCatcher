@@ -4,10 +4,10 @@ extends CharacterBody2D
 
 @export var path : PathFollowManager
 @export var facing_direction : int = 1
-@export_range(0.0, 2000.0, 0.0, "or_greater", "suffix:pixels") var vision_ahead : float = 1000.0
-@export_range(0.0, 2000.0, 0.0, "or_greater", "suffix:pixels") var vision_behind : float = 300.0
-@export_range(0.0, 2000.0, 0.0, "or_greater", "suffix:pixels") var vision_above : float = 300.0
-@export_range(0.0, 2000.0, 0.0, "or_greater", "suffix:pixels") var vision_below : float = 300.0
+@export_range(0.0, 2000.0, 0.01, "or_greater", "suffix:pixels") var vision_ahead : float = 1000.0
+@export_range(0.0, 2000.0, 0.01, "or_greater", "suffix:pixels") var vision_behind : float = 300.0
+@export_range(0.0, 2000.0, 0.01, "or_greater", "suffix:pixels") var vision_above : float = 300.0
+@export_range(0.0, 2000.0, 0.01, "or_greater", "suffix:pixels") var vision_below : float = 300.0
 @export var x_ray_vision : bool = true
 
 var player : Player

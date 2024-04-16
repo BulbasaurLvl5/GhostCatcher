@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://7gm2em8n2ucc"]
+[gd_scene load_steps=20 format=3 uid="uid://7gm2em8n2ucc"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_1udt0"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_q1odp"]
-[ext_resource type="Texture2D" uid="uid://cuxeorwpjn2g6" path="res://resources/sprites/coal/coal_signpost.png" id="2_sb4be"]
 [ext_resource type="Texture2D" uid="uid://cgbodrcslt8a1" path="res://resources/sprites/coal/coal_tombstones.png" id="4_5vi2q"]
-[ext_resource type="Script" path="res://environment/parallax/parallax_clouds.gd" id="4_j3u6i"]
+[ext_resource type="Script" path="res://addons/parallax_wizard/plugin/parallax_plus.gd" id="5_rjdco"]
 [ext_resource type="PackedScene" uid="uid://5qmp4wtv4vhb" path="res://entities/mobs/dog.tscn" id="7_ygbby"]
 [ext_resource type="Texture2D" uid="uid://b5xlp7x6bh8wb" path="res://resources/sprites/coal/coal_sky.png" id="8_wuoda"]
 [ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://resources/sprites/coal/coal_sky_filter.png" id="10_370jf"]
@@ -20,7 +19,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_xo4x1"]
 _data = {
-"points": PackedVector2Array(-70.2355, 334.089, 70.2355, -334.089, 1189, 679, -180.017, 211.838, 180.017, -211.838, 1546, -240)
+"points": PackedVector2Array(-70.2355, 334.089, 70.2355, -334.089, 1096, 971, -180.017, 211.838, 180.017, -211.838, 1685, -389)
 }
 point_count = 2
 
@@ -34,79 +33,67 @@ region = Rect2(20, 17, 109, 123)
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_1udt0")
+level_name = "Tutorial"
 show_data_in_editor = true
-starting_position_x = -23.0
-starting_position_y = -15.0
-flip_player_direction = true
+starting_position_x = -15.5
+starting_position_y = -0.5
 top_boundary = -80.0
-left_boundary = -40.0
-right_boundary = 22.0
+left_boundary = -18.0
 bottom_boundary = 2.0
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_q1odp")
 format = 2
 layer_0/modulate = Color(0.67451, 0.67451, 0.67451, 1)
-layer_0/tile_data = PackedInt32Array(-327679, 196608, 3, -327680, 131072, 3, -262145, 65536, 3, -131068, 65536, 3, -131067, 131072, 3, -131066, 196608, 3, -65540, 196608, 3, -65542, 65536, 3, -65541, 131072, 3, 5, 131072, 3, 6, 131072, 3, 7, 131072, 3, 8, 131072, 3, 9, 131072, 3, 10, 131072, 3, 11, 196608, 3, 65529, 131072, 3, 65528, 131072, 3, 65526, 131072, 3, 65527, 131072, 3, 65525, 65536, 3, 65530, 131072, 3, 65531, 131072, 3, 65532, 131072, 3, 65533, 131072, 3, 65534, 131072, 3, 65535, 131072, 3, 0, 131072, 3, 1, 131072, 3, 2, 131072, 3, 3, 131072, 3, 4, 131072, 3)
+layer_0/tile_data = PackedInt32Array(-327679, 196608, 3, -327680, 131072, 3, -262145, 65536, 3, -131068, 65536, 3, -131067, 131072, 3, -131066, 196608, 3, -65540, 196608, 3, -65542, 65536, 3, -65541, 131072, 3, 5, 131072, 3, 6, 131072, 3, 7, 131072, 3, 8, 131072, 3, 9, 131072, 3, 10, 131072, 3, 11, 131073, 3, 65529, 131072, 3, 65528, 131072, 3, 65526, 131072, 3, 65527, 131072, 3, 65525, 65536, 3, 65530, 131072, 3, 65531, 131072, 3, 65532, 131072, 3, 65533, 131072, 3, 65534, 131072, 3, 65535, 131072, 3, 0, 131072, 3, 1, 131072, 3, 2, 131072, 3, 3, 131072, 3, 4, 131072, 3, 65521, 196608, 3, 65519, 65537, 3, 65520, 131072, 3, 12, 131072, 3, 13, 131072, 3, 14, 131072, 3, 15, 131072, 3, 16, 196609, 3)
 
 [node name="dog" parent="." instance=ExtResource("7_ygbby")]
 z_index = 10
-position = Vector2(1694, -22)
+position = Vector2(1653, -22)
 
 [node name="Scenery" type="Node" parent="."]
 
 [node name="EndlessPit" parent="." instance=ExtResource("15_g02ft")]
-position = Vector2(-308, 282)
+position = Vector2(0, 330)
 
-[node name="Parallax" type="Node" parent="."]
+[node name="Parallax" type="Node2D" parent="."]
 
-[node name="Sky" type="ParallaxBackground" parent="Parallax"]
-process_mode = 3
-scroll_ignore_camera_zoom = true
+[node name="_sky" type="Node2D" parent="Parallax"]
 
-[node name="ParallaxLayer1" type="ParallaxLayer" parent="Parallax/Sky"]
-motion_scale = Vector2(0.05, 0.05)
+[node name="Sky" type="Node2D" parent="Parallax/_sky"]
+z_index = -2000
+position = Vector2(-1663.4, -398.032)
+script = ExtResource("5_rjdco")
+distance = 888.0
+type = 3
+scroll_scale = Vector2(0.01, 0.01)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(-1680.2, -402.052)
 
-[node name="Sky" type="Sprite2D" parent="Parallax/Sky/ParallaxLayer1"]
-self_modulate = Color(0.0862745, 0.0862745, 0.0862745, 1)
-position = Vector2(1043, 338)
+[node name="Sky" type="Sprite2D" parent="Parallax/_sky/Sky"]
+self_modulate = Color(0.184314, 0.254902, 0.435294, 1)
 scale = Vector2(2, 3)
 texture = ExtResource("8_wuoda")
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Parallax/Sky"]
-motion_scale = Vector2(0.08, 0.08)
-motion_mirroring = Vector2(2336, 1652)
-script = ExtResource("4_j3u6i")
-automatic_motion = Vector2(-50, -20)
-
-[node name="SkyColor" type="Sprite2D" parent="Parallax/Sky/ParallaxLayer2"]
-modulate = Color(0.207843, 0.207843, 0.207843, 1)
-self_modulate = Color(1, 1, 1, 0.772549)
-position = Vector2(-9, -42)
-scale = Vector2(2, 2)
-texture = ExtResource("10_370jf")
-centered = false
-
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="Parallax/Sky"]
-position = Vector2(2204, 0)
-motion_scale = Vector2(0.05, 0.05)
-
-[node name="Path2D" type="Path2D" parent="Parallax/Sky/ParallaxLayer4"]
-scale = Vector2(-1, 1)
+[node name="Path2D" type="Path2D" parent="Parallax/_sky/Sky"]
+position = Vector2(600.241, -350.813)
+rotation = 3.14159
+scale = Vector2(0.987886, -0.953812)
 curve = SubResource("Curve2D_xo4x1")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Parallax/Sky/ParallaxLayer4/Path2D"]
-position = Vector2(1189, 679)
+[node name="PathFollow2D" type="PathFollow2D" parent="Parallax/_sky/Sky/Path2D"]
+position = Vector2(1096, 971)
 rotation = -1.36358
 loop = false
 script = ExtResource("11_ffry1")
 
-[node name="Moon" type="Sprite2D" parent="Parallax/Sky/ParallaxLayer4/Path2D/PathFollow2D"]
+[node name="Moon" type="Sprite2D" parent="Parallax/_sky/Sky/Path2D/PathFollow2D"]
 light_mask = 16
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_5orw1")
 
-[node name="PointLight2D" type="PointLight2D" parent="Parallax/Sky/ParallaxLayer4/Path2D/PathFollow2D/Moon"]
+[node name="PointLight2D" type="PointLight2D" parent="Parallax/_sky/Sky/Path2D/PathFollow2D/Moon"]
 energy = 16.0
 range_item_cull_mask = 16
 shadow_enabled = true
@@ -114,538 +101,667 @@ shadow_color = Color(0.0509804, 0.0509804, 0.0509804, 0)
 shadow_item_cull_mask = 0
 texture = ExtResource("12_5orw1")
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="Parallax/Sky"]
-motion_scale = Vector2(0.08, 0.08)
-motion_mirroring = Vector2(2336, 1652)
-script = ExtResource("4_j3u6i")
-automatic_motion = Vector2(-25, 10)
+[node name="Moon" type="Node2D" parent="Parallax/_sky"]
+z_index = -2000
+position = Vector2(-1663.4, -398.032)
+script = ExtResource("5_rjdco")
+distance = 888.0
+type = 3
+scroll_scale = Vector2(0.01, 0.01)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(-1680.2, -402.052)
 
-[node name="SkyColor" type="Sprite2D" parent="Parallax/Sky/ParallaxLayer3"]
+[node name="Clouds" type="Node2D" parent="Parallax/_sky"]
+visible = false
+z_index = -1001
+position = Vector2(-1596.19, -381.95)
+script = ExtResource("5_rjdco")
+distance = 777.0
+type = 2
+scroll_scale = Vector2(0.05, 0.05)
+screen_offset = Vector2(-1680.2, -402.052)
+
+[node name="SkyColor" type="Sprite2D" parent="Parallax/_sky/Clouds"]
+modulate = Color(0.207843, 0.207843, 0.207843, 1)
+self_modulate = Color(1, 1, 1, 0.772549)
+position = Vector2(-9, -42)
+scale = Vector2(2, 2)
+texture = ExtResource("10_370jf")
+centered = false
+
+[node name="Clouds2" type="Node2D" parent="Parallax/_sky"]
+visible = false
+z_index = -1000
+position = Vector2(-3848.2, -1833.05)
+script = ExtResource("5_rjdco")
+distance = 1.0
+scroll_scale = Vector2(0.1, 0.55)
+repeat_size = Vector2(2336, 1652)
+repeat_times = 2
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(-1680.2, -402.052)
+
+[node name="SkyColor" type="Sprite2D" parent="Parallax/_sky/Clouds2"]
 self_modulate = Color(1, 1, 1, 0.203922)
 position = Vector2(-9, -42)
 scale = Vector2(2, 2)
 texture = ExtResource("10_370jf")
 centered = false
 
-[node name="Horizon" type="ParallaxBackground" parent="Parallax"]
-scroll_base_offset = Vector2(8640, 1620)
+[node name="Mountains" type="Node2D" parent="Parallax"]
+z_index = -1000
+position = Vector2(-1512.18, -180.924)
+script = ExtResource("5_rjdco")
+distance = 1.0
+scroll_scale = Vector2(0.1, 0.55)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(-1680.2, -402.052)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Horizon"]
-modulate = Color(0.188235, 0.188235, 0.180392, 1)
-motion_scale = Vector2(0.1, 0.25)
+[node name="_mountain_brown" type="Node2D" parent="Parallax/Mountains"]
+modulate = Color(0.505882, 0.431373, 0.368627, 1)
 
-[node name="Mountains" type="Node2D" parent="Parallax/Horizon/ParallaxLayer"]
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/Horizon/ParallaxLayer/Mountains"]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Mountains/_mountain_brown"]
 position = Vector2(-3391, 101)
 texture = ExtResource("13_qng4c")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax/Horizon/ParallaxLayer/Mountains"]
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax/Mountains/_mountain_brown"]
 position = Vector2(-2223, 101)
 texture = ExtResource("13_qng4c")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Parallax/Horizon/ParallaxLayer/Mountains"]
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/Mountains/_mountain_brown"]
 position = Vector2(-1055, 101)
 texture = ExtResource("13_qng4c")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Parallax/Horizon/ParallaxLayer/Mountains"]
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax/Mountains/_mountain_brown"]
 position = Vector2(113, 101)
 texture = ExtResource("13_qng4c")
 
-[node name="Sprite2D5" type="Sprite2D" parent="Parallax/Horizon/ParallaxLayer/Mountains"]
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/Mountains/_mountain_brown"]
 position = Vector2(1281, 101)
 texture = ExtResource("13_qng4c")
 
-[node name="Sprite2D6" type="Sprite2D" parent="Parallax/Horizon/ParallaxLayer/Mountains"]
+[node name="Sprite2D6" type="Sprite2D" parent="Parallax/Mountains/_mountain_brown"]
 position = Vector2(2449, 101)
 texture = ExtResource("13_qng4c")
 
-[node name="Sprite2D7" type="Sprite2D" parent="Parallax/Horizon/ParallaxLayer/Mountains"]
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/Mountains/_mountain_brown"]
 position = Vector2(3617, 101)
 texture = ExtResource("13_qng4c")
 
-[node name="Distance2" type="ParallaxBackground" parent="Parallax"]
-scroll_base_offset = Vector2(3840, 1080)
+[node name="HillsFar" type="Node2D" parent="Parallax"]
+z_index = -835
+position = Vector2(-1260.15, -150.77)
+script = ExtResource("5_rjdco")
+distance = 0.833333
+scroll_scale = Vector2(0.25, 0.625)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(-1680.2, -402.052)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Distance2"]
-modulate = Color(0.188235, 0.188235, 0.180392, 1)
-motion_scale = Vector2(0.2, 0.333)
+[node name="_green" type="Node2D" parent="Parallax/HillsFar"]
+modulate = Color(0.34902, 0.360784, 0.243137, 1)
 
-[node name="Far" type="ParallaxBackground" parent="Parallax"]
-layer = -60
-scroll_base_offset = Vector2(2880, 660)
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Far"]
-modulate = Color(0.243137, 0.25098, 0.184314, 1)
-motion_scale = Vector2(0.25, 0.45)
-
-[node name="Hills" type="Node2D" parent="Parallax/Far/ParallaxLayer"]
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/Far/ParallaxLayer/Hills"]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/HillsFar/_green"]
 position = Vector2(-3521, 324)
 rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("14_ckofe")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax/Far/ParallaxLayer/Hills"]
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax/HillsFar/_green"]
 position = Vector2(-2353, 324)
 rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("14_ckofe")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Parallax/Far/ParallaxLayer/Hills"]
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/HillsFar/_green"]
 position = Vector2(-1185, 324)
 rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("14_ckofe")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Parallax/Far/ParallaxLayer/Hills"]
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax/HillsFar/_green"]
 position = Vector2(-17, 324)
 rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("14_ckofe")
 
-[node name="Sprite2D5" type="Sprite2D" parent="Parallax/Far/ParallaxLayer/Hills"]
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/HillsFar/_green"]
 position = Vector2(1151, 324)
 rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("14_ckofe")
 
-[node name="Sprite2D6" type="Sprite2D" parent="Parallax/Far/ParallaxLayer/Hills"]
+[node name="Sprite2D6" type="Sprite2D" parent="Parallax/HillsFar/_green"]
 position = Vector2(2319, 324)
 rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("14_ckofe")
 
-[node name="Sprite2D7" type="Sprite2D" parent="Parallax/Far/ParallaxLayer/Hills"]
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/HillsFar/_green"]
 position = Vector2(3487, 324)
 rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("14_ckofe")
 
-[node name="Distance1" type="ParallaxBackground" parent="Parallax"]
-scroll_base_offset = Vector2(1440, 550)
+[node name="HillsNear" type="Node2D" parent="Parallax"]
+z_index = -560
+position = Vector2(-840.101, -100.513)
+script = ExtResource("5_rjdco")
+distance = 0.555556
+scroll_scale = Vector2(0.5, 0.75)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(-1680.2, -402.052)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Distance1"]
-modulate = Color(0.188235, 0.188235, 0.180392, 1)
-motion_scale = Vector2(0.4, 0.5)
+[node name="_trees" type="Node2D" parent="Parallax/HillsNear"]
+modulate = Color(0.247059, 0.254902, 0.164706, 1)
+position = Vector2(65, 20)
+scale = Vector2(0.55, 0.55)
 
-[node name="Middle" type="ParallaxBackground" parent="Parallax"]
-layer = -40
-scroll_base_offset = Vector2(960, 441.82)
+[node name="Tree_6_1" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-619.275, -80.9762)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_rsuyo")
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Middle"]
-motion_scale = Vector2(0.5, 0.55)
+[node name="Tree_6_2" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(367.725, -104.476)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("14_rsuyo")
 
-[node name="Hills" type="Node2D" parent="Parallax/Middle/ParallaxLayer"]
+[node name="Tree_6_3" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-1330.27, -104.476)
+scale = Vector2(-1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_4" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-1007.27, -80.4762)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_5" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-20.2746, -103.976)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_6" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-1718.27, -103.976)
+rotation = 3.14159
+scale = Vector2(1.5, -1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_7_1" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-333.275, -104.976)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_2" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(158.725, -125.976)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_3" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-1147.27, -106.976)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_4" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-637.775, -111.976)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_5" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-895.275, -127.976)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_6" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-1451.77, -113.976)
+texture = ExtResource("15_715er")
+
+[node name="Tree_6_7" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(916.725, -112.976)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_8" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(1903.73, -136.476)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_9" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(205.725, -136.476)
+scale = Vector2(-1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_10" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(528.725, -112.476)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_11" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(1515.73, -135.976)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_12" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-182.275, -135.976)
+rotation = 3.14159
+scale = Vector2(1.5, -1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_7_7" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(1202.73, -136.976)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_8" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(1694.73, -157.976)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_9" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(388.725, -138.976)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_10" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(898.225, -143.976)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_11" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(640.725, -159.976)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_12" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(84.2254, -145.976)
+texture = ExtResource("15_715er")
+
+[node name="hills_green" type="Node2D" parent="Parallax/HillsNear"]
 modulate = Color(0.34902, 0.360784, 0.243137, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer/Hills"]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/HillsNear/hills_green"]
 position = Vector2(-4037, 353.714)
 scale = Vector2(2, 1)
 texture = ExtResource("14_ckofe")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer/Hills"]
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/HillsNear/hills_green"]
 position = Vector2(-1701, 353.714)
 scale = Vector2(2, 1)
 texture = ExtResource("14_ckofe")
 
-[node name="Sprite2D5" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer/Hills"]
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/HillsNear/hills_green"]
 position = Vector2(635, 353.714)
 scale = Vector2(2, 1)
 texture = ExtResource("14_ckofe")
 
-[node name="Sprite2D7" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer/Hills"]
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/HillsNear/hills_green"]
 position = Vector2(2971, 353.714)
 scale = Vector2(2, 1)
 texture = ExtResource("14_ckofe")
 
-[node name="Church" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer"]
-self_modulate = Color(0.490196, 0.505882, 0.54902, 1)
-position = Vector2(-1741, -203.286)
-rotation = -0.0558505
-scale = Vector2(-0.5, 0.5)
-texture = ExtResource("11_hiwm4")
+[node name="_tombs_grey" type="Node2D" parent="Parallax/HillsNear"]
+modulate = Color(0.490196, 0.505882, 0.54902, 1)
+position = Vector2(-124.624, -20.6177)
 
-[node name="tomb_3" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer"]
-self_modulate = Color(0.490196, 0.505882, 0.54902, 1)
+[node name="tomb_3" type="Sprite2D" parent="Parallax/HillsNear/_tombs_grey"]
 light_mask = 0
 z_index = 26
-position = Vector2(-1949, 43)
+position = Vector2(-745.151, 79.1382)
 rotation = 0.167552
 scale = Vector2(0.28, 0.28)
 texture = SubResource("AtlasTexture_gwvkm")
 
-[node name="tomb_2" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer"]
-self_modulate = Color(0.490196, 0.505882, 0.54902, 1)
+[node name="tomb_4" type="Sprite2D" parent="Parallax/HillsNear/_tombs_grey"]
 light_mask = 0
 z_index = 26
-position = Vector2(-2012, 17)
-rotation = -0.354302
-scale = Vector2(-0.25, 0.25)
+position = Vector2(-778.151, 58.1382)
+rotation = 2.78729
+scale = Vector2(0.25, -0.25)
 texture = SubResource("AtlasTexture_gwvkm")
 
-[node name="tomb_4" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer"]
-self_modulate = Color(0.490196, 0.505882, 0.54902, 1)
+[node name="tomb_1" type="Sprite2D" parent="Parallax/HillsNear/_tombs_grey"]
 light_mask = 0
-z_index = 26
-position = Vector2(-2042, 23.9999)
-rotation = -0.354302
-scale = Vector2(-0.25, 0.25)
-texture = SubResource("AtlasTexture_gwvkm")
+position = Vector2(-746.151, 40.1382)
+rotation = -0.0244346
+scale = Vector2(0.2, 0.2)
+texture = SubResource("AtlasTexture_qt18d")
 
-[node name="tomb_5" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer"]
+[node name="Church" type="Sprite2D" parent="Parallax/HillsNear"]
 self_modulate = Color(0.490196, 0.505882, 0.54902, 1)
+position = Vector2(-1049.94, -93.0407)
+rotation = 3.08574
+scale = Vector2(0.3, -0.3)
+texture = ExtResource("11_hiwm4")
+
+[node name="BG_Near" type="Node2D" parent="Parallax"]
+z_index = -376
+position = Vector2(-559.507, -66.9417)
+script = ExtResource("5_rjdco")
+distance = 0.37
+scroll_scale = Vector2(0.667, 0.8335)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(-1680.2, -402.052)
+
+[node name="_trees" type="Node2D" parent="Parallax/BG_Near"]
+modulate = Color(0.247059, 0.254902, 0.164706, 1)
+position = Vector2(65, 20)
+scale = Vector2(0.7, 0.7)
+
+[node name="Tree_6_1" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-619.275, -80.9762)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_2" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(367.725, -104.476)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_3" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-1330.27, -104.476)
+scale = Vector2(-1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_4" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-1007.27, -80.4762)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_5" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-20.2746, -103.976)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_6" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-1586.42, -128.655)
+rotation = 3.14159
+scale = Vector2(1.5, -1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_7_1" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-333.275, -104.976)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_2" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(158.725, -125.976)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_3" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-1147.27, -106.976)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_4" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-637.775, -111.976)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_5" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-895.275, -127.976)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_6" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-1451.77, -113.976)
+texture = ExtResource("15_715er")
+
+[node name="Tree_6_7" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(916.725, -112.976)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_8" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(1903.73, -136.476)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_9" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(205.725, -136.476)
+scale = Vector2(-1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_10" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(528.725, -112.476)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_11" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(1515.73, -135.976)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_12" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-182.275, -135.976)
+rotation = 3.14159
+scale = Vector2(1.5, -1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_7_7" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(1202.73, -136.976)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_8" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(1694.73, -157.976)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("15_715er")
+
+[node name="_tree_green" type="Node2D" parent="Parallax/BG_Near/_trees/Tree_7_8"]
+modulate = Color(0.247059, 0.254902, 0.164706, 1)
+position = Vector2(1223.62, 139.666)
+rotation = 3.14159
+scale = Vector2(1.19048, -1.19048)
+
+[node name="Tree_6_1" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(-195.553, -66.7307)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_2" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(791.447, -90.2307)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_3" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(-906.553, -90.2307)
+rotation = -3.14159
+scale = Vector2(1.5, -1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_4" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(-583.553, -66.2307)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_5" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(403.447, -89.7307)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_7_1" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(90.4473, -90.7307)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_2" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(582.447, -111.731)
+rotation = -3.14159
+scale = Vector2(1.2, -1.2)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_3" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(-723.553, -92.7307)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_4" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(-214.053, -97.7307)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_5" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(-471.553, -113.731)
+rotation = -3.14159
+scale = Vector2(1.2, -1.2)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_6" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(-1028.05, -99.7307)
+texture = ExtResource("15_715er")
+
+[node name="Tree_6_7" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(2111.45, -46.7307)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_8" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(3592.45, -86.7307)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_9" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(1400.45, -70.2307)
+rotation = -3.14159
+scale = Vector2(1.5, -1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_10" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(1723.45, -46.2307)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_11" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(2710.45, -69.7307)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_6_12" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(1012.45, -69.7307)
+rotation = 3.14159
+scale = Vector2(1.5, -1.5)
+texture = ExtResource("14_rsuyo")
+
+[node name="Tree_7_7" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(2397.45, -70.7307)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_8" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(2889.45, -91.7307)
+rotation = -3.14159
+scale = Vector2(1.2, -1.2)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_9" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(1583.45, -72.7307)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_10" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(2092.95, -77.7307)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_12" type="Sprite2D" parent="Parallax/BG_Near/_trees/Tree_7_8/_tree_green"]
+position = Vector2(1278.95, -79.7307)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_9" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(388.725, -138.976)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_10" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(898.225, -143.976)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_11" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(640.725, -159.976)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("15_715er")
+
+[node name="Tree_7_12" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(84.2254, -145.976)
+texture = ExtResource("15_715er")
+
+[node name="_hills" type="Node2D" parent="Parallax/BG_Near"]
+modulate = Color(0.34902, 0.360784, 0.243137, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/BG_Near/_hills"]
+position = Vector2(-4049.26, 380.81)
+scale = Vector2(2, 1)
+texture = ExtResource("14_ckofe")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/BG_Near/_hills"]
+position = Vector2(-1713.26, 380.81)
+scale = Vector2(2, 1)
+texture = ExtResource("14_ckofe")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/BG_Near/_hills"]
+position = Vector2(622.743, 380.81)
+scale = Vector2(2, 1)
+texture = ExtResource("14_ckofe")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/BG_Near/_hills"]
+position = Vector2(2958.74, 380.81)
+scale = Vector2(2, 1)
+texture = ExtResource("14_ckofe")
+
+[node name="_tombs_grey" type="Node2D" parent="Parallax/BG_Near"]
+modulate = Color(0.490196, 0.505882, 0.54902, 1)
+position = Vector2(-568.049, -33.1175)
+
+[node name="tomb_5" type="Sprite2D" parent="Parallax/BG_Near/_tombs_grey"]
 light_mask = 0
 z_index = 26
-position = Vector2(-2442, 51)
+position = Vector2(-769.766, 276.616)
 rotation = 0.0558505
 scale = Vector2(0.28, 0.28)
 texture = SubResource("AtlasTexture_gwvkm")
 
-[node name="tomb_6" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer"]
-self_modulate = Color(0.490196, 0.505882, 0.54902, 1)
+[node name="tomb_6" type="Sprite2D" parent="Parallax/BG_Near/_tombs_grey"]
 light_mask = 0
 z_index = 26
-position = Vector2(-2404, 40)
-rotation = -0.354302
-scale = Vector2(-0.25, 0.25)
+position = Vector2(-731.766, 265.616)
+rotation = 2.78729
+scale = Vector2(0.25, -0.25)
 texture = SubResource("AtlasTexture_gwvkm")
 
-[node name="tomb_1" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer"]
+[node name="tomb_2" type="Sprite2D" parent="Parallax/BG_Near"]
 self_modulate = Color(0.490196, 0.505882, 0.54902, 1)
 light_mask = 0
-position = Vector2(-1968, 6)
-rotation = -0.0244346
-scale = Vector2(0.225, 0.225)
+position = Vector2(-961.492, 30.9417)
+rotation = 0.136136
+scale = Vector2(0.4, 0.4)
 texture = SubResource("AtlasTexture_qt18d")
 
-[node name="House" type="Sprite2D" parent="Parallax/Middle/ParallaxLayer"]
+[node name="House" type="Sprite2D" parent="Parallax/BG_Near"]
 self_modulate = Color(0.411765, 0.341176, 0.258824, 1)
-position = Vector2(2192, 0.713776)
+position = Vector2(1800.81, -6.16623)
 rotation = 0.0575959
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_3lj05")
 
-[node name="Near" type="ParallaxBackground" parent="Parallax"]
-layer = -20
-scroll_base_offset = Vector2(480, 180)
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Near"]
-motion_scale = Vector2(0.667, 0.75)
-
-[node name="GreenTrees2" type="Node2D" parent="Parallax/Near/ParallaxLayer"]
-modulate = Color(0.247059, 0.254902, 0.164706, 1)
-position = Vector2(65, 20)
-scale = Vector2(0.8, 0.8)
-
-[node name="Tree_6_1" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(-176.5, -69.25)
-scale = Vector2(1.4, 1.4)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_2" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(810.5, -92.75)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_3" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(-887.5, -92.75)
-scale = Vector2(-1.5, 1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_4" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(-564.5, -68.75)
-scale = Vector2(1.4, 1.4)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_5" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(422.5, -92.25)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_6" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(-1275.5, -92.25)
-rotation = 3.14159
-scale = Vector2(1.5, -1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_7_1" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(109.5, -93.25)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_2" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(601.5, -114.25)
-scale = Vector2(-1.2, 1.2)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_3" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(-704.5, -95.2501)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_4" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(-195, -100.25)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_5" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(-452.5, -116.25)
-scale = Vector2(-1.2, 1.2)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_6" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(-1009, -102.25)
-texture = ExtResource("15_715er")
-
-[node name="Tree_6_7" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(1359.5, -101.25)
-scale = Vector2(1.4, 1.4)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_8" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(2346.5, -124.75)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_9" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(648.5, -124.75)
-scale = Vector2(-1.5, 1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_10" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(971.5, -100.75)
-scale = Vector2(1.4, 1.4)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_11" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(1958.5, -124.25)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_12" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(260.5, -124.25)
-rotation = 3.14159
-scale = Vector2(1.5, -1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_7_7" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(1645.5, -125.25)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_8" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(2137.5, -146.25)
-scale = Vector2(-1.2, 1.2)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_9" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(831.5, -127.25)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_10" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(1341, -132.25)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_11" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(1083.5, -148.25)
-scale = Vector2(-1.2, 1.2)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_12" type="Sprite2D" parent="Parallax/Near/ParallaxLayer/GreenTrees2"]
-position = Vector2(527, -134.25)
-texture = ExtResource("15_715er")
-
-[node name="Nearest" type="ParallaxBackground" parent="Parallax"]
-layer = -10
-scroll_base_offset = Vector2(240, 60)
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Nearest"]
-motion_scale = Vector2(0.8, 0.9)
-
-[node name="GreenTrees" type="Node2D" parent="Parallax/Nearest/ParallaxLayer"]
-modulate = Color(0.247059, 0.254902, 0.164706, 1)
-
-[node name="Tree_6_1" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(-181, -130)
-scale = Vector2(1.4, 1.4)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_2" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(806, -153.5)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_3" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(-892, -153.5)
-scale = Vector2(-1.5, 1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_4" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(-569, -129.5)
-scale = Vector2(1.4, 1.4)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_5" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(418, -153)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_6" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(-1280, -153)
-rotation = 3.14159
-scale = Vector2(1.5, -1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_7_1" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(105, -154)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_2" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(597, -175)
-scale = Vector2(-1.2, 1.2)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_3" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(-709, -156)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_4" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(-199.5, -161)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_5" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(-457, -177)
-scale = Vector2(-1.2, 1.2)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_6" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(-1013.5, -163)
-texture = ExtResource("15_715er")
-
-[node name="Tree_6_7" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(2126, -110)
-scale = Vector2(1.4, 1.4)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_8" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(3607, -150)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_9" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(1415, -133.5)
-scale = Vector2(-1.5, 1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_10" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(1738, -109.5)
-scale = Vector2(1.4, 1.4)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_11" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(2725, -133)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_12" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(1027, -133)
-rotation = 3.14159
-scale = Vector2(1.5, -1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_7_7" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(2412, -134)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_8" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(2904, -155)
-scale = Vector2(-1.2, 1.2)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_9" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(1598, -136)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_10" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(2107.5, -141)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_11" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(1850, -157)
-scale = Vector2(-1.2, 1.2)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_12" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer/GreenTrees"]
-position = Vector2(1293.5, -143)
-texture = ExtResource("15_715er")
-
-[node name="tomb_2" type="Sprite2D" parent="Parallax/Nearest/ParallaxLayer"]
-self_modulate = Color(0.490196, 0.505882, 0.54902, 1)
-light_mask = 0
-position = Vector2(-3579, -11.0001)
-rotation = -0.113446
-scale = Vector2(0.8, 0.8)
-texture = SubResource("AtlasTexture_qt18d")
-
-[node name="Foreground" type="ParallaxBackground" parent="Parallax"]
-layer = 10
-scroll_base_offset = Vector2(-106.667, -31.763)
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Foreground"]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(0, 22)
-motion_scale = Vector2(1.125, 1.063)
-
-[node name="GreenTrees" type="Node2D" parent="Parallax/Foreground/ParallaxLayer"]
-modulate = Color(0.247059, 0.254902, 0.164706, 1)
-scale = Vector2(1.2, 1.2)
-
-[node name="Tree_6_2" type="Sprite2D" parent="Parallax/Foreground/ParallaxLayer/GreenTrees"]
-position = Vector2(820.667, -171)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_7_6" type="Sprite2D" parent="Parallax/Foreground/ParallaxLayer/GreenTrees"]
-position = Vector2(-998.833, -180.5)
-texture = ExtResource("15_715er")
-
-[node name="Tree_6_7" type="Sprite2D" parent="Parallax/Foreground/ParallaxLayer/GreenTrees"]
-position = Vector2(2140.67, -127.5)
-scale = Vector2(1.4, 1.4)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_10" type="Sprite2D" parent="Parallax/Foreground/ParallaxLayer/GreenTrees"]
-position = Vector2(2279.17, -175.833)
-scale = Vector2(1.4, 1.4)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_6_12" type="Sprite2D" parent="Parallax/Foreground/ParallaxLayer/GreenTrees"]
-position = Vector2(-1418.33, -177.5)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("14_rsuyo")
-
-[node name="Tree_7_7" type="Sprite2D" parent="Parallax/Foreground/ParallaxLayer/GreenTrees"]
-position = Vector2(2426.67, -151.5)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_9" type="Sprite2D" parent="Parallax/Foreground/ParallaxLayer/GreenTrees"]
-position = Vector2(1138.33, -160)
-texture = ExtResource("15_715er")
-
-[node name="Tree_7_11" type="Sprite2D" parent="Parallax/Foreground/ParallaxLayer/GreenTrees"]
-position = Vector2(1948.33, -170)
-scale = Vector2(-1.2, 1.2)
-texture = ExtResource("15_715er")
-
-[node name="Sign" type="Sprite2D" parent="Parallax/Foreground/ParallaxLayer"]
-self_modulate = Color(0.556863, 0.494118, 0.45098, 1)
-light_mask = 0
-position = Vector2(-2351, -134)
-scale = Vector2(1, 1.03116)
-texture = ExtResource("2_sb4be")
-
-[node name="tomb_1" type="Sprite2D" parent="Parallax/Foreground/ParallaxLayer"]
-self_modulate = Color(0.490196, 0.505882, 0.54902, 1)
-light_mask = 0
-position = Vector2(-3612, -37)
-rotation = 0.0872665
-texture = SubResource("AtlasTexture_qt18d")
+[node name="BG_Nearest" type="Node2D" parent="Parallax"]
+z_index = -230
+position = Vector2(-336.041, -40.2052)
+script = ExtResource("5_rjdco")
+distance = 0.222222
+scroll_scale = Vector2(0.8, 0.9)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(-1680.2, -402.052)
+
+[node name="_hills" type="Node2D" parent="Parallax/BG_Nearest"]
+modulate = Color(0.34902, 0.360784, 0.243137, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/BG_Nearest/_hills"]
+position = Vector2(-4070.91, 404.879)
+scale = Vector2(2, 1)
+texture = ExtResource("14_ckofe")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/BG_Nearest/_hills"]
+position = Vector2(-1734.91, 404.879)
+scale = Vector2(2, 1)
+texture = ExtResource("14_ckofe")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/BG_Nearest/_hills"]
+position = Vector2(601.092, 404.879)
+scale = Vector2(2, 1)
+texture = ExtResource("14_ckofe")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/BG_Nearest/_hills"]
+position = Vector2(2937.09, 404.879)
+scale = Vector2(2, 1)
+texture = ExtResource("14_ckofe")

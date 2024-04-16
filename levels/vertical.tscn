@@ -9,7 +9,6 @@
 [node name="Vertical" type="Node2D"]
 script = ExtResource("1_q0k8y")
 level_name = "Vertical"
-show_data_in_editor = true
 starting_position_y = -2.5
 flip_player_direction = true
 top_boundary = -68.0

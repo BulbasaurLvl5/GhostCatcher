@@ -2,8 +2,8 @@ class_name Shockwave
 extends Area2D
 
 
-@export_range(0.0, 5.0, 0.0, "or_greater", "suffix:seconds") var shockwave_duration : float = 1.0
-@export_range(0.0, 500.0, 0.0, "or_greater", "suffix:pixels") var scale_multiplier : float = 50.0
+@export_range(0.0, 5.0, 0.001, "or_greater", "suffix:seconds") var shockwave_duration : float = 1.0
+@export_range(0.0, 500.0, 0.001, "or_greater", "suffix:pixels") var scale_multiplier : float = 50.0
 
 @onready var duration_remaining : float = shockwave_duration
 @onready var final_scale : Vector2 = scale * scale_multiplier

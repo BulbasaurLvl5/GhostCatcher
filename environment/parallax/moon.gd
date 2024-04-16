@@ -2,7 +2,7 @@ class_name Moon
 extends PathFollow2D
 
 
-@export_range(0.0, 120.0, 0.0, "or_greater", "suffix:seconds") var event_length : float = 120.0
+@export_range(0.0, 120.0, 0.01, "or_greater", "suffix:seconds") var event_length : float = 120.0
 @onready var speed : float = 1.0 / event_length
 var rng = RandomNumberGenerator.new()
 

@@ -61,7 +61,6 @@ platform_wall_layers = 5
 script = ExtResource("1_l4530")
 cast = NodePath("ShapeCast2D")
 canvas_mod_node = ExtResource("2_hrds7")
-verbose = true
 data = ExtResource("2_h06d8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -82,7 +81,6 @@ animation = &"idle"
 offset = Vector2(-40, -50)
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-unique_name_in_owner = true
 script = ExtResource("1_dcopr")
 initial_state = NodePath("InAir")
 
@@ -148,7 +146,6 @@ drag_top_margin = 0.4
 drag_right_margin = 0.15
 drag_bottom_margin = 0.3
 script = ExtResource("16_1amk7")
-verbose = true
 
 [node name="SFX" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -208,7 +205,10 @@ area_mask = 2
 [node name="PointLight2D" type="PointLight2D" parent="."]
 light_mask = 2
 visibility_layer = 2
+range_z_min = -500
+range_z_max = 500
 range_layer_min = -30
+range_layer_max = 30
 shadow_color = Color(0, 0, 0, 0.72549)
 texture = SubResource("GradientTexture2D_0ihpg")
 

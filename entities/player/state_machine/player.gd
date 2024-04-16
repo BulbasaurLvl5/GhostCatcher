@@ -14,8 +14,6 @@ extends CharacterBody2D
 var level_boundary : Rect2:
 	set(value):
 		level_boundary = value
-		if verbose:
-			print("player.gd level boundary was successfully updated!!!")
 var canvas_mod_dispatched : bool = false
 
 var x_input : int = 0
@@ -37,39 +35,10 @@ var is_grabbing_wall : bool = false
 
 
 func _enter_tree():
-	#if verbose:
-		#print("player.gd _enter_tree has been called")
 	check_canvas_mod()
 
-
-#func find_level_parameters():
-	#var level_parameters : LevelData
-	#var nodes : Array = get_all_children(get_tree().root)
-	#for n in nodes:
-		#if n is LevelData:
-			#level_parameters = n
-			#break
-	#if level_parameters:
-		#if verbose:
-			#print("PLAYER position is ", self.position)
-		#self.position = level_parameters.starting_pos
-		##facing_direction = 1
-		##%PlayerAnimatedSprite2D.scale.x = abs(%PlayerAnimatedSprite2D.scale.x)
-		##%RayCasts.scale.x = abs(%RayCasts.scale.x)
-		##if level_parameters.flip_player_direction:
-			##facing_direction = -1
-			##%PlayerAnimatedSprite2D.scale.x *= -1
-			##%RayCasts.scale.x *= -1
-		#if verbose:
-			#print("player.gd find_level_parameters() moved PLAYER to ", self.position, " facing ", facing_direction)
-	#else:
-		#print("LevelParameters node not found by player.gd")
-		
 		
 func _ready():
-	if verbose:
-		print("player.gd _ready has been called")
-
 	if !cast && %ShapeCast2D:
 		cast = %ShapeCast2D
 	if !canvas_mod_dispatched:

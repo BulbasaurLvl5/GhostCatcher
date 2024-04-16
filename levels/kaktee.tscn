@@ -12,7 +12,6 @@
 [node name="Kaktee" type="Node2D"]
 script = ExtResource("1_en8yv")
 level_name = "Kaktee"
-show_data_in_editor = true
 starting_position_x = -2.0
 starting_position_y = 0.5
 top_boundary = -47.0

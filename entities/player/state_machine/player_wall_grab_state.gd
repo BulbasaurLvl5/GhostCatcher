@@ -2,7 +2,7 @@ class_name PlayerWallGrabState
 extends PlayerState
 
 
-@export_range(-10.0, 10.0, 0.0, "or_less", "or_greater", "suffix:pixels") var visual_offset_x : float = 0
+@export_range(-10.0, 10.0, 0.001, "or_less", "or_greater", "suffix:pixels") var visual_offset_x : float = 0
 
 @onready var wall_direction : int
 @onready var wall : Node
