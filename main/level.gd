@@ -85,13 +85,11 @@ func calculate_starting_pos():
 
 func _enter_tree():
 	if !Engine.is_editor_hint():
-		print("level_parameters _enter_tree()")
 		search_scene()
 
 
 func _ready():
 	if !Engine.is_editor_hint():
-		print("level_parameters _ready()")
 		if !player || !camera:
 			search_scene()
 	else:
@@ -103,7 +101,7 @@ func _ready():
 func _process(_delta):
 	if !Engine.is_editor_hint():
 		if !player || !camera:
-			print("level_parameters _process() calling search_scene()")
+			#print("level_parameters _process() calling search_scene()")
 			search_scene()
 	elif level_name != name:
 		level_name = name

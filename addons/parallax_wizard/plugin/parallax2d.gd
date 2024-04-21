@@ -4,6 +4,8 @@ extends Node2D
 
 
 @onready var in_editor : bool = Engine.is_editor_hint()
+@export var verbose_in_editor : bool = false
+@export var verbose_in_game : bool = false
 
 const DEFAULT_LIMIT : int = 10000000
 var group_name : String
@@ -75,6 +77,8 @@ func _process(delta):
 
 func _update_position(delta):
 	screen_offset = _calculate_screen_offset()
+	if (verbose_in_editor && in_editor) || (verbose_in_game && !in_editor):
+		print(self.name, " calculated screen_offset to be ", screen_offset)
 	autoscroll_offset += autoscroll * delta
 	autoscroll_offset = autoscroll_offset.posmodv(repeat_size)
 	_update_scroll()
@@ -86,16 +90,21 @@ func _exit_tree():
 
 func _calculate_screen_offset() -> Vector2:
 	var screen_ofs : Vector2
+	var view = Viewport
 	if Engine.is_editor_hint():
-		#TODO: This is closer, but not quite there yet
-		var view = EditorInterface.get_editor_viewport_2d()
+		view = EditorInterface.get_editor_viewport_2d()
 		var inverse = view.get_global_canvas_transform().affine_inverse()
 		var view_size = Vector2(float(view.size.x) * inverse.get_scale().x, float(view.size.y) * inverse.get_scale().y)
-		screen_ofs = inverse.origin + view_size / 2
+		screen_ofs = inverse.origin + view_size / 2.0
 	else:
-		var parent_node_2d: Node2D = get_parent() as Node2D
-		if parent_node_2d:
-			screen_ofs = (parent_node_2d.get_viewport_transform() * parent_node_2d.get_global_transform()).affine_inverse() * Vector2(get_viewport_rect().size / 2.0)
+		view = get_viewport()
+		if view:
+			var camera = view.get_camera_2d()
+			if camera:
+				screen_ofs = camera.get_screen_center_position()
+		#var parent_node_2d: Node2D = get_parent() as Node2D
+		#if parent_node_2d:
+			#screen_ofs = (parent_node_2d.get_viewport_transform() * parent_node_2d.get_global_transform()).affine_inverse() * Vector2(get_viewport_rect().size / 2.0)
 	return screen_ofs
 
 
@@ -130,6 +139,9 @@ func _update_scroll():
 			scroll_ofs.y = clamp(scroll_ofs.y, limit_begin.y, limit_end.y - vps.y)
 	
 	scroll_ofs *= scroll_scale
+	if (verbose_in_editor && in_editor) || (verbose_in_game && !in_editor):
+		print(self.name, " screen_offset * scroll_scale = ", scroll_ofs)
+	
 	
 	if repeat_size.x:
 		var mod : float = posmod(scroll_ofs.x - scroll_offset.x - autoscroll_offset.x, repeat_size.x)
@@ -147,7 +159,8 @@ func _update_scroll():
 		scroll_ofs -= screen_offset
 	
 	position = scroll_ofs
-
+	if (verbose_in_editor && in_editor) || (verbose_in_game && !in_editor):
+		print(self.name, " position changed to = ", scroll_ofs)
 
 func _update_repeat():
 	if !is_inside_tree:

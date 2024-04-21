@@ -42,6 +42,8 @@ enum Types {DEFAULT, HAZE, CLOUDS, SKY}
 func _update_position(delta):
 	if !scroll_locked:
 		screen_offset = _calculate_screen_offset()
+		if (verbose_in_editor && in_editor) || (verbose_in_game && !in_editor):
+			print(self.name, " calculated screen_offset to be ", screen_offset)
 	autoscroll_offset += autoscroll * delta
 	autoscroll_offset = autoscroll_offset.posmodv(repeat_size)
 	_update_scroll()

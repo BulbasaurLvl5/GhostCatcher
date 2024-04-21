@@ -51,12 +51,12 @@ var level_boundary : Rect2:
 			print("camera.gd level_boundary was successfully updated!!!")
 
 
-func _enter_tree():
-	print("camera.gd _enter_tree()")
+#func _enter_tree():
+	#print("camera.gd _enter_tree()")
 
 
 func _ready():
-	print("camera.gd _ready()")
+	#print("camera.gd _ready()")
 	enable_smooth_and_drag(false)
 	position = Vector2(0, -200)
 

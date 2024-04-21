@@ -645,6 +645,8 @@ position = Vector2(683.084, -2030.17)
 script = ExtResource("13_pcsxy")
 distance = 888.0
 type = 3
+verbose_in_editor = null
+verbose_in_game = null
 scroll_scale = Vector2(0.01, 0.01)
 screen_offset = Vector2(689.984, -2050.68)
 
@@ -659,6 +661,8 @@ position = Vector2(683.084, -2030.17)
 script = ExtResource("13_pcsxy")
 distance = 888.0
 type = 3
+verbose_in_editor = null
+verbose_in_game = null
 scroll_scale = Vector2(0.01, 0.01)
 screen_offset = Vector2(689.984, -2050.68)
 
@@ -677,6 +681,8 @@ position = Vector2(683.084, -2030.17)
 script = ExtResource("13_pcsxy")
 distance = 888.0
 type = 3
+verbose_in_editor = null
+verbose_in_game = null
 scroll_scale = Vector2(0.01, 0.01)
 screen_offset = Vector2(689.984, -2050.68)
 
@@ -701,6 +707,8 @@ position = Vector2(683.084, -2030.17)
 script = ExtResource("13_pcsxy")
 distance = 888.0
 type = 3
+verbose_in_editor = null
+verbose_in_game = null
 scroll_scale = Vector2(0.01, 0.01)
 screen_offset = Vector2(689.984, -2050.68)
 
@@ -716,6 +724,8 @@ z_index = -894
 position = Vector2(554.521, -824.039)
 script = ExtResource("13_pcsxy")
 distance = 0.89297
+verbose_in_editor = null
+verbose_in_game = null
 scroll_scale = Vector2(0.196327, 0.598163)
 screen_offset = Vector2(689.984, -2050.68)
 
@@ -752,6 +762,8 @@ z_index = -519
 position = Vector2(319.038, -474.101)
 script = ExtResource("13_pcsxy")
 distance = 0.51376
+verbose_in_editor = null
+verbose_in_game = null
 scroll_scale = Vector2(0.537616, 0.768808)
 screen_offset = Vector2(689.984, -2050.68)
 
@@ -788,6 +800,8 @@ z_index = -283
 position = Vector2(170.914, -253.985)
 script = ExtResource("13_pcsxy")
 distance = 0.27523
+verbose_in_editor = null
+verbose_in_game = null
 scroll_scale = Vector2(0.752293, 0.876146)
 screen_offset = Vector2(689.984, -2050.68)
 
