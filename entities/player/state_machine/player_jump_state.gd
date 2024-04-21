@@ -35,6 +35,8 @@ func Do_Checks():
 	elif player.can_stomp():
 		Transitioned.emit(self,"Stomp")
 	elif player.velocity.y > 0 || player.get_collisions(Vector2.UP):
+		if player.get_collisions(Vector2.UP):
+			print("Player BONKED HEAD ")
 		Transitioned.emit(self,"InAir")
 	elif player.y_input >= 0:
 		if player.can_grab_wall():
@@ -54,4 +56,4 @@ func Physics_Update(delta):
 
 
 func Exit():
-	pass
+	player.height_fallen_from = player.position.y

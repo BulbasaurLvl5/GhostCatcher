@@ -31,7 +31,19 @@ var was_grounded : bool = false
 var could_grab_wall : bool = false
 var is_grabbing_wall : bool = false
 
-@onready var remaining_air_actions : int = data.max_air_actions
+@onready var remaining_air_actions : int = data.max_air_actions:
+	set(value):
+		if remaining_air_actions == value:
+			return
+		remaining_air_actions = clamp(value, 0, data.max_air_actions)
+		if remaining_air_actions >= 1:
+			%AirAction1.visible = true
+		else:
+			%AirAction1.visible = false
+		if remaining_air_actions == 2:
+			%AirAction2.visible = true
+		else:
+			%AirAction2.visible = false
 
 
 func _enter_tree():
@@ -214,7 +226,7 @@ func move():
 	move_and_slide()
 	
 
-func get_collisions(offset : Vector2 = Vector2.ZERO, shape_cast : ShapeCast2D = cast) -> Array:
+func get_collisions(offset : Vector2 = Vector2.ZERO, ignore_areas : bool = true, shape_cast : ShapeCast2D = cast) -> Array:
 	var array : Array = []
 	shape_cast.position += offset
 	shape_cast.force_shapecast_update()
@@ -228,6 +240,10 @@ func get_collisions(offset : Vector2 = Vector2.ZERO, shape_cast : ShapeCast2D = 
 		cast.position = Vector2.ZERO
 	else:
 		shape_cast.position -= offset
+	if ignore_areas:
+		for n in array:
+			if n is Area2D:
+				array.erase(n)
 	return array
 
 

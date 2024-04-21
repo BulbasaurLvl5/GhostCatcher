@@ -13,13 +13,14 @@ var pause_remaining : float = 0
 
 func _ready():
 	if !node:
-		print(self.name," has no assigned object to carry.")
-	else:
+		#print(self.name," has no assigned object to carry.")
+		return
+	if node is MobAI:
 		node.path = self
-		if !get_children().has(node):
-			create_remote_transform()
-		if progress_ratio == 0:
-			progress_ratio = 1
+	if !get_children().has(node):
+		create_remote_transform()
+	if progress_ratio == 0:
+		progress_ratio = 1
 
 
 func create_remote_transform():

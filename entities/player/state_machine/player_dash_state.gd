@@ -14,6 +14,7 @@ extends PlayerState
 
 func Enter(from : PlayerState = null):
 	recovering = false
+	player.height_fallen_from = player.position.y
 	player.dash_button_reset = false
 	set_animation()
 	if from.name != "WallGrab":
