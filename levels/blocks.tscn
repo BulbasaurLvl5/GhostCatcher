@@ -9,7 +9,6 @@
 [node name="Blocks" type="Node2D"]
 script = ExtResource("1_0hrum")
 level_name = "Blocks"
-show_data_in_editor = true
 starting_position_x = 2.0
 starting_position_y = 0.5
 top_boundary = -24.5
