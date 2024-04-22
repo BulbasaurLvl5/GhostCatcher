@@ -35,26 +35,77 @@ public static class LevelLoader
 	static PackedScene packedLevel_NewGround = ResourceLoader.Load<PackedScene>("res://levels/new_ground.tscn");
 	static PackedScene packedLevel_RingOfFire = ResourceLoader.Load<PackedScene>("res://levels/ring_of_fire.tscn");
 	static PackedScene packedLevel_SkullCap = ResourceLoader.Load<PackedScene>("res://levels/skull_cap.tscn");
+
+	public class LevelVariables
+	{
+		public string Name {get;}
+		public float[] Times{get;}
+
+		public Action<Main> Loadfunction {get;}
+
+		public LevelVariables(string name, float[] times, Action<Main> loadfunction)
+		{
+			this.Name = name;
+			this.Times = times;
+			this.Loadfunction = loadfunction;
+		}
+
+		public static int ReturnScore(int level, double time)
+		{
+			Dictionary<int, int[]> _leveltimedata = new Dictionary<int, int[]>()
+			{
+				//times for rating from better to worse. i.e. first is max stars
+				{0,new int[5]{4,5,6,7,8}},
+			};
+			
+			if(level >= _leveltimedata.Count || time == 0)
+				return 0; //default if level is out of range or time non existant
+
+			for (int i = 0; i < _leveltimedata[level].Length; i++)
+			{
+				if(time < _leveltimedata[level][i])
+				{	
+					// GD.Print("level: "+level);
+					// GD.Print("i: "+i);
+					// GD.Print("time: "+time);
+					// GD.Print("_leveltimedata: "+_leveltimedata[level][i]);
+					// GD.Print("return: "+(_leveltimedata[level].Length-i));
+					return _leveltimedata[level].Length-i; //higher rating is better
+				}
+			}
+			return 0;        
+		}
+	}
 	
 	public static Action<Main>[] LoadLevel = {
+	// collectible ghosts, endless pit
 		LoadLevel_Tutorial,
-		LoadLevel_Platforms,
 		LoadLevel_Tunnels,
+		LoadLevel_Vertical,
+		LoadLevel_Treeson,
 		LoadLevel_Cliff,
+    // moving platforms
+		//blocks
+    // 1st enemy type (ghosts)
+    // spikes
 		LoadLevel_Spikes,
 		LoadLevel_MountainSide,
 		LoadLevel_Kaktee,
-		LoadLevel_Vertical,
 		LoadLevel_DeepPit,
 		LoadLevel_Columns,
-		LoadLevel_Treeson,
+    // 2nd enemy type (skulls)
+		LoadLevel_Platforms,
+    // falling platforms
 		LoadLevel_ShakyGround,
+    // 3rd enemy type (???)
+    // extra air
+	// unasigned
 		LoadLevel_Breakthrough,
 		LoadLevel_Caves,
 		LoadLevel_FactoryYard,
 		LoadLevel_Forest,
-		LoadLevel_NewGround,
 		LoadLevel_RingOfFire,
+		LoadLevel_NewGround,
 		LoadLevel_SkullCap
 		};
 
@@ -307,7 +358,7 @@ public static class LevelLoader
 		PlayerDisableDelay(_main, 1);
 	}
 	
-		static void LoadLevel_ShakyGround(Main _main)
+	static void LoadLevel_ShakyGround(Main _main)
 	{
 		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(-900, -170), 0);
 
@@ -327,7 +378,7 @@ public static class LevelLoader
 		PlayerDisableDelay(_main, 1);
 	}
 
-		static void LoadLevel_Breakthrough(Main _main)
+	static void LoadLevel_Breakthrough(Main _main)
 	{
 		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, -220), 0);
 
@@ -347,7 +398,7 @@ public static class LevelLoader
 		PlayerDisableDelay(_main, 1);
 	}
 
-		static void LoadLevel_Caves(Main _main)
+	static void LoadLevel_Caves(Main _main)
 	{
 		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, 0), 0);
 
@@ -367,7 +418,7 @@ public static class LevelLoader
 		PlayerDisableDelay(_main, 1);
 	}
 
-		static void LoadLevel_FactoryYard(Main _main)
+	static void LoadLevel_FactoryYard(Main _main)
 	{
 		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, 0), 0);
 
@@ -387,7 +438,7 @@ public static class LevelLoader
 		PlayerDisableDelay(_main, 1);
 	}
 
-		static void LoadLevel_Forest(Main _main)
+	static void LoadLevel_Forest(Main _main)
 	{
 		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, 0), 0);
 
@@ -407,7 +458,7 @@ public static class LevelLoader
 		PlayerDisableDelay(_main, 1);
 	}
 	
-		static void LoadLevel_NewGround(Main _main)
+	static void LoadLevel_NewGround(Main _main)
 	{
 		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, 0), 0);
 
@@ -427,7 +478,7 @@ public static class LevelLoader
 		PlayerDisableDelay(_main, 1);
 	}
 	
-		static void LoadLevel_RingOfFire(Main _main)
+	static void LoadLevel_RingOfFire(Main _main)
 	{
 		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, 0), 0);
 
@@ -447,7 +498,7 @@ public static class LevelLoader
 		PlayerDisableDelay(_main, 1);
 	}
 	
-		static void LoadLevel_SkullCap(Main _main)
+	static void LoadLevel_SkullCap(Main _main)
 	{
 		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0, 0), 0);
 

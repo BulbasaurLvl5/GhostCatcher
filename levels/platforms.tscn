@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d2m8h34yt10sh"]
+[gd_scene load_steps=15 format=3 uid="uid://d2m8h34yt10sh"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_j32q3"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_mnvng"]
@@ -8,11 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_553wy"]
 [ext_resource type="Script" path="res://resources/path_follow_manager.gd" id="6_qvtoj"]
 [ext_resource type="PackedScene" uid="uid://c33brbbnr771" path="res://entities/mobs/flaming_skull.tscn" id="6_s7nyc"]
-[ext_resource type="PackedScene" uid="uid://cau04hgcii1cn" path="res://entities/mobs/giant_red.tscn" id="7_4xek7"]
 
 [sub_resource type="Curve2D" id="Curve2D_so5fl"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 900, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 776, -4, 0, 0, 0, 0, 0, 0)
 }
 point_count = 3
 
@@ -40,11 +39,11 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="Curve2D" id="Curve2D_iyavr"]
+[sub_resource type="Curve2D" id="Curve2D_7hf54"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 200, 0, 0, 0, 200, 0, -200, 300, 0, 0, -200, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 1810, -145, 72.5416, 4.75683, -72.5416, -4.75683, 1556, -44, 76.2813, 4.23785, -76.2813, -4.23785, 1343, -208, 117.984, 0, -117.984, 0, 1136, -35, 89.6681, -0.943874, -89.6681, 0.943874, 865, -205, 111.377, -0.943874, -111.377, 0.943874, 647, -42, 122.704, -1.88775, -122.704, 1.88775, 418, -226, -3.7755, 99.1068, 3.7755, -99.1068, 129, -139, -84.0048, 2.83162, 84.0048, -2.83162, 409, -37, -91.5558, 0, 91.5558, 0, 640, -221, -64.1834, -6.60712, 64.1834, 6.60712, 866, -33, -130.255, -0.943874, 130.255, 0.943874, 1127, -217, -104.887, -1.05946, 104.887, 1.05946, 1340, -37, -68.974, 1.18921, 68.974, -1.18921, 1556, -212, 0, 0, 0, 0, 1810, -145)
 }
-point_count = 3
+point_count = 15
 
 [node name="Platforms" type="Node2D"]
 script = ExtResource("1_j32q3")
@@ -138,19 +137,17 @@ speed = 0.07
 [node name="FlamingSkull" parent="EnemiesTemporary/Path2D5" instance=ExtResource("6_s7nyc")]
 
 [node name="Path2D6" type="Path2D" parent="EnemiesTemporary"]
-position = Vector2(1250, -339)
-curve = SubResource("Curve2D_iyavr")
+curve = SubResource("Curve2D_7hf54")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="EnemiesTemporary/Path2D6" node_paths=PackedStringArray("node")]
-position = Vector2(299.97, -3.42976)
-progress = 479.16
+position = Vector2(1810, -145)
 rotates = false
 script = ExtResource("6_qvtoj")
-node = NodePath("../GiantGhost")
-pause_locations = Array[float]([])
-pause_durations = Array[float]([])
+node = NodePath("../../Path2D/FlamingSkull")
+speed = 0.08
 
-[node name="GiantGhost" parent="EnemiesTemporary/Path2D6" instance=ExtResource("7_4xek7")]
+[node name="FlamingSkull" parent="EnemiesTemporary/Path2D6" instance=ExtResource("6_s7nyc")]
+position = Vector2(1821, -144)
 
 [node name="Scenery" type="Node" parent="."]
 

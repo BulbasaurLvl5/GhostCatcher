@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public partial class MenuLevel : Node
 {
-	PackedScene packedLevelData = ResourceLoader.Load<PackedScene>("res://resources/level_data.tscn");
+	PackedScene packedLevelData = ResourceLoader.Load<PackedScene>("res://resources/menu_level_element.tscn");
 
 	[Export]
 	Texture2D rating_0 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_0.png");

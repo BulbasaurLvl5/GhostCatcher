@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bcj5ir1rbt5ac"]
 
-[ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="1_5lf0p"]
+[ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="1_16rpa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jq5rq"]
 font_size = 48
@@ -27,7 +27,7 @@ theme_override_colors/font_color = Color(0.539063, 0.484375, 0.484375, 1)
 theme_override_colors/font_hover_color = Color(0.870588, 0.870588, 0.870588, 1)
 theme_override_font_sizes/font_size = 48
 text = "Hello"
-icon = ExtResource("1_5lf0p")
+icon = ExtResource("1_16rpa")
 flat = true
 icon_alignment = 1
 expand_icon = true
