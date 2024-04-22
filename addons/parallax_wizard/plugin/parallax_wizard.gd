@@ -9,10 +9,10 @@ signal scroll_lock_moved
 const control_preload = preload("res://addons/parallax_wizard/plugin/pw_control.tscn")
 const settings_preload = preload("res://addons/parallax_wizard/plugin/pw_settings.tscn")
 const custom_preload = preload("res://addons/parallax_wizard/plugin/pw_custom.tscn")
-const crosshairs_preload = preload("res://addons/parallax_wizard/plugin/pw_crosshairs_256.png")
+const crosshairs_preload = preload("res://addons/parallax_wizard/plugin/pw_crosshairs_1080.png")
 const crosshairs_color : Color = Color(Color.CRIMSON, 128)
 const crosshairs_z_index : int = 3000
-const crosshairs_scale : Vector2 = Vector2(0.5, 0.5)
+#const crosshairs_scale : Vector2 = Vector2(0.5, 0.5)
 const view_margin : Vector2 = Vector2(0.1, 0.1)
 
 #NODE REFERENCES
@@ -199,6 +199,7 @@ func activate_crosshairs(activate : bool = true):
 		crosshairs.texture = crosshairs_preload
 		crosshairs.self_modulate = crosshairs_color
 		crosshairs.z_index = crosshairs_z_index
+		
 		active_scene_root.add_child(crosshairs)
 		var dimensions = get_view_dimensions()
 		crosshairs.global_position = dimensions["center"]
@@ -210,7 +211,7 @@ func activate_crosshairs(activate : bool = true):
 func update_crosshairs(and_sliders : bool, dimensions : Dictionary = get_view_dimensions()):
 	if !crosshairs || !control_scene:
 		return
-	crosshairs.scale = dimensions["inverse"].get_scale() * crosshairs_scale
+	#crosshairs.scale = dimensions["inverse"].get_scale() * crosshairs_scale
 	if and_sliders:
 		var slider_pos : Vector2 =  (crosshairs.global_position - dimensions["center"]) / (dimensions["size"] / 2.0)
 		slider_pos.x = clamp(slider_pos.x, -1.0, 1.0)

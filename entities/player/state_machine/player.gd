@@ -31,19 +31,36 @@ var was_grounded : bool = false
 var could_grab_wall : bool = false
 var is_grabbing_wall : bool = false
 
+
+enum SuperStates {IN_AIR, GROUNDED, ON_WALL}
+var super_state : int = SuperStates.IN_AIR:
+	set(value):
+		if super_state == value:
+			return
+		super_state = value
+		if verbose:
+			print("PLAYER super_state = ", super_state)
+		if super_state == SuperStates.IN_AIR:
+			%CrowPointLight2D1.energy = 5.0
+			%CrowPointLight2D2.energy = 5.0
+		else:
+			%CrowPointLight2D1.energy = 1.0
+			%CrowPointLight2D2.energy = 1.0
+			remaining_air_actions = data.max_air_actions
+			
 @onready var remaining_air_actions : int = data.max_air_actions:
 	set(value):
 		if remaining_air_actions == value:
 			return
 		remaining_air_actions = clamp(value, 0, data.max_air_actions)
 		if remaining_air_actions >= 1:
-			%AirAction1.visible = true
+			%AirActionCrow1.visible = true
 		else:
-			%AirAction1.visible = false
+			%AirActionCrow1.visible = false
 		if remaining_air_actions == 2:
-			%AirAction2.visible = true
+			%AirActionCrow2.visible = true
 		else:
-			%AirAction2.visible = false
+			%AirActionCrow2.visible = false
 
 
 func _enter_tree():
@@ -125,6 +142,12 @@ func check_input():
 
 
 func check_environment():
+	if is_grabbing_wall:
+		super_state = SuperStates.ON_WALL
+	elif is_grounded():
+		super_state = SuperStates.GROUNDED
+	else:
+		super_state = SuperStates.IN_AIR
 	was_grounded = is_grounded()
 	could_grab_wall = can_grab_wall()
 	

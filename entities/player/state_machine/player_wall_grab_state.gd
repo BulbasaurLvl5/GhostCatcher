@@ -10,6 +10,7 @@ extends PlayerState
 
 func Enter(_from : PlayerState = null):
 	player.is_grabbing_wall = true
+	player.super_state = player.SuperStates.ON_WALL
 	anim.offset.x += visual_offset_x
 	anim.play("wall_grab")
 	$"../../SFX/WallGrab".play()
@@ -44,4 +45,5 @@ func Physics_Update(_delta):
 func Exit():
 	anim.offset.x -= visual_offset_x
 	player.is_grabbing_wall = false
+	player.super_state = player.SuperStates.IN_AIR
 	player.height_fallen_from = player.position.y
