@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bokl5cktpsr6n"]
+[gd_scene load_steps=12 format=3 uid="uid://bokl5cktpsr6n"]
 
 [ext_resource type="Script" path="res://ui/menus/MenuRetry.cs" id="1_kt2lo"]
 [ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://resources/sprites/coal/reaper_cutout.png" id="2_bnm5d"]
@@ -10,22 +10,90 @@
 [ext_resource type="Texture2D" uid="uid://be0focatd66ee" path="res://resources/sprites/coal/star_rating_4.png" id="8_5gaqe"]
 [ext_resource type="Texture2D" uid="uid://1ehg3bq0be" path="res://resources/sprites/coal/star_rating_5.png" id="9_sjwuq"]
 
+[sub_resource type="Animation" id="Animation_dyux7"]
+resource_name = "fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.164706, 0.164706, 0.164706, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6hor2"]
+_data = {
+"fade": SubResource("Animation_dyux7")
+}
+
 [node name="Retry_Menu" type="Node"]
 script = ExtResource("1_kt2lo")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="blackfade" type="ColorRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(0.164706, 0.164706, 0.164706, 0.784314)
+color = Color(0.164706, 0.164706, 0.164706, 0)
 
-[node name="Death" type="TextureRect" parent="."]
+[node name="fade" type="AnimationPlayer" parent="blackfade"]
+libraries = {
+"": SubResource("AnimationLibrary_6hor2")
+}
+
+[node name="death" type="Node2D" parent="."]
+visible = false
+
+[node name="Death" type="TextureRect" parent="death"]
 offset_left = 39.0
 offset_top = -57.0
 offset_right = 709.0
 offset_bottom = 1185.0
 texture = ExtResource("2_bnm5d")
 
-[node name="Retry_Button" type="Button" parent="."]
+[node name="TextBack" type="Polygon2D" parent="death"]
+position = Vector2(683, 55)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-105, 58, -9, 318, 588, 353, 580, 46)
+
+[node name="DeathBack1" type="Polygon2D" parent="death"]
+position = Vector2(666, -58.2051)
+scale = Vector2(1.09524, 1.17949)
+color = Color(0.617188, 0.578125, 0.582031, 1)
+polygon = PackedVector2Array(-66, 110, -105, 146, -45, 185, 124, 180, 168, 107)
+
+[node name="DeathBack2" type="Polygon2D" parent="death"]
+position = Vector2(669, -32)
+color = Color(0.175781, 0.121094, 0.109375, 1)
+polygon = PackedVector2Array(-66, 110, -105, 146, -45, 185, 124, 180, 168, 107)
+
+[node name="DEATH" type="Label" parent="death"]
+offset_left = 618.0
+offset_top = 79.0
+offset_right = 775.0
+offset_bottom = 149.0
+theme_override_colors/font_color = Color(0.619608, 0.580392, 0.584314, 1)
+theme_override_font_sizes/font_size = 48
+text = "DEATH"
+
+[node name="Quote" type="Label" parent="death"]
+offset_left = 695.0
+offset_top = 188.0
+offset_right = 744.0
+offset_bottom = 258.0
+theme_override_font_sizes/font_size = 48
+text = "Hi"
+
+[node name="buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Retry_Button" type="Button" parent="buttons"]
 offset_left = 1548.0
 offset_top = 586.0
 offset_right = 1798.0
@@ -42,7 +110,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="Selection_Button" type="Button" parent="."]
+[node name="Selection_Button" type="Button" parent="buttons"]
 offset_left = 1548.0
 offset_top = 700.0
 offset_right = 1798.0
@@ -59,7 +127,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="Main_Button" type="Button" parent="."]
+[node name="Main_Button" type="Button" parent="buttons"]
 offset_left = 1548.0
 offset_top = 814.0
 offset_right = 1798.0
@@ -76,7 +144,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="Quit_Button" type="Button" parent="."]
+[node name="Quit_Button" type="Button" parent="buttons"]
 offset_left = 1548.0
 offset_top = 928.0
 offset_right = 1798.0
@@ -93,82 +161,80 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="TextBack" type="Polygon2D" parent="."]
-position = Vector2(683, 55)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-105, 58, -9, 318, 588, 353, 580, 46)
+[node name="rating" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
 
-[node name="DeathBack1" type="Polygon2D" parent="."]
-position = Vector2(666, -58.2051)
-scale = Vector2(1.09524, 1.17949)
-color = Color(0.617188, 0.578125, 0.582031, 1)
-polygon = PackedVector2Array(-66, 110, -105, 146, -45, 185, 124, 180, 168, 107)
-
-[node name="DeathBack2" type="Polygon2D" parent="."]
-position = Vector2(669, -32)
-color = Color(0.175781, 0.121094, 0.109375, 1)
-polygon = PackedVector2Array(-66, 110, -105, 146, -45, 185, 124, 180, 168, 107)
-
-[node name="DEATH" type="Label" parent="."]
-offset_left = 618.0
-offset_top = 79.0
-offset_right = 775.0
-offset_bottom = 149.0
-theme_override_colors/font_color = Color(0.619608, 0.580392, 0.584314, 1)
-theme_override_font_sizes/font_size = 48
-text = "DEATH"
-
-[node name="Quote" type="Label" parent="."]
-offset_left = 695.0
-offset_top = 188.0
-offset_right = 744.0
-offset_bottom = 258.0
-theme_override_font_sizes/font_size = 48
-text = "Hi"
-
-[node name="Rating_0" type="TextureRect" parent="."]
-offset_left = 852.0
-offset_top = 50.0
-offset_right = 1142.0
-offset_bottom = 180.0
+[node name="Rating_0" type="TextureRect" parent="rating"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.0
+offset_right = 145.0
+offset_bottom = 130.0
+grow_horizontal = 2
 texture = ExtResource("4_wydpr")
 
-[node name="Rating_1" type="TextureRect" parent="."]
+[node name="Rating_5" type="TextureRect" parent="rating"]
 visible = false
-offset_left = 852.0
-offset_top = 50.0
-offset_right = 1142.0
-offset_bottom = 180.0
-texture = ExtResource("5_p807s")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.0
+offset_right = 145.0
+offset_bottom = 130.0
+grow_horizontal = 2
+texture = ExtResource("9_sjwuq")
 
-[node name="Rating_2" type="TextureRect" parent="."]
+[node name="Rating_4" type="TextureRect" parent="rating"]
 visible = false
-offset_left = 852.0
-offset_top = 50.0
-offset_right = 1142.0
-offset_bottom = 180.0
-texture = ExtResource("6_l8ulk")
-
-[node name="Rating_3" type="TextureRect" parent="."]
-visible = false
-offset_left = 852.0
-offset_top = 50.0
-offset_right = 1142.0
-offset_bottom = 180.0
-texture = ExtResource("7_iydby")
-
-[node name="Rating_4" type="TextureRect" parent="."]
-visible = false
-offset_left = 852.0
-offset_top = 50.0
-offset_right = 1142.0
-offset_bottom = 180.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.0
+offset_right = 145.0
+offset_bottom = 130.0
+grow_horizontal = 2
 texture = ExtResource("8_5gaqe")
 
-[node name="Rating_5" type="TextureRect" parent="."]
+[node name="Rating_3" type="TextureRect" parent="rating"]
 visible = false
-offset_left = 852.0
-offset_top = 50.0
-offset_right = 1142.0
-offset_bottom = 180.0
-texture = ExtResource("9_sjwuq")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.0
+offset_right = 145.0
+offset_bottom = 130.0
+grow_horizontal = 2
+texture = ExtResource("7_iydby")
+
+[node name="Rating_2" type="TextureRect" parent="rating"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.0
+offset_right = 145.0
+offset_bottom = 130.0
+grow_horizontal = 2
+texture = ExtResource("6_l8ulk")
+
+[node name="Rating_1" type="TextureRect" parent="rating"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.0
+offset_right = 145.0
+offset_bottom = 130.0
+grow_horizontal = 2
+texture = ExtResource("5_p807s")

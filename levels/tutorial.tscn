@@ -70,7 +70,7 @@ position = Vector2(0, 330)
 
 [node name="Sky" type="Node2D" parent="Parallax/_sky"]
 z_index = -2000
-position = Vector2(-249.023, 37.4988)
+position = Vector2(-249.024, 37.4988)
 script = ExtResource("5_rjdco")
 distance = 888.0
 type = 3
@@ -111,7 +111,7 @@ texture = ExtResource("12_5orw1")
 
 [node name="Moon" type="Node2D" parent="Parallax/_sky"]
 z_index = -2000
-position = Vector2(-249.023, 37.4988)
+position = Vector2(-249.024, 37.4988)
 script = ExtResource("5_rjdco")
 distance = 888.0
 type = 3
@@ -256,7 +256,7 @@ texture = ExtResource("14_ckofe")
 
 [node name="HillsNear" type="Node2D" parent="Parallax"]
 z_index = -560
-position = Vector2(-125.769, 9.46939)
+position = Vector2(-125.77, 9.4694)
 script = ExtResource("5_rjdco")
 distance = 0.555556
 scroll_scale = Vector2(0.5, 0.75)
@@ -442,7 +442,7 @@ texture = ExtResource("11_hiwm4")
 
 [node name="BG_Near" type="Node2D" parent="Parallax"]
 z_index = -376
-position = Vector2(-83.7623, 6.30661)
+position = Vector2(-83.7625, 6.30662)
 script = ExtResource("5_rjdco")
 distance = 0.37
 scroll_scale = Vector2(0.667, 0.8335)
@@ -625,7 +625,7 @@ texture = ExtResource("13_3lj05")
 
 [node name="BG_Nearest" type="Node2D" parent="Parallax"]
 z_index = -230
-position = Vector2(-50.3077, 3.78776)
+position = Vector2(-50.3078, 3.78776)
 script = ExtResource("5_rjdco")
 distance = 0.222222
 scroll_scale = Vector2(0.8, 0.9)

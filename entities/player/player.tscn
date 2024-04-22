@@ -294,7 +294,7 @@ texture = ExtResource("30_up3vm")
 
 [node name="AirActionCrow2" type="PathFollow2D" parent="Path2D"]
 unique_name_in_owner = true
-position = Vector2(62.2334, -73.4228)
+position = Vector2(62.2332, -73.4231)
 progress = 148.492
 rotates = false
 script = ExtResource("29_3wdth")

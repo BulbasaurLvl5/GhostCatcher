@@ -18,34 +18,40 @@ public partial class MenuRetry : Node
 		token = source.Token;
 			
 		//button set up
-		if(this.TryGetChildren(out List<Button> _buttons))
+		if(this.TryGetNestedChildren(out List<Button> _buttons))
 		{
-			_buttons[0].Pressed += () => {
+			//TryGetNestedChildren seems to grab items in reverse
+			// for (int i = 0; i < _buttons.Count; i++)
+			// {
+			// 	GD.Print("i:", i, " name:", _buttons[i].Name);
+			// }
+
+			_buttons[3].Pressed += () => {
 				_main.ClearScenes();
 				// await Task.Delay(1); //waiting 1ms so the QueueFree in ClearScenes can do its job
 				LevelLoader.LoadLevel[_main.Level].Invoke(_main);
 			};
 
-			_buttons[1].Pressed += () => {
+			_buttons[2].Pressed += () => {
 				_main.ClearScenes();
 				UILoader.LoadLevelSelector(_main);
 			};
 
-			_buttons[2].Pressed += () => {
+			_buttons[1].Pressed += () => {
 				_main.ClearScenes();
 				UILoader.LoadMainMenu(_main);
 			};
 
-			_buttons[3].Pressed += () => {
+			_buttons[0].Pressed += () => {
 				_main.GetTree().Root.PropagateNotification((int)Node.NotificationWMCloseRequest);
 				_main.GetTree().Quit();
 			};
 
-			_buttons[0].GrabFocus();
+			_buttons[3].GrabFocus();
 		}
 
 		//rating
-		if(this.TryGetChildren(out List<TextureRect> _textures))
+		if(this.TryGetNestedChildren(out List<TextureRect> _textures))
 		{
 			// GD.Print(_textures[0].Name); death
 			// GD.Print(_main.LevelTime.Time);
@@ -66,6 +72,11 @@ public partial class MenuRetry : Node
 				else
 					_labels[1].Text = "Its been about time";
 			}
+		}
+
+		if(this.TryGetNestedChildren(out List<AnimationPlayer> _anim))
+		{
+			_anim[0].Play("fade");
 		}
 	}
 
