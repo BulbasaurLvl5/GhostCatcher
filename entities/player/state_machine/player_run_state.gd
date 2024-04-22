@@ -13,7 +13,7 @@ func Enter(_from : PlayerState = null):
 	
 func Do_Checks():
 	Flip_Player()
-	if !player.is_on_floor():
+	if player.super_state != player.SuperStates.GROUNDED:
 		%CoyoteTime.set_wait_time(data.coyote_time_ground)
 		%CoyoteTime.start()
 		sound.stop()

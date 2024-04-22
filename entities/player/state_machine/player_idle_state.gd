@@ -12,7 +12,7 @@ func Enter(_from : PlayerState = null):
 	
 func Do_Checks():
 	Flip_Player()
-	if !player.is_on_floor():
+	if player.super_state == player.SuperStates.IN_AIR:
 		%CoyoteTime.set_wait_time(data.coyote_time_ground)
 		%CoyoteTime.start()
 		Transitioned.emit(self,"InAir")
@@ -22,6 +22,9 @@ func Do_Checks():
 		Transitioned.emit(self,"Dash")
 	elif abs(player.x_input) == 1:
 		Transitioned.emit(self,"Run")
+	elif player.can_grab_wall():
+		player.stop_motion()
+		Transitioned.emit(self,"WallGrab")
 
 
 func Update(delta):

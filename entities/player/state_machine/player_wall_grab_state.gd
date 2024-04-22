@@ -9,7 +9,6 @@ extends PlayerState
 
 
 func Enter(_from : PlayerState = null):
-	player.is_grabbing_wall = true
 	player.super_state = player.SuperStates.ON_WALL
 	anim.offset.x += visual_offset_x
 	anim.play("wall_grab")
@@ -22,17 +21,15 @@ func Enter(_from : PlayerState = null):
 
 func Do_Checks():
 	if player.can_jump():
-
 		Transitioned.emit(self,"WallJump")
 	elif player.can_dash():
 		Flip_Player(true)
 		Transitioned.emit(self,"Dash")
 	elif player.can_stomp():
 		Transitioned.emit(self,"Stomp")
-	elif player.x_input != wall_direction || (!player.is_on_wall() && !player.can_grab_wall()):
+	elif player.x_input != wall_direction || (player.super_state != player.SuperStates.ON_WALL && !player.can_grab_wall()):
 		%CoyoteTime.set_wait_time(data.coyote_time_wall)
 		%CoyoteTime.start()
-		player.is_grabbing_wall = false
 		Transitioned.emit(self,"InAir")	
 
 
@@ -44,6 +41,7 @@ func Physics_Update(_delta):
 
 func Exit():
 	anim.offset.x -= visual_offset_x
-	player.is_grabbing_wall = false
-	player.super_state = player.SuperStates.IN_AIR
 	player.height_fallen_from = player.position.y
+	if player.super_state == player.SuperStates.ON_WALL:
+		player.super_state = player.SuperStates.IN_AIR
+

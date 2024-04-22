@@ -17,6 +17,7 @@ func Enter(from : PlayerState = null):
 	Flip_Player()
 	Check_Altitude()
 
+
 func hang(active : bool):
 	hang_time_active = active
 	if active:
@@ -29,7 +30,7 @@ func Do_Checks():
 	Flip_Player()
 	Check_Altitude()
 
-	if player.is_on_floor():
+	if player.super_state == player.SuperStates.GROUNDED:
 		hang_time_active = false
 		if player.position.y - player.height_fallen_from > data.distance_before_medium_landing:
 			Transitioned.emit(self,"Land")

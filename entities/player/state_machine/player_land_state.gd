@@ -37,7 +37,7 @@ func create_shockwave():
 
 
 func Do_Checks():
-	if !player.is_on_floor() && !player.is_grounded():
+	if player.super_state != player.SuperStates.GROUNDED:
 		Transitioned.emit(self,"InAir")
 	elif time_in_current_state > player.heavy_landing_factor:
 		if player.can_jump():

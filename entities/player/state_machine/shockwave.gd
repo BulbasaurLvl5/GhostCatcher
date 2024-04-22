@@ -26,18 +26,9 @@ func start():
 func _physics_process(delta):
 	if motion != Vector2.ZERO:
 		position += motion * delta
-#		print("Shockwave scale.x = ",scale.x)
-
-#func _on_area_entered(area):
-##	print("AREA detected by shockwave")
-#	if area is MobAI && !shocked_mobs.has(area):
-##		print("AREA identified as MobAI")
-#		area.Knockback(position)
-#		shocked_mobs.append(area)
 
 
 func _on_body_entered(body):
 	if body is MobAI && !shocked_mobs.has(body):
-#		print("AREA identified as MobAI")
 		body.Knockback(position)
 		shocked_mobs.append(body)

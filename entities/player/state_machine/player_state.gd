@@ -30,13 +30,16 @@ func Initiate_Enter(from : PlayerState = null):
 	time_in_current_state = 0
 	Enter(from)
 	
+	
 func Enter(_from : PlayerState):
 	pass
+	
 	
 func Initiate_Update(delta):
 	time_in_current_state += delta
 	Do_Checks()
 	Update(delta)
+	
 	
 func Do_Checks():
 	pass
@@ -44,20 +47,25 @@ func Do_Checks():
 func Update(_delta):
 	pass
 	
+	
 func Physics_Update(_delta):
 	pass
 
+
 func Initiate_Exit():
 	Exit()
+	
 
 func Exit():
 	pass
+
 
 func Flip_Player(force_flip : bool = false):
 	if force_flip || (player.facing_direction != player.x_input && abs(player.x_input) == 1):
 		player.facing_direction *= -1
 		anim.scale.x *= -1
 		%RayCasts.scale.x *= -1
+		
 		
 func Check_Altitude():
 	if player.position.y < player.height_fallen_from:

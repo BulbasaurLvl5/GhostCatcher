@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="PlayerDataResource" load_steps=2 format=3 uid="uid://dueytwbh53mya"]
+
+[ext_resource type="Script" path="res://entities/player/data/player_data_resource.gd" id="1_lekbe"]
+
+[resource]
+script = ExtResource("1_lekbe")
+run_speed = 800.0
+coyote_time_ground = 0.1
+wall_grab_resets_air_actions = true
+coyote_time_wall = 0.25
+wall_jump_horizontal_force_multiplier = 1.5
+wall_jump_force_duration = 0.25
+wall_jump_hold_multiplier = 2.7
+max_air_actions = 2
+in_air_horizontal_speed = 600.0
+gravity = 2000
+max_fall_speed = 2000
+hang_time_duration = 0.05
+distance_before_medium_landing = 500.0
+distance_before_heavy_landing = 1000.0
+jump_force = -1120
+jump_max_hold_time = 0.3
+jump_hold_multiplier = 1.0
+dash_peak_speed = 500.0
+dash_time = 0.2
+dash_recovery_time = 0.1
+dash_hold_multiplier = 2.0
+ground_dash_cooldown = 2.0

@@ -24,7 +24,6 @@ extends Resource
 @export_group("Jumping")
 @export var jump_force : int = -900
 @export var jump_max_hold_time : float = 0.25
-@export var jump_hold_multiplier : float = 2.7
 
 @export_group("Dashing")
 @export var dash_peak_speed : float = 280.0

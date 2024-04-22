@@ -3,8 +3,8 @@ extends CharacterBody2D
 
 #level-dependent parameters
 @export var facing_direction : int = 1
-@export var cast : ShapeCast2D
-@export var grab_cast : ShapeCast2D
+#@export var cast : ShapeCast2D
+#@export var grab_cast : ShapeCast2D
 @export var canvas_mod_node : PackedScene
 
 #development settings
@@ -30,7 +30,6 @@ var heavy_landing_factor : float = 0
 var was_grounded : bool = false
 var could_grab_wall : bool = false
 var is_grabbing_wall : bool = false
-
 
 enum SuperStates {IN_AIR, GROUNDED, ON_WALL}
 var super_state : int = SuperStates.IN_AIR:
@@ -68,8 +67,8 @@ func _enter_tree():
 
 		
 func _ready():
-	if !cast && %ShapeCast2D:
-		cast = %ShapeCast2D
+	#if !cast && %ShapeCast2D:
+		#cast = %ShapeCast2D
 	if !canvas_mod_dispatched:
 		check_canvas_mod()
 
@@ -77,8 +76,6 @@ func _ready():
 func _process(_delta):
 	if !canvas_mod_dispatched:
 		check_canvas_mod()
-#	if !starting_position_set:
-#		check_start_pos()
 	check_input()
 	check_environment()
 
@@ -142,22 +139,23 @@ func check_input():
 
 
 func check_environment():
-	if is_grabbing_wall:
-		super_state = SuperStates.ON_WALL
-	elif is_grounded():
-		super_state = SuperStates.GROUNDED
-	else:
-		super_state = SuperStates.IN_AIR
-	was_grounded = is_grounded()
+	if super_state == SuperStates.IN_AIR:
+		if is_on_floor():
+			super_state = SuperStates.GROUNDED
+	elif super_state == SuperStates.GROUNDED:
+		if !is_on_floor():
+			super_state = SuperStates.IN_AIR
+
+	was_grounded = is_on_floor()
 	could_grab_wall = can_grab_wall()
 	
 	
-func is_grounded() -> bool:
-	if get_collisions(Vector2.DOWN * 2.0):
-		remaining_air_actions = data.max_air_actions
-		return true
-	else:
-		return false
+#func is_grounded() -> bool:
+	#if get_collisions(Vector2.DOWN * 2.0):
+		#remaining_air_actions = data.max_air_actions
+		#return true
+	#else:
+		#return false
 
 
 func can_grab_wall() -> bool:
@@ -197,7 +195,9 @@ func can_grab_wall() -> bool:
 func can_jump() -> bool:
 	if !jump_input || !jump_button_reset:
 		return false
-	if !$CoyoteTime.is_stopped() || remaining_air_actions > 0 || is_grounded():
+	if super_state == SuperStates.GROUNDED || super_state == SuperStates.ON_WALL:
+		return true
+	if !$CoyoteTime.is_stopped() || remaining_air_actions > 0:
 		return true
 	return false
 
@@ -205,15 +205,19 @@ func can_jump() -> bool:
 func can_dash() -> bool:
 	if !dash_input || !dash_button_reset:
 		return false
-	if !is_grounded() && (!$CoyoteTime.is_stopped() || remaining_air_actions > 0):
-		return true
-	if is_grounded() && last_dash_time + data.ground_dash_cooldown < Time.get_unix_time_from_system():
+	if super_state == SuperStates.IN_AIR:
+		if (!$CoyoteTime.is_stopped() || remaining_air_actions > 0):
+			return true
+	elif super_state == SuperStates.GROUNDED:
+		if last_dash_time + data.ground_dash_cooldown < Time.get_unix_time_from_system():
+			return true
+	elif super_state == SuperStates.ON_WALL:
 		return true
 	return false
 
 
 func can_stomp() -> bool:
-	if stomp_input && stomp_input_reset && !is_on_floor():
+	if stomp_input && stomp_input_reset && super_state != SuperStates.GROUNDED:
 		return true
 	return false
 
@@ -249,25 +253,25 @@ func move():
 	move_and_slide()
 	
 
-func get_collisions(offset : Vector2 = Vector2.ZERO, ignore_areas : bool = true, shape_cast : ShapeCast2D = cast) -> Array:
-	var array : Array = []
-	shape_cast.position += offset
-	shape_cast.force_shapecast_update()
-	if shape_cast.is_colliding():
-		var total = shape_cast.get_collision_count()
-		var count = 0
-		while count < total:
-			array.append(shape_cast.get_collider(count))
-			count += 1
-	if shape_cast == cast:
-		cast.position = Vector2.ZERO
-	else:
-		shape_cast.position -= offset
-	if ignore_areas:
-		for n in array:
-			if n is Area2D:
-				array.erase(n)
-	return array
+#func get_collisions(offset : Vector2 = Vector2.ZERO, ignore_areas : bool = true, shape_cast : ShapeCast2D = cast) -> Array:
+	#var array : Array = []
+	#shape_cast.position += offset
+	#shape_cast.force_shapecast_update()
+	#if shape_cast.is_colliding():
+		#var total = shape_cast.get_collision_count()
+		#var count = 0
+		#while count < total:
+			#array.append(shape_cast.get_collider(count))
+			#count += 1
+	#if shape_cast == cast:
+		#cast.position = Vector2.ZERO
+	#else:
+		#shape_cast.position -= offset
+	#if ignore_areas:
+		#for n in array:
+			#if n is Area2D:
+				#array.erase(n)
+	#return array
 
 
 #func get_all_children(node) -> Array:

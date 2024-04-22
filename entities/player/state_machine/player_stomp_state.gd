@@ -16,7 +16,7 @@ func Enter(_from : PlayerState = null):
 func Do_Checks():
 	Flip_Player()
 	Check_Altitude()
-	if player.is_on_floor():
+	if player.super_state == player.SuperStates.GROUNDED:
 		Transitioned.emit(self,"Land")
 	elif player.can_jump():
 		player.air_action()

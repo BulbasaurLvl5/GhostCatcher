@@ -17,9 +17,8 @@ func Enter(from : PlayerState = null):
 	player.height_fallen_from = player.position.y
 	player.dash_button_reset = false
 	set_animation()
-	if from.name != "WallGrab":
-		create_shockwave()
 	add_ghost()
+	create_shockwave()
 	$"../../SFX/Dash".play()
 
 
@@ -46,6 +45,7 @@ func Update(delta):
 		ghost_timer -= delta
 		if ghost_timer <= 0:
 			add_ghost()
+			#create_shockwave()
 
 
 func Physics_Update(_delta):
@@ -57,7 +57,7 @@ func Physics_Update(_delta):
 
 
 func complete_dash():	
-	if player.is_grounded():
+	if player.super_state == player.SuperStates.GROUNDED:
 		Transitioned.emit(self,"Idle")
 	else:
 		player.stop_motion()
@@ -83,13 +83,15 @@ func add_ghost():
 	get_tree().current_scene.add_child((dash_ghost))
 	ghost_timer = 0.02
 
+
 func create_shockwave():
 	var shockwave = shockwave_scene.instantiate()
 	get_tree().current_scene.add_child(shockwave)
 	shockwave.facing_direction = player.facing_direction
 	shockwave.position = Vector2(player.position.x, player.position.y)
-	shockwave.motion = Vector2(player.facing_direction * -100, 0)
+	shockwave.motion = Vector2.ZERO
 	shockwave.start()
+	
 	
 func Exit():
 	player.last_dash_time = Time.get_unix_time_from_system()

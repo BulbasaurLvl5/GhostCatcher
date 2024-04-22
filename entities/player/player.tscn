@@ -1,9 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://dhow5esn6x7rt"]
+[gd_scene load_steps=35 format=3 uid="uid://dhow5esn6x7rt"]
 
 [ext_resource type="Script" path="res://entities/player/state_machine/player_state_machine.gd" id="1_dcopr"]
 [ext_resource type="Script" path="res://entities/player/state_machine/player.gd" id="1_l4530"]
-[ext_resource type="Resource" uid="uid://dvbrelm3gvn8b" path="res://entities/player/data/default.tres" id="2_h06d8"]
 [ext_resource type="PackedScene" uid="uid://dp3hm754d5ple" path="res://resources/canvas_mod.tscn" id="2_hrds7"]
+[ext_resource type="Resource" uid="uid://dueytwbh53mya" path="res://entities/player/data/daniels_suggestion.tres" id="3_064ff"]
 [ext_resource type="SpriteFrames" uid="uid://byt3hw2l4n5l5" path="res://entities/player/anim/oriette.tres" id="4_ct6su"]
 [ext_resource type="Script" path="res://entities/player/state_machine/player_idle_state.gd" id="4_tan8y"]
 [ext_resource type="Script" path="res://entities/player/state_machine/player_state.gd" id="5_8dkiu"]
@@ -11,12 +11,11 @@
 [ext_resource type="Script" path="res://entities/player/state_machine/player_jump_state.gd" id="7_ofds0"]
 [ext_resource type="Script" path="res://entities/player/state_machine/player_in_air_state.gd" id="8_uctrm"]
 [ext_resource type="Script" path="res://entities/player/state_machine/player_land_state.gd" id="9_ok23f"]
-[ext_resource type="PackedScene" uid="uid://b88d6031uj744" path="res://entities/player/state_machine/stomp_shockwave.tscn" id="11_euytq"]
+[ext_resource type="PackedScene" uid="uid://b88d6031uj744" path="res://entities/player/state_machine/shockwave.tscn" id="11_euytq"]
 [ext_resource type="Script" path="res://entities/player/state_machine/player_dash_state.gd" id="12_5jbsb"]
 [ext_resource type="Script" path="res://entities/player/state_machine/player_wall_grab_state.gd" id="13_ckika"]
 [ext_resource type="PackedScene" uid="uid://deim0qaglwinp" path="res://resources/particle_effects/dash_ghost.tscn" id="14_q528f"]
 [ext_resource type="Script" path="res://entities/player/state_machine/player_wall_jump_state.gd" id="14_umcf1"]
-[ext_resource type="PackedScene" uid="uid://df28o2fggrbi0" path="res://entities/player/state_machine/dash_shockwave.tscn" id="15_jrri0"]
 [ext_resource type="Script" path="res://resources/camera.gd" id="16_1amk7"]
 [ext_resource type="Script" path="res://entities/player/state_machine/player_stomp_state.gd" id="16_hlspe"]
 [ext_resource type="AudioStream" uid="uid://uq5et6s242vd" path="res://resources/audio/sfx/player/footsteps_run.wav" id="20_yffpo"]
@@ -34,9 +33,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnagu"]
 size = Vector2(24, 110)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_07f6o"]
-size = Vector2(22, 108)
 
 [sub_resource type="Gradient" id="Gradient_fuufi"]
 offsets = PackedFloat32Array(0, 0.738372)
@@ -56,7 +52,7 @@ _data = {
 }
 point_count = 6
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cast")]
+[node name="Player" type="CharacterBody2D"]
 light_mask = 2
 visibility_layer = 2
 z_index = 1
@@ -68,20 +64,12 @@ platform_on_leave = 1
 platform_floor_layers = 5
 platform_wall_layers = 5
 script = ExtResource("1_l4530")
-cast = NodePath("ShapeCast2D")
 canvas_mod_node = ExtResource("2_hrds7")
 verbose = true
-data = ExtResource("2_h06d8")
+data = ExtResource("3_064ff")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nnagu")
-
-[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
-unique_name_in_owner = true
-shape = SubResource("RectangleShape2D_07f6o")
-target_position = Vector2(0, 0)
-collision_mask = 5
-collide_with_areas = true
 
 [node name="PlayerAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -123,7 +111,7 @@ shockwave_scene = ExtResource("11_euytq")
 unique_name_in_owner = true
 script = ExtResource("12_5jbsb")
 dash_ghost_node = ExtResource("14_q528f")
-shockwave_scene = ExtResource("15_jrri0")
+shockwave_scene = ExtResource("11_euytq")
 
 [node name="WallGrab" type="Node" parent="PlayerStateMachine"]
 unique_name_in_owner = true

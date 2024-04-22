@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b88d6031uj744"]
+[gd_scene load_steps=3 format=3 uid="uid://b88d6031uj744"]
 
 [ext_resource type="Script" path="res://entities/player/state_machine/shockwave.gd" id="1_2mmkk"]
-[ext_resource type="Texture2D" uid="uid://dlop6j5rmmhrg" path="res://resources/sprites/shockwave.png" id="2_oakbt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tp7jj"]
 radius = 256.0
@@ -17,17 +16,5 @@ script = ExtResource("1_2mmkk")
 [node name="Collision" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_tp7jj")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.545098)
-light_mask = 4
-texture = ExtResource("2_oakbt")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-light_mask = 0
-color = Color(1, 0, 0, 1)
-energy = 16.0
-range_item_cull_mask = 4
-texture = ExtResource("2_oakbt")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
