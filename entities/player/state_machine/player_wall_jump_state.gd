@@ -49,12 +49,13 @@ func Do_Checks():
 		
 	
 func Physics_Update(delta):
-	if player.jump_input && time_in_current_state < data.jump_max_hold_time:
-		player.velocity.y = data.jump_force
-	elif time_in_current_state < (data.jump_max_hold_time / 2.0):
-		player.velocity.y += data.gravity * 8.0 * delta
+	if time_in_current_state < data.jump_max_hold_time:
+		if player.jump_input:
+			player.velocity.y = data.jump_force
+		else:
+			player.velocity.y += data.gravity * lerpf(10.0, 1.0, time_in_current_state / data.jump_max_hold_time) * delta
 	else:
-		player.velocity.y += data.gravity * 3.0 * delta
+		player.velocity.y += data.gravity * delta
 	player.velocity.x = player.facing_direction * data.in_air_horizontal_speed
 	player.move()
 	

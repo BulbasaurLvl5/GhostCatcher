@@ -21,7 +21,7 @@ func load_button_data_from_settings():
 	%SpinBox_ScrollScaleX.value = motion_scale_factor.x
 	%SpinBox_ScrollScaleY.value = motion_scale_factor.y
 	var auto_z_indexes = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/set_automatically", true)
-	%CheckBox_AutomaticZValues.button_pressed = auto_z_indexes
+	%CheckBox_AutomaticZ.button_pressed = auto_z_indexes
 	show_z_indexes(auto_z_indexes)
 	%SpinBox_FGZMin.value = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/foreground_max", 1000)
 	%SpinBox_FGZMax.value = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/foreground_min", 11)

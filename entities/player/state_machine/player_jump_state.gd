@@ -35,8 +35,6 @@ func Do_Checks():
 	elif player.can_stomp():
 		Transitioned.emit(self,"Stomp")
 	elif player.velocity.y > 0 || player.is_on_ceiling():
-		#if verbose && player.get_collisions(Vector2.UP):
-			#print("Player BONKED HEAD ")
 		Transitioned.emit(self,"InAir")
 	elif player.y_input >= 0:
 		if player.can_grab_wall():
@@ -45,12 +43,14 @@ func Do_Checks():
 		
 		
 func Physics_Update(delta):
-	if player.jump_input && time_in_current_state < data.jump_max_hold_time:
-		player.velocity.y = data.jump_force
-	elif time_in_current_state < (data.jump_max_hold_time / 2.0):
-		player.velocity.y += data.gravity * 8.0 * delta
+	if time_in_current_state < data.jump_max_hold_time:
+		if player.jump_input:
+			var progress = clampf(time_in_current_state / data.jump_max_hold_time, 0.0, 1.0)
+			player.velocity.y = lerpf(data.jump_force, data.jump_force / 2.0, progress)
+		else:
+			player.velocity.y += data.gravity * lerpf(10.0, 2.0, time_in_current_state / data.jump_max_hold_time) * delta
 	else:
-		player.velocity.y += data.gravity * 3.0 * delta
+		player.velocity.y += data.gravity * delta
 	player.velocity.x = data.in_air_horizontal_speed * player.x_input 
 	player.move()
 

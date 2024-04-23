@@ -61,12 +61,11 @@ func Update(_delta):
 
 func Physics_Update(delta):
 	if hang_time_active:
-		player.velocity.y = 0
+		player.velocity.y = 0.0
 	else:
-		if player.velocity.y < 200:
-			player.velocity.y += 0.5 * data.gravity * delta
-		elif player.velocity.y < 400:
-			player.velocity.y += 0.75 * data.gravity * delta
+		if player.velocity.y < 400.0:
+			var fall_progress = clampf(player.velocity.y, 0.0, 400.0) / 400.0
+			player.velocity.y += data.gravity * lerpf(0.5, 1.0, fall_progress) * delta
 		else:
 			player.velocity.y += data.gravity * delta
 		if player.velocity.y > data.max_fall_speed:
