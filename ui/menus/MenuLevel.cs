@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public partial class MenuLevel : Node
 {
-	PackedScene packedLevelData = ResourceLoader.Load<PackedScene>("res://ui/menus/menu_level_element.tscn");
+	PackedScene packedLevelMenuElement = ResourceLoader.Load<PackedScene>("res://ui/menus/menu_level_element.tscn");
 
 	[Export]
 	Texture2D rating_0 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_0.png");
@@ -50,93 +50,59 @@ public partial class MenuLevel : Node
 
 		this.TryGetNestedChildren(out List<VBoxContainer> _boxContainer);
 
-		//first button seperator to asign neighbours
-		Control _leveldata = packedLevelData.Instantiate<Control>();
-		_boxContainer[0].AddChild(_leveldata);
+		Control _levelMenuElement; // = packedLevelMenuElement.Instantiate<Control>();
+		// _boxContainer[0].AddChild(_levelMenuElement);
 
-		if(_leveldata.TryGetChildren(out List<Button> _buttons))
+		for (int i = 0; i < LevelLoader.Levels.Length; i++)
 		{
-			_buttons[0].Text = "Level 0";
-			_buttons[1].Text = "Layout";
+			_levelMenuElement = packedLevelMenuElement.Instantiate<Control>();
+			_boxContainer[0].AddChild(_levelMenuElement);
 
-			_buttons[0].GrabFocus();
-
-			_buttons[0].FocusNeighborTop = _baseButtons[0].GetPath();
-			_baseButtons[0].FocusNeighborBottom = _buttons[0].GetPath();
-
-			_buttons[0].Pressed += () => {
-				_main.ClearScenes();
-				LevelLoader.LoadLevel[0](_main);
-			};
-
-			if(_leveldata.TryGetChildren(out List<Label> _labels))
+			//first button seperator to asign neighbours
+			if(i == 0 && _levelMenuElement.TryGetChildren(out List<Button> _buttons))
 			{
-				_labels[0].Text = TimeCounter.TimeToClock(_save.LastTimes[0]);
-				_labels[1].Text = TimeCounter.TimeToClock(_save.BestTimes[0]);
+				_buttons[0].GrabFocus();
+				_buttons[0].FocusNeighborTop = _baseButtons[0].GetPath();
+				_baseButtons[0].FocusNeighborBottom = _buttons[0].GetPath();
 			}
 
-			if(_leveldata.TryGetChild(out TextureRect ratingsprite))
+			if(_levelMenuElement.TryGetChildren(out _buttons))
 			{
-				if(LevelTimesData.ReturnScore(0, _save.BestTimes[0]) == 0)
-					ratingsprite.Texture = rating_0;
-				else if(LevelTimesData.ReturnScore(0, _save.BestTimes[0]) == 1)
-					ratingsprite.Texture = rating_1;
-				else if(LevelTimesData.ReturnScore(0, _save.BestTimes[0]) == 2)
-					ratingsprite.Texture = rating_2;
-				else if(LevelTimesData.ReturnScore(0, _save.BestTimes[0]) == 3)
-					ratingsprite.Texture = rating_3;
-				else if(LevelTimesData.ReturnScore(0, _save.BestTimes[0]) == 4)
-					ratingsprite.Texture = rating_4;
-				else if(LevelTimesData.ReturnScore(0, _save.BestTimes[0]) == 5)
-					ratingsprite.Texture = rating_5;
-			}
-		}
+				// _buttons[0].Text = "Level " + i.ToString();
+				// _buttons[1].Text = "Layout";
+				_buttons[0].Text = LevelLoader.Levels[i].Name;
 
-		// if(_save.LastTimes[0] == 0)
-		// 	return;
-
-		for (int i = 1; i < LevelLoader.LoadLevel.Length; i++)
-		{
-			if(_save.LastTimes[i-1] == 0)
-				return;
-
-			_leveldata = packedLevelData.Instantiate<Control>();
-			_boxContainer[0].AddChild(_leveldata);
-
-			if(_leveldata.TryGetChildren(out _buttons))
-			{
-				_buttons[0].Text = "Level " + i.ToString();
-				// _buttons[1].Text = "Show " + i.ToString();
-				_buttons[1].Text = "Layout";
-
-				Action<Main> _loadlvl = LevelLoader.LoadLevel[i]; //needed to store i
+				Action<Main> _loadlvl = LevelLoader.Levels[i].Load; //needed to store i
 				_buttons[0].Pressed += () => {
 					_main.ClearScenes();
 					_loadlvl(_main);
 				};
 			}
 
-			if(_leveldata.TryGetChildren(out List<Label> _labels))
+			if(_levelMenuElement.TryGetChildren(out List<Label> _labels))
 			{
 				_labels[0].Text = TimeCounter.TimeToClock(_save.LastTimes[i]);
 				_labels[1].Text = TimeCounter.TimeToClock(_save.BestTimes[i]);
 			}
 
-			if(_leveldata.TryGetChild(out TextureRect ratingsprite))
+			if(_levelMenuElement.TryGetChild(out TextureRect ratingsprite))
 			{
-				if(LevelTimesData.ReturnScore(i, _save.BestTimes[i]) == 0)
+				if(LevelLoader.Levels[i].ReturnScore(_save.BestTimes[i]) == 0)
 					ratingsprite.Texture = rating_0;
-				else if(LevelTimesData.ReturnScore(i, _save.BestTimes[i]) == 1)
+				else if(LevelLoader.Levels[i].ReturnScore(_save.BestTimes[i]) == 1)
 					ratingsprite.Texture = rating_1;
-				else if(LevelTimesData.ReturnScore(i, _save.BestTimes[i]) == 2)
+				else if(LevelLoader.Levels[i].ReturnScore(_save.BestTimes[i]) == 2)
 					ratingsprite.Texture = rating_2;
-				else if(LevelTimesData.ReturnScore(i, _save.BestTimes[i]) == 3)
+				else if(LevelLoader.Levels[i].ReturnScore(_save.BestTimes[i]) == 3)
 					ratingsprite.Texture = rating_3;
-				else if(LevelTimesData.ReturnScore(i, _save.BestTimes[i]) == 4)
+				else if(LevelLoader.Levels[i].ReturnScore(_save.BestTimes[i]) == 4)
 					ratingsprite.Texture = rating_4;
-				else if(LevelTimesData.ReturnScore(i, _save.BestTimes[i]) == 5)
+				else if(LevelLoader.Levels[i].ReturnScore(_save.BestTimes[i]) == 5)
 					ratingsprite.Texture = rating_5;
 			}
+
+			if(_save.LastTimes[i] == 0)
+				return;
 		}
 	}
 }

@@ -25,7 +25,7 @@ public partial class MenuPause : Node
 			_buttons[1].Pressed += () => {
 				GetTree().Paused = false;
 				_main.ClearScenes();
-				LevelLoader.LoadLevel[_main.Level].Invoke(_main);
+				LevelLoader.Levels[_main.Level].Load.Invoke(_main);
 			};
 
 			//level

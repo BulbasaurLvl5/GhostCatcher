@@ -8,8 +8,8 @@ public class SaveGame
 
 	public SaveGame()
 	{
-		lastTimes = new int[LevelLoader.LoadLevel.Length];
-		bestTimes = new int[LevelLoader.LoadLevel.Length];
+		lastTimes = new int[LevelLoader.Levels.Length];
+		bestTimes = new int[LevelLoader.Levels.Length];
 	}
 
 	public SaveGame(int lvl, double time)

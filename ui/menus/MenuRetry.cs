@@ -38,7 +38,7 @@ public partial class MenuRetry : Node
 			_buttons[0].Pressed += () => {
 				_main.ClearScenes();
 				// await Task.Delay(1); //waiting 1ms so the QueueFree in ClearScenes can do its job
-				LevelLoader.LoadLevel[_main.Level].Invoke(_main);
+				LevelLoader.Levels[_main.Level].Load.Invoke(_main);
 			};
 
 			_buttons[1].Pressed += () => {
@@ -62,7 +62,7 @@ public partial class MenuRetry : Node
 		//rating
 		if(rating.TryGetChildren(out List<TextureRect> _stars))
 		{
-			int score = LevelTimesData.ReturnScore(_main.Level, _main.LevelTime.Time);
+			int score = LevelLoader.Levels[_main.Level].ReturnScore(_main.LevelTime.Time);
 
 			if(!_main.Failed)
 				DisplayScore(score, 333, _stars, token);

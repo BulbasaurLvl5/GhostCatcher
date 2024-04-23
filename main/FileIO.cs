@@ -34,12 +34,12 @@ public static class FileIO
 		// C:/Users/John/AppData/Roaming/Godot/app_userdata/GhostCatcher/
 
 		_filepath = _baseSavePath + "Save" + ".json";
-		if(!File.Exists(_filepath) || LevelLoader.LoadLevel.Length != Load().LastTimes.Length)
+		if(!File.Exists(_filepath) || LevelLoader.Levels.Length != Load().LastTimes.Length)
 		{
 			GD.Print("Created new save file");
 			SaveGame _save = new SaveGame{
-				LastTimes = new double[LevelLoader.LoadLevel.Length],
-				BestTimes = new double[LevelLoader.LoadLevel.Length],
+				LastTimes = new double[LevelLoader.Levels.Length],
+				BestTimes = new double[LevelLoader.Levels.Length],
 			};
 
 			string _jsonString = JsonSerializer.Serialize(_save);
@@ -106,8 +106,8 @@ public static class FileIO
 		GD.Print("save file reseted: "+_filepath);
 
 		SaveGame _save = new SaveGame{
-				LastTimes = new double[LevelLoader.LoadLevel.Length],
-				BestTimes = new double[LevelLoader.LoadLevel.Length],
+				LastTimes = new double[LevelLoader.Levels.Length],
+				BestTimes = new double[LevelLoader.Levels.Length],
 			};
 
 		string _jsonString = JsonSerializer.Serialize(_save);

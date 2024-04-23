@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using MyGodotExtensions;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+using System.Reflection.Metadata.Ecma335;
 
 public static class LevelLoader
 {
@@ -36,77 +38,65 @@ public static class LevelLoader
 	static PackedScene packedLevel_RingOfFire = ResourceLoader.Load<PackedScene>("res://levels/ring_of_fire.tscn");
 	static PackedScene packedLevel_SkullCap = ResourceLoader.Load<PackedScene>("res://levels/skull_cap.tscn");
 
-	public class LevelVariables
+	public class Level
 	{
 		public string Name {get;}
-		public float[] Times{get;}
+		public float[] StarTimes{get;}
 
-		public Action<Main> Loadfunction {get;}
+		public Action<Main> Load {get;}
 
-		public LevelVariables(string name, float[] times, Action<Main> loadfunction)
+		public Level(string name, float[] starTimes, Action<Main> loadfunction)
 		{
 			this.Name = name;
-			this.Times = times;
-			this.Loadfunction = loadfunction;
+			this.StarTimes = starTimes;
+			this.Load = loadfunction;
 		}
 
-		public static int ReturnScore(int level, double time)
+		public int ReturnScore(double time)
 		{
-			Dictionary<int, int[]> _leveltimedata = new Dictionary<int, int[]>()
-			{
-				//times for rating from better to worse. i.e. first is max stars
-				{0,new int[5]{4,5,6,7,8}},
-			};
-			
-			if(level >= _leveltimedata.Count || time == 0)
-				return 0; //default if level is out of range or time non existant
+			if(time == 0)
+				return 0; //case for being called via MenuLevel after unlock
 
-			for (int i = 0; i < _leveltimedata[level].Length; i++)
+			for (int i = 0; i < StarTimes.Length; i++)
 			{
-				if(time < _leveltimedata[level][i])
-				{	
-					// GD.Print("level: "+level);
-					// GD.Print("i: "+i);
-					// GD.Print("time: "+time);
-					// GD.Print("_leveltimedata: "+_leveltimedata[level][i]);
-					// GD.Print("return: "+(_leveltimedata[level].Length-i));
-					return _leveltimedata[level].Length-i; //higher rating is better
-				}
+				if(time < StarTimes[i])
+					return StarTimes.Length-i; //higher rating is better
 			}
 			return 0;        
 		}
 	}
-	
-	public static Action<Main>[] LoadLevel = {
+
+	public static Level[] Levels = {
 	// collectible ghosts, endless pit
-		LoadLevel_Tutorial,
-		LoadLevel_Tunnels,
-		LoadLevel_Vertical,
-		LoadLevel_Treeson,
-		LoadLevel_Cliff,
+		new Level("tutorial", new float[]{5,6,7,8,9}, LoadLevel_Tutorial),
+		new Level("tunnels", new float[]{}, LoadLevel_Tunnels),
+		new Level("vertical", new float[]{}, LoadLevel_Vertical),
+		new Level("treeson", new float[]{}, LoadLevel_Treeson),
+		new Level("cliff", new float[]{}, LoadLevel_Cliff),
+
     // moving platforms
 		//blocks
     // 1st enemy type (ghosts)
     // spikes
-		LoadLevel_Spikes,
-		LoadLevel_MountainSide,
-		LoadLevel_Kaktee,
-		LoadLevel_DeepPit,
-		LoadLevel_Columns,
+		new Level("spikes", new float[]{}, LoadLevel_Spikes),
+		new Level("mountain", new float[]{}, LoadLevel_MountainSide),
+		new Level("cactee", new float[]{}, LoadLevel_Kaktee),
+		new Level("deeppit", new float[]{}, LoadLevel_DeepPit),
+		new Level("columns", new float[]{}, LoadLevel_Columns),
     // 2nd enemy type (skulls)
-		LoadLevel_Platforms,
+		new Level("skulls", new float[]{}, LoadLevel_Platforms),
     // falling platforms
-		LoadLevel_ShakyGround,
+		new Level("shaky", new float[]{}, LoadLevel_ShakyGround),
     // 3rd enemy type (???)
     // extra air
 	// unasigned
-		LoadLevel_Breakthrough,
-		LoadLevel_Caves,
-		LoadLevel_FactoryYard,
-		LoadLevel_Forest,
-		LoadLevel_RingOfFire,
-		LoadLevel_NewGround,
-		LoadLevel_SkullCap
+		new Level("break", new float[]{}, LoadLevel_Breakthrough),
+		new Level("caves", new float[]{}, LoadLevel_Caves),
+		new Level("factory", new float[]{}, LoadLevel_FactoryYard),
+		new Level("forest", new float[]{}, LoadLevel_Forest),
+		new Level("firering", new float[]{}, LoadLevel_RingOfFire),
+		new Level("newground", new float[]{}, LoadLevel_NewGround),
+		new Level("skullcap", new float[]{}, LoadLevel_SkullCap),
 	};
 
 	public static async void PlayerDisableDelay(Main _main, int milisecdelay)
@@ -114,6 +104,14 @@ public static class LevelLoader
 		//delay the activation just a little bit, to allow the camera to lock
 		await Task.Delay(milisecdelay);
 		_main.player.ProcessMode = Node.ProcessModeEnum.Disabled;
+	}
+
+	static int LevelID(Action<Main> action)
+	{
+		foreach (var _level in Levels)
+			if (_level.Load == action)
+				return Array.IndexOf(Levels, _level);
+		return 0;
 	}
 
 	static void LoadLevel_Tutorial(Main _main)
@@ -145,7 +143,7 @@ public static class LevelLoader
 		}
 		//like different ghost types will require special code. thats why the region ends below
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_Tutorial));
+		_main.StartLevel(LevelID(LoadLevel_Tutorial));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -169,7 +167,7 @@ public static class LevelLoader
 
 		packedLevel_Platforms.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_Platforms));
+		_main.StartLevel(LevelID(LoadLevel_Platforms));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -189,7 +187,7 @@ public static class LevelLoader
 
 		packedLevel_Tunnels.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_Tunnels));
+		_main.StartLevel(LevelID(LoadLevel_Tunnels));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -209,7 +207,7 @@ public static class LevelLoader
 
 		packedLevel_cliff.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_Cliff));
+		_main.StartLevel(LevelID(LoadLevel_Cliff));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -230,7 +228,7 @@ public static class LevelLoader
 
 		packedLevel_spikes.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_Spikes));
+		_main.StartLevel(LevelID(LoadLevel_Spikes));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -250,7 +248,7 @@ public static class LevelLoader
 
 		packedLevel_MountainSide.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_MountainSide));
+		_main.StartLevel(LevelID(LoadLevel_MountainSide));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -270,7 +268,7 @@ public static class LevelLoader
 
 		packedLevel_Kaktee.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_Kaktee));
+		_main.StartLevel(LevelID(LoadLevel_Kaktee));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -290,7 +288,7 @@ public static class LevelLoader
 
 		packedLevel_Vertical.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_Vertical));
+		_main.StartLevel(LevelID(LoadLevel_Vertical));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -310,7 +308,7 @@ public static class LevelLoader
 
 		packedLevel_DeepPit.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_DeepPit));
+		_main.StartLevel(LevelID(LoadLevel_DeepPit));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -330,7 +328,7 @@ public static class LevelLoader
 
 		packedLevel_Columns.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_Columns));
+		_main.StartLevel(LevelID(LoadLevel_Columns));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -350,7 +348,7 @@ public static class LevelLoader
 
 		packedLevel_Treeson.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_Treeson));
+		_main.StartLevel(LevelID(LoadLevel_Treeson));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -370,7 +368,7 @@ public static class LevelLoader
 
 		packedLevel_ShakyGround.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_ShakyGround));
+		_main.StartLevel(LevelID(LoadLevel_ShakyGround));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -390,7 +388,7 @@ public static class LevelLoader
 
 		packedLevel_Breakthrough.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_Breakthrough));
+		_main.StartLevel(LevelID(LoadLevel_Breakthrough));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -410,7 +408,7 @@ public static class LevelLoader
 
 		packedLevel_Caves.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_Caves));
+		_main.StartLevel(LevelID(LoadLevel_Caves));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -430,7 +428,7 @@ public static class LevelLoader
 
 		packedLevel_FactoryYard.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_FactoryYard));
+		_main.StartLevel(LevelID(LoadLevel_FactoryYard));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -450,7 +448,7 @@ public static class LevelLoader
 
 		packedLevel_Forest.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_Forest));
+		_main.StartLevel(LevelID(LoadLevel_Forest));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -470,7 +468,7 @@ public static class LevelLoader
 
 		packedLevel_NewGround.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_NewGround));
+		_main.StartLevel(LevelID(LoadLevel_NewGround));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -490,7 +488,7 @@ public static class LevelLoader
 
 		packedLevel_RingOfFire.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_RingOfFire));
+		_main.StartLevel(LevelID(LoadLevel_RingOfFire));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
@@ -510,7 +508,7 @@ public static class LevelLoader
 
 		packedLevel_SkullCap.Instantiate(_main.World);
 
-		_main.StartLevel(Array.IndexOf(LoadLevel, LoadLevel_SkullCap));
+		_main.StartLevel(LevelID(LoadLevel_SkullCap));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);
