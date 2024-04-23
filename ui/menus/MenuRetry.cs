@@ -11,67 +11,81 @@ public partial class MenuRetry : Node
 {
 	CancellationTokenSource source = new CancellationTokenSource();
 	CancellationToken token;
+
+	Control buttons;
+	Control rating;
 	public override void _Ready()
 	{
 		this.TryGetNodeInTree(out Main _main);
 
 		token = source.Token;
+
+		if(this.TryGetChildren(out List<Control> _controls))
+		{
+			// for (int i = 0; i < _controls.Count; i++)
+			// 	GD.Print(_controls[i].Name);
+
+			buttons = _controls[1];
+			rating = _controls[2];
+		}
 			
 		//button set up
-		if(this.TryGetNestedChildren(out List<Button> _buttons))
+		if(buttons.TryGetChildren(out List<Button> _buttons))
 		{
-			//TryGetNestedChildren seems to grab items in reverse
 			// for (int i = 0; i < _buttons.Count; i++)
-			// {
 			// 	GD.Print("i:", i, " name:", _buttons[i].Name);
-			// }
 
-			_buttons[3].Pressed += () => {
+			_buttons[0].Pressed += () => {
 				_main.ClearScenes();
 				// await Task.Delay(1); //waiting 1ms so the QueueFree in ClearScenes can do its job
 				LevelLoader.LoadLevel[_main.Level].Invoke(_main);
 			};
 
-			_buttons[2].Pressed += () => {
+			_buttons[1].Pressed += () => {
 				_main.ClearScenes();
 				UILoader.LoadLevelSelector(_main);
 			};
 
-			_buttons[1].Pressed += () => {
+			_buttons[2].Pressed += () => {
 				_main.ClearScenes();
 				UILoader.LoadMainMenu(_main);
 			};
 
-			_buttons[0].Pressed += () => {
+			_buttons[3].Pressed += () => {
 				_main.GetTree().Root.PropagateNotification((int)Node.NotificationWMCloseRequest);
 				_main.GetTree().Quit();
 			};
 
-			_buttons[3].GrabFocus();
+			_buttons[0].GrabFocus();
 		}
 
 		//rating
-		if(this.TryGetNestedChildren(out List<TextureRect> _textures))
+		if(rating.TryGetChildren(out List<TextureRect> _stars))
 		{
-			// GD.Print(_textures[0].Name); death
-			// GD.Print(_main.LevelTime.Time);
-			// GD.Print(_main.Level);
-
 			int score = LevelTimesData.ReturnScore(_main.Level, _main.LevelTime.Time);
 
 			if(!_main.Failed)
-			{
-				DisplayScore(score, 333, _textures, token);
-			}
+				DisplayScore(score, 333, _stars, token);
 
 			//deaths comment
-			if(this.TryGetChildren(out List<Label> _labels))
-			{
-				if(_main.Failed)
-					_labels[1].Text = "I am not mad, \ni am disappointed";
-				else
-					_labels[1].Text = "Its been about time";
-			}
+			// if(this.TryGetChildren(out List<Label> _labels))
+			// {
+			// 	if(_main.Failed)
+			// 		_labels[1].Text = "I am not mad, \ni am disappointed";
+			// 	else
+			// 		_labels[1].Text = "Its been about time";
+			// }
+		}
+
+		if(rating.TryGetChildren(out List<Label> _times))
+		{
+			// for (int i = 0; i < _times.Count; i++)
+			// 	GD.Print("i:", i, " name:", _times[i].Name);
+
+			_times[0].Text = TimeCounter.TimeToClock(_main.LevelTime.Time);
+
+			FileIO.SaveGame _save = FileIO.Load();
+			_times[1].Text = TimeCounter.TimeToClock(_save.BestTimes[_main.Level]);
 		}
 
 		if(this.TryGetNestedChildren(out List<AnimationPlayer> _anim))
@@ -90,7 +104,7 @@ public partial class MenuRetry : Node
 				if(token.IsCancellationRequested)
 					return;
 
-				_textures[i+2].Show(); //i+1 because first image in scene is death
+				_textures[i+1].Show();
 			}
 			catch(OperationCanceledException)
 			{

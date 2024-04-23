@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public partial class MenuLevel : Node
 {
-	PackedScene packedLevelData = ResourceLoader.Load<PackedScene>("res://resources/menu_level_element.tscn");
+	PackedScene packedLevelData = ResourceLoader.Load<PackedScene>("res://ui/menus/menu_level_element.tscn");
 
 	[Export]
 	Texture2D rating_0 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_0.png");
@@ -92,11 +92,14 @@ public partial class MenuLevel : Node
 			}
 		}
 
-		if(_save.LastTimes[0] == 0)
-			return;
+		// if(_save.LastTimes[0] == 0)
+		// 	return;
 
 		for (int i = 1; i < LevelLoader.LoadLevel.Length; i++)
 		{
+			if(_save.LastTimes[i-1] == 0)
+				return;
+
 			_leveldata = packedLevelData.Instantiate<Control>();
 			_boxContainer[0].AddChild(_leveldata);
 

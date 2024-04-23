@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bokl5cktpsr6n"]
+[gd_scene load_steps=14 format=3 uid="uid://bokl5cktpsr6n"]
 
 [ext_resource type="Script" path="res://ui/menus/MenuRetry.cs" id="1_kt2lo"]
 [ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://resources/sprites/coal/reaper_cutout.png" id="2_bnm5d"]
@@ -30,6 +30,17 @@ tracks/0/keys = {
 _data = {
 "fade": SubResource("Animation_dyux7")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_filuv"]
+font_size = 48
+font_color = Color(0.364706, 0.364706, 0.364706, 1)
+outline_size = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_s0ao4"]
+font_size = 48
+font_color = Color(0.796078, 0.639216, 0.12549, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Retry_Menu" type="Node"]
 script = ExtResource("1_kt2lo")
@@ -94,6 +105,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Retry_Button" type="Button" parent="buttons"]
+layout_mode = 0
 offset_left = 1548.0
 offset_top = 586.0
 offset_right = 1798.0
@@ -111,6 +123,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Selection_Button" type="Button" parent="buttons"]
+layout_mode = 0
 offset_left = 1548.0
 offset_top = 700.0
 offset_right = 1798.0
@@ -128,6 +141,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Main_Button" type="Button" parent="buttons"]
+layout_mode = 0
 offset_left = 1548.0
 offset_top = 814.0
 offset_right = 1798.0
@@ -145,6 +159,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Quit_Button" type="Button" parent="buttons"]
+layout_mode = 0
 offset_left = 1548.0
 offset_top = 928.0
 offset_right = 1798.0
@@ -179,7 +194,7 @@ offset_bottom = 130.0
 grow_horizontal = 2
 texture = ExtResource("4_wydpr")
 
-[node name="Rating_5" type="TextureRect" parent="rating"]
+[node name="Rating_1" type="TextureRect" parent="rating"]
 visible = false
 layout_mode = 1
 anchors_preset = 5
@@ -189,31 +204,7 @@ offset_left = -145.0
 offset_right = 145.0
 offset_bottom = 130.0
 grow_horizontal = 2
-texture = ExtResource("9_sjwuq")
-
-[node name="Rating_4" type="TextureRect" parent="rating"]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -145.0
-offset_right = 145.0
-offset_bottom = 130.0
-grow_horizontal = 2
-texture = ExtResource("8_5gaqe")
-
-[node name="Rating_3" type="TextureRect" parent="rating"]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -145.0
-offset_right = 145.0
-offset_bottom = 130.0
-grow_horizontal = 2
-texture = ExtResource("7_iydby")
+texture = ExtResource("5_p807s")
 
 [node name="Rating_2" type="TextureRect" parent="rating"]
 visible = false
@@ -227,7 +218,7 @@ offset_bottom = 130.0
 grow_horizontal = 2
 texture = ExtResource("6_l8ulk")
 
-[node name="Rating_1" type="TextureRect" parent="rating"]
+[node name="Rating_3" type="TextureRect" parent="rating"]
 visible = false
 layout_mode = 1
 anchors_preset = 5
@@ -237,4 +228,55 @@ offset_left = -145.0
 offset_right = 145.0
 offset_bottom = 130.0
 grow_horizontal = 2
-texture = ExtResource("5_p807s")
+texture = ExtResource("7_iydby")
+
+[node name="Rating_4" type="TextureRect" parent="rating"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.0
+offset_right = 145.0
+offset_bottom = 130.0
+grow_horizontal = 2
+texture = ExtResource("8_5gaqe")
+
+[node name="Rating_5" type="TextureRect" parent="rating"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.0
+offset_right = 145.0
+offset_bottom = 130.0
+grow_horizontal = 2
+texture = ExtResource("9_sjwuq")
+
+[node name="current_time" type="Label" parent="rating"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -360.0
+offset_top = 30.0
+offset_right = -187.0
+offset_bottom = 97.0
+grow_horizontal = 0
+text = "current"
+label_settings = SubResource("LabelSettings_filuv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="best_time" type="Label" parent="rating"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 30.0
+offset_right = 353.0
+offset_bottom = 97.0
+text = "best"
+label_settings = SubResource("LabelSettings_s0ao4")
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
