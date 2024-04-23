@@ -5,6 +5,7 @@ signal Zoomed(new_zoom_setting : Vector2)
 
 
 @export var verbose : bool = false
+@export_range (0.5, 4.0, 0.001, "or_greater", ) var field_of_view_multiplier : float = 1.0
 
 @export_group("Zoom")
 @export_range (0.0, 1.0, 0.001, "suffix:X") var max_zoom_out : float = .25
@@ -52,8 +53,8 @@ var level_boundary : Rect2:
 
 
 func _ready():
+	set_zoom(Vector2.ONE / field_of_view_multiplier)
 	enable_smooth_and_drag(false)
-	#position = Vector2(0, -200)
 
 
 func enable_smooth_and_drag(enable : bool = true):
@@ -80,6 +81,7 @@ func _process(delta):
 			new = get_zoom().lerp(Vector2.ONE, 2*delta/current_zoom_duration)
 		else:
 			new = get_zoom().lerp(Vector2(max_zoom_out, max_zoom_out), 2*delta/current_zoom_duration)
+		new /= field_of_view_multiplier
 		set_zoom(new)
 		Zoomed.emit(new)
 	#SHAKE

@@ -196,6 +196,7 @@ drag_top_margin = 0.4
 drag_right_margin = 0.15
 drag_bottom_margin = 0.3
 script = ExtResource("16_1amk7")
+field_of_view_multiplier = 1.25
 
 [node name="Radar2D" type="Node2D" parent="."]
 script = ExtResource("28_tmfgi")
