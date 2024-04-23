@@ -12,7 +12,7 @@ extends PlayerState
 @onready var recovering : bool
 
 
-func Enter(from : PlayerState = null):
+func Enter(_from : PlayerState = null):
 	recovering = false
 	player.height_fallen_from = player.position.y
 	player.dash_button_reset = false

@@ -28,14 +28,13 @@ func create_remote_transform():
 	add_child(remote)
 	remote.set_remote_node(node.get_path())
 
+
 func destroy_remote_transform():
 	remote.queue_free()	
 
+
 func remote_transform(active : bool):
-	if active:
-		remote.set_update_position(true)
-	else:		
-		remote.set_update_position(false)
+	remote.set_update_position(active)
 
 
 func _physics_process(delta):
@@ -50,7 +49,6 @@ func _physics_process(delta):
 			if pause_locations && pause_durations:
 				to = check_progress(from, to)
 			progress_ratio = to
-#			print(from, "   ",to,"    ", progress_ratio)
 
 
 func check_progress(from : float, to : float) -> float:

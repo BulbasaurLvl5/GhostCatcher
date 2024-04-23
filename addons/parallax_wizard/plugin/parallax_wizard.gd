@@ -1,9 +1,12 @@
 @tool
 extends EditorPlugin
 
+
 #SIGNALS
 signal scroll_lock_toggled
 signal scroll_lock_moved
+signal single_node_selected
+
 
 #CONSTANTS
 const control_preload = preload("res://addons/parallax_wizard/plugin/pw_control.tscn")
@@ -14,6 +17,7 @@ const crosshairs_color : Color = Color(Color.CRIMSON, 128)
 const crosshairs_z_index : int = 3000
 #const crosshairs_scale : Vector2 = Vector2(0.5, 0.5)
 const view_margin : Vector2 = Vector2(0.1, 0.1)
+
 
 #NODE REFERENCES
 var active_scene_root : Node:
@@ -114,8 +118,7 @@ var selection_mode = SelectionModes.DEFAULT:
 var single_node : Node = null:
 	set(value):
 		single_node = value
-		if custom_scene:
-			custom_scene.single_node = value
+		single_node_selected.emit(single_node)
 
 enum DistanceModes {CAMERA, DEFAULT, HORIZON, OTHER, LINEAR, OVERRIDE}
 enum ColorEditTypes {MODULATE, SELF_MODULATE}
@@ -123,7 +126,6 @@ var color_edit_type = ColorEditTypes.MODULATE
 enum ColorParameters {HUE, SATURATION, LIGHTNESS, ALPHA, RED, GREEN, BLUE}
 enum ColorModes {ZERO, ONE, OTHER, LINEAR, OVERRIDE}
 enum LayerTypes {DEFAULT, HAZE, CLOUDS, SKY}
-var restoring_defaults : bool = false
 
 var timer : Timer
 
@@ -379,7 +381,7 @@ func start_distance_shift(mode : int, relative_to : float):
 		shift_relative_to = relative_to
 	shifting_distance = true
 
-	
+
 func start_color_shift(parameter : int, mode : int, relative_to : float):
 	stored_colors_rgb.clear()
 	if color_edit_type == ColorEditTypes.MODULATE:
@@ -426,8 +428,8 @@ func start_color_shift(parameter : int, mode : int, relative_to : float):
 		shift_relative_to = relative_to
 	
 	shifting_color = true
-			
-			
+
+
 func shift_distance(input : float):	
 	if !shifting_distance:
 		return
@@ -572,6 +574,7 @@ func convert_background(background : ParallaxBackground):
 	for c in children:
 		c.owner = active_scene_root
 	
+	
 func convert_layer(layer : Node, background : ParallaxBackground = null):
 	if !layer is Parallax2D && !layer is ParallaxLayer:
 		return
@@ -632,13 +635,15 @@ func add_custom_item(item : PackedScene):
 func open_settings():
 	settings_scene = settings_preload.instantiate()
 	get_tree().root.add_child(settings_scene)
-	settings_scene.restore_defaults.connect(_on_settings_restore_defaults)
+	if !settings_scene.restore_defaults.is_connected(_on_settings_restore_defaults):
+		settings_scene.restore_defaults.connect(_on_settings_restore_defaults)
 
 
 func open_custom_edit_menu():
 	custom_scene = custom_preload.instantiate()
 	get_tree().root.add_child(custom_scene)
 	custom_scene.set_up(self)
+	single_node_selected.connect(custom_scene.set_single_node)
 
 
 func rgb_to_hsl(rgb : Color) -> Dictionary:
@@ -700,38 +705,34 @@ func get_color_value(m1 : float, m2 : float, hue : float) -> float:
 func _on_settings_restore_defaults():
 	initialize_settings(true)
 	
+	
 func _on_active_scene_change():
 	active_scene_root = null
 	scene_layers.clear()
-	#var connections = scroll_lock_toggled.get_connections()
-	#for c in connections:
-		#scroll_lock_toggled.disconnect(c)
-	#var connections = scroll_lock_moved.get_connections()
-	#for c in connections:
-		#scroll_lock_moved.disconnect(c)
+	scroll_locked = false
 
 
-func initialize_settings(overwrite_existing_settings : bool = false):
-	restoring_defaults = overwrite_existing_settings
-	initialize_custom_project_setting("parallax_wizard/parallax/automatically_convert_parallax_nodes", true, TYPE_BOOL)
-	initialize_custom_project_setting("parallax_wizard/parallax/scroll_scale/foreground_max", 1.25, TYPE_FLOAT)
-	initialize_custom_project_setting("parallax_wizard/parallax/scroll_scale/background_min", 0.1, TYPE_FLOAT)
-	initialize_custom_project_setting("parallax_wizard/parallax/scroll_scale/clouds", 0.05, TYPE_FLOAT)
-	initialize_custom_project_setting("parallax_wizard/parallax/scroll_scale/sky", 0.01, TYPE_FLOAT)
-	initialize_custom_project_setting("parallax_wizard/parallax/scroll_scale/xy_ratio", Vector2(1.0, 0.5), TYPE_VECTOR2)
-	initialize_custom_project_setting("parallax_wizard/parallax/z_indexes/set_automatically", true, TYPE_BOOL)
-	initialize_custom_project_setting("parallax_wizard/parallax/z_indexes/foreground_max", 1000, TYPE_INT)
-	initialize_custom_project_setting("parallax_wizard/parallax/z_indexes/foreground_min", 11, TYPE_INT)
-	initialize_custom_project_setting("parallax_wizard/parallax/z_indexes/background_max", -11, TYPE_INT)
-	initialize_custom_project_setting("parallax_wizard/parallax/z_indexes/background_min", -1000, TYPE_INT)	
-	initialize_custom_project_setting("parallax_wizard/parallax/z_indexes/clouds", -1001, TYPE_INT)
-	initialize_custom_project_setting("parallax_wizard/parallax/z_indexes/sky", -2000, TYPE_INT)
+func initialize_settings(overwrite : bool = false):
+	initialize_custom_project_setting("parallax_wizard/parallax/automatically_convert_parallax_nodes", false, TYPE_BOOL, overwrite)
+	initialize_custom_project_setting("parallax_wizard/parallax/scroll_scale/foreground_max", 1.25, TYPE_FLOAT, overwrite)
+	initialize_custom_project_setting("parallax_wizard/parallax/scroll_scale/background_min", 0.1, TYPE_FLOAT, overwrite)
+	initialize_custom_project_setting("parallax_wizard/parallax/scroll_scale/clouds", 0.05, TYPE_FLOAT, overwrite)
+	initialize_custom_project_setting("parallax_wizard/parallax/scroll_scale/sky", 0.01, TYPE_FLOAT, overwrite)
+	initialize_custom_project_setting("parallax_wizard/parallax/scroll_scale/xy_ratio", Vector2(1.0, 0.5), TYPE_VECTOR2, overwrite)
+	initialize_custom_project_setting("parallax_wizard/parallax/z_indexes/set_automatically", true, TYPE_BOOL, overwrite)
+	initialize_custom_project_setting("parallax_wizard/parallax/z_indexes/foreground_max", 1000, TYPE_INT, overwrite)
+	initialize_custom_project_setting("parallax_wizard/parallax/z_indexes/foreground_min", 11, TYPE_INT, overwrite)
+	initialize_custom_project_setting("parallax_wizard/parallax/z_indexes/background_max", -11, TYPE_INT, overwrite)
+	initialize_custom_project_setting("parallax_wizard/parallax/z_indexes/background_min", -1000, TYPE_INT, overwrite)
+	initialize_custom_project_setting("parallax_wizard/parallax/z_indexes/clouds", -1001, TYPE_INT, overwrite)
+	initialize_custom_project_setting("parallax_wizard/parallax/z_indexes/sky", -2000, TYPE_INT, overwrite)
 	var error : int = ProjectSettings.save()
 	if error:
 		push_error("Encountered error %d when saving project settings." % error)
 
-func initialize_custom_project_setting(name: String, default_value, type: float, hint: int = PROPERTY_HINT_NONE, hint_string: String = ""):
-	if ProjectSettings.has_setting(name):
+
+func initialize_custom_project_setting(name: String, default_value, type: float, overwrite : bool = false, hint: int = PROPERTY_HINT_NONE, hint_string: String = ""):
+	if ProjectSettings.has_setting(name) && !overwrite:
 		return
 	var setting_info: Dictionary = {
 		"name": name,
@@ -745,6 +746,7 @@ func initialize_custom_project_setting(name: String, default_value, type: float,
 
 func load_custom_data():
 	pass
+
 
 func save_custom_data():
 	pass

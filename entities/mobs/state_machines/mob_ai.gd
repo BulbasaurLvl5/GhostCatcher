@@ -2,7 +2,6 @@ class_name MobAI
 extends CharacterBody2D
 
 
-@export var path : PathFollowManager
 @export var facing_direction : int = 1
 @export_range(0.0, 2000.0, 0.01, "or_greater", "suffix:pixels") var vision_ahead : float = 1000.0
 @export_range(0.0, 2000.0, 0.01, "or_greater", "suffix:pixels") var vision_behind : float = 300.0
@@ -10,6 +9,7 @@ extends CharacterBody2D
 @export_range(0.0, 2000.0, 0.01, "or_greater", "suffix:pixels") var vision_below : float = 300.0
 @export var x_ray_vision : bool = true
 
+var path : PathFollowManager
 var player : Player
 var target_path : Vector2
 var knockback_source_pos : Vector2
@@ -21,6 +21,7 @@ func _ready():
 	if !player:
 		find_node()
 
+
 func _process(delta):
 	current_hesitation -= delta
 	if !player:
@@ -29,8 +30,10 @@ func _process(delta):
 		target_path = player.position - global_position
 	Update(delta)
 
+
 func Update(_delta):
 	pass
+
 
 func find_node():
 	var children = get_tree().root.get_children()

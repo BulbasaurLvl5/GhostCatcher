@@ -51,14 +51,9 @@ var level_boundary : Rect2:
 			print("camera.gd level_boundary was successfully updated!!!")
 
 
-#func _enter_tree():
-	#print("camera.gd _enter_tree()")
-
-
 func _ready():
-	#print("camera.gd _ready()")
 	enable_smooth_and_drag(false)
-	position = Vector2(0, -200)
+	#position = Vector2(0, -200)
 
 
 func enable_smooth_and_drag(enable : bool = true):
@@ -66,7 +61,7 @@ func enable_smooth_and_drag(enable : bool = true):
 	drag_horizontal_enabled = enable
 	drag_vertical_enabled = enable
 
-#PROCESS
+
 func _process(delta):
 	#if !level_parameters_updated:
 		#find_level_parameters()
@@ -102,6 +97,7 @@ func get_zoom_input():
 		zoom_input_reset = true
 		return false
 
+
 func check_sticky_and_toggled():
 	if zoom_input:
 		if zoom_input_reset:
@@ -113,6 +109,7 @@ func check_sticky_and_toggled():
 	elif sticky_zoom:
 		zoom_is_changing = false
 		
+		
 func check_manual():
 	if zoom_input:
 		if zoom_input_reset:
@@ -121,15 +118,18 @@ func check_manual():
 	elif zoom_direction < 1:
 		set_zoom_in()
 
+
 func set_zoom_out():
 	zoom_is_changing = true
 	zoom_direction = -1
 	current_zoom_duration = zoom_out_duration * (get_zoom().x - max_zoom_out) / (1 - max_zoom_out)
 
+
 func set_zoom_in():
 	zoom_is_changing = true
 	zoom_direction = 1
 	current_zoom_duration = zoom_reset_duration * (1 - get_zoom().x) / (1 - max_zoom_out)
+
 
 func zoom_is_at_limit() -> bool:
 	if zoom_direction == 1 && get_zoom() >= Vector2.ONE:
@@ -138,10 +138,11 @@ func zoom_is_at_limit() -> bool:
 		return true
 	else:
 		return false
-		
-#SHAKE
+
+
 func apply_shake(shake_multiplier : float = 1.0):
 	shake_strength = default_shake_strength * shake_multiplier
+
 
 func random_offset() -> Vector2:
 	return Vector2(rng.randf_range(-shake_strength,shake_strength), rng.randf_range(-shake_strength,shake_strength))

@@ -193,6 +193,10 @@ Pause2={
 2d_physics/layer_6="SolidEnemies"
 2d_physics/layer_7="Friends"
 
+[parallax_wizard]
+
+parallax/automatically_convert_parallax_nodes=false
+
 [physics]
 
 common/physics_ticks_per_second=120

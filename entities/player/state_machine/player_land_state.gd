@@ -20,7 +20,7 @@ func Enter(from : PlayerState = null):
 		impact += 0.25 + 0.25 * distance_fallen / data.distance_before_heavy_landing
 	if impact < 1.0:
 		anim.play("land")
-		$"../../SFX/Land2".play()	
+		$"../../SFX/Land2".play()
 	else:
 		impact = min(2.0, impact)
 		player.heavy_landing_factor = impact

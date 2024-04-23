@@ -20,7 +20,6 @@ distance_before_medium_landing = 500.0
 distance_before_heavy_landing = 1000.0
 jump_force = -1120
 jump_max_hold_time = 0.3
-jump_hold_multiplier = 1.0
 dash_peak_speed = 500.0
 dash_time = 0.2
 dash_recovery_time = 0.1

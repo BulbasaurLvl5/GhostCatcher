@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://resources/collision_failure.tscn" id="8_r0bl5"]
 [ext_resource type="Script" path="res://entities/mobs/states/air_return_state.gd" id="9_ej7hy"]
 
-
 [sub_resource type="Gradient" id="Gradient_n74fn"]
 offsets = PackedFloat32Array(0, 0.737864, 1)
 colors = PackedColorArray(1, 1, 1, 0.627451, -0.0306519, -0.0306519, -0.0306519, 0.600889, 0, 0, 0, 0)
@@ -29,19 +28,17 @@ curve = SubResource("Curve_aifmb")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xt8kg"]
 lifetime_randomness = 0.1
+particle_flag_disable_z = true
 emission_shape = 6
 emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 25.0
 emission_ring_inner_radius = 15.0
-particle_flag_disable_z = true
 direction = Vector3(1, 1, 0)
 spread = 180.0
-gravity = Vector3(0, -100, 0)
 initial_velocity_max = 20.0
 angular_velocity_max = 100.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, -100, 0)
 scale_min = 0.8
 scale_max = 1.2
 scale_curve = SubResource("CurveTexture_7yhfy")
@@ -122,7 +119,7 @@ attack_duration = 0.8
 [node name="Stunned" type="Node" parent="StateMachine"]
 unique_name_in_owner = true
 script = ExtResource("5_i20n3")
-knockback_speed = 750.0
+stun_duration = 1.0
 
 [node name="Path" type="Node" parent="StateMachine"]
 unique_name_in_owner = true

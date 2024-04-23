@@ -15,8 +15,8 @@ func Enter(_from):
 	visibility_path = VisibleOnScreenNotifier2D.new()
 	ai.add_child(visibility_self)
 	ai.path.add_child(visibility_path)
-	visibility_self.set_rect(Rect2(-mob_size.x, -mob_size.y, 2 * mob_size.x, 2 * mob_size.y))
-	visibility_path.set_rect(Rect2(-mob_size.x, -mob_size.y, 2 * mob_size.x, 2 * mob_size.y))
+	visibility_self.set_rect(Rect2(-mob_size.x, -mob_size.y, 2.0 * mob_size.x, 2.0 * mob_size.y))
+	visibility_path.set_rect(Rect2(-mob_size.x, -mob_size.y, 2.0 * mob_size.x, 2.0 * mob_size.y))
 	warp_check_delay = 0.1
 
 
@@ -24,9 +24,8 @@ func Update(delta):
 	if ai.can_see_player():
 		Transitioned.emit(self, "Chase")
 	elif ai.position.distance_to(ai.path.position) <= return_speed * delta:
-		ai.path.remote_transform(true)
-		Transitioned.emit(self, "Path")
-	elif warp_check_delay <= 0:
+		warp_to_path()
+	elif warp_check_delay <= 0.0:
 		if can_warp_safely():
 			warp_to_path()
 		warp_check_delay = 0.1
@@ -45,6 +44,7 @@ func can_warp_safely() -> bool:
 	if !visibility_self.is_on_screen() && !visibility_path.is_on_screen():
 		return true
 	return false
+
 
 func warp_to_path():
 	ai.path.remote_transform(true)

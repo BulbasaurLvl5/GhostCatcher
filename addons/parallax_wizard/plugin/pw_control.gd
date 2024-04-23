@@ -260,10 +260,10 @@ func _on_slider_color_drag_ended(value_changed):
 	
 func _on_option_button_edit_item_selected(index):
 	if index == 0:
-		%Label_Modulate.text = "MODULATE"
+		%Label_Modulate.text = "MOD"
 		pw.color_edit_type = pw.ColorEditTypes.MODULATE
 	else:
-		%Label_Modulate.text = "SELF-MODULATE"		
+		%Label_Modulate.text = "SELF-MOD"
 		pw.color_edit_type = pw.ColorEditTypes.SELF_MODULATE
 
 func _on_option_button_parameter_item_selected(index):
@@ -309,4 +309,3 @@ func _on_button_mode_color_current_node_pressed():
 
 func _on_h_slider_scroll_drag_ended(value_changed):
 	pass # Replace with function body.
-

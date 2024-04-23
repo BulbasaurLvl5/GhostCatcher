@@ -1,35 +1,10 @@
 class_name Player
 extends CharacterBody2D
 
-#level-dependent parameters
-@export var facing_direction : int = 1
-#@export var cast : ShapeCast2D
-#@export var grab_cast : ShapeCast2D
-@export var canvas_mod_node : PackedScene
 
-#development settings
 @export var verbose : bool = false
 @export var data : PlayerDataResource 
-
-var level_boundary : Rect2:
-	set(value):
-		level_boundary = value
-var canvas_mod_dispatched : bool = false
-
-var x_input : int = 0
-var y_input : int = 0
-var jump_input : bool = false
-var jump_button_reset : bool = true
-var dash_input : bool = false
-var dash_button_reset : bool = true
-var stomp_input : bool = false
-var stomp_input_reset : bool = true
-var last_dash_time : float = 0
-var height_fallen_from : float = 0
-var heavy_landing_factor : float = 0
-var was_grounded : bool = false
-var could_grab_wall : bool = false
-var is_grabbing_wall : bool = false
+@export var canvas_mod_node : PackedScene
 
 enum SuperStates {IN_AIR, GROUNDED, ON_WALL}
 var super_state : int = SuperStates.IN_AIR:
@@ -46,7 +21,8 @@ var super_state : int = SuperStates.IN_AIR:
 			%CrowPointLight2D1.energy = 1.0
 			%CrowPointLight2D2.energy = 1.0
 			remaining_air_actions = data.max_air_actions
-			
+
+var facing_direction : int = 1
 @onready var remaining_air_actions : int = data.max_air_actions:
 	set(value):
 		if remaining_air_actions == value:
@@ -61,14 +37,32 @@ var super_state : int = SuperStates.IN_AIR:
 		else:
 			%AirActionCrow2.visible = false
 
+var x_input : int = 0
+var y_input : int = 0
+var jump_input : bool = false
+var jump_button_reset : bool = true
+var dash_input : bool = false
+var dash_button_reset : bool = true
+var stomp_input : bool = false
+var stomp_input_reset : bool = true
+
+var last_dash_time : float = 0
+var height_fallen_from : float = 0
+var heavy_landing_factor : float = 0
+var was_grounded : bool = false
+var could_grab_wall : bool = false
+
+var level_boundary : Rect2:
+	set(value):
+		level_boundary = value
+var canvas_mod_dispatched : bool = false
+
 
 func _enter_tree():
 	check_canvas_mod()
 
-		
+
 func _ready():
-	#if !cast && %ShapeCast2D:
-		#cast = %ShapeCast2D
 	if !canvas_mod_dispatched:
 		check_canvas_mod()
 
@@ -150,23 +144,17 @@ func check_environment():
 	could_grab_wall = can_grab_wall()
 	
 	
-#func is_grounded() -> bool:
-	#if get_collisions(Vector2.DOWN * 2.0):
-		#remaining_air_actions = data.max_air_actions
-		#return true
-	#else:
-		#return false
-
-
 func can_grab_wall() -> bool:
 	if x_input != facing_direction:
 		return false
+
 	%GrabCheckTop.force_raycast_update()
-	%GrabCheckInsideTop.force_raycast_update()
-	%GrabCheckInsideBottom.force_raycast_update()
 	%GrabCheckBottom.force_raycast_update()
 	if %GrabCheckTop.is_colliding() && %GrabCheckBottom.is_colliding():
 		return true
+
+	%GrabCheckInsideTop.force_raycast_update()
+	%GrabCheckInsideBottom.force_raycast_update()
 	if %GrabCheckTop.is_colliding() && %GrabCheckInsideBottom.is_colliding():
 		var count = 0
 		while !%GrabCheckBottom.is_colliding():
@@ -176,7 +164,6 @@ func can_grab_wall() -> bool:
 			if count > 12:
 				print("Player is being adjusted more than intended attempting to wall grab.")
 				return false
-#		print("Player adjusted UP to grab wall.  pixels: ",count)
 		return true
 	if %GrabCheckBottom.is_colliding() && %GrabCheckInsideTop.is_colliding():
 		var count = 0
@@ -187,7 +174,6 @@ func can_grab_wall() -> bool:
 			if count > 12:
 				print("Player is being adjusted more than intended attempting to wall grab.")
 				return false
-#		print("Player adjusted DOWN to grab wall.  pixels: ",count)
 		return true
 	return false
 
@@ -218,14 +204,6 @@ func can_dash() -> bool:
 
 func can_stomp() -> bool:
 	if stomp_input && stomp_input_reset && super_state != SuperStates.GROUNDED:
-		return true
-	return false
-
-
-func is_bumping_head() -> bool:
-	%HeadBumpCheckFront.force_raycast_update()
-	%HeadBumpCheckBack.force_raycast_update()
-	if %HeadBumpCheckFront.is_colliding() || %HeadBumpCheckBack.is_colliding():
 		return true
 	return false
 

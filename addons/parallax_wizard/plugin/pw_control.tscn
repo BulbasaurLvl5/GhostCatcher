@@ -315,7 +315,6 @@ editable = false
 
 [node name="ColorTool" type="MarginContainer" parent="ScrollContainer/BoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -342,7 +341,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.423529, 0.94902, 0.992157, 1)
 theme_override_constants/line_spacing = -3
 theme_override_font_sizes/font_size = 35
-text = "SHIFT"
+text = "MOD"
 horizontal_alignment = 2
 
 [node name="Label_Parameter" type="Label" parent="ScrollContainer/BoxContainer/ColorTool/VBox/VBox/HBox"]

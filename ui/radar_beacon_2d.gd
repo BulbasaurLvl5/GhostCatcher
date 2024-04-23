@@ -48,7 +48,8 @@ func _process(_delta):
 	if !radar:
 		radar = get_tree().get_first_node_in_group("radar_2d")
 		if radar:
-			radar.tree_exiting.connect(_on_radar_tree_exiting)
+			if !radar.tree_exiting.is_connected(_on_radar_tree_exiting):
+				radar.tree_exiting.connect(_on_radar_tree_exiting)
 	if radar && !pointer:
 		create_pointer()
 

@@ -34,6 +34,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnagu"]
 size = Vector2(24, 110)
 
+[sub_resource type="Curve2D" id="Curve2D_arbo3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, -15, -66, -75, 0, 0, 0, 0, 0, -49, -9.01561, -21.7175, 9.01561, 21.7175, 62, -74, 0, 0, 0, 0, 5, -80, 0, 0, 0, 0, -49, -60, 0, 15, 0, 0, -66, -75)
+}
+point_count = 6
+
 [sub_resource type="Gradient" id="Gradient_fuufi"]
 offsets = PackedFloat32Array(0, 0.738372)
 colors = PackedColorArray(0.722433, 0.718803, 0.726663, 1, 0, 0, 0, 1)
@@ -45,12 +51,6 @@ height = 880
 use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Curve2D" id="Curve2D_arbo3"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, -15, -66, -75, 0, 0, 0, 0, 0, -49, -9.01561, -21.7175, 9.01561, 21.7175, 62, -74, 0, 0, 0, 0, 5, -80, 0, 0, 0, 0, -49, -60, 0, 15, 0, 0, -66, -75)
-}
-point_count = 6
 
 [node name="Player" type="CharacterBody2D"]
 light_mask = 2
@@ -64,19 +64,11 @@ platform_on_leave = 1
 platform_floor_layers = 5
 platform_wall_layers = 5
 script = ExtResource("1_l4530")
-canvas_mod_node = ExtResource("2_hrds7")
-verbose = true
 data = ExtResource("3_064ff")
+canvas_mod_node = ExtResource("2_hrds7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nnagu")
-
-[node name="PlayerAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-unique_name_in_owner = true
-scale = Vector2(0.3, 0.3)
-sprite_frames = ExtResource("4_ct6su")
-animation = &"idle"
-offset = Vector2(-40, -50)
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_dcopr")
@@ -125,10 +117,70 @@ script = ExtResource("14_umcf1")
 unique_name_in_owner = true
 script = ExtResource("16_hlspe")
 
-[node name="CoyoteTime" type="Timer" parent="."]
+[node name="Crows_Path2D" type="Path2D" parent="."]
+position = Vector2(-1, -21)
+curve = SubResource("Curve2D_arbo3")
+
+[node name="AirActionCrow1" type="PathFollow2D" parent="Crows_Path2D"]
 unique_name_in_owner = true
-wait_time = 0.05
-one_shot = true
+position = Vector2(-66, -75)
+rotates = false
+script = ExtResource("29_3wdth")
+speed = 0.3
+pause_locations = Array[float]([])
+
+[node name="Sprite2D" type="Sprite2D" parent="Crows_Path2D/AirActionCrow1"]
+light_mask = 32
+visibility_layer = 33
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("30_up3vm")
+
+[node name="CrowPointLight2D1" type="PointLight2D" parent="Crows_Path2D/AirActionCrow1"]
+unique_name_in_owner = true
+light_mask = 32
+visibility_layer = 0
+scale = Vector2(0.4, 0.4)
+range_item_cull_mask = 32
+texture = ExtResource("30_up3vm")
+
+[node name="AirActionCrow2" type="PathFollow2D" parent="Crows_Path2D"]
+unique_name_in_owner = true
+position = Vector2(62.2332, -73.4231)
+progress = 148.492
+rotates = false
+script = ExtResource("29_3wdth")
+speed = 0.3
+pause_locations = Array[float]([])
+
+[node name="Sprite2D" type="Sprite2D" parent="Crows_Path2D/AirActionCrow2"]
+light_mask = 32
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("31_y7vy4")
+
+[node name="CrowPointLight2D2" type="PointLight2D" parent="Crows_Path2D/AirActionCrow2"]
+unique_name_in_owner = true
+light_mask = 32
+visibility_layer = 32
+scale = Vector2(0.4, 0.4)
+range_item_cull_mask = 32
+texture = ExtResource("31_y7vy4")
+
+[node name="PlayerAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.3, 0.3)
+sprite_frames = ExtResource("4_ct6su")
+animation = &"idle"
+offset = Vector2(-40, -50)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+range_z_min = -500
+range_z_max = 500
+range_layer_min = -30
+range_layer_max = 30
+shadow_color = Color(0, 0, 0, 0.72549)
+texture = SubResource("GradientTexture2D_0ihpg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
@@ -144,6 +196,38 @@ drag_top_margin = 0.4
 drag_right_margin = 0.15
 drag_bottom_margin = 0.3
 script = ExtResource("16_1amk7")
+
+[node name="Radar2D" type="Node2D" parent="."]
+script = ExtResource("28_tmfgi")
+radar_active = true
+pointer_margin = Vector2(25, 25)
+
+[node name="RayCasts" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="GrabCheckTop" type="RayCast2D" parent="RayCasts"]
+unique_name_in_owner = true
+position = Vector2(12, 5)
+target_position = Vector2(3, 0)
+collision_mask = 5
+
+[node name="GrabCheckInsideTop" type="RayCast2D" parent="RayCasts"]
+unique_name_in_owner = true
+position = Vector2(12, 17)
+target_position = Vector2(3, 0)
+collision_mask = 5
+
+[node name="GrabCheckInsideBottom" type="RayCast2D" parent="RayCasts"]
+unique_name_in_owner = true
+position = Vector2(12, 39)
+target_position = Vector2(3, 0)
+collision_mask = 5
+
+[node name="GrabCheckBottom" type="RayCast2D" parent="RayCasts"]
+unique_name_in_owner = true
+position = Vector2(12, 51)
+target_position = Vector2(3, 0)
+collision_mask = 5
 
 [node name="SFX" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -184,7 +268,7 @@ area_mask = 2
 
 [node name="Land3" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("25_8nt8j")
-volume_db = 14.676
+volume_db = 8.951
 bus = &"SFX"
 area_mask = 2
 
@@ -200,104 +284,7 @@ volume_db = 24.0
 bus = &"SFX"
 area_mask = 2
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-light_mask = 2
-visibility_layer = 2
-range_z_min = -500
-range_z_max = 500
-range_layer_min = -30
-range_layer_max = 30
-shadow_color = Color(0, 0, 0, 0.72549)
-texture = SubResource("GradientTexture2D_0ihpg")
-
-[node name="RayCasts" type="Node2D" parent="."]
+[node name="CoyoteTime" type="Timer" parent="."]
 unique_name_in_owner = true
-
-[node name="HeadBumpCheckFront" type="RayCast2D" parent="RayCasts"]
-unique_name_in_owner = true
-position = Vector2(8, -56)
-target_position = Vector2(0, -5)
-collision_mask = 5
-
-[node name="HeadBumpCheckBack" type="RayCast2D" parent="RayCasts"]
-unique_name_in_owner = true
-position = Vector2(-8, -56)
-target_position = Vector2(0, -5)
-collision_mask = 5
-
-[node name="GrabCheckTop" type="RayCast2D" parent="RayCasts"]
-unique_name_in_owner = true
-position = Vector2(12, 5)
-target_position = Vector2(3, 0)
-collision_mask = 5
-
-[node name="GrabCheckInsideTop" type="RayCast2D" parent="RayCasts"]
-unique_name_in_owner = true
-position = Vector2(12, 17)
-target_position = Vector2(3, 0)
-collision_mask = 5
-
-[node name="GrabCheckInsideBottom" type="RayCast2D" parent="RayCasts"]
-unique_name_in_owner = true
-position = Vector2(12, 39)
-target_position = Vector2(3, 0)
-collision_mask = 5
-
-[node name="GrabCheckBottom" type="RayCast2D" parent="RayCasts"]
-unique_name_in_owner = true
-position = Vector2(12, 51)
-target_position = Vector2(3, 0)
-collision_mask = 5
-
-[node name="Radar2D" type="Node2D" parent="."]
-script = ExtResource("28_tmfgi")
-radar_active = true
-pointer_margin = Vector2(25, 25)
-
-[node name="Path2D" type="Path2D" parent="."]
-position = Vector2(-1, -21)
-curve = SubResource("Curve2D_arbo3")
-
-[node name="AirActionCrow1" type="PathFollow2D" parent="Path2D"]
-unique_name_in_owner = true
-position = Vector2(-66, -75)
-rotates = false
-script = ExtResource("29_3wdth")
-speed = 0.3
-pause_locations = Array[float]([])
-
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/AirActionCrow1"]
-light_mask = 32
-visibility_layer = 33
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("30_up3vm")
-
-[node name="CrowPointLight2D1" type="PointLight2D" parent="Path2D/AirActionCrow1"]
-unique_name_in_owner = true
-light_mask = 32
-visibility_layer = 0
-scale = Vector2(0.4, 0.4)
-range_item_cull_mask = 32
-texture = ExtResource("30_up3vm")
-
-[node name="AirActionCrow2" type="PathFollow2D" parent="Path2D"]
-unique_name_in_owner = true
-position = Vector2(62.2332, -73.4231)
-progress = 148.492
-rotates = false
-script = ExtResource("29_3wdth")
-speed = 0.3
-pause_locations = Array[float]([])
-
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/AirActionCrow2"]
-light_mask = 32
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("31_y7vy4")
-
-[node name="CrowPointLight2D2" type="PointLight2D" parent="Path2D/AirActionCrow2"]
-unique_name_in_owner = true
-light_mask = 32
-visibility_layer = 32
-scale = Vector2(0.4, 0.4)
-range_item_cull_mask = 32
-texture = ExtResource("31_y7vy4")
+wait_time = 0.05
+one_shot = true

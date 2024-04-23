@@ -6,6 +6,7 @@ extends Panel
 const cat_buttons_preload = preload("res://addons/parallax_wizard/plugin/pw_category_buttons.tscn")
 const item_buttons_preload = preload("res://addons/parallax_wizard/plugin/pw_item_buttons.tscn")
 
+
 var pw
 var current_cat : int
 var selected_item : int
@@ -33,6 +34,7 @@ func show_cats(active : bool):
 	%Grid_Categories.visible = active
 	%Button_AddCat.visible = active
 
+
 func refresh_cats():
 	var children = %Grid_Categories.get_children()
 	for child in children:
@@ -54,6 +56,7 @@ func refresh_cats():
 		buttons[4].pressed.connect(delete_cat.bind(count))
 		count += 1
 
+
 func reorder_cats(index : int, direction : int):
 	if abs(direction) != 1:
 		return
@@ -70,14 +73,17 @@ func reorder_cats(index : int, direction : int):
 	pw.custom_item_names.insert(index + direction, data)
 	refresh_cats()
 
+
 func rename_cat(new_text : String, index : int):
 	pw.custom_categories.remove_at(index)
 	pw.custom_categories.insert(index, new_text)
+
 
 func edit_cat(index : int):
 	current_cat = index
 	show_cats(false)
 	show_items(true)
+
 
 func delete_cat(index : int):
 	pw.custom_categories.remove_at(index)
@@ -85,12 +91,14 @@ func delete_cat(index : int):
 	pw.custom_item_names.remove_at(index)
 	refresh_cats()
 
+
 func show_items(active : bool):
 	if active:
 		refresh_items()
 	%VBox_ItemsTitle.visible = active
 	%Grid_Items.visible = active
 	%VBox_AddItems.visible = active
+
 
 func refresh_items():
 	%LineEdit_CatName.text = pw.custom_categories[current_cat]
@@ -119,6 +127,7 @@ func refresh_items():
 		buttons[4].pressed.connect(remove_item.bind(count))
 		count += 1
 
+
 func reorder_items(index : int, direction : int):
 	if abs(direction) != 1:
 		return
@@ -133,9 +142,11 @@ func reorder_items(index : int, direction : int):
 	pw.custom_item_names[current_cat].insert(index + direction, data)
 	refresh_items()
 	
+	
 func rename_item(new_text : String, index : int):
 	pw.custom_item_names[current_cat].remove_at(index)
 	pw.custom_item_names[current_cat].insert(index, new_text)
+
 
 func change_item(index : int):
 	selected_item = index
@@ -151,15 +162,18 @@ func change_item(index : int):
 	dialog.file_selected.connect(_on_file_dialog_change_file_selected)
 	dialog.grab_focus()
 	
+	
 func _on_file_dialog_change_file_selected(path):
 	pw.custom_items[current_cat].remove_at(selected_item)
 	pw.custom_items[current_cat].insert(selected_item, path)
 	refresh_items()
 
+
 func remove_item(index : int):
 	pw.custom_items[current_cat].remove_at(index)
 	pw.custom_item_names[current_cat].remove_at(index)
 	refresh_items()
+
 
 func add_item(path : String):
 	var item_name = path.get_file()
@@ -173,6 +187,7 @@ func add_item(path : String):
 func _on_line_edit_cat_name_text_submitted(new_text):
 	pw.custom_categories.remove_at(current_cat)
 	pw.custom_categories.insert(current_cat, new_text)
+
 
 func _on_button_add_cat_pressed():
 	var new_name : String = "CUSTOM_"
@@ -188,6 +203,7 @@ func _on_button_add_cat_pressed():
 	%LineEdit_CatName.select_all()
 	%LineEdit_CatName.grab_focus()
 	
+	
 func _on_button_add_items_pressed():
 	var dialog = EditorFileDialog.new()
 	add_child(dialog)
@@ -198,12 +214,14 @@ func _on_button_add_items_pressed():
 	dialog.files_selected.connect(_on_file_dialog_add_files_selected)
 	dialog.grab_focus()
 	
+	
 func _on_file_dialog_add_files_selected(paths):
 	for p in paths:
 		add_item(p)
 	refresh_items()
 	last_item_name.select_all()
 	last_item_name.grab_focus()
+
 
 func _on_button_create_item_pressed():
 	var dialog = EditorFileDialog.new()
@@ -217,6 +235,7 @@ func _on_button_create_item_pressed():
 	dialog.file_selected.connect(_on_file_dialog_save_file_selected)
 	dialog.grab_focus()
 
+
 func _on_file_dialog_save_file_selected(path):
 	var scene = PackedScene.new()
 	var result = scene.pack(single_node)
@@ -229,6 +248,7 @@ func _on_file_dialog_save_file_selected(path):
 			last_item_name.grab_focus()
 		else:
 			push_error("An error occurred while saving the scene to disk.")
+
 
 func _on_button_exit_button_down():
 	queue_free()
