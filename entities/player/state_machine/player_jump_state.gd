@@ -46,9 +46,9 @@ func Physics_Update(delta):
 	if time_in_current_state < data.jump_max_hold_time:
 		if player.jump_input:
 			var progress = clampf(time_in_current_state / data.jump_max_hold_time, 0.0, 1.0)
-			player.velocity.y = lerpf(data.jump_force, data.jump_force * 0.7, progress)
+			player.velocity.y = lerpf(-data.starting_jump_force, -data.ending_jump_force, progress)
 		else:
-			player.velocity.y += data.gravity * lerpf(10.0, 2.0, time_in_current_state / data.jump_max_hold_time) * delta
+			player.velocity.y += data.gravity * lerpf(data.early_gravity_multiplier, 2.0, time_in_current_state / data.jump_max_hold_time) * delta
 	else:
 		player.velocity.y += data.gravity * delta
 	player.velocity.x = data.in_air_horizontal_speed * player.x_input 

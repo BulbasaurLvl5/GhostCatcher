@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://entities/player/state_machine/player_state_machine.gd" id="1_dcopr"]
 [ext_resource type="Script" path="res://entities/player/state_machine/player.gd" id="1_l4530"]
+[ext_resource type="Resource" uid="uid://dvbrelm3gvn8b" path="res://entities/player/data/default.tres" id="2_h8ju7"]
 [ext_resource type="PackedScene" uid="uid://dp3hm754d5ple" path="res://resources/canvas_mod.tscn" id="2_hrds7"]
-[ext_resource type="Resource" uid="uid://dueytwbh53mya" path="res://entities/player/data/daniels_suggestion.tres" id="3_064ff"]
 [ext_resource type="SpriteFrames" uid="uid://byt3hw2l4n5l5" path="res://entities/player/anim/oriette.tres" id="4_ct6su"]
 [ext_resource type="Script" path="res://entities/player/state_machine/player_idle_state.gd" id="4_tan8y"]
 [ext_resource type="Script" path="res://entities/player/state_machine/player_state.gd" id="5_8dkiu"]
@@ -64,7 +64,7 @@ platform_on_leave = 1
 platform_floor_layers = 5
 platform_wall_layers = 5
 script = ExtResource("1_l4530")
-data = ExtResource("3_064ff")
+data = ExtResource("2_h8ju7")
 canvas_mod_node = ExtResource("2_hrds7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
