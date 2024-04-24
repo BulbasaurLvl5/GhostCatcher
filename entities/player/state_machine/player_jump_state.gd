@@ -14,7 +14,6 @@ func Enter(_from : PlayerState = null):
 		$"../../SFX/Jump2".play()
 		jump_noise = 1
 	player.jump_button_reset = false
-	player.velocity.y = data.jump_force
 	
 	
 func _animation_finished():
