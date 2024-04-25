@@ -34,12 +34,19 @@ public static class FileIO
 		// C:/Users/John/AppData/Roaming/Godot/app_userdata/GhostCatcher/
 
 		_filepath = _baseSavePath + "Save" + ".json";
-		if(!File.Exists(_filepath) || LevelLoader.Levels.Length != Load().LastTimes.Length)
+		if(!File.Exists(_filepath) || LevelLoader.Levels.Length != Load().LastTimes.Length || Load().DeathCount == null)
 		{
 			GD.Print("Created new save file");
 			SaveGame _save = new SaveGame{
 				LastTimes = new double[LevelLoader.Levels.Length],
 				BestTimes = new double[LevelLoader.Levels.Length],
+				DeathCount = new Dictionary<CauseOfDeath, int>()
+				{
+					{CauseOfDeath.pit, 0},
+					{CauseOfDeath.spikes, 0},
+					{CauseOfDeath.ghost, 0},
+					{CauseOfDeath.skull, 0},
+				}
 			};
 
 			string _jsonString = JsonSerializer.Serialize(_save);
@@ -64,6 +71,8 @@ public static class FileIO
 	{
 		public double[] LastTimes {get; set;}
 		public double[] BestTimes {get; set;}
+
+		public Dictionary<CauseOfDeath, int> DeathCount{get; set;}
 	}
 
 	public static void Save(int lvl, double time)
@@ -77,6 +86,19 @@ public static class FileIO
 
 		if(time < _save.BestTimes[lvl] || _save.BestTimes[lvl] == 0)
 			_save.BestTimes[lvl] = time;
+
+		string _jsonString = JsonSerializer.Serialize(_save);
+		File.WriteAllText(_filepath, _jsonString);
+	}
+
+	public static void Save(CauseOfDeath causeOfDeath)
+	{
+		string _filepath = _baseSavePath + "Save" + ".json";
+		GD.Print("saved causeOfDeath to: "+_filepath);
+
+		SaveGame _save = Load();
+
+		_save.DeathCount[causeOfDeath] += 1;
 
 		string _jsonString = JsonSerializer.Serialize(_save);
 		File.WriteAllText(_filepath, _jsonString);

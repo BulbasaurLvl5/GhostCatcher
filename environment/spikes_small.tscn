@@ -14,3 +14,4 @@ texture = ExtResource("1_la27r")
 polygon = PackedVector2Array(5, -26, 14, -27, 11, 1, 22, -8, 29, 1, 21, 27, -21, 26, -31, -2, -16, 6)
 
 [node name="CollisionFailure" parent="." instance=ExtResource("2_yxwa0")]
+causeOfDeath = 1

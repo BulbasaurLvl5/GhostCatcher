@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bw7hxudbq5u63"]
 
 [ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://resources/collision_failure.tscn" id="1_01f1x"]
-[ext_resource type="Texture2D" uid="uid://d22mfo1u7jqs0" path="res://Sprites/Endlesspit.png" id="2_cvn5m"]
+[ext_resource type="Texture2D" uid="uid://d22mfo1u7jqs0" path="res://resources/sprites/endless_pit.png" id="2_cvn5m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgk45"]
 size = Vector2(46273, 995.25)

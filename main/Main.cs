@@ -162,8 +162,10 @@ public partial class Main : Node
 		Failed = false;
 	}
 
-	public void FailLevel()
+	public void FailLevel(CauseOfDeath causeOfDeath)
 	{
+		GD.Print("Ori died to: "+causeOfDeath.ToString());
+		FileIO.Save(causeOfDeath);
 		_levelTime.Pause();
 		player.ProcessMode = ProcessModeEnum.Disabled;
 		OnLevelFail?.Invoke();

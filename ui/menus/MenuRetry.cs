@@ -24,10 +24,10 @@ public partial class MenuRetry : Node
 		if(this.TryGetChildren(out List<Control> _controls))
 		{
 			// for (int i = 0; i < _controls.Count; i++)
-			// 	GD.Print(_controls[i].Name);
+			// 	GD.Print("i:", i, " name:", _controls[i].Name);
 
-			buttons = _controls[1];
-			rating = _controls[2];
+			buttons = _controls[0];
+			rating = _controls[1];
 		}
 			
 		//button set up
@@ -87,11 +87,6 @@ public partial class MenuRetry : Node
 
 			FileIO.SaveGame _save = FileIO.Load();
 			_times[1].Text = TimeCounter.TimeToClock(_save.BestTimes[_main.Level]);
-		}
-
-		if(this.TryGetNestedChildren(out List<AnimationPlayer> _anim))
-		{
-			_anim[0].Play("fade");
 		}
 	}
 

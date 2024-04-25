@@ -101,8 +101,8 @@ public partial class MenuLevel : Node
 					ratingsprite.Texture = rating_5;
 			}
 
-			if(_save.LastTimes[i] == 0)
-				return;
+			// if(_save.LastTimes[i] == 0)
+			// 	return;
 		}
 	}
 }
