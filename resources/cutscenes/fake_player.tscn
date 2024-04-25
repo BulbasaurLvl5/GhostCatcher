@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4jfe0nfbnb36"]
+
+[ext_resource type="SpriteFrames" uid="uid://byt3hw2l4n5l5" path="res://entities/player/anim/oriette.tres" id="1_7pv82"]
+
+[sub_resource type="Gradient" id="Gradient_n6yyi"]
+offsets = PackedFloat32Array(0, 0.738372)
+colors = PackedColorArray(0.722433, 0.718803, 0.726663, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bg04l"]
+gradient = SubResource("Gradient_n6yyi")
+width = 880
+height = 880
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="FakePlayer" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.3, 0.3)
+sprite_frames = ExtResource("1_7pv82")
+animation = &"idle"
+speed_scale = 0.0
+offset = Vector2(-40, -50)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+range_z_min = -500
+range_z_max = 500
+range_layer_min = -30
+range_layer_max = 30
+shadow_color = Color(0, 0, 0, 0.72549)
+texture = SubResource("GradientTexture2D_bg04l")

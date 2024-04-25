@@ -40,12 +40,12 @@ _data = {
 }
 point_count = 6
 
-[sub_resource type="Gradient" id="Gradient_fuufi"]
+[sub_resource type="Gradient" id="Gradient_275s1"]
 offsets = PackedFloat32Array(0, 0.738372)
 colors = PackedColorArray(0.722433, 0.718803, 0.726663, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_0ihpg"]
-gradient = SubResource("Gradient_fuufi")
+gradient = SubResource("Gradient_275s1")
 width = 880
 height = 880
 use_hdr = true
@@ -118,6 +118,7 @@ unique_name_in_owner = true
 script = ExtResource("16_hlspe")
 
 [node name="Crows_Path2D" type="Path2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-1, -21)
 curve = SubResource("Curve2D_arbo3")
 

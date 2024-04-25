@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bokl5cktpsr6n"]
+[gd_scene load_steps=20 format=3 uid="uid://bokl5cktpsr6n"]
 
 [ext_resource type="Script" path="res://ui/menus/MenuRetry.cs" id="1_kt2lo"]
 [ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://resources/sprites/coal/reaper_cutout.png" id="2_bnm5d"]
@@ -9,10 +9,107 @@
 [ext_resource type="Texture2D" uid="uid://c0gc7f2tabnb1" path="res://resources/sprites/coal/star_rating_3.png" id="7_iydby"]
 [ext_resource type="Texture2D" uid="uid://be0focatd66ee" path="res://resources/sprites/coal/star_rating_4.png" id="8_5gaqe"]
 [ext_resource type="Texture2D" uid="uid://1ehg3bq0be" path="res://resources/sprites/coal/star_rating_5.png" id="9_sjwuq"]
+[ext_resource type="Script" path="res://resources/cutscenes/cutscene.gd" id="10_mo1u3"]
+[ext_resource type="SpriteFrames" uid="uid://byt3hw2l4n5l5" path="res://entities/player/anim/oriette.tres" id="11_gx74l"]
+
+[sub_resource type="Animation" id="Animation_xkux8"]
+resource_name = "dead"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cutscenes/cutscene_methods")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [Vector2(940, 880), 1.0],
+"method": &"timed_float_player_to"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cutscenes/standin/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(0.959504),
+"update": 1,
+"values": [&"fall"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("cutscenes/standin/AnimatedSprite2D:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(0.959503),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("cutscenes/reaper:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.1, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(12, 12), Vector2(2, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("cutscenes/reaper:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.1, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("cutscenes/blackout:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0430392, 0.0430392, 0.0430392, 0), Color(0.0431373, 0.0431373, 0.0431373, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_18ke0"]
+_data = {
+"dead": SubResource("Animation_xkux8")
+}
+
+[sub_resource type="Gradient" id="Gradient_fuufi"]
+offsets = PackedFloat32Array(0, 0.738372)
+colors = PackedColorArray(0.722433, 0.718803, 0.726663, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3obbw"]
+gradient = SubResource("Gradient_fuufi")
+width = 880
+height = 880
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Animation" id="Animation_dyux7"]
 resource_name = "fade"
-length = 1.5
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -20,10 +117,10 @@ tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.2, 1.5),
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.164706, 0.164706, 0.164706, 0), Color(0, 0, 0, 1)]
+"values": [Color(0.164706, 0.164706, 0.164706, 0), Color(0.164706, 0.164706, 0.164706, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6hor2"]
@@ -45,10 +142,64 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Retry_Menu" type="Node"]
 script = ExtResource("1_kt2lo")
 
+[node name="cutscenes" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_18ke0")
+}
+
+[node name="cutscene_methods" type="Node" parent="cutscenes"]
+unique_name_in_owner = true
+script = ExtResource("10_mo1u3")
+
+[node name="blackout" type="ColorRect" parent="cutscenes"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.0430392, 0.0430392, 0.0430392, 0)
+
+[node name="standin" type="Node2D" parent="cutscenes"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.851769, 0.851769, 0.851769, 1)
+z_index = 200
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="cutscenes/standin"]
+scale = Vector2(0.3, 0.3)
+sprite_frames = ExtResource("11_gx74l")
+animation = &"fall"
+offset = Vector2(-40, -50)
+
+[node name="PointLight2D" type="PointLight2D" parent="cutscenes/standin"]
+visible = false
+light_mask = 2
+visibility_layer = 2
+range_z_min = -500
+range_z_max = 500
+range_layer_min = -30
+range_layer_max = 30
+shadow_color = Color(0, 0, 0, 0.72549)
+texture = SubResource("GradientTexture2D_3obbw")
+
+[node name="reaper" type="Node2D" parent="cutscenes"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(946, 614)
+scale = Vector2(12, 12)
+
+[node name="Sprite2D" type="Sprite2D" parent="cutscenes/reaper"]
+self_modulate = Color(0.650128, 0.650128, 0.650128, 1)
+texture = ExtResource("2_bnm5d")
+
 [node name="blackfade" type="ColorRect" parent="."]
+visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(0.164706, 0.164706, 0.164706, 0)
+color = Color(0.0999859, 0.099986, 0.099986, 1)
 
 [node name="fade" type="AnimationPlayer" parent="blackfade"]
 libraries = {

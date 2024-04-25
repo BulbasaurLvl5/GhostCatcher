@@ -18,8 +18,7 @@ public partial class MenuRetry : Node
 	{
 		this.TryGetNodeInTree(out Main _main);
 
-		_main.player.Reparent(this); //exclude oritte from fading behind the black
-
+		//_main.player.Reparent(this); //exclude oritte from fading behind the black
 		token = source.Token;
 
 		if(this.TryGetChildren(out List<Control> _controls))
