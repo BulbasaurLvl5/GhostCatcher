@@ -7,23 +7,17 @@ public partial class MenuLevel : Node
 {
 	PackedScene packedLevelMenuElement = ResourceLoader.Load<PackedScene>("res://ui/menus/menu_level_element.tscn");
 
-	[Export]
-	Texture2D rating_0 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_0.png");
+	[Export] Texture2D rating_0 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_0.png");
 
-	[Export]
-	Texture2D rating_1 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_1.png");
+	[Export] Texture2D rating_1 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_1.png");
 
-	[Export]
-	Texture2D rating_2 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_2.png");
+	[Export] Texture2D rating_2 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_2.png");
 
-	[Export]
-	Texture2D rating_3 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_3.png");
+	[Export] Texture2D rating_3 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_3.png");
 
-	[Export]
-	Texture2D rating_4 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_4.png");
+	[Export] Texture2D rating_4 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_4.png");
 
-	[Export]
-	Texture2D rating_5 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_5.png");
+	[Export] Texture2D rating_5 = ResourceLoader.Load<Texture2D>("res://resources/sprites/coal/star_rating_5.png");
 
 	public override void _Ready()
 	{
