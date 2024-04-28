@@ -37,6 +37,7 @@ public static class LevelLoader
 	static PackedScene packedLevel_NewGround = ResourceLoader.Load<PackedScene>("res://levels/new_ground.tscn");
 	static PackedScene packedLevel_RingOfFire = ResourceLoader.Load<PackedScene>("res://levels/ring_of_fire.tscn");
 	static PackedScene packedLevel_SkullCap = ResourceLoader.Load<PackedScene>("res://levels/skull_cap.tscn");
+	static PackedScene packedLevel_blocks = ResourceLoader.Load<PackedScene>("res://levels/blocks.tscn");
 
 	public class Level
 	{
@@ -75,7 +76,7 @@ public static class LevelLoader
 		new Level("cliff", new float[]{}, LoadLevel_Cliff),
 
     // moving platforms
-		//blocks
+		new Level("blocks", new float[]{}, LoadLevel_blocks),
     // 1st enemy type (ghosts)
     // spikes
 		new Level("spikes", new float[]{}, LoadLevel_Spikes),
@@ -197,7 +198,7 @@ public static class LevelLoader
 
 	static void LoadLevel_Cliff(Main _main)
 	{
-		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(0*110,0*110), 0);
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(-10*110,-5*110), 0);
 
 		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
 		_main.UI.AddChild(_timeLabel);
@@ -208,6 +209,26 @@ public static class LevelLoader
 		packedLevel_cliff.Instantiate(_main.World);
 
 		_main.StartLevel(LevelID(LoadLevel_Cliff));
+
+		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
+		_main.UI.AddChild(_ghostDisplay);
+
+		PlayerDisableDelay(_main, 1);
+	}
+
+	static void LoadLevel_blocks(Main _main)
+	{
+		_main.player = packedPlayer.Instantiate(_main.World, new Vector2(-10*110,-5*110), 0);
+
+		TimeLabel _timeLabel = packedTimeLabel.Instantiate<TimeLabel>();
+		_main.UI.AddChild(_timeLabel);
+
+		MainLabel _center_label = packedCenterLabel.Instantiate<MainLabel>();
+		_main.UI.AddChild(_center_label);
+
+		packedLevel_blocks.Instantiate(_main.World);
+
+		_main.StartLevel(LevelID(LoadLevel_blocks));
 
 		RemainingGhostDisplay _ghostDisplay = packedGhostDisplay.Instantiate<RemainingGhostDisplay>();
 		_main.UI.AddChild(_ghostDisplay);

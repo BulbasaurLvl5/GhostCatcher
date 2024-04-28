@@ -1,14 +1,42 @@
-[gd_scene load_steps=6 format=3 uid="uid://d06b1cuf8a172"]
+[gd_scene load_steps=13 format=3 uid="uid://d06b1cuf8a172"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_0hrum"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_kkhh8"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_e6ses"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_hatpd"]
+[ext_resource type="Script" path="res://resources/path_follow_manager.gd" id="4_lncv5"]
 [ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_d3gb6"]
+[ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://environment/platforms/wide_platform_01.tscn" id="5_hgbuq"]
+[ext_resource type="PackedScene" uid="uid://crxh8tb8lf8kr" path="res://environment/platforms/tall_platform_01.tscn" id="6_r5fo6"]
+
+[sub_resource type="Curve2D" id="Curve2D_oc8qy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1700, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_nreru"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1000, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_7mcig"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_kwyab"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1000)
+}
+point_count = 2
 
 [node name="Blocks" type="Node2D"]
 script = ExtResource("1_0hrum")
 level_name = "Blocks"
+show_data_in_editor = true
 starting_position_x = 2.0
 starting_position_y = 0.5
 top_boundary = -24.5
@@ -19,7 +47,7 @@ bottom_boundary = 5.0
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_kkhh8")
 format = 2
-layer_0/tile_data = PackedInt32Array(131070, 65536, 3, 131071, 131073, 3, 65536, 131073, 2, 65537, 131072, 3, 65538, 196609, 3, 0, 1, 1, -65536, 1, 1, -131072, 1, 1, -196608, 1, 1, -262144, 1, 1, -327680, 1, 1, -393216, 1, 1, -458752, 1, 1, -524288, 0, 1, -589824, 0, 1, -655360, 0, 1, -720896, 65536, 0, -720895, 131073, 3, -720894, 131073, 3, -720893, 131072, 3, -720892, 131072, 3, -720891, 327680, 3, -720890, 589824, 3, -720889, 589824, 3, -720888, 589825, 3, -720887, 589824, 3, -720886, 589824, 3, -720885, 589825, 3, -720884, 589824, 3, -720883, 589825, 3, -720882, 589824, 3, -720881, 589824, 3, -720880, 589824, 3, -131063, 1, 0, -65527, 1, 1, 9, 1, 1, 65545, 65536, 2, 65546, 131072, 3, 65547, 131073, 3, 65548, 131072, 3, 65549, 131072, 3, 65550, 131072, 3, 65551, 196609, 2, 15, 0, 1, -65521, 0, 1, -131057, 0, 1, -196593, 1, 1, -262129, 65536, 0, -262128, 131073, 3, -262127, 131073, 3, -262126, 131072, 3, -262125, 196609, 0, -196589, 1, 1, -131053, 1, 2, -720879, 589825, 3, -720878, 393217, 3, -720877, 131072, 3, -720876, 131072, 3, -720875, 131072, 3, -720874, 131072, 3, -720873, 196608, 3, 131077, 65536, 3, 131078, 196609, 3, -1048547, 1, 0, -983011, 0, 1, -917475, 0, 1, -851939, 1, 1, -786403, 1, 1, -720867, 0, 1, -655331, 0, 1, -589795, 1, 1, -524259, 1, 1, -458723, 0, 1, -393187, 0, 1, -327651, 1, 2, -1310723, 0, 0, -1245187, 0, 1, -1179651, 0, 1, -1114115, 0, 1, -1048579, 1, 2, -917507, 0, 0, -851971, 1, 1, -786435, 1, 1, -720899, 0, 1, -655363, 0, 2, -1179646, 0, 2, -1245182, 0, 1, -1310718, 65537, 0, -1310717, 131073, 3, -1310716, 131073, 3, -1310715, 196609, 0, -1245179, 0, 1, -1179643, 0, 2, -131078, 196608, 3, -131079, 131072, 3, -131080, 131072, 3, -131081, 65536, 2, -196617, 1, 1, -262153, 196609, 0, -262154, 131072, 3, -262155, 131072, 3, -262156, 65536, 2, -327692, 1, 1, -393228, 196608, 0, -393229, 131073, 3, -393230, 131072, 3, -393231, 65537, 0, -327695, 1, 1, -262159, 0, 1, -196623, 0, 1, -131087, 1, 1, -65551, 1, 1, -15, 0, 2, -851960, 524288, 0, -851959, 655361, 0, -851958, 655361, 0, -851957, 327681, 1, -851956, 720896, 2, -917493, 524289, 1, -983029, 262145, 1, -1048565, 196608, 0, -1048566, 131073, 3, -1048567, 131073, 3, -1048568, 65537, 3, -786427, 524288, 0, -786426, 655360, 0, -786425, 655360, 0, -786424, 327680, 1, -786423, 131074, 3, -786422, 196610, 0, -786421, 589825, 2, -786420, 393217, 1, -786419, 655361, 0, -786418, 655361, 0, -786417, 655360, 0, -786416, 655360, 0, -786415, 655360, 0, -786414, 720896, 0, -1114089, 196608, 3, -1114090, 131073, 3, -1114091, 131072, 3, -1114092, 65536, 0, -1048556, 1, 1, -983020, 196609, 2, -983021, 131073, 3, -983022, 131072, 3, -983023, 131072, 3, -983024, 131072, 3, -983025, 131072, 3, -983026, 131073, 3, -983027, 131073, 3, -983028, 393216, 0, -917492, 720897, 2)
+layer_0/tile_data = PackedInt32Array(131070, 65536, 3, 131071, 131073, 3, 65536, 131073, 2, 65537, 131072, 3, 65538, 196609, 3, 0, 1, 1, -65536, 1, 1, -131072, 1, 1, -196608, 1, 1, -262144, 1, 1, -327680, 1, 1, -393216, 262144, 2, -458752, 524288, 1, -524288, 524288, 1, -589824, 524289, 1, -655360, 524289, 0, -720894, 524288, 0, -720893, 655361, 0, -720892, 655361, 0, -720891, 327680, 1, -65521, 65537, 2, -131057, 0, 1, -196593, 1, 1, -262129, 1, 0, -1179646, 0, 2, -1245182, 0, 1, -1310718, 65537, 0, -1310717, 131073, 3, -1310716, 131073, 3, -1310715, 196609, 0, -1245179, 0, 1, -1179643, 0, 2, -131078, 196608, 3, -131079, 131072, 3, -131080, 131072, 3, -131081, 65536, 2, -196617, 1, 1, -262153, 196609, 0, -262154, 131072, 3, -262155, 131072, 3, -262156, 65536, 2, -327692, 1, 1, -393228, 196608, 0, -393229, 131073, 3, -393230, 131072, 3, -393231, 65537, 0, -327695, 1, 1, -262159, 0, 1, -196623, 0, 1, -131087, 1, 1, -65551, 1, 1, -15, 0, 2, -851960, 524288, 0, -851959, 655361, 0, -851958, 655360, 0, -851957, 589824, 1, -851956, 720897, 3, -917493, 524289, 1, -983029, 262145, 1, -1048565, 196608, 0, -1048566, 131073, 3, -1048567, 131073, 3, -1048568, 65537, 3, -786427, 524288, 0, -786426, 393217, 0, -786425, 131072, 3, -786424, 327681, 3, -786423, 589824, 3, -786422, 589824, 3, -1114089, 196608, 3, -1114090, 131073, 3, -1114091, 131072, 3, -1114092, 65536, 0, -1048556, 1, 1, -983020, 196609, 2, -983021, 131073, 3, -983022, 131072, 3, -983023, 131072, 3, -983024, 131072, 3, -983025, 131072, 3, -983026, 131073, 3, -983027, 131073, 3, -983028, 393216, 0, -917492, 720897, 2, -393194, 131073, 3, -393193, 131072, 3, -65520, 131073, 3, -65519, 131073, 3, -65518, 131072, 3, -65517, 131072, 3, -65516, 196609, 2, -131052, 1, 1, -196588, 1, 1, -262124, 1, 1, -327660, 0, 1, -393195, 131073, 3, -393196, 65536, 0, -393192, 196609, 0, -327656, 1, 1, -262120, 1, 1, -196584, 1, 2, -786421, 720896, 3, -393215, 589824, 3, -458751, 196610, 3, -524287, 131074, 1, -589823, 2, 2, -655359, 655360, 0, -655358, 327680, 1, -655357, 131074, 2, -655356, 393217, 2, -655355, 589825, 3, -524286, 393216, 2, -589822, 262146, 1, -720890, 720897, 2, -655354, 720897, 3, -589821, 2, 3, -524285, 589825, 3, -458750, 720896, 2, -393214, 720897, 3, -589820, 720896, 2, -524284, 720897, 3)
 
 [node name="Ghosts" type="Node" parent="."]
 
@@ -33,7 +61,7 @@ position = Vector2(1118, -586)
 position = Vector2(-92, 20)
 
 [node name="Ghost5" parent="Ghosts" instance=ExtResource("3_e6ses")]
-position = Vector2(1372, -4)
+position = Vector2(1974, -269)
 
 [node name="Ghost6" parent="Ghosts" instance=ExtResource("3_e6ses")]
 position = Vector2(-1429, -374)
@@ -42,10 +70,10 @@ position = Vector2(-1429, -374)
 position = Vector2(-1444, -955)
 
 [node name="Ghost2" parent="Ghosts" instance=ExtResource("3_e6ses")]
-position = Vector2(1972, -972)
+position = Vector2(2475, -891)
 
 [node name="Ghost3" parent="Ghosts" instance=ExtResource("3_e6ses")]
-position = Vector2(1936, -232)
+position = Vector2(2475, -403)
 
 [node name="Ghost8" parent="Ghosts" instance=ExtResource("3_e6ses")]
 position = Vector2(445, -1980)
@@ -54,11 +82,100 @@ position = Vector2(445, -1980)
 position = Vector2(1094, -1550)
 
 [node name="Ghost9" parent="Ghosts" instance=ExtResource("3_e6ses")]
-position = Vector2(-453, -1845)
+position = Vector2(-369, -1764)
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Platforms" type="Node" parent="."]
+
+[node name="horiz_pltf" type="Path2D" parent="Platforms"]
+position = Vector2(220, 265)
+curve = SubResource("Curve2D_oc8qy")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/horiz_pltf"]
+position = Vector2(1700, 0)
+rotates = false
+script = ExtResource("4_lncv5")
+speed = 0.2
+
+[node name="WidePlatform01" parent="Platforms/horiz_pltf" instance=ExtResource("5_hgbuq")]
+position = Vector2(-2, -1)
+collision_layer = 5
+
+[node name="horiz_pltf2" type="Path2D" parent="Platforms"]
+position = Vector2(1600, 265)
+curve = SubResource("Curve2D_oc8qy")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/horiz_pltf2"]
+position = Vector2(1700, 0)
+rotates = false
+script = ExtResource("4_lncv5")
+speed = 0.2
+
+[node name="WidePlatform01" parent="Platforms/horiz_pltf2" instance=ExtResource("5_hgbuq")]
+position = Vector2(-2, -1)
+collision_layer = 5
+
+[node name="horiz_pltf3" type="Path2D" parent="Platforms"]
+position = Vector2(-165, 265)
+curve = SubResource("Curve2D_nreru")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/horiz_pltf3"]
+rotates = false
+script = ExtResource("4_lncv5")
+speed = 0.2
+
+[node name="WidePlatform01" parent="Platforms/horiz_pltf3" instance=ExtResource("5_hgbuq")]
+position = Vector2(-2, -1)
+collision_layer = 5
+
+[node name="vert_pltf" type="Path2D" parent="Platforms"]
+position = Vector2(3200, -1000)
+curve = SubResource("Curve2D_7mcig")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/vert_pltf"]
+rotates = false
+script = ExtResource("4_lncv5")
+
+[node name="TallPlatform01" parent="Platforms/vert_pltf" instance=ExtResource("6_r5fo6")]
+position = Vector2(10, 0)
+collision_layer = 5
+
+[node name="vert_pltf2" type="Path2D" parent="Platforms"]
+position = Vector2(3200, -1300)
+curve = SubResource("Curve2D_kwyab")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/vert_pltf2"]
+rotates = false
+script = ExtResource("4_lncv5")
+
+[node name="TallPlatform01" parent="Platforms/vert_pltf2" instance=ExtResource("6_r5fo6")]
+position = Vector2(10, 0)
+collision_layer = 5
+
+[node name="vert_pltf3" type="Path2D" parent="Platforms"]
+position = Vector2(-200, -1900)
+curve = SubResource("Curve2D_7mcig")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/vert_pltf3"]
+rotates = false
+script = ExtResource("4_lncv5")
+
+[node name="TallPlatform01" parent="Platforms/vert_pltf3" instance=ExtResource("6_r5fo6")]
+position = Vector2(10, 0)
+collision_layer = 5
+
+[node name="vert_pltf4" type="Path2D" parent="Platforms"]
+position = Vector2(-200, -1600)
+curve = SubResource("Curve2D_kwyab")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/vert_pltf4"]
+rotates = false
+script = ExtResource("4_lncv5")
+
+[node name="TallPlatform01" parent="Platforms/vert_pltf4" instance=ExtResource("6_r5fo6")]
+position = Vector2(10, 0)
+collision_layer = 5
 
 [node name="Spikes" type="Node" parent="."]
 

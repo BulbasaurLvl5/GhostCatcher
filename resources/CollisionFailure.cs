@@ -20,7 +20,7 @@ public partial class CollisionFailure : Node
 			// alternative identifier
 			// GDScript MyGDScript = GD.Load<GDScript>("res://scenes/levels/TestBody.gd");
 			// GD.Print(body.GetScript().As<GDScript>() == MyGDScript);
-			_parent.BodyEntered += (Node2D n) => {if (n is CharacterBody2D) {_main.FailLevel(causeOfDeath);} };
+			_parent.BodyEntered += (Node2D n) => {if (n is CharacterBody2D) {GD.Print(n.Name); _main.FailLevel(causeOfDeath);} };
 		}
 		else
 		{
