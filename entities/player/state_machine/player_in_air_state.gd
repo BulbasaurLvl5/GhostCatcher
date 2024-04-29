@@ -6,6 +6,7 @@ var hang_time_active : bool = false
 
 
 func Enter(from : PlayerState = null):
+	anim.play("fall")
 	if from:
 		var states = ["Run", "Jump", "Dash", "WallGrab", "WallJump"]
 		if states.has(from.name):
@@ -60,6 +61,8 @@ func Update(_delta):
 
 
 func Physics_Update(delta):
+	player.velocity.y += data.gravity * delta
+	
 	if hang_time_active:
 		player.velocity.y = 0.0
 	else:

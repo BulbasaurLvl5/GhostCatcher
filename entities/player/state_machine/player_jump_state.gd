@@ -14,6 +14,7 @@ func Enter(_from : PlayerState = null):
 		$"../../SFX/Jump2".play()
 		jump_noise = 1
 	player.jump_button_reset = false
+	player.velocity.y = -1 * data.initial_jump_force
 	
 	
 func _animation_finished():
@@ -42,14 +43,11 @@ func Do_Checks():
 		
 		
 func Physics_Update(delta):
-	if time_in_current_state < data.jump_max_hold_time:
-		if player.jump_input:
-			var progress = clampf(time_in_current_state / data.jump_max_hold_time, 0.0, 1.0)
-			player.velocity.y = lerpf(-data.starting_jump_force, -data.ending_jump_force, progress)
-		else:
-			player.velocity.y += data.gravity * lerpf(data.early_gravity_multiplier, 2.0, time_in_current_state / data.jump_max_hold_time) * delta
-	else:
+	if player.jump_input && time_in_current_state <= data.jump_max_hold_time:
+		player.velocity.y -= data.ongoing_jump_force * delta
 		player.velocity.y += data.gravity * delta
+	else:
+		player.velocity.y += data.gravity * data.max_gravity_multiplier * delta
 	player.velocity.x = data.in_air_horizontal_speed * player.x_input 
 	player.move()
 

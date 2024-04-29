@@ -36,8 +36,8 @@ func Update(delta):
 		timer -= delta
 		
 
-func Physics_Update(_delta):
-#	player.velocity.y = 100
+func Physics_Update(delta):
+	player.velocity.y += data.gravity * delta
 	player.move()
 
 
