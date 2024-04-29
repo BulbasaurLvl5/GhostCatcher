@@ -29,8 +29,9 @@ func Do_Checks():
 		Transitioned.emit(self,"Idle")
 		
 		
-func Physics_Update(_delta):
-	player.velocity = Vector2(data.run_speed * player.x_input, 0)
+func Physics_Update(delta):
+	player.velocity.y += data.gravity * delta
+	player.velocity.x = data.run_speed * player.x_input
 	player.move()
 
 

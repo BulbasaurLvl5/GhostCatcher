@@ -22,10 +22,10 @@ extends Resource
 @export var distance_before_heavy_landing : float = 1000.0
 
 @export_group("Jumping")
-@export var starting_jump_force : int = 1200
-@export var ending_jump_force : int = 900
+@export var initial_jump_force : float = 2000
+@export var ongoing_jump_force : float = 2000
 @export var jump_max_hold_time : float = 0.3
-@export var early_gravity_multiplier : float = 10.0
+@export var max_gravity_multiplier : float = 3.0
 
 @export_group("Dashing")
 @export var dash_peak_speed : float = 280.0

@@ -50,7 +50,8 @@ func Do_Checks():
 			Transitioned.emit(self,"Idle")
 
 
-func Physics_Update(_delta):
+func Physics_Update(delta):
+	player.velocity.y += data.gravity * delta
 	player.move()
 
 	
