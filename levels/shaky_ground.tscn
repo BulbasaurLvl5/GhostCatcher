@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2xhyj1jgx5fr"]
+[gd_scene load_steps=14 format=3 uid="uid://b2xhyj1jgx5fr"]
 
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_qysqh"]
 [ext_resource type="Script" path="res://main/level.gd" id="1_rbfi6"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://environment/platforms/wide_platform_01.tscn" id="3_y03pk"]
 [ext_resource type="PackedScene" uid="uid://cau04hgcii1cn" path="res://entities/mobs/giant_red.tscn" id="5_3svs3"]
 [ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="7_fkw55"]
+[ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="10_4wx0c"]
 
 [sub_resource type="Curve2D" id="Curve2D_ufhwr"]
 _data = {
@@ -292,3 +293,6 @@ position = Vector2(-1858, -2067)
 scale = Vector2(6, 4)
 texture = ExtResource("7_fkw55")
 centered = false
+
+[node name="Player" parent="." instance=ExtResource("10_4wx0c")]
+position = Vector2(-778, -194)

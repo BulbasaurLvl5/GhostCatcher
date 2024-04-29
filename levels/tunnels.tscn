@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvh68tarfg7ur"]
+[gd_scene load_steps=9 format=3 uid="uid://bvh68tarfg7ur"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_nlh26"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_xyow6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bktq6ap0baxd6" path="res://resources/sprites/coal/tree_8.png" id="5_uko1g"]
 [ext_resource type="Texture2D" uid="uid://mses6drjkls3" path="res://resources/sprites/coal/tree_9.png" id="6_6c1cq"]
 [ext_resource type="Texture2D" uid="uid://b8xoka0m1lmq5" path="res://resources/sprites/coal/hills.png" id="7_pxh8j"]
+[ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="8_8erh2"]
 
 [node name="Tunnels" type="Node2D"]
 script = ExtResource("1_nlh26")
@@ -137,3 +138,6 @@ z_index = -1
 position = Vector2(772, -1544)
 scale = Vector2(2.41781, 3.87409)
 texture = ExtResource("7_pxh8j")
+
+[node name="Player" parent="." instance=ExtResource("8_8erh2")]
+position = Vector2(-242, -210)

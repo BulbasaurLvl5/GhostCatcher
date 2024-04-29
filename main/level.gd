@@ -62,7 +62,7 @@ var player : Player:
 			return
 		else:
 			player = value
-			player.position = starting_pos
+			#player.position = starting_pos
 			player.level_boundary = level_boundary
 var camera : Camera2D:
 	set(value):

@@ -27,6 +27,45 @@ namespace MyGodotExtensions
 			return _this.GetTree().Root;
 		}
 
+		public static bool TryGetNodeInTree<T>(this Node _this, string name, out T node) where T : Node
+		{
+			var _children = _this.GetRoot().GetChildren().ToList();
+			HashSet<Node> _allChildren = new HashSet<Node>();
+
+			while(_children.Count > 0)
+			{
+				List<Node> _subchildren = new List<Node>();
+				for (int i = _children.Count-1; i >= 0; i--)
+				{
+					_allChildren.Add(_children[i]);
+					_subchildren = _subchildren.Concat(_children[i].GetChildren().ToList()).ToList();
+					_children.RemoveAt(i);
+
+					//for some reason this shortcut is forbiden here
+					// if(_children[i].Name == name)
+					// {
+					// 	node = (T)_children[i];
+					// 	return true;
+					// }
+				}
+				_children=_children.Concat(_subchildren).ToList();
+			}
+
+			foreach (var _child in _allChildren)
+			{
+				// GD.Print(_child.Name);
+				if(_child.Name == name)
+				{
+					node = (T)_child;
+					return true;
+				}	
+			}
+
+			// throw new Exception("Player not found");
+			node = null;
+			return false;
+		}
+
 		public static bool TryGetChild<T>(this Node _this, out T node) where T : Node
 		{
 			var _children = _this.GetChildren();

@@ -2,6 +2,7 @@ using Godot;
 using System;
 using MyGodotExtensions;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class Main : Node
 {
@@ -18,7 +19,7 @@ public partial class Main : Node
 
 	public BackgroundMusic BackgroundMusic;
 
-	public Node2D player;
+	// public Node2D player;
 
 	int _ghostCount = 0;
 
@@ -53,7 +54,7 @@ public partial class Main : Node
 
 		getReadyTime.OnStop += () => {
 			_levelTime.Start(599); //mission fails at 10min
-			player.ProcessMode = ProcessModeEnum.Inherit;
+			Player().ProcessMode = ProcessModeEnum.Inherit;
 			OnLevelStart?.Invoke();
 		};
 
@@ -122,6 +123,7 @@ public partial class Main : Node
 		GhostCount = 0;
 		getReadyTime.Start(2);
 		_levelTime.Start(-2);
+		Player().ProcessMode = ProcessModeEnum.Disabled;
 
 		if(World.TryGetNestedChildren(out List<Ghost> ghosts))
 		{
@@ -157,7 +159,7 @@ public partial class Main : Node
 	{
 		_levelTime.Pause();
 		FileIO.Save(Level, _levelTime.Time);
-		player.ProcessMode = ProcessModeEnum.Disabled;
+		Player().ProcessMode = ProcessModeEnum.Disabled;
 		OnLevelSucceed?.Invoke();
 		Failed = false;
 	}
@@ -167,8 +169,16 @@ public partial class Main : Node
 		GD.Print("Ori died to: "+causeOfDeath.ToString());
 		FileIO.Save(causeOfDeath);
 		_levelTime.Pause();
-		player.ProcessMode = ProcessModeEnum.Disabled;
+		Player().ProcessMode = ProcessModeEnum.Disabled;
 		OnLevelFail?.Invoke();
 		Failed = true;
+	}
+
+	public Node Player()
+	{
+		if(this.TryGetNodeInTree("Player", out CharacterBody2D _player))
+			return _player;
+		
+		throw new Exception("Player not found");
 	}
 }

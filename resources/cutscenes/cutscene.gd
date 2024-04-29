@@ -29,15 +29,32 @@ func _process(delta):
 func find_player():
 	if player:
 		return
-	var nodes = $"../../../../World".get_children()
-	for n in nodes:
+	#var nodes = $"../../../../World".get_children()
+	var allchildren = get_tree().root.get_children()
+	var children = []
+	
+	while len(allchildren) > 0:
+		var temp = []
+		for c in allchildren:
+			print(c)
+			temp.append(c)
+			temp.append(c.get_children())
+			allchildren.append(temp)
+			allchildren.erase(c)
+			
+			if c is Player:
+				player = c
+				break
+		children.append(temp)
+	
+	for n in children:
 		if n is Player:
 			player = n
 			break
 	if player:
 		copy_player_image()
-	else:
-		print("player not yet found")
+	#else:
+		#print("player not yet found")
 
 
 func copy_player_image():
