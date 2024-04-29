@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d06b1cuf8a172"]
+[gd_scene load_steps=16 format=3 uid="uid://d06b1cuf8a172"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_0hrum"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_kkhh8"]
@@ -12,27 +12,39 @@
 
 [sub_resource type="Curve2D" id="Curve2D_oc8qy"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1700, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1700, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 2
+point_count = 3
 
 [sub_resource type="Curve2D" id="Curve2D_nreru"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1000, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1000, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 2
+point_count = 3
 
 [sub_resource type="Curve2D" id="Curve2D_7mcig"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0)
 }
-point_count = 2
+point_count = 3
 
 [sub_resource type="Curve2D" id="Curve2D_kwyab"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1000)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1000, 0, 0, 0, 0, 0, 0)
 }
-point_count = 2
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_y3xjj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_4e25k"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -200, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
 
 [node name="Blocks" type="Node2D"]
 script = ExtResource("1_0hrum")
@@ -93,10 +105,8 @@ position = Vector2(220, 265)
 curve = SubResource("Curve2D_oc8qy")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Platforms/horiz_pltf"]
-position = Vector2(1700, 0)
 rotates = false
 script = ExtResource("4_lncv5")
-speed = 0.2
 
 [node name="WidePlatform01" parent="Platforms/horiz_pltf" instance=ExtResource("5_hgbuq")]
 position = Vector2(-2, -1)
@@ -107,10 +117,8 @@ position = Vector2(1600, 265)
 curve = SubResource("Curve2D_oc8qy")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Platforms/horiz_pltf2"]
-position = Vector2(1700, 0)
 rotates = false
 script = ExtResource("4_lncv5")
-speed = 0.2
 
 [node name="WidePlatform01" parent="Platforms/horiz_pltf2" instance=ExtResource("5_hgbuq")]
 position = Vector2(-2, -1)
@@ -154,24 +162,26 @@ position = Vector2(10, 0)
 collision_layer = 5
 
 [node name="vert_pltf3" type="Path2D" parent="Platforms"]
-position = Vector2(-200, -1900)
-curve = SubResource("Curve2D_7mcig")
+position = Vector2(-200, -1600)
+curve = SubResource("Curve2D_y3xjj")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Platforms/vert_pltf3"]
 rotates = false
 script = ExtResource("4_lncv5")
+speed = 0.5
 
 [node name="TallPlatform01" parent="Platforms/vert_pltf3" instance=ExtResource("6_r5fo6")]
 position = Vector2(10, 0)
 collision_layer = 5
 
 [node name="vert_pltf4" type="Path2D" parent="Platforms"]
-position = Vector2(-200, -1600)
-curve = SubResource("Curve2D_kwyab")
+position = Vector2(-200, -1900)
+curve = SubResource("Curve2D_4e25k")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Platforms/vert_pltf4"]
 rotates = false
 script = ExtResource("4_lncv5")
+speed = 0.5
 
 [node name="TallPlatform01" parent="Platforms/vert_pltf4" instance=ExtResource("6_r5fo6")]
 position = Vector2(10, 0)
@@ -199,4 +209,4 @@ texture = ExtResource("5_d3gb6")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("9_6vq35")]
-position = Vector2(213, -20)
+position = Vector2(266, -1545)
