@@ -13,7 +13,15 @@ var pause_remaining : float = 0
 
 func _ready():
 	if !node:
-		#print(self.name," has no assigned object to carry.")
+		var siblings = get_parent().get_children()
+		var node2ds = []
+		for s in siblings:
+			if s is Node2D:
+				node2ds.append(s)
+		if node2ds.size() == 1:
+			node = node2ds[0]
+	if !node:
+		print(self.name, " could not find the Node2D it is meant to control")
 		return
 	if node is MobAI:
 		node.path = self

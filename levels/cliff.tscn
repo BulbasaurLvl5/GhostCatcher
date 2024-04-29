@@ -50,3 +50,4 @@ position = Vector2(86, -3418)
 [node name="Parallax" type="Node" parent="."]
 
 [node name="EndlessPit" parent="." instance=ExtResource("3_3isdd")]
+position = Vector2(-29, 114)
