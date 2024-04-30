@@ -29,25 +29,9 @@ func _process(delta):
 func find_player():
 	if player:
 		return
-	#var nodes = $"../../../../World".get_children()
-	var allchildren = get_tree().root.get_children()
-	var children = []
 	
-	while len(allchildren) > 0:
-		var temp = []
-		for c in allchildren:
-			print(c)
-			temp.append(c)
-			temp.append(c.get_children())
-			allchildren.append(temp)
-			allchildren.erase(c)
-			
-			if c is Player:
-				player = c
-				break
-		children.append(temp)
-	
-	for n in children:
+	var nodes = find_all_children(get_tree().root)
+	for n in nodes:
 		if n is Player:
 			player = n
 			break
@@ -78,3 +62,12 @@ func timed_float_player_to(target : Vector2, time : float):
 	standin_destination = target
 	standin_velocity = (target - %standin.position) / time
 	moving_standin = true
+
+
+func find_all_children(parent : Node) -> Array:
+	var all = []
+	var children = parent.get_children()
+	all.append_array(children)
+	for c in children:
+		all.append_array(find_all_children(c))
+	return all
