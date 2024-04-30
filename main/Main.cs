@@ -55,6 +55,7 @@ public partial class Main : Node
 		getReadyTime.OnStop += () => {
 			_levelTime.Start(599); //mission fails at 10min
 			Player().ProcessMode = ProcessModeEnum.Inherit;
+			// GD.Print("timer: "+Player().Name + Player().ProcessMode);
 			OnLevelStart?.Invoke();
 		};
 
@@ -124,6 +125,7 @@ public partial class Main : Node
 		getReadyTime.Start(2);
 		_levelTime.Start(-2);
 		Player().ProcessMode = ProcessModeEnum.Disabled;
+		// GD.Print("main player: "+Player().Name + Player().ProcessMode);
 
 		if(World.TryGetNestedChildren(out List<Ghost> ghosts))
 		{
@@ -166,7 +168,7 @@ public partial class Main : Node
 
 	public void FailLevel(CauseOfDeath causeOfDeath)
 	{
-		GD.Print("Ori died to: "+causeOfDeath.ToString());
+		// GD.Print("Ori died to: "+causeOfDeath.ToString());
 		FileIO.Save(causeOfDeath);
 		_levelTime.Pause();
 		Player().ProcessMode = ProcessModeEnum.Disabled;
@@ -177,7 +179,10 @@ public partial class Main : Node
 	public Node Player()
 	{
 		if(this.TryGetNodeInTree("Player", out CharacterBody2D _player))
+		{
+			// GD.Print("main player: "+_player.Name);
 			return _player;
+		}
 		
 		throw new Exception("Player not found");
 	}

@@ -39,6 +39,7 @@ public partial class MenuRetry : Node
 			_buttons[0].Pressed += () => {
 				_main.ClearScenes();
 				// await Task.Delay(1); //waiting 1ms so the QueueFree in ClearScenes can do its job
+				// Wait(1);
 				LevelLoader.Levels[_main.Level].Load.Invoke(_main);
 			};
 
@@ -114,4 +115,9 @@ public partial class MenuRetry : Node
 		source.Cancel();
 		base._ExitTree();
 	}
+
+	// static async void Wait(int milisecdelay)
+	// {
+	// 	await Task.Delay(milisecdelay);
+	// }
 }

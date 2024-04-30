@@ -169,6 +169,7 @@ curve = SubResource("Curve2D_y3xjj")
 rotates = false
 script = ExtResource("4_lncv5")
 speed = 0.5
+pause_durations = Array[float]([0.5])
 
 [node name="TallPlatform01" parent="Platforms/vert_pltf3" instance=ExtResource("6_r5fo6")]
 position = Vector2(10, 0)
@@ -182,6 +183,7 @@ curve = SubResource("Curve2D_4e25k")
 rotates = false
 script = ExtResource("4_lncv5")
 speed = 0.5
+pause_durations = Array[float]([0.5])
 
 [node name="TallPlatform01" parent="Platforms/vert_pltf4" instance=ExtResource("6_r5fo6")]
 position = Vector2(10, 0)
@@ -209,4 +211,4 @@ texture = ExtResource("5_d3gb6")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("9_6vq35")]
-position = Vector2(266, -1545)
+position = Vector2(217, 33)

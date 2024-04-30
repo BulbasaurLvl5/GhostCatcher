@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_6o6l0")
-run_speed = 800.0
-coyote_time_ground = 0.1
+run_speed = 1200.0
+coyote_time_ground = 0.3
 wall_grab_resets_air_actions = true
 coyote_time_wall = 0.25
 wall_jump_horizontal_force_multiplier = 1.5
@@ -18,12 +18,12 @@ max_fall_speed = 1200
 hang_time_duration = 0.05
 distance_before_medium_landing = 500.0
 distance_before_heavy_landing = 1000.0
-initial_jump_force = 900.0
-ongoing_jump_force = 1300.0
-jump_max_hold_time = 0.3
+initial_jump_force = 800.0
+ongoing_jump_force = 800.0
+jump_max_hold_time = 0.4
 max_gravity_multiplier = 3.0
-dash_peak_speed = 280.0
+dash_peak_speed = 320.0
 dash_time = 0.2
 dash_recovery_time = 0.1
-dash_hold_multiplier = 2.0
-ground_dash_cooldown = 2.0
+dash_hold_multiplier = 3.0
+ground_dash_cooldown = 1.0
