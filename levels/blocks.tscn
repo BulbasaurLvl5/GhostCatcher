@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d06b1cuf8a172"]
+[gd_scene load_steps=31 format=3 uid="uid://d06b1cuf8a172"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_0hrum"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_kkhh8"]
@@ -8,7 +8,22 @@
 [ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_d3gb6"]
 [ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://environment/platforms/wide_platform_01.tscn" id="5_hgbuq"]
 [ext_resource type="PackedScene" uid="uid://crxh8tb8lf8kr" path="res://environment/platforms/tall_platform_01.tscn" id="6_r5fo6"]
+[ext_resource type="Texture2D" uid="uid://dlob5yhx4vhll" path="res://resources/sprites/coal/chair_2.png" id="8_mbqn0"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="9_6vq35"]
+[ext_resource type="Texture2D" uid="uid://b8jlw60s03sfo" path="res://resources/sprites/coal/table.png" id="9_8iqb8"]
+[ext_resource type="Texture2D" uid="uid://b5fndjtdhj6ds" path="res://resources/sprites/coal/table_1.png" id="10_qttap"]
+[ext_resource type="Texture2D" uid="uid://wpx6gy8cowqh" path="res://resources/sprites/coal/skull_2.png" id="11_qdmlc"]
+[ext_resource type="Texture2D" uid="uid://dwq6e0fhuh6fq" path="res://resources/sprites/coal/pole_1.png" id="15_juuxo"]
+[ext_resource type="Texture2D" uid="uid://bdujc17jtj6og" path="res://resources/sprites/coal/shelf.png" id="16_r406l"]
+[ext_resource type="Texture2D" uid="uid://cr5mpnth7ya11" path="res://resources/sprites/coal/barrel.png" id="17_ktx6i"]
+[ext_resource type="Texture2D" uid="uid://k1omvf2pgp3k" path="res://resources/sprites/coal/chair_3.png" id="18_j5le8"]
+[ext_resource type="Texture2D" uid="uid://b14kqkhudn4xr" path="res://resources/sprites/coal/lamp.png" id="19_jjy8c"]
+[ext_resource type="Texture2D" uid="uid://ffshgbvrntox" path="res://resources/sprites/coal/plant.png" id="20_ywggj"]
+[ext_resource type="Texture2D" uid="uid://7il8ircjfca7" path="res://resources/sprites/coal/gallows.png" id="21_oijd2"]
+[ext_resource type="Texture2D" uid="uid://c4qqm8f6sb43x" path="res://resources/sprites/coal/sign_2.png" id="22_42kkg"]
+[ext_resource type="Texture2D" uid="uid://bchoepgfxppls" path="res://resources/sprites/coal/pole_2.png" id="23_n0lnd"]
+[ext_resource type="Texture2D" uid="uid://dku0mi42ncb8c" path="res://resources/sprites/coal/sign_3.png" id="24_wsfyu"]
+[ext_resource type="Texture2D" uid="uid://bkpmolvfqawa" path="res://resources/sprites/coal/rope.png" id="25_4q5jj"]
 
 [sub_resource type="Curve2D" id="Curve2D_oc8qy"]
 _data = {
@@ -73,7 +88,7 @@ position = Vector2(1118, -586)
 position = Vector2(-92, 20)
 
 [node name="Ghost5" parent="Ghosts" instance=ExtResource("3_e6ses")]
-position = Vector2(1974, -269)
+position = Vector2(1981, -343)
 
 [node name="Ghost6" parent="Ghosts" instance=ExtResource("3_e6ses")]
 position = Vector2(-1429, -374)
@@ -82,13 +97,13 @@ position = Vector2(-1429, -374)
 position = Vector2(-1444, -955)
 
 [node name="Ghost2" parent="Ghosts" instance=ExtResource("3_e6ses")]
-position = Vector2(2475, -891)
+position = Vector2(1827, -1978)
 
 [node name="Ghost3" parent="Ghosts" instance=ExtResource("3_e6ses")]
 position = Vector2(2475, -403)
 
 [node name="Ghost8" parent="Ghosts" instance=ExtResource("3_e6ses")]
-position = Vector2(445, -1980)
+position = Vector2(437, -1977)
 
 [node name="Ghost11" parent="Ghosts" instance=ExtResource("3_e6ses")]
 position = Vector2(1094, -1550)
@@ -192,6 +207,80 @@ collision_layer = 5
 [node name="Spikes" type="Node" parent="."]
 
 [node name="Scenery" type="Node" parent="."]
+
+[node name="Chair2" type="Sprite2D" parent="Scenery"]
+position = Vector2(2136, -178)
+rotation = 0.261799
+texture = ExtResource("8_mbqn0")
+
+[node name="Table" type="Sprite2D" parent="Scenery"]
+position = Vector2(1932, -149)
+texture = ExtResource("9_8iqb8")
+
+[node name="Table1" type="Sprite2D" parent="Scenery"]
+position = Vector2(1815, -1664)
+scale = Vector2(0.851328, 0.534338)
+texture = ExtResource("10_qttap")
+
+[node name="Skull2" type="Sprite2D" parent="Scenery"]
+position = Vector2(1813, -1712)
+rotation = -0.261799
+scale = Vector2(0.207641, 0.207641)
+texture = ExtResource("11_qdmlc")
+
+[node name="Pole1" type="Sprite2D" parent="Scenery"]
+position = Vector2(173, -7)
+texture = ExtResource("15_juuxo")
+
+[node name="Shelf" type="Sprite2D" parent="Scenery"]
+position = Vector2(1442, -1757)
+texture = ExtResource("16_r406l")
+
+[node name="Barrel" type="Sprite2D" parent="Scenery"]
+position = Vector2(314, -1267)
+texture = ExtResource("17_ktx6i")
+
+[node name="Chair3" type="Sprite2D" parent="Scenery"]
+position = Vector2(2056.75, -1687.7)
+scale = Vector2(0.613156, 0.613156)
+texture = ExtResource("18_j5le8")
+
+[node name="Lamp" type="Sprite2D" parent="Scenery"]
+position = Vector2(2292, -1962)
+texture = ExtResource("19_jjy8c")
+
+[node name="Plant" type="Sprite2D" parent="Scenery"]
+position = Vector2(1447, -1967)
+texture = ExtResource("20_ywggj")
+
+[node name="Gallows" type="Sprite2D" parent="Scenery"]
+position = Vector2(650.5, -2377.5)
+texture = ExtResource("21_oijd2")
+flip_h = true
+
+[node name="Sign2" type="Sprite2D" parent="Scenery"]
+position = Vector2(203, -110)
+rotation = -0.523598
+texture = ExtResource("22_42kkg")
+flip_h = true
+
+[node name="Pole3" type="Sprite2D" parent="Scenery"]
+position = Vector2(2739.5, -736)
+texture = ExtResource("23_n0lnd")
+
+[node name="Sign3" type="Sprite2D" parent="Scenery"]
+position = Vector2(2782.5, -815)
+scale = Vector2(1, 1.28125)
+texture = ExtResource("24_wsfyu")
+
+[node name="Rope" type="Sprite2D" parent="Scenery"]
+position = Vector2(780.5, -2403)
+scale = Vector2(1, 0.785146)
+texture = ExtResource("25_4q5jj")
+
+[node name="Barrel2" type="Sprite2D" parent="Scenery"]
+position = Vector2(-1062, -599)
+texture = ExtResource("17_ktx6i")
 
 [node name="EndlessPit" parent="." instance=ExtResource("4_hatpd")]
 position = Vector2(0, 550)
