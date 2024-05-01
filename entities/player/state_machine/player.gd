@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 
 @export var verbose : bool = false
+@export var verbose_state_changes : bool = false
+@export var verbose_velocity : bool = false
 @export var data : PlayerDataResource 
 @export var canvas_mod_node : PackedScene
 

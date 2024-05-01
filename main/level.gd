@@ -86,6 +86,8 @@ func calculate_starting_pos():
 func _enter_tree():
 	if !Engine.is_editor_hint():
 		search_scene()
+		if get_parent() == get_tree().root:
+			player.process_mode = Node.PROCESS_MODE_ALWAYS
 
 
 func _ready():

@@ -75,21 +75,21 @@ public static class LevelLoader
 		new Level("treeson", new float[]{}, LoadLevel_Treeson),
 		new Level("cliff", new float[]{}, LoadLevel_Cliff),
 
-    // moving platforms
+	// moving platforms
 		new Level("blocks", new float[]{}, LoadLevel_blocks),
-    // 1st enemy type (ghosts)
-    // spikes
+	// 1st enemy type (ghosts)
+	// spikes
 		new Level("spikes", new float[]{}, LoadLevel_Spikes),
 		new Level("mountain", new float[]{}, LoadLevel_MountainSide),
 		new Level("cactee", new float[]{}, LoadLevel_Kaktee),
 		new Level("deeppit", new float[]{}, LoadLevel_DeepPit),
 		new Level("columns", new float[]{}, LoadLevel_Columns),
-    // 2nd enemy type (skulls)
+	// 2nd enemy type (skulls)
 		new Level("skulls", new float[]{}, LoadLevel_Platforms),
-    // falling platforms
+	// falling platforms
 		new Level("shaky", new float[]{}, LoadLevel_ShakyGround),
-    // 3rd enemy type (???)
-    // extra air
+	// 3rd enemy type (???)
+	// extra air
 	// unasigned
 		new Level("break", new float[]{}, LoadLevel_Breakthrough),
 		new Level("caves", new float[]{}, LoadLevel_Caves),

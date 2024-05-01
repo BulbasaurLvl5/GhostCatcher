@@ -318,7 +318,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 16.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,

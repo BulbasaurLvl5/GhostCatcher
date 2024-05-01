@@ -171,7 +171,7 @@ texture = ExtResource("31_y7vy4")
 unique_name_in_owner = true
 scale = Vector2(0.3, 0.3)
 sprite_frames = ExtResource("4_ct6su")
-animation = &"idle"
+animation = &"run"
 offset = Vector2(-40, -50)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -241,7 +241,7 @@ current = true
 [node name="Run" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("20_yffpo")
 volume_db = 9.11
-pitch_scale = 1.23
+pitch_scale = 3.0
 bus = &"SFX"
 area_mask = 2
 

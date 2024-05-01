@@ -58,5 +58,6 @@ func Physics_Update(delta):
 	player.velocity.x = data.in_air_horizontal_speed * player.facing_direction
 	player.move()
 	
+	
 func Exit():
 	player.height_fallen_from = player.position.y

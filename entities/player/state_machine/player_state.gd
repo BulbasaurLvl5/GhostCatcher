@@ -60,11 +60,13 @@ func Exit():
 	pass
 
 
-func Flip_Player(force_flip : bool = false):
+func Flip_Player(force_flip : bool = false) -> bool:
 	if force_flip || (player.facing_direction != player.x_input && abs(player.x_input) == 1):
 		player.facing_direction *= -1
 		anim.scale.x *= -1
 		%RayCasts.scale.x *= -1
+		return true
+	return false
 		
 		
 func Check_Altitude():

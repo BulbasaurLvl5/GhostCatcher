@@ -3,9 +3,15 @@ extends PlayerState
 
 
 @onready var jump_noise : int = 1
+var extra_momentum : float
 
 
 func Enter(_from : PlayerState = null):
+	if abs(player.velocity.x) > data.in_air_horizontal_speed && sign(player.velocity.x) == player.x_input:
+		extra_momentum = player.velocity.x
+	else:
+		extra_momentum = 0.0
+	
 	anim.play("jump")
 	if jump_noise == 1:
 		$"../../SFX/Jump1".play()
@@ -48,7 +54,10 @@ func Physics_Update(delta):
 		player.velocity.y += data.gravity * delta
 	else:
 		player.velocity.y += data.gravity * data.max_gravity_multiplier * delta
-	player.velocity.x = data.in_air_horizontal_speed * player.x_input 
+	if abs(extra_momentum) > data.in_air_horizontal_speed && sign(extra_momentum) == player.x_input:
+		player.velocity.x = extra_momentum
+	else:
+		player.velocity.x = data.in_air_horizontal_speed * player.x_input 
 	player.move()
 
 
