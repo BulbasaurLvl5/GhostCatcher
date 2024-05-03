@@ -26,4 +26,4 @@ dash_peak_speed = 320.0
 dash_time = 0.2
 dash_recovery_time = 0.1
 dash_hold_multiplier = 3.0
-ground_dash_cooldown = 1.0
+ground_dash_cooldown = 0.0
