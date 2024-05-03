@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 using MyGodotExtensions;
+using System.Collections.Generic;
 
 public partial class Ghost : Area2D
 {
@@ -14,6 +15,12 @@ public partial class Ghost : Area2D
 		BodyEntered += PlayerCollision;
 		//Anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		//Anim.Play();
+
+		if(this.TryGetNestedChildren(out List<AnimationPlayer> anim))
+		{
+			anim[0].Seek(GD.RandRange(0,1), true);
+			anim[1].Seek(GD.RandRange(0,1), true);
+		}
 	}
 
 	async void PlayerCollision(Node2D player)
