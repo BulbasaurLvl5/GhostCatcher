@@ -39,6 +39,8 @@ public static class LevelLoader
 	static PackedScene packedLevel_SkullCap = ResourceLoader.Load<PackedScene>("res://levels/skull_cap.tscn");
 	static PackedScene packedLevel_blocks = ResourceLoader.Load<PackedScene>("res://levels/blocks.tscn");
 
+	static PackedScene packedLevel_fall = ResourceLoader.Load<PackedScene>("res://levels/thefall.tscn");
+
 	public class Level
 	{
 		public string Name {get;}
@@ -74,9 +76,9 @@ public static class LevelLoader
 		new Level("vertical", new float[]{}, LoadLevel_Vertical),
 		new Level("treeson", new float[]{}, LoadLevel_Treeson),
 		new Level("cliff", new float[]{}, LoadLevel_Cliff),
-
 	// moving platforms
 		new Level("blocks", new float[]{}, LoadLevel_blocks),
+		new Level("the fall", new float[]{22,23.5f,25,27,30}, LoadLevel_Fall),
 	// 1st enemy type (ghosts)
 	// spikes
 		new Level("spikes", new float[]{}, LoadLevel_Spikes),
@@ -315,5 +317,12 @@ public static class LevelLoader
 		LoadUI(_main);
 		packedLevel_SkullCap.Instantiate(_main.World);
 		_main.StartLevel(LevelID(LoadLevel_SkullCap));
+	}
+
+	static void LoadLevel_Fall(Main _main)
+	{
+		LoadUI(_main);
+		packedLevel_fall.Instantiate(_main.World);
+		_main.StartLevel(LevelID(LoadLevel_Fall));
 	}
 }
