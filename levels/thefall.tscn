@@ -16,7 +16,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_ffod6"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -650, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 650, 0, 0, 0, 0, 0, 0)
 }
 point_count = 3
 
@@ -81,7 +81,7 @@ position = Vector2(721, -9872)
 [node name="Platforms" type="Node" parent="."]
 
 [node name="Path2D" type="Path2D" parent="Platforms"]
-position = Vector2(2000, -5500)
+position = Vector2(2000, -6150)
 curve = SubResource("Curve2D_ffod6")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D"]
@@ -122,7 +122,7 @@ skew = 0.0690526
 texture = ExtResource("8_eln7f")
 
 [node name="Path2D2" type="Path2D" parent="Platforms"]
-position = Vector2(1000, -7500)
+position = Vector2(1000, -8150)
 curve = SubResource("Curve2D_ffod6")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D2"]

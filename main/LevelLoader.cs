@@ -90,6 +90,7 @@ public static class LevelLoader
 		new Level("skulls", new float[]{}, LoadLevel_Platforms),
 	// falling platforms
 		new Level("shaky", new float[]{}, LoadLevel_ShakyGround),
+		new Level("newground", new float[]{}, LoadLevel_NewGround),
 	// 3rd enemy type (???)
 	// extra air
 	// unasigned
@@ -98,7 +99,6 @@ public static class LevelLoader
 		new Level("factory", new float[]{}, LoadLevel_FactoryYard),
 		new Level("forest", new float[]{}, LoadLevel_Forest),
 		new Level("firering", new float[]{}, LoadLevel_RingOfFire),
-		new Level("newground", new float[]{}, LoadLevel_NewGround),
 		new Level("skullcap", new float[]{}, LoadLevel_SkullCap),
 	};
 
