@@ -36,15 +36,10 @@ func Update(_delta):
 
 
 func find_node():
-	var children = get_tree().root.get_children()
+	var children = find_all_children(get_tree().root)
 	for c in children:
-		var grand = c.get_children()
-		for g in grand:
-			if g.name == "World":
-				var nodes = g.get_children()
-				for n in nodes:
-					if n is Player:
-						player = n
+		if c is Player:
+			player = c
 
 
 func can_see_player() -> bool:
@@ -88,3 +83,12 @@ func Knockback(source_pos : Vector2, magnifier : float = 1.0):
 func Flip_Mob():
 	facing_direction *= -1
 #	anim.scale.x *= -1
+
+
+func find_all_children(parent : Node) -> Array:
+	var all = []
+	var children = parent.get_children()
+	all.append_array(children)
+	for c in children:
+		all.append_array(find_all_children(c))
+	return all

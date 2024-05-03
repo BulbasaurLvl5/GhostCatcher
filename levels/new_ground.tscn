@@ -1,17 +1,379 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbnqn0wjsnctc"]
+[gd_scene load_steps=20 format=3 uid="uid://cbnqn0wjsnctc"]
 
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_2diwe"]
 [ext_resource type="Script" path="res://main/level.gd" id="1_qqubv"]
+[ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_6kn28"]
+[ext_resource type="Script" path="res://resources/path_follow_manager.gd" id="4_74y3q"]
+[ext_resource type="PackedScene" uid="uid://c33brbbnr771" path="res://entities/mobs/flaming_skull.tscn" id="5_ii5ts"]
+[ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://environment/platforms/wide_platform_01.tscn" id="7_3riy8"]
+[ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://environment/spikes_medium.tscn" id="8_31ajb"]
+[ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://environment/spikes_large.tscn" id="9_2747m"]
+[ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="10_os8ql"]
+[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="11_hk5vx"]
+[ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="12_heu1a"]
+
+[sub_resource type="Curve2D" id="Curve2D_exeef"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -400, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_gpclv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -400, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_idob0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 400, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_sjonu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_fywtq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_bw4ff"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -300, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_fpuns"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 450, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_hl5p8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -450, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
 
 [node name="NewGround" type="Node2D"]
 script = ExtResource("1_qqubv")
 level_name = "NewGround"
 starting_position_x = 7.0
 starting_position_y = 4.0
+flip_player_direction = true
+top_boundary = -30.5
+left_boundary = -32.0
+right_boundary = 50.0
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_2diwe")
 format = 2
-layer_0/tile_data = PackedInt32Array(262137, 65536, 0, 262138, 131072, 3, 262139, 131073, 3, 262140, 131072, 3, 262141, 131073, 3, 262142, 131072, 3, 262143, 327680, 3, 196608, 655361, 3, 262144, 1, 1, 327680, 196608, 2, 393215, 131073, 3, 393214, 131073, 3, 393213, 131073, 3, 393212, 131073, 3, 393211, 131072, 3, 393210, 131072, 3, 393209, 65536, 2, 327673, 0, 1, 131071, 524289, 0, 196607, 524288, 1, 65537, 655361, 0, 65538, 655360, 0, 196610, 589825, 3, 196609, 589825, 3, 131072, 2, 1, 131073, 65538, 0, 131074, 2, 3, -65530, 131072, 2, -65529, 196608, 3, 131078, 131073, 3, 131079, 196608, 3, 327686, 131073, 3, 327687, 196608, 3, -131066, 1, 1, -196602, 458753, 2, -262138, 720897, 0, -262139, 655360, 0, -262140, 655361, 0, -262141, 655360, 0, -262142, 655360, 0, -262143, 655360, 0, -262144, 655360, 2, -327680, 720896, 0, -262145, 393217, 1, -327681, 720896, 0, -327682, 524289, 0, -262146, 327681, 1, -262147, 524289, 0, -196611, 589824, 1, -196612, 655361, 0, -196613, 655360, 0, -196614, 655361, 0, -196616, 655361, 0, -196617, 655361, 0, -196618, 524289, 0, -131082, 524288, 1, -65546, 524289, 1, -10, 589824, 1, -11, 655360, 0, -12, 524288, 0, 65524, 589824, 1, 65523, 524288, 0, 131059, 524288, 3, -131081, 393217, 2, 65525, 589825, 3, 131060, 720897, 3, 65526, 720897, 3, -9, 720897, 3, -65545, 720896, 2, -131080, 589825, 3, -131078, 589824, 3, -131075, 720897, 3, -196610, 589825, 3, -196609, 589825, 3, -196608, 524288, 3, -196605, 589825, 3, -196606, 589824, 3, -196607, 589824, 3, -196604, 589825, 3, -196603, 589825, 3, -196615, 655361, 0, -131079, 589825, 3, -131076, 589825, 3, -131077, 589824, 3, 327685, 393217, 3, 262149, 720896, 2, 196613, 720897, 2, 131077, 720897, 1, 65541, 720896, 2, 5, 720896, 2, -65531, 393217, 0, 327684, 589824, 3, 262148, 131074, 3, 196612, 2, 1, 131076, 131074, 0, 65540, 196610, 1, 4, 2, 0, -65532, 655360, 0, 327683, 524288, 3, 262147, 524288, 1, 196611, 327680, 2, 131075, 131074, 0, 65539, 327680, 1, 3, 524289, 1, -65533, 524288, 0, 65536, 655361, 0)
+layer_0/tile_data = PackedInt32Array(852004, 1, 3, -262152, 196608, 3, -327666, 196608, 3, -327667, 131072, 3, -327668, 131073, 3, -327669, 131072, 3, -327670, 131073, 3, -327671, 131073, 3, -327672, 131073, 3, -327673, 131073, 3, -327674, 131072, 3, -327675, 131073, 3, -327676, 131073, 3, -327677, 131073, 3, -327678, 131072, 3, -327679, 65537, 3, -262153, 131072, 3, -262154, 131072, 3, -262155, 131073, 3, -65526, 196609, 3, -65527, 131073, 3, -65528, 131072, 3, -65529, 131073, 3, -65530, 131073, 3, -65531, 65537, 3, -327653, 196609, 2, -327654, 131072, 3, -327655, 131072, 3, -327656, 131072, 3, -327657, 65536, 3, -262156, 65537, 2, -327692, 0, 1, -393228, 0, 1, -458764, 0, 1, -524300, 1, 1, -589836, 65536, 1, -655372, 1, 1, -720908, 1, 1, -786444, 0, 1, -851980, 0, 1, -917516, 1, 1, -983052, 0, 1, -1048588, 0, 1, -1114124, 0, 1, -1179660, 1, 1, -1245196, 65536, 0, -393189, 0, 1, -458725, 0, 1, -524261, 196609, 1, -589797, 1, 1, -655333, 1, 1, -720869, 0, 1, -786405, 196608, 1, -851941, 0, 1, -917477, 1, 1, -983013, 0, 1, -1048549, 0, 1, -1114085, 0, 1, -1179621, 0, 1, -1245157, 1, 1, -1310693, 196609, 0, -655355, 196608, 3, -655356, 131073, 3, -655357, 131072, 3, -655358, 131072, 3, -655359, 131073, 3, -655360, 131072, 3, -589825, 131073, 3, -589826, 131073, 3, -589827, 131073, 3, -589828, 131073, 3, -589829, 131073, 3, -589830, 131073, 3, -589831, 131072, 3, -589832, 131073, 3, -589833, 131072, 3, -589834, 131072, 3, -589835, 131073, 3, -786406, 131072, 3, -786407, 131073, 3, -786408, 131073, 3, -786409, 131072, 3, -786410, 131072, 3, -786411, 131072, 3, -786412, 131073, 3, -786413, 131072, 2, -786414, 131073, 3, -786415, 131073, 3, -786416, 131072, 3, -786417, 131072, 3, -786418, 131072, 3, -786419, 131072, 3, -786420, 131072, 3, -786421, 131073, 3, -786422, 65537, 3, -524262, 131073, 3, -524263, 131073, 3, -524264, 131072, 3, -1048564, 131073, 3, -1048565, 131073, 3, -1048566, 131072, 3, -1048567, 131072, 3, -1048568, 131072, 3, -1048569, 131072, 3, -1048570, 131073, 3, -1048571, 131072, 3, -1048572, 131072, 3, -1048573, 65537, 3, -1048557, 196609, 0, -1048558, 131072, 3, -1048559, 131073, 3, -1048560, 131072, 3, -1048561, 131073, 3, -1048562, 131073, 3, -1048563, 131073, 3, -851949, 1, 1, -917485, 1, 1, -983021, 1, 1, -851963, 196609, 3, -851964, 131072, 3, -851965, 131073, 3, -851966, 131072, 3, -851967, 131072, 3, -851968, 131073, 3, -786433, 131072, 3, -786434, 131072, 3, -786435, 131072, 3, -786436, 131073, 3, -786437, 131073, 3, -786438, 131072, 3, -786439, 131072, 3, -786440, 65537, 2, -983042, 196608, 3, -983043, 131072, 3, -983044, 131072, 3, -983045, 131072, 3, -983046, 131073, 3, -983047, 131072, 3, -983048, 65537, 0, -851976, 1, 1, -917512, 0, 1, -524265, 65537, 3, -1245195, 131072, 3, -1245194, 131073, 3, -1245193, 131072, 3, -1245192, 131073, 3, -1245191, 131072, 3, -1245190, 131072, 3, -1245189, 131072, 3, -1245188, 131072, 3, -1245187, 131072, 3, -1245186, 131073, 3, -1245185, 131072, 3, -1310720, 131073, 3, -1310719, 131072, 3, -1310718, 131072, 3, -1310717, 131073, 3, -1310716, 131072, 3, -1310715, 196609, 3, -1310710, 65536, 3, -1310709, 131072, 3, -1310708, 131072, 3, -1310707, 131073, 3, -1310706, 131072, 3, -1310705, 131073, 3, -1310704, 131073, 3, -1310703, 131072, 3, -1310702, 131072, 3, -1310701, 131072, 3, -1310700, 131073, 3, -1310699, 131072, 3, -1310698, 131073, 3, -1310697, 131072, 3, -1310696, 131072, 3, -1310695, 131072, 3, -1310694, 131073, 3, -1507335, 65536, 3, -1507334, 131072, 3, -1507333, 131072, 3, -1507332, 131072, 3, -1507330, 131073, 3, -1507331, 131073, 3, -1507329, 131073, 3, -1572864, 131073, 3, -1572863, 131072, 3, -1572862, 131073, 3, -1572861, 131072, 3, -1572860, 131073, 3, -1572859, 131073, 3, -1572858, 131073, 3, -1572857, 131072, 3, -1572856, 131072, 3, -1572855, 131073, 3, -1572854, 131072, 3, -1572853, 131073, 3, -1572852, 131072, 3, -1572851, 131072, 3, -1572850, 131072, 3, -1572849, 131073, 3, -1572848, 131072, 3, -1572847, 131072, 3, -1572844, 131072, 3, -1572846, 131072, 3, -1572845, 131073, 3, -1572843, 131072, 3, -1572842, 196608, 3)
+
+[node name="Ghosts" type="Node" parent="."]
+
+[node name="Ghost" parent="Ghosts" instance=ExtResource("3_6kn28")]
+position = Vector2(855, -224)
+
+[node name="Ghost2" parent="Ghosts" instance=ExtResource("3_6kn28")]
+position = Vector2(-990, -765)
+
+[node name="Ghost4" parent="Ghosts" instance=ExtResource("3_6kn28")]
+position = Vector2(2835, -656)
+
+[node name="Ghost5" parent="Ghosts" instance=ExtResource("3_6kn28")]
+position = Vector2(1927, -1465)
+
+[node name="Ghost6" parent="Ghosts" instance=ExtResource("3_6kn28")]
+position = Vector2(2588, -1468)
+
+[node name="Ghost3" parent="Ghosts" instance=ExtResource("3_6kn28")]
+position = Vector2(2824, -968)
+
+[node name="Ghost7" parent="Ghosts" instance=ExtResource("3_6kn28")]
+position = Vector2(384, -2349)
+
+[node name="Ghost8" parent="Ghosts" instance=ExtResource("3_6kn28")]
+position = Vector2(1335, -2346)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Enemies"]
+position = Vector2(2785, -1661)
+curve = SubResource("Curve2D_exeef")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D"]
+rotates = false
+script = ExtResource("4_74y3q")
+pause_durations = Array[float]([])
+
+[node name="FlamingSkull" parent="Enemies/Path2D" instance=ExtResource("5_ii5ts")]
+
+[node name="Path2D2" type="Path2D" parent="Enemies"]
+position = Vector2(-240, -1593)
+curve = SubResource("Curve2D_gpclv")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D2"]
+rotates = false
+script = ExtResource("4_74y3q")
+pause_durations = Array[float]([])
+
+[node name="FlamingSkull" parent="Enemies/Path2D2" instance=ExtResource("5_ii5ts")]
+
+[node name="Path2D3" type="Path2D" parent="Enemies"]
+position = Vector2(-644, -1468)
+scale = Vector2(1.06616, 1)
+curve = SubResource("Curve2D_idob0")
+
+[node name="FlamingSkull" parent="Enemies/Path2D3" instance=ExtResource("5_ii5ts")]
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D3"]
+rotates = false
+script = ExtResource("4_74y3q")
+pause_durations = Array[float]([])
+
+[node name="Path2D4" type="Path2D" parent="Enemies"]
+position = Vector2(785, -2445)
+curve = SubResource("Curve2D_sjonu")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D4"]
+rotates = false
+script = ExtResource("4_74y3q")
+pause_durations = Array[float]([])
+
+[node name="FlamingSkull" parent="Enemies/Path2D4" instance=ExtResource("5_ii5ts")]
+
+[node name="Path2D7" type="Path2D" parent="Enemies"]
+position = Vector2(983, -2445)
+curve = SubResource("Curve2D_sjonu")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D7"]
+rotates = false
+script = ExtResource("4_74y3q")
+speed = 0.15
+pause_durations = Array[float]([])
+
+[node name="FlamingSkull" parent="Enemies/Path2D7" instance=ExtResource("5_ii5ts")]
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="WidePlatform01" parent="Platforms" instance=ExtResource("7_3riy8")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(-625, -488)
+sink_distance = 2000.0
+sink_delay = 2.0
+sink_speed = 1000.0
+
+[node name="WidePlatform02" parent="Platforms" instance=ExtResource("7_3riy8")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(-330, -488)
+sink_distance = 2000.0
+sink_delay = 2.0
+sink_speed = 1000.0
+
+[node name="WidePlatform03" parent="Platforms" instance=ExtResource("7_3riy8")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(-32, -488)
+sink_distance = 2000.0
+sink_delay = 2.0
+sink_speed = 1000.0
+
+[node name="WidePlatform04" parent="Platforms" instance=ExtResource("7_3riy8")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(1795, -492)
+sink_distance = 2000.0
+sink_delay = 2.0
+sink_speed = 1000.0
+
+[node name="WidePlatform05" parent="Platforms" instance=ExtResource("7_3riy8")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(2090, -492)
+sink_distance = 2000.0
+sink_delay = 2.0
+sink_speed = 1000.0
+
+[node name="WidePlatform06" parent="Platforms" instance=ExtResource("7_3riy8")]
+modulate = Color(1, 0.772549, 0.772549, 1)
+position = Vector2(2388, -492)
+sink_distance = 2000.0
+sink_delay = 2.0
+sink_speed = 1000.0
+
+[node name="Path2D4" type="Path2D" parent="Platforms"]
+position = Vector2(-623, -916)
+curve = SubResource("Curve2D_fywtq")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D4"]
+rotates = false
+script = ExtResource("4_74y3q")
+pause_durations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D4" instance=ExtResource("7_3riy8")]
+collision_layer = 5
+sink_distance = 1000.0
+sink_delay = 2.0
+
+[node name="Spikes_medium" parent="Platforms/Path2D4/WidePlatform01" instance=ExtResource("8_31ajb")]
+position = Vector2(0, -54)
+scale = Vector2(1.5, 1)
+
+[node name="Spikes_medium2" parent="Platforms/Path2D4/WidePlatform01" instance=ExtResource("8_31ajb")]
+position = Vector2(7, 65)
+rotation = 3.14159
+scale = Vector2(1.5, 1)
+
+[node name="Path2D5" type="Path2D" parent="Platforms"]
+position = Vector2(-32, -637)
+curve = SubResource("Curve2D_bw4ff")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D5"]
+rotates = false
+script = ExtResource("4_74y3q")
+pause_durations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D5" instance=ExtResource("7_3riy8")]
+collision_layer = 5
+sink_distance = 1000.0
+sink_delay = 2.0
+
+[node name="Spikes_medium" parent="Platforms/Path2D5/WidePlatform01" instance=ExtResource("8_31ajb")]
+position = Vector2(0, -54)
+scale = Vector2(1.5, 1)
+
+[node name="Spikes_medium2" parent="Platforms/Path2D5/WidePlatform01" instance=ExtResource("8_31ajb")]
+position = Vector2(7, 65)
+rotation = 3.14159
+scale = Vector2(1.5, 1)
+
+[node name="Path2D6" type="Path2D" parent="Platforms"]
+position = Vector2(1799, -1078)
+curve = SubResource("Curve2D_fpuns")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D6"]
+rotates = false
+script = ExtResource("4_74y3q")
+speed = 0.2
+pause_durations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D6" instance=ExtResource("7_3riy8")]
+collision_layer = 5
+sink_distance = 1000.0
+sink_delay = 2.0
+
+[node name="Spikes_medium" parent="Platforms/Path2D6/WidePlatform01" instance=ExtResource("8_31ajb")]
+position = Vector2(0, -54)
+scale = Vector2(1.5, 1)
+
+[node name="Spikes_medium2" parent="Platforms/Path2D6/WidePlatform01" instance=ExtResource("8_31ajb")]
+position = Vector2(7, 65)
+rotation = 3.14159
+scale = Vector2(1.5, 1)
+
+[node name="Path2D7" type="Path2D" parent="Platforms"]
+position = Vector2(2372, -643)
+curve = SubResource("Curve2D_hl5p8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D7"]
+rotates = false
+script = ExtResource("4_74y3q")
+speed = 0.15
+pause_durations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D7" instance=ExtResource("7_3riy8")]
+collision_layer = 5
+sink_distance = 1000.0
+sink_delay = 2.0
+
+[node name="Spikes_medium" parent="Platforms/Path2D7/WidePlatform01" instance=ExtResource("8_31ajb")]
+position = Vector2(0, -54)
+scale = Vector2(1.5, 1)
+
+[node name="Spikes_medium2" parent="Platforms/Path2D7/WidePlatform01" instance=ExtResource("8_31ajb")]
+position = Vector2(7, 65)
+rotation = 3.14159
+scale = Vector2(1.5, 1)
+
+[node name="Spikes" type="Node" parent="."]
+
+[node name="Spikes_large" parent="Spikes" instance=ExtResource("9_2747m")]
+position = Vector2(1321, -1206)
+scale = Vector2(1, -1)
+
+[node name="Spikes_large2" parent="Spikes" instance=ExtResource("9_2747m")]
+position = Vector2(1651, -1206)
+scale = Vector2(1, -1)
+
+[node name="Spikes_large3" parent="Spikes" instance=ExtResource("9_2747m")]
+position = Vector2(2181, -1206)
+scale = Vector2(1, -1)
+
+[node name="Spikes_large4" parent="Spikes" instance=ExtResource("9_2747m")]
+position = Vector2(2498, -1206)
+scale = Vector2(1, -1)
+
+[node name="Spikes_large5" parent="Spikes" instance=ExtResource("9_2747m")]
+position = Vector2(2824, -1206)
+scale = Vector2(1, -1)
+
+[node name="Spikes_medium" parent="Spikes" instance=ExtResource("8_31ajb")]
+position = Vector2(1917, -1200)
+scale = Vector2(1.2, -1)
+
+[node name="Spikes_large8" parent="Spikes" instance=ExtResource("9_2747m")]
+position = Vector2(2197, -1516)
+rotation = 1.5708
+scale = Vector2(1.25, 1)
+
+[node name="Spikes_large9" parent="Spikes" instance=ExtResource("9_2747m")]
+position = Vector2(2963, -1528)
+rotation = 4.71239
+scale = Vector2(1.25, 1)
+
+[node name="Spikes_large6" parent="Spikes" instance=ExtResource("9_2747m")]
+position = Vector2(-1207, -1544)
+rotation = 1.5708
+
+[node name="Spikes_large7" parent="Spikes" instance=ExtResource("9_2747m")]
+position = Vector2(-880, -1542)
+rotation = -1.5708
+
+[node name="Spikes_large10" parent="Spikes" instance=ExtResource("9_2747m")]
+position = Vector2(-31, -2210)
+
+[node name="Spikes_large11" parent="Spikes" instance=ExtResource("9_2747m")]
+position = Vector2(1743, -2205)
+
+[node name="Spikes_large12" parent="Spikes" instance=ExtResource("9_2747m")]
+position = Vector2(-502, -2522)
+rotation = -3.14159
+
+[node name="Spikes_large13" parent="Spikes" instance=ExtResource("9_2747m")]
+position = Vector2(2240, -2531)
+scale = Vector2(1, -1)
+
+[node name="Scenery" type="Node" parent="."]
+
+[node name="EndlessPit" parent="." instance=ExtResource("10_os8ql")]
+position = Vector2(-32, 580)
 
 [node name="Parallax" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
+position = Vector2(-148, 102)
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
+position = Vector2(-468, -525)
+scale = Vector2(3, 2)
+texture = ExtResource("11_hk5vx")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("12_heu1a")]
+position = Vector2(896, -2701)

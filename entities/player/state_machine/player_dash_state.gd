@@ -5,11 +5,11 @@ extends PlayerState
 @export var dash_ghost_node : PackedScene
 @export var shockwave_scene : PackedScene
 
-@onready var ghost_timer : float = 0
+var dash_speed : float
+var recovering : bool
 
+@onready var ghost_timer : float = 0
 @onready var dash_direction : Vector2 = Vector2.ZERO
-@onready var dash_speed : float
-@onready var recovering : bool
 
 
 func Enter(_from : PlayerState = null):
