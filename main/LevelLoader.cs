@@ -41,6 +41,7 @@ public static class LevelLoader
 
 	static PackedScene packedLevel_fall = ResourceLoader.Load<PackedScene>("res://levels/thefall.tscn");
 	static PackedScene packedLevel_quake = ResourceLoader.Load<PackedScene>("res://levels/quake.tscn");
+	static PackedScene packedLevel_kettle = ResourceLoader.Load<PackedScene>("res://levels/kettle.tscn");
 
 	public class Level
 	{
@@ -78,6 +79,7 @@ public static class LevelLoader
 		new Level("treeson", new float[]{}, LoadLevel_Treeson),
 		new Level("cliff", new float[]{}, LoadLevel_Cliff),
 	// moving platforms
+		new Level("kettle", new float[]{16,17,18,20,22}, LoadLevel_Kettle),
 		new Level("blocks", new float[]{}, LoadLevel_blocks),
 		new Level("the fall", new float[]{22,23.5f,25,27,30}, LoadLevel_Fall),
 		new Level("quake", new float[]{35,36,38,40,42}, LoadLevel_Quake),
@@ -333,5 +335,12 @@ public static class LevelLoader
 		LoadUI(_main);
 		packedLevel_quake.Instantiate(_main.World);
 		_main.StartLevel(LevelID(LoadLevel_Quake));
+	}
+
+	static void LoadLevel_Kettle(Main _main)
+	{
+		LoadUI(_main);
+		packedLevel_kettle.Instantiate(_main.World);
+		_main.StartLevel(LevelID(LoadLevel_Kettle));
 	}
 }

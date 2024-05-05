@@ -1,0 +1,156 @@
+[gd_scene load_steps=12 format=3 uid="uid://c6dmejexivdkb"]
+
+[ext_resource type="Script" path="res://main/level.gd" id="1_n3frc"]
+[ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_4yygn"]
+[ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_qfof2"]
+[ext_resource type="Script" path="res://resources/path_follow_manager.gd" id="4_5quuv"]
+[ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_lc03l"]
+[ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://environment/platforms/wide_platform_01.tscn" id="5_fqls5"]
+[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_j025p"]
+[ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_5wt2a"]
+
+[sub_resource type="Curve2D" id="Curve2D_cwwoq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 650, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_16ml7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -650, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_ocn0r"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 650, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[node name="template" type="Node2D"]
+script = ExtResource("1_n3frc")
+level_name = "template"
+show_data_in_editor = true
+starting_position_y = 0.5
+top_boundary = -27.5
+left_boundary = -17.0
+right_boundary = 22.5
+bottom_boundary = 5.0
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_4yygn")
+format = 2
+layer_0/tile_data = PackedInt32Array(196606, 131073, 3, 196607, 131073, 3, 131072, 131072, 3, 131073, 131073, 3, 196605, 131073, 3, 196604, 131072, 3, 131074, 131072, 3, 131075, 131072, 3, -589828, 131072, 3, -589827, 196609, 3, -655357, 131073, 3, -655358, 65537, 3, 196603, 65537, 2, 131067, 1, 1, 65531, 1, 1, -5, 0, 1, -65541, 0, 1, -131077, 0, 1, -196613, 1, 1, -262149, 1, 1, -327685, 0, 1, -393221, 1, 1, -458757, 1, 1, -524293, 1, 1, -589829, 65536, 0, -655356, 196608, 0, -589820, 1, 1, -524284, 1, 1, -458748, 0, 1, -393212, 0, 1, -327676, 0, 1, -262140, 0, 1, -196604, 0, 1, -131068, 1, 1, -65532, 1, 1, 4, 1, 1, 65540, 0, 1, 131076, 196608, 2)
+
+[node name="Ghosts" type="Node" parent="."]
+
+[node name="Ghost" parent="Ghosts" instance=ExtResource("3_qfof2")]
+position = Vector2(0, -208)
+
+[node name="Ghost2" parent="Ghosts" instance=ExtResource("3_qfof2")]
+position = Vector2(-4, -1188)
+
+[node name="Ghost3" parent="Ghosts" instance=ExtResource("3_qfof2")]
+position = Vector2(-4, -2224)
+
+[node name="Ghost4" parent="Ghosts" instance=ExtResource("3_qfof2")]
+position = Vector2(-660, -696)
+
+[node name="Ghost5" parent="Ghosts" instance=ExtResource("3_qfof2")]
+position = Vector2(656, -696)
+
+[node name="Ghost6" parent="Ghosts" instance=ExtResource("3_qfof2")]
+position = Vector2(-920, -1908)
+
+[node name="Ghost7" parent="Ghosts" instance=ExtResource("3_qfof2")]
+position = Vector2(2096, -700)
+
+[node name="Ghost8" parent="Ghosts" instance=ExtResource("3_qfof2")]
+position = Vector2(1400, -1388)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Platforms"]
+position = Vector2(0, -1045)
+curve = SubResource("Curve2D_cwwoq")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D"]
+rotates = false
+script = ExtResource("4_5quuv")
+speed = 0.2
+
+[node name="WidePlatform01" parent="Platforms/Path2D" instance=ExtResource("5_fqls5")]
+collision_layer = 5
+
+[node name="Path2D2" type="Path2D" parent="Platforms"]
+position = Vector2(0, -2000)
+curve = SubResource("Curve2D_cwwoq")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D2"]
+rotates = false
+script = ExtResource("4_5quuv")
+speed = 0.2
+
+[node name="WidePlatform01" parent="Platforms/Path2D2" instance=ExtResource("5_fqls5")]
+collision_layer = 5
+
+[node name="Path2D3" type="Path2D" parent="Platforms"]
+position = Vector2(-921, -1045)
+curve = SubResource("Curve2D_16ml7")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D3"]
+rotates = false
+script = ExtResource("4_5quuv")
+speed = 0.2
+
+[node name="WidePlatform01" parent="Platforms/Path2D3" instance=ExtResource("5_fqls5")]
+collision_layer = 5
+
+[node name="Path2D5" type="Path2D" parent="Platforms"]
+position = Vector2(1799, -389)
+curve = SubResource("Curve2D_16ml7")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D5"]
+rotates = false
+script = ExtResource("4_5quuv")
+speed = 0.2
+
+[node name="WidePlatform01" parent="Platforms/Path2D5" instance=ExtResource("5_fqls5")]
+collision_layer = 5
+
+[node name="Path2D4" type="Path2D" parent="Platforms"]
+position = Vector2(931, -1055)
+curve = SubResource("Curve2D_ocn0r")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D4"]
+rotates = false
+script = ExtResource("4_5quuv")
+speed = 0.2
+
+[node name="WidePlatform01" parent="Platforms/Path2D4" instance=ExtResource("5_fqls5")]
+collision_layer = 5
+
+[node name="Spikes" type="Node" parent="."]
+
+[node name="Scenery" type="Node" parent="."]
+
+[node name="EndlessPit" parent="." instance=ExtResource("4_lc03l")]
+position = Vector2(0, 550)
+
+[node name="Parallax" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
+position = Vector2(-148, 102)
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
+position = Vector2(-468, -525)
+scale = Vector2(3, 2)
+texture = ExtResource("5_j025p")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("6_5wt2a")]
