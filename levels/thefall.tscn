@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgurenwm4hn5p"]
+[gd_scene load_steps=16 format=3 uid="uid://cgurenwm4hn5p"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_ongv1"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_q4s1u"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_rf4ob"]
 [ext_resource type="Texture2D" uid="uid://bf7v0jvhoklvw" path="res://resources/sprites/platform_h_01.png" id="6_v01fk"]
 [ext_resource type="Texture2D" uid="uid://dwq6e0fhuh6fq" path="res://resources/sprites/coal/pole_1.png" id="7_a0kgr"]
-[ext_resource type="Texture2D" uid="uid://c4qqm8f6sb43x" path="res://resources/sprites/coal/sign_2.png" id="8_eln7f"]
 [ext_resource type="Texture2D" uid="uid://dku0mi42ncb8c" path="res://resources/sprites/coal/sign_3.png" id="10_iqs1i"]
 
 [sub_resource type="Curve2D" id="Curve2D_ffod6"]
@@ -108,17 +107,14 @@ self_modulate = Color(0.988235, 0.835294, 0.619608, 1)
 texture = ExtResource("6_v01fk")
 
 [node name="Pole1" type="Sprite2D" parent="Platforms/Path2D/WidePlatform01"]
-position = Vector2(187, -156)
-rotation = 0.523598
-scale = Vector2(0.952174, 1.09295)
-texture = ExtResource("7_a0kgr")
+position = Vector2(231, -0.999916)
+scale = Vector2(0.952174, 1.57773)
+texture = ExtResource("10_iqs1i")
 
-[node name="Sign2" type="Sprite2D" parent="Platforms/Path2D/WidePlatform01/Pole1"]
-position = Vector2(0.93457, -123.024)
-rotation = 1.27241
-scale = Vector2(0.924636, 1.04172)
-skew = 0.0690526
-texture = ExtResource("8_eln7f")
+[node name="Sign2" type="Sprite2D" parent="Platforms/Path2D/WidePlatform01"]
+position = Vector2(-210, 10.0001)
+scale = Vector2(1, 1.5)
+texture = ExtResource("10_iqs1i")
 
 [node name="Path2D2" type="Path2D" parent="Platforms"]
 position = Vector2(1000, -8150)

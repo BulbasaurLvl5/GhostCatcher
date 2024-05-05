@@ -40,6 +40,7 @@ public static class LevelLoader
 	static PackedScene packedLevel_blocks = ResourceLoader.Load<PackedScene>("res://levels/blocks.tscn");
 
 	static PackedScene packedLevel_fall = ResourceLoader.Load<PackedScene>("res://levels/thefall.tscn");
+	static PackedScene packedLevel_quake = ResourceLoader.Load<PackedScene>("res://levels/quake.tscn");
 
 	public class Level
 	{
@@ -79,6 +80,7 @@ public static class LevelLoader
 	// moving platforms
 		new Level("blocks", new float[]{}, LoadLevel_blocks),
 		new Level("the fall", new float[]{22,23.5f,25,27,30}, LoadLevel_Fall),
+		new Level("quake", new float[]{35,36,38,40,42}, LoadLevel_Quake),
 	// 1st enemy type (ghosts)
 	// spikes
 		new Level("spikes", new float[]{}, LoadLevel_Spikes),
@@ -324,5 +326,12 @@ public static class LevelLoader
 		LoadUI(_main);
 		packedLevel_fall.Instantiate(_main.World);
 		_main.StartLevel(LevelID(LoadLevel_Fall));
+	}
+
+	static void LoadLevel_Quake(Main _main)
+	{
+		LoadUI(_main);
+		packedLevel_quake.Instantiate(_main.World);
+		_main.StartLevel(LevelID(LoadLevel_Quake));
 	}
 }
