@@ -45,6 +45,8 @@ public static class LevelLoader
 
 	static PackedScene packedLevel_wallgrab = ResourceLoader.Load<PackedScene>("res://levels/wallgrab.tscn");
 
+	static PackedScene packedLevel_escape = ResourceLoader.Load<PackedScene>("res://levels/escape.tscn");
+
 	public class Level
 	{
 		public string Name {get;}
@@ -95,6 +97,7 @@ public static class LevelLoader
 		new Level("cactee", new float[]{}, LoadLevel_Kaktee),
 		new Level("deeppit", new float[]{}, LoadLevel_DeepPit),
 		new Level("columns", new float[]{}, LoadLevel_Columns),
+		new Level("escape", new float[5]{32,33,34,36,38}, LoadLevel_Escape),
 	// 2nd enemy type (skulls)
 		new Level("skulls", new float[]{}, LoadLevel_Platforms),
 	// falling platforms
@@ -353,5 +356,12 @@ public static class LevelLoader
 		LoadUI(_main);
 		packedLevel_wallgrab.Instantiate(_main.World);
 		_main.StartLevel(LevelID(LoadLevel_Wallgrab));
+	}
+
+	static void LoadLevel_Escape(Main _main)
+	{
+		LoadUI(_main);
+		packedLevel_escape.Instantiate(_main.World);
+		_main.StartLevel(LevelID(LoadLevel_Escape));
 	}
 }

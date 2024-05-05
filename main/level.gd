@@ -38,7 +38,7 @@ const TILE_SIZE : float = 110.0
 	set(value):
 		left_boundary = value
 		calculate_boundary()
-@export_range(0.0, 50.0, 0.5, "or_less", "or_greater", "suffix:tiles") var right_boundary : float = 20.0:
+@export_range(0.0, 150.0, 0.5, "or_less", "or_greater", "suffix:tiles") var right_boundary : float = 20.0:
 	set(value):
 		right_boundary = value
 		calculate_boundary()
