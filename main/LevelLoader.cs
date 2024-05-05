@@ -43,6 +43,8 @@ public static class LevelLoader
 	static PackedScene packedLevel_quake = ResourceLoader.Load<PackedScene>("res://levels/quake.tscn");
 	static PackedScene packedLevel_kettle = ResourceLoader.Load<PackedScene>("res://levels/kettle.tscn");
 
+	static PackedScene packedLevel_wallgrab = ResourceLoader.Load<PackedScene>("res://levels/wallgrab.tscn");
+
 	public class Level
 	{
 		public string Name {get;}
@@ -73,16 +75,19 @@ public static class LevelLoader
 
 	public static Level[] Levels = {
 	// collectible ghosts, endless pit
-		new Level("tutorial", new float[]{5,6,7,8,9}, LoadLevel_Tutorial),
+		new Level("tutorial", new float[5]{5,6,7,8,9}, LoadLevel_Tutorial),
 		new Level("tunnels", new float[]{}, LoadLevel_Tunnels),
-		new Level("vertical", new float[]{}, LoadLevel_Vertical),
 		new Level("treeson", new float[]{}, LoadLevel_Treeson),
 		new Level("cliff", new float[]{}, LoadLevel_Cliff),
+		new Level("wall grab", new float[5]{18,20,22,24,26}, LoadLevel_Wallgrab),
+	// moving ghosts
+	// moving pit
+		new Level("vertical", new float[5]{20,21,22,23,24}, LoadLevel_Vertical),
 	// moving platforms
-		new Level("kettle", new float[]{16,17,18,20,22}, LoadLevel_Kettle),
+		new Level("kettle", new float[5]{16,17,18,20,22}, LoadLevel_Kettle),
 		new Level("blocks", new float[]{}, LoadLevel_blocks),
-		new Level("the fall", new float[]{22,23.5f,25,27,30}, LoadLevel_Fall),
-		new Level("quake", new float[]{35,36,38,40,42}, LoadLevel_Quake),
+		new Level("the fall", new float[5]{21,23,25,27,30}, LoadLevel_Fall),
+		new Level("quake", new float[5]{35,36,38,40,42}, LoadLevel_Quake),
 	// 1st enemy type (ghosts)
 	// spikes
 		new Level("spikes", new float[]{}, LoadLevel_Spikes),
@@ -95,7 +100,6 @@ public static class LevelLoader
 	// falling platforms
 		new Level("shaky", new float[]{}, LoadLevel_ShakyGround),
 		new Level("newground", new float[]{}, LoadLevel_NewGround),
-	// 3rd enemy type (???)
 	// extra air
 	// unasigned
 		new Level("break", new float[]{}, LoadLevel_Breakthrough),
@@ -342,5 +346,12 @@ public static class LevelLoader
 		LoadUI(_main);
 		packedLevel_kettle.Instantiate(_main.World);
 		_main.StartLevel(LevelID(LoadLevel_Kettle));
+	}
+
+	static void LoadLevel_Wallgrab(Main _main)
+	{
+		LoadUI(_main);
+		packedLevel_wallgrab.Instantiate(_main.World);
+		_main.StartLevel(LevelID(LoadLevel_Wallgrab));
 	}
 }

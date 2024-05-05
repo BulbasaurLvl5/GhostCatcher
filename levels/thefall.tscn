@@ -42,16 +42,16 @@ layer_0/tile_data = PackedInt32Array(196606, 65536, 3, 196607, 131073, 3, 131072
 [node name="Ghosts" type="Node" parent="."]
 
 [node name="Ghost" parent="Ghosts" instance=ExtResource("3_ujx48")]
-position = Vector2(-4, -208)
+position = Vector2(0, -208)
 
 [node name="Ghost2" parent="Ghosts" instance=ExtResource("3_ujx48")]
-position = Vector2(-1, -942)
+position = Vector2(-4, -942)
 
 [node name="Ghost3" parent="Ghosts" instance=ExtResource("3_ujx48")]
-position = Vector2(-1, -1559)
+position = Vector2(-4, -1746)
 
 [node name="Ghost4" parent="Ghosts" instance=ExtResource("3_ujx48")]
-position = Vector2(78, -3149)
+position = Vector2(139, -3136)
 
 [node name="Ghost5" parent="Ghosts" instance=ExtResource("3_ujx48")]
 position = Vector2(-375, -4563)
@@ -66,7 +66,7 @@ position = Vector2(-346, -8955)
 position = Vector2(-102, -9634)
 
 [node name="Ghost9" parent="Ghosts" instance=ExtResource("3_ujx48")]
-position = Vector2(-162, -6289)
+position = Vector2(0, -6252)
 
 [node name="Ghost10" parent="Ghosts" instance=ExtResource("3_ujx48")]
 position = Vector2(2311, -7865)

@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4lbdlbiddvp0"]
+
+[ext_resource type="Script" path="res://main/level.gd" id="1_fvxqw"]
+[ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_vhkbb"]
+[ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_nv3vv"]
+[ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_ae8wi"]
+[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_1unre"]
+[ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_02lru"]
+
+[node name="template" type="Node2D"]
+script = ExtResource("1_fvxqw")
+level_name = "template"
+starting_position_y = 0.5
+top_boundary = -47.0
+left_boundary = -17.0
+right_boundary = 19.0
+bottom_boundary = 5.0
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_vhkbb")
+format = 2
+layer_0/tile_data = PackedInt32Array(196606, 65536, 3, 196607, 131073, 3, 131072, 131072, 3, 131073, 196608, 3, 65525, 131073, 3, 65526, 196608, 0, 131062, 0, 1, 196598, 0, 2, 65524, 65536, 2, -12, 0, 1, -65548, 0, 1, -131084, 1, 1, -196620, 0, 1, -262156, 1, 1, -458764, 0, 1, -524300, 0, 1, -589836, 196609, 0, -589837, 131073, 3, -589838, 131073, 3, -589839, 131073, 3, -589840, 65537, 3, -393228, 1, 1, -327692, 1, 1, -1114119, 1, 0, -1048583, 0, 1, -983047, 1, 1, -917511, 1, 2, -1114113, 1, 2, -1179649, 1, 1, -1245185, 1, 1, -1310721, 65536, 0, -1376256, 131072, 3, -1376255, 131073, 3, -1376254, 131072, 3, -1376253, 131073, 3, -1376252, 131073, 3, -983038, 65536, 3, -983037, 131072, 3, -983036, 196609, 3, -1376251, 131072, 3, -1376250, 131072, 3, -1376249, 196609, 0, -1179641, 0, 1, -1114105, 0, 1, -1048569, 1, 1, -983033, 1, 2, -1245177, 0, 1, -1310713, 1, 1, -2, 65536, 3, -1, 131073, 3, -65536, 131073, 3, -65535, 131073, 3, -65534, 196609, 2, -131070, 1, 1, -196606, 0, 1, -262142, 65537, 1, -327678, 1, 0, -589818, 65537, 3, -589817, 131072, 3, -589816, 131072, 3, -589815, 196609, 3, -262141, 131072, 3, -262140, 131073, 3, -262139, 131072, 3, -262138, 131072, 0, -262137, 131073, 3, -262136, 131072, 3, -262135, 131072, 0, -262134, 131072, 3, -262133, 131072, 3, -196602, 0, 1, -131066, 0, 2, -196599, 1, 1, -131063, 0, 2, -262132, 196609, 2, -327668, 1, 1, -393204, 1, 1, -458740, 0, 1, -524276, 65536, 0, -524275, 131072, 3, -524274, 131072, 3, -524273, 131073, 3, -524272, 196608, 0, -458736, 1, 1, -393200, 0, 2)
+
+[node name="Ghosts" type="Node" parent="."]
+
+[node name="Ghost" parent="Ghosts" instance=ExtResource("3_nv3vv")]
+position = Vector2(-4, -208)
+
+[node name="Ghost2" parent="Ghosts" instance=ExtResource("3_nv3vv")]
+position = Vector2(-890, 155)
+
+[node name="Ghost3" parent="Ghosts" instance=ExtResource("3_nv3vv")]
+position = Vector2(-1493, -1212)
+
+[node name="Ghost4" parent="Ghosts" instance=ExtResource("3_nv3vv")]
+position = Vector2(-895, -1751)
+
+[node name="Ghost5" parent="Ghosts" instance=ExtResource("3_nv3vv")]
+position = Vector2(370, -1949)
+
+[node name="Ghost6" parent="Ghosts" instance=ExtResource("3_nv3vv")]
+position = Vector2(-249, -2040)
+
+[node name="Ghost7" parent="Ghosts" instance=ExtResource("3_nv3vv")]
+position = Vector2(1593, -652)
+
+[node name="Ghost8" parent="Ghosts" instance=ExtResource("3_nv3vv")]
+position = Vector2(872, -225)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="Spikes" type="Node" parent="."]
+
+[node name="Scenery" type="Node" parent="."]
+
+[node name="EndlessPit" parent="." instance=ExtResource("4_ae8wi")]
+position = Vector2(0, 550)
+
+[node name="Parallax" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
+position = Vector2(-148, 102)
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
+position = Vector2(-468, -525)
+scale = Vector2(3, 2)
+texture = ExtResource("5_1unre")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("6_02lru")]
+position = Vector2(0, 133)

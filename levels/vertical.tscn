@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuy7fj1l11x4v"]
+[gd_scene load_steps=9 format=3 uid="uid://cuy7fj1l11x4v"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_q0k8y"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="2_7wyad"]
@@ -6,6 +6,27 @@
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="3_7kpqb"]
 [ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="4_c8000"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_v22ao"]
+
+[sub_resource type="Animation" id="Animation_4jlwk"]
+resource_name = "moveup"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 25),
+"transitions": PackedFloat32Array(1.33, 1.5),
+"update": 0,
+"values": [Vector2(0, 440), Vector2(0, -4700)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aiuu7"]
+_data = {
+"moveup": SubResource("Animation_4jlwk")
+}
 
 [node name="Vertical" type="Node2D"]
 script = ExtResource("1_q0k8y")
@@ -20,18 +41,18 @@ bottom_boundary = 5.0
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_q2fv3")
 format = 2
-layer_0/tile_data = PackedInt32Array(-3014656, 1, 3, -2490363, 0, 3, -2097156, 0, 3, -1703934, 0, 2, -1769470, 0, 0, -1310721, 1, 2, -1376257, 1, 1, -1441793, 1, 0, -983037, 0, 2, -1048573, 0, 1, -1114109, 1, 0, -458755, 196609, 3, -458756, 131072, 3, -458757, 65537, 3, 327674, 0, 2, 262138, 0, 1, 196602, 1, 1, 131066, 0, 0, 262144, 720897, 3, 196608, 720896, 2, 131072, 720897, 2, 65536, 720897, 2, 0, 720896, 2, -65536, 720896, 2, -131072, 720896, 0, 327679, 524288, 3, 262143, 524288, 1, 196607, 524289, 1, 131071, 524289, 1, 65535, 524288, 1, -1, 524288, 1, -65537, 524288, 0, 262151, 1, 2, 196615, 1, 1, 131079, 0, 1, 65543, 1, 0)
+layer_0/tile_data = PackedInt32Array(-3014656, 1, 3, -2490363, 0, 3, -2097156, 0, 3, -1703934, 0, 2, -1769470, 0, 0, -1310721, 1, 2, -1376257, 1, 1, -1441793, 1, 0, -983037, 0, 2, -1048573, 0, 1, -1114109, 1, 0, -458755, 196609, 3, -458756, 131072, 3, -458757, 65537, 3, 327674, 0, 2, 262138, 0, 1, 196602, 1, 1, 131066, 0, 0, 262144, 720897, 3, 196608, 720896, 2, 131072, 720897, 2, 65536, 720897, 2, 0, 720896, 2, -65536, 720896, 2, -131072, 720896, 0, 327679, 524288, 3, 262143, 524288, 1, 196607, 524289, 1, 131071, 524289, 1, 65535, 524288, 1, -1, 524288, 1, -65537, 524288, 0, 262151, 1, 2, 196615, 1, 1, 131079, 0, 1, 65543, 0, 1, 7, 1, 1, -65529, 1, 1, -131065, 0, 1, -196601, 0, 1, -262137, 0, 0)
 
 [node name="Ghosts" type="Node" parent="."]
 
 [node name="Ghost" parent="Ghosts" instance=ExtResource("2_7wyad")]
-position = Vector2(1359, -230)
+position = Vector2(809, -610)
 
 [node name="Ghost2" parent="Ghosts" instance=ExtResource("2_7wyad")]
-position = Vector2(-350, -102)
+position = Vector2(-405, -178)
 
 [node name="Ghost3" parent="Ghosts" instance=ExtResource("2_7wyad")]
-position = Vector2(-990, -634)
+position = Vector2(-384, -1011)
 
 [node name="Ghost4" parent="Ghosts" instance=ExtResource("2_7wyad")]
 position = Vector2(548, -1686)
@@ -49,7 +70,13 @@ position = Vector2(-164, -4181)
 position = Vector2(510, -5770)
 
 [node name="EndlessPit" parent="." instance=ExtResource("3_7kpqb")]
-position = Vector2(0, 440)
+position = Vector2(0, 253.515)
+
+[node name="up" type="AnimationPlayer" parent="EndlessPit"]
+libraries = {
+"": SubResource("AnimationLibrary_aiuu7")
+}
+autoplay = "moveup"
 
 [node name="Parallax" type="Node" parent="."]
 

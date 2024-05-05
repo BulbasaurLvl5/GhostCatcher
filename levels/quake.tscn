@@ -32,7 +32,6 @@ _data = {
 [node name="template" type="Node2D"]
 script = ExtResource("1_k14ye")
 level_name = "template"
-show_data_in_editor = true
 starting_position_y = 0.5
 top_boundary = -29.0
 left_boundary = -19.0
