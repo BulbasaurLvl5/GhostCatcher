@@ -44,13 +44,14 @@ func Do_Checks():
 func Physics_Update(delta):
 	if sign(player.velocity.x) != player.x_input:
 		player.velocity.x = data.min_run_speed * player.x_input
-
-	player.velocity.y += data.gravity * delta
+		
 	if abs(player.velocity.x) < data.max_run_speed:
 		player.velocity.x += player.x_input * data.run_acceleration * delta
 		if abs(player.velocity.x) > data.max_run_speed:
 			player.velocity.x = data.max_run_speed * sign(player.velocity.x)
 		current_speed = player.velocity.x
+
+	Grounded_Gravity(delta)
 	player.move()
 
 

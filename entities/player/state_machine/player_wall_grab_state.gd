@@ -4,12 +4,21 @@ extends PlayerState
 
 @export_range(-10.0, 10.0, 0.001, "or_less", "or_greater", "suffix:pixels") var visual_offset_x : float = 0
 
-@onready var wall_direction : int
-@onready var wall : Node
+var wall_direction : int
+var on_moving_tile_map : bool
+var stored_wall_pos : Vector2
 
 
 func Enter(_from : PlayerState = null):
 	player.super_state = player.SuperStates.ON_WALL
+	player.velocity = Vector2(100.0 * player.facing_direction, 0.0)
+	player.move()
+	on_moving_tile_map = false
+	if player.moving_platform:
+		if player.moving_platform is MovingTileMap:
+			on_moving_tile_map = true
+			stored_wall_pos = player.moving_platform.position
+
 	anim.offset.x += visual_offset_x
 	anim.play("wall_grab")
 	$"../../SFX/WallGrab".play()
@@ -33,9 +42,10 @@ func Do_Checks():
 		Transitioned.emit(self,"InAir")	
 
 
-func Physics_Update(_delta):
-#	player.velocity.y = -1
-#	print("player velocity = = = = = ",player.velocity)
+func Physics_Update(delta):
+	if on_moving_tile_map:
+		player.velocity = (player.moving_platform.global_position - stored_wall_pos) / delta
+		stored_wall_pos = player.moving_platform.global_position
 	player.move()
 
 

@@ -17,12 +17,23 @@ var super_state : int = SuperStates.IN_AIR:
 		if verbose:
 			print("PLAYER super_state = ", super_state)
 		if super_state == SuperStates.IN_AIR:
+			moving_platform = null
 			%CrowPointLight2D1.energy = 5.0
 			%CrowPointLight2D2.energy = 5.0
 		else:
 			%CrowPointLight2D1.energy = 1.0
 			%CrowPointLight2D2.energy = 1.0
 			remaining_air_actions = data.max_air_actions
+var moving_platform : Node2D:
+	set(value):
+		if moving_platform == value:
+			return
+		if value && !value is Platform && !value is MovingTileMap:
+			return
+		moving_platform = value
+		moving_platform_check_needed = false
+		print("player moving_platform = ", moving_platform)
+var moving_platform_check_needed : bool = false
 
 var facing_direction : int = 1
 @onready var remaining_air_actions : int = data.max_air_actions:
@@ -51,8 +62,6 @@ var stomp_input_reset : bool = true
 var last_dash_time : float = 0
 var height_fallen_from : float = 0
 var heavy_landing_factor : float = 0
-var was_grounded : bool = false
-var could_grab_wall : bool = false
 
 var level_boundary : Rect2:
 	set(value):
@@ -137,14 +146,14 @@ func check_input():
 func check_environment():
 	if super_state == SuperStates.IN_AIR:
 		if is_on_floor():
+			var floor = get_last_slide_collision().get_collider()
+			if floor is Platform || floor is MovingTileMap:
+				moving_platform = floor
 			super_state = SuperStates.GROUNDED
 	elif super_state == SuperStates.GROUNDED:
 		if !is_on_floor():
 			super_state = SuperStates.IN_AIR
 
-	was_grounded = is_on_floor()
-	could_grab_wall = can_grab_wall()
-	
 	
 func can_grab_wall() -> bool:
 	if x_input != facing_direction:
@@ -153,6 +162,7 @@ func can_grab_wall() -> bool:
 	%GrabCheckTop.force_raycast_update()
 	%GrabCheckBottom.force_raycast_update()
 	if %GrabCheckTop.is_colliding() && %GrabCheckBottom.is_colliding():
+		check_wall()
 		return true
 
 	%GrabCheckInsideTop.force_raycast_update()
@@ -166,6 +176,7 @@ func can_grab_wall() -> bool:
 			if count > 12:
 				print("Player is being adjusted more than intended attempting to wall grab.")
 				return false
+		check_wall()
 		return true
 	if %GrabCheckBottom.is_colliding() && %GrabCheckInsideTop.is_colliding():
 		var count = 0
@@ -176,8 +187,20 @@ func can_grab_wall() -> bool:
 			if count > 12:
 				print("Player is being adjusted more than intended attempting to wall grab.")
 				return false
+		check_wall()
 		return true
 	return false
+
+
+func check_wall():
+	var wall = %GrabCheckTop.get_collider()
+	if wall:
+		if wall is Platform || wall is MovingTileMap:
+			moving_platform = wall
+		else:
+			print("wall is not recognized as moving platform or tilemap")
+	else:
+		print("wall not found in check_wall()")
 
 
 func can_jump() -> bool:

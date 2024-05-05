@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://0vy8nky8i46d"]
+[gd_scene load_steps=10 format=3 uid="uid://d18cqtiex00bh"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_k14ye"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_u4u2g"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_htb73"]
+[ext_resource type="Script" path="res://environment/platforms/moving_tile_map.gd" id="3_p8etl"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_m1qnb"]
 [ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_e1e25"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_m4xe8"]
@@ -48,8 +49,10 @@ modulate = Color(1, 1, 0.509804, 1)
 tile_set = ExtResource("2_u4u2g")
 format = 2
 layer_0/tile_data = PackedInt32Array(-196601, 1, 2, -327673, 1, 1, -393209, 0, 1, -393205, 1, 1, -262133, 1, 1, -196597, 0, 1, -131061, 0, 1, -65525, 0, 1, 11, 1, 1, 65547, 0, 1, 131083, 1, 1, 196619, 0, 2, -589809, 65537, 3, -589808, 131072, 3, -589807, 196609, 1, -851951, 196609, 0, -786415, 0, 1, -720879, 1, 1, -655343, 0, 1, -524271, 0, 1, -458735, 0, 1, -393199, 1, 1, -327663, 0, 1, -262127, 1, 1, -851953, 65537, 3, -851952, 131072, 3, -458745, 65536, 0, -458744, 131072, 3, -458743, 131072, 3, -458741, 196609, 0, -458742, 131072, 3, -262137, 0, 1, -327669, 1, 1, -327695, 65537, 3, -327694, 131072, 3, -327693, 131072, 3, -327692, 131073, 3, -327690, 131073, 3, -327691, 131073, 3, -327689, 131073, 3, -327688, 196608, 3, -196591, 1, 1, -131055, 1, 2)
+script = ExtResource("3_p8etl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TileMap_moving"]
+callback_mode_process = 0
 libraries = {
 "": SubResource("AnimationLibrary_lpx6d")
 }

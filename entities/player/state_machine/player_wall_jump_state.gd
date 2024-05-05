@@ -8,6 +8,7 @@ extends PlayerState
 
 
 func Enter(_from : PlayerState = null):
+	player.moving_platform = null
 	if player.y_input < 0:
 		Transitioned.emit(self,"Jump")
 		return

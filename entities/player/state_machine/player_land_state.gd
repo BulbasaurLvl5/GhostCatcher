@@ -51,7 +51,7 @@ func Do_Checks():
 
 
 func Physics_Update(delta):
-	player.velocity.y += data.gravity * delta
+	Grounded_Gravity(delta)
 	player.move()
 
 	

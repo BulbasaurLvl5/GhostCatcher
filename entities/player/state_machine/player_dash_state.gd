@@ -13,6 +13,7 @@ var recovering : bool
 
 
 func Enter(_from : PlayerState = null):
+	player.moving_platform = null
 	recovering = false
 	player.height_fallen_from = player.position.y
 	player.dash_button_reset = false

@@ -72,3 +72,10 @@ func Flip_Player(force_flip : bool = false) -> bool:
 func Check_Altitude():
 	if player.position.y < player.height_fallen_from:
 		player.height_fallen_from = player.position.y	
+		
+		
+func Grounded_Gravity(delta : float):
+	if player.moving_platform:
+		player.velocity.y += data.gravity
+	else:
+		player.velocity.y += data.gravity * delta
