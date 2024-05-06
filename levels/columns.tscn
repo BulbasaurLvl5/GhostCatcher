@@ -615,23 +615,23 @@ scale = Vector2(1, 1.03116)
 texture = ExtResource("7_c16sr")
 
 [node name="tomb_1" type="Sprite2D" parent="Scenery"]
-position = Vector2(-194, -3245)
-texture = SubResource("AtlasTexture_dkg2q")
-
-[node name="tomb_2" type="Sprite2D" parent="Scenery"]
-position = Vector2(-194, -3245)
+z_index = -1
+position = Vector2(-193, -3230)
 texture = SubResource("AtlasTexture_dkg2q")
 
 [node name="tomb_3" type="Sprite2D" parent="Scenery"]
-position = Vector2(1044, -4669)
+z_index = 1
+position = Vector2(1045, -4664)
 texture = SubResource("AtlasTexture_dkg2q")
 
 [node name="tomb_4" type="Sprite2D" parent="Scenery"]
-position = Vector2(2514, -58)
+z_index = -1
+position = Vector2(2521, -40)
 texture = SubResource("AtlasTexture_dkg2q")
 
 [node name="tomb_5" type="Sprite2D" parent="Scenery"]
-position = Vector2(-2543, -56)
+z_index = -1
+position = Vector2(-2545, -39)
 texture = SubResource("AtlasTexture_dkg2q")
 
 [node name="EndlessPit" parent="." instance=ExtResource("3_nvhrl")]
@@ -642,12 +642,12 @@ position = Vector2(65, 912)
 [node name="Sky" type="Node2D" parent="Parallax"]
 z_index = -2000
 z_as_relative = false
-position = Vector2(-170.956, -6671.65)
+position = Vector2(581.625, -4632.95)
 script = ExtResource("13_pcsxy")
 distance = 888.0
 type = 3
 scroll_scale = Vector2(0.01, 0.01)
-screen_offset = Vector2(-172.683, -6739.04)
+screen_offset = Vector2(633.604, -3013.95)
 
 [node name="Sky" type="Sprite2D" parent="Parallax/Sky"]
 position = Vector2(877, 491)
@@ -656,12 +656,12 @@ texture = ExtResource("13_v2ykm")
 
 [node name="SkyFilter" type="Node2D" parent="Parallax"]
 z_index = -2000
-position = Vector2(-170.956, -6671.65)
+position = Vector2(581.625, -4632.95)
 script = ExtResource("13_pcsxy")
 distance = 888.0
 type = 3
 scroll_scale = Vector2(0.01, 0.01)
-screen_offset = Vector2(-172.683, -6739.04)
+screen_offset = Vector2(633.604, -3013.95)
 
 [node name="SkyColor" type="Sprite2D" parent="Parallax/SkyFilter"]
 visible = false
@@ -674,12 +674,12 @@ centered = false
 
 [node name="Moon" type="Node2D" parent="Parallax"]
 z_index = -2000
-position = Vector2(-170.956, -6671.65)
+position = Vector2(581.625, -4632.95)
 script = ExtResource("13_pcsxy")
 distance = 888.0
 type = 3
 scroll_scale = Vector2(0.01, 0.01)
-screen_offset = Vector2(-172.683, -6739.04)
+screen_offset = Vector2(633.604, -3013.95)
 
 [node name="Path2D" type="Path2D" parent="Parallax/Moon"]
 scale = Vector2(-1, 1)
@@ -698,12 +698,12 @@ texture = ExtResource("17_yu20f")
 
 [node name="SkyFilter2" type="Node2D" parent="Parallax"]
 z_index = -2000
-position = Vector2(-170.956, -6671.65)
+position = Vector2(581.625, -4632.95)
 script = ExtResource("13_pcsxy")
 distance = 888.0
 type = 3
 scroll_scale = Vector2(0.01, 0.01)
-screen_offset = Vector2(-172.683, -6739.04)
+screen_offset = Vector2(633.604, -3013.95)
 
 [node name="SkyColor" type="Sprite2D" parent="Parallax/SkyFilter2"]
 self_modulate = Color(1, 1, 1, 0.290196)
@@ -714,11 +714,11 @@ centered = false
 
 [node name="Mountains" type="Node2D" parent="Parallax"]
 z_index = -894
-position = Vector2(-138.781, -2707.99)
+position = Vector2(472.158, -1880.5)
 script = ExtResource("13_pcsxy")
 distance = 0.89297
 scroll_scale = Vector2(0.196327, 0.598163)
-screen_offset = Vector2(-172.683, -6739.04)
+screen_offset = Vector2(633.604, -3013.95)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Mountains"]
 position = Vector2(-3389, 33)
@@ -750,11 +750,11 @@ texture = ExtResource("18_0lqrr")
 
 [node name="HillsFar" type="Node2D" parent="Parallax"]
 z_index = -519
-position = Vector2(-79.8458, -1558.01)
+position = Vector2(271.651, -1081.92)
 script = ExtResource("13_pcsxy")
 distance = 0.51376
 scroll_scale = Vector2(0.537616, 0.768808)
-screen_offset = Vector2(-172.683, -6739.04)
+screen_offset = Vector2(633.604, -3013.95)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/HillsFar"]
 position = Vector2(-3547.79, 545.029)
@@ -786,11 +786,11 @@ texture = ExtResource("19_i7sbg")
 
 [node name="HillsNear" type="Node2D" parent="Parallax"]
 z_index = -283
-position = Vector2(-42.7747, -834.656)
+position = Vector2(145.528, -579.605)
 script = ExtResource("13_pcsxy")
 distance = 0.27523
 scroll_scale = Vector2(0.752293, 0.876146)
-screen_offset = Vector2(-172.683, -6739.04)
+screen_offset = Vector2(633.604, -3013.95)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/HillsNear"]
 position = Vector2(-3638.57, 775.823)

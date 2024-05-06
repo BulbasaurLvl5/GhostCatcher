@@ -197,10 +197,6 @@ func check_wall():
 	if wall:
 		if wall is Platform || wall is MovingTileMap:
 			moving_platform = wall
-		else:
-			print("wall is not recognized as moving platform or tilemap")
-	else:
-		print("wall not found in check_wall()")
 
 
 func can_jump() -> bool:

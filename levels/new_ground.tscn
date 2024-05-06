@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cbnqn0wjsnctc"]
+[gd_scene load_steps=39 format=3 uid="uid://cbnqn0wjsnctc"]
 
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_2diwe"]
 [ext_resource type="Script" path="res://main/level.gd" id="1_qqubv"]
@@ -8,9 +8,22 @@
 [ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://environment/platforms/wide_platform_01.tscn" id="7_3riy8"]
 [ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://environment/spikes_medium.tscn" id="8_31ajb"]
 [ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://environment/spikes_large.tscn" id="9_2747m"]
+[ext_resource type="Texture2D" uid="uid://cgbodrcslt8a1" path="res://resources/sprites/coal/coal_tombstones.png" id="9_mp4n4"]
+[ext_resource type="Texture2D" uid="uid://q7jgjirvucvk" path="res://resources/sprites/coal/tree_1.png" id="10_5helt"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="10_os8ql"]
-[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="11_hk5vx"]
+[ext_resource type="Texture2D" uid="uid://67522rgm3ol5" path="res://resources/sprites/coal/tree_6.png" id="11_fk0bq"]
+[ext_resource type="Texture2D" uid="uid://c4whnquieckb8" path="res://resources/sprites/coal/tree_7.png" id="12_grbtu"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="12_heu1a"]
+[ext_resource type="Texture2D" uid="uid://mses6drjkls3" path="res://resources/sprites/coal/tree_9.png" id="13_e176j"]
+[ext_resource type="Texture2D" uid="uid://b8xoka0m1lmq5" path="res://resources/sprites/coal/hills.png" id="14_praku"]
+[ext_resource type="Script" path="res://addons/parallax_wizard/plugin/parallax_plus.gd" id="16_l6vy8"]
+[ext_resource type="Texture2D" uid="uid://b5xlp7x6bh8wb" path="res://resources/sprites/coal/coal_sky.png" id="17_774ec"]
+[ext_resource type="Script" path="res://environment/parallax/moon.gd" id="18_nvqax"]
+[ext_resource type="Texture2D" uid="uid://bjc2obas242sw" path="res://resources/sprites/coal/moon_1.png" id="19_mfkaa"]
+[ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://resources/sprites/coal/coal_sky_filter.png" id="20_ii012"]
+[ext_resource type="Texture2D" uid="uid://br7gis8rcn7xp" path="res://resources/sprites/coal/mountains.png" id="21_tynnt"]
+[ext_resource type="Texture2D" uid="uid://dwyx8hmrnmjki" path="res://resources/sprites/coal/church.png" id="22_sv52g"]
+[ext_resource type="Texture2D" uid="uid://kvsjs4tacowj" path="res://resources/sprites/coal/house_1.png" id="23_g0rbm"]
 
 [sub_resource type="Curve2D" id="Curve2D_exeef"]
 _data = {
@@ -24,13 +37,19 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_idob0"]
+[sub_resource type="Curve2D" id="Curve2D_ixc1u"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 400, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_sjonu"]
+[sub_resource type="Curve2D" id="Curve2D_v2n3j"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_3ryiy"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0)
 }
@@ -50,56 +69,79 @@ point_count = 3
 
 [sub_resource type="Curve2D" id="Curve2D_fpuns"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 450, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 0, 0, 0, 0, 0, 0)
 }
 point_count = 3
 
 [sub_resource type="Curve2D" id="Curve2D_hl5p8"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -450, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -500, 0, 0, 0, 0, 0, 0)
 }
 point_count = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g3c3"]
+atlas = ExtResource("9_mp4n4")
+region = Rect2(20, 17, 109, 123)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucboa"]
+atlas = ExtResource("9_mp4n4")
+region = Rect2(161, 39, 105, 101)
+
+[sub_resource type="Curve2D" id="Curve2D_ocscb"]
+_data = {
+"points": PackedVector2Array(-70.2355, 334.089, 70.2355, -334.089, 1096, 971, -180.017, 211.838, 180.017, -211.838, 1685, -389)
+}
+point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydsbr"]
+atlas = ExtResource("9_mp4n4")
+region = Rect2(161, 39, 105, 101)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxtru"]
+atlas = ExtResource("9_mp4n4")
+region = Rect2(20, 17, 109, 123)
 
 [node name="NewGround" type="Node2D"]
 script = ExtResource("1_qqubv")
 level_name = "NewGround"
+show_data_in_editor = true
 starting_position_x = 7.0
 starting_position_y = 4.0
 flip_player_direction = true
-top_boundary = -30.5
+top_boundary = -72.5
 left_boundary = -32.0
 right_boundary = 50.0
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_2diwe")
 format = 2
-layer_0/tile_data = PackedInt32Array(852004, 1, 3, -262152, 196608, 3, -327666, 196608, 3, -327667, 131072, 3, -327668, 131073, 3, -327669, 131072, 3, -327670, 131073, 3, -327671, 131073, 3, -327672, 131073, 3, -327673, 131073, 3, -327674, 131072, 3, -327675, 131073, 3, -327676, 131073, 3, -327677, 131073, 3, -327678, 131072, 3, -327679, 65537, 3, -262153, 131072, 3, -262154, 131072, 3, -262155, 131073, 3, -65526, 196609, 3, -65527, 131073, 3, -65528, 131072, 3, -65529, 131073, 3, -65530, 131073, 3, -65531, 65537, 3, -327653, 196609, 2, -327654, 131072, 3, -327655, 131072, 3, -327656, 131072, 3, -327657, 65536, 3, -262156, 65537, 2, -327692, 0, 1, -393228, 0, 1, -458764, 0, 1, -524300, 1, 1, -589836, 65536, 1, -655372, 1, 1, -720908, 1, 1, -786444, 0, 1, -851980, 0, 1, -917516, 1, 1, -983052, 0, 1, -1048588, 0, 1, -1114124, 0, 1, -1179660, 1, 1, -1245196, 65536, 0, -393189, 0, 1, -458725, 0, 1, -524261, 196609, 1, -589797, 1, 1, -655333, 1, 1, -720869, 0, 1, -786405, 196608, 1, -851941, 0, 1, -917477, 1, 1, -983013, 0, 1, -1048549, 0, 1, -1114085, 0, 1, -1179621, 0, 1, -1245157, 1, 1, -1310693, 196609, 0, -655355, 196608, 3, -655356, 131073, 3, -655357, 131072, 3, -655358, 131072, 3, -655359, 131073, 3, -655360, 131072, 3, -589825, 131073, 3, -589826, 131073, 3, -589827, 131073, 3, -589828, 131073, 3, -589829, 131073, 3, -589830, 131073, 3, -589831, 131072, 3, -589832, 131073, 3, -589833, 131072, 3, -589834, 131072, 3, -589835, 131073, 3, -786406, 131072, 3, -786407, 131073, 3, -786408, 131073, 3, -786409, 131072, 3, -786410, 131072, 3, -786411, 131072, 3, -786412, 131073, 3, -786413, 131072, 2, -786414, 131073, 3, -786415, 131073, 3, -786416, 131072, 3, -786417, 131072, 3, -786418, 131072, 3, -786419, 131072, 3, -786420, 131072, 3, -786421, 131073, 3, -786422, 65537, 3, -524262, 131073, 3, -524263, 131073, 3, -524264, 131072, 3, -1048564, 131073, 3, -1048565, 131073, 3, -1048566, 131072, 3, -1048567, 131072, 3, -1048568, 131072, 3, -1048569, 131072, 3, -1048570, 131073, 3, -1048571, 131072, 3, -1048572, 131072, 3, -1048573, 65537, 3, -1048557, 196609, 0, -1048558, 131072, 3, -1048559, 131073, 3, -1048560, 131072, 3, -1048561, 131073, 3, -1048562, 131073, 3, -1048563, 131073, 3, -851949, 1, 1, -917485, 1, 1, -983021, 1, 1, -851963, 196609, 3, -851964, 131072, 3, -851965, 131073, 3, -851966, 131072, 3, -851967, 131072, 3, -851968, 131073, 3, -786433, 131072, 3, -786434, 131072, 3, -786435, 131072, 3, -786436, 131073, 3, -786437, 131073, 3, -786438, 131072, 3, -786439, 131072, 3, -786440, 65537, 2, -983042, 196608, 3, -983043, 131072, 3, -983044, 131072, 3, -983045, 131072, 3, -983046, 131073, 3, -983047, 131072, 3, -983048, 65537, 0, -851976, 1, 1, -917512, 0, 1, -524265, 65537, 3, -1245195, 131072, 3, -1245194, 131073, 3, -1245193, 131072, 3, -1245192, 131073, 3, -1245191, 131072, 3, -1245190, 131072, 3, -1245189, 131072, 3, -1245188, 131072, 3, -1245187, 131072, 3, -1245186, 131073, 3, -1245185, 131072, 3, -1310720, 131073, 3, -1310719, 131072, 3, -1310718, 131072, 3, -1310717, 131073, 3, -1310716, 131072, 3, -1310715, 196609, 3, -1310710, 65536, 3, -1310709, 131072, 3, -1310708, 131072, 3, -1310707, 131073, 3, -1310706, 131072, 3, -1310705, 131073, 3, -1310704, 131073, 3, -1310703, 131072, 3, -1310702, 131072, 3, -1310701, 131072, 3, -1310700, 131073, 3, -1310699, 131072, 3, -1310698, 131073, 3, -1310697, 131072, 3, -1310696, 131072, 3, -1310695, 131072, 3, -1310694, 131073, 3, -1507335, 65536, 3, -1507334, 131072, 3, -1507333, 131072, 3, -1507332, 131072, 3, -1507330, 131073, 3, -1507331, 131073, 3, -1507329, 131073, 3, -1572864, 131073, 3, -1572863, 131072, 3, -1572862, 131073, 3, -1572861, 131072, 3, -1572860, 131073, 3, -1572859, 131073, 3, -1572858, 131073, 3, -1572857, 131072, 3, -1572856, 131072, 3, -1572855, 131073, 3, -1572854, 131072, 3, -1572853, 131073, 3, -1572852, 131072, 3, -1572851, 131072, 3, -1572850, 131072, 3, -1572849, 131073, 3, -1572848, 131072, 3, -1572847, 131072, 3, -1572844, 131072, 3, -1572846, 131072, 3, -1572845, 131073, 3, -1572843, 131072, 3, -1572842, 196608, 3)
+layer_0/tile_data = PackedInt32Array(852004, 1, 3, -262152, 196608, 3, -327666, 196608, 3, -327667, 131072, 3, -327668, 131073, 3, -327669, 131072, 3, -327670, 131073, 3, -327671, 131073, 3, -327672, 131073, 3, -327673, 131073, 3, -327674, 131072, 3, -327675, 131073, 3, -327676, 131073, 3, -327677, 131073, 3, -327678, 131072, 3, -327679, 65537, 3, -262153, 131072, 3, -262154, 131072, 3, -262155, 131073, 3, -65526, 196609, 3, -65527, 131073, 3, -65528, 131072, 3, -65529, 131073, 3, -65530, 131073, 3, -65531, 65537, 3, -327653, 196609, 2, -327654, 131072, 3, -327655, 131072, 3, -327656, 131072, 3, -327657, 65536, 3, -262156, 65537, 2, -327692, 0, 1, -393228, 0, 1, -458764, 0, 1, -524300, 1, 1, -589836, 65536, 1, -655372, 1, 1, -720908, 1, 1, -786444, 0, 1, -851980, 0, 1, -917516, 1, 1, -983052, 0, 1, -1048588, 0, 1, -1114124, 0, 1, -1179660, 1, 1, -1245196, 0, 1, -393189, 0, 1, -458725, 0, 1, -524261, 196609, 1, -589797, 1, 1, -655333, 1, 1, -720869, 0, 1, -786405, 196608, 1, -851941, 0, 1, -917477, 1, 1, -983013, 0, 1, -1048549, 0, 1, -1114085, 0, 1, -1179621, 0, 1, -1245157, 1, 1, -1310693, 0, 1, -655355, 196608, 3, -655356, 131073, 3, -655357, 131072, 3, -655358, 131072, 3, -655359, 131073, 3, -655360, 131072, 3, -589825, 131073, 3, -589826, 131073, 3, -589827, 131073, 3, -589828, 131073, 3, -589829, 131073, 3, -589830, 131073, 3, -589831, 131072, 3, -589832, 131073, 3, -589833, 131072, 3, -589834, 131072, 3, -589835, 131073, 3, -786406, 131072, 3, -786407, 131073, 3, -786408, 131073, 3, -786409, 131072, 3, -786410, 131072, 3, -786411, 131072, 3, -786412, 131073, 3, -786413, 131072, 2, -786414, 131073, 3, -786415, 131073, 3, -786416, 131072, 3, -786417, 131072, 3, -786418, 131072, 3, -786419, 131072, 3, -786420, 131072, 3, -786421, 131073, 3, -786422, 65537, 3, -524262, 131073, 3, -524263, 131073, 3, -524264, 131072, 3, -1048557, 0, 1, -851949, 1, 1, -917485, 1, 1, -983021, 1, 1, -983048, 0, 1, -851976, 65536, 2, -917512, 0, 1, -524265, 65537, 3, -851975, 131073, 3, -851974, 131072, 3, -851973, 131072, 3, -851972, 131072, 3, -851971, 131072, 3, -851970, 131072, 3, -851969, 131073, 3, -917504, 131072, 3, -917503, 131072, 3, -917502, 131072, 3, -917501, 131073, 3, -917500, 131073, 3, -917499, 196608, 3, -1048584, 0, 1, -1114093, 0, 1, -1114120, 65536, 0, -1114119, 131072, 3, -1114118, 131073, 3, -1114117, 131073, 3, -1114116, 131073, 3, -1114115, 131072, 3, -1114114, 196608, 3, -1179645, 65537, 3, -1179644, 131073, 3, -1179643, 131073, 3, -1179642, 131072, 3, -1179641, 131072, 3, -1179640, 131072, 3, -1179639, 131073, 3, -1179638, 131072, 3, -1179637, 131072, 3, -1179636, 131072, 3, -1179635, 131072, 3, -1179634, 131073, 3, -1179633, 131073, 3, -1179632, 131073, 3, -1179631, 131072, 3, -1179630, 131073, 3, -1179629, 196608, 0, -1376268, 0, 1, -1310732, 0, 1, -1441804, 65537, 0, -1441803, 131072, 3, -1441802, 131073, 3, -1441801, 131073, 3, -1441800, 131072, 3, -1441799, 131072, 3, -1441798, 131072, 3, -1441797, 131072, 3, -1441796, 131072, 3, -1441795, 131073, 3, -1441794, 131072, 3, -1441793, 131072, 3, -1507328, 131073, 3, -1507327, 131072, 3, -1507326, 131073, 3, -1507325, 131073, 3, -1507324, 131072, 3, -1507323, 196608, 3, -1507318, 65537, 3, -1507317, 131073, 3, -1507316, 131072, 3, -1507315, 131073, 3, -1507314, 131072, 3, -1507313, 131072, 3, -1507312, 131073, 3, -1507311, 131073, 3, -1507310, 131073, 3, -1507309, 131072, 3, -1507308, 131073, 3, -1507307, 131072, 3, -1507306, 131073, 3, -1507305, 131072, 3, -1507304, 131072, 3, -1507303, 131073, 3, -1507302, 131073, 3, -1507301, 196609, 0, -1441765, 0, 1, -1376229, 1, 1, -1769479, 65536, 3, -1769478, 131073, 3, -1769477, 131073, 3, -1769476, 131073, 3, -1769475, 131072, 3, -1769474, 131072, 3, -1769473, 131073, 3, -1835008, 131072, 3, -1835007, 131072, 3, -1835006, 131072, 3, -1835005, 131072, 3, -1835004, 131073, 3, -1835003, 131072, 3, -1835002, 131072, 3, -1835001, 131072, 3, -1835000, 131073, 3, -1834999, 131073, 3, -1834998, 131072, 3, -1834997, 131073, 3, -1834996, 131073, 3, -1834995, 131073, 3, -1834994, 131072, 3, -1834993, 131073, 3, -1834992, 131073, 3, -1834991, 131072, 3, -1834990, 131072, 3, -1834989, 131072, 3, -1834988, 131072, 3, -1834987, 131072, 3, -1834986, 196609, 3)
 
 [node name="Ghosts" type="Node" parent="."]
 
 [node name="Ghost" parent="Ghosts" instance=ExtResource("3_6kn28")]
-position = Vector2(855, -224)
+position = Vector2(873, -341)
 
 [node name="Ghost2" parent="Ghosts" instance=ExtResource("3_6kn28")]
-position = Vector2(-990, -765)
+position = Vector2(-1031, -862)
 
 [node name="Ghost4" parent="Ghosts" instance=ExtResource("3_6kn28")]
-position = Vector2(2835, -656)
+position = Vector2(2818, -647)
 
 [node name="Ghost5" parent="Ghosts" instance=ExtResource("3_6kn28")]
-position = Vector2(1927, -1465)
+position = Vector2(1968, -1715)
 
 [node name="Ghost6" parent="Ghosts" instance=ExtResource("3_6kn28")]
 position = Vector2(2588, -1468)
 
 [node name="Ghost3" parent="Ghosts" instance=ExtResource("3_6kn28")]
-position = Vector2(2824, -968)
+position = Vector2(2818, -1041)
 
 [node name="Ghost7" parent="Ghosts" instance=ExtResource("3_6kn28")]
-position = Vector2(384, -2349)
+position = Vector2(406, -2666)
 
 [node name="Ghost8" parent="Ghosts" instance=ExtResource("3_6kn28")]
-position = Vector2(1335, -2346)
+position = Vector2(1254, -2794)
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -115,7 +157,7 @@ pause_durations = Array[float]([])
 [node name="FlamingSkull" parent="Enemies/Path2D" instance=ExtResource("5_ii5ts")]
 
 [node name="Path2D2" type="Path2D" parent="Enemies"]
-position = Vector2(-240, -1593)
+position = Vector2(289, -1753)
 curve = SubResource("Curve2D_gpclv")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D2"]
@@ -126,20 +168,20 @@ pause_durations = Array[float]([])
 [node name="FlamingSkull" parent="Enemies/Path2D2" instance=ExtResource("5_ii5ts")]
 
 [node name="Path2D3" type="Path2D" parent="Enemies"]
-position = Vector2(-644, -1468)
+position = Vector2(-115, -1628)
 scale = Vector2(1.06616, 1)
-curve = SubResource("Curve2D_idob0")
-
-[node name="FlamingSkull" parent="Enemies/Path2D3" instance=ExtResource("5_ii5ts")]
+curve = SubResource("Curve2D_ixc1u")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D3"]
 rotates = false
 script = ExtResource("4_74y3q")
 pause_durations = Array[float]([])
 
+[node name="FlamingSkull" parent="Enemies/Path2D3" instance=ExtResource("5_ii5ts")]
+
 [node name="Path2D4" type="Path2D" parent="Enemies"]
-position = Vector2(785, -2445)
-curve = SubResource("Curve2D_sjonu")
+position = Vector2(829, -2829)
+curve = SubResource("Curve2D_v2n3j")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D4"]
 rotates = false
@@ -149,8 +191,8 @@ pause_durations = Array[float]([])
 [node name="FlamingSkull" parent="Enemies/Path2D4" instance=ExtResource("5_ii5ts")]
 
 [node name="Path2D7" type="Path2D" parent="Enemies"]
-position = Vector2(983, -2445)
-curve = SubResource("Curve2D_sjonu")
+position = Vector2(937, -2829)
+curve = SubResource("Curve2D_3ryiy")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D7"]
 rotates = false
@@ -164,21 +206,21 @@ pause_durations = Array[float]([])
 
 [node name="WidePlatform01" parent="Platforms" instance=ExtResource("7_3riy8")]
 modulate = Color(1, 0.772549, 0.772549, 1)
-position = Vector2(-625, -488)
+position = Vector2(-625, -492)
 sink_distance = 2000.0
 sink_delay = 2.0
 sink_speed = 1000.0
 
 [node name="WidePlatform02" parent="Platforms" instance=ExtResource("7_3riy8")]
 modulate = Color(1, 0.772549, 0.772549, 1)
-position = Vector2(-330, -488)
+position = Vector2(-330, -492)
 sink_distance = 2000.0
 sink_delay = 2.0
 sink_speed = 1000.0
 
 [node name="WidePlatform03" parent="Platforms" instance=ExtResource("7_3riy8")]
 modulate = Color(1, 0.772549, 0.772549, 1)
-position = Vector2(-32, -488)
+position = Vector2(-32, -492)
 sink_distance = 2000.0
 sink_delay = 2.0
 sink_speed = 1000.0
@@ -211,6 +253,7 @@ curve = SubResource("Curve2D_fywtq")
 [node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D4"]
 rotates = false
 script = ExtResource("4_74y3q")
+speed = 0.3
 pause_durations = Array[float]([])
 
 [node name="WidePlatform01" parent="Platforms/Path2D4" instance=ExtResource("7_3riy8")]
@@ -234,6 +277,7 @@ curve = SubResource("Curve2D_bw4ff")
 [node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D5"]
 rotates = false
 script = ExtResource("4_74y3q")
+speed = 0.3
 pause_durations = Array[float]([])
 
 [node name="WidePlatform01" parent="Platforms/Path2D5" instance=ExtResource("7_3riy8")]
@@ -251,7 +295,7 @@ rotation = 3.14159
 scale = Vector2(1.5, 1)
 
 [node name="Path2D6" type="Path2D" parent="Platforms"]
-position = Vector2(1799, -1078)
+position = Vector2(1799, -1132)
 curve = SubResource("Curve2D_fpuns")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D6"]
@@ -281,7 +325,7 @@ curve = SubResource("Curve2D_hl5p8")
 [node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D7"]
 rotates = false
 script = ExtResource("4_74y3q")
-speed = 0.15
+speed = 0.2
 pause_durations = Array[float]([])
 
 [node name="WidePlatform01" parent="Platforms/Path2D7" instance=ExtResource("7_3riy8")]
@@ -300,30 +344,6 @@ scale = Vector2(1.5, 1)
 
 [node name="Spikes" type="Node" parent="."]
 
-[node name="Spikes_large" parent="Spikes" instance=ExtResource("9_2747m")]
-position = Vector2(1321, -1206)
-scale = Vector2(1, -1)
-
-[node name="Spikes_large2" parent="Spikes" instance=ExtResource("9_2747m")]
-position = Vector2(1651, -1206)
-scale = Vector2(1, -1)
-
-[node name="Spikes_large3" parent="Spikes" instance=ExtResource("9_2747m")]
-position = Vector2(2181, -1206)
-scale = Vector2(1, -1)
-
-[node name="Spikes_large4" parent="Spikes" instance=ExtResource("9_2747m")]
-position = Vector2(2498, -1206)
-scale = Vector2(1, -1)
-
-[node name="Spikes_large5" parent="Spikes" instance=ExtResource("9_2747m")]
-position = Vector2(2824, -1206)
-scale = Vector2(1, -1)
-
-[node name="Spikes_medium" parent="Spikes" instance=ExtResource("8_31ajb")]
-position = Vector2(1917, -1200)
-scale = Vector2(1.2, -1)
-
 [node name="Spikes_large8" parent="Spikes" instance=ExtResource("9_2747m")]
 position = Vector2(2197, -1516)
 rotation = 1.5708
@@ -335,45 +355,802 @@ rotation = 4.71239
 scale = Vector2(1.25, 1)
 
 [node name="Spikes_large6" parent="Spikes" instance=ExtResource("9_2747m")]
-position = Vector2(-1207, -1544)
+position = Vector2(-1200, -1715)
 rotation = 1.5708
 
 [node name="Spikes_large7" parent="Spikes" instance=ExtResource("9_2747m")]
-position = Vector2(-880, -1542)
+position = Vector2(-885, -1699)
 rotation = -1.5708
 
 [node name="Spikes_large10" parent="Spikes" instance=ExtResource("9_2747m")]
-position = Vector2(-31, -2210)
+position = Vector2(0, -2535)
 
 [node name="Spikes_large11" parent="Spikes" instance=ExtResource("9_2747m")]
-position = Vector2(1743, -2205)
+position = Vector2(1713, -2535)
 
 [node name="Spikes_large12" parent="Spikes" instance=ExtResource("9_2747m")]
-position = Vector2(-502, -2522)
+position = Vector2(-479, -2959)
 rotation = -3.14159
 
 [node name="Spikes_large13" parent="Spikes" instance=ExtResource("9_2747m")]
-position = Vector2(2240, -2531)
+position = Vector2(2181, -2961)
 scale = Vector2(1, -1)
 
 [node name="Scenery" type="Node" parent="."]
 
+[node name="tomb_4" type="Sprite2D" parent="Scenery"]
+z_index = -1
+position = Vector2(-557, -1580)
+texture = SubResource("AtlasTexture_1g3c3")
+
+[node name="tomb_5" type="Sprite2D" parent="Scenery"]
+light_mask = 0
+z_index = -1
+position = Vector2(-386, -1563)
+rotation = -0.125664
+scale = Vector2(-1, 1)
+texture = SubResource("AtlasTexture_ucboa")
+
+[node name="trees_green" type="Node2D" parent="Scenery"]
+modulate = Color(0.522498, 0.597879, 0.4967, 1)
+z_index = -1
+
+[node name="Tree1" type="Sprite2D" parent="Scenery/trees_green"]
+position = Vector2(1565, -3235)
+scale = Vector2(1.2, 1)
+texture = ExtResource("10_5helt")
+
+[node name="Tree6" type="Sprite2D" parent="Scenery/trees_green"]
+position = Vector2(477, -3297)
+scale = Vector2(2, 2)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree7" type="Sprite2D" parent="Scenery/trees_green"]
+position = Vector2(311, -3353)
+rotation = -0.18675
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("12_grbtu")
+
+[node name="roots_brown" type="Node2D" parent="Scenery"]
+modulate = Color(0.429024, 0.4537, 0.35072, 1)
+
+[node name="tree10" type="Sprite2D" parent="Scenery/roots_brown"]
+z_index = -1
+position = Vector2(343, -2961)
+rotation = 3.1402
+scale = Vector2(0.7, 0.5)
+texture = ExtResource("13_e176j")
+flip_h = true
+
+[node name="tree12" type="Sprite2D" parent="Scenery/roots_brown"]
+z_index = -1
+position = Vector2(1522, -2961)
+rotation = 3.1402
+scale = Vector2(0.7, 0.5)
+texture = ExtResource("13_e176j")
+flip_h = true
+
+[node name="tree11" type="Sprite2D" parent="Scenery/roots_brown"]
+z_index = -1
+position = Vector2(473, -2940)
+rotation = -0.00139275
+scale = Vector2(0.8, -0.7)
+texture = ExtResource("13_e176j")
+flip_h = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Scenery"]
+self_modulate = Color(0.358634, 0.253307, 0.18187, 1)
+z_index = -1
+position = Vector2(829, -809)
+scale = Vector2(9, -4)
+texture = ExtResource("14_praku")
+
 [node name="EndlessPit" parent="." instance=ExtResource("10_os8ql")]
 position = Vector2(-32, 580)
 
-[node name="Parallax" type="Node" parent="."]
+[node name="Parallax" type="Node2D" parent="."]
+position = Vector2(340, -2613)
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
+[node name="_sky" type="Node2D" parent="Parallax"]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
-position = Vector2(-148, 102)
-motion_scale = Vector2(0.1, 0.1)
+[node name="Sky" type="Node2D" parent="Parallax/_sky"]
+z_index = -2000
+position = Vector2(627.268, -2983.81)
+script = ExtResource("16_l6vy8")
+distance = 888.0
+type = 3
+scroll_scale = Vector2(0.01, 0.01)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(633.604, -3013.95)
 
-[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
-position = Vector2(-468, -525)
-scale = Vector2(3, 2)
-texture = ExtResource("11_hk5vx")
+[node name="Sky" type="Sprite2D" parent="Parallax/_sky/Sky"]
+self_modulate = Color(0.184314, 0.254902, 0.435294, 1)
+scale = Vector2(2, 3)
+texture = ExtResource("17_774ec")
+
+[node name="Path2D" type="Path2D" parent="Parallax/_sky/Sky"]
+position = Vector2(1200, -350.813)
+rotation = 3.14159
+scale = Vector2(0.987886, -0.953812)
+curve = SubResource("Curve2D_ocscb")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Parallax/_sky/Sky/Path2D"]
+position = Vector2(1096, 971)
+rotation = -1.36358
+loop = false
+script = ExtResource("18_nvqax")
+
+[node name="Moon" type="Sprite2D" parent="Parallax/_sky/Sky/Path2D/PathFollow2D"]
+light_mask = 16
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("19_mfkaa")
+
+[node name="PointLight2D" type="PointLight2D" parent="Parallax/_sky/Sky/Path2D/PathFollow2D/Moon"]
+energy = 16.0
+range_item_cull_mask = 16
+shadow_enabled = true
+shadow_color = Color(0.0509804, 0.0509804, 0.0509804, 0)
+shadow_item_cull_mask = 0
+texture = ExtResource("19_mfkaa")
+
+[node name="Moon" type="Node2D" parent="Parallax/_sky"]
+z_index = -2000
+position = Vector2(627.268, -2983.81)
+script = ExtResource("16_l6vy8")
+distance = 888.0
+type = 3
+scroll_scale = Vector2(0.01, 0.01)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(633.604, -3013.95)
+
+[node name="Clouds" type="Node2D" parent="Parallax/_sky"]
+visible = false
+z_index = -1001
+position = Vector2(601.924, -2863.25)
+script = ExtResource("16_l6vy8")
+distance = 777.0
+type = 2
+scroll_scale = Vector2(0.05, 0.05)
+screen_offset = Vector2(633.604, -3013.95)
+
+[node name="SkyColor" type="Sprite2D" parent="Parallax/_sky/Clouds"]
+modulate = Color(0.207843, 0.207843, 0.207843, 1)
+self_modulate = Color(1, 1, 1, 0.772549)
+position = Vector2(-9, -42)
+scale = Vector2(2, 2)
+texture = ExtResource("20_ii012")
 centered = false
 
+[node name="Clouds2" type="Node2D" parent="Parallax/_sky"]
+visible = false
+z_index = -1000
+position = Vector2(570.604, -4660.95)
+script = ExtResource("16_l6vy8")
+distance = 1.0
+scroll_scale = Vector2(0.1, 0.55)
+repeat_size = Vector2(2336, 1652)
+repeat_times = 2
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(633.604, -3013.95)
+
+[node name="SkyColor" type="Sprite2D" parent="Parallax/_sky/Clouds2"]
+self_modulate = Color(1, 1, 1, 0.203922)
+position = Vector2(-9, -42)
+scale = Vector2(2, 2)
+texture = ExtResource("20_ii012")
+centered = false
+
+[node name="Mountains" type="Node2D" parent="Parallax"]
+z_index = -1000
+position = Vector2(570.244, -1356.28)
+script = ExtResource("16_l6vy8")
+distance = 1.0
+scroll_scale = Vector2(0.1, 0.55)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(633.604, -3013.95)
+
+[node name="_mountain_brown" type="Node2D" parent="Parallax/Mountains"]
+modulate = Color(0.505882, 0.431373, 0.368627, 1)
+position = Vector2(-14.2438, 645.276)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Mountains/_mountain_brown"]
+position = Vector2(-3383.05, -23.1624)
+texture = ExtResource("21_tynnt")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax/Mountains/_mountain_brown"]
+position = Vector2(-2215.05, -23.1624)
+texture = ExtResource("21_tynnt")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/Mountains/_mountain_brown"]
+position = Vector2(-1047.05, -23.1624)
+texture = ExtResource("21_tynnt")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax/Mountains/_mountain_brown"]
+position = Vector2(120.955, -23.1624)
+texture = ExtResource("21_tynnt")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/Mountains/_mountain_brown"]
+position = Vector2(1288.95, -23.1624)
+texture = ExtResource("21_tynnt")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Parallax/Mountains/_mountain_brown"]
+position = Vector2(2456.95, -23.1624)
+texture = ExtResource("21_tynnt")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/Mountains/_mountain_brown"]
+position = Vector2(3624.95, -23.1624)
+texture = ExtResource("21_tynnt")
+
+[node name="HillsFar" type="Node2D" parent="Parallax"]
+z_index = -835
+position = Vector2(475.203, -1130.23)
+script = ExtResource("16_l6vy8")
+distance = 0.833333
+scroll_scale = Vector2(0.25, 0.625)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(633.604, -3013.95)
+
+[node name="_green" type="Node2D" parent="Parallax/HillsFar"]
+modulate = Color(0.34902, 0.360784, 0.243137, 1)
+position = Vector2(-18.2031, 492.23)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/HillsFar/_green"]
+position = Vector2(-3526.87, 279.866)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax/HillsFar/_green"]
+position = Vector2(-2358.87, 279.866)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/HillsFar/_green"]
+position = Vector2(-1190.87, 279.866)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax/HillsFar/_green"]
+position = Vector2(-22.8701, 279.866)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/HillsFar/_green"]
+position = Vector2(1145.13, 279.866)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Parallax/HillsFar/_green"]
+position = Vector2(2313.13, 279.866)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/HillsFar/_green"]
+position = Vector2(3481.13, 279.866)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("14_praku")
+
+[node name="HillsNear" type="Node2D" parent="Parallax"]
+z_index = -560
+position = Vector2(316.802, -753.486)
+script = ExtResource("16_l6vy8")
+distance = 0.555556
+scroll_scale = Vector2(0.5, 0.75)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(633.604, -3013.95)
+
+[node name="_trees" type="Node2D" parent="Parallax/HillsNear"]
+modulate = Color(0.247059, 0.254902, 0.164706, 1)
+position = Vector2(66.8219, 180.104)
+scale = Vector2(0.55, 0.55)
+
+[node name="Tree_6_1" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-621.543, -120.197)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_2" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(365.457, -143.697)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_3" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-1332.54, -143.697)
+scale = Vector2(-1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_4" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-1009.54, -119.697)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_5" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-22.5429, -143.197)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_6" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-1720.54, -143.197)
+rotation = 3.14159
+scale = Vector2(1.5, -1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_7_1" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-335.543, -144.197)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_2" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(156.457, -165.197)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_3" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-1149.54, -146.197)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_4" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-640.043, -151.197)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_5" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-897.543, -167.197)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_6" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-1454.04, -153.197)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_6_7" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(914.457, -152.197)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_8" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(1901.46, -175.697)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_9" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(203.457, -175.697)
+scale = Vector2(-1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_10" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(526.457, -151.697)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_11" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(1513.46, -175.197)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_12" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(-184.543, -175.197)
+rotation = 3.14159
+scale = Vector2(1.5, -1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_7_7" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(1200.46, -176.197)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_8" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(1692.46, -197.197)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_9" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(386.457, -178.197)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_10" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(895.957, -183.197)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_11" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(638.457, -199.197)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_12" type="Sprite2D" parent="Parallax/HillsNear/_trees"]
+position = Vector2(81.9571, -185.197)
+texture = ExtResource("12_grbtu")
+
+[node name="hills_green" type="Node2D" parent="Parallax/HillsNear"]
+modulate = Color(0.34902, 0.360784, 0.243137, 1)
+position = Vector2(1.8219, 160.104)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/HillsNear/hills_green"]
+position = Vector2(-4038.25, 332.143)
+scale = Vector2(2, 1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/HillsNear/hills_green"]
+position = Vector2(-1702.25, 332.143)
+scale = Vector2(2, 1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/HillsNear/hills_green"]
+position = Vector2(633.752, 332.143)
+scale = Vector2(2, 1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/HillsNear/hills_green"]
+position = Vector2(2969.75, 332.143)
+scale = Vector2(2, 1)
+texture = ExtResource("14_praku")
+
+[node name="_tombs_grey" type="Node2D" parent="Parallax/HillsNear"]
+visible = false
+modulate = Color(0.490196, 0.505882, 0.54902, 1)
+position = Vector2(-122.802, 139.486)
+
+[node name="tomb_3" type="Sprite2D" parent="Parallax/HillsNear/_tombs_grey"]
+light_mask = 0
+z_index = 26
+position = Vector2(-839.934, 58.0901)
+rotation = 0.167552
+scale = Vector2(0.28, 0.28)
+texture = SubResource("AtlasTexture_ydsbr")
+
+[node name="tomb_4" type="Sprite2D" parent="Parallax/HillsNear/_tombs_grey"]
+light_mask = 0
+z_index = 26
+position = Vector2(-872.934, 37.0901)
+rotation = 2.78729
+scale = Vector2(0.25, -0.25)
+texture = SubResource("AtlasTexture_ydsbr")
+
+[node name="tomb_1" type="Sprite2D" parent="Parallax/HillsNear/_tombs_grey"]
+light_mask = 0
+position = Vector2(-840.934, 19.0901)
+rotation = -0.0244346
+scale = Vector2(0.2, 0.2)
+texture = SubResource("AtlasTexture_sxtru")
+
+[node name="Church" type="Sprite2D" parent="Parallax/HillsNear"]
+visible = false
+self_modulate = Color(0.490196, 0.505882, 0.54902, 1)
+position = Vector2(-1157.49, -128.662)
+rotation = 3.08574
+scale = Vector2(0.3, -0.3)
+texture = ExtResource("22_sv52g")
+
+[node name="BG_Near" type="Node2D" parent="Parallax"]
+z_index = -376
+position = Vector2(210.99, -501.822)
+script = ExtResource("16_l6vy8")
+distance = 0.37
+scroll_scale = Vector2(0.667, 0.8335)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(633.604, -3013.95)
+
+[node name="_trees" type="Node2D" parent="Parallax/BG_Near"]
+modulate = Color(0.247059, 0.254902, 0.164706, 1)
+position = Vector2(65, 20)
+scale = Vector2(0.7, 0.7)
+
+[node name="Tree_6_1" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-622.484, -126.258)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_2" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(364.516, -149.757)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_3" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-1333.48, -149.757)
+scale = Vector2(-1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_4" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-1010.48, -125.758)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_5" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-23.484, -149.257)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_6" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-1589.63, -173.936)
+rotation = 3.14159
+scale = Vector2(1.5, -1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_7_1" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-336.484, -150.257)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_2" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(155.516, -171.257)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_3" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-1150.48, -152.257)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_4" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-640.984, -157.257)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_5" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-898.484, -173.257)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_6" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-1454.98, -159.257)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_6_7" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(913.516, -158.257)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_8" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(1900.52, -181.757)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_9" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(202.516, -181.757)
+scale = Vector2(-1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_10" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(525.516, -157.757)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_11" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(1512.52, -181.257)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_12" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(-185.484, -181.257)
+rotation = 3.14159
+scale = Vector2(1.5, -1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_7_7" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(1199.52, -182.257)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_8" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(1691.52, -203.257)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_9" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(385.516, -184.257)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_10" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(895.016, -189.257)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_11" type="Sprite2D" parent="Parallax/BG_Near/_trees"]
+position = Vector2(637.516, -205.257)
+scale = Vector2(-1.2, 1.2)
+texture = ExtResource("12_grbtu")
+
+[node name="_hills" type="Node2D" parent="Parallax/BG_Near"]
+modulate = Color(0.34902, 0.360784, 0.243137, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/BG_Near/_hills"]
+position = Vector2(-4051.51, 349.113)
+scale = Vector2(2, 1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/BG_Near/_hills"]
+position = Vector2(-1715.51, 349.113)
+scale = Vector2(2, 1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/BG_Near/_hills"]
+position = Vector2(620.496, 349.113)
+scale = Vector2(2, 1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/BG_Near/_hills"]
+position = Vector2(2956.49, 349.113)
+scale = Vector2(2, 1)
+texture = ExtResource("14_praku")
+
+[node name="_tombs_grey" type="Node2D" parent="Parallax/BG_Near"]
+visible = false
+modulate = Color(0.490196, 0.505882, 0.54902, 1)
+position = Vector2(-568.049, -33.1175)
+
+[node name="tomb_5" type="Sprite2D" parent="Parallax/BG_Near/_tombs_grey"]
+light_mask = 0
+z_index = 26
+position = Vector2(-772.013, 244.919)
+rotation = 0.0558505
+scale = Vector2(0.28, 0.28)
+texture = SubResource("AtlasTexture_ydsbr")
+
+[node name="tomb_6" type="Sprite2D" parent="Parallax/BG_Near/_tombs_grey"]
+light_mask = 0
+z_index = 26
+position = Vector2(-734.013, 233.919)
+rotation = 2.78729
+scale = Vector2(0.25, -0.25)
+texture = SubResource("AtlasTexture_ydsbr")
+
+[node name="tomb_2" type="Sprite2D" parent="Parallax/BG_Near/_tombs_grey"]
+self_modulate = Color(0.490196, 0.505882, 0.54902, 1)
+light_mask = 0
+position = Vector2(-434.701, 40.6404)
+rotation = 0.136136
+scale = Vector2(0.4, 0.4)
+texture = SubResource("AtlasTexture_sxtru")
+
+[node name="House" type="Sprite2D" parent="Parallax/BG_Near"]
+visible = false
+self_modulate = Color(0.411765, 0.341176, 0.258824, 1)
+position = Vector2(1479.74, -43.4568)
+rotation = 0.0575959
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("23_g0rbm")
+
+[node name="BG_Nearest" type="Node2D" parent="Parallax"]
+z_index = -11
+script = ExtResource("16_l6vy8")
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(633.604, -3013.95)
+
+[node name="_tree_green" type="Node2D" parent="Parallax/BG_Nearest"]
+visible = false
+modulate = Color(0.247059, 0.254902, 0.164706, 1)
+position = Vector2(1960.9, 440.06)
+rotation = 3.14159
+scale = Vector2(1.19048, -1.19048)
+
+[node name="Tree_6_1" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(-194.651, -97.8872)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_2" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(792.349, -121.387)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_3" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(-905.651, -121.387)
+rotation = -3.14159
+scale = Vector2(1.5, -1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_4" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(-582.651, -97.3872)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_5" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(404.349, -120.887)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_7_1" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(91.3492, -121.887)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_2" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(583.349, -142.888)
+rotation = -3.14159
+scale = Vector2(1.2, -1.2)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_3" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(-722.651, -123.887)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_4" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(-213.151, -128.887)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_5" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(-470.651, -144.888)
+rotation = -3.14159
+scale = Vector2(1.2, -1.2)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_6" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(-1027.15, -130.887)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_6_8" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(3593.35, -117.887)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_9" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(1401.35, -101.387)
+rotation = -3.14159
+scale = Vector2(1.5, -1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_10" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(1724.35, -77.3873)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_11" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(2711.35, -100.887)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_6_12" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(1013.35, -100.887)
+rotation = 3.14159
+scale = Vector2(1.5, -1.5)
+texture = ExtResource("11_fk0bq")
+
+[node name="Tree_7_7" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(2398.35, -101.887)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_8" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(2890.35, -122.887)
+rotation = -3.14159
+scale = Vector2(1.2, -1.2)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_9" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(1584.35, -103.887)
+texture = ExtResource("12_grbtu")
+
+[node name="Tree_7_12" type="Sprite2D" parent="Parallax/BG_Nearest/_tree_green"]
+position = Vector2(1279.85, -110.887)
+texture = ExtResource("12_grbtu")
+
+[node name="_hills" type="Node2D" parent="Parallax/BG_Nearest"]
+modulate = Color(0.356863, 0.254902, 0.180392, 1)
+position = Vector2(680, -53)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/BG_Nearest/_hills"]
+position = Vector2(-4071.98, 367.788)
+scale = Vector2(2, 1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/BG_Nearest/_hills"]
+position = Vector2(-1735.98, 367.788)
+scale = Vector2(2, 1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Parallax/BG_Nearest/_hills"]
+position = Vector2(600.018, 367.788)
+scale = Vector2(2, 1)
+texture = ExtResource("14_praku")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Parallax/BG_Nearest/_hills"]
+position = Vector2(2936.02, 367.788)
+scale = Vector2(2, 1)
+texture = ExtResource("14_praku")
+
 [node name="Player" parent="." instance=ExtResource("12_heu1a")]
-position = Vector2(896, -2701)
+position = Vector2(896, -3141)
