@@ -122,8 +122,8 @@ public partial class Main : Node
 	{
 		Level = lvl;
 		GhostCount = 0;
-		getReadyTime.Start(2);
-		_levelTime.Start(-2);
+		getReadyTime.Start(1);
+		_levelTime.Start(-1);
 		Player().ProcessMode = ProcessModeEnum.Disabled;
 		// GD.Print("main player: "+Player().Name + Player().ProcessMode);
 

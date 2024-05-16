@@ -10,7 +10,6 @@
 [node name="tutorial_jump" type="Node2D"]
 script = ExtResource("1_w0ya6")
 level_name = "tutorial_jump"
-show_data_in_editor = true
 starting_position_y = 0.5
 top_boundary = -15.0
 left_boundary = -17.0

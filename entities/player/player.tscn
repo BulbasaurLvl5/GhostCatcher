@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://cvv0hdmvn662b" path="res://resources/sprites/coal/bird_3.png" id="31_y7vy4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnagu"]
-size = Vector2(24, 110)
+size = Vector2(24, 84)
 
 [sub_resource type="Curve2D" id="Curve2D_arbo3"]
 _data = {
