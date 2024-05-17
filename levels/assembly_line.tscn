@@ -1,0 +1,312 @@
+[gd_scene load_steps=21 format=3 uid="uid://co61q4w3475s0"]
+
+[ext_resource type="Script" path="res://main/level.gd" id="1_lmyvs"]
+[ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_s67yy"]
+[ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_m1c6l"]
+[ext_resource type="Script" path="res://resources/path_follow_manager.gd" id="4_117wx"]
+[ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_ut7s1"]
+[ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://environment/platforms/wide_platform_01.tscn" id="5_yufk5"]
+[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_yywpm"]
+[ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_gix53"]
+
+[sub_resource type="Curve2D" id="Curve2D_oc8qy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, -800, 3200, 0, 0, 0, 0, -800, -800, 0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_bfpsx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 800, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, -800, 3200, 0, 0, 0, 0, -800, -800, 0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 800)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_7d2an"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 1600, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, -800, 3200, 0, 0, 0, 0, -800, -800, 0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 1600)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_htil3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 2400, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, -800, 3200, 0, 0, 0, 0, -800, -800, 0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 2400)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_a2wyp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, -800, 3200, 0, 0, 0, 0, -800, -800, 0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 3200)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_ragxd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -800, 3200, 0, 0, 0, 0, -800, 3200, 0, 0, 0, 0, -800, -800, 0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, -800, 3200)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_prdk3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -800, 2400, 0, 0, 0, 0, -800, -800, 0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, -800, 3200, 0, 0, 0, 0, -800, 2400)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_00fli"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -800, 1600, 0, 0, 0, 0, -800, -800, 0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, -800, 3200, 0, 0, 0, 0, -800, 1600)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_y5wbu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -800, 800, 0, 0, 0, 0, -800, -800, 0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, -800, 3200, 0, 0, 0, 0, -800, 800)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_8e6sr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -800, 0, 0, 0, 0, 0, -800, -800, 0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, -800, 3200, 0, 0, 0, 0, -800, 0)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_hrta3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -800, -800, 0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, -800, 3200, 0, 0, 0, 0, -800, -800)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_tc2l2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 0, -800, 3200, 0, 0, 0, 0, -800, -800, 0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, -800)
+}
+point_count = 6
+
+[node name="template" type="Node2D"]
+script = ExtResource("1_lmyvs")
+level_name = "template"
+show_data_in_editor = true
+starting_position_y = 0.5
+top_boundary = -31.0
+left_boundary = -18.5
+right_boundary = 19.0
+bottom_boundary = 5.0
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_s67yy")
+format = 2
+layer_0/tile_data = PackedInt32Array(-1835023, 524288, 3, -1900550, 720896, 2, -1966086, 458753, 1, -2031622, 1, 1, -2097158, 1, 1, -2162694, 0, 1, -2228230, 0, 1, -2293766, 1, 0, -1835022, 589824, 3, -1835021, 589824, 3, -1835020, 589824, 3, -1835019, 589824, 3, -1835018, 589825, 3, -1835017, 589825, 3, -1835016, 589825, 3, -1835015, 589825, 3, -1835014, 393216, 3, -1900553, 131074, 0, -1966089, 655361, 0, -1966090, 655360, 0, -1966091, 655360, 0, -1966092, 655360, 0, -1966093, 655361, 0, -1966094, 655360, 0, -1966095, 524289, 0, -1900559, 524288, 1, -1900558, 589825, 2, -1900557, 589825, 2, -1900556, 262146, 1, -1900555, 131074, 3, -1900554, 196610, 2, -1966088, 655360, 0, -1966087, 655360, 0, -1900551, 131074, 2, -1900552, 131074, 1, -1048588, 196608, 3, -1048589, 131072, 3, -1048590, 65536, 0, -983054, 1, 1, -917518, 0, 1, -851982, 65537, 2, -851981, 131073, 3, -851980, 196608, 3, -1835013, 131073, 3, -1835012, 131072, 3, -1835011, 196609, 0, -1769475, 0, 1, -1703939, 0, 1, -1638403, 196608, 2, -1638404, 131072, 3, -1638405, 65536, 3, -917501, 65536, 3, -917500, 131072, 3, -917499, 131072, 3, -917498, 131073, 3, -917497, 131073, 3, -917496, 131073, 3, -917495, 196609, 1, -851959, 0, 1, -786423, 0, 1, -720887, 1, 1, -655351, 0, 2, -917491, 1, 1, -851955, 0, 1, -786419, 0, 2, -262148, 65537, 3, -262147, 131072, 3, -262146, 131073, 3, -262145, 196608, 3, -524286, 65537, 3, -524285, 131073, 3, -524284, 131073, 3, -524283, 196608, 3, -131066, 65537, 3, -131065, 131073, 3, -131064, 131072, 3, -131063, 131073, 3, -131062, 196609, 0, -65526, 0, 1, 10, 0, 1, 65546, 1, 1, 131082, 1, 1, 196618, 1, 1, 262154, 1, 1, 327690, 1, 2, -983031, 0, 1, -1048567, 1, 1, -1114103, 65536, 0, -1114102, 131072, 3, -1114101, 131072, 3, -1114100, 131073, 3, -1114099, 196608, 0, -1048563, 1, 1, -983027, 0, 1)
+
+[node name="Ghosts" type="Node" parent="."]
+
+[node name="Ghost" parent="Ghosts" instance=ExtResource("3_m1c6l")]
+position = Vector2(-956, -397)
+
+[node name="Ghost2" parent="Ghosts" instance=ExtResource("3_m1c6l")]
+position = Vector2(-1360, -1654)
+
+[node name="Ghost3" parent="Ghosts" instance=ExtResource("3_m1c6l")]
+position = Vector2(-427, -2966)
+
+[node name="Ghost4" parent="Ghosts" instance=ExtResource("3_m1c6l")]
+position = Vector2(887, -1296)
+
+[node name="Ghost5" parent="Ghosts" instance=ExtResource("3_m1c6l")]
+position = Vector2(1268, -1649)
+
+[node name="Ghost6" parent="Ghosts" instance=ExtResource("3_m1c6l")]
+position = Vector2(1412, -16)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Platforms"]
+position = Vector2(-955, -2473)
+curve = SubResource("Curve2D_oc8qy")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D"]
+rotates = false
+script = ExtResource("4_117wx")
+speed = 0.05
+pause_durations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D" instance=ExtResource("5_yufk5")]
+collision_layer = 5
+
+[node name="Path2D2" type="Path2D" parent="Platforms"]
+position = Vector2(-955, -2473)
+curve = SubResource("Curve2D_bfpsx")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D2"]
+position = Vector2(0, 800)
+rotates = false
+script = ExtResource("4_117wx")
+speed = 0.05
+pause_locations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D2" instance=ExtResource("5_yufk5")]
+collision_layer = 5
+
+[node name="Path2D3" type="Path2D" parent="Platforms"]
+position = Vector2(-955, -2473)
+curve = SubResource("Curve2D_7d2an")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D3"]
+position = Vector2(0, 1600)
+rotates = false
+script = ExtResource("4_117wx")
+speed = 0.05
+pause_locations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D3" instance=ExtResource("5_yufk5")]
+collision_layer = 5
+
+[node name="Path2D4" type="Path2D" parent="Platforms"]
+position = Vector2(-955, -2473)
+curve = SubResource("Curve2D_htil3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D4"]
+position = Vector2(0, 2400)
+rotates = false
+script = ExtResource("4_117wx")
+speed = 0.05
+pause_locations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D4" instance=ExtResource("5_yufk5")]
+collision_layer = 5
+
+[node name="Path2D5" type="Path2D" parent="Platforms"]
+position = Vector2(-955, -2473)
+curve = SubResource("Curve2D_a2wyp")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D5"]
+position = Vector2(0.143433, 3200)
+rotates = false
+script = ExtResource("4_117wx")
+speed = 0.05
+pause_locations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D5" instance=ExtResource("5_yufk5")]
+collision_layer = 5
+
+[node name="Path2D6" type="Path2D" parent="Platforms"]
+position = Vector2(-955, -2473)
+curve = SubResource("Curve2D_ragxd")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D6"]
+position = Vector2(-800, 3200.18)
+rotates = false
+script = ExtResource("4_117wx")
+speed = 0.05
+pause_locations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D6" instance=ExtResource("5_yufk5")]
+collision_layer = 5
+
+[node name="Path2D7" type="Path2D" parent="Platforms"]
+position = Vector2(-955, -2473)
+curve = SubResource("Curve2D_prdk3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D7"]
+position = Vector2(-800, 2400)
+rotates = false
+script = ExtResource("4_117wx")
+speed = 0.05
+pause_locations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D7" instance=ExtResource("5_yufk5")]
+collision_layer = 5
+
+[node name="Path2D8" type="Path2D" parent="Platforms"]
+position = Vector2(-955, -2473)
+curve = SubResource("Curve2D_00fli")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D8"]
+position = Vector2(-800, 1600)
+rotates = false
+script = ExtResource("4_117wx")
+speed = 0.05
+pause_locations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D8" instance=ExtResource("5_yufk5")]
+collision_layer = 5
+
+[node name="Path2D9" type="Path2D" parent="Platforms"]
+position = Vector2(-955, -2473)
+curve = SubResource("Curve2D_y5wbu")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D9"]
+position = Vector2(-800, 800)
+rotates = false
+script = ExtResource("4_117wx")
+speed = 0.05
+pause_locations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D9" instance=ExtResource("5_yufk5")]
+collision_layer = 5
+
+[node name="Path2D10" type="Path2D" parent="Platforms"]
+position = Vector2(-955, -2473)
+curve = SubResource("Curve2D_8e6sr")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D10"]
+position = Vector2(-800, 0)
+rotates = false
+script = ExtResource("4_117wx")
+speed = 0.05
+pause_locations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D10" instance=ExtResource("5_yufk5")]
+collision_layer = 5
+
+[node name="Path2D11" type="Path2D" parent="Platforms"]
+position = Vector2(-955, -2473)
+curve = SubResource("Curve2D_hrta3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D11"]
+position = Vector2(-800, -800)
+rotates = false
+script = ExtResource("4_117wx")
+speed = 0.05
+pause_locations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D11" instance=ExtResource("5_yufk5")]
+collision_layer = 5
+
+[node name="Path2D12" type="Path2D" parent="Platforms"]
+position = Vector2(-955, -2473)
+curve = SubResource("Curve2D_tc2l2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Platforms/Path2D12"]
+position = Vector2(0, -800)
+rotates = false
+script = ExtResource("4_117wx")
+speed = 0.05
+pause_durations = Array[float]([])
+
+[node name="WidePlatform01" parent="Platforms/Path2D12" instance=ExtResource("5_yufk5")]
+collision_layer = 5
+
+[node name="Spikes" type="Node" parent="."]
+
+[node name="Scenery" type="Node" parent="."]
+
+[node name="EndlessPit" parent="." instance=ExtResource("4_ut7s1")]
+position = Vector2(0, 550)
+
+[node name="Parallax" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
+position = Vector2(-148, 102)
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
+position = Vector2(-468, -525)
+scale = Vector2(3, 2)
+texture = ExtResource("5_yywpm")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("6_gix53")]
+position = Vector2(-220, -636)
