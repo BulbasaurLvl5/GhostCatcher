@@ -84,7 +84,6 @@ point_count = 6
 [node name="template" type="Node2D"]
 script = ExtResource("1_lmyvs")
 level_name = "template"
-show_data_in_editor = true
 starting_position_y = 0.5
 top_boundary = -31.0
 left_boundary = -18.5

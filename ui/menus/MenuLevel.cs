@@ -26,6 +26,18 @@ public partial class MenuLevel : Node
 
 		_main.BackgroundMusic.CrossfadeTo(BackgroundMusic.SongNames.phantomx27);
 
+		if(this.TryGetNestedChildren(out List<Label> _death_labels))
+		{
+			// for (int i = 0; i < _death_labels.Count; i++)
+			// {
+			// 	GD.Print(_death_labels[i].Name);
+			// }
+			_death_labels[0].Text = _save.DeathCount[CauseOfDeath.skull].ToString();
+			_death_labels[1].Text = _save.DeathCount[CauseOfDeath.ghost].ToString();
+			_death_labels[2].Text = _save.DeathCount[CauseOfDeath.spikes].ToString();
+			_death_labels[3].Text = _save.DeathCount[CauseOfDeath.pit].ToString();
+		}
+
 		if(this.TryGetChildren(out List<Button> _baseButtons)) //&& this.TryGetNodeInTree(out Main _main) <- code for migrating code into its own script
 		{
 			//back button

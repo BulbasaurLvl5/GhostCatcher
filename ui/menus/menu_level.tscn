@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bq3i5f60hbghq"]
+[gd_scene load_steps=10 format=3 uid="uid://bq3i5f60hbghq"]
 
 [ext_resource type="Script" path="res://ui/menus/MenuLevel.cs" id="1_87cnt"]
 [ext_resource type="Texture2D" uid="uid://b0gm6kngvdnxc" path="res://resources/sprites/coal/menu_level_selection_background.png" id="1_kteng"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="2_8irtk"]
+[ext_resource type="Texture2D" uid="uid://d22mfo1u7jqs0" path="res://resources/sprites/endless_pit.png" id="4_6j46q"]
+[ext_resource type="Texture2D" uid="uid://rfa8aih1g07h" path="res://resources/sprites/coal/spikes_small.png" id="5_eksrn"]
+[ext_resource type="Texture2D" uid="uid://c5l6hjnnrkoho" path="res://resources/sprites/red_ghost.png" id="6_q6ew7"]
+[ext_resource type="Texture2D" uid="uid://cxp6qr5x3lquj" path="res://resources/sprites/coal/skull_1.png" id="7_ceota"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_cffll"]
 device = -1
@@ -63,3 +67,77 @@ icon = ExtResource("2_8irtk")
 flat = true
 icon_alignment = 1
 expand_icon = true
+
+[node name="death_causes" type="Node" parent="."]
+
+[node name="pit" type="Node" parent="death_causes"]
+
+[node name="pit" type="TextureRect" parent="death_causes/pit"]
+offset_left = 560.0
+offset_top = 165.0
+offset_right = 600.0
+offset_bottom = 205.0
+texture = ExtResource("4_6j46q")
+expand_mode = 1
+
+[node name="pit_label" type="Label" parent="death_causes/pit/pit"]
+offset_left = 50.0
+offset_top = -18.0
+offset_right = 140.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 48
+text = "test"
+
+[node name="spikes" type="Node" parent="death_causes"]
+
+[node name="spikes" type="TextureRect" parent="death_causes/spikes"]
+offset_left = 477.0
+offset_top = 224.0
+offset_right = 517.0
+offset_bottom = 264.0
+texture = ExtResource("5_eksrn")
+expand_mode = 1
+
+[node name="spikes_label" type="Label" parent="death_causes/spikes/spikes"]
+offset_left = 50.0
+offset_top = -18.0
+offset_right = 140.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 48
+text = "spikes"
+
+[node name="ghost" type="Node" parent="death_causes"]
+
+[node name="ghost" type="TextureRect" parent="death_causes/ghost"]
+offset_left = 1418.0
+offset_top = 165.0
+offset_right = 1458.0
+offset_bottom = 205.0
+texture = ExtResource("6_q6ew7")
+expand_mode = 1
+
+[node name="ghost_label" type="Label" parent="death_causes/ghost/ghost"]
+offset_left = 50.0
+offset_top = -18.0
+offset_right = 194.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 48
+text = "ghostq"
+
+[node name="skull" type="Node" parent="death_causes"]
+
+[node name="skull" type="TextureRect" parent="death_causes/skull"]
+offset_left = 1469.0
+offset_top = 224.0
+offset_right = 1509.0
+offset_bottom = 264.0
+texture = ExtResource("7_ceota")
+expand_mode = 1
+
+[node name="skull_label" type="Label" parent="death_causes/skull/skull"]
+offset_left = 50.0
+offset_top = -18.0
+offset_right = 208.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 48
+text = "skulls"
