@@ -94,6 +94,7 @@ public static class LevelLoader
 		new Level("cliff", new float[5]{16,18,23,27,33}, ResourceLoader.Load<PackedScene>("res://levels/cliff.tscn"), LoadLevel_Cliff),
 		new Level("wall grab", new float[5]{18,20,22,24,26}, ResourceLoader.Load<PackedScene>("res://levels/wallgrab.tscn"), LoadLevel_Wallgrab),
 	// moving ghosts
+		new Level("swarm", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/swarm.tscn"), LoadLevel_swarm),
 	// moving pit
 		new Level("vertical", new float[5]{20,21,22,23,24}, ResourceLoader.Load<PackedScene>("res://levels/vertical.tscn"), LoadLevel_Vertical),
 	// moving platforms
@@ -400,6 +401,14 @@ public static class LevelLoader
 	{
 		LoadUI(_main);
 		int id = LevelID(LoadLevel_switch);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
+	}
+
+	static void LoadLevel_swarm(Main _main)
+	{
+		LoadUI(_main);
+		int id = LevelID(LoadLevel_swarm);
 		Levels[id].PackedScene.Instantiate(_main.World);
 		_main.StartLevel(id);
 	}
