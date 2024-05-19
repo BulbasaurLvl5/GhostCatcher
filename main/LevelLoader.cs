@@ -124,6 +124,7 @@ public static class LevelLoader
 		new Level("forest", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/forest.tscn"), LoadLevel_Forest),
 		new Level("firering", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/ring_of_fire.tscn"), LoadLevel_RingOfFire),
 		new Level("skullcap", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/skull_cap.tscn"), LoadLevel_SkullCap),
+	//further ideas: spiders / poison cloud that fails after x secs / icy round / portals / jump pads
 	};
 
 	static int LevelID(Action<Main> action)

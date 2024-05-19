@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://cvv0hdmvn662b" path="res://resources/sprites/coal/bird_3.png" id="31_y7vy4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnagu"]
-size = Vector2(24, 84)
+size = Vector2(24, 86)
 
 [sub_resource type="Curve2D" id="Curve2D_arbo3"]
 _data = {
@@ -69,6 +69,7 @@ data = ExtResource("2_h8ju7")
 canvas_mod_node = ExtResource("2_hrds7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_nnagu")
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
