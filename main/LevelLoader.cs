@@ -51,39 +51,6 @@ public static class LevelLoader
 	// 	_main.Player().ProcessMode = Node.ProcessModeEnum.Disabled;
 	// }
 
-	static PackedScene[] packedScenes= new PackedScene[] { 
-		ResourceLoader.Load<PackedScene>("res://levels/tutorial.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/platforms.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/tunnels.tscn"), //2
-		ResourceLoader.Load<PackedScene>("res://levels/cliff.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/spikes.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/mountainside.tscn"), //5
-		ResourceLoader.Load<PackedScene>("res://levels/kaktee.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/vertical.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/deep_pit.tscn"), //8
-		ResourceLoader.Load<PackedScene>("res://levels/columns.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/treeson.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/shaky_ground.tscn"), //11
-		ResourceLoader.Load<PackedScene>("res://levels/breakthrough.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/caves.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/factory_yard.tscn"), //14
-		ResourceLoader.Load<PackedScene>("res://levels/forest.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/new_ground.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/ring_of_fire.tscn"), //17
-		ResourceLoader.Load<PackedScene>("res://levels/skull_cap.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/blocks.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/thefall.tscn"), //20
-		ResourceLoader.Load<PackedScene>("res://levels/quake.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/kettle.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/wallgrab.tscn"), //23
-		ResourceLoader.Load<PackedScene>("res://levels/escape.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/tutorial_1_stefan.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/tutorial_2_stefan.tscn"), //26
-		ResourceLoader.Load<PackedScene>("res://levels/tutorial_3_stefan.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/assembly_line.tscn"),
-		ResourceLoader.Load<PackedScene>("res://levels/switch.tscn"), //29
-		};
-
 	public class Level
 	{
 		public string Name {get;}
@@ -91,10 +58,13 @@ public static class LevelLoader
 
 		public Action<Main> Load {get;}
 
-		public Level(string name, float[] starTimes, Action<Main> loadfunction)
+		public PackedScene PackedScene {get;}
+
+		public Level(string name, float[] starTimes, PackedScene packedScene, Action<Main> loadfunction)
 		{
 			this.Name = name;
 			this.StarTimes = starTimes;
+			this.PackedScene = packedScene;
 			this.Load = loadfunction;
 		}
 
@@ -114,46 +84,46 @@ public static class LevelLoader
 
 	public static Level[] Levels = {
 	// tutorials
-		new Level("jumping", new float[5]{8,10,12,15,25}, LoadLevel_Tutorial_1),
-		new Level("grabbing", new float[5]{12,13,15,20,25}, LoadLevel_Tutorial_2),
-		new Level("dashing", new float[5]{13,16,19,22,25}, LoadLevel_Tutorial_3),
+		new Level("jumping", new float[5]{8,10,12,15,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_1_stefan.tscn"), LoadLevel_Tutorial_1),
+		new Level("grabbing", new float[5]{12,13,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_2_stefan.tscn"), LoadLevel_Tutorial_2),
+		new Level("dashing", new float[5]{13,16,19,22,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_3_stefan.tscn"), LoadLevel_Tutorial_3),
 	// collectible ghosts, endless pit
-		new Level("tutorial", new float[5]{5,7,9,12,15}, LoadLevel_Tutorial),
-		new Level("tunnels", new float[5]{10,12,15,20,25}, LoadLevel_Tunnels),
-		new Level("treeson", new float[5]{32,34,38,42,50}, LoadLevel_Treeson),
-		new Level("cliff", new float[5]{16,18,23,27,33}, LoadLevel_Cliff),
-		new Level("wall grab", new float[5]{18,20,22,24,26}, LoadLevel_Wallgrab),
+		new Level("tutorial", new float[5]{5,7,9,12,15}, ResourceLoader.Load<PackedScene>("res://levels/tutorial.tscn"), LoadLevel_Tutorial),
+		new Level("tunnels", new float[5]{10,12,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/tunnels.tscn"), LoadLevel_Tunnels),
+		new Level("treeson", new float[5]{32,34,38,42,50}, ResourceLoader.Load<PackedScene>("res://levels/treeson.tscn"), LoadLevel_Treeson),
+		new Level("cliff", new float[5]{16,18,23,27,33}, ResourceLoader.Load<PackedScene>("res://levels/cliff.tscn"), LoadLevel_Cliff),
+		new Level("wall grab", new float[5]{18,20,22,24,26}, ResourceLoader.Load<PackedScene>("res://levels/wallgrab.tscn"), LoadLevel_Wallgrab),
 	// moving ghosts
 	// moving pit
-		new Level("vertical", new float[5]{20,21,22,23,24}, LoadLevel_Vertical),
+		new Level("vertical", new float[5]{20,21,22,23,24}, ResourceLoader.Load<PackedScene>("res://levels/vertical.tscn"), LoadLevel_Vertical),
 	// moving platforms
-		new Level("kettle", new float[5]{16,17,18,20,22}, LoadLevel_Kettle),
-		new Level("blocks", new float[5]{28,30,33,38,45}, LoadLevel_blocks),
-		new Level("switch", new float[5]{30,33,36,40,50}, LoadLevel_switch),
-		new Level("assemble", new float[5]{22,24,27,30,36}, LoadLevel_assembly),
-		new Level("the fall", new float[5]{21,23,25,27,30}, LoadLevel_Fall),
-		new Level("quake", new float[5]{35,36,38,40,42}, LoadLevel_Quake),
+		new Level("kettle", new float[5]{16,17,18,20,22}, ResourceLoader.Load<PackedScene>("res://levels/kettle.tscn"), LoadLevel_Kettle),
+		new Level("blocks", new float[5]{28,30,33,38,45}, ResourceLoader.Load<PackedScene>("res://levels/blocks.tscn"), LoadLevel_blocks),
+		new Level("switch", new float[5]{30,33,36,40,50}, ResourceLoader.Load<PackedScene>("res://levels/switch.tscn"), LoadLevel_switch),
+		new Level("assemble", new float[5]{22,24,27,30,36}, ResourceLoader.Load<PackedScene>("res://levels/assembly_line.tscn"), LoadLevel_assembly),
+		new Level("the fall", new float[5]{21,23,25,27,30}, ResourceLoader.Load<PackedScene>("res://levels/thefall.tscn"), LoadLevel_Fall),
+		new Level("quake", new float[5]{35,36,38,40,42}, ResourceLoader.Load<PackedScene>("res://levels/quake.tscn"), LoadLevel_Quake),
 	// 1st enemy type (ghosts)
 	// spikes
-		new Level("spikes", new float[]{}, LoadLevel_Spikes),
-		new Level("mountain", new float[]{}, LoadLevel_MountainSide),
-		new Level("cactee", new float[]{}, LoadLevel_Kaktee),
-		new Level("deeppit", new float[]{}, LoadLevel_DeepPit),
-		new Level("columns", new float[]{}, LoadLevel_Columns),
-		new Level("escape", new float[5]{32,33,34,36,38}, LoadLevel_Escape),
+		new Level("spikes", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/spikes.tscn"), LoadLevel_Spikes),
+		new Level("mountain", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/mountainside.tscn"), LoadLevel_MountainSide),
+		new Level("cactee", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/kaktee.tscn"), LoadLevel_Kaktee),
+		new Level("deeppit", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/deep_pit.tscn"), LoadLevel_DeepPit),
+		new Level("columns", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/columns.tscn"), LoadLevel_Columns),
+		new Level("escape", new float[5]{32,33,34,36,38}, ResourceLoader.Load<PackedScene>("res://levels/escape.tscn"), LoadLevel_Escape),
 	// 2nd enemy type (skulls)
-		new Level("skulls", new float[]{}, LoadLevel_Platforms),
+		new Level("skulls", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/platforms.tscn"), LoadLevel_Platforms),
 	// falling platforms
-		new Level("shaky", new float[]{}, LoadLevel_ShakyGround),
-		new Level("newground", new float[]{}, LoadLevel_NewGround),
+		new Level("shaky", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/shaky_ground.tscn"), LoadLevel_ShakyGround),
+		new Level("newground", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/new_ground.tscn"), LoadLevel_NewGround),
 	// extra air
 	// unasigned
-		new Level("break", new float[]{}, LoadLevel_Breakthrough),
-		new Level("caves", new float[]{}, LoadLevel_Caves),
-		new Level("factory", new float[]{}, LoadLevel_FactoryYard),
-		new Level("forest", new float[]{}, LoadLevel_Forest),
-		new Level("firering", new float[]{}, LoadLevel_RingOfFire),
-		new Level("skullcap", new float[]{}, LoadLevel_SkullCap),
+		new Level("break", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/breakthrough.tscn"), LoadLevel_Breakthrough),
+		new Level("caves", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/caves.tscn"), LoadLevel_Caves),
+		new Level("factory", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/factory_yard.tscn"), LoadLevel_FactoryYard),
+		new Level("forest", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/forest.tscn"), LoadLevel_Forest),
+		new Level("firering", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/ring_of_fire.tscn"), LoadLevel_RingOfFire),
+		new Level("skullcap", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/skull_cap.tscn"), LoadLevel_SkullCap),
 	};
 
 	static int LevelID(Action<Main> action)
@@ -175,6 +145,8 @@ public static class LevelLoader
 
 	static void LoadLevel_Tutorial(Main _main)
 	{
+		int id = LevelID(LoadLevel_Tutorial);
+
 		List<Vector2I> ghostPositions = new List<Vector2I>(){
 			new Vector2I(-5*110, -3*110),
 			new Vector2I(0*110, -7*110),
@@ -184,14 +156,14 @@ public static class LevelLoader
 
 		LoadUI(_main);
 
-		packedScenes[0].Instantiate(_main.World);
+		Levels[id].PackedScene.Instantiate(_main.World);
 
 		foreach (var _gp in ghostPositions)
 		{
 			Ghost _g = packedGhost.Instantiate(_main.World, _gp, 0) as Ghost;
 		}
 
-		_main.StartLevel(LevelID(LoadLevel_Tutorial));
+		_main.StartLevel(id);
 
 		FileIO.SaveGame _save = FileIO.Load();
 		if(_save.LastTimes[0] == 0)
@@ -201,203 +173,233 @@ public static class LevelLoader
 	static void LoadLevel_Platforms(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[1].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Platforms));
+		int id = LevelID(LoadLevel_Platforms);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Tunnels(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[2].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Tunnels));
+		int id = LevelID(LoadLevel_Tunnels);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Cliff(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[3].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Cliff));
+		int id = LevelID(LoadLevel_Cliff);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_blocks(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[19].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_blocks));
+		int id = LevelID(LoadLevel_blocks);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	
 	static void LoadLevel_Spikes(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[4].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Spikes));
+		int id = LevelID(LoadLevel_Spikes);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_MountainSide(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[5].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_MountainSide));
+		int id = LevelID(LoadLevel_MountainSide);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Kaktee(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[6].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Kaktee));
+		int id = LevelID(LoadLevel_Kaktee);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Vertical(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[7].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Vertical));
+		int id = LevelID(LoadLevel_Vertical);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_DeepPit(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[8].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_DeepPit));
+		int id = LevelID(LoadLevel_DeepPit);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 	
 	static void LoadLevel_Columns(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[9].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Columns));
+		int id = LevelID(LoadLevel_Columns);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 	
 	static void LoadLevel_Treeson(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[10].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Treeson));
+		int id = LevelID(LoadLevel_Treeson);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 	
 	static void LoadLevel_ShakyGround(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[11].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_ShakyGround));
+		int id = LevelID(LoadLevel_ShakyGround);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Breakthrough(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[12].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Breakthrough));
+		int id = LevelID(LoadLevel_Breakthrough);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Caves(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[13].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Caves));
+		int id = LevelID(LoadLevel_Caves);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_FactoryYard(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[14].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_FactoryYard));
+		int id = LevelID(LoadLevel_FactoryYard);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Forest(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[15].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Forest));
+		int id = LevelID(LoadLevel_Forest);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 	
 	static void LoadLevel_NewGround(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[16].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_NewGround));
+		int id = LevelID(LoadLevel_NewGround);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 	
 	static void LoadLevel_RingOfFire(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[17].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_RingOfFire));
+		int id = LevelID(LoadLevel_RingOfFire);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 	
 	static void LoadLevel_SkullCap(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[18].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_SkullCap));
+		int id = LevelID(LoadLevel_SkullCap);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Fall(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[20].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Fall));
+		int id = LevelID(LoadLevel_Fall);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Quake(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[21].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Quake));
+		int id = LevelID(LoadLevel_Quake);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Kettle(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[22].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Kettle));
+		int id = LevelID(LoadLevel_Kettle);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Wallgrab(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[23].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Wallgrab));
+		int id = LevelID(LoadLevel_Wallgrab);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Escape(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[24].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Escape));
+		int id = LevelID(LoadLevel_Escape);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Tutorial_1(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[25].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Tutorial_1));
+		int id = LevelID(LoadLevel_Tutorial_1);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Tutorial_2(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[26].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Tutorial_2));
+		int id = LevelID(LoadLevel_Tutorial_2);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_Tutorial_3(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[27].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_Tutorial_3));
+		int id = LevelID(LoadLevel_Tutorial_3);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 
 	static void LoadLevel_assembly(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[28].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_assembly));
+		int id = LevelID(LoadLevel_assembly);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
+
 	static void LoadLevel_switch(Main _main)
 	{
 		LoadUI(_main);
-		packedScenes[29].Instantiate(_main.World);
-		_main.StartLevel(LevelID(LoadLevel_switch));
+		int id = LevelID(LoadLevel_switch);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
 	}
 }
