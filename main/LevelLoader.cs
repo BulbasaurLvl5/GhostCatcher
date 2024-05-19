@@ -44,6 +44,13 @@ public static class LevelLoader
 	// static PackedScene packedLevel_wallgrab = ResourceLoader.Load<PackedScene>("res://levels/wallgrab.tscn");
 	// static PackedScene packedLevel_escape = ResourceLoader.Load<PackedScene>("res://levels/escape.tscn");
 
+	// public static async void PlayerDisableDelay(Main _main, int milisecdelay)
+	// {
+	// 	//delay the activation just a little bit, to allow the camera to lock
+	// 	await Task.Delay(milisecdelay);
+	// 	_main.Player().ProcessMode = Node.ProcessModeEnum.Disabled;
+	// }
+
 	static PackedScene[] packedScenes= new PackedScene[] { 
 		ResourceLoader.Load<PackedScene>("res://levels/tutorial.tscn"),
 		ResourceLoader.Load<PackedScene>("res://levels/platforms.tscn"),
@@ -74,6 +81,7 @@ public static class LevelLoader
 		ResourceLoader.Load<PackedScene>("res://levels/tutorial_2_stefan.tscn"), //26
 		ResourceLoader.Load<PackedScene>("res://levels/tutorial_3_stefan.tscn"),
 		ResourceLoader.Load<PackedScene>("res://levels/assembly_line.tscn"),
+		ResourceLoader.Load<PackedScene>("res://levels/switch.tscn"), //29
 		};
 
 	public class Level
@@ -111,16 +119,17 @@ public static class LevelLoader
 		new Level("dashing", new float[5]{13,16,19,22,25}, LoadLevel_Tutorial_3),
 	// collectible ghosts, endless pit
 		new Level("tutorial", new float[5]{5,7,9,12,15}, LoadLevel_Tutorial),
-		new Level("tunnels", new float[]{}, LoadLevel_Tunnels),
-		new Level("treeson", new float[]{}, LoadLevel_Treeson),
-		new Level("cliff", new float[]{}, LoadLevel_Cliff),
+		new Level("tunnels", new float[5]{10,12,15,20,25}, LoadLevel_Tunnels),
+		new Level("treeson", new float[5]{32,34,38,42,50}, LoadLevel_Treeson),
+		new Level("cliff", new float[5]{16,18,23,27,33}, LoadLevel_Cliff),
 		new Level("wall grab", new float[5]{18,20,22,24,26}, LoadLevel_Wallgrab),
 	// moving ghosts
 	// moving pit
 		new Level("vertical", new float[5]{20,21,22,23,24}, LoadLevel_Vertical),
 	// moving platforms
 		new Level("kettle", new float[5]{16,17,18,20,22}, LoadLevel_Kettle),
-		new Level("blocks", new float[]{}, LoadLevel_blocks),
+		new Level("blocks", new float[5]{28,30,33,38,45}, LoadLevel_blocks),
+		new Level("switch", new float[5]{30,33,36,40,50}, LoadLevel_switch),
 		new Level("assemble", new float[5]{22,24,27,30,36}, LoadLevel_assembly),
 		new Level("the fall", new float[5]{21,23,25,27,30}, LoadLevel_Fall),
 		new Level("quake", new float[5]{35,36,38,40,42}, LoadLevel_Quake),
@@ -146,13 +155,6 @@ public static class LevelLoader
 		new Level("firering", new float[]{}, LoadLevel_RingOfFire),
 		new Level("skullcap", new float[]{}, LoadLevel_SkullCap),
 	};
-
-	// public static async void PlayerDisableDelay(Main _main, int milisecdelay)
-	// {
-	// 	//delay the activation just a little bit, to allow the camera to lock
-	// 	await Task.Delay(milisecdelay);
-	// 	_main.Player().ProcessMode = Node.ProcessModeEnum.Disabled;
-	// }
 
 	static int LevelID(Action<Main> action)
 	{
@@ -391,5 +393,11 @@ public static class LevelLoader
 		LoadUI(_main);
 		packedScenes[28].Instantiate(_main.World);
 		_main.StartLevel(LevelID(LoadLevel_assembly));
+	}
+	static void LoadLevel_switch(Main _main)
+	{
+		LoadUI(_main);
+		packedScenes[29].Instantiate(_main.World);
+		_main.StartLevel(LevelID(LoadLevel_switch));
 	}
 }
