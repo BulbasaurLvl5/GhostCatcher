@@ -10,15 +10,15 @@
 
 [sub_resource type="Curve2D" id="Curve2D_6tq0f"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 500, 0, 0, 0, 0, 0, 0, 625, 985, 0, 0, 0, 0, -1263, 453, 0, 0, 0, 500, 630, -550, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(-530.192, -477.776, 0, 0, 0, 0, 0, 0, 0, 0, 765, 695, 0, 0, 0, 0, 10, 1250, 0, 0, 0, 0, -1191, 431, 0, 0, 0, 0, 142, -604, 0, 0, 0, 0, 742, -283, 0, 0, 0, 0, 0, 0)
 }
-point_count = 5
+point_count = 7
 
 [sub_resource type="Curve2D" id="Curve2D_trhd2"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 500, -150, 0, 0, 0, 0, 0, -868, 485, 0, 0, 0, 0, -518, -692, 0, 0, 0, 500, 219, -689, 0, 0, 0, 0, -150, 0)
+"points": PackedVector2Array(0, 0, 0, 0, -150, 0, 0, 0, 0, 0, -553, 1161, 0, 0, 0, 0, -850, -187, 0, 0, 0, 0, 544, -688, 0, 0, 0, 0, 1060, 120, 0, 0, 0, 0, 724, 1212, 0, 0, 0, 0, 79, -702, 0, 0, 0, 0, -150, 0)
 }
-point_count = 5
+point_count = 8
 
 [sub_resource type="Curve2D" id="Curve2D_ldi68"]
 _data = {
@@ -28,15 +28,15 @@ point_count = 5
 
 [sub_resource type="Curve2D" id="Curve2D_1owpw"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 500, 72, -143, 0, 0, 0, 0, 720, 275, 0, 0, 0, 0, -784, 873, -194.045, 192.973, 194.045, -192.973, -1213, -51, 0, 0, 0, 0, -314, -933, 0, 0, 0, 0, 72, -143)
+"points": PackedVector2Array(0, 0, 0, 0, 72, -143, 0, 0, 0, 0, 705, 910, 0, 0, 0, 0, -1213, -51, 0, 0, 0, 0, -314, -933, 0, 0, 0, 0, 72, -143)
 }
-point_count = 6
+point_count = 5
 
 [sub_resource type="Curve2D" id="Curve2D_ykk2o"]
 _data = {
-"points": PackedVector2Array(135.317, -433.099, -135.317, 433.099, 0, 0, 0, 0, 0, 0, 720, 564, 0, 0, 0, 0, -1027, 420, -407.861, 342.644, 407.861, -342.644, -1058, -130, -319.612, -161.22, 319.612, 161.22, -74, -568, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(20, -416, -20, 416, 0, 0, 0, 0, 0, 0, 720, 564, 0, 0, 0, 0, -75, 810, 0, 0, 0, 0, -1227, -46, 0, 0, 0, 0, -567, -1078, 0, 0, 0, 0, 697, -350, -156, -252, 156, 252, 0, 0)
 }
-point_count = 6
+point_count = 7
 
 [sub_resource type="Curve2D" id="Curve2D_d324x"]
 _data = {
@@ -46,20 +46,19 @@ point_count = 6
 
 [sub_resource type="Curve2D" id="Curve2D_oi0n1"]
 _data = {
-"points": PackedVector2Array(-332.155, -546.971, 332.155, 546.971, 0, 0, -70.7059, 299.109, 70.7059, -299.109, 1167, 64, 265.723, -124.453, -265.723, 124.453, 430, -1116, 2.49667, 436.824, -2.49667, -436.824, -778, 249, -319.612, -161.22, 319.612, 161.22, -304, -1130, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(-176.155, -586.971, 176.155, 586.971, 0, 0, 0, 0, 0, 0, 628, 719, -70.7059, 299.109, 70.7059, -299.109, 1167, 64, 265.723, -124.453, -265.723, 124.453, 430, -1116, 2.49667, 436.824, -2.49667, -436.824, -778, 249, -319.612, -161.22, 319.612, 161.22, -304, -1130, -160, -388, 160, 388, 0, 0)
 }
-point_count = 6
+point_count = 7
 
 [sub_resource type="Curve2D" id="Curve2D_a27d7"]
 _data = {
-"points": PackedVector2Array(-332.155, -546.971, 332.155, 546.971, 0, 0, -70.7059, 299.109, 70.7059, -299.109, -688, 426, 543.684, -552.084, -543.684, 552.084, -581, -832, 2.49667, 436.824, -2.49667, -436.824, 1240, 768, 318.271, -32.9309, -318.271, 32.9309, 139, -989, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(-121.132, -564.93, 121.132, 564.93, 0, 0, 0, 0, 0, 0, -206, 931, -21.3176, 335.028, 21.3176, -335.028, -688, 426, -120.814, -1059.44, 120.814, 1059.44, -215, -645, 2.49667, 436.824, -2.49667, -436.824, 1240, 768, 255.413, -329.261, -255.413, 329.261, 256, -923, 0, 0, 0, 0, 0, 0)
 }
-point_count = 6
+point_count = 7
 
 [node name="template" type="Node2D"]
 script = ExtResource("1_wefqr")
 level_name = "template"
-show_data_in_editor = true
 starting_position_y = 0.5
 top_boundary = -16.0
 left_boundary = -11.5
@@ -74,13 +73,13 @@ layer_0/tile_data = PackedInt32Array(196598, 1, 1, 327670, 1, 2, 262134, 0, 1, 1
 [node name="Ghosts" type="Node" parent="."]
 
 [node name="Path2D" type="Path2D" parent="Ghosts"]
-position = Vector2(320, -925)
+position = Vector2(211, -910)
 curve = SubResource("Curve2D_6tq0f")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D"]
 rotates = false
 script = ExtResource("3_ivmkl")
-speed = 0.15
+speed = 0.12
 
 [node name="Ghost" parent="Ghosts/Path2D/PathFollow2D" instance=ExtResource("3_g4y3l")]
 
@@ -92,7 +91,7 @@ curve = SubResource("Curve2D_trhd2")
 position = Vector2(-150, 0)
 rotates = false
 script = ExtResource("3_ivmkl")
-speed = 0.15
+speed = 0.12
 
 [node name="Ghost" parent="Ghosts/Path2D2/PathFollow2D" instance=ExtResource("3_g4y3l")]
 
@@ -104,7 +103,7 @@ curve = SubResource("Curve2D_ldi68")
 position = Vector2(-150, 0)
 rotates = false
 script = ExtResource("3_ivmkl")
-speed = 0.15
+speed = 0.12
 
 [node name="Ghost" parent="Ghosts/Path2D3/PathFollow2D" instance=ExtResource("3_g4y3l")]
 
@@ -116,7 +115,7 @@ curve = SubResource("Curve2D_1owpw")
 position = Vector2(72, -143)
 rotates = false
 script = ExtResource("3_ivmkl")
-speed = 0.15
+speed = 0.12
 
 [node name="Ghost" parent="Ghosts/Path2D5/PathFollow2D" instance=ExtResource("3_g4y3l")]
 
@@ -127,7 +126,7 @@ curve = SubResource("Curve2D_ykk2o")
 [node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D6"]
 rotates = false
 script = ExtResource("3_ivmkl")
-speed = 0.15
+speed = 0.12
 
 [node name="Ghost" parent="Ghosts/Path2D6/PathFollow2D" instance=ExtResource("3_g4y3l")]
 
@@ -138,7 +137,7 @@ curve = SubResource("Curve2D_d324x")
 [node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D7"]
 rotates = false
 script = ExtResource("3_ivmkl")
-speed = 0.15
+speed = 0.12
 
 [node name="Ghost" parent="Ghosts/Path2D7/PathFollow2D" instance=ExtResource("3_g4y3l")]
 
@@ -149,7 +148,7 @@ curve = SubResource("Curve2D_oi0n1")
 [node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D8"]
 rotates = false
 script = ExtResource("3_ivmkl")
-speed = 0.15
+speed = 0.12
 
 [node name="Ghost" parent="Ghosts/Path2D8/PathFollow2D" instance=ExtResource("3_g4y3l")]
 
@@ -160,7 +159,7 @@ curve = SubResource("Curve2D_a27d7")
 [node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D9"]
 rotates = false
 script = ExtResource("3_ivmkl")
-speed = 0.15
+speed = 0.12
 
 [node name="Ghost" parent="Ghosts/Path2D9/PathFollow2D" instance=ExtResource("3_g4y3l")]
 
