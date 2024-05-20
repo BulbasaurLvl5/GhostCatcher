@@ -1,26 +1,18 @@
-[gd_scene load_steps=17 format=3 uid="uid://l2r2lkfst37p"]
+[gd_scene load_steps=14 format=3 uid="uid://l2r2lkfst37p"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_avit5"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_nbaf7"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_20pea"]
-[ext_resource type="Texture2D" uid="uid://b5xlp7x6bh8wb" path="res://resources/sprites/coal/coal_sky.png" id="8_h5lq6"]
-[ext_resource type="Script" path="res://environment/parallax/moon.gd" id="9_psfa5"]
+[ext_resource type="PackedScene" uid="uid://b6aa5jcihgapw" path="res://environment/parallax/sky.tscn" id="4_6gvrr"]
+[ext_resource type="PackedScene" uid="uid://by2s5f4i4mx56" path="res://environment/parallax/haze_2.tscn" id="6_h1wvh"]
 [ext_resource type="Script" path="res://environment/parallax/parallax_clouds.gd" id="9_vpryo"]
 [ext_resource type="Texture2D" uid="uid://d4gkg7aoym7pe" path="res://resources/sprites/fog.png" id="10_ilfh5"]
-[ext_resource type="Texture2D" uid="uid://bjc2obas242sw" path="res://resources/sprites/coal/moon_1.png" id="10_q8yse"]
-[ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://resources/sprites/coal/coal_sky_filter.png" id="10_wbkwf"]
 [ext_resource type="Texture2D" uid="uid://br7gis8rcn7xp" path="res://resources/sprites/coal/mountains.png" id="11_mpuye"]
 [ext_resource type="Texture2D" uid="uid://b8xoka0m1lmq5" path="res://resources/sprites/coal/hills.png" id="12_vit3i"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="15_dq8pp"]
 [ext_resource type="Texture2D" uid="uid://kvsjs4tacowj" path="res://resources/sprites/coal/house_1.png" id="15_xwvp2"]
 [ext_resource type="Texture2D" uid="uid://67522rgm3ol5" path="res://resources/sprites/coal/tree_6.png" id="16_rskxo"]
 [ext_resource type="Texture2D" uid="uid://c4whnquieckb8" path="res://resources/sprites/coal/tree_7.png" id="17_sbucf"]
-
-[sub_resource type="Curve2D" id="Curve2D_t5juh"]
-_data = {
-"points": PackedVector2Array(-70.2355, 334.089, 70.2355, -334.089, 1189, 679, -180.017, 211.838, 180.017, -211.838, 1546, -240)
-}
-point_count = 2
 
 [node name="Treeson" type="Node2D"]
 script = ExtResource("1_avit5")
@@ -64,72 +56,7 @@ position = Vector2(2136, -5952)
 
 [node name="Parallax" type="Node" parent="."]
 
-[node name="Sky" type="ParallaxBackground" parent="Parallax"]
-process_mode = 3
-scroll_ignore_camera_zoom = true
-
-[node name="ParallaxLayer1" type="ParallaxLayer" parent="Parallax/Sky"]
-motion_scale = Vector2(0.05, 0.05)
-
-[node name="Sky" type="Sprite2D" parent="Parallax/Sky/ParallaxLayer1"]
-self_modulate = Color(0.0862745, 0.0862745, 0.0862745, 1)
-position = Vector2(1043, 338)
-scale = Vector2(2, 3)
-texture = ExtResource("8_h5lq6")
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Parallax/Sky"]
-motion_scale = Vector2(0.08, 0.08)
-motion_mirroring = Vector2(2336, 1652)
-script = ExtResource("9_vpryo")
-automatic_motion = Vector2(-50, -20)
-
-[node name="SkyColor" type="Sprite2D" parent="Parallax/Sky/ParallaxLayer2"]
-modulate = Color(0.207843, 0.207843, 0.207843, 1)
-self_modulate = Color(1, 1, 1, 0.772549)
-position = Vector2(-9, -42)
-scale = Vector2(2, 2)
-texture = ExtResource("10_wbkwf")
-centered = false
-
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="Parallax/Sky"]
-position = Vector2(2204, 0)
-motion_scale = Vector2(0.05, 0.05)
-
-[node name="Path2D" type="Path2D" parent="Parallax/Sky/ParallaxLayer4"]
-scale = Vector2(-1, 1)
-curve = SubResource("Curve2D_t5juh")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Parallax/Sky/ParallaxLayer4/Path2D"]
-position = Vector2(1189, 679)
-rotation = -1.36358
-loop = false
-script = ExtResource("9_psfa5")
-
-[node name="Moon" type="Sprite2D" parent="Parallax/Sky/ParallaxLayer4/Path2D/PathFollow2D"]
-light_mask = 16
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_q8yse")
-
-[node name="PointLight2D" type="PointLight2D" parent="Parallax/Sky/ParallaxLayer4/Path2D/PathFollow2D/Moon"]
-energy = 16.0
-range_item_cull_mask = 16
-shadow_enabled = true
-shadow_color = Color(0.0509804, 0.0509804, 0.0509804, 0)
-shadow_item_cull_mask = 0
-texture = ExtResource("10_q8yse")
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="Parallax/Sky"]
-motion_scale = Vector2(0.08, 0.08)
-motion_mirroring = Vector2(2336, 1652)
-script = ExtResource("9_vpryo")
-automatic_motion = Vector2(-25, 10)
-
-[node name="SkyColor" type="Sprite2D" parent="Parallax/Sky/ParallaxLayer3"]
-self_modulate = Color(1, 1, 1, 0.203922)
-position = Vector2(-9, -42)
-scale = Vector2(2, 2)
-texture = ExtResource("10_wbkwf")
-centered = false
+[node name="Sky" parent="Parallax" instance=ExtResource("4_6gvrr")]
 
 [node name="Horizon" type="ParallaxBackground" parent="Parallax"]
 scroll_base_offset = Vector2(8640, 1620)
@@ -168,28 +95,8 @@ texture = ExtResource("11_mpuye")
 position = Vector2(3617, 101)
 texture = ExtResource("11_mpuye")
 
-[node name="Haze2" type="ParallaxBackground" parent="Parallax"]
-layer = -80
-scroll_base_offset = Vector2(3840, 1080)
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Haze2"]
-modulate = Color(0.615686, 0.615686, 0.615686, 0.101961)
-motion_scale = Vector2(0.2, 0.333)
-motion_mirroring = Vector2(3840, 2160)
-script = ExtResource("9_vpryo")
-
-[node name="Fog" type="Sprite2D" parent="Parallax/Haze2/ParallaxLayer"]
-texture = ExtResource("10_ilfh5")
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Parallax/Haze2"]
-modulate = Color(0.67451, 0.67451, 0.67451, 0.0862745)
-motion_scale = Vector2(0.2, 0.333)
-motion_mirroring = Vector2(3840, 2160)
-script = ExtResource("9_vpryo")
-automatic_motion = Vector2(-10, -15)
-
-[node name="Fog" type="Sprite2D" parent="Parallax/Haze2/ParallaxLayer2"]
-texture = ExtResource("10_ilfh5")
+[node name="Haze2" parent="Parallax" instance=ExtResource("6_h1wvh")]
+visible = false
 
 [node name="Far" type="ParallaxBackground" parent="Parallax"]
 layer = -60
@@ -243,30 +150,6 @@ rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("12_vit3i")
 
-[node name="Haze1" type="ParallaxBackground" parent="Parallax"]
-layer = -50
-scroll_base_offset = Vector2(1440, 550)
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Haze1"]
-modulate = Color(0.654902, 0.654902, 0.654902, 0.0823529)
-motion_scale = Vector2(0.4, 0.5)
-motion_mirroring = Vector2(3840, 2160)
-script = ExtResource("9_vpryo")
-automatic_motion = Vector2(20, -5)
-
-[node name="Fog" type="Sprite2D" parent="Parallax/Haze1/ParallaxLayer"]
-texture = ExtResource("10_ilfh5")
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Parallax/Haze1"]
-modulate = Color(0.678431, 0.678431, 0.678431, 0.0901961)
-motion_scale = Vector2(0.4, 0.5)
-motion_mirroring = Vector2(3840, 2160)
-script = ExtResource("9_vpryo")
-automatic_motion = Vector2(35, -12)
-
-[node name="Fog" type="Sprite2D" parent="Parallax/Haze1/ParallaxLayer2"]
-texture = ExtResource("10_ilfh5")
-
 [node name="Middle" type="ParallaxBackground" parent="Parallax"]
 layer = -40
 scroll_base_offset = Vector2(960, 441.82)
@@ -303,6 +186,31 @@ position = Vector2(2192, 0.713776)
 rotation = 0.0575959
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_xwvp2")
+
+[node name="Haze1" type="ParallaxBackground" parent="Parallax"]
+layer = -50
+visible = false
+scroll_base_offset = Vector2(1440, 550)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/Haze1"]
+modulate = Color(0.654902, 0.654902, 0.654902, 0.0823529)
+motion_scale = Vector2(0.4, 0.5)
+motion_mirroring = Vector2(3840, 2160)
+script = ExtResource("9_vpryo")
+automatic_motion = Vector2(20, -5)
+
+[node name="Fog" type="Sprite2D" parent="Parallax/Haze1/ParallaxLayer"]
+texture = ExtResource("10_ilfh5")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Parallax/Haze1"]
+modulate = Color(0.678431, 0.678431, 0.678431, 0.0901961)
+motion_scale = Vector2(0.4, 0.5)
+motion_mirroring = Vector2(3840, 2160)
+script = ExtResource("9_vpryo")
+automatic_motion = Vector2(35, -12)
+
+[node name="Fog" type="Sprite2D" parent="Parallax/Haze1/ParallaxLayer2"]
+texture = ExtResource("10_ilfh5")
 
 [node name="Near" type="ParallaxBackground" parent="Parallax"]
 layer = -20

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://by2s5f4i4mx56"]
+
+[ext_resource type="Script" path="res://environment/parallax/parallax_clouds.gd" id="1_idy77"]
+[ext_resource type="Texture2D" uid="uid://d4gkg7aoym7pe" path="res://resources/sprites/fog.png" id="2_681lu"]
+
+[node name="Haze2" type="ParallaxBackground"]
+layer = -80
+scroll_base_offset = Vector2(3840, 1080)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+modulate = Color(0.615686, 0.615686, 0.615686, 0.101961)
+motion_scale = Vector2(0.2, 0.333)
+motion_mirroring = Vector2(3840, 2160)
+script = ExtResource("1_idy77")
+
+[node name="Fog" type="Sprite2D" parent="ParallaxLayer"]
+texture = ExtResource("2_681lu")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+modulate = Color(0.67451, 0.67451, 0.67451, 0.0862745)
+motion_scale = Vector2(0.2, 0.333)
+motion_mirroring = Vector2(3840, 2160)
+script = ExtResource("1_idy77")
+automatic_motion = Vector2(-10, -15)
+
+[node name="Fog" type="Sprite2D" parent="ParallaxLayer2"]
+texture = ExtResource("2_681lu")

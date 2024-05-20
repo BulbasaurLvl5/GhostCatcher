@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://4ph1w3ugdxgd"]
+
+[ext_resource type="Script" path="res://environment/pickups/tutorial_popup.gd" id="1_wkhqp"]
+[ext_resource type="Texture2D" uid="uid://c1kysdrhifs18" path="res://entities/player/anim/oriette-jump_3.png" id="2_xwhfm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6mra"]
+size = Vector2(440, 440)
+
+[node name="TutorialPopup" type="Node2D"]
+script = ExtResource("1_wkhqp")
+popup_offset = Vector2(0, -7)
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+light_mask = 0
+shape = SubResource("RectangleShape2D_e6mra")
+debug_color = Color(0, 0.649188, 0.153819, 0.42)
+
+[node name="PopUp" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -1196.5
+offset_right = 275.0
+offset_bottom = -343.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = -24
+alignment = 1
+
+[node name="Label_Message" type="Label" parent="PopUp"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 64
+text = "TO  JUMP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PopUp"]
+self_modulate = Color(1, 1, 1, 0.552941)
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_xwhfm")
+stretch_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopUp"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -24
+alignment = 1
+
+[node name="Label" type="Label" parent="PopUp/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "PRESS"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label_Action" type="Label" parent="PopUp/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "SPACE"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="PopUp"]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="PopUp/Timer" to="." method="_on_timer_timeout"]

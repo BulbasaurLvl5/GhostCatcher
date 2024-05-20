@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6aa5jcihgapw"]
+
+[ext_resource type="Texture2D" uid="uid://b5xlp7x6bh8wb" path="res://resources/sprites/coal/coal_sky.png" id="1_etusl"]
+[ext_resource type="Script" path="res://environment/parallax/parallax_clouds.gd" id="2_delsn"]
+[ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://resources/sprites/coal/coal_sky_filter.png" id="3_u1150"]
+[ext_resource type="Script" path="res://environment/parallax/moon.gd" id="4_ohnvs"]
+[ext_resource type="Texture2D" uid="uid://bjc2obas242sw" path="res://resources/sprites/coal/moon_1.png" id="5_hnn37"]
+
+[sub_resource type="Curve2D" id="Curve2D_t5juh"]
+_data = {
+"points": PackedVector2Array(-70.2355, 334.089, 70.2355, -334.089, 1189, 679, -180.017, 211.838, 180.017, -211.838, 1546, -240)
+}
+point_count = 2
+
+[node name="Sky" type="ParallaxBackground"]
+process_mode = 3
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.05, 0.05)
+
+[node name="Sky" type="Sprite2D" parent="ParallaxLayer1"]
+self_modulate = Color(0.0862745, 0.0862745, 0.0862745, 1)
+position = Vector2(1043, 338)
+scale = Vector2(2, 3)
+texture = ExtResource("1_etusl")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.08, 0.08)
+motion_mirroring = Vector2(2336, 1652)
+script = ExtResource("2_delsn")
+automatic_motion = Vector2(-50, -20)
+
+[node name="SkyColor" type="Sprite2D" parent="ParallaxLayer2"]
+modulate = Color(0.207843, 0.207843, 0.207843, 1)
+self_modulate = Color(1, 1, 1, 0.772549)
+position = Vector2(-9, -42)
+scale = Vector2(2, 2)
+texture = ExtResource("3_u1150")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+position = Vector2(2204, 0)
+motion_scale = Vector2(0.05, 0.05)
+
+[node name="Path2D" type="Path2D" parent="ParallaxLayer4"]
+scale = Vector2(-1, 1)
+curve = SubResource("Curve2D_t5juh")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ParallaxLayer4/Path2D"]
+position = Vector2(1189, 679)
+rotation = -1.36358
+loop = false
+script = ExtResource("4_ohnvs")
+
+[node name="Moon" type="Sprite2D" parent="ParallaxLayer4/Path2D/PathFollow2D"]
+light_mask = 16
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_hnn37")
+
+[node name="PointLight2D" type="PointLight2D" parent="ParallaxLayer4/Path2D/PathFollow2D/Moon"]
+energy = 16.0
+range_item_cull_mask = 16
+shadow_enabled = true
+shadow_color = Color(0.0509804, 0.0509804, 0.0509804, 0)
+shadow_item_cull_mask = 0
+texture = ExtResource("5_hnn37")
+
+[node name="_Timer_40464" type="Timer" parent="ParallaxLayer4/Path2D/PathFollow2D"]
+wait_time = 0.2
+one_shot = true
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.08, 0.08)
+motion_mirroring = Vector2(2336, 1652)
+script = ExtResource("2_delsn")
+automatic_motion = Vector2(-25, 10)
+
+[node name="SkyColor" type="Sprite2D" parent="ParallaxLayer3"]
+self_modulate = Color(1, 1, 1, 0.203922)
+position = Vector2(-9, -42)
+scale = Vector2(2, 2)
+texture = ExtResource("3_u1150")
+centered = false

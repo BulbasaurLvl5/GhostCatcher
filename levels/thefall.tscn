@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgurenwm4hn5p"]
+[gd_scene load_steps=17 format=3 uid="uid://cgurenwm4hn5p"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_ongv1"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_q4s1u"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bf7v0jvhoklvw" path="res://resources/sprites/platform_h_01.png" id="6_v01fk"]
 [ext_resource type="Texture2D" uid="uid://dwq6e0fhuh6fq" path="res://resources/sprites/coal/pole_1.png" id="7_a0kgr"]
 [ext_resource type="Texture2D" uid="uid://dku0mi42ncb8c" path="res://resources/sprites/coal/sign_3.png" id="10_iqs1i"]
+[ext_resource type="PackedScene" uid="uid://b6aa5jcihgapw" path="res://environment/parallax/sky.tscn" id="11_c24s1"]
 
 [sub_resource type="Curve2D" id="Curve2D_ffod6"]
 _data = {
@@ -149,6 +150,8 @@ texture = ExtResource("10_iqs1i")
 position = Vector2(0, 550)
 
 [node name="Parallax" type="Node" parent="."]
+
+[node name="Sky" parent="Parallax" instance=ExtResource("11_c24s1")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
 

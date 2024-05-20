@@ -36,11 +36,23 @@ var moving_platform : Node2D:
 var moving_platform_check_needed : bool = false
 
 var facing_direction : int = 1
+var air_actions_enabled : bool = true:
+	set(value):
+		if air_actions_enabled == value:
+			return
+		air_actions_enabled = value
+		remaining_air_actions = 0
 @onready var remaining_air_actions : int = data.max_air_actions:
 	set(value):
-		if remaining_air_actions == value:
-			return
-		remaining_air_actions = clamp(value, 0, data.max_air_actions)
+		print("air action setter received value of ", value)
+		#if remaining_air_actions == value:
+			#print("air actions = ", remaining_air_actions)
+			#return
+		if !air_actions_enabled:
+			remaining_air_actions = 0
+		else:
+			remaining_air_actions = clamp(value, 0, data.max_air_actions)
+		print("AIR ACTIONS = ", remaining_air_actions)
 		if remaining_air_actions >= 1:
 			%AirActionCrow1.visible = true
 		else:
@@ -146,11 +158,12 @@ func check_input():
 func check_environment():
 	if super_state == SuperStates.IN_AIR:
 		if is_on_floor():
-			var floor = get_last_slide_collision().get_collider()
-			if floor is Platform || floor is MovingTileMap:
-				moving_platform = floor
-			super_state = SuperStates.GROUNDED
-	elif super_state == SuperStates.GROUNDED:
+			if get_last_slide_collision():
+				var floor = get_last_slide_collision().get_collider()
+				if floor is Platform || floor is MovingTileMap:
+					moving_platform = floor
+				super_state = SuperStates.GROUNDED
+	elif 	super_state == SuperStates.GROUNDED:
 		if !is_on_floor():
 			super_state = SuperStates.IN_AIR
 
@@ -203,8 +216,10 @@ func can_jump() -> bool:
 	if !jump_input || !jump_button_reset:
 		return false
 	if super_state == SuperStates.GROUNDED || super_state == SuperStates.ON_WALL:
+		print("Jump approved because ground or wall")
 		return true
 	if !$CoyoteTime.is_stopped() || remaining_air_actions > 0:
+		print("Jump approved because coyote or air actions. Air actions = ", remaining_air_actions)
 		return true
 	return false
 

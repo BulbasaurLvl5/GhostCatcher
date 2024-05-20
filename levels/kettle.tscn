@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6dmejexivdkb"]
+[gd_scene load_steps=13 format=3 uid="uid://c6dmejexivdkb"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_n3frc"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_4yygn"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://environment/platforms/wide_platform_01.tscn" id="5_fqls5"]
 [ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_j025p"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_5wt2a"]
+[ext_resource type="PackedScene" uid="uid://b6aa5jcihgapw" path="res://environment/parallax/sky.tscn" id="7_ai13t"]
 
 [sub_resource type="Curve2D" id="Curve2D_cwwoq"]
 _data = {
@@ -139,6 +140,8 @@ collision_layer = 5
 position = Vector2(0, 550)
 
 [node name="Parallax" type="Node" parent="."]
+
+[node name="Sky" parent="Parallax" instance=ExtResource("7_ai13t")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
 

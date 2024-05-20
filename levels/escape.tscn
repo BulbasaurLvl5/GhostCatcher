@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://wfp31honksif"]
+[gd_scene load_steps=13 format=3 uid="uid://wfp31honksif"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_iwysr"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_uxj5u"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://environment/spikes_small.tscn" id="5_n4qme"]
 [ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://environment/spikes_medium.tscn" id="6_lqk0t"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_n3p1v"]
+[ext_resource type="PackedScene" uid="uid://b6aa5jcihgapw" path="res://environment/parallax/sky.tscn" id="8_06l2m"]
 
 [sub_resource type="Animation" id="Animation_u8sss"]
 resource_name = "moveright"
@@ -189,6 +190,8 @@ libraries = {
 autoplay = "moveright"
 
 [node name="Parallax" type="Node" parent="."]
+
+[node name="Sky" parent="Parallax" instance=ExtResource("8_06l2m")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
 

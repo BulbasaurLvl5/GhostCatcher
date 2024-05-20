@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctnkgowthunhp"]
+[gd_scene load_steps=10 format=3 uid="uid://ctnkgowthunhp"]
 
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_3843c"]
 [ext_resource type="Script" path="res://main/level.gd" id="1_bcnw3"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://environment/spikes_large.tscn" id="4_htv2b"]
 [ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://environment/spikes_medium.tscn" id="5_dcj2l"]
 [ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="6_eqy5b"]
+[ext_resource type="PackedScene" uid="uid://b6aa5jcihgapw" path="res://environment/parallax/sky.tscn" id="7_0obmh"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="8_6o5rn"]
 
 [node name="Mountainside" type="Node2D"]
@@ -83,6 +84,8 @@ position = Vector2(1115, -459)
 position = Vector2(0, 323)
 
 [node name="Parallax" type="Node" parent="."]
+
+[node name="Sky" parent="Parallax" instance=ExtResource("7_0obmh")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
 

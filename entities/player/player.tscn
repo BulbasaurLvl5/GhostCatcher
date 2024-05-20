@@ -237,7 +237,6 @@ collision_mask = 5
 unique_name_in_owner = true
 
 [node name="AudioListener2D" type="AudioListener2D" parent="SFX"]
-current = true
 
 [node name="Run" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("20_yffpo")

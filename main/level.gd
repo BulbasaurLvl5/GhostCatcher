@@ -17,7 +17,8 @@ const TILE_SIZE : float = 110.0
 			return
 		show_data_in_editor = value
 		queue_redraw()
-		
+@export var air_actions_enabled : bool = true
+
 @export_category("Player Starting Position")
 @export_range(-50.0, 50.0, 0.5, "or_less", "or_greater", "suffix:tiles") var starting_position_x : float = 0.0:
 	set(value):
@@ -64,6 +65,10 @@ var player : Player:
 			player = value
 			#player.position = starting_pos
 			player.level_boundary = level_boundary
+			player.air_actions_enabled = air_actions_enabled
+			if !air_actions_enabled:
+				player.remaining_air_actions = 0
+			print("Player found by level.gd AIR ACTIONS SET TO: ", player.remaining_air_actions)
 var camera : Camera2D:
 	set(value):
 		if camera == value:
