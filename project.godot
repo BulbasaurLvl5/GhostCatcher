@@ -197,6 +197,8 @@ Pause2={
 [parallax_wizard]
 
 parallax/automatically_convert_parallax_nodes=false
+parallax/z_indexes/foreground_min=1000.0
+parallax/z_indexes/background_min=-11.0
 
 [physics]
 

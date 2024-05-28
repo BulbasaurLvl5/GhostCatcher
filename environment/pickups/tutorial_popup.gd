@@ -26,12 +26,14 @@ extends Node2D
 		update_popup()
 
 var appearances : int = 0
-var player_detected : bool = false:
+var player : Player = null:
 	set(value):
-		if player_detected == value:
+		if player == value:
 			return
-		player_detected = value
-		if player_detected && can_activate_popup():
+		player = value
+		if player && can_activate_popup():
+			#player.current_inputs_used
+			%Label_Action.text = ""
 			popup.visible = true
 			appearances += 1
 			if timer && popup_fades:
@@ -69,17 +71,11 @@ func can_activate_popup() -> bool:
 	
 func _on_area_2d_body_entered(body):
 	if body is Player:
-		player_detected = true
+		player = body
 		
-
-		
-
-
-
-
 func _on_area_2d_body_exited(body):
 	if body is Player:
-		player_detected = false
+		player = null
 
 
 func _on_timer_timeout():

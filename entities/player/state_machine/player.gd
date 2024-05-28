@@ -44,7 +44,6 @@ var air_actions_enabled : bool = true:
 		remaining_air_actions = 0
 @onready var remaining_air_actions : int = data.max_air_actions:
 	set(value):
-		print("air action setter received value of ", value)
 		#if remaining_air_actions == value:
 			#print("air actions = ", remaining_air_actions)
 			#return
@@ -52,7 +51,6 @@ var air_actions_enabled : bool = true:
 			remaining_air_actions = 0
 		else:
 			remaining_air_actions = clamp(value, 0, data.max_air_actions)
-		print("AIR ACTIONS = ", remaining_air_actions)
 		if remaining_air_actions >= 1:
 			%AirActionCrow1.visible = true
 		else:
@@ -61,6 +59,18 @@ var air_actions_enabled : bool = true:
 			%AirActionCrow2.visible = true
 		else:
 			%AirActionCrow2.visible = false
+var is_in_toxic_gas : bool = false:
+	set(value):
+		if is_in_toxic_gas == value:
+			return
+		is_in_toxic_gas = value
+		if is_in_toxic_gas:
+			%ToxicGasTimer.start(data.max_time_in_toxic_gas)
+			%ToxicGasLabel.visible = true
+		else:
+			%ToxicGasTimer.stop()
+			%ToxicGasLabel.visible = false
+
 
 var x_input : int = 0
 var y_input : int = 0
@@ -70,6 +80,7 @@ var dash_input : bool = false
 var dash_button_reset : bool = true
 var stomp_input : bool = false
 var stomp_input_reset : bool = true
+var current_inputs_used : int = 1 #This keeps track of which set of inputs the player is currently using
 
 var last_dash_time : float = 0
 var height_fallen_from : float = 0
@@ -95,6 +106,8 @@ func _process(_delta):
 		check_canvas_mod()
 	check_input()
 	check_environment()
+	if is_in_toxic_gas:
+		%ToxicGasLabel.text = str(int(%ToxicGasTimer.time_left) + 1)
 
 
 func check_canvas_mod():
@@ -122,32 +135,64 @@ func pause_game():
 
 func check_input():
 	if Input.is_action_pressed("Pause1") || Input.is_action_pressed(("Pause2")):
+		if Input.is_action_pressed("Pause1"):
+			current_inputs_used = 1
+		else:
+			current_inputs_used = 2
 		pause_game()
 	
 	x_input = 0
 	y_input = 0
 	if Input.is_action_pressed("Left1") || Input.is_action_pressed("Left2"):
+		if Input.is_action_pressed("Left1"):
+			current_inputs_used = 1
+		else:
+			current_inputs_used = 2
 		x_input -= 1
 	if Input.is_action_pressed("Right1") || Input.is_action_pressed("Right2"):
+		if Input.is_action_pressed("Right1"):
+			current_inputs_used = 1
+		else:
+			current_inputs_used = 2
 		x_input += 1
 	if Input.is_action_pressed("Up1") || Input.is_action_pressed("Up2"):
+		if Input.is_action_pressed("Up1"):
+			current_inputs_used = 1
+		else:
+			current_inputs_used = 2
 		y_input -= 1
 	if Input.is_action_pressed("Down1") || Input.is_action_pressed("Down2"):
+		if Input.is_action_pressed("Down1"):
+			current_inputs_used = 1
+		else:
+			current_inputs_used = 2
 		y_input += 1
 		
 	if Input.is_action_pressed("Jump1") || Input.is_action_pressed("Jump2"):
+		if Input.is_action_pressed("Jump1"):
+			current_inputs_used = 1
+		else:
+			current_inputs_used = 2
 		jump_input = true
 	else:
 		jump_input = false
 		if !jump_button_reset:
 			jump_button_reset = true
 	if Input.is_action_pressed("Dash1") || Input.is_action_pressed("Dash2"):
+		if Input.is_action_pressed("Dash1"):
+			current_inputs_used = 1
+		else:
+			current_inputs_used = 2
 		dash_input = true	
 	else:
 		dash_input = false
 		if !dash_button_reset:
 			dash_button_reset = true
 	if Input.is_action_pressed("Stomp1") || Input.is_action_pressed("Stomp2"):
+		if Input.is_action_pressed("Stomp1"):
+			current_inputs_used = 1
+		else:
+			current_inputs_used = 2
 		stomp_input = true	
 	else:
 		stomp_input = false
@@ -216,10 +261,8 @@ func can_jump() -> bool:
 	if !jump_input || !jump_button_reset:
 		return false
 	if super_state == SuperStates.GROUNDED || super_state == SuperStates.ON_WALL:
-		print("Jump approved because ground or wall")
 		return true
 	if !$CoyoteTime.is_stopped() || remaining_air_actions > 0:
-		print("Jump approved because coyote or air actions. Air actions = ", remaining_air_actions)
 		return true
 	return false
 
@@ -300,3 +343,8 @@ func move():
 		#else:
 			#all_children.append(c)
 	#return all_children
+
+
+func _on_toxic_gas_timer_timeout():
+	#TODO: Try to call _main.FailLevel()
+	$"../../..".FailLevel("pit")

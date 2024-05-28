@@ -68,7 +68,6 @@ var player : Player:
 			player.air_actions_enabled = air_actions_enabled
 			if !air_actions_enabled:
 				player.remaining_air_actions = 0
-			print("Player found by level.gd AIR ACTIONS SET TO: ", player.remaining_air_actions)
 var camera : Camera2D:
 	set(value):
 		if camera == value:

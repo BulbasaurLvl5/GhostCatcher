@@ -33,3 +33,6 @@ extends Resource
 @export var dash_recovery_time : float = 0.1
 @export var dash_hold_multiplier : float = 2.0
 @export var ground_dash_cooldown : float = 2.0
+
+@export_group("Various")
+@export var max_time_in_toxic_gas : float = 10.0
