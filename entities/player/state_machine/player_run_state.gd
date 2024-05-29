@@ -21,7 +21,8 @@ func Enter(from : PlayerState = null):
 		current_speed = data.min_run_speed * player.x_input
 	else:
 		current_speed = data.in_air_horizontal_speed * player.x_input
-	
+	player.landed.emit()
+
 
 func Do_Checks():
 	Flip_Player()

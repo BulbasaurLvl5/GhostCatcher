@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://csnkj00bl5kkx"]
+
+[ext_resource type="Script" path="res://resources/cutscenes/death.gd" id="1_f2i6o"]
+[ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://resources/sprites/coal/reaper_cutout.png" id="1_l7dp6"]
+[ext_resource type="Texture2D" uid="uid://ci8b2b4sodqk0" path="res://resources/sprites/simple_arrow.png" id="3_d5nyc"]
+[ext_resource type="FontFile" uid="uid://d4c1116f71por" path="res://resources/fonts/0xProto-Regular.ttf" id="3_tvjev"]
+[ext_resource type="Script" path="res://resources/cutscenes/blinking_arrow.gd" id="4_70lg6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kexb8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_l7dp6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Death" type="Node2D" node_paths=PackedStringArray("message_bubble_node", "quote_node", "arrow_node")]
+script = ExtResource("1_f2i6o")
+message_bubble_node = NodePath("MessageBubble")
+quote_node = NodePath("MessageBubble/Quote")
+arrow_node = NodePath("MessageBubble/Arrow")
+quote = "Don't say I never did anything for you."
+quote_set = 1
+quote_index = 6
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_kexb8")
+
+[node name="MessageBubble" type="Node2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-523, -507)
+
+[node name="TextBack" type="Polygon2D" parent="MessageBubble"]
+position = Vector2(683, 55)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-105, 58, -9, 318, 588, 353, 580, 46)
+
+[node name="DeathBack1" type="Polygon2D" parent="MessageBubble"]
+position = Vector2(666, -58.2051)
+scale = Vector2(1.09524, 1.17949)
+color = Color(0.617188, 0.578125, 0.582031, 1)
+polygon = PackedVector2Array(-66, 110, -105, 146, -45, 185, 124, 180, 168, 107)
+
+[node name="DeathBack2" type="Polygon2D" parent="MessageBubble"]
+position = Vector2(669, -32)
+color = Color(0.175781, 0.121094, 0.109375, 1)
+polygon = PackedVector2Array(-66, 110, -105, 146, -45, 185, 124, 180, 168, 107)
+
+[node name="DEATH" type="Label" parent="MessageBubble"]
+offset_left = 618.0
+offset_top = 79.0
+offset_right = 775.0
+offset_bottom = 149.0
+theme_override_colors/font_color = Color(0.619608, 0.580392, 0.584314, 1)
+theme_override_font_sizes/font_size = 48
+text = "DEATH"
+
+[node name="Quote" type="Label" parent="MessageBubble"]
+unique_name_in_owner = true
+offset_left = 695.0
+offset_top = 148.0
+offset_right = 1242.0
+offset_bottom = 380.0
+theme_override_fonts/font = ExtResource("3_tvjev")
+theme_override_font_sizes/font_size = 48
+text = "Don't say I never did anything for you."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Arrow" type="Sprite2D" parent="MessageBubble"]
+unique_name_in_owner = true
+self_modulate = Color(0.529067, 0.529067, 0.529067, 1)
+position = Vector2(1233, 378)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_d5nyc")
+script = ExtResource("4_70lg6")

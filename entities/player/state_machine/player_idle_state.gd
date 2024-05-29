@@ -8,6 +8,7 @@ var timer : float = 42.0
 func Enter(_from : PlayerState = null):
 	anim.play("idle")
 	player.stop_motion()
+	player.landed.emit()
 	
 	
 func Do_Checks():

@@ -32,8 +32,8 @@ var camera : Camera2D:
 func _ready():
 	canvas = CanvasLayer.new()
 	add_child(canvas)
-	var w = ProjectSettings.get_setting("display/window/size/viewport_width")
-	var h = ProjectSettings.get_setting("display/window/size/viewport_height")
+	var w = ProjectSettings.get_setting("display/window/size/viewport_width") * 1.5
+	var h = ProjectSettings.get_setting("display/window/size/viewport_height") * 1.5
 	viewport_size = Vector2(w, h)
 	add_to_group("radar_2d")
 

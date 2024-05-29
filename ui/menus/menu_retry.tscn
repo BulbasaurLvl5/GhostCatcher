@@ -175,7 +175,6 @@ self_modulate = Color(0.650128, 0.650128, 0.650128, 1)
 texture = ExtResource("2_bnm5d")
 
 [node name="death" type="Node2D" parent="."]
-visible = false
 
 [node name="Death" type="TextureRect" parent="death"]
 offset_left = 39.0

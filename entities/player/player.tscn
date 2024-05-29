@@ -121,6 +121,7 @@ script = ExtResource("16_hlspe")
 
 [node name="Crows_Path2D" type="Path2D" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 position = Vector2(-1, -21)
 curve = SubResource("Curve2D_arbo3")
 
@@ -143,6 +144,7 @@ unique_name_in_owner = true
 light_mask = 32
 visibility_layer = 0
 scale = Vector2(0.4, 0.4)
+energy = 5.0
 range_item_cull_mask = 32
 texture = ExtResource("30_up3vm")
 
@@ -165,6 +167,7 @@ unique_name_in_owner = true
 light_mask = 32
 visibility_layer = 32
 scale = Vector2(0.4, 0.4)
+energy = 5.0
 range_item_cull_mask = 32
 texture = ExtResource("31_y7vy4")
 
@@ -199,9 +202,10 @@ drag_top_margin = 0.4
 drag_right_margin = 0.15
 drag_bottom_margin = 0.3
 script = ExtResource("16_1amk7")
-field_of_view_multiplier = 1.25
+max_zoom_out = 1.0
 
 [node name="Radar2D" type="Node2D" parent="."]
+process_mode = 3
 script = ExtResource("28_tmfgi")
 radar_active = true
 pointer_margin = Vector2(25, 25)

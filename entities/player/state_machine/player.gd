@@ -2,6 +2,9 @@ class_name Player
 extends CharacterBody2D
 
 
+signal landed
+
+
 @export var verbose : bool = false
 @export var verbose_state_changes : bool = false
 @export var verbose_velocity : bool = false
@@ -18,11 +21,11 @@ var super_state : int = SuperStates.IN_AIR:
 			print("PLAYER super_state = ", super_state)
 		if super_state == SuperStates.IN_AIR:
 			moving_platform = null
-			%CrowPointLight2D1.energy = 5.0
-			%CrowPointLight2D2.energy = 5.0
+			#%CrowPointLight2D1.energy = 5.0
+			#%CrowPointLight2D2.energy = 5.0
 		else:
-			%CrowPointLight2D1.energy = 1.0
-			%CrowPointLight2D2.energy = 1.0
+			#%CrowPointLight2D1.energy = 1.0
+			#%CrowPointLight2D2.energy = 1.0
 			remaining_air_actions = data.max_air_actions
 var moving_platform : Node2D:
 	set(value):
@@ -70,7 +73,12 @@ var is_in_toxic_gas : bool = false:
 		else:
 			%ToxicGasTimer.stop()
 			%ToxicGasLabel.visible = false
-
+var radar_enabled : bool = true:
+	set(value):
+		if radar_enabled == value:
+			return
+		radar_enabled = value
+		$Radar2D.radar_active = radar_enabled
 
 var x_input : int = 0
 var y_input : int = 0
@@ -204,11 +212,11 @@ func check_environment():
 	if super_state == SuperStates.IN_AIR:
 		if is_on_floor():
 			if get_last_slide_collision():
-				var floor = get_last_slide_collision().get_collider()
-				if floor is Platform || floor is MovingTileMap:
-					moving_platform = floor
+				var ground = get_last_slide_collision().get_collider()
+				if ground is Platform || ground is MovingTileMap:
+					moving_platform = ground
 				super_state = SuperStates.GROUNDED
-	elif 	super_state == SuperStates.GROUNDED:
+	elif super_state == SuperStates.GROUNDED:
 		if !is_on_floor():
 			super_state = SuperStates.IN_AIR
 
@@ -343,6 +351,18 @@ func move():
 		#else:
 			#all_children.append(c)
 	#return all_children
+
+
+func pan_camera(offset : Vector2, time : float):
+	var tween = get_tree().create_tween()
+	tween.tween_property(%Camera2D, "offset", offset, time)
+
+
+func toggle_camera_process(active : bool):
+	if active:
+		%Camera2D.process_mode = Node.PROCESS_MODE_ALWAYS
+	else:
+		%Camera2D.process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func _on_toxic_gas_timer_timeout():
