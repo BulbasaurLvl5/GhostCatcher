@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://csnkj00bl5kkx"]
 
 [ext_resource type="Script" path="res://resources/cutscenes/death.gd" id="1_f2i6o"]
-[ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://resources/sprites/coal/reaper_cutout.png" id="1_l7dp6"]
+[ext_resource type="Texture2D" uid="uid://c63p5bvc5gem7" path="res://resources/sprites/coal/death.png" id="2_uel66"]
 [ext_resource type="Texture2D" uid="uid://ci8b2b4sodqk0" path="res://resources/sprites/simple_arrow.png" id="3_d5nyc"]
 [ext_resource type="FontFile" uid="uid://d4c1116f71por" path="res://resources/fonts/0xProto-Regular.ttf" id="3_tvjev"]
 [ext_resource type="Script" path="res://resources/cutscenes/blinking_arrow.gd" id="4_70lg6"]
@@ -10,7 +10,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_l7dp6")
+"texture": ExtResource("2_uel66")
 }],
 "loop": true,
 "name": &"default",
@@ -27,7 +27,7 @@ quote_set = 1
 quote_index = 6
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_kexb8")
 
 [node name="MessageBubble" type="Node2D" parent="."]
@@ -75,7 +75,7 @@ autowrap_mode = 3
 
 [node name="Arrow" type="Sprite2D" parent="MessageBubble"]
 unique_name_in_owner = true
-self_modulate = Color(0.529067, 0.529067, 0.529067, 1)
+self_modulate = Color(0.529067, 0.529067, 0.529067, 0)
 position = Vector2(1233, 378)
 rotation = 1.5708
 scale = Vector2(0.5, 0.5)

@@ -23,10 +23,10 @@ func load_button_data_from_settings():
 	var auto_z_indexes = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/set_automatically", true)
 	%CheckBox_AutomaticZ.button_pressed = auto_z_indexes
 	show_z_indexes(auto_z_indexes)
-	%SpinBox_FGZMin.value = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/foreground_max", 1000)
-	%SpinBox_FGZMax.value = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/foreground_min", 11)
-	%SpinBox_BGZMin.value = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/background_max", -11)
-	%SpinBox_BGZMax.value = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/background_min", -1000)
+	%SpinBox_FGZMax.value = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/foreground_max", 1000)
+	%SpinBox_FGZMin.value = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/foreground_min", 11)
+	%SpinBox_BGZMax.value = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/background_max", -11)
+	%SpinBox_BGZMin.value = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/background_min", -1000)
 	%SpinBox_CloudsZ.value = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/clouds", -1001)
 	%SpinBox_SkyZ.value = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/sky", -2000)
 

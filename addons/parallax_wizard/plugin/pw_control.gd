@@ -3,12 +3,8 @@ class_name ParallaxWizardControl
 extends Control
 
 #TODO: all this export info should be saved as a json or something and not be stored here
-#@export var custom_scene_category_names : Array[String]
-#@export var custom_scenes : Array[Array]
-#@export var custom_scene_names : Array[Array]
 
 var pw
-var current_menu_items : Array
 var scroll_locked : bool = false:
 	set(value):
 		if scroll_locked == value:
@@ -75,54 +71,6 @@ var canvas_item_count : int:
 func set_up(pw_instance : Node):
 	pw = pw_instance
 
-	if current_menu_items:
-		current_menu_items.clear()
-	var children = %HBox_Custom_Menus.get_children(true)
-	for c in children:
-		c.queue_free()
-	
-#	#TODO: Here is where I will load the buttons when the data is on JSON
-	var menu_count = 0
-	var total_item_count = 0
-	
-	for n in pw.custom_cat_names:
-		var b = add_custom_button("  " + n + "  ")
-		var p = b.get_popup()
-		var menu_items = pw.custom_items[menu_count]
-		var item_count = 0
-		for i in menu_items:
-			if i is PackedScene:
-				p.add_item(pw.custom_item_names[menu_count][item_count], total_item_count)
-				current_menu_items.append(i)
-				item_count += 1
-				total_item_count += 1
-		#p.add_item("[add existing]", total_item_count)
-		#current_menu_items.append(menu_count * 2)
-		#total_item_count += 1
-		#p.add_item("[create new]", total_item_count)
-		#current_menu_items.append(menu_count * 2 + 1)
-		#total_item_count += 1
-		p.id_pressed.connect(_on_button_custom_item_chosen)
-		menu_count += 1
-		
-	while menu_count < 10:
-		var b = add_custom_button("  CUSTOM " + str(menu_count + 1) + "  ")
-		b.disabled = true
-		menu_count += 1
-	
-
-
-func add_custom_button(text : String) -> MenuButton:
-	var b = MenuButton.new()
-	%HBox_Custom_Menus.add_child(b)
-	b.text = text
-	b.theme = %HBox_Custom_Menus.theme
-	b.flat = false
-	#print(%HBox_Custom_Menus.theme, b.theme)
-	#if button_theme:
-		#b.theme = button_theme
-	return b
-	
 
 func distance_available():
 	if layer_count > 0:
@@ -199,16 +147,7 @@ func _on_button_mode_distance_current_bg_pressed():
 
 
 #MAIN TOOL SIGNAL METHODS
-func _on_button_custom_item_chosen(id : int):
-	var item = current_menu_items[id]
-	if item is PackedScene:
-		pw.add_custom_item(item)
-	#elif item is int:
-		#if (float(item) / 2.0) == int(float(item) / 2.0):
-			#add_existing_scene_to_custom(item / 2)
-		#else:
-			#create_new_scene_for_custom(item - 1 / 2)
-			
+
 func _on_button_settings_pressed():
 	pw.open_settings()
 

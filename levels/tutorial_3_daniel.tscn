@@ -142,8 +142,6 @@ position = Vector2(0, 330)
 z_index = -2000
 position = Vector2(749.179, -1212.57)
 script = ExtResource("5_aaa2h")
-distance = 888.0
-type = 3
 scroll_scale = Vector2(0.01, 0.01)
 limit_begin = Vector2(0, 0)
 limit_end = Vector2(0, 0)
@@ -183,8 +181,6 @@ texture = ExtResource("8_03dii")
 z_index = -2000
 position = Vector2(749.179, -1212.57)
 script = ExtResource("5_aaa2h")
-distance = 888.0
-type = 3
 scroll_scale = Vector2(0.01, 0.01)
 limit_begin = Vector2(0, 0)
 limit_end = Vector2(0, 0)
@@ -193,10 +189,8 @@ screen_offset = Vector2(756.746, -1224.82)
 [node name="Clouds" type="Node2D" parent="Parallax/_sky"]
 visible = false
 z_index = -1001
-position = Vector2(718.909, -1163.57)
+position = Vector2(718.909, -1163.58)
 script = ExtResource("5_aaa2h")
-distance = 777.0
-type = 2
 scroll_scale = Vector2(0.05, 0.05)
 screen_offset = Vector2(756.746, -1224.82)
 
@@ -213,7 +207,6 @@ visible = false
 z_index = -1000
 position = Vector2(681.746, -2203.82)
 script = ExtResource("5_aaa2h")
-distance = 1.0
 scroll_scale = Vector2(0.1, 0.55)
 repeat_size = Vector2(2336, 1652)
 repeat_times = 2
@@ -230,9 +223,8 @@ centered = false
 
 [node name="Mountains" type="Node2D" parent="Parallax"]
 z_index = -1000
-position = Vector2(681.071, -551.167)
+position = Vector2(681.071, -551.169)
 script = ExtResource("5_aaa2h")
-distance = 1.0
 scroll_scale = Vector2(0.1, 0.55)
 limit_begin = Vector2(0, 0)
 limit_end = Vector2(0, 0)
@@ -271,9 +263,8 @@ texture = ExtResource("10_yw7jl")
 
 [node name="HillsFar" type="Node2D" parent="Parallax"]
 z_index = -835
-position = Vector2(567.56, -459.306)
+position = Vector2(567.559, -459.307)
 script = ExtResource("5_aaa2h")
-distance = 0.833333
 scroll_scale = Vector2(0.25, 0.625)
 limit_begin = Vector2(0, 0)
 limit_end = Vector2(0, 0)
@@ -326,9 +317,8 @@ texture = ExtResource("11_pc225")
 
 [node name="HillsNear" type="Node2D" parent="Parallax"]
 z_index = -560
-position = Vector2(378.373, -306.204)
+position = Vector2(378.373, -306.205)
 script = ExtResource("5_aaa2h")
-distance = 0.555556
 scroll_scale = Vector2(0.5, 0.75)
 limit_begin = Vector2(0, 0)
 limit_end = Vector2(0, 0)
@@ -514,7 +504,6 @@ texture = ExtResource("15_uu8es")
 z_index = -376
 position = Vector2(251.996, -203.932)
 script = ExtResource("5_aaa2h")
-distance = 0.37
 scroll_scale = Vector2(0.667, 0.8335)
 limit_begin = Vector2(0, 0)
 limit_end = Vector2(0, 0)
@@ -697,7 +686,6 @@ texture = ExtResource("16_ent3x")
 z_index = -230
 position = Vector2(151.349, -122.482)
 script = ExtResource("5_aaa2h")
-distance = 0.222222
 scroll_scale = Vector2(0.8, 0.9)
 limit_begin = Vector2(0, 0)
 limit_end = Vector2(0, 0)

@@ -87,9 +87,9 @@ func _update_z_index():
 	elif type == Types.CLOUDS:
 		new = ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/clouds")
 	elif distance < 0:
-		new = lerp(ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/foreground_min"), ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/foreground_max"), -distance)
+		new = lerp(int(ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/foreground_min")), int(ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/foreground_max")), -distance)
 	else:
-		new = lerp(ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/background_max"), ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/background_min"), distance)
+		new = lerp(int(ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/background_max")), int(ProjectSettings.get_setting("parallax_wizard/parallax/z_indexes/background_min")), distance)
 	z_index = int(new)
 
 

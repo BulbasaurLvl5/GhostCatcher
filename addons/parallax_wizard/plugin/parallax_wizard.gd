@@ -11,7 +11,6 @@ signal single_node_selected
 #CONSTANTS
 const control_preload = preload("res://addons/parallax_wizard/plugin/pw_control.tscn")
 const settings_preload = preload("res://addons/parallax_wizard/plugin/pw_settings.tscn")
-const custom_preload = preload("res://addons/parallax_wizard/plugin/pw_custom.tscn")
 const crosshairs_preload = preload("res://addons/parallax_wizard/plugin/pw_crosshairs_1080.png")
 const crosshairs_color : Color = Color(Color.CRIMSON, 128)
 const crosshairs_z_index : int = 3000
@@ -637,13 +636,6 @@ func open_settings():
 	get_tree().root.add_child(settings_scene)
 	if !settings_scene.restore_defaults.is_connected(_on_settings_restore_defaults):
 		settings_scene.restore_defaults.connect(_on_settings_restore_defaults)
-
-
-func open_custom_edit_menu():
-	custom_scene = custom_preload.instantiate()
-	get_tree().root.add_child(custom_scene)
-	custom_scene.set_up(self)
-	single_node_selected.connect(custom_scene.set_single_node)
 
 
 func rgb_to_hsl(rgb : Color) -> Dictionary:

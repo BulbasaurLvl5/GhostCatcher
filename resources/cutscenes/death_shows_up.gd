@@ -78,7 +78,8 @@ func _on_area_2d_body_entered(body):
 		
 		
 func on_player_landed():
-	player.landed.disconnect(on_player_landed)
+	if player.landed.is_connected(on_player_landed):
+		player.landed.disconnect(on_player_landed)
 	player.process_mode = Node.PROCESS_MODE_DISABLED
 	await get_tree().create_timer(1.0).timeout
 	if scene == Scenes.first_meeting:
@@ -86,6 +87,6 @@ func on_player_landed():
 		player.pan_camera(Vector2(500, 0), 1.0)
 	elif scene == Scenes.getting_crows:
 		death_node.death_moves(Vector2(-350, -100), 2.5)
-		await death_node.position == Vector2(-350, -100)
+		await get_tree().create_timer(2.5).timeout
 	death_node.message_bubble_on = true
 	dialogue_started = true
