@@ -164,6 +164,7 @@ public partial class Main : Node
 		Player().ProcessMode = ProcessModeEnum.Disabled;
 		OnLevelSucceed?.Invoke();
 		Failed = false;
+		FileIO.Save(true, LevelLoader.Levels[Level].ReturnScore(_levelTime.Time));
 	}
 
 	public void FailLevel(CauseOfDeath causeOfDeath)
@@ -174,6 +175,7 @@ public partial class Main : Node
 		Player().ProcessMode = ProcessModeEnum.Disabled;
 		OnLevelFail?.Invoke();
 		Failed = true;
+		FileIO.Save(false, 0);
 	}
 
 	public Node Player()
