@@ -88,8 +88,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1bom"]
-radius = 39.0
-height = 116.0
+radius = 44.0
+height = 140.0
 
 [sub_resource type="Gradient" id="Gradient_m56u2"]
 offsets = PackedFloat32Array(0, 0.696221)
@@ -136,11 +136,13 @@ libraries = {
 autoplay = "updown"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -5)
 shape = SubResource("CapsuleShape2D_k1bom")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 light_mask = 0
 visibility_layer = 0
+position = Vector2(-1, -5)
 energy = 0.88
 range_item_cull_mask = 8
 texture = SubResource("GradientTexture2D_77yvn")
