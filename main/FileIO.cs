@@ -74,8 +74,7 @@ public static class FileIO
 
 		public Dictionary<CauseOfDeath, int> DeathCount{get; set;}
 
-		public bool IsLastLevelSuccess {get; set;}
-		public int LastLevelRating {get; set;}
+		public Main.QUOTE_SETS quote_set {get; set;}
 	}
 
 	public static void Save(int lvl, double time)
@@ -107,15 +106,14 @@ public static class FileIO
 		File.WriteAllText(_filepath, _jsonString);
 	}
 
-	public static void Save(bool success, int rating)
+	public static void Save(Main.QUOTE_SETS quote)
 	{
 		string _filepath = _baseSavePath + "Save" + ".json";
 		GD.Print("saved end state to: "+_filepath);
 
 		SaveGame _save = Load();
 
-		_save.IsLastLevelSuccess = success;
-		_save.LastLevelRating = rating;
+		_save.quote_set = quote;
 
 		string _jsonString = JsonSerializer.Serialize(_save);
 		File.WriteAllText(_filepath, _jsonString);
