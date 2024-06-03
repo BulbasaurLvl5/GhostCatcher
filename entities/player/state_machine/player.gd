@@ -9,7 +9,7 @@ signal landed
 @export var verbose_state_changes : bool = false
 @export var verbose_velocity : bool = false
 @export var data : PlayerDataResource 
-@export var canvas_mod_node : PackedScene
+#@export var canvas_mod_node : PackedScene
 
 enum SuperStates {IN_AIR, GROUNDED, ON_WALL}
 var super_state : int = SuperStates.IN_AIR:
@@ -97,36 +97,36 @@ var heavy_landing_factor : float = 0
 var level_boundary : Rect2:
 	set(value):
 		level_boundary = value
-var canvas_mod_dispatched : bool = false
+#var canvas_mod_dispatched : bool = false
 
 
-func _enter_tree():
-	check_canvas_mod()
+#func _enter_tree():
+	#check_canvas_mod()
 
 
-func _ready():
-	if !canvas_mod_dispatched:
-		check_canvas_mod()
+#func _ready():
+	#if !canvas_mod_dispatched:
+		#check_canvas_mod()
 
 
 func _process(_delta):
-	if !canvas_mod_dispatched:
-		check_canvas_mod()
+	#if !canvas_mod_dispatched:
+		#check_canvas_mod()
 	check_input()
 	check_environment()
 	if is_in_toxic_gas:
 		%ToxicGasLabel.text = str(int(%ToxicGasTimer.time_left) + 1)
 
 
-func check_canvas_mod():
-	var children = $"..".get_children()
-	for c in children:
-		if c is CanvasMod:
-			return
-	if children:
-		var canvas_mod = canvas_mod_node.instantiate()
-		$"..".add_child.call_deferred(canvas_mod)
-		canvas_mod_dispatched = true
+#func check_canvas_mod():
+	#var children = $"..".get_children()
+	#for c in children:
+		#if c is CanvasMod:
+			#return
+	#if children:
+		#var canvas_mod = canvas_mod_node.instantiate()
+		#$"..".add_child.call_deferred(canvas_mod)
+		#canvas_mod_dispatched = true
 
 
 func pause_game():

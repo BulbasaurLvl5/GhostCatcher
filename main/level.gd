@@ -2,7 +2,6 @@
 class_name Level
 extends Node2D
 
-
 const TILE_SIZE : float = 110.0
 
 @export var level_name : String:
@@ -20,16 +19,30 @@ const TILE_SIZE : float = 110.0
 @export var air_actions_enabled : bool = true
 @export var radar_enabled : bool = true
 
-@export_category("Player Starting Position")
-@export_range(-50.0, 50.0, 0.5, "or_less", "or_greater", "suffix:tiles") var starting_position_x : float = 0.0:
+#@export_category("Player Starting Position")
+#@export_range(-50.0, 50.0, 0.5, "or_less", "or_greater", "suffix:tiles") var starting_position_x : float = 0.0:
+	#set(value):
+		#starting_position_x = value
+		#calculate_starting_pos()
+#@export_range(-50.0, 50.0, 0.5, "or_less", "or_greater", "suffix:tiles") var starting_position_y : float = 0.0:
+	#set(value):
+		#starting_position_y = value
+		#calculate_starting_pos()
+#@export var flip_player_direction : bool = false
+
+@export_category("Lighting")
+@export_range(0.0, 1.0, 0.01) var light_level : float = 0.5:
 	set(value):
-		starting_position_x = value
-		calculate_starting_pos()
-@export_range(-50.0, 50.0, 0.5, "or_less", "or_greater", "suffix:tiles") var starting_position_y : float = 0.0:
+		if light_level == value:
+			return
+		light_level = clampf(value, 0.0, 1.0)
+		adjust_lighting()
+@export var show_lighting_in_editor : bool = false:
 	set(value):
-		starting_position_y = value
-		calculate_starting_pos()
-@export var flip_player_direction : bool = false
+		if show_lighting_in_editor == value:
+			return
+		show_lighting_in_editor = value
+		adjust_lighting()
 
 @export_category("Level Boundary")
 @export_range(-100.0, 0.0, 0.5, "or_less", "or_greater", "suffix:tiles") var top_boundary : float = -50.0:
@@ -77,6 +90,8 @@ var camera : Camera2D:
 		else:
 			camera = value
 			camera.level_boundary = level_boundary
+var canvas_mod : CanvasModulate
+
 
 
 func calculate_boundary():
@@ -84,9 +99,9 @@ func calculate_boundary():
 	show_data_in_editor = true
 
 
-func calculate_starting_pos():
-	starting_pos = Vector2(starting_position_x * TILE_SIZE, starting_position_y * TILE_SIZE)
-	show_data_in_editor = true
+#func calculate_starting_pos():
+	#starting_pos = Vector2(starting_position_x * TILE_SIZE, starting_position_y * TILE_SIZE)
+	#show_data_in_editor = true
 
 
 func _enter_tree():
@@ -104,6 +119,8 @@ func _ready():
 		level_name = name
 		renamed.connect(_on_renamed)
 		show_data_in_editor = false
+		
+	adjust_lighting()
 
 
 func _process(_delta):
@@ -123,6 +140,24 @@ func _draw():
 		draw_rect(Rect2(starting_pos.x - (TILE_SIZE * 1.5), starting_pos.y - (TILE_SIZE * 1.5), (TILE_SIZE * 3.0), (TILE_SIZE * 3.0)), Color(Color.FUCHSIA, 0.25))
 	else:
 		pass
+
+
+func adjust_lighting():
+	if !canvas_mod:
+		canvas_mod = CanvasModulate.new()
+		add_child(canvas_mod)
+	
+	var lights = get_tree().get_nodes_in_group("player_light")
+	lights.append_array(get_tree().get_nodes_in_group("ghost_lights"))
+	if Engine.is_editor_hint() && !show_lighting_in_editor:
+		canvas_mod.color = Color.WHITE
+		for light in lights:
+			light.energy = 0.0
+	else:	
+		var brightness = lerpf(0.5, 1.0, light_level)
+		canvas_mod.color = Color(brightness, brightness, brightness)
+		for light in lights:
+			light.energy = 1.0 - light_level
 
 
 func search_scene():

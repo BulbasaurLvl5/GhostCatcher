@@ -139,7 +139,7 @@ autoplay = "updown"
 position = Vector2(1, -5)
 shape = SubResource("CapsuleShape2D_k1bom")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." groups=["ghost_lights"]]
 light_mask = 0
 visibility_layer = 0
 position = Vector2(-1, -5)
