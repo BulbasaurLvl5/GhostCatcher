@@ -212,6 +212,13 @@ theme_override_constants/separation = 10
 [node name="VBox_UpperMiddle" type="VBoxContainer" parent="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox"]
 layout_mode = 2
 
+[node name="Label_Title" type="Label" parent="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/VBox_UpperMiddle"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.980392, 0.827451, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "PARALLAX WIZARD"
+horizontal_alignment = 1
+
 [node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/VBox_UpperMiddle"]
 layout_mode = 2
 follow_focus = true
@@ -227,12 +234,22 @@ alignment = 1
 [node name="HBox_Top" type="HBoxContainer" parent="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/VBox_UpperMiddle"]
 layout_mode = 2
 
-[node name="Button_Settings" type="Button" parent="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/VBox_UpperMiddle/HBox_Top"]
+[node name="MenuButton_AddLayer" type="MenuButton" parent="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/VBox_UpperMiddle/HBox_Top"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
-text = "SETTINGS"
+theme = ExtResource("3_fjqw6")
+text = "ADD LAYER"
+flat = false
+item_count = 4
+popup/item_0/text = "DEFAULT"
+popup/item_0/id = 0
+popup/item_1/text = "HAZE"
+popup/item_1/id = 1
+popup/item_2/text = "CLOUDS"
+popup/item_2/id = 2
+popup/item_3/text = "STARS / SUN "
+popup/item_3/id = 3
 
 [node name="Button_Convert" type="Button" parent="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/VBox_UpperMiddle/HBox_Top"]
 unique_name_in_owner = true
@@ -240,20 +257,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_fjqw6")
 text = "CONVERT / REFRESH"
-
-[node name="Button_EditCustom" type="Button" parent="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/VBox_UpperMiddle/HBox_Top"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-text = "EDIT CUSTOM"
-
-[node name="Label_Title" type="Label" parent="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.980392, 0.827451, 0, 1)
-theme_override_font_sizes/font_size = 35
-text = "PARALLAX WIZARD"
-horizontal_alignment = 1
 
 [node name="HBox_Bottom" type="HBoxContainer" parent="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox"]
 layout_mode = 2
@@ -273,35 +276,12 @@ text = "SCROLL LOCK"
 icon_alignment = 1
 expand_icon = true
 
-[node name="MenuButton_AddLayer" type="MenuButton" parent="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/HBox_Bottom"]
+[node name="Button_Settings" type="Button" parent="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/HBox_Bottom"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("3_fjqw6")
-text = "ADD LAYER"
-flat = false
-item_count = 4
-popup/item_0/text = "DEFAULT"
-popup/item_0/id = 0
-popup/item_1/text = "HAZE"
-popup/item_1/id = 1
-popup/item_2/text = "CLOUDS"
-popup/item_2/id = 2
-popup/item_3/text = "STARS / SUN "
-popup/item_3/id = 3
-
-[node name="CheckBox_ColorTool" type="Button" parent="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/HBox_Bottom"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_colors/font_pressed_color = Color(0.403922, 0.741176, 0.976471, 1)
-theme_override_constants/outline_size = 0
-theme_override_constants/h_separation = 20
-toggle_mode = true
-text = "COLOR TOOL"
-icon_alignment = 1
-expand_icon = true
+size_flags_vertical = 4
+text = "SETTINGS"
 
 [node name="HSlider_Scroll" type="HSlider" parent="ScrollContainer/BoxContainer/MainControls/HBox/VBox"]
 unique_name_in_owner = true
@@ -312,191 +292,6 @@ max_value = 1.0
 step = 0.0
 value = -1.0
 editable = false
-
-[node name="ColorTool" type="MarginContainer" parent="ScrollContainer/BoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBox" type="VBoxContainer" parent="ScrollContainer/BoxContainer/ColorTool"]
-layout_mode = 2
-
-[node name="VBox" type="VBoxContainer" parent="ScrollContainer/BoxContainer/ColorTool/VBox"]
-layout_mode = 2
-
-[node name="HBox" type="HBoxContainer" parent="ScrollContainer/BoxContainer/ColorTool/VBox/VBox"]
-layout_mode = 2
-theme_override_constants/separation = 8
-alignment = 1
-
-[node name="Label_Modulate" type="Label" parent="ScrollContainer/BoxContainer/ColorTool/VBox/VBox/HBox"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.423529, 0.94902, 0.992157, 1)
-theme_override_constants/line_spacing = -3
-theme_override_font_sizes/font_size = 35
-text = "MOD"
-horizontal_alignment = 2
-
-[node name="Label_Parameter" type="Label" parent="ScrollContainer/BoxContainer/ColorTool/VBox/VBox/HBox"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.423529, 0.94902, 0.992157, 1)
-theme_override_constants/line_spacing = -3
-theme_override_font_sizes/font_size = 35
-text = "HUE"
-
-[node name="Grid" type="GridContainer" parent="ScrollContainer/BoxContainer/ColorTool/VBox/VBox"]
-layout_mode = 2
-size_flags_vertical = 10
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = -8
-columns = 3
-
-[node name="Label" type="Label" parent="ScrollContainer/BoxContainer/ColorTool/VBox/VBox/Grid"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Affecting"
-horizontal_alignment = 2
-
-[node name="CanvasItemCount" type="Label" parent="ScrollContainer/BoxContainer/ColorTool/VBox/VBox/Grid"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 0, 1)
-layout_mode = 2
-size_flags_horizontal = 0
-text = "0"
-horizontal_alignment = 1
-
-[node name="Label_CanvasItems" type="Label" parent="ScrollContainer/BoxContainer/ColorTool/VBox/VBox/Grid"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "CanvasItems"
-
-[node name="HBox_Slider" type="HBoxContainer" parent="ScrollContainer/BoxContainer/ColorTool/VBox"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label_MinColor" type="Label" parent="ScrollContainer/BoxContainer/ColorTool/VBox/HBox_Slider"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Min"
-
-[node name="Slider_Color" type="HSlider" parent="ScrollContainer/BoxContainer/ColorTool/VBox/HBox_Slider"]
-unique_name_in_owner = true
-modulate = Color(0.423529, 0.94902, 0.992157, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 1.0
-step = 0.0
-value = 0.5
-editable = false
-
-[node name="Label_MaxColor" type="Label" parent="ScrollContainer/BoxContainer/ColorTool/VBox/HBox_Slider"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Max"
-
-[node name="GridContainer" type="GridContainer" parent="ScrollContainer/BoxContainer/ColorTool/VBox"]
-layout_mode = 2
-theme_override_constants/h_separation = 10
-columns = 2
-
-[node name="Label" type="Label" parent="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer"]
-layout_mode = 2
-text = "Color to Edit:"
-
-[node name="OptionButton_Edit" type="OptionButton" parent="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-disabled = true
-item_count = 2
-selected = 0
-fit_to_longest_item = false
-popup/item_0/text = "Modulate"
-popup/item_0/id = 0
-popup/item_1/text = "Self-Modulate"
-popup/item_1/id = 1
-
-[node name="Label2" type="Label" parent="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer"]
-layout_mode = 2
-text = "Parameter: "
-
-[node name="OptionButton_Parameter" type="OptionButton" parent="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 0.992157, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-disabled = true
-item_count = 7
-selected = 0
-popup/item_0/text = "Hue"
-popup/item_0/id = 0
-popup/item_1/text = "Saturation"
-popup/item_1/id = 1
-popup/item_2/text = "Lightness"
-popup/item_2/id = 2
-popup/item_3/text = "Alpha"
-popup/item_3/id = 3
-popup/item_4/text = "Red"
-popup/item_4/id = 4
-popup/item_5/text = "Green"
-popup/item_5/id = 5
-popup/item_6/text = "Blue"
-popup/item_6/id = 6
-
-[node name="Label3" type="Label" parent="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer"]
-layout_mode = 2
-text = "Shift Mode:"
-
-[node name="HBox" type="HBoxContainer" parent="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 15
-
-[node name="OptionButton_ModeColor" type="OptionButton" parent="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/HBox"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-disabled = true
-item_count = 5
-selected = 1
-popup/item_0/text = "Relative to 0"
-popup/item_0/id = 0
-popup/item_1/text = "Relative to 1"
-popup/item_1/id = 1
-popup/item_2/text = "Relative to Custom Value"
-popup/item_2/id = 2
-popup/item_3/text = "Linear"
-popup/item_3/id = 3
-popup/item_4/text = "Override"
-popup/item_4/id = 4
-
-[node name="SpinBox_ModeColor" type="SpinBox" parent="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/HBox"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 1.0
-step = 0.0
-value = 0.5
-custom_arrow_step = 0.05
-
-[node name="Button_ModeColorCurrentNode" type="Button" parent="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/HBox"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-disabled = true
-text = "Set to Current Node"
 
 [connection signal="mouse_entered" from="ScrollContainer/BoxContainer/DistanceTool" to="." method="_on_distance_hover_entered"]
 [connection signal="mouse_exited" from="ScrollContainer/BoxContainer/DistanceTool" to="." method="_on_hover_exited"]
@@ -514,31 +309,10 @@ text = "Set to Current Node"
 [connection signal="drag_ended" from="ScrollContainer/BoxContainer/MainControls/HBox/VBox_Slider/VSlider_Scroll" to="." method="_on_scroll_lock_drag_ended"]
 [connection signal="drag_started" from="ScrollContainer/BoxContainer/MainControls/HBox/VBox_Slider/VSlider_Scroll" to="." method="_on_scroll_lock_drag_started"]
 [connection signal="value_changed" from="ScrollContainer/BoxContainer/MainControls/HBox/VBox_Slider/VSlider_Scroll" to="." method="_on_v_slider_scroll_value_changed"]
-[connection signal="pressed" from="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/VBox_UpperMiddle/HBox_Top/Button_Settings" to="." method="_on_button_settings_pressed"]
+[connection signal="about_to_popup" from="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/VBox_UpperMiddle/HBox_Top/MenuButton_AddLayer" to="." method="_on_menu_button_add_layer_about_to_popup"]
 [connection signal="pressed" from="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/VBox_UpperMiddle/HBox_Top/Button_Convert" to="." method="_on_button_convert_pressed"]
-[connection signal="pressed" from="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/VBox_UpperMiddle/HBox_Top/Button_EditCustom" to="." method="_on_button_edit_custom_pressed"]
 [connection signal="toggled" from="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/HBox_Bottom/CheckBox_ScrollLock" to="." method="_on_check_box_scroll_lock_toggled"]
-[connection signal="about_to_popup" from="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/HBox_Bottom/MenuButton_AddLayer" to="." method="_on_menu_button_add_layer_about_to_popup"]
-[connection signal="toggled" from="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/HBox_Bottom/CheckBox_ColorTool" to="." method="_on_check_box_color_tool_toggled"]
+[connection signal="pressed" from="ScrollContainer/BoxContainer/MainControls/HBox/VBox/Margin/VBox/HBox_Bottom/Button_Settings" to="." method="_on_button_settings_pressed"]
 [connection signal="drag_ended" from="ScrollContainer/BoxContainer/MainControls/HBox/VBox/HSlider_Scroll" to="." method="_on_scroll_lock_drag_ended"]
 [connection signal="drag_started" from="ScrollContainer/BoxContainer/MainControls/HBox/VBox/HSlider_Scroll" to="." method="_on_scroll_lock_drag_started"]
 [connection signal="value_changed" from="ScrollContainer/BoxContainer/MainControls/HBox/VBox/HSlider_Scroll" to="." method="_on_h_slider_scroll_value_changed"]
-[connection signal="mouse_entered" from="ScrollContainer/BoxContainer/ColorTool" to="." method="_on_color_hover_entered"]
-[connection signal="mouse_exited" from="ScrollContainer/BoxContainer/ColorTool" to="." method="_on_hover_exited"]
-[connection signal="drag_ended" from="ScrollContainer/BoxContainer/ColorTool/VBox/HBox_Slider/Slider_Color" to="." method="_on_slider_color_drag_ended"]
-[connection signal="drag_started" from="ScrollContainer/BoxContainer/ColorTool/VBox/HBox_Slider/Slider_Color" to="." method="_on_slider_color_drag_started"]
-[connection signal="mouse_entered" from="ScrollContainer/BoxContainer/ColorTool/VBox/HBox_Slider/Slider_Color" to="." method="_on_color_hover_entered"]
-[connection signal="mouse_exited" from="ScrollContainer/BoxContainer/ColorTool/VBox/HBox_Slider/Slider_Color" to="." method="_on_hover_exited"]
-[connection signal="value_changed" from="ScrollContainer/BoxContainer/ColorTool/VBox/HBox_Slider/Slider_Color" to="." method="_on_slider_color_value_changed"]
-[connection signal="item_selected" from="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/OptionButton_Edit" to="." method="_on_option_button_edit_item_selected"]
-[connection signal="mouse_entered" from="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/OptionButton_Edit" to="." method="_on_color_hover_entered"]
-[connection signal="mouse_exited" from="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/OptionButton_Edit" to="." method="_on_hover_exited"]
-[connection signal="item_selected" from="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/OptionButton_Parameter" to="." method="_on_option_button_parameter_item_selected"]
-[connection signal="mouse_entered" from="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/OptionButton_Parameter" to="." method="_on_color_hover_entered"]
-[connection signal="mouse_exited" from="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/OptionButton_Parameter" to="." method="_on_hover_exited"]
-[connection signal="item_selected" from="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/HBox/OptionButton_ModeColor" to="." method="_on_option_button_mode_color_item_selected"]
-[connection signal="mouse_entered" from="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/HBox/OptionButton_ModeColor" to="." method="_on_color_hover_entered"]
-[connection signal="mouse_exited" from="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/HBox/OptionButton_ModeColor" to="." method="_on_hover_exited"]
-[connection signal="mouse_entered" from="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/HBox/SpinBox_ModeColor" to="." method="_on_color_hover_entered"]
-[connection signal="mouse_exited" from="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/HBox/SpinBox_ModeColor" to="." method="_on_hover_exited"]
-[connection signal="pressed" from="ScrollContainer/BoxContainer/ColorTool/VBox/GridContainer/HBox/Button_ModeColorCurrentNode" to="." method="_on_button_mode_color_current_node_pressed"]

@@ -12,7 +12,6 @@ func _ready():
 
 
 func load_button_data_from_settings():
-	%CheckBox_AutomaticConvert.button_pressed = ProjectSettings.get_setting("parallax_wizard/parallax/automatically_convert_parallax_nodes", false)
 	%SpinBox_FGScrollMax.value = ProjectSettings.get_setting("parallax_wizard/parallax/scroll_scale/foreground_max", 1.25)
 	%SpinBox_BGScrollMin.value = ProjectSettings.get_setting("parallax_wizard/parallax/scroll_scale/background_min", 0.1)
 	%SpinBox_CloudsScrollScale.value = ProjectSettings.get_setting("parallax_wizard/parallax/scroll_scale/clouds", 0.05)
@@ -40,10 +39,6 @@ func save_settings():
 	if error:
 		push_error("Encountered error %d when saving project settings." % error)
 
-
-func _on_check_box_automatic_convert_toggled(toggled_on):
-	ProjectSettings.set_setting("parallax_wizard/parallax/automatically_convert_parallax_nodes", toggled_on)
-	save_settings()
 
 func _on_spin_box_fg_scroll_max_value_changed(value):
 	ProjectSettings.set_setting("parallax_wizard/parallax/scroll_scale/foreground_max", value)

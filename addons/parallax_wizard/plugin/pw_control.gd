@@ -2,7 +2,6 @@
 class_name ParallaxWizardControl
 extends Control
 
-#TODO: all this export info should be saved as a json or something and not be stored here
 
 var pw
 var scroll_locked : bool = false:
@@ -39,10 +38,6 @@ var scroll_lock_shifting : bool = false:
 		if scroll_lock_shifting == value:
 			return
 		scroll_lock_shifting = value
-var color_tool_open : bool = false:
-	set(value):
-		color_tool_open = value
-		%ColorTool.visible = color_tool_open
 var layer_count : int:
 	set(value):
 		layer_count = value
@@ -52,20 +47,6 @@ var layer_count : int:
 		else:
 			%Label_LayerCount.text = "ParallaxPlus Layers"
 		distance_available()
-var canvas_item_count : int:
-	set(value):
-		canvas_item_count = value
-		%CanvasItemCount.text = str(value)
-		if value == 1:
-			%Label_CanvasItems.text = "CanvasItem"
-			%Button_ModeColorCurrentNode.disabled = false
-		else:
-			%Label_CanvasItems.text = "CanvasItems"
-			%Button_ModeColorCurrentNode.disabled = true
-		if value > 0:
-			color_available(true)
-		else:
-			color_available(false)
 
 
 func set_up(pw_instance : Node):
@@ -84,31 +65,12 @@ func distance_available():
 		%SpinBox_ModeDistance.editable = false
 
 
-func color_available(available : bool = true):
-	if available:
-		%Slider_Color.editable = true
-		%OptionButton_Edit.disabled = false
-		%OptionButton_Parameter.disabled = false
-		%OptionButton_ModeColor.disabled = false
-		if %SpinBox_ModeColor.visible:
-			%SpinBox_ModeColor.editable = true
-	else:
-		%Slider_Color.editable = false
-		%OptionButton_Edit.disabled = true
-		%OptionButton_Parameter.disabled = true
-		%OptionButton_ModeColor.disabled = true
-		%SpinBox_ModeColor.editable = false
-
-
 #SIGNAL METHODS
 func _on_distance_hover_entered():
 	if pw.selected_layers:
 		pw.selection_mode = pw.SelectionModes.DISTANCE
 		
-func _on_color_hover_entered():
-	if pw.selected_canvas_items:
-		pw.selection_mode = pw.SelectionModes.COLOR	
-		
+
 func _on_hover_exited():
 	pw.selection_mode = pw.SelectionModes.DEFAULT
 
@@ -155,9 +117,6 @@ func _on_button_convert_pressed():
 	pw.convert_scene()
 	pw.refresh_scene()
 
-func _on_button_edit_custom_pressed():
-	pw.open_custom_edit_menu()
-
 func _on_check_box_scroll_lock_toggled(value):
 	scroll_locked = value
 
@@ -183,68 +142,7 @@ func _on_menu_button_add_layer_selected(index : int):
 	pw.add_new_layer(index)
 
 
-#COLOR TOOL SIGNAL METHODS
-func _on_check_box_color_tool_toggled(toggled_on):
-	color_tool_open = toggled_on
 
-func _on_slider_color_drag_started():
-	pw.start_color_shift(%OptionButton_Parameter.selected, %OptionButton_ModeColor.selected, %SpinBox_ModeColor.value)
-	
-func _on_slider_color_value_changed(value):
-	pw.shift_color(value)
-
-func _on_slider_color_drag_ended(value_changed):
-	pw.shifting_color = false
-	%Slider_Color.value = 0.5
-	
-func _on_option_button_edit_item_selected(index):
-	if index == 0:
-		%Label_Modulate.text = "MOD"
-		pw.color_edit_type = pw.ColorEditTypes.MODULATE
-	else:
-		%Label_Modulate.text = "SELF-MOD"
-		pw.color_edit_type = pw.ColorEditTypes.SELF_MODULATE
-
-func _on_option_button_parameter_item_selected(index):
-	%Label_Parameter.text = str(pw.ColorParameters.keys()[index]) 
-
-func _on_option_button_mode_color_item_selected(index):
-	if index == pw.ColorModes.OTHER:
-		%OptionButton_ModeColor.set_item_text(2, "Relative to")
-		%SpinBox_ModeColor.visible = true
-		%SpinBox_ModeColor.editable = true
-		%Label_MinColor.text = "Together"
-		%Label_MaxColor.text = "Apart"
-	else:
-		%OptionButton_ModeColor.set_item_text(2, "Relative to Custom Value")
-		%SpinBox_ModeColor.visible = false
-		%SpinBox_ModeColor.editable = false
-		%Label_MinColor.text = "Min"
-		%Label_MaxColor.text = "Max"		
-
-func _on_button_mode_color_current_node_pressed():
-	var node = pw.selected_canvas_items[0]
-	var color : Color
-	var value : float
-	if %OptionButton_Edit.selected == pw.ColorEditTypes.MODULATE:
-		color = node.modulate
-	else:
-		color = node.self_modulate
-	if %OptionButton_Parameter.selected == pw.ColorParameters.HUE:
-		value = color.h
-	elif %OptionButton_Parameter.selected == pw.ColorParameters.SATURATION:
-		value = pw.get_saturation_value(color)
-	elif %OptionButton_Parameter.selected == pw.ColorParameters.LIGHTNESS:
-		value = pw.get_lightness_value(color)
-	elif %OptionButton_Parameter.selected == pw.ColorParameters.ALPHA:
-		value = color.a
-	elif %OptionButton_Parameter.selected == pw.ColorParameters.RED:
-		value = color.r
-	elif %OptionButton_Parameter.selected == pw.ColorParameters.GREEN:
-		value = color.g
-	elif %OptionButton_Parameter.selected == pw.ColorParameters.BLUE:
-		value = color.b	
-	%SpinBox_ModeDistance.value = value
 
 func _on_h_slider_scroll_drag_ended(value_changed):
 	pass # Replace with function body.

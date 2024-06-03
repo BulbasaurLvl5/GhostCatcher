@@ -14,7 +14,7 @@ const settings_preload = preload("res://addons/parallax_wizard/plugin/pw_setting
 const crosshairs_preload = preload("res://addons/parallax_wizard/plugin/pw_crosshairs_1080.png")
 const crosshairs_color : Color = Color(Color.CRIMSON, 128)
 const crosshairs_z_index : int = 3000
-#const crosshairs_scale : Vector2 = Vector2(0.5, 0.5)
+const crosshairs_scale : Vector2 = Vector2(1.25, 1.25)
 const view_margin : Vector2 = Vector2(0.1, 0.1)
 
 
@@ -200,6 +200,7 @@ func activate_crosshairs(activate : bool = true):
 		crosshairs.texture = crosshairs_preload
 		crosshairs.self_modulate = crosshairs_color
 		crosshairs.z_index = crosshairs_z_index
+		crosshairs.scale = crosshairs_scale
 		
 		active_scene_root.add_child(crosshairs)
 		var dimensions = get_view_dimensions()
@@ -340,7 +341,6 @@ func count_selected_nodes():
 	if !control_scene:
 		create_control()
 	control_scene.layer_count = selected_layers.size()
-	control_scene.canvas_item_count = selected_canvas_items.size()
 	
 	if selected_layers:
 		open_control()
@@ -705,7 +705,6 @@ func _on_active_scene_change():
 
 
 func initialize_settings(overwrite : bool = false):
-	initialize_custom_project_setting("parallax_wizard/parallax/automatically_convert_parallax_nodes", false, TYPE_BOOL, overwrite)
 	initialize_custom_project_setting("parallax_wizard/parallax/scroll_scale/foreground_max", 1.25, TYPE_FLOAT, overwrite)
 	initialize_custom_project_setting("parallax_wizard/parallax/scroll_scale/background_min", 0.1, TYPE_FLOAT, overwrite)
 	initialize_custom_project_setting("parallax_wizard/parallax/scroll_scale/clouds", 0.05, TYPE_FLOAT, overwrite)

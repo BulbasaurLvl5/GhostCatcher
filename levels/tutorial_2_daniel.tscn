@@ -156,15 +156,15 @@ scene = 1
 
 [node name="Sky" type="Node2D" parent="Parallax/_sky"]
 z_index = -2000
-position = Vector2(-2358.62, -1417.51)
+position = Vector2(36.114, 10.6396)
 script = ExtResource("5_5n646")
 scroll_scale = Vector2(0.01, 0.01)
 limit_begin = Vector2(0, 0)
 limit_end = Vector2(0, 0)
-screen_offset = Vector2(-2382.45, -1431.83)
+screen_offset = Vector2(36.4788, 10.747)
 
 [node name="Sky" type="Sprite2D" parent="Parallax/_sky/Sky"]
-self_modulate = Color(0.184314, 0.254902, 0.435294, 1)
+modulate = Color(0.887098, 0.836181, 0.736721, 1)
 scale = Vector2(2, 3)
 texture = ExtResource("6_mejee")
 
@@ -195,20 +195,20 @@ texture = ExtResource("8_r6hfv")
 
 [node name="Moon" type="Node2D" parent="Parallax/_sky"]
 z_index = -2000
-position = Vector2(-2358.62, -1417.51)
+position = Vector2(36.114, 10.6396)
 script = ExtResource("5_5n646")
 scroll_scale = Vector2(0.01, 0.01)
 limit_begin = Vector2(0, 0)
 limit_end = Vector2(0, 0)
-screen_offset = Vector2(-2382.45, -1431.83)
+screen_offset = Vector2(36.4788, 10.747)
 
 [node name="Clouds" type="Node2D" parent="Parallax/_sky"]
 visible = false
 z_index = -1001
-position = Vector2(-2263.33, -1360.24)
+position = Vector2(34.6548, 10.2097)
 script = ExtResource("5_5n646")
 scroll_scale = Vector2(0.05, 0.05)
-screen_offset = Vector2(-2382.45, -1431.83)
+screen_offset = Vector2(36.4788, 10.747)
 
 [node name="SkyColor" type="Sprite2D" parent="Parallax/_sky/Clouds"]
 modulate = Color(0.207843, 0.207843, 0.207843, 1)
@@ -221,14 +221,14 @@ centered = false
 [node name="Clouds2" type="Node2D" parent="Parallax/_sky"]
 visible = false
 z_index = -1000
-position = Vector2(-4480.45, -2296.83)
+position = Vector2(33.4788, 5.74702)
 script = ExtResource("5_5n646")
 scroll_scale = Vector2(0.1, 0.55)
 repeat_size = Vector2(2336, 1652)
 repeat_times = 2
 limit_begin = Vector2(0, 0)
 limit_end = Vector2(0, 0)
-screen_offset = Vector2(-2382.45, -1431.83)
+screen_offset = Vector2(36.4788, 10.747)
 
 [node name="SkyColor" type="Sprite2D" parent="Parallax/_sky/Clouds2"]
 self_modulate = Color(1, 1, 1, 0.203922)
@@ -239,11 +239,11 @@ centered = false
 
 [node name="Horizon" type="Node2D" parent="Parallax"]
 z_index = -1000
-position = Vector2(-2144.2, -644.323)
+position = Vector2(32.8309, 4.83616)
 script = ExtResource("5_5n646")
 distance = 1.0
 scroll_scale = Vector2(0.1, 0.55)
-screen_offset = Vector2(-2382.45, -1431.83)
+screen_offset = Vector2(36.4788, 10.747)
 
 [node name="Hills" type="Node2D" parent="Parallax/Horizon"]
 modulate = Color(0.670229, 0.660393, 0.557691, 1)
@@ -275,11 +275,11 @@ texture = ExtResource("14_45qa2")
 
 [node name="CloseHillsBG" type="Node2D" parent="Parallax"]
 z_index = -208
-position = Vector2(-428.841, -128.865)
+position = Vector2(6.56618, 0.967232)
 script = ExtResource("5_5n646")
 distance = 0.2
 scroll_scale = Vector2(0.82, 0.91)
-screen_offset = Vector2(-2382.45, -1431.83)
+screen_offset = Vector2(36.4788, 10.747)
 
 [node name="Hills" type="Node2D" parent="Parallax/CloseHillsBG"]
 modulate = Color(0.662282, 0.617046, 0.471098, 1)
@@ -348,11 +348,11 @@ texture = ExtResource("21_vva37")
 
 [node name="HillsFG1" type="Node2D" parent="Parallax"]
 z_index = 505
-position = Vector2(297.806, 89.4894)
+position = Vector2(-4.55984, -0.671689)
 script = ExtResource("5_5n646")
 distance = -0.5
 scroll_scale = Vector2(1.125, 1.0625)
-screen_offset = Vector2(-2382.45, -1431.83)
+screen_offset = Vector2(36.4788, 10.747)
 
 [node name="Hills" type="Node2D" parent="Parallax/HillsFG1"]
 modulate = Color(0.662282, 0.617046, 0.471098, 1)
@@ -401,11 +401,11 @@ texture = ExtResource("20_ikng1")
 
 [node name="HillsFG2" type="Node2D" parent="Parallax"]
 z_index = 1000
-position = Vector2(595.612, 178.979)
+position = Vector2(-9.11969, -1.34338)
 script = ExtResource("5_5n646")
 distance = -1.0
 scroll_scale = Vector2(1.25, 1.125)
-screen_offset = Vector2(-2382.45, -1431.83)
+screen_offset = Vector2(36.4788, 10.747)
 
 [node name="Hills" type="Node2D" parent="Parallax/HillsFG2"]
 modulate = Color(0.662282, 0.617046, 0.471098, 1)
