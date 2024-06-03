@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://csnkj00bl5kkx"]
+[gd_scene load_steps=10 format=3 uid="uid://csnkj00bl5kkx"]
 
 [ext_resource type="Script" path="res://resources/cutscenes/death.gd" id="1_f2i6o"]
 [ext_resource type="Texture2D" uid="uid://c63p5bvc5gem7" path="res://resources/sprites/coal/death.png" id="2_uel66"]
@@ -17,6 +17,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_275s1"]
+offsets = PackedFloat32Array(0, 0.738372)
+colors = PackedColorArray(0.722433, 0.718803, 0.726663, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xn10g"]
+gradient = SubResource("Gradient_275s1")
+width = 880
+height = 880
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_da7i3"]
+gradient = SubResource("Gradient_275s1")
+width = 880
+height = 1210
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Death" type="Node2D" node_paths=PackedStringArray("message_bubble_node", "quote_node", "arrow_node")]
 script = ExtResource("1_f2i6o")
 message_bubble_node = NodePath("MessageBubble")
@@ -27,13 +47,20 @@ quote_set = 1
 quote_index = 6
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 64
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_kexb8")
 
 [node name="MessageBubble" type="Node2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
-position = Vector2(-523, -507)
+light_mask = 5
+position = Vector2(-374, -495)
+
+[node name="PointLight2D2" type="PointLight2D" parent="MessageBubble" groups=["ghost_lights"]]
+position = Vector2(905, 164)
+range_item_cull_mask = 4
+texture = SubResource("GradientTexture2D_xn10g")
 
 [node name="TextBack" type="Polygon2D" parent="MessageBubble"]
 position = Vector2(683, 55)
@@ -47,6 +74,7 @@ color = Color(0.617188, 0.578125, 0.582031, 1)
 polygon = PackedVector2Array(-66, 110, -105, 146, -45, 185, 124, 180, 168, 107)
 
 [node name="DeathBack2" type="Polygon2D" parent="MessageBubble"]
+light_mask = 5
 position = Vector2(669, -32)
 color = Color(0.175781, 0.121094, 0.109375, 1)
 polygon = PackedVector2Array(-66, 110, -105, 146, -45, 185, 124, 180, 168, 107)
@@ -62,6 +90,7 @@ text = "DEATH"
 
 [node name="Quote" type="Label" parent="MessageBubble"]
 unique_name_in_owner = true
+light_mask = 5
 offset_left = 695.0
 offset_top = 148.0
 offset_right = 1242.0
@@ -76,8 +105,16 @@ autowrap_mode = 3
 [node name="Arrow" type="Sprite2D" parent="MessageBubble"]
 unique_name_in_owner = true
 self_modulate = Color(0.529067, 0.529067, 0.529067, 0)
+light_mask = 5
 position = Vector2(1233, 378)
 rotation = 1.5708
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_d5nyc")
 script = ExtResource("4_70lg6")
+
+[node name="PointLight2D" type="PointLight2D" parent="." groups=["ghost_lights"]]
+light_mask = 64
+color = Color(0.859067, 0.851591, 0.921761, 1)
+range_item_cull_mask = 64
+texture = SubResource("GradientTexture2D_da7i3")
+texture_scale = 2.0

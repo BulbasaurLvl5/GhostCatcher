@@ -19,15 +19,18 @@ events = [SubResource("InputEventKey_cffll")]
 script = ExtResource("1_87cnt")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1920.0
-offset_bottom = 1080.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_kteng")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-offset_left = 333.0
-offset_top = 396.0
-offset_right = 1542.0
-offset_bottom = 1044.0
+offset_left = 591.0
+offset_top = 552.0
+offset_right = 1800.0
+offset_bottom = 1200.0
 follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
@@ -36,10 +39,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Back_Button" type="Button" parent="."]
-offset_left = 1619.0
-offset_top = 219.0
-offset_right = 1869.0
-offset_bottom = 335.0
+offset_left = 2039.0
+offset_top = 81.0
+offset_right = 2289.0
+offset_bottom = 197.0
 focus_neighbor_left = NodePath("../Reset_Button")
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
@@ -53,10 +56,10 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Reset_Button" type="Button" parent="."]
-offset_left = 105.0
-offset_top = 227.0
-offset_right = 355.0
-offset_bottom = 343.0
+offset_left = 171.0
+offset_top = 89.0
+offset_right = 421.0
+offset_bottom = 205.0
 focus_neighbor_right = NodePath("../Back_Button")
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
@@ -73,14 +76,15 @@ expand_icon = true
 [node name="pit" type="Node" parent="death_causes"]
 
 [node name="pit" type="TextureRect" parent="death_causes/pit"]
-offset_left = 560.0
-offset_top = 165.0
-offset_right = 600.0
-offset_bottom = 205.0
+offset_left = 534.0
+offset_top = 109.0
+offset_right = 574.0
+offset_bottom = 149.0
 texture = ExtResource("4_6j46q")
 expand_mode = 1
 
 [node name="pit_label" type="Label" parent="death_causes/pit/pit"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = -18.0
 offset_right = 140.0
@@ -99,6 +103,7 @@ texture = ExtResource("5_eksrn")
 expand_mode = 1
 
 [node name="spikes_label" type="Label" parent="death_causes/spikes/spikes"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = -18.0
 offset_right = 140.0
@@ -117,6 +122,7 @@ texture = ExtResource("6_q6ew7")
 expand_mode = 1
 
 [node name="ghost_label" type="Label" parent="death_causes/ghost/ghost"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = -18.0
 offset_right = 194.0
@@ -135,6 +141,7 @@ texture = ExtResource("7_ceota")
 expand_mode = 1
 
 [node name="skull_label" type="Label" parent="death_causes/skull/skull"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = -18.0
 offset_right = 208.0

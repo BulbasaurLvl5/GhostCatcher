@@ -13,15 +13,18 @@ events = [SubResource("InputEventKey_hfucu")]
 [node name="Menu_main" type="Node"]
 
 [node name="Crow_background" type="TextureRect" parent="."]
-offset_right = 1920.0
-offset_bottom = 1080.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_jqpoe")
 
 [node name="Selection_Button" type="Button" parent="."]
-offset_left = 1224.0
-offset_top = 608.0
-offset_right = 1474.0
-offset_bottom = 722.0
+offset_left = 1848.0
+offset_top = 838.0
+offset_right = 2098.0
+offset_bottom = 952.0
 focus_neighbor_bottom = NodePath("../Options_Button")
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
@@ -34,10 +37,10 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Options_Button" type="Button" parent="."]
-offset_left = 1224.0
-offset_top = 722.0
-offset_right = 1474.0
-offset_bottom = 836.0
+offset_left = 1848.0
+offset_top = 952.0
+offset_right = 2098.0
+offset_bottom = 1066.0
 focus_neighbor_top = NodePath("../Selection_Button")
 focus_neighbor_bottom = NodePath("../Quit_Button")
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
@@ -51,10 +54,10 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Quit_Button" type="Button" parent="."]
-offset_left = 1224.0
-offset_top = 836.0
-offset_right = 1474.0
-offset_bottom = 950.0
+offset_left = 1848.0
+offset_top = 1066.0
+offset_right = 2098.0
+offset_bottom = 1180.0
 focus_neighbor_top = NodePath("../Options_Button")
 focus_neighbor_bottom = NodePath("../Selection_Button")
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)

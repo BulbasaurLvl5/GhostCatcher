@@ -20,23 +20,26 @@ events = [SubResource("InputEventKey_cffll")]
 script = ExtResource("1_qbfve")
 
 [node name="Crow_background" type="TextureRect" parent="."]
-offset_right = 1920.0
-offset_bottom = 1080.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_7cifs")
 
 [node name="ColorRect" type="ColorRect" parent="Crow_background"]
 layout_mode = 0
-offset_left = 307.0
-offset_top = 348.0
-offset_right = 1666.0
-offset_bottom = 1006.0
+offset_left = 578.0
+offset_top = 562.0
+offset_right = 1937.0
+offset_bottom = 1220.0
 color = Color(0.164706, 0.164706, 0.164706, 0.784314)
 
 [node name="Back_Button" type="Button" parent="."]
-offset_left = 1594.0
-offset_top = 75.0
-offset_right = 1844.0
-offset_bottom = 191.0
+offset_left = 1960.0
+offset_top = 99.0
+offset_right = 2210.0
+offset_bottom = 215.0
 focus_neighbor_top = NodePath("../Video_Button")
 focus_neighbor_bottom = NodePath("../Video_Button")
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
@@ -51,10 +54,10 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Video_Button" type="Button" parent="."]
-offset_left = 373.0
-offset_top = 375.0
-offset_right = 623.0
-offset_bottom = 489.0
+offset_left = 644.0
+offset_top = 589.0
+offset_right = 894.0
+offset_bottom = 703.0
 focus_neighbor_left = NodePath("../Control_Button")
 focus_neighbor_top = NodePath("../Back_Button")
 focus_neighbor_right = NodePath("../Audio_Button")
@@ -70,10 +73,10 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Audio_Button" type="Button" parent="."]
-offset_left = 856.0
-offset_top = 375.0
-offset_right = 1106.0
-offset_bottom = 489.0
+offset_left = 1127.0
+offset_top = 589.0
+offset_right = 1377.0
+offset_bottom = 703.0
 focus_neighbor_left = NodePath("../Video_Button")
 focus_neighbor_top = NodePath("../Back_Button")
 focus_neighbor_right = NodePath("../Control_Button")
@@ -89,10 +92,10 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Control_Button" type="Button" parent="."]
-offset_left = 1332.0
-offset_top = 375.0
-offset_right = 1582.0
-offset_bottom = 489.0
+offset_left = 1603.0
+offset_top = 589.0
+offset_right = 1853.0
+offset_bottom = 703.0
 focus_neighbor_left = NodePath("../Audio_Button")
 focus_neighbor_top = NodePath("../Back_Button")
 focus_neighbor_right = NodePath("../Video_Button")
@@ -162,10 +165,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="AudioOptions" type="GridContainer" parent="."]
-offset_left = 400.0
-offset_top = 554.0
-offset_right = 1500.0
-offset_bottom = 975.0
+offset_left = 671.0
+offset_top = 768.0
+offset_right = 1771.0
+offset_bottom = 1189.0
 focus_neighbor_bottom = NodePath("MainHSlider")
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 15

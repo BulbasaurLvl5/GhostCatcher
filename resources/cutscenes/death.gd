@@ -18,7 +18,7 @@ extends Node2D
 			tween.tween_property(arrow_node, "active", true, 0.0)
 		else:
 			tween.tween_property(message_bubble_node, "modulate", Color(1.0, 1.0, 1.0, 0.0), 1.0)		
-			death_moves(Vector2(0, -2000))
+			death_moves(Vector2(-1000, -3000))
 			
 @export var quote : String = "You must be my new temporary employee.":
 	set(value):

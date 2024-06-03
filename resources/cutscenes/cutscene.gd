@@ -45,9 +45,9 @@ func copy_player_image():
 	standin_anim = %standin.find_child("AnimatedSprite2D")
 	var player_anim = player.find_child("PlayerAnimatedSprite2D")
 	var camera = player.find_child("Camera2D")
-	var fov = camera.field_of_view_multiplier
-	%standin.position = (player.position - camera.get_screen_center_position()) / fov + Vector2(960, 540)
-	standin_anim.scale = player_anim.scale * Vector2.ONE / Vector2(fov, fov)
+	#var fov = camera.field_of_view_multiplier
+	%standin.position = (player.position - camera.get_screen_center_position()) + Vector2(1200, 675)
+	standin_anim.scale = player_anim.scale * Vector2.ONE
 	standin_anim.speed_scale = 0.0
 	standin_anim.animation = player_anim.animation
 	standin_anim.frame = player_anim.frame

@@ -43,7 +43,7 @@ point_count = 6
 offsets = PackedFloat32Array(0, 0.738372)
 colors = PackedColorArray(0.722433, 0.718803, 0.726663, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ihpg"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ogs0t"]
 gradient = SubResource("Gradient_275s1")
 width = 880
 height = 880
@@ -64,6 +64,7 @@ platform_on_leave = 1
 platform_floor_layers = 5
 platform_wall_layers = 5
 script = ExtResource("1_l4530")
+verbose_state_changes = true
 data = ExtResource("2_h8ju7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -184,7 +185,7 @@ range_z_max = 500
 range_layer_min = -30
 range_layer_max = 30
 shadow_color = Color(0, 0, 0, 0.72549)
-texture = SubResource("GradientTexture2D_0ihpg")
+texture = SubResource("GradientTexture2D_ogs0t")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true

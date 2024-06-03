@@ -147,6 +147,8 @@ func adjust_lighting():
 		canvas_mod = CanvasModulate.new()
 		add_child(canvas_mod)
 	
+	if !get_tree():
+		return
 	var lights = get_tree().get_nodes_in_group("player_light")
 	lights.append_array(get_tree().get_nodes_in_group("ghost_lights"))
 	if Engine.is_editor_hint() && !show_lighting_in_editor:
