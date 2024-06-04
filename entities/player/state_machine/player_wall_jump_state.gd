@@ -31,7 +31,7 @@ func _animation_finished():
 
 func Do_Checks():
 	Check_Altitude()
-	if player.velocity.y > 0:
+	if player.velocity.y > 0 && time_in_current_state > 0.1:
 		Transitioned.emit(self,"InAir")
 	elif player.can_jump():
 		player.air_action()

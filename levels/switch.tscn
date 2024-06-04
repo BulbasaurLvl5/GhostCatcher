@@ -1307,7 +1307,7 @@ _data = {
 [node name="template" type="Node2D"]
 script = ExtResource("1_i3jk7")
 level_name = "template"
-starting_position_y = 0.5
+light_level = 0.5
 top_boundary = -30.5
 left_boundary = -17.0
 right_boundary = 39.0

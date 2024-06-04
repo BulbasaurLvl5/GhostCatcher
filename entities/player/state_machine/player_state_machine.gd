@@ -37,10 +37,10 @@ func _physics_process(delta):
 func on_child_transition(state, new_state_name):
 #	if verbose:
 #		print("Transition called from ",state.name," to ",new_state_name)
-	if state != current_state && state != $"..":
-		if player.verbose_state_changes:
-			print("Player state transition cancelled because ", state.name, " is not the current state.")
-		return
+	#if state != current_state && state != $"..":
+		#if player.verbose_state_changes:
+			#print("Player state transition cancelled because ", state.name, " is not the current state.")
+		#return
 	
 	var new_state = states.get(new_state_name.to_lower())
 	if !new_state:

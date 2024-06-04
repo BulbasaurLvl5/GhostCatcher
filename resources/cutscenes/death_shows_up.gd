@@ -14,7 +14,7 @@ enum Scenes {first_meeting, getting_crows}
 			death_node.quote_index = 0
 			death_node.message_bubble_on = false
 		elif scene == Scenes.getting_crows:
-			death_node.position = Vector2(-350, -1500)
+			death_node.position = Vector2(500, -2000)
 			death_node.quote_set = death_node.QUOTE_SETS.getting_crows
 			death_node.quote_index = 0
 			death_node.message_bubble_on = false
@@ -86,7 +86,7 @@ func on_player_landed():
 		player.toggle_camera_process(false)
 		player.pan_camera(Vector2(500, 0), 1.0)
 	elif scene == Scenes.getting_crows:
-		death_node.death_moves(Vector2(-350, -100), 2.5)
+		death_node.death_moves(Vector2(-700, -100), 2.5)
 		await get_tree().create_timer(2.5).timeout
 	death_node.message_bubble_on = true
 	dialogue_started = true

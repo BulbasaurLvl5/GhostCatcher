@@ -1,12 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://bo6su40vqtnfr"]
+[gd_scene load_steps=23 format=3 uid="uid://bo6su40vqtnfr"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_wefqr"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_sihg4"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_g4y3l"]
 [ext_resource type="Script" path="res://entities/mobs/ghost_movement.gd" id="3_ivmkl"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_qjmbb"]
-[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_be4sb"]
+[ext_resource type="Script" path="res://addons/parallax_wizard/plugin/parallax_plus.gd" id="6_jasoy"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_ui7om"]
+[ext_resource type="Texture2D" uid="uid://b5xlp7x6bh8wb" path="res://resources/sprites/coal/coal_sky.png" id="7_wcmpx"]
+[ext_resource type="Script" path="res://environment/parallax/moon.gd" id="8_coaey"]
+[ext_resource type="Texture2D" uid="uid://bjc2obas242sw" path="res://resources/sprites/coal/moon_1.png" id="9_vjqyy"]
+[ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://resources/sprites/coal/coal_sky_filter.png" id="10_s362j"]
+[ext_resource type="Texture2D" uid="uid://cvvwe6x1p0aqk" path="res://resources/sprites/coal/combined_hills_01.png" id="11_absds"]
+[ext_resource type="Texture2D" uid="uid://dv4pbh1hq14b4" path="res://resources/sprites/coal/combined_hills_02.png" id="12_kbaoj"]
 
 [sub_resource type="Curve2D" id="Curve2D_6tq0f"]
 _data = {
@@ -56,10 +62,16 @@ _data = {
 }
 point_count = 7
 
+[sub_resource type="Curve2D" id="Curve2D_asw1f"]
+_data = {
+"points": PackedVector2Array(-70.2355, 334.089, 70.2355, -334.089, 1096, 971, -180.017, 211.838, 180.017, -211.838, 1685, -389)
+}
+point_count = 2
+
 [node name="template" type="Node2D"]
 script = ExtResource("1_wefqr")
 level_name = "template"
-starting_position_y = 0.5
+light_level = 0.5
 top_boundary = -16.0
 left_boundary = -11.5
 right_boundary = 11.5
@@ -174,19 +186,141 @@ speed = 0.12
 [node name="EndlessPit" parent="." instance=ExtResource("4_qjmbb")]
 position = Vector2(0, 550)
 
-[node name="Parallax" type="Node" parent="."]
+[node name="Parallax" type="Node2D" parent="."]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
+[node name="_sky" type="Node2D" parent="Parallax"]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
-position = Vector2(-148, 102)
-motion_scale = Vector2(0.1, 0.1)
+[node name="Sky" type="Node2D" parent="Parallax/_sky"]
+z_index = -2000
+position = Vector2(-153.356, 133.407)
+script = ExtResource("6_jasoy")
+scroll_scale = Vector2(0.01, 0.01)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(-154.905, 134.754)
 
-[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
-position = Vector2(-468, -525)
-scale = Vector2(3, 2)
-texture = ExtResource("5_be4sb")
+[node name="Sky" type="Sprite2D" parent="Parallax/_sky/Sky"]
+self_modulate = Color(0.184314, 0.254902, 0.435294, 1)
+scale = Vector2(2, 3)
+texture = ExtResource("7_wcmpx")
+
+[node name="Path2D" type="Path2D" parent="Parallax/_sky/Sky"]
+position = Vector2(1200, -350.813)
+rotation = 3.14159
+scale = Vector2(0.987886, -0.953812)
+curve = SubResource("Curve2D_asw1f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Parallax/_sky/Sky/Path2D"]
+position = Vector2(1096, 971)
+rotation = -1.36358
+loop = false
+script = ExtResource("8_coaey")
+
+[node name="Moon" type="Sprite2D" parent="Parallax/_sky/Sky/Path2D/PathFollow2D"]
+light_mask = 16
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_vjqyy")
+
+[node name="PointLight2D" type="PointLight2D" parent="Parallax/_sky/Sky/Path2D/PathFollow2D/Moon"]
+energy = 16.0
+range_item_cull_mask = 16
+shadow_enabled = true
+shadow_color = Color(0.0509804, 0.0509804, 0.0509804, 0)
+shadow_item_cull_mask = 0
+texture = ExtResource("9_vjqyy")
+
+[node name="Moon" type="Node2D" parent="Parallax/_sky"]
+z_index = -2000
+position = Vector2(-153.356, 133.407)
+script = ExtResource("6_jasoy")
+scroll_scale = Vector2(0.01, 0.01)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(-154.905, 134.754)
+
+[node name="Clouds" type="Node2D" parent="Parallax/_sky"]
+visible = false
+z_index = -1001
+position = Vector2(-147.16, 128.016)
+script = ExtResource("6_jasoy")
+scroll_scale = Vector2(0.05, 0.05)
+screen_offset = Vector2(-154.905, 134.754)
+
+[node name="SkyColor" type="Sprite2D" parent="Parallax/_sky/Clouds"]
+modulate = Color(0.207843, 0.207843, 0.207843, 1)
+self_modulate = Color(1, 1, 1, 0.772549)
+position = Vector2(-9, -42)
+scale = Vector2(2, 2)
+texture = ExtResource("10_s362j")
 centered = false
+
+[node name="Clouds2" type="Node2D" parent="Parallax/_sky"]
+visible = false
+z_index = -1000
+position = Vector2(-2475.91, 60.7542)
+script = ExtResource("6_jasoy")
+scroll_scale = Vector2(0.1, 0.55)
+repeat_size = Vector2(2336, 1652)
+repeat_times = 2
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+screen_offset = Vector2(-154.905, 134.754)
+
+[node name="SkyColor" type="Sprite2D" parent="Parallax/_sky/Clouds2"]
+self_modulate = Color(1, 1, 1, 0.203922)
+position = Vector2(-9, -42)
+scale = Vector2(2, 2)
+texture = ExtResource("10_s362j")
+centered = false
+
+[node name="Horizon" type="Node2D" parent="Parallax"]
+z_index = -1000
+position = Vector2(-139.415, 60.6394)
+script = ExtResource("6_jasoy")
+distance = 1.0
+scroll_scale = Vector2(0.1, 0.55)
+screen_offset = Vector2(-154.905, 134.754)
+
+[node name="CombinedHills01" type="Sprite2D" parent="Parallax/Horizon"]
+self_modulate = Color(0.714048, 0.694729, 0.474144, 1)
+position = Vector2(-14.8038, 240.629)
+texture = ExtResource("11_absds")
+
+[node name="CombinedHills02" type="Sprite2D" parent="Parallax/Horizon"]
+self_modulate = Color(0.714048, 0.694729, 0.474144, 1)
+position = Vector2(3825.2, 240.629)
+texture = ExtResource("11_absds")
+
+[node name="CombinedHills03" type="Sprite2D" parent="Parallax/Horizon"]
+self_modulate = Color(0.714048, 0.694729, 0.474144, 1)
+position = Vector2(-3854.8, 240.629)
+texture = ExtResource("11_absds")
+
+[node name="Horizon2" type="Node2D" parent="Parallax"]
+z_index = -635
+position = Vector2(-87.9637, 38.2605)
+script = ExtResource("6_jasoy")
+distance = 0.63095
+scroll_scale = Vector2(0.432145, 0.716072)
+screen_offset = Vector2(-154.905, 134.754)
+
+[node name="CombinedHills02" type="Sprite2D" parent="Parallax/Horizon2"]
+modulate = Color(0.587145, 0.632053, 0.491613, 1)
+position = Vector2(487.332, 185.805)
+scale = Vector2(4, 4)
+texture = ExtResource("12_kbaoj")
+
+[node name="CombinedHills03" type="Sprite2D" parent="Parallax/Horizon2"]
+modulate = Color(0.587145, 0.632053, 0.491613, 1)
+position = Vector2(4952.33, 185.805)
+scale = Vector2(4, 4)
+texture = ExtResource("12_kbaoj")
+
+[node name="CombinedHills04" type="Sprite2D" parent="Parallax/Horizon2"]
+modulate = Color(0.587145, 0.632053, 0.491613, 1)
+position = Vector2(-3977.67, 185.805)
+scale = Vector2(4, 4)
+texture = ExtResource("12_kbaoj")
 
 [node name="Player" parent="." instance=ExtResource("6_ui7om")]
 position = Vector2(0, -728)

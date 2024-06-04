@@ -31,7 +31,7 @@ const TILE_SIZE : float = 110.0
 #@export var flip_player_direction : bool = false
 
 @export_category("Lighting")
-@export_range(0.0, 1.0, 0.01) var light_level : float = 0.5:
+@export_range(0.0, 1.0, 0.01) var light_level : float = 0.75:
 	set(value):
 		if light_level == value:
 			return
@@ -148,7 +148,7 @@ func adjust_lighting():
 		add_child(canvas_mod)
 	
 	if !get_tree():
-		return
+		return                                                                                                                                                       
 	var lights = get_tree().get_nodes_in_group("player_light")
 	lights.append_array(get_tree().get_nodes_in_group("ghost_lights"))
 	if Engine.is_editor_hint() && !show_lighting_in_editor:
@@ -156,8 +156,7 @@ func adjust_lighting():
 		for light in lights:
 			light.energy = 0.0
 	else:	
-		var brightness = lerpf(0.5, 1.0, light_level)
-		canvas_mod.color = Color(brightness, brightness, brightness)
+		canvas_mod.color = Color(light_level, light_level, light_level)
 		for light in lights:
 			light.energy = 1.0 - light_level
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bokl5cktpsr6n"]
+[gd_scene load_steps=16 format=3 uid="uid://bokl5cktpsr6n"]
 
 [ext_resource type="Script" path="res://ui/menus/MenuRetry.cs" id="1_kt2lo"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="3_kykr8"]
@@ -95,18 +95,6 @@ _data = {
 "dead": SubResource("Animation_xkux8")
 }
 
-[sub_resource type="Gradient" id="Gradient_fuufi"]
-offsets = PackedFloat32Array(0, 0.738372)
-colors = PackedColorArray(0.722433, 0.718803, 0.726663, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3obbw"]
-gradient = SubResource("Gradient_fuufi")
-width = 880
-height = 880
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [sub_resource type="LabelSettings" id="LabelSettings_filuv"]
 font_size = 48
 font_color = Color(0.364706, 0.364706, 0.364706, 1)
@@ -152,17 +140,6 @@ scale = Vector2(0.3, 0.3)
 sprite_frames = ExtResource("11_gx74l")
 animation = &"fall"
 offset = Vector2(-40, -50)
-
-[node name="PointLight2D" type="PointLight2D" parent="cutscenes/standin"]
-visible = false
-light_mask = 2
-visibility_layer = 2
-range_z_min = -500
-range_z_max = 500
-range_layer_min = -30
-range_layer_max = 30
-shadow_color = Color(0, 0, 0, 0.72549)
-texture = SubResource("GradientTexture2D_3obbw")
 
 [node name="reaper" type="Node2D" parent="cutscenes"]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cau04hgcii1cn"]
+[gd_scene load_steps=13 format=3 uid="uid://cau04hgcii1cn"]
 
 [ext_resource type="Script" path="res://entities/mobs/state_machines/giant_ghost_ai.gd" id="1_vdvja"]
 [ext_resource type="Script" path="res://entities/mobs/state_machines/mob_state_machine.gd" id="2_2ffcr"]
@@ -14,6 +14,18 @@
 radius = 100.0
 height = 296.0
 
+[sub_resource type="Gradient" id="Gradient_275s1"]
+offsets = PackedFloat32Array(0, 0.738372)
+colors = PackedColorArray(0.722433, 0.718803, 0.726663, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jhehp"]
+gradient = SubResource("Gradient_275s1")
+width = 600
+height = 1000
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="GiantGhost" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 0
@@ -27,6 +39,7 @@ shape = SubResource("CapsuleShape2D_a7vn1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 self_modulate = Color(0.988235, 0.0352941, 0.25098, 0.470588)
+light_mask = 129
 rotation = 3.14159
 scale = Vector2(3, -3)
 sprite_frames = ExtResource("2_kx68j")
@@ -84,3 +97,7 @@ shape = SubResource("CapsuleShape2D_a7vn1")
 
 [node name="CollisionFailure" parent="Area2D" instance=ExtResource("3_x6rl8")]
 causeOfDeath = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+range_item_cull_mask = 128
+texture = SubResource("GradientTexture2D_jhehp")

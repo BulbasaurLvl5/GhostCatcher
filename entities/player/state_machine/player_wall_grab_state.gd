@@ -42,6 +42,12 @@ func Do_Checks():
 		Transitioned.emit(self,"InAir")	
 
 
+#func Update(_delta):
+	#if anim.animation != "wall_grab":
+		#anim.play("wall_grab")
+		#print("RESETTING WALL GRAB ANIMATION") 
+
+
 func Physics_Update(delta):
 	if on_moving_tile_map:
 		player.velocity = (player.moving_platform.global_position - stored_wall_pos) / delta
