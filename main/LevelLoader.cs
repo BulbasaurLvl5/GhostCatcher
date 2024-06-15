@@ -84,9 +84,12 @@ public static class LevelLoader
 
 	public static Level[] Levels = {
 	// tutorials
-		new Level("jumping", new float[5]{8,10,12,15,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_1_stefan.tscn"), LoadLevel_Tutorial_1),
-		new Level("grabbing", new float[5]{12,13,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_2_stefan.tscn"), LoadLevel_Tutorial_2),
-		new Level("dashing", new float[5]{13,16,19,22,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_3_stefan.tscn"), LoadLevel_Tutorial_3),
+		new Level("daniel1", new float[5]{8,10,12,15,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_1_daniel.tscn"), LoadLevel_Tutorial_1_daniel),
+		new Level("daniel2", new float[5]{12,13,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_2_daniel.tscn"), LoadLevel_Tutorial_2_daniel),
+		new Level("daniel3", new float[5]{13,16,19,22,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_3_daniel.tscn"), LoadLevel_Tutorial_3_daniel),
+		new Level("stefan1", new float[5]{8,10,12,15,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_1_stefan.tscn"), LoadLevel_Tutorial_1),
+		new Level("stefan2", new float[5]{12,13,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_2_stefan.tscn"), LoadLevel_Tutorial_2),
+		new Level("stefan3", new float[5]{13,16,19,22,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_3_stefan.tscn"), LoadLevel_Tutorial_3),
 	// collectible ghosts, endless pit
 		new Level("tutorial", new float[5]{5,7,9,12,15}, ResourceLoader.Load<PackedScene>("res://levels/tutorial.tscn"), LoadLevel_Tutorial),
 		new Level("tunnels", new float[5]{10,12,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/tunnels.tscn"), LoadLevel_Tunnels),
@@ -409,6 +412,30 @@ public static class LevelLoader
 	{
 		LoadUI(_main);
 		int id = LevelID(LoadLevel_swarm);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
+	}
+
+	static void LoadLevel_Tutorial_1_daniel(Main _main)
+	{
+		LoadUI(_main);
+		int id = LevelID(LoadLevel_Tutorial_1_daniel);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
+	}
+
+	static void LoadLevel_Tutorial_2_daniel(Main _main)
+	{
+		LoadUI(_main);
+		int id = LevelID(LoadLevel_Tutorial_2_daniel);
+		Levels[id].PackedScene.Instantiate(_main.World);
+		_main.StartLevel(id);
+	}
+
+	static void LoadLevel_Tutorial_3_daniel(Main _main)
+	{
+		LoadUI(_main);
+		int id = LevelID(LoadLevel_Tutorial_3_daniel);
 		Levels[id].PackedScene.Instantiate(_main.World);
 		_main.StartLevel(id);
 	}

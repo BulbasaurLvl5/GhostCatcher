@@ -1260,7 +1260,7 @@ sources/2 = SubResource("TileSetAtlasSource_w7gnu")
 
 [sub_resource type="Animation" id="Animation_043mu"]
 resource_name = "move"
-length = 3.0
+length = 4.0
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1269,10 +1269,10 @@ tracks/0/path = NodePath("updown:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.2, 2.8),
+"times": PackedFloat32Array(0.3, 3.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -2000)]
+"values": [Vector2(0, 0), Vector2(0, -1000)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1281,10 +1281,10 @@ tracks/1/path = NodePath("rightleft:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 2.8),
+"times": PackedFloat32Array(0.3, 3.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-1700, 0)]
+"values": [Vector2(0, 0), Vector2(-1200, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1293,10 +1293,10 @@ tracks/2/path = NodePath("leftright:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.2, 2.8),
+"times": PackedFloat32Array(0.3, 3.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(1700, 0)]
+"values": [Vector2(0, 0), Vector2(1200, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fjlj5"]
@@ -1322,21 +1322,21 @@ layer_0/tile_data = PackedInt32Array(196606, 131072, 3, 196607, 131073, 3, 13107
 modulate = Color(1, 0, 1, 1)
 tile_set = SubResource("TileSet_pvh5h")
 format = 2
-layer_0/tile_data = PackedInt32Array(131059, 65536, 3, 131060, 131073, 3, 131061, 196609, 3, -393189, 65537, 3, -393188, 131072, 3, -393187, 196608, 3)
+layer_0/tile_data = PackedInt32Array(-393189, 65537, 3, -393188, 131072, 3, -393187, 196608, 3, -983013, 65537, 3, -983012, 131073, 3, -983011, 196608, 3, -589837, 65537, 3, -589836, 131073, 3, -589835, 196609, 3, -65547, 196609, 3, -65548, 131073, 3, -65549, 65537, 3)
 script = ExtResource("6_0dl4v")
 
 [node name="rightleft" type="TileMap" parent="."]
 modulate = Color(0, 0, 1, 1)
 tile_set = SubResource("TileSet_pvh5h")
 format = 2
-layer_0/tile_data = PackedInt32Array(-1048570, 65537, 3, -1048569, 131072, 3, -1048568, 196608, 3, -524282, 65536, 3, -524281, 131072, 3, -524280, 196609, 3)
+layer_0/tile_data = PackedInt32Array(-1048570, 196609, 3, -524284, 65536, 3, -524283, 131073, 3, -524282, 196609, 3, -1048571, 131072, 3, -1048572, 65536, 3)
 script = ExtResource("6_0dl4v")
 
 [node name="leftright" type="TileMap" parent="."]
 modulate = Color(1, 0, 0, 1)
 tile_set = SubResource("TileSet_pvh5h")
 format = 2
-layer_0/tile_data = PackedInt32Array(-720905, 131072, 3, -720904, 196609, 3, -720906, 65536, 3, -196618, 65537, 3, -196617, 131073, 3, -196616, 196608, 3)
+layer_0/tile_data = PackedInt32Array(-720903, 65536, 3, -720902, 131073, 3, -720901, 196608, 3, -196615, 65536, 3, -196614, 131073, 3, -196613, 196608, 3)
 script = ExtResource("6_0dl4v")
 
 [node name="TileMapMover" type="AnimationPlayer" parent="."]
@@ -1357,7 +1357,7 @@ position = Vector2(-374, -1055)
 position = Vector2(353, -611)
 
 [node name="Ghost4" parent="Ghosts" instance=ExtResource("3_hslea")]
-position = Vector2(-1356, -2522)
+position = Vector2(-1275, -2495)
 
 [node name="Ghost5" parent="Ghosts" instance=ExtResource("3_hslea")]
 position = Vector2(1295, -2038)
