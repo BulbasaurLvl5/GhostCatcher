@@ -7,6 +7,8 @@ extends Node2D
 
 @export var message_bubble_on : bool = false:
 	set(value):
+		if Engine.is_editor_hint():
+			return
 		message_bubble_on = value
 		message_bubble_node.modulate.a = float(message_bubble_on)
 		arrow_node.active = false

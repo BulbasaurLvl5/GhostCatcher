@@ -26,6 +26,8 @@ var encounter_started : bool = false
 var dialogue_started : bool = false
 var dialogue_finished : bool = false:
 	set(value):
+		if Engine.is_editor_hint():
+			return
 		if dialogue_finished == value:
 			return
 		dialogue_finished = value

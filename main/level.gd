@@ -109,6 +109,7 @@ func _enter_tree():
 		search_scene()
 		if get_parent() == get_tree().root:
 			player.process_mode = Node.PROCESS_MODE_ALWAYS
+	adjust_lighting()
 
 
 func _ready():
@@ -119,8 +120,6 @@ func _ready():
 		level_name = name
 		renamed.connect(_on_renamed)
 		show_data_in_editor = false
-		
-	adjust_lighting()
 
 
 func _process(_delta):
@@ -143,12 +142,11 @@ func _draw():
 
 
 func adjust_lighting():
+	if !is_inside_tree():
+		return
 	if !canvas_mod:
 		canvas_mod = CanvasModulate.new()
 		add_child(canvas_mod)
-	
-	if !get_tree():
-		return                                                                                                                                                       
 	var lights = get_tree().get_nodes_in_group("player_light")
 	lights.append_array(get_tree().get_nodes_in_group("ghost_lights"))
 	if Engine.is_editor_hint() && !show_lighting_in_editor:
@@ -159,7 +157,7 @@ func adjust_lighting():
 		canvas_mod.color = Color(light_level, light_level, light_level)
 		for light in lights:
 			light.energy = 1.0 - light_level
-
+	
 
 func search_scene():
 	var nodes = get_all_children(get_tree().root)
