@@ -10,7 +10,6 @@
 [node name="Cliff" type="Node2D"]
 script = ExtResource("1_nmsgp")
 level_name = "Cliff"
-starting_position_y = -4.0
 left_boundary = -22.5
 right_boundary = 15.0
 bottom_boundary = 9.5

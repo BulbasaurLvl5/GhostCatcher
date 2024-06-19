@@ -11,7 +11,6 @@
 [node name="template" type="Node2D"]
 script = ExtResource("1_fvxqw")
 level_name = "template"
-starting_position_y = 0.5
 top_boundary = -47.0
 left_boundary = -17.0
 right_boundary = 19.0

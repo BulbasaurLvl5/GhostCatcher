@@ -9,7 +9,7 @@ var extra_momentum : float
 func Enter(_from : PlayerState = null):
 	player.moving_platform = null
 	if abs(player.velocity.x) > data.in_air_horizontal_speed && sign(player.velocity.x) == player.x_input:
-		extra_momentum = player.velocity.x
+		extra_momentum = sign(player.velocity.x) * min(abs(player.velocity.y), data.max_run_speed)
 	else:
 		extra_momentum = 0.0
 	
