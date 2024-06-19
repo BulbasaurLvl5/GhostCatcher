@@ -12,7 +12,7 @@ var stored_wall_pos : Vector2
 func Enter(_from : PlayerState = null):
 	player.super_state = player.SuperStates.ON_WALL
 	player.velocity = Vector2(100.0 * player.facing_direction, 0.0)
-	player.move()
+	#player.move()
 	on_moving_tile_map = false
 	if player.moving_platform:
 		if player.moving_platform is MovingTileMap:
@@ -23,7 +23,7 @@ func Enter(_from : PlayerState = null):
 	anim.play("wall_grab")
 	$"../../SFX/WallGrab".play()
 	wall_direction = player.facing_direction
-	player.stop_motion()
+	#player.stop_motion()
 	if data.wall_grab_resets_air_actions:
 		player.remaining_air_actions = data.max_air_actions
 
@@ -52,6 +52,8 @@ func Physics_Update(delta):
 	if on_moving_tile_map:
 		player.velocity = (player.moving_platform.global_position - stored_wall_pos) / delta
 		stored_wall_pos = player.moving_platform.global_position
+	if abs(player.velocity.x) < 5.0:
+		player.velocity.x = 5.0 * player.facing_direction
 	player.move()
 
 
