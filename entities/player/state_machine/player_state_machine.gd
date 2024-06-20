@@ -34,7 +34,7 @@ func _physics_process(delta):
 	if player.verbose_velocity:
 		print("player_velocity = ", $"..".velocity)
 	
-func on_child_transition(state, new_state_name):
+func on_child_transition(_state, new_state_name):
 #	if verbose:
 #		print("Transition called from ",state.name," to ",new_state_name)
 	#if state != current_state && state != $"..":
