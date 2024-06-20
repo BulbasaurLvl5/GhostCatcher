@@ -76,6 +76,9 @@ func Check_Altitude():
 		
 func Grounded_Gravity(delta : float):
 	if player.moving_platform:
-		player.velocity.y += data.gravity
+		if player.moving_platform is MovingTileMap:
+			player.velocity = (player.moving_platform.global_position - player.stored_wall_pos) / delta
+			player.stored_wall_pos = player.moving_platform.global_position
+		player.velocity.y = max(player.velocity.y, data.gravity)
 	else:
-		player.velocity.y += data.gravity * delta
+		player.velocity.y = max(player.velocity.y, data.gravity * delta)

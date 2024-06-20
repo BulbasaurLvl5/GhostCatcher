@@ -35,8 +35,13 @@ var moving_platform : Node2D:
 			return
 		moving_platform = value
 		moving_platform_check_needed = false
-		print("player moving_platform = ", moving_platform)
+		if moving_platform:
+			stored_wall_pos = moving_platform.global_position
+		else:
+			stored_wall_pos = Vector2.ZERO
+		#print("player moving_platform = ", moving_platform)
 var moving_platform_check_needed : bool = false
+var stored_wall_pos : Vector2
 
 var facing_direction : int = 1
 var air_actions_enabled : bool = true:

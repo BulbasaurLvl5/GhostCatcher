@@ -7,7 +7,7 @@ var distance_fallen : float
 
 
 func Enter(from : PlayerState = null):
-	player.stop_motion()
+	#player.stop_motion()
 	distance_fallen = player.position.y - player.height_fallen_from
 	if verbose:
 		print("Distance fallen = ",distance_fallen)
@@ -51,6 +51,7 @@ func Do_Checks():
 
 
 func Physics_Update(delta):
+	player.velocity = Vector2.ZERO
 	Grounded_Gravity(delta)
 	player.move()
 

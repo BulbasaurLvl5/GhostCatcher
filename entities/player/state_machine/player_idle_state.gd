@@ -7,7 +7,7 @@ var timer : float = 42.0
 
 func Enter(_from : PlayerState = null):
 	anim.play("idle")
-	player.stop_motion()
+	#player.stop_motion()
 	player.landed.emit()
 	
 	
@@ -38,6 +38,7 @@ func Update(delta):
 		
 
 func Physics_Update(delta):
+	player.velocity = Vector2.ZERO
 	Grounded_Gravity(delta)
 	player.move()
 
