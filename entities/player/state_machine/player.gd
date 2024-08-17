@@ -21,11 +21,8 @@ var super_state : int = SuperStates.IN_AIR:
 			print("PLAYER super_state = ", super_state)
 		if super_state == SuperStates.IN_AIR:
 			moving_platform = null
-			#%CrowPointLight2D1.energy = 5.0
-			#%CrowPointLight2D2.energy = 5.0
 		else:
-			#%CrowPointLight2D1.energy = 1.0
-			#%CrowPointLight2D2.energy = 1.0
+
 			remaining_air_actions = data.max_air_actions
 var moving_platform : Node2D:
 	set(value):
@@ -42,6 +39,7 @@ var moving_platform : Node2D:
 		#print("player moving_platform = ", moving_platform)
 var moving_platform_check_needed : bool = false
 var stored_wall_pos : Vector2
+var extra_momentum : float
 
 var facing_direction : int = 1
 var air_actions_enabled : bool = true:
@@ -102,36 +100,13 @@ var heavy_landing_factor : float = 0
 var level_boundary : Rect2:
 	set(value):
 		level_boundary = value
-#var canvas_mod_dispatched : bool = false
-
-
-#func _enter_tree():
-	#check_canvas_mod()
-
-
-#func _ready():
-	#if !canvas_mod_dispatched:
-		#check_canvas_mod()
 
 
 func _process(_delta):
-	#if !canvas_mod_dispatched:
-		#check_canvas_mod()
 	check_input()
 	check_environment()
 	if is_in_toxic_gas:
 		%ToxicGasLabel.text = str(int(%ToxicGasTimer.time_left) + 1)
-
-
-#func check_canvas_mod():
-	#var children = $"..".get_children()
-	#for c in children:
-		#if c is CanvasMod:
-			#return
-	#if children:
-		#var canvas_mod = canvas_mod_node.instantiate()
-		#$"..".add_child.call_deferred(canvas_mod)
-		#canvas_mod_dispatched = true
 
 
 func pause_game():

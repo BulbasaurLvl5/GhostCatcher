@@ -3,13 +3,12 @@ extends PlayerState
 
 
 var hang_time_active : bool = false
-var extra_momentum : float
 
 func Enter(from : PlayerState = null):
 	if abs(player.velocity.x) > data.in_air_horizontal_speed && sign(player.velocity.x) == player.x_input:
-		extra_momentum = player.velocity.x
+		player.extra_momentum = player.velocity.x
 	else:
-		extra_momentum = 0.0
+		player.extra_momentum = 0.0
 
 	anim.play("fall")
 	if from:
@@ -78,8 +77,8 @@ func Physics_Update(delta):
 			player.velocity.y += data.gravity * delta
 		if player.velocity.y > data.max_fall_speed:
 			player.velocity.y = data.max_fall_speed
-	if abs(extra_momentum) > data.in_air_horizontal_speed && sign(extra_momentum) == player.x_input:
-		player.velocity.x = extra_momentum
+	if abs(player.extra_momentum) > data.in_air_horizontal_speed && sign(player.extra_momentum) == player.x_input:
+		player.velocity.x = player.extra_momentum
 	else:
 		player.velocity.x = data.in_air_horizontal_speed * player.x_input 
 	player.move()
