@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bxm41jont7157"]
+[gd_scene load_steps=29 format=3 uid="uid://bxm41jont7157"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_khayn"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="2_nlt5q"]
@@ -11,10 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://environment/spikes_small.tscn" id="7_q1xog"]
 [ext_resource type="Texture2D" uid="uid://cgbodrcslt8a1" path="res://resources/sprites/coal/coal_tombstones.png" id="10_t74wp"]
 [ext_resource type="Texture2D" uid="uid://jbfl0nukjwsw" path="res://resources/sprites/coal/coal_tree.png" id="12_83a2g"]
-[ext_resource type="Script" path="res://addons/parallax_wizard/plugin/parallax_plus.gd" id="13_pcsxy"]
-[ext_resource type="PackedScene" uid="uid://b6aa5jcihgapw" path="res://environment/parallax/sky.tscn" id="13_y4nfu"]
-[ext_resource type="Texture2D" uid="uid://br7gis8rcn7xp" path="res://resources/sprites/coal/mountains.png" id="18_0lqrr"]
-[ext_resource type="Texture2D" uid="uid://b8xoka0m1lmq5" path="res://resources/sprites/coal/hills.png" id="19_i7sbg"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="20_4ymbt"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="20_gm5y3"]
 
@@ -626,118 +622,6 @@ texture = SubResource("AtlasTexture_dkg2q")
 
 [node name="EndlessPit" parent="." instance=ExtResource("3_nvhrl")]
 position = Vector2(65, 912)
-
-[node name="Parallax" type="Node" parent="."]
-
-[node name="Sky2" parent="Parallax" instance=ExtResource("13_y4nfu")]
-
-[node name="Mountains" type="Node2D" parent="Parallax"]
-z_index = -894
-position = Vector2(148.181, -223.849)
-script = ExtResource("13_pcsxy")
-distance = 0.89297
-scroll_scale = Vector2(0.196327, 0.598163)
-screen_offset = Vector2(184.379, -557.065)
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/Mountains"]
-position = Vector2(-3389, 33)
-texture = ExtResource("18_0lqrr")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax/Mountains"]
-position = Vector2(-2221, 33)
-texture = ExtResource("18_0lqrr")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Parallax/Mountains"]
-position = Vector2(-1053, 33)
-texture = ExtResource("18_0lqrr")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Parallax/Mountains"]
-position = Vector2(115, 33)
-texture = ExtResource("18_0lqrr")
-
-[node name="Sprite2D5" type="Sprite2D" parent="Parallax/Mountains"]
-position = Vector2(1283, 33)
-texture = ExtResource("18_0lqrr")
-
-[node name="Sprite2D6" type="Sprite2D" parent="Parallax/Mountains"]
-position = Vector2(2451, 33)
-texture = ExtResource("18_0lqrr")
-
-[node name="Sprite2D7" type="Sprite2D" parent="Parallax/Mountains"]
-position = Vector2(3619, 33)
-texture = ExtResource("18_0lqrr")
-
-[node name="HillsFar" type="Node2D" parent="Parallax"]
-z_index = -519
-position = Vector2(85.2541, -128.789)
-script = ExtResource("13_pcsxy")
-distance = 0.51376
-scroll_scale = Vector2(0.537616, 0.768808)
-screen_offset = Vector2(184.379, -557.065)
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/HillsFar"]
-position = Vector2(-3547.79, 545.029)
-texture = ExtResource("19_i7sbg")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax/HillsFar"]
-position = Vector2(-2379.79, 545.029)
-texture = ExtResource("19_i7sbg")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Parallax/HillsFar"]
-position = Vector2(-1211.79, 545.029)
-texture = ExtResource("19_i7sbg")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Parallax/HillsFar"]
-position = Vector2(-43.7891, 545.029)
-texture = ExtResource("19_i7sbg")
-
-[node name="Sprite2D5" type="Sprite2D" parent="Parallax/HillsFar"]
-position = Vector2(1124.21, 545.029)
-texture = ExtResource("19_i7sbg")
-
-[node name="Sprite2D6" type="Sprite2D" parent="Parallax/HillsFar"]
-position = Vector2(2292.21, 545.029)
-texture = ExtResource("19_i7sbg")
-
-[node name="Sprite2D7" type="Sprite2D" parent="Parallax/HillsFar"]
-position = Vector2(3460.21, 545.029)
-texture = ExtResource("19_i7sbg")
-
-[node name="HillsNear" type="Node2D" parent="Parallax"]
-z_index = -283
-position = Vector2(45.6721, -68.9948)
-script = ExtResource("13_pcsxy")
-distance = 0.27523
-scroll_scale = Vector2(0.752293, 0.876146)
-screen_offset = Vector2(184.379, -557.065)
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/HillsNear"]
-position = Vector2(-3638.57, 775.823)
-texture = ExtResource("19_i7sbg")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax/HillsNear"]
-position = Vector2(-2470.57, 775.823)
-texture = ExtResource("19_i7sbg")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Parallax/HillsNear"]
-position = Vector2(-1302.57, 775.823)
-texture = ExtResource("19_i7sbg")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Parallax/HillsNear"]
-position = Vector2(-134.573, 775.823)
-texture = ExtResource("19_i7sbg")
-
-[node name="Sprite2D5" type="Sprite2D" parent="Parallax/HillsNear"]
-position = Vector2(1033.43, 775.823)
-texture = ExtResource("19_i7sbg")
-
-[node name="Sprite2D6" type="Sprite2D" parent="Parallax/HillsNear"]
-position = Vector2(2201.43, 775.823)
-texture = ExtResource("19_i7sbg")
-
-[node name="Sprite2D7" type="Sprite2D" parent="Parallax/HillsNear"]
-position = Vector2(3369.43, 775.823)
-texture = ExtResource("19_i7sbg")
 
 [node name="Player" parent="." instance=ExtResource("20_4ymbt")]
 position = Vector2(-5, -6428)

@@ -39,6 +39,19 @@ scale = Vector2(2, 2)
 texture = ExtResource("3_u1150")
 centered = false
 
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.08, 0.08)
+motion_mirroring = Vector2(2336, 1652)
+script = ExtResource("2_delsn")
+automatic_motion = Vector2(-25, 10)
+
+[node name="SkyColor" type="Sprite2D" parent="ParallaxLayer3"]
+self_modulate = Color(1, 1, 1, 0.203922)
+position = Vector2(-9, -42)
+scale = Vector2(2, 2)
+texture = ExtResource("3_u1150")
+centered = false
+
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
 position = Vector2(2204, 0)
 motion_scale = Vector2(0.05, 0.05)
@@ -69,16 +82,3 @@ texture = ExtResource("5_hnn37")
 [node name="_Timer_40464" type="Timer" parent="ParallaxLayer4/Path2D/PathFollow2D"]
 wait_time = 0.2
 one_shot = true
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.08, 0.08)
-motion_mirroring = Vector2(2336, 1652)
-script = ExtResource("2_delsn")
-automatic_motion = Vector2(-25, 10)
-
-[node name="SkyColor" type="Sprite2D" parent="ParallaxLayer3"]
-self_modulate = Color(1, 1, 1, 0.203922)
-position = Vector2(-9, -42)
-scale = Vector2(2, 2)
-texture = ExtResource("3_u1150")
-centered = false

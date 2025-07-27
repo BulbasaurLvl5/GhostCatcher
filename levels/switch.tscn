@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://brq7baxye4smf"]
+[gd_scene load_steps=21 format=3 uid="uid://brq7baxye4smf"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_i3jk7"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_snrg6"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_cphl5"]
 [ext_resource type="Texture2D" uid="uid://b72rs3vinjc7v" path="res://environment/tilesets/tile_varied_48.png" id="4_m3442"]
 [ext_resource type="Texture2D" uid="uid://cdwp27s8d0g5" path="res://environment/tilesets/original_full_texture_20_varied.png" id="5_ce7ca"]
-[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_fpl15"]
 [ext_resource type="Script" path="res://environment/platforms/moving_tile_map.gd" id="6_0dl4v"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_8rjsk"]
 [ext_resource type="Texture2D" uid="uid://m83habum8p34" path="res://resources/sprites/coal/bones_animal_1.png" id="11_u4sf2"]
@@ -1414,20 +1413,6 @@ texture = ExtResource("13_kbxek")
 
 [node name="EndlessPit" parent="." instance=ExtResource("4_cphl5")]
 position = Vector2(0, 550)
-
-[node name="Parallax" type="Node" parent="."]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
-position = Vector2(-148, 102)
-motion_scale = Vector2(0.1, 0.1)
-
-[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
-position = Vector2(-468, -525)
-scale = Vector2(3, 2)
-texture = ExtResource("5_fpl15")
-centered = false
 
 [node name="Player" parent="." instance=ExtResource("6_8rjsk")]
 position = Vector2(7, 155)

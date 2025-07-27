@@ -1,11 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://d06b1cuf8a172"]
+[gd_scene load_steps=30 format=3 uid="uid://d06b1cuf8a172"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_0hrum"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_kkhh8"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_e6ses"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_hatpd"]
 [ext_resource type="Script" path="res://resources/path_follow_manager.gd" id="4_lncv5"]
-[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_d3gb6"]
 [ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://environment/platforms/wide_platform_01.tscn" id="5_hgbuq"]
 [ext_resource type="PackedScene" uid="uid://crxh8tb8lf8kr" path="res://environment/platforms/tall_platform_01.tscn" id="6_r5fo6"]
 [ext_resource type="Texture2D" uid="uid://dlob5yhx4vhll" path="res://resources/sprites/coal/chair_2.png" id="8_mbqn0"]
@@ -282,20 +281,6 @@ texture = ExtResource("17_ktx6i")
 
 [node name="EndlessPit" parent="." instance=ExtResource("4_hatpd")]
 position = Vector2(0, 550)
-
-[node name="Parallax" type="Node" parent="."]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
-position = Vector2(-148, 102)
-motion_scale = Vector2(0.1, 0.1)
-
-[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
-position = Vector2(-468, -525)
-scale = Vector2(3, 2)
-texture = ExtResource("5_d3gb6")
-centered = false
 
 [node name="Player" parent="." instance=ExtResource("9_6vq35")]
 position = Vector2(217, 33)

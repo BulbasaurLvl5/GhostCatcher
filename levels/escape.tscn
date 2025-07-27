@@ -1,15 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://wfp31honksif"]
+[gd_scene load_steps=11 format=3 uid="uid://wfp31honksif"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_iwysr"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_uxj5u"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_72yiq"]
 [ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://environment/spikes_large.tscn" id="4_scqs6"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_y0rcn"]
-[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_ejvv2"]
 [ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://environment/spikes_small.tscn" id="5_n4qme"]
 [ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://environment/spikes_medium.tscn" id="6_lqk0t"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_n3p1v"]
-[ext_resource type="PackedScene" uid="uid://b6aa5jcihgapw" path="res://environment/parallax/sky.tscn" id="8_06l2m"]
 
 [sub_resource type="Animation" id="Animation_u8sss"]
 resource_name = "moveright"
@@ -35,7 +33,6 @@ _data = {
 [node name="template" type="Node2D"]
 script = ExtResource("1_iwysr")
 level_name = "template"
-starting_position_y = 0.5
 top_boundary = -15.0
 left_boundary = -6.0
 right_boundary = 106.5
@@ -188,22 +185,6 @@ libraries = {
 "": SubResource("AnimationLibrary_jt51s")
 }
 autoplay = "moveright"
-
-[node name="Parallax" type="Node" parent="."]
-
-[node name="Sky" parent="Parallax" instance=ExtResource("8_06l2m")]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
-position = Vector2(-148, 102)
-motion_scale = Vector2(0.1, 0.1)
-
-[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
-position = Vector2(-468, -525)
-scale = Vector2(3, 2)
-texture = ExtResource("5_ejvv2")
-centered = false
 
 [node name="Player" parent="." instance=ExtResource("6_n3p1v")]
 position = Vector2(-3, 150)

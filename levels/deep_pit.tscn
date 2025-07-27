@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://0kk8iv71b00t"]
+[gd_scene load_steps=9 format=3 uid="uid://0kk8iv71b00t"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_mn3py"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_qmk74"]
@@ -7,14 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://environment/spikes_large.tscn" id="4_0wjow"]
 [ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://environment/spikes_medium.tscn" id="5_frs0q"]
 [ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://environment/spikes_small.tscn" id="6_vwrhl"]
-[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="8_ichni"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="9_ofoib"]
 
 [node name="DeepPit" type="Node2D"]
 script = ExtResource("1_mn3py")
 level_name = "DeepPit"
-starting_position_x = -2.0
-starting_position_y = -24.5
 top_boundary = -100.0
 left_boundary = -17.0
 right_boundary = 16.0
@@ -211,24 +208,10 @@ position = Vector2(771, -2652)
 position = Vector2(211, -2881)
 
 [node name="Spikes_medium15" parent="Spikes" instance=ExtResource("5_frs0q")]
-position = Vector2(-607, -2640)
+position = Vector2(-581, -2643)
 
 [node name="EndlessPit" parent="." instance=ExtResource("3_60k3y")]
 position = Vector2(0, 440)
-
-[node name="Parallax" type="Node" parent="."]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
-position = Vector2(-148, 102)
-motion_scale = Vector2(0.1, 0.1)
-
-[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
-position = Vector2(-468, -525)
-scale = Vector2(3, 2)
-texture = ExtResource("8_ichni")
-centered = false
 
 [node name="Player" parent="." instance=ExtResource("9_ofoib")]
 position = Vector2(-55, -930)

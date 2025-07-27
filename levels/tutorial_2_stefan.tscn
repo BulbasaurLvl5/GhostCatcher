@@ -1,16 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://sawt21nbhdud"]
+[gd_scene load_steps=6 format=3 uid="uid://sawt21nbhdud"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_tmo5h"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_bh8f4"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_4eysk"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_s1qy0"]
-[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_7d0t6"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_o6vro"]
 
 [node name="template" type="Node2D"]
 script = ExtResource("1_tmo5h")
 level_name = "template"
-starting_position_y = 0.5
 top_boundary = -47.0
 left_boundary = -17.0
 right_boundary = 19.0
@@ -81,20 +79,6 @@ text = "higher and higher..."
 
 [node name="EndlessPit" parent="." instance=ExtResource("4_s1qy0")]
 position = Vector2(0, 550)
-
-[node name="Parallax" type="Node" parent="."]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
-position = Vector2(-148, 102)
-motion_scale = Vector2(0.1, 0.1)
-
-[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
-position = Vector2(-468, -525)
-scale = Vector2(3, 2)
-texture = ExtResource("5_7d0t6")
-centered = false
 
 [node name="Player" parent="." instance=ExtResource("6_o6vro")]
 position = Vector2(-62, 136)

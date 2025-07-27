@@ -12,8 +12,6 @@
 [node name="Tunnels" type="Node2D"]
 script = ExtResource("1_nlh26")
 level_name = "Tunnels"
-starting_position_x = 8.0
-starting_position_y = -3.0
 top_boundary = -25.0
 left_boundary = -6.0
 bottom_boundary = 1.0

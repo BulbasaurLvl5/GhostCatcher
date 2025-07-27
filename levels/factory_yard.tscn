@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://v7ti3fewy53f"]
+[gd_scene load_steps=12 format=3 uid="uid://v7ti3fewy53f"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_28k1i"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_f8p7t"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_g48dk"]
 [ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://environment/spikes_large.tscn" id="7_bvmxq"]
 [ext_resource type="PackedScene" uid="uid://c33brbbnr771" path="res://entities/mobs/flaming_skull.tscn" id="9_o83ur"]
-[ext_resource type="PackedScene" uid="uid://b6aa5jcihgapw" path="res://environment/parallax/sky.tscn" id="10_usnvm"]
 
 [sub_resource type="Curve2D" id="Curve2D_d07vw"]
 _data = {
@@ -414,7 +413,3 @@ position = Vector2(105, 409)
 
 [node name="Player" parent="." instance=ExtResource("6_g48dk")]
 position = Vector2(-1980, -1409)
-
-[node name="Parallax" type="Node" parent="."]
-
-[node name="Sky2" parent="Parallax" instance=ExtResource("10_usnvm")]

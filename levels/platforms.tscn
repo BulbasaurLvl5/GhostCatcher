@@ -49,8 +49,6 @@ point_count = 15
 [node name="Platforms" type="Node2D"]
 script = ExtResource("1_j32q3")
 level_name = "Platforms"
-starting_position_x = 1.0
-starting_position_y = -1.0
 top_boundary = -18.5
 left_boundary = -9.5
 right_boundary = 25.0

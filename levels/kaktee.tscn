@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpan51idmxlnu"]
+[gd_scene load_steps=9 format=3 uid="uid://dpan51idmxlnu"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_en8yv"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_owdfy"]
@@ -7,15 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://environment/spikes_large.tscn" id="5_hru8m"]
 [ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://environment/spikes_medium.tscn" id="6_3c4xg"]
 [ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://environment/spikes_small.tscn" id="7_olftv"]
-[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="8_3duxc"]
-[ext_resource type="PackedScene" uid="uid://b6aa5jcihgapw" path="res://environment/parallax/sky.tscn" id="8_q5x5p"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="9_2malt"]
 
 [node name="Kaktee" type="Node2D"]
 script = ExtResource("1_en8yv")
 level_name = "Kaktee"
-starting_position_x = -2.0
-starting_position_y = 0.5
 top_boundary = -47.0
 left_boundary = -17.0
 right_boundary = 19.0
@@ -181,22 +177,6 @@ rotation = -1.5708
 
 [node name="EndlessPit" parent="." instance=ExtResource("4_cxvd4")]
 position = Vector2(0, 550)
-
-[node name="Parallax" type="Node" parent="."]
-
-[node name="Sky" parent="Parallax" instance=ExtResource("8_q5x5p")]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
-position = Vector2(-148, 102)
-motion_scale = Vector2(0.1, 0.1)
-
-[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
-position = Vector2(-468, -525)
-scale = Vector2(3, 2)
-texture = ExtResource("8_3duxc")
-centered = false
 
 [node name="Player" parent="." instance=ExtResource("9_2malt")]
 position = Vector2(-146, 0)

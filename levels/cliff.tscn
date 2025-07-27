@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://baaqkrwpxi1lt"]
+[gd_scene load_steps=6 format=3 uid="uid://baaqkrwpxi1lt"]
 
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_8lm81"]
 [ext_resource type="Script" path="res://main/level.gd" id="1_nmsgp"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="2_il1r1"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="3_3isdd"]
-[ext_resource type="PackedScene" uid="uid://b6aa5jcihgapw" path="res://environment/parallax/sky.tscn" id="4_yoefl"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="5_golpr"]
 
 [node name="Cliff" type="Node2D"]
@@ -47,10 +46,6 @@ position = Vector2(852, -2940)
 
 [node name="Ghost9" parent="Ghosts" instance=ExtResource("2_il1r1")]
 position = Vector2(86, -3418)
-
-[node name="Parallax" type="Node" parent="."]
-
-[node name="Sky" parent="Parallax" instance=ExtResource("4_yoefl")]
 
 [node name="EndlessPit" parent="." instance=ExtResource("3_3isdd")]
 position = Vector2(-29, 114)

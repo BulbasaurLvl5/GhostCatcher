@@ -448,11 +448,11 @@ centered = false
 
 [node name="Horizon" type="Node2D" parent="Parallax"]
 z_index = -1000
-position = Vector2(2898.41, -27.6382)
+position = Vector2(634.452, -83.8289)
 script = ExtResource("15_04c71")
 distance = 1.0
 scroll_scale = Vector2(0.1, 0.55)
-screen_offset = Vector2(3220.45, -61.4182)
+screen_offset = Vector2(704.946, -186.286)
 
 [node name="CombinedHills01" type="Sprite2D" parent="Parallax/Horizon"]
 self_modulate = Color(0.714048, 0.694729, 0.474144, 1)
@@ -480,11 +480,11 @@ texture = ExtResource("16_hefvq")
 
 [node name="Horizon2" type="Node2D" parent="Parallax"]
 z_index = -635
-position = Vector2(1828.75, -17.4383)
+position = Vector2(400.307, -52.892)
 script = ExtResource("15_04c71")
 distance = 0.63095
 scroll_scale = Vector2(0.432145, 0.716072)
-screen_offset = Vector2(3220.45, -61.4182)
+screen_offset = Vector2(704.946, -186.286)
 
 [node name="CombinedHills02" type="Sprite2D" parent="Parallax/Horizon2"]
 modulate = Color(0.587145, 0.632053, 0.491613, 1)

@@ -13,8 +13,6 @@
 [node name="Mountainside" type="Node2D"]
 script = ExtResource("1_bcnw3")
 level_name = "Mountainside"
-starting_position_x = -1.0
-starting_position_y = -1.0
 top_boundary = -36.0
 left_boundary = -17.5
 right_boundary = 29.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://co61q4w3475s0"]
+[gd_scene load_steps=20 format=3 uid="uid://co61q4w3475s0"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_lmyvs"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_s67yy"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://resources/path_follow_manager.gd" id="4_117wx"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_ut7s1"]
 [ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://environment/platforms/wide_platform_01.tscn" id="5_yufk5"]
-[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_yywpm"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_gix53"]
 
 [sub_resource type="Curve2D" id="Curve2D_oc8qy"]
@@ -291,20 +290,6 @@ collision_layer = 5
 
 [node name="EndlessPit" parent="." instance=ExtResource("4_ut7s1")]
 position = Vector2(0, 550)
-
-[node name="Parallax" type="Node" parent="."]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
-position = Vector2(-148, 102)
-motion_scale = Vector2(0.1, 0.1)
-
-[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
-position = Vector2(-468, -525)
-scale = Vector2(3, 2)
-texture = ExtResource("5_yywpm")
-centered = false
 
 [node name="Player" parent="." instance=ExtResource("6_gix53")]
 position = Vector2(-220, -636)
