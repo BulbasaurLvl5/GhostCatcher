@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx7ye5k4fy4v8"]
+[gd_scene load_steps=4 format=3 uid="uid://cx7ye5k4fy4v8"]
 
 [ext_resource type="Texture2D" uid="uid://b05a0db2rhgv2" path="res://resources/sprites/coal/spikes_large.png" id="1_j6veh"]
 [ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://resources/collision_failure.tscn" id="2_u34e7"]
 [ext_resource type="Texture2D" uid="uid://c6vquhqtvvbqu" path="res://resources/radial_light.tres" id="3_qnghk"]
-[ext_resource type="Script" path="res://environment/spikelight2d.gd" id="4_qc1j8"]
 
 [node name="Spikes_large" type="Area2D"]
 light_mask = 129
@@ -18,44 +17,32 @@ texture = ExtResource("1_j6veh")
 causeOfDeath = 1
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-158, 25, -175, -10, -146, 1, -125, -15, -116, -15, -122, -28, -111, -32, -56, -8, -46, -30, -27, -13, -16, -18, -7, 4, 7, -11, 33, 0, 46, -31, 54, -1, 91, -14, 103, -6, 116, -28, 138, 1, 169, -14, 164, 26)
 
-[node name="SpikeLight2D" type="PointLight2D" parent="."]
+[node name="Light2D" type="PointLight2D" parent="."]
 light_mask = 128
-position = Vector2(-161, 2)
+position = Vector2(10, -16.5)
+scale = Vector2(1.51515, 0.381818)
 color = Color(1, 0, 0, 1)
+energy = 0.5
 range_item_cull_mask = 128
 texture = ExtResource("3_qnghk")
-script = ExtResource("4_qc1j8")
 
-[node name="SpikeLight2D5" type="PointLight2D" parent="."]
+[node name="Light2D3" type="PointLight2D" parent="."]
 light_mask = 128
-position = Vector2(-81, 1)
-color = Color(7.21961e-07, 0.635755, 0.401729, 1)
-range_item_cull_mask = 128
-texture = ExtResource("3_qnghk")
-script = ExtResource("4_qc1j8")
-
-[node name="SpikeLight2D2" type="PointLight2D" parent="."]
-light_mask = 128
-position = Vector2(-1, 1)
-color = Color(0.784314, 0.490196, 0, 1)
-range_item_cull_mask = 128
-texture = ExtResource("3_qnghk")
-script = ExtResource("4_qc1j8")
-
-[node name="SpikeLight2D4" type="PointLight2D" parent="."]
-light_mask = 128
-position = Vector2(83, 1)
+position = Vector2(124, -15.5)
+scale = Vector2(1.51515, 0.369697)
 color = Color(1, 0, 0, 1)
+energy = 0.5
 range_item_cull_mask = 128
 texture = ExtResource("3_qnghk")
-script = ExtResource("4_qc1j8")
 
-[node name="SpikeLight2D3" type="PointLight2D" parent="."]
+[node name="Light2D2" type="PointLight2D" parent="."]
 light_mask = 128
-position = Vector2(156, 1)
-color = Color(0.784314, 0, 0.819608, 1)
+position = Vector2(-121.402, -14)
+scale = Vector2(0.722406, 0.327273)
+color = Color(1, 0, 0, 1)
+energy = 0.5
 range_item_cull_mask = 128
 texture = ExtResource("3_qnghk")
-script = ExtResource("4_qc1j8")

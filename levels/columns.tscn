@@ -633,11 +633,11 @@ position = Vector2(65, 912)
 
 [node name="Mountains" type="Node2D" parent="Parallax"]
 z_index = -894
-position = Vector2(402.744, -867.05)
+position = Vector2(148.181, -223.849)
 script = ExtResource("13_pcsxy")
 distance = 0.89297
 scroll_scale = Vector2(0.196327, 0.598163)
-screen_offset = Vector2(501.129, -2157.72)
+screen_offset = Vector2(184.379, -557.065)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Mountains"]
 position = Vector2(-3389, 33)
@@ -669,11 +669,11 @@ texture = ExtResource("18_0lqrr")
 
 [node name="HillsFar" type="Node2D" parent="Parallax"]
 z_index = -519
-position = Vector2(231.714, -498.847)
+position = Vector2(85.2541, -128.789)
 script = ExtResource("13_pcsxy")
 distance = 0.51376
 scroll_scale = Vector2(0.537616, 0.768808)
-screen_offset = Vector2(501.129, -2157.72)
+screen_offset = Vector2(184.379, -557.065)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/HillsFar"]
 position = Vector2(-3547.79, 545.029)
@@ -705,11 +705,11 @@ texture = ExtResource("19_i7sbg")
 
 [node name="HillsNear" type="Node2D" parent="Parallax"]
 z_index = -283
-position = Vector2(124.133, -267.242)
+position = Vector2(45.6721, -68.9948)
 script = ExtResource("13_pcsxy")
 distance = 0.27523
 scroll_scale = Vector2(0.752293, 0.876146)
-screen_offset = Vector2(501.129, -2157.72)
+screen_offset = Vector2(184.379, -557.065)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/HillsNear"]
 position = Vector2(-3638.57, 775.823)

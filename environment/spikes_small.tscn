@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cokkthd0l6fyj"]
+[gd_scene load_steps=4 format=3 uid="uid://cokkthd0l6fyj"]
 
 [ext_resource type="Texture2D" uid="uid://rfa8aih1g07h" path="res://resources/sprites/coal/spikes_small.png" id="1_la27r"]
 [ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://resources/collision_failure.tscn" id="2_yxwa0"]
 [ext_resource type="Texture2D" uid="uid://c6vquhqtvvbqu" path="res://resources/radial_light.tres" id="3_fdnmj"]
-[ext_resource type="Script" path="res://environment/spikelight2d.gd" id="4_vdcx4"]
 
 [node name="Spikes_small" type="Area2D"]
 collision_layer = 0
@@ -14,23 +13,16 @@ light_mask = 129
 texture = ExtResource("1_la27r")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(5, -26, 14, -27, 11, 1, 22, -8, 29, 1, 21, 27, -21, 26, -31, -2, -16, 6)
 
 [node name="CollisionFailure" parent="." instance=ExtResource("2_yxwa0")]
 causeOfDeath = 1
 
-[node name="SpikeLight2D" type="PointLight2D" parent="."]
+[node name="Light2D" type="PointLight2D" parent="."]
 light_mask = 128
-position = Vector2(16, 4)
+position = Vector2(6, -9)
+scale = Vector2(0.509091, 0.351515)
 color = Color(1, 0, 0, 1)
 range_item_cull_mask = 128
 texture = ExtResource("3_fdnmj")
-script = ExtResource("4_vdcx4")
-
-[node name="SpikeLight2D2" type="PointLight2D" parent="."]
-light_mask = 128
-position = Vector2(-16, 4)
-color = Color(0.784314, 0.490196, 0, 1)
-range_item_cull_mask = 128
-texture = ExtResource("3_fdnmj")
-script = ExtResource("4_vdcx4")

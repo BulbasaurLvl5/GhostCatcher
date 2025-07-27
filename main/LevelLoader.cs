@@ -84,9 +84,9 @@ public static class LevelLoader
 
 	public static Level[] Levels = {
 	// tutorials
-		new Level("daniel1", new float[5]{8,10,12,15,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_1_daniel.tscn"), LoadLevel_Tutorial_1_daniel),
-		new Level("daniel2", new float[5]{12,13,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_2_daniel.tscn"), LoadLevel_Tutorial_2_daniel),
-		new Level("daniel3", new float[5]{13,16,19,22,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_3_daniel.tscn"), LoadLevel_Tutorial_3_daniel),
+		// new Level("daniel1", new float[5]{8,10,12,15,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_1_daniel.tscn"), LoadLevel_Tutorial_1_daniel),
+		// new Level("daniel2", new float[5]{12,13,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_2_daniel.tscn"), LoadLevel_Tutorial_2_daniel),
+		// new Level("daniel3", new float[5]{13,16,19,22,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_3_daniel.tscn"), LoadLevel_Tutorial_3_daniel),
 		new Level("stefan1", new float[5]{8,10,12,15,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_1_stefan.tscn"), LoadLevel_Tutorial_1),
 		new Level("stefan2", new float[5]{12,13,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_2_stefan.tscn"), LoadLevel_Tutorial_2),
 		new Level("stefan3", new float[5]{13,16,19,22,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_3_stefan.tscn"), LoadLevel_Tutorial_3),
