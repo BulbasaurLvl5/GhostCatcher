@@ -1,12 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://0vy8nky8i46d"]
+[gd_scene load_steps=9 format=3 uid="uid://0vy8nky8i46d"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_k14ye"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_u4u2g"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_htb73"]
 [ext_resource type="Script" path="res://environment/platforms/moving_tile_map.gd" id="3_p8etl"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_m1qnb"]
-[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="5_e1e25"]
-[ext_resource type="PackedScene" uid="uid://b6aa5jcihgapw" path="res://environment/parallax/sky.tscn" id="6_5xxk6"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_m4xe8"]
 
 [sub_resource type="Animation" id="Animation_fkpnk"]
@@ -101,21 +99,5 @@ position = Vector2(-1233, -2203)
 
 [node name="EndlessPit" parent="." instance=ExtResource("4_m1qnb")]
 position = Vector2(0, 550)
-
-[node name="Parallax" type="Node" parent="."]
-
-[node name="Sky" parent="Parallax" instance=ExtResource("6_5xxk6")]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Parallax"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax/ParallaxBackground"]
-position = Vector2(-148, 102)
-motion_scale = Vector2(0.1, 0.1)
-
-[node name="Mountains" type="Sprite2D" parent="Parallax/ParallaxBackground/ParallaxLayer"]
-position = Vector2(-468, -525)
-scale = Vector2(3, 2)
-texture = ExtResource("5_e1e25")
-centered = false
 
 [node name="Player" parent="." instance=ExtResource("6_m4xe8")]
