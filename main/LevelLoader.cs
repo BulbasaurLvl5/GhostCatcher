@@ -107,7 +107,7 @@ public static class LevelLoader
 		new Level("assemble", new float[5]{22,24,27,30,36}, ResourceLoader.Load<PackedScene>("res://levels/assembly_line.tscn"), LoadLevel_assembly),
 		new Level("the fall", new float[5]{21,23,25,27,30}, ResourceLoader.Load<PackedScene>("res://levels/thefall.tscn"), LoadLevel_Fall),
 		new Level("quake", new float[5]{35,36,38,40,42}, ResourceLoader.Load<PackedScene>("res://levels/quake.tscn"), LoadLevel_Quake),
-	// 1st enemy type (ghosts)
+	// 1st enemy type (red ghosts)
 	// spikes
 		new Level("spikes", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/spikes.tscn"), LoadLevel_Spikes),
 		new Level("mountain", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/mountainside.tscn"), LoadLevel_MountainSide),
@@ -122,12 +122,8 @@ public static class LevelLoader
 		new Level("newground", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/new_ground.tscn"), LoadLevel_NewGround),
 	// extra air
 	// unasigned
-		new Level("break", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/breakthrough.tscn"), LoadLevel_Breakthrough),
 		new Level("caves", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/caves.tscn"), LoadLevel_Caves),
 		new Level("factory", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/factory_yard.tscn"), LoadLevel_FactoryYard),
-		new Level("forest", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/forest.tscn"), LoadLevel_Forest),
-		new Level("firering", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/ring_of_fire.tscn"), LoadLevel_RingOfFire),
-		new Level("skullcap", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/skull_cap.tscn"), LoadLevel_SkullCap),
 	//further ideas: spiders / poison cloud that fails after x secs / icy round / portals / jump pads
 	};
 
