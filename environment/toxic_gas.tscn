@@ -1,13 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://w7fqfmx4sodp"]
-
-[ext_resource type="Script" path="res://environment/toxic_gas.gd" id="1_rybsx"]
+[gd_scene load_steps=2 format=3 uid="uid://w7fqfmx4sodp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4xnu5"]
 size = Vector2(10000, 5000)
 
 [node name="ToxicGas" type="Area2D"]
 collision_mask = 2
-script = ExtResource("1_rybsx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4xnu5")
@@ -25,6 +22,3 @@ offset_bottom = 2500.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.407843, 0.517647, 0.239216, 0.498039)
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]

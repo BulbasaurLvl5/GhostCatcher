@@ -65,17 +65,7 @@ var air_actions_enabled : bool = true:
 			%AirActionCrow2.visible = true
 		else:
 			%AirActionCrow2.visible = false
-var is_in_toxic_gas : bool = false:
-	set(value):
-		if is_in_toxic_gas == value:
-			return
-		is_in_toxic_gas = value
-		if is_in_toxic_gas:
-			%ToxicGasTimer.start(data.max_time_in_toxic_gas)
-			%ToxicGasLabel.visible = true
-		else:
-			%ToxicGasTimer.stop()
-			%ToxicGasLabel.visible = false
+
 var radar_enabled : bool = true:
 	set(value):
 		if radar_enabled == value:
@@ -105,9 +95,6 @@ var level_boundary : Rect2:
 func _process(_delta):
 	check_input()
 	check_environment()
-	if is_in_toxic_gas:
-		%ToxicGasLabel.text = str(int(%ToxicGasTimer.time_left) + 1)
-
 
 func pause_game():
 	var path = "res://ui/menus/menu_pause.tscn"
@@ -343,8 +330,3 @@ func toggle_camera_process(active : bool):
 		%Camera2D.process_mode = Node.PROCESS_MODE_ALWAYS
 	else:
 		%Camera2D.process_mode = Node.PROCESS_MODE_DISABLED
-
-
-func _on_toxic_gas_timer_timeout():
-	#TODO: Try to call _main.FailLevel()
-	$"../../..".FailLevel("pit")
