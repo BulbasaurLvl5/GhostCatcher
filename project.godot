@@ -33,7 +33,7 @@ project/assembly_name="GhostCatcher"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/parallax_wizard/plugin.cfg")
+enabled=PackedStringArray()
 
 [filesystem]
 
