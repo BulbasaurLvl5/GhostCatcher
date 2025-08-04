@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dhow5esn6x7rt"]
+[gd_scene load_steps=37 format=3 uid="uid://dhow5esn6x7rt"]
 
 [ext_resource type="Script" path="res://entities/player/state_machine/player_state_machine.gd" id="1_dcopr"]
 [ext_resource type="Script" path="res://entities/player/state_machine/player.gd" id="1_l4530"]
@@ -50,6 +50,44 @@ height = 880
 use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_5rsqg"]
+resource_name = "zoom_in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jk6te"]
+resource_name = "zoom_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s4r42"]
+_data = {
+"zoom_in": SubResource("Animation_5rsqg"),
+"zoom_out": SubResource("Animation_jk6te")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 process_mode = 4
@@ -119,7 +157,6 @@ script = ExtResource("16_hlspe")
 
 [node name="Crows_Path2D" type="Path2D" parent="."]
 unique_name_in_owner = true
-process_mode = 3
 position = Vector2(-1, -21)
 curve = SubResource("Curve2D_arbo3")
 
@@ -201,6 +238,11 @@ drag_right_margin = 0.15
 drag_bottom_margin = 0.3
 script = ExtResource("16_1amk7")
 max_zoom_out = 1.0
+
+[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
+libraries = {
+"": SubResource("AnimationLibrary_s4r42")
+}
 
 [node name="Radar2D" type="Node2D" parent="."]
 process_mode = 3

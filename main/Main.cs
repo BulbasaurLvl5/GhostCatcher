@@ -178,7 +178,7 @@ public partial class Main : Node
 		FileIO.Save(EvaluateQuote(causeOfDeath));
 	}
 
-	public Node Player()
+	public CharacterBody2D Player()
 	{
 		if(this.TryGetNodeInTree("Player", out CharacterBody2D _player))
 		{

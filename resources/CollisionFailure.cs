@@ -2,12 +2,13 @@ using Godot;
 using System;
 using MyGodotExtensions;
 
-public enum CauseOfDeath{
+public enum CauseOfDeath
+{
 	pit,
 	spikes,
 	ghost,
 	skull
-
+	//spider, toxic gas
 }
 
 public partial class CollisionFailure : Node

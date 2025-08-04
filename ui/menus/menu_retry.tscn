@@ -1,98 +1,45 @@
-[gd_scene load_steps=16 format=3 uid="uid://bokl5cktpsr6n"]
+[gd_scene load_steps=14 format=3 uid="uid://bokl5cktpsr6n"]
 
 [ext_resource type="Script" path="res://ui/menus/MenuRetry.cs" id="1_kt2lo"]
+[ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://resources/sprites/coal/reaper_cutout.png" id="2_whis7"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="3_kykr8"]
-[ext_resource type="PackedScene" uid="uid://csnkj00bl5kkx" path="res://resources/cutscenes/death.tscn" id="4_3qybl"]
 [ext_resource type="Texture2D" uid="uid://di4dddfdh5et7" path="res://resources/sprites/coal/star_rating_0.png" id="4_wydpr"]
 [ext_resource type="Texture2D" uid="uid://dbqdwpu1gmd0m" path="res://resources/sprites/coal/star_rating_1.png" id="5_p807s"]
 [ext_resource type="Texture2D" uid="uid://cbhe11ciphcxq" path="res://resources/sprites/coal/star_rating_2.png" id="6_l8ulk"]
 [ext_resource type="Texture2D" uid="uid://c0gc7f2tabnb1" path="res://resources/sprites/coal/star_rating_3.png" id="7_iydby"]
 [ext_resource type="Texture2D" uid="uid://be0focatd66ee" path="res://resources/sprites/coal/star_rating_4.png" id="8_5gaqe"]
 [ext_resource type="Texture2D" uid="uid://1ehg3bq0be" path="res://resources/sprites/coal/star_rating_5.png" id="9_sjwuq"]
-[ext_resource type="Script" path="res://resources/cutscenes/cutscene.gd" id="10_mo1u3"]
-[ext_resource type="SpriteFrames" uid="uid://byt3hw2l4n5l5" path="res://entities/player/anim/oriette.tres" id="11_gx74l"]
 
-[sub_resource type="Animation" id="Animation_xkux8"]
-resource_name = "dead"
-length = 5.0
-tracks/0/type = "method"
+[sub_resource type="Animation" id="Animation_vgim6"]
+resource_name = "fade_to_black"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("cutscenes/cutscene_methods")
+tracks/0/path = NodePath("blackout:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.7),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [Vector2(1150, 850), 1.0],
-"method": &"timed_float_player_to"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("cutscenes/standin/AnimatedSprite2D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(0.959504),
-"update": 1,
-"values": [&"fall"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("cutscenes/standin/AnimatedSprite2D:speed_scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(0.959503),
-"update": 0,
-"values": [1.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("cutscenes/reaper:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(1.1, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(12, 12), Vector2(2, 2)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("cutscenes/reaper:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(1.1, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("cutscenes/blackout:color")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.1, 1.1),
+"times": PackedFloat32Array(0.1, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.0430392, 0.0430392, 0.0430392, 0), Color(0.0431373, 0.0431373, 0.0431373, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_18ke0"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cotta"]
 _data = {
-"dead": SubResource("Animation_xkux8")
+"fade_to_black": SubResource("Animation_vgim6")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_filuv"]
@@ -106,20 +53,12 @@ font_color = Color(0.796078, 0.639216, 0.12549, 1)
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Retry_Menu" type="Node"]
+[node name="menu_retry" type="Node"]
 script = ExtResource("1_kt2lo")
 
-[node name="cutscenes" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_18ke0")
-}
+[node name="Visuals" type="Node" parent="."]
 
-[node name="cutscene_methods" type="Node" parent="cutscenes"]
-unique_name_in_owner = true
-script = ExtResource("10_mo1u3")
-
-[node name="blackout" type="ColorRect" parent="cutscenes"]
+[node name="blackout" type="ColorRect" parent="Visuals"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -127,31 +66,18 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-color = Color(0.0430392, 0.0430392, 0.0430392, 0)
+color = Color(0.0431373, 0.0431373, 0.0431373, 1)
 
-[node name="standin" type="Node2D" parent="cutscenes"]
-unique_name_in_owner = true
-visible = false
-modulate = Color(0.851769, 0.851769, 0.851769, 1)
-z_index = 200
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]
+libraries = {
+"": SubResource("AnimationLibrary_cotta")
+}
+autoplay = "fade_to_black"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="cutscenes/standin"]
-scale = Vector2(0.3, 0.3)
-sprite_frames = ExtResource("11_gx74l")
-animation = &"fall"
-offset = Vector2(-40, -50)
-
-[node name="reaper" type="Node2D" parent="cutscenes"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
-position = Vector2(1172, 644)
-scale = Vector2(12, 12)
-
-[node name="Death" parent="cutscenes/reaper" instance=ExtResource("4_3qybl")]
-scale = Vector2(0.65, 0.65)
-message_bubble_on = true
-quote = "So we meet again..."
-quote_set = 2
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+position = Vector2(1190.43, 675.123)
+scale = Vector2(2.26913, 2.26913)
+texture = ExtResource("2_whis7")
 
 [node name="buttons" type="Control" parent="."]
 layout_mode = 3
