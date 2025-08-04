@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cg7qptahsm8we"]
+[gd_scene load_steps=8 format=3 uid="uid://cg7qptahsm8we"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_kqcct"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_62aao"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://environment/spikes_large.tscn" id="4_ss0j0"]
 [ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://environment/spikes_small.tscn" id="5_33d1k"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="17_onhnw"]
-[ext_resource type="PackedScene" uid="uid://y5tg6e5sfap2" path="res://resources/cutscenes/death_shows_up.tscn" id="20_0cfuh"]
 
 [node name="Tutorial_1D" type="Node2D"]
 script = ExtResource("1_kqcct")
@@ -72,6 +71,3 @@ position = Vector2(0, 330)
 
 [node name="Player" parent="." instance=ExtResource("17_onhnw")]
 position = Vector2(-7029, -57)
-
-[node name="DeathShowsUp" parent="." instance=ExtResource("20_0cfuh")]
-position = Vector2(-4891, 18)

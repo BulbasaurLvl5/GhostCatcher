@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://duweer7imrm3"]
+[gd_scene load_steps=12 format=3 uid="uid://duweer7imrm3"]
 
 [ext_resource type="Script" path="res://main/level.gd" id="1_xijcp"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_04yv5"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://m83habum8p34" path="res://resources/sprites/coal/bones_animal_1.png" id="18_lk1ml"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="19_35gng"]
 [ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://environment/spikes_medium.tscn" id="20_77mvs"]
-[ext_resource type="PackedScene" uid="uid://y5tg6e5sfap2" path="res://resources/cutscenes/death_shows_up.tscn" id="20_ilnby"]
 
 [node name="Tutorial_2D" type="Node2D"]
 script = ExtResource("1_xijcp")
@@ -144,7 +143,3 @@ position = Vector2(0, 330)
 
 [node name="Player" parent="." instance=ExtResource("17_7rihl")]
 position = Vector2(-6618, -50)
-
-[node name="DeathShowsUp" parent="." instance=ExtResource("20_ilnby")]
-position = Vector2(-3026, -294)
-scene = 1
