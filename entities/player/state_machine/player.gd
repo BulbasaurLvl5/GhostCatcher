@@ -79,8 +79,8 @@ var jump_input : bool = false
 var jump_button_reset : bool = true
 var dash_input : bool = false
 var dash_button_reset : bool = true
-var stomp_input : bool = false
-var stomp_input_reset : bool = true
+#var stomp_input : bool = false
+#var stomp_input_reset : bool = true
 var current_inputs_used : int = 1 #This keeps track of which set of inputs the player is currently using
 
 var last_dash_time : float = 0
@@ -163,16 +163,16 @@ func check_input():
 		dash_input = false
 		if !dash_button_reset:
 			dash_button_reset = true
-	if Input.is_action_pressed("Stomp1") || Input.is_action_pressed("Stomp2"):
-		if Input.is_action_pressed("Stomp1"):
-			current_inputs_used = 1
-		else:
-			current_inputs_used = 2
-		stomp_input = true	
-	else:
-		stomp_input = false
-		if !stomp_input_reset:
-			stomp_input_reset = true
+	#if Input.is_action_pressed("Stomp1") || Input.is_action_pressed("Stomp2"):
+		#if Input.is_action_pressed("Stomp1"):
+			#current_inputs_used = 1
+		#else:
+			#current_inputs_used = 2
+		#stomp_input = true	
+	#else:
+		#stomp_input = false
+		#if !stomp_input_reset:
+			#stomp_input_reset = true
 
 
 func check_environment():
@@ -256,10 +256,10 @@ func can_dash() -> bool:
 	return false
 
 
-func can_stomp() -> bool:
-	if stomp_input && stomp_input_reset && super_state != SuperStates.GROUNDED:
-		return true
-	return false
+#func can_stomp() -> bool:
+	#if stomp_input && stomp_input_reset && super_state != SuperStates.GROUNDED:
+		#return true
+	#return false
 
 
 func air_action():

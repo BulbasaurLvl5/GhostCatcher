@@ -51,8 +51,8 @@ func Do_Checks():
 	elif player.can_dash():
 		player.air_action()
 		Transitioned.emit(self,"Dash")
-	elif player.can_stomp():
-		Transitioned.emit(self,"Stomp")
+	#elif player.can_stomp():
+		#Transitioned.emit(self,"Stomp")
 	elif player.can_grab_wall():
 		player.stop_motion()
 		Transitioned.emit(self,"WallGrab")

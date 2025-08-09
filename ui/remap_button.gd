@@ -1,12 +1,10 @@
 class_name RemapButton
 extends Button
 
-
 @export var actions : Array[String]
 @export var event_indexes : Array[int]
 
 var remap_button_manager : RemapButtonManager
-
 
 func _ready():
 	var menu_items : Array[Node]
@@ -14,7 +12,6 @@ func _ready():
 	for item in menu_items:
 		if item is RemapButtonManager:
 			remap_button_manager = item
-
 
 func update_button():
 	set_process_unhandled_input(false)
@@ -31,11 +28,9 @@ func update_button():
 		print(event_name," should be added to the input name-shortening database.")
 	text = event_name
 
-
 func _process(_delta):
 	if visible:
 		_update()
-
 
 func _update():
 	if button_pressed:
@@ -44,7 +39,6 @@ func _update():
 			remap_button_manager.is_remapping_button = true
 			text = "....."
 			set_process_unhandled_input(true)
-
 
 func _unhandled_input(event):
 	Input.flush_buffered_events()
@@ -61,8 +55,7 @@ func _unhandled_input(event):
 		if event.get_axis_value() < -0.5:
 			event.set_axis_value(-1)
 			check_input(event)
-	
-	
+
 func check_input(event):	
 	set_process_unhandled_input(false)
 	event.set_pressed(false)
@@ -82,7 +75,6 @@ func check_input(event):
 	else:
 		reject_event(event)
 
-
 func change_input_event(event):
 	var count = 0
 	for a in actions:
@@ -97,7 +89,6 @@ func change_input_event(event):
 	update_button()
 	remap_button_manager.is_remapping_button = false
 	grab_focus()
-	
 
 func reject_event(event):
 	#THIS MESSAGE SHOULD BE DISPLAYED TO THE PLAYER
@@ -105,4 +96,3 @@ func reject_event(event):
 	#THIS MESSAGE SHOULD BE DISPLAYED TO THE PLAYER
 	print(event," is already assigned. Please choose a different input.")
 	set_process_unhandled_input(true)
-	

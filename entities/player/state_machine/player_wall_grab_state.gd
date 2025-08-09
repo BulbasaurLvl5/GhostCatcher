@@ -34,8 +34,8 @@ func Do_Checks():
 	elif player.can_dash():
 		Flip_Player(true)
 		Transitioned.emit(self,"Dash")
-	elif player.can_stomp():
-		Transitioned.emit(self,"Stomp")
+	#elif player.can_stomp():
+		#Transitioned.emit(self,"Stomp")
 	elif player.x_input != wall_direction || (player.super_state != player.SuperStates.ON_WALL && !player.can_grab_wall()):
 		%CoyoteTime.set_wait_time(data.coyote_time_wall)
 		%CoyoteTime.start()

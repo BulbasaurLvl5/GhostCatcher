@@ -66,8 +66,8 @@ public partial class Main : Node
 
 		//because of the set up (GDS+C# + how remap button works) we quickly load the whole menu
 		//for consistency all settings are loaded in _ready of menuoptions
-		Node _optionsmenu = UILoader.LoadOptionsMenu(this);
-		_optionsmenu.QueueFree();
+		// Node _optionsmenu = UILoader.LoadOptionsMenu(this);
+		// _optionsmenu.QueueFree();
 
 		if(this.TryGetNestedChildren(out List<Button> _buttons))
 			_buttons[2].GrabFocus();//select level select button

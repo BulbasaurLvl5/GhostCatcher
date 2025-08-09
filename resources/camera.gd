@@ -29,11 +29,11 @@ signal Zoomed(new_zoom_setting : Vector2)
 @export_range (0.0, 16.0, 0.001, "or_greater", "suffix:pixels per second") var default_shake_fade : float = 5.0
 
 #ZOOM
-var zoom_input : bool = false
-var zoom_input_reset : bool = true
-var zoom_direction : int = 0
-var current_zoom_duration : float = 0
-var zoom_is_changing : bool = false
+#var zoom_input : bool = false
+#var zoom_input_reset : bool = true
+#var zoom_direction : int = 0
+#var current_zoom_duration : float = 0
+#var zoom_is_changing : bool = false
 
 #SHAKE
 var rng = RandomNumberGenerator.new()
@@ -69,21 +69,21 @@ func _process(delta):
 	if !position_smoothing_enabled:
 		enable_smooth_and_drag(true)
 		position = Vector2.ZERO
-	zoom_input = get_zoom_input()
-	if sticky_zoom || toggled_zoom:
-		check_sticky_and_toggled()
-	else:
-		check_manual()
-	
-	if zoom_is_changing && !zoom_is_at_limit():
-		var new : Vector2 = Vector2.ZERO 
-		if zoom_direction == 1:
-			new = get_zoom().lerp(Vector2.ONE, 2*delta/current_zoom_duration)
-		else:
-			new = get_zoom().lerp(Vector2(max_zoom_out, max_zoom_out), 2*delta/current_zoom_duration)
-		new /= field_of_view_multiplier
-		set_zoom(new)
-		Zoomed.emit(new)
+	#zoom_input = get_zoom_input()
+	#if sticky_zoom || toggled_zoom:
+		#check_sticky_and_toggled()
+	#else:
+		#check_manual()
+	#
+	#if zoom_is_changing && !zoom_is_at_limit():
+		#var new : Vector2 = Vector2.ZERO 
+		#if zoom_direction == 1:
+			#new = get_zoom().lerp(Vector2.ONE, 2*delta/current_zoom_duration)
+		#else:
+			#new = get_zoom().lerp(Vector2(max_zoom_out, max_zoom_out), 2*delta/current_zoom_duration)
+		#new /= field_of_view_multiplier
+		#set_zoom(new)
+		#Zoomed.emit(new)
 	#SHAKE
 	if shake_strength > 0:
 		shake_strength = lerpf(shake_strength, 0, default_shake_fade * delta)
@@ -92,54 +92,54 @@ func _process(delta):
 		offset = Vector2.ZERO
 
 #ZOOM
-func get_zoom_input():
-	if Input.is_action_pressed("Zoom1") || Input.is_action_pressed("Zoom2"):
-		return true
-	else:
-		zoom_input_reset = true
-		return false
-
-
-func check_sticky_and_toggled():
-	if zoom_input:
-		if zoom_input_reset:
-			if zoom_direction == -1:
-				set_zoom_in()
-			else:
-				set_zoom_out()
-			zoom_input_reset = false
-	elif sticky_zoom:
-		zoom_is_changing = false
-		
-		
-func check_manual():
-	if zoom_input:
-		if zoom_input_reset:
-			set_zoom_out()
-			zoom_input_reset = false
-	elif zoom_direction < 1:
-		set_zoom_in()
-
-
-func set_zoom_out():
-	zoom_is_changing = true
-	zoom_direction = -1
-	current_zoom_duration = zoom_out_duration * (get_zoom().x - max_zoom_out) / (1 - max_zoom_out)
-
-
-func set_zoom_in():
-	zoom_is_changing = true
-	zoom_direction = 1
-	current_zoom_duration = zoom_reset_duration * (1 - get_zoom().x) / (1 - max_zoom_out)
-
-
-func zoom_is_at_limit() -> bool:
-	if zoom_direction == 1 && get_zoom() >= Vector2.ONE:
-		return true
-	if zoom_direction == -1 && get_zoom().x <= max_zoom_out:
-		return true
-	else:
-		return false
+#func get_zoom_input():
+	#if Input.is_action_pressed("Zoom1") || Input.is_action_pressed("Zoom2"):
+		#return true
+	#else:
+		#zoom_input_reset = true
+		#return false
+#
+#
+#func check_sticky_and_toggled():
+	#if zoom_input:
+		#if zoom_input_reset:
+			#if zoom_direction == -1:
+				#set_zoom_in()
+			#else:
+				#set_zoom_out()
+			#zoom_input_reset = false
+	#elif sticky_zoom:
+		#zoom_is_changing = false
+		#
+		#
+#func check_manual():
+	#if zoom_input:
+		#if zoom_input_reset:
+			#set_zoom_out()
+			#zoom_input_reset = false
+	#elif zoom_direction < 1:
+		#set_zoom_in()
+#
+#
+#func set_zoom_out():
+	#zoom_is_changing = true
+	#zoom_direction = -1
+	#current_zoom_duration = zoom_out_duration * (get_zoom().x - max_zoom_out) / (1 - max_zoom_out)
+#
+#
+#func set_zoom_in():
+	#zoom_is_changing = true
+	#zoom_direction = 1
+	#current_zoom_duration = zoom_reset_duration * (1 - get_zoom().x) / (1 - max_zoom_out)
+#
+#
+#func zoom_is_at_limit() -> bool:
+	#if zoom_direction == 1 && get_zoom() >= Vector2.ONE:
+		#return true
+	#if zoom_direction == -1 && get_zoom().x <= max_zoom_out:
+		#return true
+	#else:
+		#return false
 
 
 func apply_shake(shake_multiplier : float = 1.0):

@@ -38,8 +38,8 @@ func Do_Checks():
 	elif player.can_dash():
 		player.air_action()
 		Transitioned.emit(self,"Dash")
-	elif player.can_stomp():
-		Transitioned.emit(self,"Stomp")
+	#elif player.can_stomp():
+		#Transitioned.emit(self,"Stomp")
 	elif player.velocity.y > 0 || player.is_on_ceiling():
 		Transitioned.emit(self,"InAir")
 	elif player.y_input >= 0:

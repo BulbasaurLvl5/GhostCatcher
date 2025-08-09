@@ -34,7 +34,7 @@ public static class UILoader
 		{
 			_buttons[0].Pressed += () => {
 				_main.ClearScenes();
-				LoadLevelSelector(_main);                
+				LoadLevelSelector(_main);            
 			};
 
 			_buttons[1].Pressed += () => {
@@ -51,12 +51,11 @@ public static class UILoader
 		}
 	}
 
-	public static Node LoadOptionsMenu(Main _main)
+	public static void LoadOptionsMenu(Main _main)
 	{
-		//returns _optionsMenu bc main menu has to load it quickly once when started to load input settings
 		Node _optionsMenu = packedOptionsMenu.Instantiate<Node>();
 			_main.UI.AddChild(_optionsMenu);
-		return _optionsMenu;
+		//return _optionsMenu; //returns _optionsMenu bc main menu has to load it quickly once when started to load input settings
 	}
 
 	public static void LoadRetryMenu(Main _main)
