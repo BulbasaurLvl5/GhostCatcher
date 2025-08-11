@@ -8,7 +8,7 @@ public partial class Main : Node
 {
 	TimeCounter _levelTime = new TimeCounter();
 
-	public TimeCounter LevelTime {get{return _levelTime;}}
+	public TimeCounter LevelTime { get { return _levelTime; } }
 
 	TimeCounter getReadyTime = new TimeCounter();
 
@@ -31,17 +31,17 @@ public partial class Main : Node
 
 	public Action OnGhostCollision;
 
-	public int GhostCount {get{return _ghostCount;} set{_ghostCount = value;}}
+	public int GhostCount { get { return _ghostCount; } set { _ghostCount = value; } }
 
-	public int Level{ get; set; }
+	public int Level { get; set; }
 
-	public bool Failed {get; set;}
-	
+	public bool Failed { get; set; }
+
 	public override void _Ready()
 	{
 		List<Node> children;
 
-		if(this.TryGetChildren(out children))
+		if (this.TryGetChildren(out children))
 		{
 			World = children[0];
 			UI = children[1];
@@ -52,24 +52,22 @@ public partial class Main : Node
 			UILoader.LoadMainMenu(this);
 		}
 
-		getReadyTime.OnStop += () => {
+		getReadyTime.OnStop += () =>
+		{
 			_levelTime.Start(599); //mission fails at 10min
 			Player().ProcessMode = ProcessModeEnum.Inherit;
 			// GD.Print("timer: "+Player().Name + Player().ProcessMode);
 			OnLevelStart?.Invoke();
 		};
 
-		OnLevelSucceed += () => {endTime.Start(1);};
-		OnLevelFail += () => {endTime.Start(1);};
+		OnLevelSucceed += () => { endTime.Start(1); };
+		OnLevelFail += () => { endTime.Start(1); };
 
 		endTime.OnStop += EndLevel;
 
-		//because of the set up (GDS+C# + how remap button works) we quickly load the whole menu
-		//for consistency all settings are loaded in _ready of menuoptions
-		// Node _optionsmenu = UILoader.LoadOptionsMenu(this);
-		// _optionsmenu.QueueFree();
+		LoadSettings();
 
-		if(this.TryGetNestedChildren(out List<Button> _buttons))
+		if (this.TryGetNestedChildren(out List<Button> _buttons))
 			_buttons[2].GrabFocus();//select level select button
 	}
 
@@ -85,7 +83,7 @@ public partial class Main : Node
 		_ghostCount -= 1;
 		OnGhostCollision?.Invoke();
 
-		if(_ghostCount == 0)
+		if (_ghostCount == 0)
 		{
 			SucceedLevel();
 		}
@@ -93,7 +91,7 @@ public partial class Main : Node
 
 	public async void ClearScenes()
 	{
-		if(World.TryGetNestedChildren(out List<Ghost> ghosts))
+		if (World.TryGetNestedChildren(out List<Ghost> ghosts))
 		{
 			foreach (var _g in ghosts)
 			{
@@ -127,7 +125,7 @@ public partial class Main : Node
 		Player().ProcessMode = ProcessModeEnum.Disabled;
 		// GD.Print("main player: "+Player().Name + Player().ProcessMode);
 
-		if(World.TryGetNestedChildren(out List<Ghost> ghosts))
+		if (World.TryGetNestedChildren(out List<Ghost> ghosts))
 		{
 			foreach (var _g in ghosts)
 			{
@@ -138,7 +136,7 @@ public partial class Main : Node
 				the better solution would be to create a level script and attach it to each level and let them handle the ghost counting themselfs
 				this is likely the result of this simple game becoming too complex already
 				*/
-				if(!_g.IsQueuedForDeletion())
+				if (!_g.IsQueuedForDeletion())
 				{
 					_g.BodyEntered += GhostCollision;
 					GhostCount += 1;
@@ -180,33 +178,34 @@ public partial class Main : Node
 
 	public CharacterBody2D Player()
 	{
-		if(this.TryGetNodeInTree("Player", out CharacterBody2D _player))
+		if (this.TryGetNodeInTree("Player", out CharacterBody2D _player))
 		{
 			// GD.Print("main player: "+_player.Name);
 			return _player;
 		}
-		
+
 		throw new Exception("Player not found");
 	}
 
-	public enum QUOTE_SETS {
+	public enum QUOTE_SETS
+	{
 		None,
-		first_meeting, 
-		getting_crows, 
-		generic_death, 
-		pit_death, 
-		toxic_gas_death, 
-		spikes_death, 
-		skull_death, 
-		giant_ghost_death, 
-		spider_death, 
-		zero_stars, 
-		one_star, 
-		two_stars, 
-		three_stars, 
-		four_stars, 
+		first_meeting,
+		getting_crows,
+		generic_death,
+		pit_death,
+		toxic_gas_death,
+		spikes_death,
+		skull_death,
+		giant_ghost_death,
+		spider_death,
+		zero_stars,
+		one_star,
+		two_stars,
+		three_stars,
+		four_stars,
 		five_stars
-		}
+	}
 
 	QUOTE_SETS EvaluateQuote(CauseOfDeath causeOfDeath)
 	{
@@ -221,7 +220,7 @@ public partial class Main : Node
 
 		if (causeOfDeath == CauseOfDeath.ghost)
 			return QUOTE_SETS.giant_ghost_death;
-		
+
 		return QUOTE_SETS.None;
 	}
 
@@ -244,7 +243,24 @@ public partial class Main : Node
 
 		if (LevelLoader.Levels[Level].ReturnScore(_levelTime.Time) == 5)
 			return QUOTE_SETS.five_stars;
-		
+
 		return QUOTE_SETS.None;
+	}
+
+	void LoadSettings()
+	{
+		FileIO.PlayerPrefs _playerPrefs = FileIO.LoadPlayerPrefs();
+		VideoSettings.SetVsync(VideoSettings.VsyncOptions[_playerPrefs.VideoSettings[0]]);
+		VideoSettings.SetWindowMode(VideoSettings.WindowOptions[_playerPrefs.VideoSettings[1]]);
+		VideoSettings.SetWindowSize(VideoSettings.ResolutionOptions[_playerPrefs.VideoSettings[2]]);
+
+		float _t = Mathf.Clamp((float)_playerPrefs.AudioSettings[0]*.01f, .001f, 1);
+		AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(_t));
+		_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[1]*.01f, .001f, 1);
+		AudioServer.SetBusVolumeDb(1, Mathf.LinearToDb(_t));
+		_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[2]*.01f, .001f, 1);
+		AudioServer.SetBusVolumeDb(2, Mathf.LinearToDb(_t));
+		_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[3]*.01f, .001f, 1);
+		AudioServer.SetBusVolumeDb(3, Mathf.LinearToDb(_t));
 	}
 }

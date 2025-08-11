@@ -1,11 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkoe1u7tyl8x3"]
+[gd_scene load_steps=11 format=3 uid="uid://dkoe1u7tyl8x3"]
 
 [ext_resource type="Script" path="res://ui/menus/MenuOptions.cs" id="1_qbfve"]
 [ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://resources/sprites/coal/menu_retry_background.png" id="2_7cifs"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="3_2sycy"]
 [ext_resource type="StyleBox" uid="uid://kae7nrb6cknu" path="res://resources/button_texture.tres" id="4_onq2y"]
-[ext_resource type="PackedScene" uid="uid://djie5vk4sptw6" path="res://ui/remap_button_manager.tscn" id="5_dv24k"]
-[ext_resource type="PackedScene" uid="uid://du04dff2n46ag" path="res://ui/remap_button.tscn" id="5_qadum"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_cffll"]
 device = -1
@@ -14,7 +12,13 @@ keycode = 4194305
 [sub_resource type="Shortcut" id="Shortcut_4vorc"]
 events = [SubResource("InputEventKey_cffll")]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tuf4i"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_owqwb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pwy1d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p768a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eiugr"]
 
 [node name="Menu_Options" type="Node"]
 script = ExtResource("1_qbfve")
@@ -99,7 +103,6 @@ offset_bottom = 703.0
 focus_neighbor_left = NodePath("../Audio_Button")
 focus_neighbor_top = NodePath("../Back_Button")
 focus_neighbor_right = NodePath("../Video_Button")
-focus_neighbor_bottom = NodePath("../ControlOptions/ScrollContainer/GridContainer/RemapButton")
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
@@ -113,10 +116,10 @@ expand_icon = true
 
 [node name="VideoOptions" type="GridContainer" parent="."]
 visible = false
-offset_left = 400.0
-offset_top = 559.0
-offset_right = 1500.0
-offset_bottom = 950.0
+offset_left = 673.0
+offset_top = 739.0
+offset_right = 1856.0
+offset_bottom = 1175.0
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 25
 columns = 3
@@ -130,6 +133,7 @@ text = "Vsync"
 [node name="VSeparator" type="VSeparator" parent="VideoOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_owqwb")
 
 [node name="OptionButton" type="OptionButton" parent="VideoOptions"]
 layout_mode = 2
@@ -145,6 +149,7 @@ text = "Window mode"
 [node name="VSeparator2" type="VSeparator" parent="VideoOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_owqwb")
 
 [node name="OptionButton2" type="OptionButton" parent="VideoOptions"]
 layout_mode = 2
@@ -159,12 +164,14 @@ text = "Resolution"
 [node name="VSeparator3" type="VSeparator" parent="VideoOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_owqwb")
 
 [node name="OptionButton3" type="OptionButton" parent="VideoOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="AudioOptions" type="GridContainer" parent="."]
+visible = false
 offset_left = 671.0
 offset_top = 768.0
 offset_right = 1771.0
@@ -183,6 +190,7 @@ text = "Main"
 [node name="VSeparator" type="VSeparator" parent="AudioOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pwy1d")
 
 [node name="MainHSlider" type="HSlider" parent="AudioOptions"]
 layout_mode = 2
@@ -198,6 +206,7 @@ text = "Effect"
 [node name="VSeparator2" type="VSeparator" parent="AudioOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pwy1d")
 
 [node name="EffectHSlider" type="HSlider" parent="AudioOptions"]
 layout_mode = 2
@@ -212,6 +221,7 @@ text = "Music"
 [node name="VSeparator3" type="VSeparator" parent="AudioOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_p768a")
 
 [node name="MusicSlider" type="HSlider" parent="AudioOptions"]
 layout_mode = 2
@@ -226,6 +236,7 @@ text = "UI"
 [node name="VSeparator4" type="VSeparator" parent="AudioOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pwy1d")
 
 [node name="UIHSlider" type="HSlider" parent="AudioOptions"]
 layout_mode = 2
@@ -236,306 +247,39 @@ visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 370.0
-offset_top = 515.0
-offset_right = -344.0
-offset_bottom = -82.0
+offset_left = 668.0
+offset_top = 745.0
+offset_right = -614.0
+offset_bottom = -144.0
 grow_horizontal = 2
 grow_vertical = 2
+columns = 5
 
-[node name="ColumnTitles" type="GridContainer" parent="ControlOptions"]
-visible = false
+[node name="Label" type="Label" parent="ControlOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 15
-columns = 3
-
-[node name="Label" type="Label" parent="ControlOptions/ColumnTitles"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 0.639216, 0.584314, 1)
 theme_override_font_sizes/font_size = 48
-text = "Action"
-
-[node name="Label2" type="Label" parent="ControlOptions/ColumnTitles"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 0.639216, 0.584314, 1)
-theme_override_font_sizes/font_size = 48
-text = "Input 1"
-
-[node name="Label3" type="Label" parent="ControlOptions/ColumnTitles"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 0.639216, 0.584314, 1)
-theme_override_font_sizes/font_size = 48
-text = "Input 2"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="ControlOptions"]
-custom_minimum_size = Vector2(1200, 0)
-layout_mode = 2
-size_flags_vertical = 3
-follow_focus = true
-
-[node name="GridContainer" type="GridContainer" parent="ControlOptions/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/h_separation = 0
-columns = 3
-
-[node name="Label" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
 text = "Left"
+vertical_alignment = 1
 
-[node name="RemapButton" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+[node name="VSeparator" type="VSeparator" parent="ControlOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
-focus_neighbor_top = NodePath("../../../../Control_Button")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Left1", "ui_left"])
-event_indexes = Array[int]([0, 2])
+theme_override_styles/separator = SubResource("StyleBoxEmpty_eiugr")
 
-[node name="RemapButton2" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+[node name="Button" type="Button" parent="ControlOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Left2", "ui_left"])
-event_indexes = Array[int]([0, 3])
+theme_override_font_sizes/font_size = 48
+text = "(input)"
 
-[node name="Label2" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
+[node name="VSeparator2" type="VSeparator" parent="ControlOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "Right"
+theme_override_styles/separator = SubResource("StyleBoxEmpty_eiugr")
 
-[node name="RemapButton3" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
+[node name="Button2" type="Button" parent="ControlOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Right1", "ui_right"])
-event_indexes = Array[int]([0, 2])
-
-[node name="RemapButton4" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Right2", "ui_right"])
-event_indexes = Array[int]([0, 3])
-
-[node name="Label3" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "Up"
-
-[node name="RemapButton5" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Up1", "ui_up"])
-event_indexes = Array[int]([0, 2])
-
-[node name="RemapButton6" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Up2", "ui_up"])
-event_indexes = Array[int]([0, 3])
-
-[node name="Label4" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "Down"
-
-[node name="RemapButton7" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Down1", "ui_down"])
-event_indexes = Array[int]([0, 2])
-
-[node name="RemapButton8" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Down2", "ui_down"])
-event_indexes = Array[int]([0, 3])
-
-[node name="Label5" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "Jump"
-
-[node name="RemapButton9" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Jump1", "ui_accept", "ui_select"])
-event_indexes = Array[int]([0, 2, 0])
-
-[node name="RemapButton10" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Jump2", "ui_accept", "ui_select"])
-event_indexes = Array[int]([0, 3, 1])
-
-[node name="Label6" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "Dash"
-
-[node name="RemapButton11" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Dash1"])
-event_indexes = Array[int]([0])
-
-[node name="RemapButton12" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Dash2"])
-event_indexes = Array[int]([0])
-
-[node name="Label10" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "Stomp"
-
-[node name="RemapButton15" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Stomp1"])
-event_indexes = Array[int]([0])
-
-[node name="RemapButton16" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Stomp2"])
-event_indexes = Array[int]([0])
-
-[node name="Label9" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "Zoom"
-
-[node name="RemapButton13" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Zoom1"])
-event_indexes = Array[int]([0])
-
-[node name="RemapButton14" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Zoom2"])
-event_indexes = Array[int]([0])
-
-[node name="Label11" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "Pause"
-
-[node name="RemapButton17" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Pause1"])
-event_indexes = Array[int]([0])
-
-[node name="RemapButton18" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_qadum")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tuf4i")
-alignment = 0
-actions = Array[String](["Pause2"])
-event_indexes = Array[int]([0])
-
-[node name="RemapButtonManager" parent="ControlOptions/ScrollContainer/GridContainer" instance=ExtResource("5_dv24k")]
-
-[node name="Label7" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-
-[node name="ResetButton" type="Button" parent="ControlOptions/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "RESET ALL"
-
-[node name="Label8" type="Label" parent="ControlOptions/ScrollContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-
-[connection signal="pressed" from="ControlOptions/ScrollContainer/GridContainer/ResetButton" to="ControlOptions/ScrollContainer/GridContainer/RemapButtonManager" method="_on_reset_button_pressed"]
+theme_override_font_sizes/font_size = 48
+text = "(input)"

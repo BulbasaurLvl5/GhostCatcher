@@ -109,7 +109,7 @@ public partial class MenuOptions : Node
 			};
 		}
 
-		//audio options
+		//audio options, should be part of own script but who cares
 		if(_audioOptions.TryGetChildren(out List<HSlider> _audioSliders)) 
 		{
 			// for (int i = 0; i < _audioSliders.Count; i++)
@@ -146,36 +146,48 @@ public partial class MenuOptions : Node
 				};
 		}
 
+		if(true)
+		{
+			// stuff for remap buttons	
+		}
+
 		//general buttons + saving loading
-		if(this.TryGetChildren(out List<Button> _buttons) && this.TryGetNodeInTree(out Main _main))
+		if (this.TryGetChildren(out List<Button> _buttons))
 		{
 			//back
-			_buttons[0].Pressed += () => {
-				_main.ClearScenes();
-				UILoader.LoadMainMenu(_main);
+			if (this.TryGetNodeInTree(out Main _main))
+			{
+				_buttons[0].Pressed += () =>
+				{
+					_main.ClearScenes();
+					UILoader.LoadMainMenu(_main);
 
-				FileIO.SavePlayerPrefs(
-					new int[3]{_vsyncButton.GetSelectedId(), _windowModeButton.GetSelectedId(),_windowSizeButton.GetSelectedId()},
-					new double[4]{_mainSlider.Value, _effectSlider.Value, _musicSlider.Value, _uiSlider.Value}
-					);
-			};
+					FileIO.SavePlayerPrefs(
+						new int[3] { _vsyncButton.GetSelectedId(), _windowModeButton.GetSelectedId(), _windowSizeButton.GetSelectedId() },
+						new double[4] { _mainSlider.Value, _effectSlider.Value, _musicSlider.Value, _uiSlider.Value }
+						);
+				};
+			}
 
 			//video
-			_buttons[1].FocusEntered += () => {
+			_buttons[1].FocusEntered += () =>
+			{
 				_videoOptions.Show();
 				_audioOptions.Hide();
 				_controlOptions.Hide();
 			};
 
 			//Audio
-			_buttons[2].FocusEntered += () => {
+			_buttons[2].FocusEntered += () =>
+			{
 				_videoOptions.Hide();
 				_audioOptions.Show();
 				_controlOptions.Hide();
 			};
 
 			//Controls
-			_buttons[3].FocusEntered += () => {
+			_buttons[3].FocusEntered += () =>
+			{
 				_videoOptions.Hide();
 				_audioOptions.Hide();
 				_controlOptions.Show();
@@ -183,29 +195,15 @@ public partial class MenuOptions : Node
 
 			_buttons[1].GrabFocus();
 
-			//this block here is called, because the menu is loaded for a split second at game start and is thus a valid way to load settings
 			FileIO.PlayerPrefs _playerPrefs = FileIO.LoadPlayerPrefs();
 			_vsyncButton.Select(_playerPrefs.VideoSettings[0]);
 			_windowModeButton.Select(_playerPrefs.VideoSettings[1]);
 			_windowSizeButton.Select(_playerPrefs.VideoSettings[2]);
 
-			VideoSettings.SetVsync(VideoSettings.VsyncOptions[_playerPrefs.VideoSettings[0]]);
-			VideoSettings.SetWindowMode(VideoSettings.WindowOptions[_playerPrefs.VideoSettings[1]]);
-			VideoSettings.SetWindowSize(VideoSettings.ResolutionOptions[_playerPrefs.VideoSettings[2]]);
-
 			_mainSlider.Value = _playerPrefs.AudioSettings[0];
 			_effectSlider.Value = _playerPrefs.AudioSettings[1];
 			_musicSlider.Value = _playerPrefs.AudioSettings[2];
 			_uiSlider.Value = _playerPrefs.AudioSettings[3];
-
-			float _t = Mathf.Clamp((float)_playerPrefs.AudioSettings[0]*.01f, .001f, 1);
-			AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(_t));
-			_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[1]*.01f, .001f, 1);
-			AudioServer.SetBusVolumeDb(1, Mathf.LinearToDb(_t));
-			_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[2]*.01f, .001f, 1);
-			AudioServer.SetBusVolumeDb(2, Mathf.LinearToDb(_t));
-			_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[3]*.01f, .001f, 1);
-			AudioServer.SetBusVolumeDb(3, Mathf.LinearToDb(_t));
 		}
 	}
 }
