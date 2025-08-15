@@ -61,7 +61,9 @@ public partial class MenuOptions : Node
 
 	public override void _Ready()
 	{
-		if(this.TryGetChildren(out List<GridContainer> _gridcontainer))
+		this.TryGetChildren(out List<Button> _buttons);
+
+		if (this.TryGetChildren(out List<GridContainer> _gridcontainer))
 		{
 			_videoOptions = _gridcontainer[0];
 			_audioOptions = _gridcontainer[1];
@@ -69,7 +71,7 @@ public partial class MenuOptions : Node
 		}
 
 		//videooptions, should be part of own script but who cares
-		if(_videoOptions.TryGetChildren(out List<OptionButton> _optionButton)) 
+		if (_videoOptions.TryGetChildren(out List<OptionButton> _optionButton))
 		{
 			_vsyncButton = _optionButton[0];
 			_windowModeButton = _optionButton[1];
@@ -80,7 +82,8 @@ public partial class MenuOptions : Node
 				_vsyncButton.AddItem(_);
 			}
 
-			_vsyncButton.ItemSelected += (_index) => {
+			_vsyncButton.ItemSelected += (_index) =>
+			{
 				// string _key = _vsyncButton.GetItemText((int)_index);
 				// DisplayServer.WindowSetVsyncMode(_vsyncDict[_key]);
 				// GD.Print("Changed vsync to:", _vsyncDict[_key]);
@@ -92,7 +95,8 @@ public partial class MenuOptions : Node
 				_windowModeButton.AddItem(_);
 			}
 
-			_windowModeButton.ItemSelected += (_index) =>{
+			_windowModeButton.ItemSelected += (_index) =>
+			{
 				// GD.Print("_WindowModeButton selected:", _index);
 				VideoSettings.SetWindowMode(_windowModeButton.GetItemText((int)_index));
 			};
@@ -102,7 +106,8 @@ public partial class MenuOptions : Node
 				_windowSizeButton.AddItem(_);
 			}
 
-			_windowSizeButton.ItemSelected += (_index) => {
+			_windowSizeButton.ItemSelected += (_index) =>
+			{
 				// string _key = _windowSizeButton.GetItemText((int)_index);
 				// DisplayServer.WindowSetSize(_resolutionDict[_key]);
 				VideoSettings.SetWindowSize(_windowSizeButton.GetItemText((int)_index));
@@ -110,7 +115,7 @@ public partial class MenuOptions : Node
 		}
 
 		//audio options, should be part of own script but who cares
-		if(_audioOptions.TryGetChildren(out List<HSlider> _audioSliders)) 
+		if (_audioOptions.TryGetChildren(out List<HSlider> _audioSliders))
 		{
 			// for (int i = 0; i < _audioSliders.Count; i++)
 			// {
@@ -120,40 +125,67 @@ public partial class MenuOptions : Node
 			_effectSlider = _audioSliders[1];
 			_musicSlider = _audioSliders[2];
 			_uiSlider = _audioSliders[3];
-			
-			_mainSlider.ValueChanged += (_value) => {
-				float _t = Mathf.Clamp((float)_value*.01f, .001f, 1);
+
+			_mainSlider.ValueChanged += (_value) =>
+			{
+				float _t = Mathf.Clamp((float)_value * .01f, .001f, 1);
 				// GD.Print("-----------------------------");
 				// GD.Print("main slider value: "+_value);
 				// GD.Print("_playerPrefs.AudioSettings: "+_t);
 				// GD.Print("Mathf.LinearToDb: "+Mathf.LinearToDb(_t));
 				AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(_t));
-				};
+			};
 
-			_effectSlider.ValueChanged += (_value) => {
-				float _t = Mathf.Clamp((float)_value*.01f, .001f, 1);
+			_effectSlider.ValueChanged += (_value) =>
+			{
+				float _t = Mathf.Clamp((float)_value * .01f, .001f, 1);
 				AudioServer.SetBusVolumeDb(1, Mathf.LinearToDb(_t));
-				};
+			};
 
-			_musicSlider.ValueChanged += (_value) => {
-				float _t = Mathf.Clamp((float)_value*.01f, .001f, 1);
+			_musicSlider.ValueChanged += (_value) =>
+			{
+				float _t = Mathf.Clamp((float)_value * .01f, .001f, 1);
 				AudioServer.SetBusVolumeDb(2, Mathf.LinearToDb(_t));
-				};
+			};
 
-			_uiSlider.ValueChanged += (_value) => {
-				float _t = Mathf.Clamp((float)_value*.01f, .001f, 1);
+			_uiSlider.ValueChanged += (_value) =>
+			{
+				float _t = Mathf.Clamp((float)_value * .01f, .001f, 1);
 				AudioServer.SetBusVolumeDb(3, Mathf.LinearToDb(_t));
-				};
+			};
 		}
 
-		if(true)
+		// control options, should be part of own script but who cares
+		if (_controlOptions.TryGetChild(out RemapButtonContainer remapButton))
 		{
-			// stuff for remap buttons	
+			GD.Print("connected joy pads: " + Input.GetConnectedJoypads());
+			GD.Print("is joypad connected? " + (Input.GetConnectedJoypads().Count > 0));
+
+			GD.Print("Accessing input map: ");
+			List<RemapButtonContainer> remapButtonContainers = new List<RemapButtonContainer>();
+			foreach (var _ in InputMap.GetActions())
+			{
+				if (!(_.ToString().StartsWith("ui_") || _.ToString().StartsWith("pause"))) //filter events: ui_ is inbuilt, puase is not supposed to be changed
+				{
+					GD.Print(_ + " " + InputMap.ActionGetEvents(_));
+					RemapButtonContainer _new = remapButton.Duplicate() as RemapButtonContainer;
+					_new.Label = _.ToString();
+					//_new.SetButtonText(InputMap.ActionGetEvents(_)[0].ToString());
+					_new.Button.Text = OS.GetKeycodeString(((InputEventKey)InputMap.ActionGetEvents(_)[0]).Keycode); //if [0] is changed to [1] type changes InputEventJoypadButton
+					_controlOptions.AddChild(_new);
+					remapButtonContainers.Add(_new);
+				}
+			}
+			
+			remapButtonContainers[0].Button.FocusNeighborTop = _buttons[3].GetPath();
+			_buttons[3].FocusNeighborBottom = remapButtonContainers[0].Button.GetPath();
+
+			remapButton.QueueFree(); //delete after been copied
 		}
 
 		//general buttons + saving loading
-		if (this.TryGetChildren(out List<Button> _buttons))
-		{
+		// if (this.TryGetChildren(out List<Button> _buttons))
+		// {
 			//back
 			if (this.TryGetNodeInTree(out Main _main))
 			{
@@ -167,6 +199,25 @@ public partial class MenuOptions : Node
 						new double[4] { _mainSlider.Value, _effectSlider.Value, _musicSlider.Value, _uiSlider.Value }
 						);
 				};
+			}
+			else // for debugging
+			{
+				GD.Print("ERROR: menu options did not find main. \n Assuming debug mode \n Loading options");
+				_buttons[0].Pressed += () => { this.GetTree().Quit(); };
+
+				FileIO.PlayerPrefs _loadPrefs = FileIO.LoadPlayerPrefs();
+				VideoSettings.SetVsync(VideoSettings.VsyncOptions[_loadPrefs.VideoSettings[0]]);
+				VideoSettings.SetWindowMode(VideoSettings.WindowOptions[_loadPrefs.VideoSettings[1]]);
+				VideoSettings.SetWindowSize(VideoSettings.ResolutionOptions[_loadPrefs.VideoSettings[2]]);
+
+				float _t = Mathf.Clamp((float)_loadPrefs.AudioSettings[0] * .01f, .001f, 1);
+				AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(_t));
+				_t = Mathf.Clamp((float)_loadPrefs.AudioSettings[1] * .01f, .001f, 1);
+				AudioServer.SetBusVolumeDb(1, Mathf.LinearToDb(_t));
+				_t = Mathf.Clamp((float)_loadPrefs.AudioSettings[2] * .01f, .001f, 1);
+				AudioServer.SetBusVolumeDb(2, Mathf.LinearToDb(_t));
+				_t = Mathf.Clamp((float)_loadPrefs.AudioSettings[3] * .01f, .001f, 1);
+				AudioServer.SetBusVolumeDb(3, Mathf.LinearToDb(_t));
 			}
 
 			//video
@@ -204,6 +255,34 @@ public partial class MenuOptions : Node
 			_effectSlider.Value = _playerPrefs.AudioSettings[1];
 			_musicSlider.Value = _playerPrefs.AudioSettings[2];
 			_uiSlider.Value = _playerPrefs.AudioSettings[3];
+		// }
+	}
+	
+	private string GetReadableInputName(InputEvent inputEvent)
+	{
+		if (inputEvent is InputEventKey keyEvent)
+		{
+			return OS.GetKeycodeString(keyEvent.PhysicalKeycode);
 		}
+		else if (inputEvent is InputEventMouseButton mouseEvent)
+		{
+			return mouseEvent.ButtonIndex switch
+			{
+				MouseButton.Left => "Left Mouse Button",
+				MouseButton.Right => "Right Mouse Button",
+				MouseButton.Middle => "Middle Mouse Button",
+				_ => $"Mouse Button {mouseEvent.ButtonIndex}"
+			};
+		}
+		else if (inputEvent is InputEventJoypadButton joyEvent)
+		{
+			return $"Joystick Button {joyEvent.ButtonIndex}";
+		}
+		else if (inputEvent is InputEventJoypadMotion motionEvent)
+		{
+			return $"Joystick Axis {motionEvent.Axis}";
+		}
+
+		return "Unknown Input";
 	}
 }

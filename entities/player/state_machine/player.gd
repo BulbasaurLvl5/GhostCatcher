@@ -81,7 +81,7 @@ var dash_input : bool = false
 var dash_button_reset : bool = true
 #var stomp_input : bool = false
 #var stomp_input_reset : bool = true
-var current_inputs_used : int = 1 #This keeps track of which set of inputs the player is currently using
+#var current_inputs_used : int = 1 #This keeps track of which set of inputs the player is currently using
 
 var last_dash_time : float = 0
 var height_fallen_from : float = 0
@@ -108,61 +108,61 @@ func pause_game():
 	pass
 
 
-func check_input():
-	if Input.is_action_pressed("Pause1") || Input.is_action_pressed(("Pause2")):
-		if Input.is_action_pressed("Pause1"):
-			current_inputs_used = 1
-		else:
-			current_inputs_used = 2
-		pause_game()
-	
-	x_input = 0
-	y_input = 0
-	if Input.is_action_pressed("Left1") || Input.is_action_pressed("Left2"):
-		if Input.is_action_pressed("Left1"):
-			current_inputs_used = 1
-		else:
-			current_inputs_used = 2
-		x_input -= 1
-	if Input.is_action_pressed("Right1") || Input.is_action_pressed("Right2"):
-		if Input.is_action_pressed("Right1"):
-			current_inputs_used = 1
-		else:
-			current_inputs_used = 2
-		x_input += 1
-	if Input.is_action_pressed("Up1") || Input.is_action_pressed("Up2"):
-		if Input.is_action_pressed("Up1"):
-			current_inputs_used = 1
-		else:
-			current_inputs_used = 2
-		y_input -= 1
-	if Input.is_action_pressed("Down1") || Input.is_action_pressed("Down2"):
-		if Input.is_action_pressed("Down1"):
-			current_inputs_used = 1
-		else:
-			current_inputs_used = 2
-		y_input += 1
-		
-	if Input.is_action_pressed("Jump1") || Input.is_action_pressed("Jump2"):
-		if Input.is_action_pressed("Jump1"):
-			current_inputs_used = 1
-		else:
-			current_inputs_used = 2
-		jump_input = true
-	else:
-		jump_input = false
-		if !jump_button_reset:
-			jump_button_reset = true
-	if Input.is_action_pressed("Dash1") || Input.is_action_pressed("Dash2"):
-		if Input.is_action_pressed("Dash1"):
-			current_inputs_used = 1
-		else:
-			current_inputs_used = 2
-		dash_input = true	
-	else:
-		dash_input = false
-		if !dash_button_reset:
-			dash_button_reset = true
+#func check_input():
+	#if Input.is_action_pressed("Pause1") || Input.is_action_pressed(("Pause2")):
+		#if Input.is_action_pressed("Pause1"):
+			#current_inputs_used = 1
+		#else:
+			#current_inputs_used = 2
+		#pause_game()
+	#
+	#x_input = 0
+	#y_input = 0
+	#if Input.is_action_pressed("Left1") || Input.is_action_pressed("Left2"):
+		#if Input.is_action_pressed("Left1"):
+			#current_inputs_used = 1
+		#else:
+			#current_inputs_used = 2
+		#x_input -= 1
+	#if Input.is_action_pressed("Right1") || Input.is_action_pressed("Right2"):
+		#if Input.is_action_pressed("Right1"):
+			#current_inputs_used = 1
+		#else:
+			#current_inputs_used = 2
+		#x_input += 1
+	#if Input.is_action_pressed("Up1") || Input.is_action_pressed("Up2"):
+		#if Input.is_action_pressed("Up1"):
+			#current_inputs_used = 1
+		#else:
+			#current_inputs_used = 2
+		#y_input -= 1
+	#if Input.is_action_pressed("Down1") || Input.is_action_pressed("Down2"):
+		#if Input.is_action_pressed("Down1"):
+			#current_inputs_used = 1
+		#else:
+			#current_inputs_used = 2
+		#y_input += 1
+		#
+	#if Input.is_action_pressed("Jump1") || Input.is_action_pressed("Jump2"):
+		#if Input.is_action_pressed("Jump1"):
+			#current_inputs_used = 1
+		#else:
+			#current_inputs_used = 2
+		#jump_input = true
+	#else:
+		#jump_input = false
+		#if !jump_button_reset:
+			#jump_button_reset = true
+	#if Input.is_action_pressed("Dash1") || Input.is_action_pressed("Dash2"):
+		#if Input.is_action_pressed("Dash1"):
+			#current_inputs_used = 1
+		#else:
+			#current_inputs_used = 2
+		#dash_input = true	
+	#else:
+		#dash_input = false
+		#if !dash_button_reset:
+			#dash_button_reset = true
 	#if Input.is_action_pressed("Stomp1") || Input.is_action_pressed("Stomp2"):
 		#if Input.is_action_pressed("Stomp1"):
 			#current_inputs_used = 1
@@ -173,6 +173,35 @@ func check_input():
 		#stomp_input = false
 		#if !stomp_input_reset:
 			#stomp_input_reset = true
+func check_input():
+	x_input = 0
+	y_input = 0
+	
+	if Input.is_action_pressed("pause"):
+		pause_game()
+
+	if Input.is_action_pressed("left"):
+		x_input -= 1
+	if Input.is_action_pressed("right"):
+		x_input += 1
+	if Input.is_action_pressed("up"):
+		y_input -= 1
+	if Input.is_action_pressed("down"):
+		y_input += 1
+		
+	if Input.is_action_pressed("jump"):
+		jump_input = true
+	else:
+		jump_input = false
+		if !jump_button_reset:
+			jump_button_reset = true
+
+	if Input.is_action_pressed("dash"):
+		dash_input = true	
+	else:
+		dash_input = false
+		if !dash_button_reset:
+			dash_button_reset = true
 
 
 func check_environment():

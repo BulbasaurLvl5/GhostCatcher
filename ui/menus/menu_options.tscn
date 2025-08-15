@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkoe1u7tyl8x3"]
+[gd_scene load_steps=12 format=3 uid="uid://dkoe1u7tyl8x3"]
 
 [ext_resource type="Script" path="res://ui/menus/MenuOptions.cs" id="1_qbfve"]
 [ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://resources/sprites/coal/menu_retry_background.png" id="2_7cifs"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="3_2sycy"]
 [ext_resource type="StyleBox" uid="uid://kae7nrb6cknu" path="res://resources/button_texture.tres" id="4_onq2y"]
+[ext_resource type="Script" path="res://ui/menus/RemapButtonContainer.cs" id="5_0ul8v"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_cffll"]
 device = -1
@@ -243,7 +244,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ControlOptions" type="GridContainer" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -253,33 +253,27 @@ offset_right = -614.0
 offset_bottom = -144.0
 grow_horizontal = 2
 grow_vertical = 2
-columns = 5
 
-[node name="Label" type="Label" parent="ControlOptions"]
+[node name="RemapButtonContainer" type="GridContainer" parent="ControlOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
-text = "Left"
+columns = 3
+script = ExtResource("5_0ul8v")
+
+[node name="Label" type="Label" parent="ControlOptions/RemapButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "Label"
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="ControlOptions"]
+[node name="VSeparator" type="VSeparator" parent="ControlOptions/RemapButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("StyleBoxEmpty_eiugr")
 
-[node name="Button" type="Button" parent="ControlOptions"]
+[node name="Button" type="Button" parent="ControlOptions/RemapButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
-text = "(input)"
-
-[node name="VSeparator2" type="VSeparator" parent="ControlOptions"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_eiugr")
-
-[node name="Button2" type="Button" parent="ControlOptions"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 36
 text = "(input)"
