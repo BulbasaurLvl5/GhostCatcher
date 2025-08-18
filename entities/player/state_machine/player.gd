@@ -74,7 +74,7 @@ var radar_enabled : bool = true:
 		$Radar2D.radar_active = radar_enabled
 
 var x_input : int = 0
-var y_input : int = 0
+#var y_input : int = 0
 var jump_input : bool = false
 var jump_button_reset : bool = true
 var dash_input : bool = false
@@ -175,7 +175,7 @@ func pause_game():
 			#stomp_input_reset = true
 func check_input():
 	x_input = 0
-	y_input = 0
+	#y_input = 0
 	
 	if Input.is_action_pressed("pause"):
 		pause_game()
@@ -184,10 +184,10 @@ func check_input():
 		x_input -= 1
 	if Input.is_action_pressed("right"):
 		x_input += 1
-	if Input.is_action_pressed("up"):
-		y_input -= 1
-	if Input.is_action_pressed("down"):
-		y_input += 1
+	#if Input.is_action_pressed("up"):
+		#y_input -= 1
+	#if Input.is_action_pressed("down"):
+		#y_input += 1
 		
 	if Input.is_action_pressed("jump"):
 		jump_input = true

@@ -9,9 +9,9 @@ extends PlayerState
 
 func Enter(_from : PlayerState = null):
 	player.moving_platform = null
-	if player.y_input < 0:
-		Transitioned.emit(self,"Jump")
-		return
+	#if player.y_input < 0:
+		#Transitioned.emit(self,"Jump")
+		#return
 	anim.play("jump")
 	if %Jump.jump_noise == 1:
 		$"../../SFX/Jump1".play()
@@ -43,9 +43,9 @@ func Do_Checks():
 		#Transitioned.emit(self,"Stomp")
 	elif player.velocity.y > 0 || player.is_on_ceiling():
 		Transitioned.emit(self,"InAir")
-	elif player.y_input >= 0 && time_in_current_state > 0.2:
-		if player.can_grab_wall():
-			Transitioned.emit(self,"WallGrab")
+	#elif player.y_input >= 0 && time_in_current_state > 0.2:
+		#if player.can_grab_wall():
+			#Transitioned.emit(self,"WallGrab")
 	if time_in_current_state > data.wall_jump_force_duration || !player.jump_input:
 		Flip_Player()
 		

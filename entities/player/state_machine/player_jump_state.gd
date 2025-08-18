@@ -42,10 +42,10 @@ func Do_Checks():
 		#Transitioned.emit(self,"Stomp")
 	elif player.velocity.y > 0 || player.is_on_ceiling():
 		Transitioned.emit(self,"InAir")
-	elif player.y_input >= 0:
-		if player.can_grab_wall():
-			player.stop_motion()
-			Transitioned.emit(self,"WallGrab")
+	#elif player.y_input >= 0:
+		#if player.can_grab_wall():
+			#player.stop_motion()
+			#Transitioned.emit(self,"WallGrab")
 		
 		
 func Physics_Update(delta):
