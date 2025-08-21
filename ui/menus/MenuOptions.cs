@@ -158,14 +158,13 @@ public partial class MenuOptions : Node
 		// control options, should be part of own script but who cares
 		if (_controlOptions.TryGetChild(out RemapButtonContainer remapButton))
 		{
-			GD.Print("connected joy pads: " + Input.GetConnectedJoypads());
-			GD.Print("is joypad connected? " + (Input.GetConnectedJoypads().Count > 0));
+			InputAssistance.IsJoypadConnected();
 
 			GD.Print("Accessing input map: ");
 			List<RemapButtonContainer> remapButtonContainers = new List<RemapButtonContainer>();
 			foreach (var _ in InputMap.GetActions())
 			{
-				if (!(_.ToString().StartsWith("ui_") || _.ToString().StartsWith("pause"))) //filter events: ui_ is inbuilt, puase is not supposed to be changed
+				if (!(_.ToString().StartsWith("ui_") || _.ToString().StartsWith("pause"))) //filter events: ui_ is inbuilt, pause is not supposed to be changed
 				{
 					GD.Print(_ + " " + InputMap.ActionGetEvents(_));
 					RemapButtonContainer _new = remapButton.Duplicate() as RemapButtonContainer;
@@ -258,31 +257,4 @@ public partial class MenuOptions : Node
 		// }
 	}
 	
-	private string GetReadableInputName(InputEvent inputEvent)
-	{
-		if (inputEvent is InputEventKey keyEvent)
-		{
-			return OS.GetKeycodeString(keyEvent.PhysicalKeycode);
-		}
-		else if (inputEvent is InputEventMouseButton mouseEvent)
-		{
-			return mouseEvent.ButtonIndex switch
-			{
-				MouseButton.Left => "Left Mouse Button",
-				MouseButton.Right => "Right Mouse Button",
-				MouseButton.Middle => "Middle Mouse Button",
-				_ => $"Mouse Button {mouseEvent.ButtonIndex}"
-			};
-		}
-		else if (inputEvent is InputEventJoypadButton joyEvent)
-		{
-			return $"Joystick Button {joyEvent.ButtonIndex}";
-		}
-		else if (inputEvent is InputEventJoypadMotion motionEvent)
-		{
-			return $"Joystick Axis {motionEvent.Axis}";
-		}
-
-		return "Unknown Input";
-	}
 }

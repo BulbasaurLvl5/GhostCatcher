@@ -5,6 +5,8 @@ using MyGodotExtensions;
 
 public partial class RemapButtonContainer : Node
 {
+    //label stores the name of the inputmap action
+    //internally this string is used by godot functions to operate the inputmap
     public string Label
     {
         get
@@ -53,7 +55,7 @@ public partial class RemapButtonContainer : Node
         {
             Button.Text = "...";
             Button.Disabled = true; // disable while waiting
-            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); // wait 1 frame to ignore first button press
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); // wait 1 frame to ignore first button press (enter)
             SetProcessUnhandledInput(true);
         };
     }
@@ -61,38 +63,18 @@ public partial class RemapButtonContainer : Node
 
     public override void _UnhandledInput(InputEvent inputEvent)
     {
-        // GD.Print("unhandled input: "+GetReadableInputName(inputEvent));
-        Button.Text = GetReadableInputName(inputEvent);
+        if (InputAssistance.InputEventToString(inputEvent) == "Unknown Input")
+            return;
+
+        Button.Text = InputAssistance.InputEventToString(inputEvent);
+
+        InputMap.ActionEraseEvents(Label); //erase old events
+        InputMap.ActionAddEvent(Label, inputEvent); //add new input to map
+
+        //save to player prefs
+
         SetProcessUnhandledInput(false);
         Button.Disabled = false;
         Button.ButtonPressed = false;
     }
-
-	private string GetReadableInputName(InputEvent inputEvent)
-	{
-		if (inputEvent is InputEventKey keyEvent)
-		{
-			return OS.GetKeycodeString(keyEvent.PhysicalKeycode);
-		}
-		else if (inputEvent is InputEventMouseButton mouseEvent)
-		{
-			return mouseEvent.ButtonIndex switch
-			{
-				MouseButton.Left => "Left Mouse Button",
-				MouseButton.Right => "Right Mouse Button",
-				MouseButton.Middle => "Middle Mouse Button",
-				_ => $"Mouse Button {mouseEvent.ButtonIndex}"
-			};
-		}
-		else if (inputEvent is InputEventJoypadButton joyEvent)
-		{
-			return $"Joystick Button {joyEvent.ButtonIndex}";
-		}
-		else if (inputEvent is InputEventJoypadMotion motionEvent)
-		{
-			return $"Joystick Axis {motionEvent.Axis}";
-		}
-
-		return "Unknown Input";
-	}
 }

@@ -29,17 +29,13 @@ public partial class BackgroundMusic : Node
 
 		this.TryGetChild(out animationPlayer);
 
-		Startplaying();
+		//start playing and initialize state of channels
+		channel_1.Stream = SongFile(SongNames.phantomx27);
+		channel_1.VolumeDb = 0;
+		channel_2.VolumeDb = -80;
+		channel_1.Play();
 	}
 
-	void Startplaying()
-	{
-		// AudioStream _firstsong = ResourceLoader.Load<AudioStream>("res://Audio/Music/phantomx27s-embrace-164479.mp3");
-		channel_1.Stream = SongFile(SongNames.phantomx27);
-		channel_1.Play();
-		// channel_1.Stop();
-		// GD.Print(channel_1.Playing);
-	}
 
 	void SetActiveChannel()
 	{
@@ -60,6 +56,7 @@ public partial class BackgroundMusic : Node
 		}
 	}
 
+
 	AudioStream SongFile(SongNames song)
 	{
 		switch(song) 
@@ -74,11 +71,13 @@ public partial class BackgroundMusic : Node
 		}
 	}
 
+
 	SongNames GetCurrentSong()
 	{
 		// GD.Print("song: "+activeChannel.Stream.ResourcePath);
-		// if(activeChannel.Stream.ResourcePath.Contains("phantom"))
-		//     GD.Print("song is phantom");
+		// if (activeChannel.Stream.ResourcePath.Contains("phantom"))
+		// 	GD.Print("song is phantom");
+
 		string _path = activeChannel.Stream.ResourcePath;
 
 		if(_path.Contains("phantom"))
@@ -88,13 +87,15 @@ public partial class BackgroundMusic : Node
 		else
 			return SongNames.phantomx27;
 	}
+	
 
 	public void CrossfadeTo(SongNames songname)
 	{
 		SetActiveChannel();
-		if(GetCurrentSong() == SongNames.phantomx27)
+
+		if (GetCurrentSong() == SongNames.phantomx27)
 			return; //skip if already in menu
-		
+
 		inactiveChannel.Stream = SongFile(songname);
 		inactiveChannel.Play();
 
@@ -107,6 +108,7 @@ public partial class BackgroundMusic : Node
 			animationPlayer.Play("FadeToChannel1");
 		}
 	}
+	
 
 	public void FadeoutToPlay(SongNames songname)
 	{
@@ -114,7 +116,7 @@ public partial class BackgroundMusic : Node
 		inactiveChannel.Stream = SongFile(songname);
 		inactiveChannel.Play();
 		inactiveChannel.VolumeDb = 0;
-		
+
 		if (activeChannel == channel_1)
 		{
 			animationPlayer.Play("FadeoutChannel1");

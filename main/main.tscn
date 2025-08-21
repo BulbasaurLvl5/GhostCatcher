@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ggh2sv225mm7"]
+[gd_scene load_steps=11 format=3 uid="uid://ggh2sv225mm7"]
 
 [ext_resource type="Script" path="res://main/Main.cs" id="1_7ow0c"]
 [ext_resource type="Script" path="res://main/BackgroundMusic.cs" id="2_tf5ul"]
 [ext_resource type="AudioStream" uid="uid://b0r8ujm2eb2vv" path="res://resources/audio/ui/pageturn-102978.mp3" id="3_7v1dh"]
 [ext_resource type="Script" path="res://ui/ButtonSound.cs" id="4_oeswa"]
+[ext_resource type="Script" path="res://main/Focus.cs" id="5_51033"]
 
 [sub_resource type="Animation" id="Animation_5bdi0"]
 resource_name = "FadeToChannel1"
@@ -127,3 +128,8 @@ libraries = {
 stream = ExtResource("3_7v1dh")
 bus = &"UI"
 script = ExtResource("4_oeswa")
+
+[node name="Controlls" type="Node" parent="."]
+
+[node name="Focus" type="Node" parent="Controlls"]
+script = ExtResource("5_51033")
