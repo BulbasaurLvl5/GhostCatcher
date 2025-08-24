@@ -30,11 +30,11 @@ public partial class Focus : Node
         switch (notification_id)
         {
             case (int)NotificationApplicationFocusOut:
-                GD.Print("Focus? false");
+                // GD.Print("Focus? false");
                 DisableInput();
                 break;
             case (int)NotificationApplicationFocusIn:
-                GD.Print("Focus? true");
+                // GD.Print("Focus? true");
                 EnableInput();
                 break;
         }

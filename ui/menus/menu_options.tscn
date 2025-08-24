@@ -248,7 +248,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 668.0
-offset_top = 745.0
+offset_top = 789.0
 offset_right = -614.0
 offset_bottom = -144.0
 grow_horizontal = 2
@@ -257,7 +257,7 @@ grow_vertical = 2
 [node name="RemapButtonContainer" type="GridContainer" parent="ControlOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
-columns = 3
+columns = 5
 script = ExtResource("5_0ul8v")
 
 [node name="Label" type="Label" parent="ControlOptions/RemapButtonContainer"]
@@ -273,6 +273,17 @@ size_flags_horizontal = 3
 theme_override_styles/separator = SubResource("StyleBoxEmpty_eiugr")
 
 [node name="Button" type="Button" parent="ControlOptions/RemapButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "(input)"
+
+[node name="VSeparator2" type="VSeparator" parent="ControlOptions/RemapButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_eiugr")
+
+[node name="Button2" type="Button" parent="ControlOptions/RemapButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 36

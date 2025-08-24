@@ -166,25 +166,25 @@ public partial class MenuOptions : Node
 			{
 				if (!(_.ToString().StartsWith("ui_") || _.ToString().StartsWith("pause"))) //filter events: ui_ is inbuilt, pause is not supposed to be changed
 				{
-					GD.Print(_ + " " + InputMap.ActionGetEvents(_));
+					// GD.Print(_ + " " + InputMap.ActionGetEvents(_));
 					RemapButtonContainer _new = remapButton.Duplicate() as RemapButtonContainer;
 					_new.Label = _.ToString();
 					//_new.SetButtonText(InputMap.ActionGetEvents(_)[0].ToString());
-					_new.Button.Text = OS.GetKeycodeString(((InputEventKey)InputMap.ActionGetEvents(_)[0]).Keycode); //if [0] is changed to [1] type changes InputEventJoypadButton
 					_controlOptions.AddChild(_new);
 					remapButtonContainers.Add(_new);
 				}
 			}
 			
-			remapButtonContainers[0].Button.FocusNeighborTop = _buttons[3].GetPath();
-			_buttons[3].FocusNeighborBottom = remapButtonContainers[0].Button.GetPath();
+			remapButtonContainers[0].EntryButton.FocusNeighborTop = _buttons[3].GetPath();
+			_buttons[3].FocusNeighborBottom = remapButtonContainers[0].EntryButton.GetPath();
 
-			remapButton.QueueFree(); //delete after been copied
+			remapButton.QueueFree(); //delete initial one after been copied
 		}
 
 		//general buttons + saving loading
 		// if (this.TryGetChildren(out List<Button> _buttons))
-		// {
+		if(true)
+		{
 			//back
 			if (this.TryGetNodeInTree(out Main _main))
 			{
@@ -254,7 +254,7 @@ public partial class MenuOptions : Node
 			_effectSlider.Value = _playerPrefs.AudioSettings[1];
 			_musicSlider.Value = _playerPrefs.AudioSettings[2];
 			_uiSlider.Value = _playerPrefs.AudioSettings[3];
-		// }
+		}
 	}
 	
 }
