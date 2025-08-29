@@ -158,8 +158,6 @@ public partial class MenuOptions : Node
 		// control options, should be part of own script but who cares
 		if (_controlOptions.TryGetChild(out RemapButtonContainer remapButton))
 		{
-			InputAssistance.IsJoypadConnected();
-
 			GD.Print("Accessing input map: ");
 			List<RemapButtonContainer> remapButtonContainers = new List<RemapButtonContainer>();
 			foreach (var _ in InputMap.GetActions())

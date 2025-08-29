@@ -7,9 +7,9 @@ using MyGodotExtensions;
 
 public partial class RemapButtonContainer : Node
 {
+
     //label stores the name of the inputmap action
     //internally this string is used by godot functions to operate the inputmap
-
     public string Label
     {
         get
@@ -31,8 +31,10 @@ public partial class RemapButtonContainer : Node
 
     // assumes two buttons: first for keyboard/mouse input, second for joypads
     List<Button> _buttons = new();
-    
-    public Button EntryButton { get {return this.TryGetChild<Button>();} } //used to navigate menu. TODO should change if controller is plugged
+
+    public Button EntryButton { get { return this.TryGetChild<Button>(); } }
+
+    List<string> _names = new List<string>();
 
 
     public override void _Ready()
@@ -40,8 +42,10 @@ public partial class RemapButtonContainer : Node
         if (!this.TryGetChildren<Button>(out List<Button> _buttons))
         {
             GD.Print("ERROR: buttons not found by " + this.Name);
-            return;            
+            return;
         }
+        else
+            this._buttons = _buttons;
 
         // When toggle_mode is set to true, the button becomes toggleable, meaning:
         // Clicking it switches its pressed state between true and false.
@@ -54,48 +58,51 @@ public partial class RemapButtonContainer : Node
         // thus false at start
         SetProcessUnhandledInput(false);
 
+        _buttons[0].Pressed += async () =>
+        {
+            _buttons[0].Text = "...";
+            _buttons[0].Disabled = true; // disable while waiting
+
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); // wait 1 frame to ignore first button press (enter)
+
+            SetProcessUnhandledInput(true);
+        };
+    }
+
+
+    public override void _Process(double delta)
+    {
+        // this could and should be done by menu options
+        // however the menu does almost nothing so it is uncritical
+        // and it simplifies the code. so what ever
+        _names.Clear();
         foreach (var _ in InputMap.ActionGetEvents(Label))
         {
-            // GD.Print(Label + " " + _);
-
-            if (_ is InputEventKey _inputEventKey)
-            {
-                // GD.Print(_ie + " is InputEventKey");
-                // GD.Print(_ie.Keycode);
-                _buttons[0].Text = _inputEventKey.Keycode.ToString();
-
-                _buttons[0].Pressed += async () =>
-                {
-                    _buttons[0].Text = "...";
-                    _buttons[0].Disabled = true; // disable while waiting
-                    await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); // wait 1 frame to ignore first button press (enter)
-
-                    //check if input is keyboard or mouse and only proceed then
-                    //does this require a wrapper function for unhandled input or a flag? likely flag for switch in _UnhandledInput
-                    SetProcessUnhandledInput(true);
-                };
-            }
+            _names.Add(InputAssistance.InputEventToString(_));
         }
+        _buttons[0].Text = string.Join(", ", _names);
     }
 
 
     public override void _UnhandledInput(InputEvent inputEvent)
     {
-        // turn this into switch
-        // check if input is correct for the button used
-        // change InputEventToString to return enum
-        if (InputAssistance.InputEventToString(inputEvent) == "Unknown Input")
-            return;
+        if (InputAssistance.InputEventToString(inputEvent) != null)
+        {
+            if (InputAssistance.IsKeyAlreadyUsed(inputEvent, out string action))
+            {
+                InputMap.ActionEraseEvent(action, inputEvent);
+            }
 
-        _buttons[0].Text = InputAssistance.InputEventToString(inputEvent);
+            if (InputMap.ActionGetEvents(Label).Count > 3)
+            {
+                InputMap.ActionEraseEvent(Label, InputMap.ActionGetEvents(Label)[0]);
+            }
 
-        InputMap.ActionEraseEvents(Label); //erase old events
-        InputMap.ActionAddEvent(Label, inputEvent); //add new input to map
+            InputMap.ActionAddEvent(Label, inputEvent);
 
-        //save to player prefs
-
-        SetProcessUnhandledInput(false);
-        _buttons[0].Disabled = false;
-        _buttons[0].ButtonPressed = false;
+            SetProcessUnhandledInput(false);
+            _buttons[0].ButtonPressed = false;
+            _buttons[0].Disabled = false;
+        }
     }
 }
