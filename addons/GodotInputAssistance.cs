@@ -175,6 +175,11 @@ namespace MyGodotExtensions
         */
         static Dictionary<string, List<InputEvent>> _defaultInputMap = new();
 
+        /*
+        this dict is to store ALL inputs so we can delete and reassign them to stop input for a moment
+        */
+        static Dictionary<string, Godot.Collections.Array<InputEvent>> _savedBindings = new();
+
         public static void StoreProjectSettingsInputMap()
         {
             foreach (var _action in GetMyActions())
@@ -192,9 +197,9 @@ namespace MyGodotExtensions
         {
             foreach (var _action in GetMyActions())
             {
-                foreach(var _key in _defaultInputMap.Keys)
+                foreach (var _key in _defaultInputMap.Keys)
                 {
-                    if(_action == _key)
+                    if (_action == _key)
                     {
                         InputMap.ActionEraseEvents(_action);
                         foreach (var _event in _defaultInputMap[_key])
@@ -335,6 +340,34 @@ namespace MyGodotExtensions
                     }
                 }
             }
+        }
+
+
+        public static void DisableInput()
+        {
+            foreach (var _ in InputMap.GetActions())
+            {
+                _savedBindings.Add(_, InputMap.ActionGetEvents(_)); //store all input
+                //GD.Print(_.ToString());
+                InputMap.ActionEraseEvents(_); //erase all input
+            }
+        }
+
+        public static void EnableInput()
+        {
+            foreach (var _ in InputMap.GetActions())
+            {
+                foreach (InputEvent _event in _savedBindings[_])
+                {
+                    InputMap.ActionAddEvent(_, _event);
+                }
+            }
+            _savedBindings.Clear();
+        }
+
+        public static bool IsInputDisabled()
+        {
+            return _savedBindings.Count > 0;
         }
     }
 }

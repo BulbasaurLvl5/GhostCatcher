@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dkoe1u7tyl8x3"]
+[gd_scene load_steps=13 format=3 uid="uid://dkoe1u7tyl8x3"]
 
 [ext_resource type="Script" path="res://ui/menus/MenuOptions.cs" id="1_qbfve"]
 [ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://resources/sprites/coal/menu_retry_background.png" id="2_7cifs"]
@@ -20,6 +20,8 @@ events = [SubResource("InputEventKey_cffll")]
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p768a"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eiugr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bgrb2"]
 
 [node name="Menu_Options" type="Node"]
 script = ExtResource("1_qbfve")
@@ -286,18 +288,22 @@ columns = 3
 [node name="HSeparator" type="HSeparator" parent="ControlOptions/ResetContainer"]
 layout_mode = 2
 theme_override_constants/separation = 25
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bgrb2")
 
 [node name="HSeparator2" type="HSeparator" parent="ControlOptions/ResetContainer"]
 layout_mode = 2
 theme_override_constants/separation = 25
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bgrb2")
 
 [node name="HSeparator3" type="HSeparator" parent="ControlOptions/ResetContainer"]
 layout_mode = 2
 theme_override_constants/separation = 25
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bgrb2")
 
 [node name="VSeparator" type="VSeparator" parent="ControlOptions/ResetContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bgrb2")
 
 [node name="Button" type="Button" parent="ControlOptions/ResetContainer"]
 layout_mode = 2
@@ -308,3 +314,4 @@ text = "RESET"
 [node name="VSeparator2" type="VSeparator" parent="ControlOptions/ResetContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bgrb2")

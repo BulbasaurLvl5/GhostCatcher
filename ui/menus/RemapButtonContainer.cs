@@ -62,7 +62,7 @@ public partial class RemapButtonContainer : Node
         {
             // _buttons[0].Text = "..."; // does not do anything bc _Process
             _buttons[0].Disabled = true; // disable while waiting
-
+            InputAssistance.DisableInput();
             await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); // wait 1 frame to ignore first button press (enter)
 
             SetProcessUnhandledInput(true);
@@ -75,6 +75,9 @@ public partial class RemapButtonContainer : Node
         // this could and should be done by menu options
         // however the menu does almost nothing so it is uncritical
         // and it simplifies the code. so what ever
+        if (InputAssistance.IsInputDisabled())
+            return;
+
         InputStrings.Clear();
         foreach (var _ in InputMap.ActionGetEvents(Label))
         {
@@ -88,6 +91,8 @@ public partial class RemapButtonContainer : Node
     {
         if (InputAssistance.InputEventToString(inputEvent) != null)
         {
+            InputAssistance.EnableInput();
+
             if (InputAssistance.IsKeyAlreadyUsed(inputEvent, out string action))
             {
                 InputMap.ActionEraseEvent(action, inputEvent);
@@ -100,9 +105,9 @@ public partial class RemapButtonContainer : Node
 
             InputMap.ActionAddEvent(Label, inputEvent);
 
-            SetProcessUnhandledInput(false);
             _buttons[0].ButtonPressed = false;
             _buttons[0].Disabled = false;
         }
+        SetProcessUnhandledInput(false);
     }
 }

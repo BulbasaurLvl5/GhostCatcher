@@ -21,9 +21,6 @@ public partial class Focus : Node
 
     It has to be done dynamically everytime, because we ahave to assume that the events change via input remapping
     */
-    
-    private Dictionary<string, Godot.Collections.Array<Godot.InputEvent>> _savedBindings = new();
-
 
     public override void _Notification(int notification_id)
     {
@@ -31,37 +28,12 @@ public partial class Focus : Node
         {
             case (int)NotificationApplicationFocusOut:
                 // GD.Print("Focus? false");
-                DisableInput();
+                InputAssistance.DisableInput();
                 break;
             case (int)NotificationApplicationFocusIn:
                 // GD.Print("Focus? true");
-                EnableInput();
+                InputAssistance.EnableInput();
                 break;
-        }
-    }
-
-
-    void DisableInput()
-    {
-        _savedBindings.Clear();
-
-        foreach (var _ in InputMap.GetActions())
-        {
-            _savedBindings.Add(_, InputMap.ActionGetEvents(_)); //store all input
-            //GD.Print(_.ToString());
-            InputMap.ActionEraseEvents(_); //erase all input
-        }
-    }
-
-
-    void EnableInput()
-    {
-        foreach (var _ in InputMap.GetActions())
-        {
-            foreach (InputEvent _event in _savedBindings[_])
-            {
-                InputMap.ActionAddEvent(_, _event);
-            }
         }
     }
 }
