@@ -48,6 +48,7 @@ public partial class MenuOptions : Node
 	GridContainer _videoOptions;
 	GridContainer _audioOptions;
 	GridContainer _controlOptions;
+	List<RemapButtonContainer> _remapButtonContainers = new List<RemapButtonContainer>();
 	OptionButton _vsyncButton;
 	OptionButton _windowModeButton;
 
@@ -158,8 +159,9 @@ public partial class MenuOptions : Node
 		// control options, should be part of own script but who cares
 		if (_controlOptions.TryGetChild(out RemapButtonContainer remapButton))
 		{
-			GD.Print("Accessing input map: ");
-			List<RemapButtonContainer> remapButtonContainers = new List<RemapButtonContainer>();
+			//used to remember reset container and move it to bottom later
+			_controlOptions.TryGetChildren(out List<GridContainer> _resetcontainer);
+
 			foreach (var _ in InputMap.GetActions())
 			{
 				if (!(_.ToString().StartsWith("ui_") || _.ToString().StartsWith("pause"))) //filter events: ui_ is inbuilt, pause is not supposed to be changed
@@ -169,14 +171,28 @@ public partial class MenuOptions : Node
 					_new.Label = _.ToString();
 					//_new.SetButtonText(InputMap.ActionGetEvents(_)[0].ToString());
 					_controlOptions.AddChild(_new);
-					remapButtonContainers.Add(_new);
+					_remapButtonContainers.Add(_new);
 				}
 			}
-			
-			remapButtonContainers[0].EntryButton.FocusNeighborTop = _buttons[3].GetPath();
-			_buttons[3].FocusNeighborBottom = remapButtonContainers[0].EntryButton.GetPath();
 
 			remapButton.QueueFree(); //delete initial one after been copied
+
+			// this one was tricky
+			// bc godot sucks AddChild and Add create nodes only at end of frame
+			// this means sorting via MoveChild fails
+			// waiting is not possible bc _Ready is not async
+			// thus CallDeferred, but it can only run GDS functions, thus the string
+			_controlOptions.CallDeferred("move_child", _resetcontainer[0], -1);
+
+			_resetcontainer[0].TryGetChild(out Button _resetButton);
+
+			_resetButton.Pressed += () =>
+			   {
+				   InputAssistance.LoadProjectSettingsInputMap();
+			   };
+
+			_remapButtonContainers[0].EntryButton.FocusNeighborTop = _buttons[3].GetPath();
+			_buttons[3].FocusNeighborBottom = _remapButtonContainers[0].EntryButton.GetPath();
 		}
 
 		//general buttons + saving loading
@@ -187,15 +203,22 @@ public partial class MenuOptions : Node
 			if (this.TryGetNodeInTree(out Main _main))
 			{
 				_buttons[0].Pressed += () =>
-				{
-					_main.ClearScenes();
-					UILoader.LoadMainMenu(_main);
+					{
+						_main.ClearScenes();
+						UILoader.LoadMainMenu(_main);
 
-					FileIO.SavePlayerPrefs(
-						new int[3] { _vsyncButton.GetSelectedId(), _windowModeButton.GetSelectedId(), _windowSizeButton.GetSelectedId() },
-						new double[4] { _mainSlider.Value, _effectSlider.Value, _musicSlider.Value, _uiSlider.Value }
-						);
-				};
+						Dictionary<string, List<string>> _controlSave = new();
+						foreach (var _remapbutton in _remapButtonContainers)
+						{
+							_controlSave.Add(_remapbutton.Label, _remapbutton.InputStrings);
+						}
+
+						FileIO.SavePlayerPrefs(
+							new int[3] { _vsyncButton.GetSelectedId(), _windowModeButton.GetSelectedId(), _windowSizeButton.GetSelectedId() },
+							new double[4] { _mainSlider.Value, _effectSlider.Value, _musicSlider.Value, _uiSlider.Value },
+							_controlSave
+							);
+					};
 			}
 			else // for debugging
 			{
@@ -244,6 +267,7 @@ public partial class MenuOptions : Node
 			_buttons[1].GrabFocus();
 
 			FileIO.PlayerPrefs _playerPrefs = FileIO.LoadPlayerPrefs();
+
 			_vsyncButton.Select(_playerPrefs.VideoSettings[0]);
 			_windowModeButton.Select(_playerPrefs.VideoSettings[1]);
 			_windowSizeButton.Select(_playerPrefs.VideoSettings[2]);

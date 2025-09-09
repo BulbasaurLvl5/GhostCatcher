@@ -34,7 +34,7 @@ public partial class RemapButtonContainer : Node
 
     public Button EntryButton { get { return this.TryGetChild<Button>(); } }
 
-    List<string> _names = new List<string>();
+    public List<string> InputStrings = new List<string>();
 
 
     public override void _Ready()
@@ -60,7 +60,7 @@ public partial class RemapButtonContainer : Node
 
         _buttons[0].Pressed += async () =>
         {
-            _buttons[0].Text = "...";
+            // _buttons[0].Text = "..."; // does not do anything bc _Process
             _buttons[0].Disabled = true; // disable while waiting
 
             await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); // wait 1 frame to ignore first button press (enter)
@@ -75,12 +75,12 @@ public partial class RemapButtonContainer : Node
         // this could and should be done by menu options
         // however the menu does almost nothing so it is uncritical
         // and it simplifies the code. so what ever
-        _names.Clear();
+        InputStrings.Clear();
         foreach (var _ in InputMap.ActionGetEvents(Label))
         {
-            _names.Add(InputAssistance.InputEventToString(_));
+            InputStrings.Add(InputAssistance.InputEventToString(_));
         }
-        _buttons[0].Text = string.Join(", ", _names);
+        _buttons[0].Text = string.Join(", ", InputStrings);
     }
 
 

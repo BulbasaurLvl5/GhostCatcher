@@ -278,24 +278,33 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 36
 text = "(input)"
 
-[node name="HSeparator" type="HSeparator" parent="ControlOptions"]
-layout_mode = 2
-
-[node name="GridContainer" type="GridContainer" parent="ControlOptions"]
+[node name="ResetContainer" type="GridContainer" parent="ControlOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
 columns = 3
 
-[node name="VSeparator" type="VSeparator" parent="ControlOptions/GridContainer"]
+[node name="HSeparator" type="HSeparator" parent="ControlOptions/ResetContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="HSeparator2" type="HSeparator" parent="ControlOptions/ResetContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="HSeparator3" type="HSeparator" parent="ControlOptions/ResetContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="VSeparator" type="VSeparator" parent="ControlOptions/ResetContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="ControlOptions/GridContainer"]
+[node name="Button" type="Button" parent="ControlOptions/ResetContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 36
 text = "RESET"
 
-[node name="VSeparator2" type="VSeparator" parent="ControlOptions/GridContainer"]
+[node name="VSeparator2" type="VSeparator" parent="ControlOptions/ResetContainer"]
 layout_mode = 2
 size_flags_horizontal = 3

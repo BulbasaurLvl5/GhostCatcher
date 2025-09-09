@@ -65,6 +65,8 @@ public partial class Main : Node
 
 		endTime.OnStop += EndLevel;
 
+		InputAssistance.StoreProjectSettingsInputMap();
+
 		LoadSettings();
 
 		if (this.TryGetNestedChildren(out List<Button> _buttons))
@@ -250,17 +252,20 @@ public partial class Main : Node
 	void LoadSettings()
 	{
 		FileIO.PlayerPrefs _playerPrefs = FileIO.LoadPlayerPrefs();
+
 		VideoSettings.SetVsync(VideoSettings.VsyncOptions[_playerPrefs.VideoSettings[0]]);
 		VideoSettings.SetWindowMode(VideoSettings.WindowOptions[_playerPrefs.VideoSettings[1]]);
 		VideoSettings.SetWindowSize(VideoSettings.ResolutionOptions[_playerPrefs.VideoSettings[2]]);
 
-		float _t = Mathf.Clamp((float)_playerPrefs.AudioSettings[0]*.01f, .001f, 1);
+		float _t = Mathf.Clamp((float)_playerPrefs.AudioSettings[0] * .01f, .001f, 1);
 		AudioServer.SetBusVolumeDb(0, Mathf.LinearToDb(_t));
-		_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[1]*.01f, .001f, 1);
+		_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[1] * .01f, .001f, 1);
 		AudioServer.SetBusVolumeDb(1, Mathf.LinearToDb(_t));
-		_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[2]*.01f, .001f, 1);
+		_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[2] * .01f, .001f, 1);
 		AudioServer.SetBusVolumeDb(2, Mathf.LinearToDb(_t));
-		_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[3]*.01f, .001f, 1);
+		_t = Mathf.Clamp((float)_playerPrefs.AudioSettings[3] * .01f, .001f, 1);
 		AudioServer.SetBusVolumeDb(3, Mathf.LinearToDb(_t));
+
+		InputAssistance.SetInputMap(_playerPrefs.ControlSettings);
 	}
 }

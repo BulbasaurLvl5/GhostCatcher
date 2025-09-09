@@ -150,10 +150,10 @@ public static class FileIO
 	{
 		public int[] VideoSettings {get; set;}
 		public double[] AudioSettings {get; set;}
-		// public int[] ControllSettings {get; set;}
+		public Dictionary<string, List<string>> ControlSettings {get; set;}
 	}
 
-	public static void SavePlayerPrefs(int[] videoSettings, double[] audiosettings)
+	public static void SavePlayerPrefs(int[] videoSettings, double[] audiosettings, Dictionary<string, List<string>> controlsettings)
 	{
 		string _filepath = _baseSavePath + "PlayerPrefs" + ".json";
 		GD.Print("saved player prefs to: "+_filepath);
@@ -162,6 +162,7 @@ public static class FileIO
 
 		_playerPrefs.VideoSettings = videoSettings;
 		_playerPrefs.AudioSettings = audiosettings;
+		_playerPrefs.ControlSettings = controlsettings;
 
 		string _jsonString = JsonSerializer.Serialize(_playerPrefs);
 		File.WriteAllText(_filepath, _jsonString);

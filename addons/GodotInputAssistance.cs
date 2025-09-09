@@ -45,8 +45,8 @@ namespace MyGodotExtensions
             { "JPY", new InputEventJoypadButton { ButtonIndex = JoyButton.Y } },
             { "JPLS", new InputEventJoypadButton { ButtonIndex = JoyButton.LeftShoulder } },
             { "JPRS", new InputEventJoypadButton { ButtonIndex = JoyButton.RightShoulder } },
-            //{ "JPSe", new InputEventJoypadButton { ButtonIndex = JoyButton.Select } }, UI only
-            //{ "JPSt", new InputEventJoypadButton { ButtonIndex = JoyButton.Start } }, UI only
+            // { "JPBA", new InputEventJoypadButton { ButtonIndex = JoyButton.Back } },
+            // { "JPST", new InputEventJoypadButton { ButtonIndex = JoyButton.Start } },
             // { "JPL3", new InputEventJoypadButton { ButtonIndex = JoyButton.L3 } }, there are two shoulder buttons left
             // { "JPR3", new InputEventJoypadButton { ButtonIndex = JoyButton.R3 } }, there are two shoulder buttons left
             { "JPDU", new InputEventJoypadButton { ButtonIndex = JoyButton.DpadUp } },
@@ -86,7 +86,7 @@ namespace MyGodotExtensions
             // Keyboard Modifiers & Control
             { "ENTER", new InputEventKey { Keycode = Key.Enter } },
             { "SPACE", new InputEventKey { Keycode = Key.Space } },
-            //{ "ESC", new InputEventKey { Keycode = Key.Escape } }, UI only
+            // { "ESC", new InputEventKey { Keycode = Key.Escape } },
             { "SHIFT", new InputEventKey { Keycode = Key.Shift } },
             { "CTRL", new InputEventKey { Keycode = Key.Ctrl } },
             { "ALT", new InputEventKey { Keycode = Key.Alt } },
@@ -162,6 +162,50 @@ namespace MyGodotExtensions
             { "NPE", new InputEventKey { Keycode = Key.KpEnter } },
         };
 
+        /*
+        Again we try to fix another shortcoming of the godot inputmap
+        in this case: the default created in the project settings is not saved and/or accessible at runtime
+        Thus we have to store it when the project launches
+        This could be done via a singleton, but since this class already exists, why not store it as a static
+        The downside is that it needs a public setter and is thus mutatable for everyone
+        Thatswhy the field is split. SaveProjectSettingsInputMap is meant to be used only at project start by main or smth
+        obviously it has to be set, before custom settings are loaded
+        The two get and set functions should make this easy to see
+        sidenode: it is handling stuff via InputEvent, because InputAssistance has no buttons for start&ESC to prevent their usage and keep them for UI only
+        */
+        static Dictionary<string, List<InputEvent>> _defaultInputMap = new();
+
+        public static void StoreProjectSettingsInputMap()
+        {
+            foreach (var _action in GetMyActions())
+            {
+                List<InputEvent> _events = new();
+                foreach (var _event in InputMap.ActionGetEvents(_action))
+                {
+                    _events.Add(_event);
+                }
+                _defaultInputMap.Add(_action, _events);
+            }
+        }
+
+        public static void LoadProjectSettingsInputMap()
+        {
+            foreach (var _action in GetMyActions())
+            {
+                foreach(var _key in _defaultInputMap.Keys)
+                {
+                    if(_action == _key)
+                    {
+                        InputMap.ActionEraseEvents(_action);
+                        foreach (var _event in _defaultInputMap[_key])
+                        {
+                            InputMap.ActionAddEvent(_action, _event);
+                        }
+                    }
+                }
+            }
+        }
+
 
         // Function to construct InputEvent from string key
         public static InputEvent StringToInputEvent(string key)
@@ -173,22 +217,22 @@ namespace MyGodotExtensions
             GD.PrintErr($"InputEvent key '{key}' not found.");
             return null;
         }
-        
-        
+
+
         // Reverse: get inputevent and get string ID
         public static string InputEventToString(InputEvent inputEvent)
         {
             foreach (var pair in _inputEventDict)
             {
                 InputEvent _dictEvent = pair.Value;
-                
+
                 // Mouse Button
-                    if (inputEvent is InputEventMouseButton mouseEvent &&
-                        _dictEvent is InputEventMouseButton storedMouse &&
-                        mouseEvent.ButtonIndex == storedMouse.ButtonIndex)
-                    {
-                        return pair.Key;
-                    }
+                if (inputEvent is InputEventMouseButton mouseEvent &&
+                    _dictEvent is InputEventMouseButton storedMouse &&
+                    mouseEvent.ButtonIndex == storedMouse.ButtonIndex)
+                {
+                    return pair.Key;
+                }
                 // Joypad Motion
                 if (inputEvent is InputEventJoypadMotion joyMotion &&
                     _dictEvent is InputEventJoypadMotion storedMotion &&
@@ -215,7 +259,7 @@ namespace MyGodotExtensions
                 }
             }
             GD.PrintErr("ERROR: no key found in _inputEventDict for this ");
-            GD.PrintErr("event: "+inputEvent);
+            GD.PrintErr("   event: " + inputEvent.AsText());
             return null;
         }
 
@@ -236,7 +280,7 @@ namespace MyGodotExtensions
                 }
             }
             return false;
-        } 
+        }
 
 
         public static List<string> GetMyActions()
@@ -270,6 +314,27 @@ namespace MyGodotExtensions
             GD.Print("connected joy pads: " + Input.GetConnectedJoypads());
             GD.Print("is joypad connected? " + (Input.GetConnectedJoypads().Count > 0));
             return Input.GetConnectedJoypads().Count > 0;
+        }
+
+        public static void SetInputMap(Dictionary<string, List<string>> inputDict)
+        {
+            foreach (var _key in inputDict.Keys)
+            {
+                foreach (var _action in GetMyActions())
+                {
+                    if (_key == _action)
+                    {
+                        // GD.Print(_key, _action);
+                        // GD.Print(_key, string.Join(", ", inputDict[_key]));
+                        InputMap.ActionEraseEvents(_action);
+
+                        foreach (var _value in inputDict[_key])
+                        {
+                            InputMap.ActionAddEvent(_action, StringToInputEvent(_value));
+                        }
+                    }
+                }
+            }
         }
     }
 }
