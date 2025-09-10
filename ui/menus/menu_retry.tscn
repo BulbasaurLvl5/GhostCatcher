@@ -82,12 +82,12 @@ color = Color(0.0431373, 0.0431373, 0.0431373, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]
 libraries = {
-"": SubResource("AnimationLibrary_cotta")
+&"": SubResource("AnimationLibrary_cotta")
 }
 autoplay = "fade_to_black"
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
-position = Vector2(1190.43, 675.123)
+position = Vector2(1195.43, 669.123)
 scale = Vector2(2.26913, 2.26913)
 texture = ExtResource("2_whis7")
 
@@ -107,8 +107,8 @@ offset_right = 276.0
 offset_bottom = 136.0
 focus_neighbor_top = NodePath("../Quit_Button")
 focus_neighbor_bottom = NodePath("../Selection_Button")
-theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Retry"
@@ -125,8 +125,8 @@ offset_right = 276.0
 offset_bottom = 250.0
 focus_neighbor_top = NodePath("../Retry_Button")
 focus_neighbor_bottom = NodePath("../Main_Button")
-theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Levels"
@@ -143,8 +143,8 @@ offset_right = 276.0
 offset_bottom = 364.0
 focus_neighbor_top = NodePath("../Selection_Button")
 focus_neighbor_bottom = NodePath("../Quit_Button")
-theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Menu"
@@ -161,8 +161,8 @@ offset_right = 276.0
 offset_bottom = 478.0
 focus_neighbor_top = NodePath("../Main_Button")
 focus_neighbor_bottom = NodePath("../Retry_Button")
-theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Quit"

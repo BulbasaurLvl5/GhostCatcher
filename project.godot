@@ -31,6 +31,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="GhostCatcher"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/John/Videos/temp_reaper_demo.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray()

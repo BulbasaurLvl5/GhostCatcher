@@ -117,7 +117,7 @@ autoplay = "idle"
 frame_progress = 0.671999
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.670588)
+self_modulate = Color(1, 1, 1, 0.823529)
 light_mask = 8
 position = Vector2(0, -10)
 scale = Vector2(0.5, 0.5)
@@ -125,13 +125,13 @@ texture = SubResource("AtlasTexture_mnq0f")
 
 [node name="rotate" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
-"": SubResource("AnimationLibrary_ixv6s")
+&"": SubResource("AnimationLibrary_ixv6s")
 }
 autoplay = "wiggle"
 
 [node name="updown" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
-"": SubResource("AnimationLibrary_uqlkb")
+&"": SubResource("AnimationLibrary_uqlkb")
 }
 autoplay = "updown"
 
@@ -143,7 +143,7 @@ shape = SubResource("CapsuleShape2D_k1bom")
 light_mask = 0
 visibility_layer = 0
 position = Vector2(-1, -5)
-energy = 0.88
+energy = 0.33
 range_item_cull_mask = 8
 texture = SubResource("GradientTexture2D_77yvn")
 

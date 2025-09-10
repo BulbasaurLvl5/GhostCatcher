@@ -93,7 +93,6 @@ _data = {
 process_mode = 4
 light_mask = 2
 visibility_layer = 2
-z_index = 1
 collision_layer = 2
 collision_mask = 5
 floor_stop_on_slope = false
@@ -241,7 +240,7 @@ max_zoom_out = 1.0
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
 libraries = {
-"": SubResource("AnimationLibrary_s4r42")
+&"": SubResource("AnimationLibrary_s4r42")
 }
 
 [node name="Radar2D" type="Node2D" parent="."]

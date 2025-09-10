@@ -147,28 +147,9 @@ public static class LevelLoader
 	static void LoadLevel_Tutorial(Main _main)
 	{
 		int id = LevelID(LoadLevel_Tutorial);
-
-		List<Vector2I> ghostPositions = new List<Vector2I>(){
-			new Vector2I(-5*110, -3*110),
-			new Vector2I(0*110, -7*110),
-			new Vector2I(0*110, -2*110),
-			new Vector2I(5*110, -3*110),
-		};
-
 		LoadUI(_main);
-
 		Levels[id].PackedScene.Instantiate(_main.World);
-
-		foreach (var _gp in ghostPositions)
-		{
-			Ghost _g = packedGhost.Instantiate(_main.World, _gp, 0) as Ghost;
-		}
-
 		_main.StartLevel(id);
-
-		FileIO.SaveGame _save = FileIO.Load();
-		if(_save.LastTimes[0] == 0)
-			UILoader.LoadIntroMenu(_main);
 	}
 
 	static void LoadLevel_Platforms(Main _main)
