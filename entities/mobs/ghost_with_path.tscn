@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbt8j0i5nq5j1"]
 
-[ext_resource type="Script" path="res://entities/mobs/ghost_movement.gd" id="1_tqp0h"]
+[ext_resource type="Script" uid="uid://8gfumfyar4hp" path="res://entities/mobs/ghost_movement.gd" id="1_tqp0h"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="2_16gih"]
 
 [sub_resource type="Curve2D" id="Curve2D_6tq0f"]

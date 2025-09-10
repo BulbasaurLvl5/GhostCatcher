@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://7gm2em8n2ucc"]
 
-[ext_resource type="Script" path="res://main/level.gd" id="1_1udt0"]
+[ext_resource type="Script" uid="uid://cg6vyd42howdf" path="res://main/level.gd" id="1_1udt0"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_q1odp"]
 [ext_resource type="PackedScene" uid="uid://5qmp4wtv4vhb" path="res://entities/mobs/dog.tscn" id="7_ygbby"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="15_g02ft"]

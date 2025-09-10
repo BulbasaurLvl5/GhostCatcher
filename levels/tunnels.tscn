@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bvh68tarfg7ur"]
 
-[ext_resource type="Script" path="res://main/level.gd" id="1_nlh26"]
+[ext_resource type="Script" uid="uid://cg6vyd42howdf" path="res://main/level.gd" id="1_nlh26"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_xyow6"]
 [ext_resource type="Texture2D" uid="uid://jbfl0nukjwsw" path="res://resources/sprites/coal/coal_tree.png" id="3_0p8cl"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_ycubw"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://wfp31honksif"]
 
-[ext_resource type="Script" path="res://main/level.gd" id="1_iwysr"]
+[ext_resource type="Script" uid="uid://cg6vyd42howdf" path="res://main/level.gd" id="1_iwysr"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_uxj5u"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_72yiq"]
 [ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://environment/spikes_large.tscn" id="4_scqs6"]
@@ -27,7 +27,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jt51s"]
 _data = {
-"moveright": SubResource("Animation_u8sss")
+&"moveright": SubResource("Animation_u8sss")
 }
 
 [node name="template" type="Node2D"]

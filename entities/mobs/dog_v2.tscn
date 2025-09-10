@@ -1,18 +1,17 @@
 [gd_scene load_steps=14 format=3 uid="uid://c78ujhq42nm72"]
 
-[ext_resource type="Script" path="res://entities/mobs/state_machines/dog_ai.gd" id="1_rjsgn"]
-[ext_resource type="Script" path="res://entities/mobs/state_machines/mob_state_machine.gd" id="2_7rvf2"]
+[ext_resource type="Script" uid="uid://blnnxg1t3w26k" path="res://entities/mobs/state_machines/dog_ai.gd" id="1_rjsgn"]
+[ext_resource type="Script" uid="uid://cxpec7nq1lncx" path="res://entities/mobs/state_machines/mob_state_machine.gd" id="2_7rvf2"]
 [ext_resource type="Texture2D" uid="uid://gu03b8itgr5c" path="res://resources/sprites/coal/dog_2.png" id="2_l7kbf"]
-[ext_resource type="Script" path="res://entities/mobs/states/dog_wander_state.gd" id="3_61fjx"]
-[ext_resource type="Script" path="res://entities/mobs/states/dog_bluff_charge_state.gd" id="4_4idac"]
-[ext_resource type="Script" path="res://entities/mobs/states/dog_bark_state.gd" id="5_nn67n"]
-[ext_resource type="Script" path="res://entities/mobs/states/dog_retreat_state.gd" id="6_sxbef"]
-[ext_resource type="Script" path="res://entities/mobs/states/dog_growl_state.gd" id="7_cl41s"]
-[ext_resource type="Script" path="res://entities/mobs/states/dog_approach_state.gd" id="8_t4qcp"]
-[ext_resource type="Script" path="res://entities/mobs/states/dog_get_pets_state.gd" id="9_ydu5v"]
+[ext_resource type="Script" uid="uid://cq2echdu5d65v" path="res://entities/mobs/states/dog_wander_state.gd" id="3_61fjx"]
+[ext_resource type="Script" uid="uid://cyeys4st8cpua" path="res://entities/mobs/states/dog_bluff_charge_state.gd" id="4_4idac"]
+[ext_resource type="Script" uid="uid://bbaai8nl52mmu" path="res://entities/mobs/states/dog_bark_state.gd" id="5_nn67n"]
+[ext_resource type="Script" uid="uid://dpt50b27jwc76" path="res://entities/mobs/states/dog_retreat_state.gd" id="6_sxbef"]
+[ext_resource type="Script" uid="uid://c3kbq4o4rsauc" path="res://entities/mobs/states/dog_growl_state.gd" id="7_cl41s"]
+[ext_resource type="Script" uid="uid://cavmlwrvx7a1o" path="res://entities/mobs/states/dog_approach_state.gd" id="8_t4qcp"]
+[ext_resource type="Script" uid="uid://s5qd4qop8vbi" path="res://entities/mobs/states/dog_get_pets_state.gd" id="9_ydu5v"]
 [ext_resource type="AudioStream" uid="uid://cygbrya0tehy2" path="res://resources/audio/sfx/dog-barking-70772.mp3" id="11_pn4rc"]
 [ext_resource type="AudioStream" uid="uid://74g75i3ck0mj" path="res://resources/audio/sfx/whining-dog-6110.mp3" id="12_coadk"]
-
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulekq"]
 size = Vector2(80, 78)

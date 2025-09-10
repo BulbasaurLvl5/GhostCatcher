@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://4ph1w3ugdxgd"]
 
-[ext_resource type="Script" path="res://environment/pickups/tutorial_popup.gd" id="1_wkhqp"]
+[ext_resource type="Script" uid="uid://dn0ew08axw80" path="res://environment/pickups/tutorial_popup.gd" id="1_wkhqp"]
 [ext_resource type="Texture2D" uid="uid://c1kysdrhifs18" path="res://entities/player/anim/oriette-jump_3.png" id="2_xwhfm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6mra"]

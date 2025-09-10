@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bq3i5f60hbghq"]
 
-[ext_resource type="Script" path="res://ui/menus/MenuLevel.cs" id="1_87cnt"]
+[ext_resource type="Script" uid="uid://bxsqi74knjd2t" path="res://ui/menus/MenuLevel.cs" id="1_87cnt"]
 [ext_resource type="Texture2D" uid="uid://b0gm6kngvdnxc" path="res://resources/sprites/coal/menu_level_selection_background.png" id="1_kteng"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="2_8irtk"]
 [ext_resource type="Texture2D" uid="uid://d22mfo1u7jqs0" path="res://resources/sprites/endless_pit.png" id="4_6j46q"]

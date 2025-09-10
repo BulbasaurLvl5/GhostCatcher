@@ -1,9 +1,9 @@
 [gd_scene load_steps=29 format=3 uid="uid://bxm41jont7157"]
 
-[ext_resource type="Script" path="res://main/level.gd" id="1_khayn"]
+[ext_resource type="Script" uid="uid://cg6vyd42howdf" path="res://main/level.gd" id="1_khayn"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="2_nlt5q"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="3_nvhrl"]
-[ext_resource type="Script" path="res://environment/platforms/platform_movement.gd" id="4_0btod"]
+[ext_resource type="Script" uid="uid://bhrspabsef5w1" path="res://environment/platforms/platform_movement.gd" id="4_0btod"]
 [ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://environment/platforms/wide_platform_01.tscn" id="5_rli4x"]
 [ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://environment/spikes_large.tscn" id="6_in5s8"]
 [ext_resource type="Texture2D" uid="uid://cuxeorwpjn2g6" path="res://resources/sprites/coal/coal_signpost.png" id="7_c16sr"]

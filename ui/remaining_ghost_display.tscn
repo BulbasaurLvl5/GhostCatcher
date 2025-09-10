@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbybfcrkf2208"]
 
-[ext_resource type="Script" path="res://ui/RemainingGhostDisplay.cs" id="1_3jrs5"]
+[ext_resource type="Script" uid="uid://cg7owjnlj4u1d" path="res://ui/RemainingGhostDisplay.cs" id="1_3jrs5"]
 [ext_resource type="Texture2D" uid="uid://b4il41lqiai8o" path="res://resources/sprites/ghost.png" id="1_avfdw"]
 
 [node name="RemainingGhostDisplay" type="HBoxContainer"]

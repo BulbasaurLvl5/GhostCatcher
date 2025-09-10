@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dlyqqhxy7t87s"]
 
-[ext_resource type="Script" path="res://resources/path_follow_manager.gd" id="1_7x8xc"]
+[ext_resource type="Script" uid="uid://bppsmsty76ev8" path="res://resources/path_follow_manager.gd" id="1_7x8xc"]
 [ext_resource type="PackedScene" uid="uid://c33brbbnr771" path="res://entities/mobs/flaming_skull.tscn" id="2_eygax"]
 [ext_resource type="PackedScene" uid="uid://cau04hgcii1cn" path="res://entities/mobs/giant_red.tscn" id="3_egh1t"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cx6huxav8vx1d"]
 
-[ext_resource type="Script" path="res://environment/pickups/extra_air.gd" id="1_5mnic"]
+[ext_resource type="Script" uid="uid://ykbq67dvgyog" path="res://environment/pickups/extra_air.gd" id="1_5mnic"]
 [ext_resource type="Texture2D" uid="uid://d13q238asxfu2" path="res://resources/sprites/coal/bird_2.png" id="2_y874j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ikmiu"]

@@ -1,22 +1,22 @@
 [gd_scene load_steps=37 format=3 uid="uid://dhow5esn6x7rt"]
 
-[ext_resource type="Script" path="res://entities/player/state_machine/player_state_machine.gd" id="1_dcopr"]
-[ext_resource type="Script" path="res://entities/player/state_machine/player.gd" id="1_l4530"]
+[ext_resource type="Script" uid="uid://ch0jvk1wae6a1" path="res://entities/player/state_machine/player_state_machine.gd" id="1_dcopr"]
+[ext_resource type="Script" uid="uid://bwaouxw3yqk2s" path="res://entities/player/state_machine/player.gd" id="1_l4530"]
 [ext_resource type="Resource" uid="uid://dvbrelm3gvn8b" path="res://entities/player/data/default.tres" id="2_h8ju7"]
 [ext_resource type="SpriteFrames" uid="uid://byt3hw2l4n5l5" path="res://entities/player/anim/oriette.tres" id="4_ct6su"]
-[ext_resource type="Script" path="res://entities/player/state_machine/player_idle_state.gd" id="4_tan8y"]
-[ext_resource type="Script" path="res://entities/player/state_machine/player_state.gd" id="5_8dkiu"]
-[ext_resource type="Script" path="res://entities/player/state_machine/player_run_state.gd" id="7_71xul"]
-[ext_resource type="Script" path="res://entities/player/state_machine/player_jump_state.gd" id="7_ofds0"]
-[ext_resource type="Script" path="res://entities/player/state_machine/player_in_air_state.gd" id="8_uctrm"]
-[ext_resource type="Script" path="res://entities/player/state_machine/player_land_state.gd" id="9_ok23f"]
+[ext_resource type="Script" uid="uid://cxrv11rfs2o5k" path="res://entities/player/state_machine/player_idle_state.gd" id="4_tan8y"]
+[ext_resource type="Script" uid="uid://cyuoixmrppesf" path="res://entities/player/state_machine/player_state.gd" id="5_8dkiu"]
+[ext_resource type="Script" uid="uid://bukodqvomoq1s" path="res://entities/player/state_machine/player_run_state.gd" id="7_71xul"]
+[ext_resource type="Script" uid="uid://dmk8ayiwh5d70" path="res://entities/player/state_machine/player_jump_state.gd" id="7_ofds0"]
+[ext_resource type="Script" uid="uid://csfle8k0o1tpk" path="res://entities/player/state_machine/player_in_air_state.gd" id="8_uctrm"]
+[ext_resource type="Script" uid="uid://daaq1qs3pnnoc" path="res://entities/player/state_machine/player_land_state.gd" id="9_ok23f"]
 [ext_resource type="PackedScene" uid="uid://b88d6031uj744" path="res://entities/player/state_machine/shockwave.tscn" id="11_euytq"]
-[ext_resource type="Script" path="res://entities/player/state_machine/player_dash_state.gd" id="12_5jbsb"]
-[ext_resource type="Script" path="res://entities/player/state_machine/player_wall_grab_state.gd" id="13_ckika"]
+[ext_resource type="Script" uid="uid://dq4tj45pbyr25" path="res://entities/player/state_machine/player_dash_state.gd" id="12_5jbsb"]
+[ext_resource type="Script" uid="uid://b317kya30s1hv" path="res://entities/player/state_machine/player_wall_grab_state.gd" id="13_ckika"]
 [ext_resource type="PackedScene" uid="uid://deim0qaglwinp" path="res://resources/particle_effects/dash_ghost.tscn" id="14_q528f"]
-[ext_resource type="Script" path="res://entities/player/state_machine/player_wall_jump_state.gd" id="14_umcf1"]
-[ext_resource type="Script" path="res://resources/camera.gd" id="16_1amk7"]
-[ext_resource type="Script" path="res://entities/player/state_machine/player_stomp_state.gd" id="16_hlspe"]
+[ext_resource type="Script" uid="uid://csmlyo23by0dc" path="res://entities/player/state_machine/player_wall_jump_state.gd" id="14_umcf1"]
+[ext_resource type="Script" uid="uid://c61arxx04nrpp" path="res://resources/camera.gd" id="16_1amk7"]
+[ext_resource type="Script" uid="uid://drup81xu7v74a" path="res://entities/player/state_machine/player_stomp_state.gd" id="16_hlspe"]
 [ext_resource type="AudioStream" uid="uid://uq5et6s242vd" path="res://resources/audio/sfx/player/footsteps_run.wav" id="20_yffpo"]
 [ext_resource type="AudioStream" uid="uid://cwsp84bs3pl3t" path="res://resources/audio/sfx/player/dash.wav" id="21_2m7ev"]
 [ext_resource type="AudioStream" uid="uid://dnpsnujvbysq3" path="res://resources/audio/sfx/player/wall_grab.wav" id="22_vf16a"]
@@ -25,8 +25,8 @@
 [ext_resource type="AudioStream" uid="uid://dd5e54lddsty0" path="res://resources/audio/sfx/player/land3.wav" id="25_8nt8j"]
 [ext_resource type="AudioStream" uid="uid://cyhu3bovbds5j" path="res://resources/audio/sfx/player/jump1.wav" id="26_erhki"]
 [ext_resource type="AudioStream" uid="uid://k64hklsvjtl" path="res://resources/audio/sfx/player/jump2.wav" id="27_e40n3"]
-[ext_resource type="Script" path="res://ui/radar_2d.gd" id="28_tmfgi"]
-[ext_resource type="Script" path="res://resources/path_follow_manager.gd" id="29_3wdth"]
+[ext_resource type="Script" uid="uid://cdujfm8mmqgv8" path="res://ui/radar_2d.gd" id="28_tmfgi"]
+[ext_resource type="Script" uid="uid://bppsmsty76ev8" path="res://resources/path_follow_manager.gd" id="29_3wdth"]
 [ext_resource type="Texture2D" uid="uid://b4hx1ydc7wiyq" path="res://resources/sprites/coal/bird_1.png" id="30_up3vm"]
 [ext_resource type="Texture2D" uid="uid://cvv0hdmvn662b" path="res://resources/sprites/coal/bird_3.png" id="31_y7vy4"]
 
@@ -85,8 +85,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s4r42"]
 _data = {
-"zoom_in": SubResource("Animation_5rsqg"),
-"zoom_out": SubResource("Animation_jk6te")
+&"zoom_in": SubResource("Animation_5rsqg"),
+&"zoom_out": SubResource("Animation_jk6te")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://0vy8nky8i46d"]
 
-[ext_resource type="Script" path="res://main/level.gd" id="1_k14ye"]
+[ext_resource type="Script" uid="uid://cg6vyd42howdf" path="res://main/level.gd" id="1_k14ye"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_u4u2g"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_htb73"]
-[ext_resource type="Script" path="res://environment/platforms/moving_tile_map.gd" id="3_p8etl"]
+[ext_resource type="Script" uid="uid://dvdfnomak5ou" path="res://environment/platforms/moving_tile_map.gd" id="3_p8etl"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_m1qnb"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_m4xe8"]
 
@@ -26,7 +26,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lpx6d"]
 _data = {
-"updown": SubResource("Animation_fkpnk")
+&"updown": SubResource("Animation_fkpnk")
 }
 
 [node name="template" type="Node2D"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://5qmp4wtv4vhb"]
 
-[ext_resource type="Script" path="res://entities/mobs/Dog.cs" id="1_8btt8"]
+[ext_resource type="Script" uid="uid://b552ukekn28x1" path="res://entities/mobs/Dog.cs" id="1_8btt8"]
 [ext_resource type="SpriteFrames" uid="uid://c8df5cub7xjk8" path="res://entities/mobs/anim/ghosts/anim/ghost.tres" id="2_4idqg"]
-[ext_resource type="Texture2D" uid="uid://gu03b8itgr5c" path="res://Sprites/CoalDrawn/dog_2.png" id="3_7fh0o"]
-[ext_resource type="AudioStream" uid="uid://cygbrya0tehy2" path="res://audio/sfx/dog-barking-70772.mp3" id="4_8dq70"]
-[ext_resource type="AudioStream" uid="uid://74g75i3ck0mj" path="res://audio/sfx/whining-dog-6110.mp3" id="5_jsbe4"]
+[ext_resource type="Texture2D" uid="uid://gu03b8itgr5c" path="res://resources/sprites/coal/dog_2.png" id="3_7fh0o"]
+[ext_resource type="AudioStream" uid="uid://cygbrya0tehy2" path="res://resources/audio/sfx/dog-barking-70772.mp3" id="4_8dq70"]
+[ext_resource type="AudioStream" uid="uid://74g75i3ck0mj" path="res://resources/audio/sfx/whining-dog-6110.mp3" id="5_jsbe4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3h8i7"]
 radius = 134.06

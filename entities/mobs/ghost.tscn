@@ -1,11 +1,11 @@
 [gd_scene load_steps=18 format=3 uid="uid://dpxeqvv1xxuu2"]
 
-[ext_resource type="Script" path="res://entities/mobs/Ghost.cs" id="1_t1pw5"]
+[ext_resource type="Script" uid="uid://b7oel5ul77aak" path="res://entities/mobs/Ghost.cs" id="1_t1pw5"]
 [ext_resource type="SpriteFrames" uid="uid://c8df5cub7xjk8" path="res://entities/mobs/anim/ghosts/anim/ghost.tres" id="2_ipf0g"]
 [ext_resource type="Texture2D" uid="uid://cpmrv0l6lhuk7" path="res://resources/sprites/coal/coal_ghosts.png" id="3_s2mxk"]
 [ext_resource type="PackedScene" uid="uid://cmqkgnm0iqmry" path="res://resources/particle_effects/dust_explosion.tscn" id="4_cggt7"]
 [ext_resource type="AudioStream" uid="uid://bx6wq32vtiv2s" path="res://resources/audio/sfx/pop-up-something-160353.mp3" id="5_00vpq"]
-[ext_resource type="Script" path="res://ui/radar_beacon_2d.gd" id="6_hu6h0"]
+[ext_resource type="Script" uid="uid://dk6xsii0xupkg" path="res://ui/radar_beacon_2d.gd" id="6_hu6h0"]
 [ext_resource type="Texture2D" uid="uid://b4il41lqiai8o" path="res://resources/sprites/ghost.png" id="7_nrq4r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mnq0f"]
@@ -45,8 +45,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ixv6s"]
 _data = {
-"RESET": SubResource("Animation_bhssd"),
-"wiggle": SubResource("Animation_ct0e7")
+&"RESET": SubResource("Animation_bhssd"),
+&"wiggle": SubResource("Animation_ct0e7")
 }
 
 [sub_resource type="Animation" id="Animation_vukye"]
@@ -83,8 +83,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uqlkb"]
 _data = {
-"RESET": SubResource("Animation_vukye"),
-"updown": SubResource("Animation_k76go")
+&"RESET": SubResource("Animation_vukye"),
+&"updown": SubResource("Animation_k76go")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1bom"]

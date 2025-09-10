@@ -1,16 +1,16 @@
 [gd_scene load_steps=19 format=3 uid="uid://c33brbbnr771"]
 
-[ext_resource type="Script" path="res://entities/mobs/state_machines/flaming_skull_ai.gd" id="1_mkvfy"]
+[ext_resource type="Script" uid="uid://blwjtkejkbpnw" path="res://entities/mobs/state_machines/flaming_skull_ai.gd" id="1_mkvfy"]
 [ext_resource type="Texture2D" uid="uid://dqsd07kah8y8q" path="res://resources/sprites/coal/dust_5.png" id="2_5h2a4"]
-[ext_resource type="Script" path="res://entities/mobs/state_machines/mob_state_machine.gd" id="2_oduli"]
+[ext_resource type="Script" uid="uid://cxpec7nq1lncx" path="res://entities/mobs/state_machines/mob_state_machine.gd" id="2_oduli"]
 [ext_resource type="Texture2D" uid="uid://cxp6qr5x3lquj" path="res://resources/sprites/coal/skull_1.png" id="3_pomug"]
-[ext_resource type="Script" path="res://entities/mobs/states/air_patrol_state.gd" id="3_tnp4g"]
-[ext_resource type="Script" path="res://entities/mobs/states/skull_chase_state.gd" id="5_hq6k1"]
-[ext_resource type="Script" path="res://entities/mobs/states/stunned_state.gd" id="5_i20n3"]
-[ext_resource type="Script" path="res://entities/mobs/states/flaming_rage_state.gd" id="6_hcva6"]
-[ext_resource type="Script" path="res://entities/mobs/states/path_state.gd" id="8_l8htg"]
+[ext_resource type="Script" uid="uid://bbwatwl3aw10" path="res://entities/mobs/states/air_patrol_state.gd" id="3_tnp4g"]
+[ext_resource type="Script" uid="uid://pbqohy2kxusv" path="res://entities/mobs/states/skull_chase_state.gd" id="5_hq6k1"]
+[ext_resource type="Script" uid="uid://6f45sipjbcrq" path="res://entities/mobs/states/stunned_state.gd" id="5_i20n3"]
+[ext_resource type="Script" uid="uid://dtliiykkrre3o" path="res://entities/mobs/states/flaming_rage_state.gd" id="6_hcva6"]
+[ext_resource type="Script" uid="uid://dyp8eo8rxbsc7" path="res://entities/mobs/states/path_state.gd" id="8_l8htg"]
 [ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://resources/collision_failure.tscn" id="8_r0bl5"]
-[ext_resource type="Script" path="res://entities/mobs/states/air_return_state.gd" id="9_ej7hy"]
+[ext_resource type="Script" uid="uid://cgavrutcour05" path="res://entities/mobs/states/air_return_state.gd" id="9_ej7hy"]
 
 [sub_resource type="Gradient" id="Gradient_n74fn"]
 offsets = PackedFloat32Array(0, 0.737864, 1)
@@ -34,6 +34,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 25.0
 emission_ring_inner_radius = 15.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(1, 1, 0)
 spread = 180.0
 initial_velocity_max = 20.0

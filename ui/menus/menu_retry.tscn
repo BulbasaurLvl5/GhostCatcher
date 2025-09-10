@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bokl5cktpsr6n"]
 
-[ext_resource type="Script" path="res://ui/menus/MenuRetry.cs" id="1_kt2lo"]
+[ext_resource type="Script" uid="uid://bes7kkqnhjm7j" path="res://ui/menus/MenuRetry.cs" id="1_kt2lo"]
 [ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://resources/sprites/coal/reaper_cutout.png" id="2_whis7"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="3_kykr8"]
 [ext_resource type="Texture2D" uid="uid://di4dddfdh5et7" path="res://resources/sprites/coal/star_rating_0.png" id="4_wydpr"]
@@ -51,7 +51,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cotta"]
 _data = {
-"fade_to_black": SubResource("Animation_vgim6")
+&"fade_to_black": SubResource("Animation_vgim6")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_filuv"]

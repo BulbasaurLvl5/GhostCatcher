@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://dkoe1u7tyl8x3"]
 
-[ext_resource type="Script" path="res://ui/menus/MenuOptions.cs" id="1_qbfve"]
+[ext_resource type="Script" uid="uid://c636wyqwycw4q" path="res://ui/menus/MenuOptions.cs" id="1_qbfve"]
 [ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://resources/sprites/coal/menu_retry_background.png" id="2_7cifs"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="3_2sycy"]
 [ext_resource type="StyleBox" uid="uid://kae7nrb6cknu" path="res://resources/button_texture.tres" id="4_onq2y"]
-[ext_resource type="Script" path="res://ui/menus/RemapButtonContainer.cs" id="5_0ul8v"]
+[ext_resource type="Script" uid="uid://xrxk8qrgnqlf" path="res://ui/menus/RemapButtonContainer.cs" id="5_0ul8v"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_cffll"]
 device = -1

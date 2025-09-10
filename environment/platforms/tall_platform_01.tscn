@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://crxh8tb8lf8kr"]
 
-[ext_resource type="Script" path="res://environment/platforms/platform.gd" id="1_ury3g"]
+[ext_resource type="Script" uid="uid://dq5nl5bstry3m" path="res://environment/platforms/platform.gd" id="1_ury3g"]
 [ext_resource type="Texture2D" uid="uid://b8oe65hbktpti" path="res://resources/sprites/coal/square.png" id="2_80kq3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npbpf"]

@@ -10,19 +10,17 @@ point_count = 2
 curve = SubResource("Curve_v8nfq")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1awdo"]
+particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 52.34
-particle_flag_disable_z = true
-direction = Vector3(1, 1, 0)
-spread = 180.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 54.95
-initial_velocity_max = 148.36
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
 angle_min = 79.1
 angle_max = 182.0
 angle_curve = SubResource("CurveTexture_4p6th")
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_min = 54.95
+initial_velocity_max = 148.36
+gravity = Vector3(0, 0, 0)
 
 [node name="dust" type="GPUParticles2D"]
 emitting = false

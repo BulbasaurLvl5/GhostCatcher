@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cuy7fj1l11x4v"]
 
-[ext_resource type="Script" path="res://main/level.gd" id="1_q0k8y"]
+[ext_resource type="Script" uid="uid://cg6vyd42howdf" path="res://main/level.gd" id="1_q0k8y"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="2_7wyad"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="2_q2fv3"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="3_7kpqb"]
@@ -24,7 +24,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aiuu7"]
 _data = {
-"moveup": SubResource("Animation_4jlwk")
+&"moveup": SubResource("Animation_4jlwk")
 }
 
 [node name="Vertical" type="Node2D"]

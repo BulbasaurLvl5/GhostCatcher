@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b4okf23f4krxj"]
 
 [ext_resource type="Texture2D" uid="uid://bktq6ap0baxd6" path="res://resources/sprites/coal/tree_8.png" id="1_43dhx"]
-[ext_resource type="Script" path="res://environment/CrowTree.cs" id="1_j1i3w"]
+[ext_resource type="Script" uid="uid://grgohyobrftd" path="res://environment/CrowTree.cs" id="1_j1i3w"]
 [ext_resource type="AudioStream" uid="uid://naayb7kuu1qh" path="res://resources/audio/sfx/voice-of-a-crow-animal-sound-151787-ipaxku4q_tfM0MNy0.mp3" id="3_usq2i"]
 [ext_resource type="Texture2D" uid="uid://b4hx1ydc7wiyq" path="res://resources/sprites/coal/bird_1.png" id="4_m8db1"]
 [ext_resource type="Texture2D" uid="uid://d13q238asxfu2" path="res://resources/sprites/coal/bird_2.png" id="5_oppo7"]
@@ -11,7 +11,7 @@
 size = Vector2(289, 269)
 
 [sub_resource type="Curve" id="Curve_svnm3"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0.0117647, -0.284211), 0.0, 0.0, 0, 0, Vector2(0.15, 0.2), 0.0, 0.0, 0, 0, Vector2(0.267647, -0.368421), -6.83254, -6.83254, 0, 0, Vector2(0.435294, 0.326316), 0.0, 0.0, 0, 0, Vector2(0.614706, -0.221053), 0.0, 0.0, 0, 0, Vector2(0.744118, 0.263158), 0.0, 0.0, 0, 0, Vector2(0.982353, -0.326316), 0.0, 0.0, 0, 0]
 point_count = 7
 
@@ -27,17 +27,17 @@ curve = SubResource("Curve_7jwf1")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ltvgg"]
 lifetime_randomness = 0.68
+particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 150.0
-particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 90.0
-gravity = Vector3(0, -25, 0)
 initial_velocity_min = 50.0
 initial_velocity_max = 150.0
 orbit_velocity_min = -0.2
 orbit_velocity_max = 0.2
 orbit_velocity_curve = SubResource("CurveTexture_y2201")
+gravity = Vector3(0, -25, 0)
 scale_min = 0.5
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_wrwnk")

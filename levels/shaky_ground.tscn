@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://b2xhyj1jgx5fr"]
 
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_qysqh"]
-[ext_resource type="Script" path="res://main/level.gd" id="1_rbfi6"]
+[ext_resource type="Script" uid="uid://cg6vyd42howdf" path="res://main/level.gd" id="1_rbfi6"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="2_vn8ee"]
-[ext_resource type="Script" path="res://entities/mobs/ghost_movement.gd" id="3_d304m"]
-[ext_resource type="Script" path="res://resources/path_follow_manager.gd" id="3_kf6fm"]
+[ext_resource type="Script" uid="uid://8gfumfyar4hp" path="res://entities/mobs/ghost_movement.gd" id="3_d304m"]
+[ext_resource type="Script" uid="uid://bppsmsty76ev8" path="res://resources/path_follow_manager.gd" id="3_kf6fm"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_otjgh"]
 [ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://environment/platforms/wide_platform_01.tscn" id="3_y03pk"]
 [ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://environment/spikes_small.tscn" id="4_qybs3"]

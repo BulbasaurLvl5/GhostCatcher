@@ -1,9 +1,9 @@
 [gd_scene load_steps=28 format=3 uid="uid://cbnqn0wjsnctc"]
 
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_2diwe"]
-[ext_resource type="Script" path="res://main/level.gd" id="1_qqubv"]
+[ext_resource type="Script" uid="uid://cg6vyd42howdf" path="res://main/level.gd" id="1_qqubv"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_6kn28"]
-[ext_resource type="Script" path="res://resources/path_follow_manager.gd" id="4_74y3q"]
+[ext_resource type="Script" uid="uid://bppsmsty76ev8" path="res://resources/path_follow_manager.gd" id="4_74y3q"]
 [ext_resource type="PackedScene" uid="uid://c33brbbnr771" path="res://entities/mobs/flaming_skull.tscn" id="5_ii5ts"]
 [ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://environment/platforms/wide_platform_01.tscn" id="7_3riy8"]
 [ext_resource type="PackedScene" uid="uid://o6gyv1iscin5" path="res://environment/spikes_medium.tscn" id="8_31ajb"]

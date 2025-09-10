@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=3 uid="uid://d2m8h34yt10sh"]
 
-[ext_resource type="Script" path="res://main/level.gd" id="1_j32q3"]
+[ext_resource type="Script" uid="uid://cg6vyd42howdf" path="res://main/level.gd" id="1_j32q3"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_mnvng"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="2_hfwfp"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="3_wpbfl"]
 [ext_resource type="Texture2D" uid="uid://cuxeorwpjn2g6" path="res://resources/sprites/coal/coal_signpost.png" id="4_wng46"]
-[ext_resource type="Script" path="res://resources/path_follow_manager.gd" id="6_qvtoj"]
+[ext_resource type="Script" uid="uid://bppsmsty76ev8" path="res://resources/path_follow_manager.gd" id="6_qvtoj"]
 [ext_resource type="PackedScene" uid="uid://c33brbbnr771" path="res://entities/mobs/flaming_skull.tscn" id="6_s7nyc"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="9_8yd4x"]
 
