@@ -345,11 +345,13 @@ namespace MyGodotExtensions
 
         public static void DisableInput()
         {
+            if (IsInputDisabled())
+                return;
+                
             foreach (var _ in InputMap.GetActions())
             {
-                _savedBindings.Add(_, InputMap.ActionGetEvents(_)); //store all input
-                //GD.Print(_.ToString());
-                InputMap.ActionEraseEvents(_); //erase all input
+                _savedBindings.Add(_, InputMap.ActionGetEvents(_)); //store old input
+                InputMap.ActionEraseEvents(_); //erase input
             }
         }
 
