@@ -83,23 +83,22 @@ public static class LevelLoader
 	}
 
 	public static Level[] Levels = {
-	// tutorials
-		// new Level("daniel1", new float[5]{8,10,12,15,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_1_daniel.tscn"), LoadLevel_Tutorial_1_daniel),
-		// new Level("daniel2", new float[5]{12,13,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_2_daniel.tscn"), LoadLevel_Tutorial_2_daniel),
-		// new Level("daniel3", new float[5]{13,16,19,22,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_3_daniel.tscn"), LoadLevel_Tutorial_3_daniel),
-		new Level("stefan1", new float[5]{8,10,12,15,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_1_stefan.tscn"), LoadLevel_Tutorial_1),
-		new Level("stefan2", new float[5]{12,13,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_2_stefan.tscn"), LoadLevel_Tutorial_2),
-		new Level("stefan3", new float[5]{13,16,19,22,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_3_stefan.tscn"), LoadLevel_Tutorial_3),
-	// collectible ghosts, endless pit
-		new Level("tutorial", new float[5]{5,7,9,12,15}, ResourceLoader.Load<PackedScene>("res://levels/tutorial.tscn"), LoadLevel_Tutorial),
+	// collectible ghosts, endless pit	
+		new Level("ghosts", new float[5]{5,7,9,12,15}, ResourceLoader.Load<PackedScene>("res://levels/tutorial.tscn"), LoadLevel_Tutorial),
+		new Level("jump", new float[5]{9,11,13,15,20}, ResourceLoader.Load<PackedScene>("res://levels/jump.tscn"), LoadLevel_Tutorial_1),
+		new Level("dash", new float[5]{12,13,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/dash.tscn"), LoadLevel_Tutorial_2),
+		new Level("wall grab", new float[5]{13,16,19,22,25}, ResourceLoader.Load<PackedScene>("res://levels/wall_grab.tscn"), LoadLevel_Tutorial_3),
+
 		new Level("tunnels", new float[5]{10,12,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/tunnels.tscn"), LoadLevel_Tunnels),
 		new Level("treeson", new float[5]{32,34,38,42,50}, ResourceLoader.Load<PackedScene>("res://levels/treeson.tscn"), LoadLevel_Treeson),
 		new Level("cliff", new float[5]{16,18,23,27,33}, ResourceLoader.Load<PackedScene>("res://levels/cliff.tscn"), LoadLevel_Cliff),
-		new Level("wall grab", new float[5]{18,20,22,24,26}, ResourceLoader.Load<PackedScene>("res://levels/wallgrab.tscn"), LoadLevel_Wallgrab),
+		new Level("wall grab 2", new float[5]{18,20,22,24,26}, ResourceLoader.Load<PackedScene>("res://levels/wallgrab.tscn"), LoadLevel_Wallgrab),
 	// moving ghosts
 		new Level("swarm", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/swarm.tscn"), LoadLevel_swarm),
 	// moving pit
 		new Level("vertical", new float[5]{20,21,22,23,24}, ResourceLoader.Load<PackedScene>("res://levels/vertical.tscn"), LoadLevel_Vertical),
+
+		new Level("escape", new float[5]{32,33,34,36,38}, ResourceLoader.Load<PackedScene>("res://levels/escape.tscn"), LoadLevel_Escape),
 	// moving platforms
 		new Level("kettle", new float[5]{16,17,18,20,22}, ResourceLoader.Load<PackedScene>("res://levels/kettle.tscn"), LoadLevel_Kettle),
 		new Level("blocks", new float[5]{28,30,33,38,45}, ResourceLoader.Load<PackedScene>("res://levels/blocks.tscn"), LoadLevel_blocks),
@@ -109,12 +108,15 @@ public static class LevelLoader
 		new Level("quake", new float[5]{35,36,38,40,42}, ResourceLoader.Load<PackedScene>("res://levels/quake.tscn"), LoadLevel_Quake),
 	// 1st enemy type (red ghosts)
 	// spikes
+		new Level("daniel1", new float[5]{8,10,12,15,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_1_daniel.tscn"), LoadLevel_Tutorial_1_daniel),
+		new Level("daniel2", new float[5]{12,13,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_2_daniel.tscn"), LoadLevel_Tutorial_2_daniel),
+		new Level("daniel3", new float[5]{13,16,19,22,25}, ResourceLoader.Load<PackedScene>("res://levels/tutorial_3_daniel.tscn"), LoadLevel_Tutorial_3_daniel),
+
 		new Level("spikes", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/spikes.tscn"), LoadLevel_Spikes),
 		new Level("mountain", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/mountainside.tscn"), LoadLevel_MountainSide),
 		new Level("cactee", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/kaktee.tscn"), LoadLevel_Kaktee),
 		new Level("deeppit", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/deep_pit.tscn"), LoadLevel_DeepPit),
 		new Level("columns", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/columns.tscn"), LoadLevel_Columns),
-		new Level("escape", new float[5]{32,33,34,36,38}, ResourceLoader.Load<PackedScene>("res://levels/escape.tscn"), LoadLevel_Escape),
 	// 2nd enemy type (skulls)
 		new Level("skulls", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/platforms.tscn"), LoadLevel_Platforms),
 	// falling platforms

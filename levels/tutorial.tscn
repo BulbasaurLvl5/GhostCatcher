@@ -1,99 +1,35 @@
-[gd_scene load_steps=16 format=4 uid="uid://7gm2em8n2ucc"]
+[gd_scene load_steps=13 format=4 uid="uid://7gm2em8n2ucc"]
 
 [ext_resource type="Script" uid="uid://cg6vyd42howdf" path="res://main/level.gd" id="1_1udt0"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_q1odp"]
-[ext_resource type="Texture2D" uid="uid://cvvwe6x1p0aqk" path="res://resources/sprites/coal/combined_hills_01.png" id="2_c633x"]
-[ext_resource type="Texture2D" uid="uid://dv4pbh1hq14b4" path="res://resources/sprites/coal/combined_hills_02.png" id="2_gdrka"]
-[ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://resources/sprites/coal/coal_sky_filter.png" id="2_vvqp3"]
-[ext_resource type="Texture2D" uid="uid://brcyil7mkh8rh" path="res://resources/sprites/coal/moon_2.png" id="3_bp3yb"]
+[ext_resource type="PackedScene" uid="uid://c6a1en67474y2" path="res://environment/parallax/parallax_nightsky.tscn" id="2_d2yhp"]
+[ext_resource type="PackedScene" uid="uid://bigu4vclou26" path="res://environment/parallax/parallax_moon.tscn" id="3_5h72f"]
+[ext_resource type="PackedScene" uid="uid://c0hr06avtnfxi" path="res://environment/parallax/parallax_combinedhills_02.tscn" id="4_o146j"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="5_0fvvq"]
+[ext_resource type="PackedScene" uid="uid://nst5p32x0six" path="res://environment/parallax/parallax_combinedhills_01.tscn" id="5_fkhgs"]
 [ext_resource type="PackedScene" uid="uid://b4okf23f4krxj" path="res://environment/crow_tree.tscn" id="6_aaho8"]
-[ext_resource type="Texture2D" uid="uid://b8xoka0m1lmq5" path="res://resources/sprites/coal/hills.png" id="6_jfmsd"]
-[ext_resource type="Texture2D" uid="uid://q7jgjirvucvk" path="res://resources/sprites/coal/tree_1.png" id="7_5h72f"]
-[ext_resource type="Texture2D" uid="uid://67522rgm3ol5" path="res://resources/sprites/coal/tree_6.png" id="8_o146j"]
-[ext_resource type="Texture2D" uid="uid://bvr3lq31x72d0" path="res://resources/sprites/coal/tree_3.png" id="14_o146j"]
+[ext_resource type="PackedScene" uid="uid://cje5tl3n4mp4i" path="res://environment/parallax/parallax_hills.tscn" id="6_qvtyd"]
+[ext_resource type="PackedScene" uid="uid://b8omki2vqkyns" path="res://environment/parallax/parallax_hills_2.tscn" id="12_ud5cb"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="15_g02ft"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="18_72qbc"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c633x"]
-light_mode = 1
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_1udt0")
 level_name = "Tutorial"
+show_lighting_in_editor = true
 top_boundary = -80.0
 left_boundary = -18.0
 bottom_boundary = 2.0
 
-[node name="Parallax_nightsky" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.1, 0.1)
-repeat_size = Vector2(1168, 826)
-repeat_times = 9
+[node name="Parallax_nightsky" parent="." instance=ExtResource("2_d2yhp")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax_nightsky"]
-modulate = Color(0.10682, 0.183602, 0.178209, 1)
-material = SubResource("CanvasItemMaterial_c633x")
-texture = ExtResource("2_vvqp3")
+[node name="Parallax_moon" parent="." instance=ExtResource("3_5h72f")]
 
-[node name="Parallax_moon" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.1, 0.1)
+[node name="Parallax_combinedhills_02" parent="." instance=ExtResource("4_o146j")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax_moon"]
-material = SubResource("CanvasItemMaterial_c633x")
-position = Vector2(1500, 0)
-scale = Vector2(0.33, 0.33)
-texture = ExtResource("3_bp3yb")
+[node name="Parallax_combinedhills_01" parent="." instance=ExtResource("5_fkhgs")]
 
-[node name="Parallax_combinedhills_02" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.25, 0.8)
-scroll_offset = Vector2(0, -250)
-repeat_size = Vector2(1115, 0)
-repeat_times = 9
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax_combinedhills_02"]
-modulate = Color(0.10682, 0.183602, 0.178209, 1)
-material = SubResource("CanvasItemMaterial_c633x")
-texture = ExtResource("2_gdrka")
-
-[node name="Parallax_combinedhills_01" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.5, 0.9)
-repeat_size = Vector2(1267.2, 0)
-repeat_times = 9
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax_combinedhills_01"]
-modulate = Color(0.160933, 0.262112, 0.254985, 1)
-material = SubResource("CanvasItemMaterial_c633x")
-scale = Vector2(0.33, 0.33)
-texture = ExtResource("2_c633x")
-
-[node name="Parallax_hills" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.9, 1)
-repeat_size = Vector2(1168, 0)
-repeat_times = 9
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax_hills"]
-modulate = Color(0.124896, 0.274683, 0.210728, 1)
-material = SubResource("CanvasItemMaterial_c633x")
-position = Vector2(0, 250)
-texture = ExtResource("6_jfmsd")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax_hills"]
-modulate = Color(0.12549, 0.27451, 0.211765, 1)
-position = Vector2(355, -135)
-scale = Vector2(0.504032, 0.504032)
-texture = ExtResource("7_5h72f")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Parallax_hills"]
-modulate = Color(0.12549, 0.27451, 0.211765, 1)
-position = Vector2(269, -109)
-scale = Vector2(0.504032, 0.504032)
-texture = ExtResource("7_5h72f")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Parallax_hills"]
-modulate = Color(0.12549, 0.27451, 0.211765, 1)
-position = Vector2(-283, -165)
-scale = Vector2(0.880424, 0.880425)
-texture = ExtResource("8_o146j")
+[node name="Parallax_hills" parent="." instance=ExtResource("6_qvtyd")]
 
 [node name="Scenery" type="Node2D" parent="."]
 
@@ -132,29 +68,4 @@ position = Vector2(599, -313)
 [node name="Ghost4" parent="Ghosts" instance=ExtResource("5_0fvvq")]
 position = Vector2(52, -284)
 
-[node name="Parallax_hills2" type="Parallax2D" parent="."]
-scroll_scale = Vector2(1.2, 1)
-scroll_offset = Vector2(400, 200)
-repeat_size = Vector2(1168, 0)
-repeat_times = 9
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax_hills2"]
-modulate = Color(0.124896, 0.274683, 0.210728, 1)
-material = SubResource("CanvasItemMaterial_c633x")
-position = Vector2(0, 250)
-texture = ExtResource("6_jfmsd")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Parallax_hills2"]
-modulate = Color(0.12549, 0.27451, 0.211765, 1)
-position = Vector2(408, -232)
-texture = ExtResource("7_5h72f")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Parallax_hills2"]
-modulate = Color(0.12549, 0.27451, 0.211765, 1)
-position = Vector2(58, -198)
-texture = ExtResource("14_o146j")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Parallax_hills2"]
-modulate = Color(0.12549, 0.27451, 0.211765, 1)
-position = Vector2(-318, -196.5)
-texture = ExtResource("8_o146j")
+[node name="Parallax_hills2" parent="." instance=ExtResource("12_ud5cb")]

@@ -11,8 +11,6 @@
 [node name="Tutorial_1D" type="Node2D"]
 script = ExtResource("1_kqcct")
 level_name = "Tutorial_1D"
-air_actions_enabled = false
-radar_enabled = false
 light_level = 1.0
 show_lighting_in_editor = true
 top_boundary = -38.0
@@ -60,11 +58,11 @@ position = Vector2(-2535, 223)
 rotation = -1.5708
 scale = Vector2(1.4, -1)
 
-[node name="Spikes_small" parent="Spikes" instance=ExtResource("5_33d1k")]
+[node name="Scenery" type="Node" parent="."]
+
+[node name="Spikes_small" parent="Scenery" instance=ExtResource("5_33d1k")]
 position = Vector2(-2587, -15)
 scale = Vector2(1.7, 1)
-
-[node name="Scenery" type="Node" parent="."]
 
 [node name="EndlessPit" parent="." instance=ExtResource("4_kupia")]
 position = Vector2(0, 330)

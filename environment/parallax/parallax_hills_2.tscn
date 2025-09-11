@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8omki2vqkyns"]
+
+[ext_resource type="Texture2D" uid="uid://b8xoka0m1lmq5" path="res://resources/sprites/coal/hills.png" id="1_8omol"]
+[ext_resource type="Texture2D" uid="uid://q7jgjirvucvk" path="res://resources/sprites/coal/tree_1.png" id="2_1o4px"]
+[ext_resource type="Texture2D" uid="uid://bvr3lq31x72d0" path="res://resources/sprites/coal/tree_3.png" id="3_wavch"]
+[ext_resource type="Texture2D" uid="uid://67522rgm3ol5" path="res://resources/sprites/coal/tree_6.png" id="4_c3agn"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c633x"]
+light_mode = 1
+
+[node name="Parallax_hills2" type="Parallax2D"]
+scroll_scale = Vector2(1.2, 1)
+scroll_offset = Vector2(400, 200)
+repeat_size = Vector2(1168, 0)
+repeat_times = 9
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.124896, 0.274683, 0.210728, 1)
+material = SubResource("CanvasItemMaterial_c633x")
+position = Vector2(0, 250)
+texture = ExtResource("1_8omol")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.12549, 0.27451, 0.211765, 1)
+position = Vector2(408, -232)
+texture = ExtResource("2_1o4px")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.12549, 0.27451, 0.211765, 1)
+position = Vector2(58, -198)
+texture = ExtResource("3_wavch")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+modulate = Color(0.12549, 0.27451, 0.211765, 1)
+position = Vector2(-318, -196.5)
+texture = ExtResource("4_c3agn")

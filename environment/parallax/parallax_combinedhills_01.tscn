@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://nst5p32x0six"]
+
+[ext_resource type="Texture2D" uid="uid://cvvwe6x1p0aqk" path="res://resources/sprites/coal/combined_hills_01.png" id="1_7w028"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c633x"]
+light_mode = 1
+
+[node name="Parallax_combinedhills_01" type="Parallax2D"]
+scroll_scale = Vector2(0.5, 0.9)
+repeat_size = Vector2(1267.2, 0)
+repeat_times = 9
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.160933, 0.262112, 0.254985, 1)
+material = SubResource("CanvasItemMaterial_c633x")
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("1_7w028")
