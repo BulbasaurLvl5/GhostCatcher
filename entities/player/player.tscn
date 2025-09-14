@@ -91,7 +91,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 process_mode = 4
-light_mask = 2
+light_mask = 3
 visibility_layer = 2
 collision_layer = 2
 collision_mask = 5
@@ -213,12 +213,13 @@ animation = &"run"
 offset = Vector2(-40, -50)
 
 [node name="PointLight2D" type="PointLight2D" parent="." groups=["player_light"]]
-light_mask = 2
-visibility_layer = 2
+visibility_layer = 3
+energy = 1.2
 range_z_min = -500
 range_z_max = 500
 range_layer_min = -30
 range_layer_max = 30
+shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.72549)
 texture = SubResource("GradientTexture2D_ogs0t")
 

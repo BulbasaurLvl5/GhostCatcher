@@ -39,6 +39,7 @@ bottom_boundary = 5.0
 
 [node name="TileMap" type="TileMap" parent="."]
 modulate = Color(0.354, 0.59, 0.405133, 1)
+light_mask = 9
 position = Vector2(0, -250)
 tile_set = ExtResource("4_0sb10")
 format = 2
@@ -73,40 +74,49 @@ position = Vector2(6218, -1222)
 
 [node name="Scenery" type="Node2D" parent="."]
 modulate = Color(0.458405, 0.458405, 0.458405, 1)
+light_mask = 9
 
 [node name="CoalTombstones" type="Sprite2D" parent="Scenery"]
+light_mask = 9
 position = Vector2(-1067, -77)
 texture = ExtResource("9_s0s1y")
 
 [node name="CoalTree" type="Sprite2D" parent="Scenery"]
+light_mask = 9
 position = Vector2(1501, -189)
 texture = ExtResource("10_7jqr5")
 
 [node name="CoalTombstones2" type="Sprite2D" parent="Scenery"]
+light_mask = 9
 position = Vector2(1242, -54)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("9_s0s1y")
 
 [node name="CoalTombstones3" type="Sprite2D" parent="Scenery"]
+light_mask = 9
 position = Vector2(1872, -54)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("9_s0s1y")
 flip_h = true
 
 [node name="Pole1" type="Sprite2D" parent="Scenery"]
+light_mask = 9
 position = Vector2(-521, -154)
 texture = ExtResource("11_3b5wh")
 
 [node name="Sign1" type="Sprite2D" parent="Scenery"]
+light_mask = 9
 position = Vector2(-500, -257)
 texture = ExtResource("12_o3pln")
 
 [node name="Pole2" type="Sprite2D" parent="Scenery"]
+light_mask = 9
 position = Vector2(3770, -605)
 rotation = -1.79301
 texture = ExtResource("16_o3pln")
 
 [node name="Sign2" type="Sprite2D" parent="Scenery"]
+light_mask = 9
 position = Vector2(3697, -626)
 rotation = -0.718342
 texture = ExtResource("17_mqkgy")
@@ -114,6 +124,7 @@ flip_h = true
 
 [node name="Tree5" type="Sprite2D" parent="Scenery"]
 modulate = Color(0.443341, 0.721654, 0.630012, 1)
+light_mask = 9
 position = Vector2(5397, -962)
 texture = ExtResource("15_tb6ue")
 

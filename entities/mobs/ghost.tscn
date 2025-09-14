@@ -118,7 +118,7 @@ frame_progress = 0.671999
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.823529)
-light_mask = 8
+light_mask = 0
 position = Vector2(0, -10)
 scale = Vector2(0.5, 0.5)
 texture = SubResource("AtlasTexture_mnq0f")
@@ -140,11 +140,16 @@ position = Vector2(1, -5)
 shape = SubResource("CapsuleShape2D_k1bom")
 
 [node name="PointLight2D" type="PointLight2D" parent="." groups=["ghost_lights"]]
-light_mask = 0
-visibility_layer = 0
-position = Vector2(-1, -5)
-energy = 0.33
-range_item_cull_mask = 8
+light_mask = 9
+position = Vector2(5.72205e-06, 6.67572e-05)
+scale = Vector2(2.14844, 2.14844)
+energy = 1.71
+range_z_min = -500
+range_z_max = 500
+range_layer_min = -30
+range_layer_max = 30
+range_item_cull_mask = 9
+shadow_enabled = true
 texture = SubResource("GradientTexture2D_77yvn")
 
 [node name="dust" parent="." instance=ExtResource("4_cggt7")]

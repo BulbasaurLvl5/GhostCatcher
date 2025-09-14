@@ -92,14 +92,14 @@ public static class LevelLoader
 		new Level("tunnels", new float[5]{10,12,15,20,25}, ResourceLoader.Load<PackedScene>("res://levels/tunnels.tscn"), LoadLevel_Tunnels),
 		new Level("treeson", new float[5]{32,34,38,42,50}, ResourceLoader.Load<PackedScene>("res://levels/treeson.tscn"), LoadLevel_Treeson),
 		new Level("cliff", new float[5]{16,18,23,27,33}, ResourceLoader.Load<PackedScene>("res://levels/cliff.tscn"), LoadLevel_Cliff),
-		new Level("wall grab 2", new float[5]{18,20,22,24,26}, ResourceLoader.Load<PackedScene>("res://levels/wallgrab.tscn"), LoadLevel_Wallgrab),
+		new Level("wall grab 2", new float[5]{18,20,22,24,26}, ResourceLoader.Load<PackedScene>("res://levels/wall_grab_2.tscn"), LoadLevel_Wallgrab),
 	// moving ghosts
 		new Level("swarm", new float[]{}, ResourceLoader.Load<PackedScene>("res://levels/swarm.tscn"), LoadLevel_swarm),
 	// moving pit
 		new Level("vertical", new float[5]{20,21,22,23,24}, ResourceLoader.Load<PackedScene>("res://levels/vertical.tscn"), LoadLevel_Vertical),
 
 		new Level("escape", new float[5]{32,33,34,36,38}, ResourceLoader.Load<PackedScene>("res://levels/escape.tscn"), LoadLevel_Escape),
-	// moving platforms
+	// moving platforms andd tilemaps
 		new Level("kettle", new float[5]{16,17,18,20,22}, ResourceLoader.Load<PackedScene>("res://levels/kettle.tscn"), LoadLevel_Kettle),
 		new Level("blocks", new float[5]{28,30,33,38,45}, ResourceLoader.Load<PackedScene>("res://levels/blocks.tscn"), LoadLevel_blocks),
 		new Level("switch", new float[5]{30,33,36,40,50}, ResourceLoader.Load<PackedScene>("res://levels/switch.tscn"), LoadLevel_switch),
