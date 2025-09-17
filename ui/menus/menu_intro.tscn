@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cc6kq8sjed6db"]
 
 [ext_resource type="Script" uid="uid://daulw5de17xyl" path="res://ui/menus/MenuIntro.cs" id="1_mwfa4"]
-[ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://resources/sprites/coal/reaper_cutout.png" id="2_bl5rh"]
+[ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://resources/sprites/reaper/reaper_cutout.png" id="2_bl5rh"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="3_f4p84"]
-[ext_resource type="Texture2D" uid="uid://ddtr0bjb6f4r3" path="res://resources/sprites/coal/star_1.png" id="4_blk7x"]
+[ext_resource type="Texture2D" uid="uid://ddtr0bjb6f4r3" path="res://resources/sprites/sky/star_1.png" id="4_blk7x"]
 
 [node name="intro_Menu" type="Node"]
 process_mode = 3

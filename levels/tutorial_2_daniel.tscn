@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://environment/spikes_small.tscn" id="4_05ou5"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_yvmf2"]
 [ext_resource type="Texture2D" uid="uid://cgmatmff1k6ci" path="res://resources/sprites/coal/bones_animal_3.png" id="7_owb5e"]
-[ext_resource type="Texture2D" uid="uid://cr5mpnth7ya11" path="res://resources/sprites/coal/barrel.png" id="8_jsadg"]
+[ext_resource type="Texture2D" uid="uid://cr5mpnth7ya11" path="res://resources/sprites/indoor/barrel.png" id="8_jsadg"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="17_7rihl"]
 [ext_resource type="Texture2D" uid="uid://m83habum8p34" path="res://resources/sprites/coal/bones_animal_1.png" id="18_lk1ml"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="19_35gng"]

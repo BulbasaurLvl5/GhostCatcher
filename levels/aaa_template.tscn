@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_kepqn"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="6_eyral"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="7_haf87"]
-[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/coal/coal_mountains_filtered.png" id="8_mjlj0"]
+[ext_resource type="Texture2D" uid="uid://bdnqu2phy67fx" path="res://resources/sprites/landscape/coal_mountains_filtered.png" id="8_mjlj0"]
 
 [node name="template" type="Node2D"]
 script = ExtResource("1_potsq")

@@ -10,12 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://cje5tl3n4mp4i" path="res://environment/parallax/parallax_hills.tscn" id="6_7jqr5"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="6_s0s1y"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="7_7jqr5"]
-[ext_resource type="Texture2D" uid="uid://cgbodrcslt8a1" path="res://resources/sprites/coal/coal_tombstones.png" id="9_s0s1y"]
-[ext_resource type="Texture2D" uid="uid://jbfl0nukjwsw" path="res://resources/sprites/coal/coal_tree.png" id="10_7jqr5"]
+[ext_resource type="Texture2D" uid="uid://cgbodrcslt8a1" path="res://resources/sprites/landscape/coal_tombstones.png" id="9_s0s1y"]
+[ext_resource type="Texture2D" uid="uid://jbfl0nukjwsw" path="res://resources/sprites/landscape/coal_tree.png" id="10_7jqr5"]
 [ext_resource type="Texture2D" uid="uid://dwq6e0fhuh6fq" path="res://resources/sprites/coal/pole_1.png" id="11_3b5wh"]
 [ext_resource type="PackedScene" uid="uid://b8omki2vqkyns" path="res://environment/parallax/parallax_hills_2.tscn" id="11_x5mnm"]
 [ext_resource type="Texture2D" uid="uid://t204e5eq2s6p" path="res://resources/sprites/coal/sign_1.png" id="12_o3pln"]
-[ext_resource type="Texture2D" uid="uid://cb1edfriqcvmh" path="res://resources/sprites/coal/tree_5.png" id="15_tb6ue"]
+[ext_resource type="Texture2D" uid="uid://cb1edfriqcvmh" path="res://resources/sprites/landscape/tree_5.png" id="15_tb6ue"]
 [ext_resource type="Texture2D" uid="uid://bchoepgfxppls" path="res://resources/sprites/coal/pole_2.png" id="16_o3pln"]
 [ext_resource type="Texture2D" uid="uid://c4qqm8f6sb43x" path="res://resources/sprites/coal/sign_2.png" id="17_mqkgy"]
 
@@ -27,18 +27,21 @@ left_boundary = -17.0
 right_boundary = 60.5
 bottom_boundary = 5.0
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.341584, 0.341584, 0.341584, 1)
+
 [node name="Parallax_nightsky" parent="." instance=ExtResource("2_53ih4")]
 
 [node name="Parallax_moon" parent="." instance=ExtResource("3_w8bvh")]
 
 [node name="Parallax_combinedhills_02" parent="." instance=ExtResource("4_abno4")]
+modulate = Color(0.590441, 0.590441, 0.590441, 1)
 
 [node name="Parallax_combinedhills_01" parent="." instance=ExtResource("5_s0s1y")]
 
 [node name="Parallax_hills" parent="." instance=ExtResource("6_7jqr5")]
 
 [node name="TileMap" type="TileMap" parent="."]
-modulate = Color(0.354, 0.59, 0.405133, 1)
 light_mask = 9
 position = Vector2(0, -250)
 tile_set = ExtResource("4_0sb10")
@@ -123,7 +126,6 @@ texture = ExtResource("17_mqkgy")
 flip_h = true
 
 [node name="Tree5" type="Sprite2D" parent="Scenery"]
-modulate = Color(0.443341, 0.721654, 0.630012, 1)
 light_mask = 9
 position = Vector2(5397, -962)
 texture = ExtResource("15_tb6ue")

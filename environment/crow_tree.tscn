@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://b4okf23f4krxj"]
 
-[ext_resource type="Texture2D" uid="uid://bktq6ap0baxd6" path="res://resources/sprites/coal/tree_8.png" id="1_43dhx"]
+[ext_resource type="Texture2D" uid="uid://bktq6ap0baxd6" path="res://resources/sprites/landscape/tree_8.png" id="1_43dhx"]
 [ext_resource type="Script" uid="uid://grgohyobrftd" path="res://environment/CrowTree.cs" id="1_j1i3w"]
 [ext_resource type="AudioStream" uid="uid://naayb7kuu1qh" path="res://resources/audio/sfx/voice-of-a-crow-animal-sound-151787-ipaxku4q_tfM0MNy0.mp3" id="3_usq2i"]
-[ext_resource type="Texture2D" uid="uid://b4hx1ydc7wiyq" path="res://resources/sprites/coal/bird_1.png" id="4_m8db1"]
-[ext_resource type="Texture2D" uid="uid://d13q238asxfu2" path="res://resources/sprites/coal/bird_2.png" id="5_oppo7"]
-[ext_resource type="Texture2D" uid="uid://cvv0hdmvn662b" path="res://resources/sprites/coal/bird_3.png" id="6_8jchk"]
+[ext_resource type="Texture2D" uid="uid://b4hx1ydc7wiyq" path="res://resources/sprites/animals/bird_1.png" id="4_m8db1"]
+[ext_resource type="Texture2D" uid="uid://d13q238asxfu2" path="res://resources/sprites/animals/bird_2.png" id="5_oppo7"]
+[ext_resource type="Texture2D" uid="uid://cvv0hdmvn662b" path="res://resources/sprites/animals/bird_3.png" id="6_8jchk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7lde2"]
 size = Vector2(289, 269)

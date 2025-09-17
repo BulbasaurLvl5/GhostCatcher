@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cg6vyd42howdf" path="res://main/level.gd" id="1_nlh26"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_xyow6"]
-[ext_resource type="Texture2D" uid="uid://jbfl0nukjwsw" path="res://resources/sprites/coal/coal_tree.png" id="3_0p8cl"]
+[ext_resource type="Texture2D" uid="uid://jbfl0nukjwsw" path="res://resources/sprites/landscape/coal_tree.png" id="3_0p8cl"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_ycubw"]
-[ext_resource type="Texture2D" uid="uid://bktq6ap0baxd6" path="res://resources/sprites/coal/tree_8.png" id="5_uko1g"]
-[ext_resource type="Texture2D" uid="uid://mses6drjkls3" path="res://resources/sprites/coal/tree_9.png" id="6_6c1cq"]
-[ext_resource type="Texture2D" uid="uid://b8xoka0m1lmq5" path="res://resources/sprites/coal/hills.png" id="7_pxh8j"]
+[ext_resource type="Texture2D" uid="uid://bktq6ap0baxd6" path="res://resources/sprites/landscape/tree_8.png" id="5_uko1g"]
+[ext_resource type="Texture2D" uid="uid://mses6drjkls3" path="res://resources/sprites/landscape/tree_9.png" id="6_6c1cq"]
+[ext_resource type="Texture2D" uid="uid://b8xoka0m1lmq5" path="res://resources/sprites/landscape/hills.png" id="7_pxh8j"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="8_8erh2"]
 
 [node name="Tunnels" type="Node2D"]

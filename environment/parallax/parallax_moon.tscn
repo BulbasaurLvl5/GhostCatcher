@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bigu4vclou26"]
 
-[ext_resource type="Texture2D" uid="uid://brcyil7mkh8rh" path="res://resources/sprites/coal/moon_2.png" id="1_p76mb"]
+[ext_resource type="Texture2D" uid="uid://brcyil7mkh8rh" path="res://resources/sprites/sky/moon_2.png" id="1_p76mb"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c633x"]
 light_mode = 1

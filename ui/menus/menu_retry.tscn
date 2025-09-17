@@ -1,14 +1,14 @@
 [gd_scene load_steps=14 format=3 uid="uid://bokl5cktpsr6n"]
 
 [ext_resource type="Script" uid="uid://bes7kkqnhjm7j" path="res://ui/menus/MenuRetry.cs" id="1_kt2lo"]
-[ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://resources/sprites/coal/reaper_cutout.png" id="2_whis7"]
+[ext_resource type="Texture2D" uid="uid://b45783jgjjb85" path="res://resources/sprites/reaper/reaper_cutout.png" id="2_whis7"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="3_kykr8"]
-[ext_resource type="Texture2D" uid="uid://di4dddfdh5et7" path="res://resources/sprites/coal/star_rating_0.png" id="4_wydpr"]
-[ext_resource type="Texture2D" uid="uid://dbqdwpu1gmd0m" path="res://resources/sprites/coal/star_rating_1.png" id="5_p807s"]
-[ext_resource type="Texture2D" uid="uid://cbhe11ciphcxq" path="res://resources/sprites/coal/star_rating_2.png" id="6_l8ulk"]
-[ext_resource type="Texture2D" uid="uid://c0gc7f2tabnb1" path="res://resources/sprites/coal/star_rating_3.png" id="7_iydby"]
-[ext_resource type="Texture2D" uid="uid://be0focatd66ee" path="res://resources/sprites/coal/star_rating_4.png" id="8_5gaqe"]
-[ext_resource type="Texture2D" uid="uid://1ehg3bq0be" path="res://resources/sprites/coal/star_rating_5.png" id="9_sjwuq"]
+[ext_resource type="Texture2D" uid="uid://di4dddfdh5et7" path="res://resources/sprites/reaper/star_rating_0.png" id="4_wydpr"]
+[ext_resource type="Texture2D" uid="uid://dbqdwpu1gmd0m" path="res://resources/sprites/reaper/star_rating_1.png" id="5_p807s"]
+[ext_resource type="Texture2D" uid="uid://cbhe11ciphcxq" path="res://resources/sprites/reaper/star_rating_2.png" id="6_l8ulk"]
+[ext_resource type="Texture2D" uid="uid://c0gc7f2tabnb1" path="res://resources/sprites/reaper/star_rating_3.png" id="7_iydby"]
+[ext_resource type="Texture2D" uid="uid://be0focatd66ee" path="res://resources/sprites/reaper/star_rating_4.png" id="8_5gaqe"]
+[ext_resource type="Texture2D" uid="uid://1ehg3bq0be" path="res://resources/sprites/reaper/star_rating_5.png" id="9_sjwuq"]
 
 [sub_resource type="Animation" id="Animation_vgim6"]
 resource_name = "fade_to_black"

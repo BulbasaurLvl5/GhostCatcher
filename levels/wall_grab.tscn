@@ -9,6 +9,7 @@
 [node name="template" type="Node2D"]
 script = ExtResource("1_n0y8u")
 level_name = "template"
+show_lighting_in_editor = true
 top_boundary = -47.0
 left_boundary = -17.0
 right_boundary = 19.0

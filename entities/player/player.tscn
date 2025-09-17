@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b88d6031uj744" path="res://entities/player/state_machine/shockwave.tscn" id="11_euytq"]
 [ext_resource type="Script" uid="uid://dq4tj45pbyr25" path="res://entities/player/state_machine/player_dash_state.gd" id="12_5jbsb"]
 [ext_resource type="Script" uid="uid://b317kya30s1hv" path="res://entities/player/state_machine/player_wall_grab_state.gd" id="13_ckika"]
-[ext_resource type="PackedScene" uid="uid://deim0qaglwinp" path="res://resources/particle_effects/dash_ghost.tscn" id="14_q528f"]
+[ext_resource type="PackedScene" uid="uid://deim0qaglwinp" path="res://environment/particle_effects/dash_ghost.tscn" id="14_q528f"]
 [ext_resource type="Script" uid="uid://csmlyo23by0dc" path="res://entities/player/state_machine/player_wall_jump_state.gd" id="14_umcf1"]
 [ext_resource type="Script" uid="uid://c61arxx04nrpp" path="res://resources/camera.gd" id="16_1amk7"]
 [ext_resource type="Script" uid="uid://drup81xu7v74a" path="res://entities/player/state_machine/player_stomp_state.gd" id="16_hlspe"]
@@ -27,8 +27,8 @@
 [ext_resource type="AudioStream" uid="uid://k64hklsvjtl" path="res://resources/audio/sfx/player/jump2.wav" id="27_e40n3"]
 [ext_resource type="Script" uid="uid://cdujfm8mmqgv8" path="res://ui/radar_2d.gd" id="28_tmfgi"]
 [ext_resource type="Script" uid="uid://bppsmsty76ev8" path="res://resources/path_follow_manager.gd" id="29_3wdth"]
-[ext_resource type="Texture2D" uid="uid://b4hx1ydc7wiyq" path="res://resources/sprites/coal/bird_1.png" id="30_up3vm"]
-[ext_resource type="Texture2D" uid="uid://cvv0hdmvn662b" path="res://resources/sprites/coal/bird_3.png" id="31_y7vy4"]
+[ext_resource type="Texture2D" uid="uid://b4hx1ydc7wiyq" path="res://resources/sprites/animals/bird_1.png" id="30_up3vm"]
+[ext_resource type="Texture2D" uid="uid://cvv0hdmvn662b" path="res://resources/sprites/animals/bird_3.png" id="31_y7vy4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnagu"]
 size = Vector2(24, 86)

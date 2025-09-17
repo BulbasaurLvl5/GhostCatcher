@@ -90,7 +90,7 @@ var camera : Camera2D:
 		else:
 			camera = value
 			camera.level_boundary = level_boundary
-var canvas_mod : CanvasModulate
+#var canvas_mod : CanvasModulate
 
 
 
@@ -144,17 +144,17 @@ func _draw():
 func adjust_lighting():
 	if !is_inside_tree():
 		return
-	if !canvas_mod:
-		canvas_mod = CanvasModulate.new()
-		add_child(canvas_mod)
+	#if !canvas_mod:
+		#canvas_mod = CanvasModulate.new()
+		#add_child(canvas_mod)
 	var lights = get_tree().get_nodes_in_group("player_light")
 	lights.append_array(get_tree().get_nodes_in_group("ghost_lights"))
 	if Engine.is_editor_hint() && !show_lighting_in_editor:
-		canvas_mod.color = Color.WHITE
+		#canvas_mod.color = Color.WHITE
 		for light in lights:
 			light.energy = 0.0
 	else:	
-		canvas_mod.color = Color(light_level, light_level, light_level)
+		#canvas_mod.color = Color(light_level, light_level, light_level)
 		for light in lights:
 			light.energy = 1.0 - light_level
 	

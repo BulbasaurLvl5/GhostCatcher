@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6a1en67474y2"]
 
-[ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://resources/sprites/coal/coal_sky_filter.png" id="1_02ywd"]
+[ext_resource type="Texture2D" uid="uid://dgcvubx0m724q" path="res://resources/sprites/sky/coal_sky_filter.png" id="1_02ywd"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c633x"]
 light_mode = 1
@@ -11,6 +11,5 @@ repeat_size = Vector2(1168, 826)
 repeat_times = 9
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.10682, 0.183602, 0.178209, 1)
 material = SubResource("CanvasItemMaterial_c633x")
 texture = ExtResource("1_02ywd")

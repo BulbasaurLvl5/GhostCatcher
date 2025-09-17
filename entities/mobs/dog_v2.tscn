@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://blnnxg1t3w26k" path="res://entities/mobs/state_machines/dog_ai.gd" id="1_rjsgn"]
 [ext_resource type="Script" uid="uid://cxpec7nq1lncx" path="res://entities/mobs/state_machines/mob_state_machine.gd" id="2_7rvf2"]
-[ext_resource type="Texture2D" uid="uid://gu03b8itgr5c" path="res://resources/sprites/coal/dog_2.png" id="2_l7kbf"]
+[ext_resource type="Texture2D" uid="uid://gu03b8itgr5c" path="res://resources/sprites/animals/dog_2.png" id="2_l7kbf"]
 [ext_resource type="Script" uid="uid://cq2echdu5d65v" path="res://entities/mobs/states/dog_wander_state.gd" id="3_61fjx"]
 [ext_resource type="Script" uid="uid://cyeys4st8cpua" path="res://entities/mobs/states/dog_bluff_charge_state.gd" id="4_4idac"]
 [ext_resource type="Script" uid="uid://bbaai8nl52mmu" path="res://entities/mobs/states/dog_bark_state.gd" id="5_nn67n"]

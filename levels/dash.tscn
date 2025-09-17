@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="4_2gbbj"]
 [ext_resource type="Texture2D" uid="uid://1n8jjm1lyljd" path="res://resources/sprites/coal/hole_5.png" id="4_tacdn"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="5_tacdn"]
-[ext_resource type="Texture2D" uid="uid://b3ip4my51glsp" path="res://resources/sprites/coal/cloud_1.png" id="6_5036h"]
-[ext_resource type="Texture2D" uid="uid://bktq6ap0baxd6" path="res://resources/sprites/coal/tree_8.png" id="7_tq3bj"]
+[ext_resource type="Texture2D" uid="uid://b3ip4my51glsp" path="res://resources/sprites/sky/cloud_1.png" id="6_5036h"]
+[ext_resource type="Texture2D" uid="uid://bktq6ap0baxd6" path="res://resources/sprites/landscape/tree_8.png" id="7_tq3bj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tq3bj"]
 
@@ -21,6 +21,9 @@ top_boundary = -12.0
 left_boundary = -4.0
 right_boundary = 35.0
 bottom_boundary = 5.0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.349848, 0.309151, 0.269824, 1)
 
 [node name="Hole2" type="Sprite2D" parent="."]
 modulate = Color(0.0781564, 0.0781564, 0.0781564, 1)

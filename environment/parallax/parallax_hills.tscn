@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://cje5tl3n4mp4i"]
 
-[ext_resource type="Texture2D" uid="uid://b8xoka0m1lmq5" path="res://resources/sprites/coal/hills.png" id="1_dm56r"]
-[ext_resource type="Texture2D" uid="uid://q7jgjirvucvk" path="res://resources/sprites/coal/tree_1.png" id="2_ouebu"]
-[ext_resource type="Texture2D" uid="uid://67522rgm3ol5" path="res://resources/sprites/coal/tree_6.png" id="3_5rx3e"]
+[ext_resource type="Texture2D" uid="uid://b8xoka0m1lmq5" path="res://resources/sprites/landscape/hills.png" id="1_dm56r"]
+[ext_resource type="Texture2D" uid="uid://q7jgjirvucvk" path="res://resources/sprites/landscape/tree_1.png" id="2_ouebu"]
+[ext_resource type="Texture2D" uid="uid://67522rgm3ol5" path="res://resources/sprites/landscape/tree_6.png" id="3_5rx3e"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c633x"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dm56r"]
 light_mode = 1
 
 [node name="Parallax_hills" type="Parallax2D"]
@@ -13,25 +13,24 @@ repeat_size = Vector2(1168, 0)
 repeat_times = 9
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.124896, 0.274683, 0.210728, 1)
-material = SubResource("CanvasItemMaterial_c633x")
+material = SubResource("CanvasItemMaterial_dm56r")
 position = Vector2(0, 250)
 texture = ExtResource("1_dm56r")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-modulate = Color(0.12549, 0.27451, 0.211765, 1)
+material = SubResource("CanvasItemMaterial_dm56r")
 position = Vector2(355, -135)
 scale = Vector2(0.504032, 0.504032)
 texture = ExtResource("2_ouebu")
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
-modulate = Color(0.12549, 0.27451, 0.211765, 1)
+material = SubResource("CanvasItemMaterial_dm56r")
 position = Vector2(269, -109)
 scale = Vector2(0.504032, 0.504032)
 texture = ExtResource("2_ouebu")
 
 [node name="Sprite2D4" type="Sprite2D" parent="."]
-modulate = Color(0.12549, 0.27451, 0.211765, 1)
+material = SubResource("CanvasItemMaterial_dm56r")
 position = Vector2(-283, -165)
 scale = Vector2(0.880424, 0.880425)
 texture = ExtResource("3_5rx3e")

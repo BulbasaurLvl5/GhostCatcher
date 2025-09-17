@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://7gm2em8n2ucc"]
+[gd_scene load_steps=14 format=4 uid="uid://7gm2em8n2ucc"]
 
 [ext_resource type="Script" uid="uid://cg6vyd42howdf" path="res://main/level.gd" id="1_1udt0"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_q1odp"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://nst5p32x0six" path="res://environment/parallax/parallax_combinedhills_01.tscn" id="5_fkhgs"]
 [ext_resource type="PackedScene" uid="uid://b4okf23f4krxj" path="res://environment/crow_tree.tscn" id="6_aaho8"]
 [ext_resource type="PackedScene" uid="uid://cje5tl3n4mp4i" path="res://environment/parallax/parallax_hills.tscn" id="6_qvtyd"]
+[ext_resource type="Texture2D" uid="uid://bprpmpme0q50r" path="res://resources/sprites/coal_fog_white.png" id="8_5h72f"]
 [ext_resource type="PackedScene" uid="uid://b8omki2vqkyns" path="res://environment/parallax/parallax_hills_2.tscn" id="12_ud5cb"]
 [ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="15_g02ft"]
 [ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="18_72qbc"]
@@ -21,15 +22,22 @@ top_boundary = -80.0
 left_boundary = -18.0
 bottom_boundary = 2.0
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.727428, 0.727428, 0.727428, 1)
+
 [node name="Parallax_nightsky" parent="." instance=ExtResource("2_d2yhp")]
+modulate = Color(0.083392, 0.083392, 0.083392, 1)
 
 [node name="Parallax_moon" parent="." instance=ExtResource("3_5h72f")]
 
 [node name="Parallax_combinedhills_02" parent="." instance=ExtResource("4_o146j")]
+modulate = Color(0.106905, 0.106905, 0.125028, 1)
 
 [node name="Parallax_combinedhills_01" parent="." instance=ExtResource("5_fkhgs")]
+modulate = Color(0.2914, 0.2914, 0.31, 1)
 
 [node name="Parallax_hills" parent="." instance=ExtResource("6_qvtyd")]
+modulate = Color(0.205117, 0.205117, 0.205117, 1)
 
 [node name="Scenery" type="Node2D" parent="."]
 
@@ -37,6 +45,19 @@ bottom_boundary = 2.0
 modulate = Color(0.437763, 0.437763, 0.437763, 1)
 position = Vector2(51, 15)
 scale = Vector2(2, 2)
+
+[node name="CoalFogWhite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.0470588)
+position = Vector2(671.5, -1015.75)
+scale = Vector2(8.84131, 2.49544)
+texture = ExtResource("8_5h72f")
+
+[node name="CoalFogWhite2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.0470588)
+position = Vector2(588.5, -965.75)
+scale = Vector2(8.84131, 2.49544)
+texture = ExtResource("8_5h72f")
+flip_h = true
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_q1odp")
@@ -69,3 +90,4 @@ position = Vector2(599, -313)
 position = Vector2(52, -284)
 
 [node name="Parallax_hills2" parent="." instance=ExtResource("12_ud5cb")]
+modulate = Color(0.138034, 0.138034, 0.138034, 1)
