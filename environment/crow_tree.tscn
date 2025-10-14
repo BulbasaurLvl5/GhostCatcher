@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://b4okf23f4krxj"]
+[gd_scene load_steps=12 format=3 uid="uid://b4okf23f4krxj"]
 
 [ext_resource type="Texture2D" uid="uid://bktq6ap0baxd6" path="res://resources/sprites/landscape/tree_8.png" id="1_43dhx"]
-[ext_resource type="Script" uid="uid://grgohyobrftd" path="res://environment/CrowTree.cs" id="1_j1i3w"]
 [ext_resource type="AudioStream" uid="uid://naayb7kuu1qh" path="res://resources/audio/sfx/voice-of-a-crow-animal-sound-151787-ipaxku4q_tfM0MNy0.mp3" id="3_usq2i"]
 [ext_resource type="Texture2D" uid="uid://b4hx1ydc7wiyq" path="res://resources/sprites/animals/bird_1.png" id="4_m8db1"]
 [ext_resource type="Texture2D" uid="uid://d13q238asxfu2" path="res://resources/sprites/animals/bird_2.png" id="5_oppo7"]
@@ -45,7 +44,6 @@ scale_curve = SubResource("CurveTexture_wrwnk")
 [node name="Area2D" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("1_j1i3w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(14, -143)
@@ -62,28 +60,28 @@ bus = &"SFX"
 [node name="GPUParticles2D_bird_1" type="GPUParticles2D" parent="."]
 position = Vector2(4, -187)
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_ltvgg")
 texture = ExtResource("4_m8db1")
 lifetime = 8.0
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ltvgg")
 
 [node name="GPUParticles2D_bird_2" type="GPUParticles2D" parent="."]
 position = Vector2(4, -187)
 emitting = false
 amount = 6
-process_material = SubResource("ParticleProcessMaterial_ltvgg")
 texture = ExtResource("5_oppo7")
 lifetime = 8.0
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ltvgg")
 
 [node name="GPUParticles2D_bird_3" type="GPUParticles2D" parent="."]
 position = Vector2(4, -187)
 emitting = false
 amount = 3
-process_material = SubResource("ParticleProcessMaterial_ltvgg")
 texture = ExtResource("6_8jchk")
 lifetime = 8.0
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ltvgg")

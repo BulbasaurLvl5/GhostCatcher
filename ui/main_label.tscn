@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dye3h0srgd3pw"]
-
-[ext_resource type="Script" uid="uid://diiqbgdytr8h0" path="res://ui/MainLabel.cs" id="1_xq2m3"]
+[gd_scene load_steps=2 format=3 uid="uid://dye3h0srgd3pw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_603du"]
 font_size = 96
@@ -26,4 +24,3 @@ grow_vertical = 2
 label_settings = SubResource("LabelSettings_603du")
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("1_xq2m3")

@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://jv7164l425yn"]
-
-[ext_resource type="Script" uid="uid://pr3pa1w05m3h" path="res://ui/TimeLabel.cs" id="1_lt517"]
+[gd_scene load_steps=2 format=3 uid="uid://jv7164l425yn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0wgw5"]
 font_size = 64
@@ -16,4 +14,3 @@ offset_top = 100.0
 offset_right = -500.0
 offset_bottom = 88.0
 label_settings = SubResource("LabelSettings_0wgw5")
-script = ExtResource("1_lt517")

@@ -1,6 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://161mbtc0vfv0"]
-
-[ext_resource type="Script" uid="uid://daojn1lfp8klu" path="res://resources/CollisionFailure.cs" id="1_misce"]
+[gd_scene format=3 uid="uid://161mbtc0vfv0"]
 
 [node name="CollisionFailure" type="Node"]
-script = ExtResource("1_misce")

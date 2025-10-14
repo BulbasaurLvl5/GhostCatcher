@@ -23,7 +23,7 @@ right_boundary = 35.0
 bottom_boundary = 5.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.349848, 0.309151, 0.269824, 1)
+color = Color(0.547633, 0.547633, 0.547633, 1)
 
 [node name="Hole2" type="Sprite2D" parent="."]
 modulate = Color(0.0781564, 0.0781564, 0.0781564, 1)
@@ -32,7 +32,7 @@ scale = Vector2(4.10531, 3.79177)
 texture = ExtResource("2_tacdn")
 
 [node name="Parallax2D2" type="Parallax2D" parent="."]
-modulate = Color(0.227122, 0.104609, 0.0503274, 1)
+modulate = Color(0.262932, 0.262932, 0.262932, 1)
 scroll_scale = Vector2(0.5, 0.5)
 
 [node name="Hole1" type="Sprite2D" parent="Parallax2D2"]
@@ -41,7 +41,7 @@ scale = Vector2(3.64384, 3.09201)
 texture = ExtResource("2_2gbbj")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
-modulate = Color(0.402771, 0.268728, 0.149902, 1)
+modulate = Color(0.396889, 0.396889, 0.396889, 1)
 scroll_scale = Vector2(0.7, 0.7)
 
 [node name="Hole1" type="Sprite2D" parent="Parallax2D"]
@@ -62,7 +62,7 @@ scale = Vector2(1.70543, 2.2931)
 texture = ExtResource("7_tq3bj")
 
 [node name="Parallax2D3" type="Parallax2D" parent="."]
-modulate = Color(0.489034, 0.400266, 0.272412, 1)
+modulate = Color(0.401968, 0.401968, 0.401968, 1)
 scroll_scale = Vector2(0.9, 0.9)
 
 [node name="Hole1" type="Sprite2D" parent="Parallax2D3"]
@@ -71,78 +71,67 @@ scale = Vector2(4.3983, 3.69492)
 texture = ExtResource("4_tacdn")
 
 [node name="Scenery2" type="Node2D" parent="."]
+modulate = Color(0.903598, 0.903598, 0.903598, 1)
 
 [node name="Cloud1" type="Sprite2D" parent="Scenery2"]
-modulate = Color(0.301961, 0.227451, 0.188235, 1)
 position = Vector2(385, 146)
 texture = ExtResource("6_5036h")
 
 [node name="Cloud2" type="Sprite2D" parent="Scenery2"]
-modulate = Color(0.301961, 0.227451, 0.188235, 1)
 position = Vector2(881, 162)
 texture = ExtResource("6_5036h")
 
 [node name="Cloud3" type="Sprite2D" parent="Scenery2"]
-modulate = Color(0.301961, 0.227451, 0.188235, 1)
 position = Vector2(1546, 137)
 scale = Vector2(0.951852, 1.69)
 texture = ExtResource("6_5036h")
 
 [node name="Cloud4" type="Sprite2D" parent="Scenery2"]
-modulate = Color(0.301961, 0.227451, 0.188235, 1)
 position = Vector2(1471, -634)
 scale = Vector2(1.53333, 1.78)
 texture = ExtResource("6_5036h")
 
 [node name="Cloud5" type="Sprite2D" parent="Scenery2"]
-modulate = Color(0.301961, 0.227451, 0.188235, 1)
 position = Vector2(40.0002, -146)
 scale = Vector2(1.78889, 2.88)
 texture = ExtResource("6_5036h")
 
 [node name="Cloud12" type="Sprite2D" parent="Scenery2"]
-modulate = Color(0.301961, 0.227451, 0.188235, 1)
 position = Vector2(25.75, 52.5)
 scale = Vector2(1.68333, 2.49)
 texture = ExtResource("6_5036h")
 
 [node name="Cloud6" type="Sprite2D" parent="Scenery2"]
-modulate = Color(0.301961, 0.227451, 0.188235, 1)
 position = Vector2(-172.873, -876.054)
 rotation = 1.64014
 scale = Vector2(3.32815, 2.92218)
 texture = ExtResource("6_5036h")
 
 [node name="Cloud11" type="Sprite2D" parent="Scenery2"]
-modulate = Color(0.301961, 0.227451, 0.188235, 1)
 position = Vector2(143.223, -1171.05)
 rotation = 3.16574
 scale = Vector2(3.56165, 2.92218)
 texture = ExtResource("6_5036h")
 
 [node name="Cloud7" type="Sprite2D" parent="Scenery2"]
-modulate = Color(0.301961, 0.227451, 0.188235, 1)
 position = Vector2(1327.5, -1164.84)
 rotation = -3.13245
 scale = Vector2(4.37542, 3.70876)
 texture = ExtResource("6_5036h")
 
 [node name="Cloud8" type="Sprite2D" parent="Scenery2"]
-modulate = Color(0.301961, 0.227451, 0.188235, 1)
 position = Vector2(2160.66, -523.512)
 rotation = -2.20604
 scale = Vector2(2.59309, 3.83077)
 texture = ExtResource("6_5036h")
 
 [node name="Cloud9" type="Sprite2D" parent="Scenery2"]
-modulate = Color(0.301961, 0.227451, 0.188235, 1)
 position = Vector2(2845, -747)
 rotation = -1.57924
 scale = Vector2(1.36036, 4.00449)
 texture = ExtResource("6_5036h")
 
 [node name="Cloud10" type="Sprite2D" parent="Scenery2"]
-modulate = Color(0.301961, 0.227451, 0.188235, 1)
 position = Vector2(1877, -73.0001)
 rotation = -1.57924
 scale = Vector2(1.69814, 4.95223)
@@ -168,7 +157,6 @@ rotation = 3.45892
 texture = ExtResource("7_tq3bj")
 
 [node name="TileMap" type="TileMap" parent="."]
-modulate = Color(0.576026, 0.463043, 0.397911, 1)
 light_mask = 9
 material = SubResource("CanvasItemMaterial_tq3bj")
 position = Vector2(0, -200)

@@ -27,7 +27,7 @@ public static class FileIO
 		else
 		{
 			// Returns the absolute directory path where user data is written (user://).
-			_baseSavePath = OS.GetUserDataDir(); 
+			_baseSavePath = OS.GetUserDataDir();
 		}
 
 		// GD.Print("Save data found in: "+_baseSavePath);
