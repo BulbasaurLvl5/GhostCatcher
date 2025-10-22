@@ -189,66 +189,6 @@ public partial class Main : Node
 		throw new Exception("Player not found");
 	}
 
-	public enum QUOTE_SETS
-	{
-		None,
-		first_meeting,
-		getting_crows,
-		generic_death,
-		pit_death,
-		toxic_gas_death,
-		spikes_death,
-		skull_death,
-		giant_ghost_death,
-		spider_death,
-		zero_stars,
-		one_star,
-		two_stars,
-		three_stars,
-		four_stars,
-		five_stars
-	}
-
-	QUOTE_SETS EvaluateQuote(CauseOfDeath causeOfDeath)
-	{
-		if (causeOfDeath == CauseOfDeath.pit)
-			return QUOTE_SETS.pit_death;
-
-		if (causeOfDeath == CauseOfDeath.spikes)
-			return QUOTE_SETS.spikes_death;
-
-		if (causeOfDeath == CauseOfDeath.skull)
-			return QUOTE_SETS.skull_death;
-
-		if (causeOfDeath == CauseOfDeath.ghost)
-			return QUOTE_SETS.giant_ghost_death;
-
-		return QUOTE_SETS.None;
-	}
-
-	QUOTE_SETS EvaluateQuote()
-	{
-		if (LevelLoader.Levels[Level].ReturnScore(_levelTime.Time) == 0)
-			return QUOTE_SETS.zero_stars;
-
-		if (LevelLoader.Levels[Level].ReturnScore(_levelTime.Time) == 1)
-			return QUOTE_SETS.one_star;
-
-		if (LevelLoader.Levels[Level].ReturnScore(_levelTime.Time) == 2)
-			return QUOTE_SETS.two_stars;
-
-		if (LevelLoader.Levels[Level].ReturnScore(_levelTime.Time) == 3)
-			return QUOTE_SETS.three_stars;
-
-		if (LevelLoader.Levels[Level].ReturnScore(_levelTime.Time) == 4)
-			return QUOTE_SETS.four_stars;
-
-		if (LevelLoader.Levels[Level].ReturnScore(_levelTime.Time) == 5)
-			return QUOTE_SETS.five_stars;
-
-		return QUOTE_SETS.None;
-	}
-
 	void LoadSettings()
 	{
 		FileIO.PlayerPrefs _playerPrefs = FileIO.LoadPlayerPrefs();

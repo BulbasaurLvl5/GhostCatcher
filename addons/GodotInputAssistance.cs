@@ -168,7 +168,7 @@ namespace MyGodotExtensions
         Thus we have to store it when the project launches
         This could be done via a singleton, but since this class already exists, why not store it as a static
         The downside is that it needs a public setter and is thus mutatable for everyone
-        Thatswhy the field is split. SaveProjectSettingsInputMap is meant to be used only at project start by main or smth
+        SaveProjectSettingsInputMap is meant to be used only at project start by main or smth
         obviously it has to be set, before custom settings are loaded
         The two get and set functions should make this easy to see
         sidenode: it is handling stuff via InputEvent, because InputAssistance has no buttons for start&ESC to prevent their usage and keep them for UI only

@@ -13,4 +13,5 @@ offset_left = -500.0
 offset_top = 100.0
 offset_right = -500.0
 offset_bottom = 88.0
+text = "time"
 label_settings = SubResource("LabelSettings_0wgw5")

@@ -92,6 +92,7 @@ var camera : Camera2D:
 			camera.level_boundary = level_boundary
 #var canvas_mod : CanvasModulate
 
+var ghosts: Array[Ghost]
 
 
 func calculate_boundary():
@@ -116,7 +117,10 @@ func _ready():
 	if !Engine.is_editor_hint():
 		if !player || !camera:
 			search_scene()
-	else:
+		for n in get_all_children(self):
+			if n is Ghost:
+				ghosts.append(n)
+	else: # things happening in the engine
 		level_name = name
 		renamed.connect(_on_renamed)
 		show_data_in_editor = false
@@ -127,6 +131,11 @@ func _process(_delta):
 		if !player || !camera:
 			#print("level_parameters _process() calling search_scene()")
 			search_scene()
+		# remoe ghosts that are freed
+		#print(ghosts.size())
+		clean_array(ghosts, func(obj): return obj == null)
+		if ghosts.size() == 0:
+			print("SUCCESS")
 	elif level_name != name:
 		level_name = name
 
@@ -190,3 +199,10 @@ func get_all_children(node) -> Array:
 func _on_renamed():
 	if name != level_name:
 		level_name = name
+
+
+func clean_array(array: Array, lambda_func: Callable) -> Array:
+	for i in range(array.size() - 1, -1, -1):  # Iterate in reverse
+		if lambda_func.call(array[i]): 
+			array.remove_at(i)  # Remove the object from the array
+	return array

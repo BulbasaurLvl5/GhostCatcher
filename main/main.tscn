@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ggh2sv225mm7"]
+[gd_scene load_steps=8 format=3 uid="uid://ggh2sv225mm7"]
 
+[ext_resource type="Script" uid="uid://dd2l3ksqkrwrr" path="res://main/main.gd" id="1_pjrb6"]
 [ext_resource type="AudioStream" uid="uid://b0r8ujm2eb2vv" path="res://resources/audio/ui/pageturn-102978.mp3" id="3_7v1dh"]
 
 [sub_resource type="Animation" id="Animation_5bdi0"]
@@ -99,6 +100,7 @@ _data = {
 }
 
 [node name="Main" type="Node"]
+script = ExtResource("1_pjrb6")
 
 [node name="World" type="Node" parent="."]
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvhs4ygoitiwu"]
+[gd_scene load_steps=6 format=3 uid="uid://cvhs4ygoitiwu"]
 
 [ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://resources/sprites/coal/menu_retry_background.png" id="1_jqpoe"]
+[ext_resource type="Script" uid="uid://bmgx04ih10ieo" path="res://ui/menus/menu_main.gd" id="1_x7ktr"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="2_mjfcm"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_hfucu"]
@@ -11,6 +12,7 @@ keycode = 4194305
 events = [SubResource("InputEventKey_hfucu")]
 
 [node name="Menu_main" type="Node"]
+script = ExtResource("1_x7ktr")
 
 [node name="Crow_background" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -27,8 +29,8 @@ offset_right = 2098.0
 offset_bottom = 952.0
 focus_neighbor_bottom = NodePath("../Options_Button")
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
-theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Levels"
 icon = ExtResource("2_mjfcm")
@@ -44,8 +46,8 @@ offset_bottom = 1066.0
 focus_neighbor_top = NodePath("../Selection_Button")
 focus_neighbor_bottom = NodePath("../Quit_Button")
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
-theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Options"
 icon = ExtResource("2_mjfcm")
@@ -61,8 +63,8 @@ offset_bottom = 1180.0
 focus_neighbor_top = NodePath("../Options_Button")
 focus_neighbor_bottom = NodePath("../Selection_Button")
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
-theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 shortcut = SubResource("Shortcut_aouf0")
 text = "Quit"
