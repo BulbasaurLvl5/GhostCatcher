@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 
-signal landed
+signal landed # used by children
 
 
 @export var verbose : bool = false
@@ -96,15 +96,9 @@ func _process(_delta):
 	check_input()
 	check_environment()
 
-func pause_game():
-	var path = "res://ui/menus/menu_pause.tscn"
-	if ResourceLoader.exists(path) : 
-		var pause_menu_packedscene = load(path)
-		var pause_menu = pause_menu_packedscene.instantiate()
-		var parent = get_tree().get_root().get_node("Main/UI")
-		parent.add_child(pause_menu)
-	else : 
-		print("Error: in player.gd.pause_game() loading scene: ", path)
+func pause_game() -> void:
+	var main = NodeExtention.get_child_by_script(NodeExtention.get_root(self), Main)
+	NodeExtention.instantiate(SceneLibrary.MENU_PAUSE, main.ui)
 	pass
 
 

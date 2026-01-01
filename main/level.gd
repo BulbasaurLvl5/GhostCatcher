@@ -62,6 +62,7 @@ const TILE_SIZE : float = 110.0
 		bottom_boundary = value
 		calculate_boundary()
 
+
 var level_boundary : Rect2:
 	set(value):
 		level_boundary = value
@@ -83,7 +84,7 @@ var player : Player:
 			if !air_actions_enabled:
 				player.remaining_air_actions = 0
 			player.radar_enabled = radar_enabled
-var camera : Camera2D:
+var camera : Camera:
 	set(value):
 		if camera == value:
 			return
@@ -92,7 +93,11 @@ var camera : Camera2D:
 			camera.level_boundary = level_boundary
 #var canvas_mod : CanvasModulate
 
+var main: Main
 var ghosts: Array[Ghost]
+var time_label: Label
+var center_label: CenterLabel
+var clock: Clock
 
 
 func calculate_boundary():
@@ -107,19 +112,38 @@ func calculate_boundary():
 
 func _enter_tree():
 	if !Engine.is_editor_hint():
-		search_scene()
-		if get_parent() == get_tree().root:
+		#search_scene()
+		player = NodeExtention.get_child_by_script(self,Player,true)
+		camera = NodeExtention.get_child_by_script(self,Camera,true)
+		main = NodeExtention.get_child_by_script(NodeExtention.get_root(self),Main,true)
+		clock = NodeExtention.get_child_by_script(self,Clock)
+		
+		clock.start()
+		clock.register_timed_callback(-2, func(): 
+			center_label.tween_text("WAKE UP!")
+			)
+		clock.register_timed_callback(-1, func(): 
+			center_label.tween_text("WORK!")
+			)
+		clock.register_timed_callback(0, func(): 
+			player.process_mode = Node.PROCESS_MODE_ALWAYS
+			center_label.tween_text("")
+			)
+		
+		if(main):
+			time_label = NodeExtention.instantiate(SceneLibrary.TIME_LABEL,main.ui)
+			center_label = NodeExtention.instantiate(SceneLibrary.CENTER_LABEL,main.ui)
+			
+		if get_parent() == get_tree().root: # debug mode, ie started from editor
 			player.process_mode = Node.PROCESS_MODE_ALWAYS
 	adjust_lighting()
 
 
 func _ready():
 	if !Engine.is_editor_hint():
-		if !player || !camera:
-			search_scene()
-		for n in get_all_children(self):
-			if n is Ghost:
-				ghosts.append(n)
+		#if !player || !camera:
+			#search_scene()
+		ghosts.assign(NodeExtention.get_children_by_script(self, Ghost, true))
 	else: # things happening in the engine
 		level_name = name
 		renamed.connect(_on_renamed)
@@ -128,14 +152,19 @@ func _ready():
 
 func _process(_delta):
 	if !Engine.is_editor_hint():
-		if !player || !camera:
-			#print("level_parameters _process() calling search_scene()")
-			search_scene()
-		# remoe ghosts that are freed
-		#print(ghosts.size())
+		#if !player || !camera:
+			##print("level_parameters _process() calling search_scene()")
+			#search_scene()
+
 		clean_array(ghosts, func(obj): return obj == null)
 		if ghosts.size() == 0:
-			print("SUCCESS")
+			#center_label.tween_text("SUCCESS!")
+			clock.stop()
+			player.process_mode = Node.PROCESS_MODE_DISABLED
+		
+		if(time_label):
+			time_label.text = Clock.float_to_string(clock.time)
+			
 	elif level_name != name:
 		level_name = name
 
@@ -168,32 +197,32 @@ func adjust_lighting():
 			light.energy = 1.0 - light_level
 	
 
-func search_scene():
-	var nodes = get_all_children(get_tree().root)
-	if !player:
-		for n in nodes:
-			if n is Player:
-				player = n
-				break
-	if !camera:
-		for n in nodes:
-			if n is Camera2D:
-				camera = n
-				break
+#func search_scene():
+	#var nodes = get_all_children(get_tree().root)
+	#if !player:
+		#for n in nodes:
+			#if n is Player:
+				#player = n
+				#break
+	#if !camera:
+		#for n in nodes:
+			#if n is Camera2D:
+				#camera = n
+				#break
 
 
-func get_all_children(node) -> Array:
-	if !node:
-		return []
-	var all_children : Array = []
-	var children = node.get_children()
-	for c in children:
-		if c.get_child_count() > 0:
-			all_children.append(c)
-			all_children.append_array(get_all_children(c))
-		else:
-			all_children.append(c)
-	return all_children
+#func get_all_children(node) -> Array:
+	#if !node:
+		#return []
+	#var all_children : Array = []
+	#var children = node.get_children()
+	#for c in children:
+		#if c.get_child_count() > 0:
+			#all_children.append(c)
+			#all_children.append_array(get_all_children(c))
+		#else:
+			#all_children.append(c)
+	#return all_children
 
 
 func _on_renamed():

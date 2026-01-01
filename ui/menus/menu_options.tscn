@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkoe1u7tyl8x3"]
+[gd_scene load_steps=12 format=3 uid="uid://dkoe1u7tyl8x3"]
 
+[ext_resource type="Script" uid="uid://du1omwjilgy27" path="res://ui/menus/menu_options.gd" id="1_8ufco"]
 [ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://resources/sprites/coal/menu_retry_background.png" id="2_7cifs"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="3_2sycy"]
 [ext_resource type="StyleBox" uid="uid://kae7nrb6cknu" path="res://resources/button_texture.tres" id="4_onq2y"]
@@ -21,9 +22,17 @@ events = [SubResource("InputEventKey_cffll")]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bgrb2"]
 
-[node name="Menu_Options" type="Node"]
+[node name="Menu_Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ufco")
 
 [node name="Crow_background" type="TextureRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -40,15 +49,16 @@ offset_bottom = 1220.0
 color = Color(0.164706, 0.164706, 0.164706, 0.784314)
 
 [node name="Back_Button" type="Button" parent="."]
+layout_mode = 0
 offset_left = 1960.0
 offset_top = 99.0
 offset_right = 2210.0
 offset_bottom = 215.0
 focus_neighbor_top = NodePath("../Video_Button")
 focus_neighbor_bottom = NodePath("../Video_Button")
-theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 shortcut = SubResource("Shortcut_4vorc")
 text = "Back"
@@ -58,6 +68,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Video_Button" type="Button" parent="."]
+layout_mode = 0
 offset_left = 644.0
 offset_top = 589.0
 offset_right = 894.0
@@ -66,17 +77,18 @@ focus_neighbor_left = NodePath("../Control_Button")
 focus_neighbor_top = NodePath("../Back_Button")
 focus_neighbor_right = NodePath("../Audio_Button")
 focus_neighbor_bottom = NodePath("../VideoOptions/OptionButton")
-theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
-theme_override_styles/hover = ExtResource("4_onq2y")
 theme_override_styles/normal = ExtResource("4_onq2y")
+theme_override_styles/hover = ExtResource("4_onq2y")
 text = "Video"
 icon_alignment = 1
 expand_icon = true
 
 [node name="Audio_Button" type="Button" parent="."]
+layout_mode = 0
 offset_left = 1127.0
 offset_top = 589.0
 offset_right = 1377.0
@@ -85,9 +97,9 @@ focus_neighbor_left = NodePath("../Video_Button")
 focus_neighbor_top = NodePath("../Back_Button")
 focus_neighbor_right = NodePath("../Control_Button")
 focus_neighbor_bottom = NodePath("../AudioOptions/MainHSlider")
-theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Audio"
 icon = ExtResource("3_2sycy")
@@ -96,6 +108,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Control_Button" type="Button" parent="."]
+layout_mode = 0
 offset_left = 1603.0
 offset_top = 589.0
 offset_right = 1853.0
@@ -103,9 +116,9 @@ offset_bottom = 703.0
 focus_neighbor_left = NodePath("../Audio_Button")
 focus_neighbor_top = NodePath("../Back_Button")
 focus_neighbor_right = NodePath("../Video_Button")
-theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Control
 "
@@ -116,6 +129,7 @@ expand_icon = true
 
 [node name="VideoOptions" type="GridContainer" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 673.0
 offset_top = 739.0
 offset_right = 1856.0
@@ -172,6 +186,7 @@ size_flags_horizontal = 3
 
 [node name="AudioOptions" type="GridContainer" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 671.0
 offset_top = 768.0
 offset_right = 1771.0
@@ -243,6 +258,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ControlOptions" type="GridContainer" parent="."]
+visible = false
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

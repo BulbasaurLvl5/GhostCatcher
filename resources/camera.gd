@@ -1,7 +1,7 @@
 class_name Camera
 extends Camera2D
 
-signal Zoomed(new_zoom_setting : Vector2)
+#signal Zoomed(new_zoom_setting : Vector2)
 
 
 @export var verbose : bool = false

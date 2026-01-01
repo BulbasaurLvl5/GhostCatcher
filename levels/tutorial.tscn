@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=4 uid="uid://7gm2em8n2ucc"]
+[gd_scene load_steps=15 format=4 uid="uid://7gm2em8n2ucc"]
 
 [ext_resource type="Script" uid="uid://cg6vyd42howdf" path="res://main/level.gd" id="1_1udt0"]
 [ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_q1odp"]
 [ext_resource type="PackedScene" uid="uid://c6a1en67474y2" path="res://environment/parallax/parallax_nightsky.tscn" id="2_d2yhp"]
+[ext_resource type="Script" uid="uid://djgo2482sgoqx" path="res://add-ons/clock.gd" id="2_o146j"]
 [ext_resource type="PackedScene" uid="uid://bigu4vclou26" path="res://environment/parallax/parallax_moon.tscn" id="3_5h72f"]
 [ext_resource type="PackedScene" uid="uid://c0hr06avtnfxi" path="res://environment/parallax/parallax_combinedhills_02.tscn" id="4_o146j"]
 [ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="5_0fvvq"]
@@ -21,6 +22,12 @@ show_lighting_in_editor = true
 top_boundary = -80.0
 left_boundary = -18.0
 bottom_boundary = 2.0
+
+[node name="Clock" type="Node" parent="."]
+script = ExtResource("2_o146j")
+start_time = -2.0
+end_time = 120.0
+metadata/_custom_type_script = "uid://djgo2482sgoqx"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.727428, 0.727428, 0.727428, 1)
@@ -91,3 +98,5 @@ position = Vector2(52, -284)
 
 [node name="Parallax_hills2" parent="." instance=ExtResource("12_ud5cb")]
 modulate = Color(0.138034, 0.138034, 0.138034, 1)
+
+[node name="Timer" type="Timer" parent="."]

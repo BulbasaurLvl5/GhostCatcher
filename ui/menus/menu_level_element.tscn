@@ -13,7 +13,7 @@ font_color = Color(0.796078, 0.639216, 0.12549, 1)
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[node name="LevelData" type="HBoxContainer"]
+[node name="menu_level_element" type="HBoxContainer"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_right = -4.0
@@ -24,12 +24,14 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.539063, 0.484375, 0.484375, 1)
-theme_override_colors/font_hover_color = Color(0.176471, 0.12549, 0.129412, 1)
 theme_override_colors/font_focus_color = Color(0.176471, 0.12549, 0.129412, 1)
+theme_override_colors/font_hover_color = Color(0.176471, 0.12549, 0.129412, 1)
 theme_override_font_sizes/font_size = 48
-text = "Hello"
+text = "Helloooooooooo"
 icon = ExtResource("1_16rpa")
 flat = true
+text_overrun_behavior = 2
+autowrap_mode = 2
 icon_alignment = 1
 expand_icon = true
 
@@ -51,15 +53,3 @@ vertical_alignment = 1
 
 [node name="Rating" type="TextureRect" parent="."]
 layout_mode = 2
-
-[node name="ShowLevel" type="Button" parent="."]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.535156, 0.484375, 0.484375, 1)
-theme_override_colors/font_hover_color = Color(0.870588, 0.870588, 0.870588, 1)
-theme_override_font_sizes/font_size = 48
-text = "show"
-flat = true
-icon_alignment = 1
-expand_icon = true

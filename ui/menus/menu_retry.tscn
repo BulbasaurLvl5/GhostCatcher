@@ -64,11 +64,17 @@ font_color = Color(0.796078, 0.639216, 0.12549, 1)
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[node name="menu_retry" type="Node"]
+[node name="menu_retry" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 
-[node name="Visuals" type="Node" parent="."]
+[node name="Visuals" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 38.0
+offset_right = 38.0
 
 [node name="blackout" type="ColorRect" parent="Visuals"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -90,7 +96,6 @@ scale = Vector2(2.26913, 2.26913)
 texture = ExtResource("2_whis7")
 
 [node name="buttons" type="Control" parent="."]
-layout_mode = 3
 anchors_preset = 0
 offset_left = 1850.0
 offset_top = 800.0
@@ -105,9 +110,9 @@ offset_right = 276.0
 offset_bottom = 136.0
 focus_neighbor_top = NodePath("../Quit_Button")
 focus_neighbor_bottom = NodePath("../Selection_Button")
-theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Retry"
 icon = ExtResource("3_kykr8")
@@ -123,9 +128,9 @@ offset_right = 276.0
 offset_bottom = 250.0
 focus_neighbor_top = NodePath("../Retry_Button")
 focus_neighbor_bottom = NodePath("../Main_Button")
-theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Levels"
 icon = ExtResource("3_kykr8")
@@ -141,9 +146,9 @@ offset_right = 276.0
 offset_bottom = 364.0
 focus_neighbor_top = NodePath("../Selection_Button")
 focus_neighbor_bottom = NodePath("../Quit_Button")
-theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Menu"
 icon = ExtResource("3_kykr8")
@@ -159,9 +164,9 @@ offset_right = 276.0
 offset_bottom = 478.0
 focus_neighbor_top = NodePath("../Main_Button")
 focus_neighbor_bottom = NodePath("../Retry_Button")
-theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
 theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
 theme_override_font_sizes/font_size = 48
 text = "Quit"
 icon = ExtResource("3_kykr8")
@@ -170,13 +175,13 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="rating" type="Control" parent="."]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -994.0
+offset_left = 193.0
 offset_top = 994.0
-offset_right = -994.0
+offset_right = 193.0
 offset_bottom = 994.0
 grow_horizontal = 2
 scale = Vector2(1.5, 1.5)

@@ -1,7 +1,7 @@
 class_name PlayerState
 extends Node
 
-signal Transitioned
+signal Transitioned #used by inherited classes
 
 
 var player : Player
