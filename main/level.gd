@@ -126,7 +126,7 @@ func _enter_tree():
 			center_label.tween_text("WORK!")
 			)
 		clock.register_timed_callback(0, func(): 
-			player.process_mode = Node.PROCESS_MODE_ALWAYS
+			player.process_mode = Node.PROCESS_MODE_PAUSABLE
 			center_label.tween_text("")
 			)
 		
@@ -157,10 +157,12 @@ func _process(_delta):
 			#search_scene()
 
 		clean_array(ghosts, func(obj): return obj == null)
-		if ghosts.size() == 0:
-			#center_label.tween_text("SUCCESS!")
+		if ghosts.size() == 0: # SUCCESS!
 			clock.stop()
-			player.process_mode = Node.PROCESS_MODE_DISABLED
+			player.process_mode = Node.PROCESS_MODE_PAUSABLE
+			GameState.level_time = clock.time
+			GameState.level_success = true
+			NodeExtention.instantiate(SceneLibrary.MENU_RETRY, main.ui)
 		
 		if(time_label):
 			time_label.text = Clock.float_to_string(clock.time)

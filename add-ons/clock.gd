@@ -46,7 +46,10 @@ func register_timed_callback(activation_time: float, callable: Callable) -> void
 
 
 static func float_to_string(_time: float) -> String:
-	return str(_time)
+	if(_time < 0):
+		return String("%08.3f" % _time)
+	else:
+		return String("%07.3f" % _time)
 
 
 class TimedSignal:

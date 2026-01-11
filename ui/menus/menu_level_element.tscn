@@ -5,13 +5,14 @@
 [sub_resource type="LabelSettings" id="LabelSettings_jq5rq"]
 font_size = 48
 font_color = Color(0.364706, 0.364706, 0.364706, 1)
-outline_size = 5
+outline_size = 10
+outline_color = Color(0.9882353, 0.9882353, 0.9882353, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cg1ya"]
 font_size = 48
-font_color = Color(0.796078, 0.639216, 0.12549, 1)
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
+font_color = Color(0.9882353, 0.9882353, 0.9882353, 1)
+outline_size = 10
+outline_color = Color(0.3647059, 0.3647059, 0.3647059, 1)
 
 [node name="menu_level_element" type="HBoxContainer"]
 anchors_preset = 10

@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 var buttons: Array[Button]
 var main: Main
@@ -15,8 +15,11 @@ func _ready() -> void:
 		main.clear_scene()
 		NodeExtention.instantiate(SceneLibrary.MENU_MAIN, main.ui)
 		)
+		
+	var save_file: FileIO.SaveFile = FileIo.load_file()
 	
 	for level in SceneLibrary.levels:
+		var idx: int = SceneLibrary.levels.find(level)
 		var menu_level_element = NodeExtention.instantiate(SceneLibrary.MENU_LEVEL_ELEMENT, level_container)
 		
 		var start_button: Button = NodeExtention.get_child_by_classname(menu_level_element, "Button")
@@ -24,14 +27,20 @@ func _ready() -> void:
 		start_button.pressed.connect(func():
 			main.clear_scene()
 			NodeExtention.instantiate(level.scene, main.world)
+			GameState.current_level = level
 			)
 			
 		var labels: Array[Label]
 		labels.assign(NodeExtention.get_children_by_classname(menu_level_element, "Label"))
-		labels[0].text = "0.000" # replace with loaded last time
-		labels[1].text = "0.600" # replace with loaded best time
+		labels[0].text = Clock.float_to_string(save_file.last_times[idx])
+		labels[1].text = Clock.float_to_string(save_file.best_times[idx])
 		
 		var rating_rect: TextureRect = NodeExtention.get_child_by_classname(menu_level_element, "TextureRect")
-		match level.score(1): # replace with loaded times later
-			0: rating_rect.texture = SceneLibrary.RATING_0
+		match level.score(save_file.best_times[idx]): # replace with loaded times later
+			0: rating_rect.texture = SceneLibrary.RATING[0]
+			1: rating_rect.texture = SceneLibrary.RATING[1]
+			2: rating_rect.texture = SceneLibrary.RATING[2]
+			3: rating_rect.texture = SceneLibrary.RATING[3]
+			4: rating_rect.texture = SceneLibrary.RATING[4]
+			5: rating_rect.texture = SceneLibrary.RATING[5]
 	pass

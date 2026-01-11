@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bev544xuracua"]
+[gd_scene load_steps=3 format=3 uid="uid://bev544xuracua"]
 
+[ext_resource type="Script" uid="uid://c4hag40rnw7xr" path="res://ui/menus/menu_pause.gd" id="1_otc6x"]
 [ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://resources/sprites/coal/coal_button_1.png" id="2_bf11k"]
 
 [node name="Menu_Pause" type="Control"]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_otc6x")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

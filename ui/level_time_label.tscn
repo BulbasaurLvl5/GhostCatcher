@@ -2,16 +2,18 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_0wgw5"]
 font_size = 64
-font_color = Color(0, 0, 0, 0.705882)
+font_color = Color(0.3647059, 0.3647059, 0.3647059, 1)
 outline_size = 6
+outline_color = Color(0.9882353, 0.9882353, 0.9882353, 1)
 
 [node name="TimeLabel" type="Label"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -500.0
-offset_top = 100.0
-offset_right = -500.0
-offset_bottom = 88.0
+offset_left = -299.0
+offset_top = 80.0
+offset_right = -158.0
+offset_bottom = 168.0
+grow_horizontal = 0
 text = "time"
 label_settings = SubResource("LabelSettings_0wgw5")
