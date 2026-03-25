@@ -1,0 +1,358 @@
+[gd_scene load_steps=16 format=3 uid="uid://dkoe1u7tyl8x3"]
+
+[ext_resource type="Script" uid="uid://du1omwjilgy27" path="res://ui/menus/options/menu_options.gd" id="1_8ufco"]
+[ext_resource type="Texture2D" uid="uid://bhhdpp0qxcmvu" path="res://assets/sprites/coal/menu_retry_background.png" id="2_7cifs"]
+[ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://assets/sprites/coal/coal_button_1.png" id="3_2sycy"]
+[ext_resource type="StyleBox" uid="uid://kae7nrb6cknu" path="res://assets/button_texture.tres" id="4_onq2y"]
+[ext_resource type="Script" uid="uid://kl28mcn30c6g" path="res://ui/menus/options/menu_options_video.gd" id="5_pqbhh"]
+[ext_resource type="Script" uid="uid://kk3vxs1kf8ml" path="res://ui/menus/options/menu_options_audio.gd" id="6_gp7a6"]
+[ext_resource type="Script" uid="uid://bdptvcki43c7s" path="res://ui/menus/options/menu_options_control.gd" id="7_m18vm"]
+[ext_resource type="Script" uid="uid://4r3uv4i4fha" path="res://ui/menus/options/menu_options_control_remap_container.gd" id="8_dxmem"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_cffll"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_4vorc"]
+events = [SubResource("InputEventKey_cffll")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_owqwb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pwy1d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p768a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eiugr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bgrb2"]
+
+[node name="Menu_Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ufco")
+
+[node name="Crow_background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7cifs")
+
+[node name="ColorRect" type="ColorRect" parent="Crow_background"]
+layout_mode = 0
+offset_left = 578.0
+offset_top = 562.0
+offset_right = 1937.0
+offset_bottom = 1220.0
+color = Color(0.164706, 0.164706, 0.164706, 0.784314)
+
+[node name="Back_Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1960.0
+offset_top = 99.0
+offset_right = 2210.0
+offset_bottom = 215.0
+focus_neighbor_top = NodePath("../Video_Button")
+focus_neighbor_bottom = NodePath("../Video_Button")
+theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
+theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_font_sizes/font_size = 48
+shortcut = SubResource("Shortcut_4vorc")
+text = "Back"
+icon = ExtResource("3_2sycy")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Video_Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 644.0
+offset_top = 589.0
+offset_right = 894.0
+offset_bottom = 703.0
+focus_neighbor_left = NodePath("../Control_Button")
+focus_neighbor_top = NodePath("../Back_Button")
+focus_neighbor_right = NodePath("../Audio_Button")
+focus_neighbor_bottom = NodePath("../VideoOptions/OptionButton")
+theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
+theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = ExtResource("4_onq2y")
+theme_override_styles/hover = ExtResource("4_onq2y")
+text = "Video"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Audio_Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1127.0
+offset_top = 589.0
+offset_right = 1377.0
+offset_bottom = 703.0
+focus_neighbor_left = NodePath("../Video_Button")
+focus_neighbor_top = NodePath("../Back_Button")
+focus_neighbor_right = NodePath("../Control_Button")
+focus_neighbor_bottom = NodePath("../AudioOptions/MainHSlider")
+theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
+theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_font_sizes/font_size = 48
+text = "Audio"
+icon = ExtResource("3_2sycy")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Control_Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1603.0
+offset_top = 589.0
+offset_right = 1853.0
+offset_bottom = 703.0
+focus_neighbor_left = NodePath("../Audio_Button")
+focus_neighbor_top = NodePath("../Back_Button")
+focus_neighbor_right = NodePath("../Video_Button")
+theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
+theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_font_sizes/font_size = 48
+text = "Control
+"
+icon = ExtResource("3_2sycy")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="VideoOptions" type="GridContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 673.0
+offset_top = 739.0
+offset_right = 1856.0
+offset_bottom = 1175.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 25
+columns = 3
+script = ExtResource("5_pqbhh")
+
+[node name="Label" type="Label" parent="VideoOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Vsync"
+
+[node name="VSeparator" type="VSeparator" parent="VideoOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_owqwb")
+
+[node name="OptionButton" type="OptionButton" parent="VideoOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../Video_Button")
+
+[node name="Label2" type="Label" parent="VideoOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Window mode"
+
+[node name="VSeparator2" type="VSeparator" parent="VideoOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_owqwb")
+
+[node name="OptionButton2" type="OptionButton" parent="VideoOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label3" type="Label" parent="VideoOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Resolution"
+
+[node name="VSeparator3" type="VSeparator" parent="VideoOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_owqwb")
+
+[node name="OptionButton3" type="OptionButton" parent="VideoOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VSeparator4" type="VSeparator" parent="VideoOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_owqwb")
+
+[node name="DefaultButton" type="Button" parent="VideoOptions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "default"
+
+[node name="AudioOptions" type="GridContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 671.0
+offset_top = 768.0
+offset_right = 1771.0
+offset_bottom = 1189.0
+focus_neighbor_bottom = NodePath("MainHSlider")
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 15
+columns = 3
+script = ExtResource("6_gp7a6")
+
+[node name="Label" type="Label" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Main"
+
+[node name="VSeparator" type="VSeparator" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pwy1d")
+
+[node name="MainHSlider" type="HSlider" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../Audio_Button")
+
+[node name="Label2" type="Label" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Effect"
+
+[node name="VSeparator2" type="VSeparator" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pwy1d")
+
+[node name="EffectHSlider" type="HSlider" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label3" type="Label" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Music"
+
+[node name="VSeparator3" type="VSeparator" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_p768a")
+
+[node name="MusicSlider" type="HSlider" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label4" type="Label" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "UI"
+
+[node name="VSeparator4" type="VSeparator" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pwy1d")
+
+[node name="UIHSlider" type="HSlider" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VSeparator5" type="VSeparator" parent="AudioOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pwy1d")
+
+[node name="DefaultButton" type="Button" parent="AudioOptions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "default"
+
+[node name="ControlOptions" type="GridContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 668.0
+offset_top = 755.0
+offset_right = -614.0
+offset_bottom = -144.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_m18vm")
+
+[node name="RemapButtonContainer" type="GridContainer" parent="ControlOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 3
+script = ExtResource("8_dxmem")
+
+[node name="Label" type="Label" parent="ControlOptions/RemapButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "Label"
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="ControlOptions/RemapButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_eiugr")
+
+[node name="Button" type="Button" parent="ControlOptions/RemapButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "(input)"
+
+[node name="ResetContainer" type="GridContainer" parent="ControlOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 3
+
+[node name="HSeparator" type="HSeparator" parent="ControlOptions/ResetContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bgrb2")
+
+[node name="HSeparator2" type="HSeparator" parent="ControlOptions/ResetContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bgrb2")
+
+[node name="HSeparator3" type="HSeparator" parent="ControlOptions/ResetContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bgrb2")
+
+[node name="VSeparator" type="VSeparator" parent="ControlOptions/ResetContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bgrb2")
+
+[node name="Button" type="Button" parent="ControlOptions/ResetContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "default"
+
+[node name="VSeparator2" type="VSeparator" parent="ControlOptions/ResetContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bgrb2")

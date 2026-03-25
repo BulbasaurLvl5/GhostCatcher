@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cokkthd0l6fyj"]
 
-[ext_resource type="Texture2D" uid="uid://rfa8aih1g07h" path="res://resources/sprites/coal/spikes_small.png" id="1_la27r"]
-[ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://resources/collision_failure.tscn" id="2_yxwa0"]
-[ext_resource type="Texture2D" uid="uid://c6vquhqtvvbqu" path="res://resources/radial_light.tres" id="3_fdnmj"]
+[ext_resource type="Texture2D" uid="uid://rfa8aih1g07h" path="res://assets/sprites/coal/spikes_small.png" id="1_la27r"]
+[ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://assets/collision_failure.tscn" id="2_yxwa0"]
+[ext_resource type="Texture2D" uid="uid://c6vquhqtvvbqu" path="res://assets/radial_light.tres" id="3_fdnmj"]
 
 [node name="Spikes_small" type="Area2D"]
 collision_layer = 0

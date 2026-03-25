@@ -13,17 +13,23 @@ config_version=5
 config/name="Temporal_Reaper"
 run/main_scene="res://main/main.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://resources/sprites/ghost.png"
+config/icon="res://assets/sprites/ghost.png"
 
 [audio]
 
-buses/default_bus_layout="res://resources/audio/audio_bus_layout.tres"
+buses/default_bus_layout="res://assets/audio/audio_bus_layout.tres"
 
 [autoload]
 
-SceneLibrary="*res://singletons/scene_library.gd"
-GameState="*res://singletons/game_state.gd"
-FileIo="*res://singletons/file_io.gd"
+SceneLibrary="*res://_singletons/scene_library.gd"
+FileIo="*res://_singletons/file_io.gd"
+GameState="*res://_singletons/game_state.gd"
+ButtonSound="*res://_singletons/button_sound.gd"
+EnergySaver="*res://_singletons/energy_saver.gd"
+Focus="*res://_singletons/focus.gd"
+GlobalLogger="*res://_singletons/logger.gd"
+DefaultSettings="*res://_singletons/default_settings.gd"
+SettingsIo="*res://_singletons/settings_io.gd"
 
 [display]
 
@@ -121,7 +127,7 @@ dash={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
-pause={
+ui_pause={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194305,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)

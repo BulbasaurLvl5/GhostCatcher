@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq3i5f60hbghq"]
+
+[ext_resource type="Texture2D" uid="uid://b0gm6kngvdnxc" path="res://assets/sprites/coal/menu_level_selection_background.png" id="1_kteng"]
+[ext_resource type="Script" uid="uid://bi5hjcqjx05fr" path="res://ui/menus/level/menu_level.gd" id="1_vt4lg"]
+[ext_resource type="Texture2D" uid="uid://b570xpbkdkpm6" path="res://assets/sprites/coal/coal_button_1.png" id="2_8irtk"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_cffll"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_ntweh"]
+events = [SubResource("InputEventKey_cffll")]
+
+[node name="menu_level" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vt4lg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kteng")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+offset_left = 415.0
+offset_top = 486.0
+offset_right = 1935.0
+offset_bottom = 1297.0
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Back_Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 2072.0
+offset_top = 319.0
+offset_right = 2322.0
+offset_bottom = 435.0
+focus_neighbor_left = NodePath("../Reset_Button")
+theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
+theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_font_sizes/font_size = 48
+shortcut = SubResource("Shortcut_ntweh")
+text = "Back"
+icon = ExtResource("2_8irtk")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Reset_Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 337.0
+offset_right = 364.0
+offset_bottom = 453.0
+focus_neighbor_right = NodePath("../Back_Button")
+theme_override_colors/font_color = Color(0.53125, 0.480469, 0.476563, 1)
+theme_override_colors/font_focus_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_colors/font_hover_color = Color(0.175781, 0.125, 0.128906, 1)
+theme_override_font_sizes/font_size = 48
+text = "Reset"
+icon = ExtResource("2_8irtk")
+flat = true
+icon_alignment = 1
+expand_icon = true

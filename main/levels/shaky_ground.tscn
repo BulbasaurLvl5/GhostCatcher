@@ -1,0 +1,360 @@
+[gd_scene load_steps=17 format=3 uid="uid://b2xhyj1jgx5fr"]
+
+[ext_resource type="TileSet" uid="uid://bsbf3k40kikoo" path="res://environment/tilesets/original_simple_48.tres" id="1_qysqh"]
+[ext_resource type="Script" uid="uid://cg6vyd42howdf" path="res://main/level.gd" id="1_rbfi6"]
+[ext_resource type="PackedScene" uid="uid://bw7hxudbq5u63" path="res://environment/endless_pit.tscn" id="2_vn8ee"]
+[ext_resource type="Script" uid="uid://8gfumfyar4hp" path="res://entities/mobs/ghost_movement.gd" id="3_d304m"]
+[ext_resource type="Script" uid="uid://bppsmsty76ev8" path="res://assets/path_follow_manager.gd" id="3_kf6fm"]
+[ext_resource type="PackedScene" uid="uid://dpxeqvv1xxuu2" path="res://entities/mobs/ghost.tscn" id="3_otjgh"]
+[ext_resource type="PackedScene" uid="uid://ddyxra2k5n5yj" path="res://environment/platforms/wide_platform_01.tscn" id="3_y03pk"]
+[ext_resource type="PackedScene" uid="uid://cokkthd0l6fyj" path="res://environment/spikes_small.tscn" id="4_qybs3"]
+[ext_resource type="PackedScene" uid="uid://cau04hgcii1cn" path="res://entities/mobs/giant_red.tscn" id="5_3svs3"]
+[ext_resource type="PackedScene" uid="uid://cx7ye5k4fy4v8" path="res://environment/spikes_large.tscn" id="8_1nadt"]
+[ext_resource type="PackedScene" uid="uid://dhow5esn6x7rt" path="res://entities/player/player.tscn" id="10_4wx0c"]
+
+[sub_resource type="Gradient" id="Gradient_p1lr0"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7wg3w"]
+gradient = SubResource("Gradient_p1lr0")
+width = 8000
+height = 5000
+fill_from = Vector2(0.493902, 0)
+fill_to = Vector2(0.518293, 1)
+
+[sub_resource type="Curve2D" id="Curve2D_ufhwr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3300, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_g58am"]
+_data = {
+"points": PackedVector2Array(0, 100, -150, 0, 0, 0, 150, 0, -150, 0, -400, 150, 150, 0, -150, 0, -800, 0, 150, 0, 150, 0, -1200, 150, -150, 0, 150, 0, -800, 0, -150, 0, 150, 0, -400, 150, -150, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[sub_resource type="Curve2D" id="Curve2D_6tq0f"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 500, -150, 0, 0, 0, 0, 500, 150, 0, 0, 0, 0, 0, -150, 0)
+}
+point_count = 3
+
+[node name="ShakyGround" type="Node2D"]
+script = ExtResource("1_rbfi6")
+level_name = "ShakyGround"
+light_level = 0.24
+show_lighting_in_editor = true
+top_boundary = -39.0
+left_boundary = -12.5
+right_boundary = 42.0
+bottom_boundary = 5.0
+
+[node name="TileMap" type="TileMap" parent="."]
+modulate = Color(0.676311, 0.741807, 0.706668, 1)
+show_behind_parent = true
+tile_set = ExtResource("1_qysqh")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65503, 0, 3, -65501, 65536, 3, -4, 1, 3, -6, 196609, 3, -7, 131072, 3, -8, 131073, 3, -9, 65536, 3, -65499, 131073, 3, -65500, 131073, 3, -65498, 196609, 3)
+
+[node name="PointLight2D" type="PointLight2D" parent="TileMap"]
+position = Vector2(1404, 226)
+energy = 0.38
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_7wg3w")
+
+[node name="Spikes_large" parent="TileMap" instance=ExtResource("8_1nadt")]
+position = Vector2(-847, 11)
+scale = Vector2(0.75, -1)
+
+[node name="Spikes_large2" parent="TileMap" instance=ExtResource("8_1nadt")]
+position = Vector2(-697, 11)
+scale = Vector2(0.75, -1)
+
+[node name="Spikes_small" parent="TileMap" instance=ExtResource("4_qybs3")]
+position = Vector2(-386, 5)
+scale = Vector2(1, -1)
+
+[node name="Spikes_large3" parent="TileMap" instance=ExtResource("8_1nadt")]
+position = Vector2(3995, 5)
+scale = Vector2(0.75, -1)
+
+[node name="Spikes_large4" parent="TileMap" instance=ExtResource("8_1nadt")]
+position = Vector2(4145, 5)
+scale = Vector2(0.75, -1)
+
+[node name="Spikes_small2" parent="TileMap" instance=ExtResource("4_qybs3")]
+position = Vector2(3687, 16)
+scale = Vector2(1, -1)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Enemies"]
+position = Vector2(25, -274)
+curve = SubResource("Curve2D_ufhwr")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D" node_paths=PackedStringArray("node")]
+rotates = false
+script = ExtResource("3_kf6fm")
+node = NodePath("../GiantGhost")
+speed = 0.01
+
+[node name="GiantGhost" parent="Enemies/Path2D" instance=ExtResource("5_3svs3")]
+
+[node name="Path2D2" type="Path2D" parent="Enemies"]
+position = Vector2(3208, -1525)
+curve = SubResource("Curve2D_g58am")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D2" node_paths=PackedStringArray("node")]
+position = Vector2(-734.905, 9.28965)
+progress = 800.0
+rotates = false
+script = ExtResource("3_kf6fm")
+node = NodePath("../GiantGhost")
+
+[node name="GiantGhost" parent="Enemies/Path2D2" instance=ExtResource("5_3svs3")]
+
+[node name="Ghosts" type="Node" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Ghosts"]
+position = Vector2(0, -1200)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+
+[node name="Ghost" parent="Ghosts/Path2D/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D2" type="Path2D" parent="Ghosts"]
+position = Vector2(800, -1200)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D2"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = -0.12
+
+[node name="Ghost" parent="Ghosts/Path2D2/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D3" type="Path2D" parent="Ghosts"]
+position = Vector2(1600, -1200)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D3"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = 0.08
+
+[node name="Ghost" parent="Ghosts/Path2D3/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D4" type="Path2D" parent="Ghosts"]
+position = Vector2(2400, -1200)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D4"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = -0.11
+
+[node name="Ghost" parent="Ghosts/Path2D4/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D5" type="Path2D" parent="Ghosts"]
+position = Vector2(3200, -1200)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D5"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = 0.13
+
+[node name="Ghost" parent="Ghosts/Path2D5/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D6" type="Path2D" parent="Ghosts"]
+position = Vector2(400, -1100)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D6"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = -0.09
+
+[node name="Ghost" parent="Ghosts/Path2D6/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D7" type="Path2D" parent="Ghosts"]
+position = Vector2(1200, -1100)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D7"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = 0.125
+
+[node name="Ghost" parent="Ghosts/Path2D7/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D8" type="Path2D" parent="Ghosts"]
+position = Vector2(2000, -1100)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D8"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = -0.1
+
+[node name="Ghost" parent="Ghosts/Path2D8/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="Path2D9" type="Path2D" parent="Ghosts"]
+position = Vector2(2800, -1100)
+curve = SubResource("Curve2D_6tq0f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Ghosts/Path2D9"]
+position = Vector2(7.62066, 180.939)
+progress = 346.419
+rotates = false
+script = ExtResource("3_d304m")
+speed = 0.075
+
+[node name="Ghost" parent="Ghosts/Path2D9/PathFollow2D" instance=ExtResource("3_otjgh")]
+
+[node name="FalliingPlatforms" type="Node2D" parent="."]
+
+[node name="WidePlatform01" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+sink_distance = 2000.0
+sink_delay = 1.0
+sink_speed = 1000.0
+
+[node name="Spikes_large" parent="FalliingPlatforms/WidePlatform01" instance=ExtResource("8_1nadt")]
+position = Vector2(0, 54)
+scale = Vector2(0.75, -1)
+
+[node name="WidePlatform02" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+position = Vector2(300, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+sink_speed = 1000.0
+
+[node name="Spikes_large" parent="FalliingPlatforms/WidePlatform02" instance=ExtResource("8_1nadt")]
+position = Vector2(0, 54)
+scale = Vector2(0.75, -1)
+
+[node name="WidePlatform03" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+position = Vector2(600, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+sink_speed = 1000.0
+
+[node name="Spikes_large" parent="FalliingPlatforms/WidePlatform03" instance=ExtResource("8_1nadt")]
+position = Vector2(0, 54)
+scale = Vector2(0.75, -1)
+
+[node name="WidePlatform04" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+position = Vector2(900, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+sink_speed = 1000.0
+
+[node name="Spikes_large" parent="FalliingPlatforms/WidePlatform04" instance=ExtResource("8_1nadt")]
+position = Vector2(0, 54)
+scale = Vector2(0.75, -1)
+
+[node name="WidePlatform05" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+position = Vector2(1200, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+sink_speed = 1000.0
+
+[node name="Spikes_large" parent="FalliingPlatforms/WidePlatform05" instance=ExtResource("8_1nadt")]
+position = Vector2(0, 54)
+scale = Vector2(0.75, -1)
+
+[node name="WidePlatform06" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+position = Vector2(1500, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+sink_speed = 1000.0
+
+[node name="Spikes_large" parent="FalliingPlatforms/WidePlatform06" instance=ExtResource("8_1nadt")]
+position = Vector2(0, 54)
+scale = Vector2(0.75, -1)
+
+[node name="WidePlatform07" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+position = Vector2(1800, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+sink_speed = 1000.0
+
+[node name="Spikes_large" parent="FalliingPlatforms/WidePlatform07" instance=ExtResource("8_1nadt")]
+position = Vector2(0, 54)
+scale = Vector2(0.75, -1)
+
+[node name="WidePlatform08" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+position = Vector2(2100, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+sink_speed = 1000.0
+
+[node name="Spikes_large" parent="FalliingPlatforms/WidePlatform08" instance=ExtResource("8_1nadt")]
+position = Vector2(0, 54)
+scale = Vector2(0.75, -1)
+
+[node name="WidePlatform09" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+position = Vector2(2400, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+sink_speed = 1000.0
+
+[node name="Spikes_large" parent="FalliingPlatforms/WidePlatform09" instance=ExtResource("8_1nadt")]
+position = Vector2(0, 54)
+scale = Vector2(0.75, -1)
+
+[node name="WidePlatform10" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+position = Vector2(2700, 0)
+sink_distance = 2000.0
+sink_delay = 1.0
+sink_speed = 1000.0
+
+[node name="Spikes_large" parent="FalliingPlatforms/WidePlatform10" instance=ExtResource("8_1nadt")]
+position = Vector2(0, 54)
+scale = Vector2(0.75, -1)
+
+[node name="WidePlatform11" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+position = Vector2(3000, 0)
+sink_distance = 1000.0
+sink_delay = 1.0
+sink_speed = 1000.0
+
+[node name="Spikes_large" parent="FalliingPlatforms/WidePlatform11" instance=ExtResource("8_1nadt")]
+position = Vector2(0, 54)
+scale = Vector2(0.75, -1)
+
+[node name="WidePlatform12" parent="FalliingPlatforms" instance=ExtResource("3_y03pk")]
+position = Vector2(3300, 0)
+sink_distance = 1000.0
+sink_delay = 1.0
+sink_speed = 1000.0
+
+[node name="Spikes_large" parent="FalliingPlatforms/WidePlatform12" instance=ExtResource("8_1nadt")]
+position = Vector2(0, 54)
+scale = Vector2(0.75, -1)
+
+[node name="EndlessPit" parent="." instance=ExtResource("2_vn8ee")]
+position = Vector2(-4599, 566)
+
+[node name="Player" parent="." instance=ExtResource("10_4wx0c")]
+position = Vector2(-778, -194)

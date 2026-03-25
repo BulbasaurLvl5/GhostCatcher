@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cmqkgnm0iqmry"]
 
-[ext_resource type="Texture2D" uid="uid://nsxjysrmk46i" path="res://resources/sprites/coal/dust_2.png" id="1_pjwk0"]
+[ext_resource type="Texture2D" uid="uid://nsxjysrmk46i" path="res://assets/sprites/coal/dust_2.png" id="1_pjwk0"]
 
 [sub_resource type="Curve" id="Curve_v8nfq"]
 _data = [Vector2(0.0176471, 0.821053), 0.0, 0.0, 0, 0, Vector2(0.952941, 0.0105263), 0.0, 0.0, 0, 0]

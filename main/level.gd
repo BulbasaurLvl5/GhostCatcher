@@ -93,7 +93,7 @@ var camera : Camera:
 			camera.level_boundary = level_boundary
 #var canvas_mod : CanvasModulate
 
-var main: Main
+#var main: Main
 var ghosts: Array[Ghost]
 var time_label: Label
 var center_label: CenterLabel
@@ -113,10 +113,10 @@ func calculate_boundary():
 func _enter_tree():
 	if !Engine.is_editor_hint():
 		#search_scene()
-		player = NodeExtention.get_child_by_script(self,Player,true)
-		camera = NodeExtention.get_child_by_script(self,Camera,true)
-		main = NodeExtention.get_child_by_script(NodeExtention.get_root(self),Main,true)
-		clock = NodeExtention.get_child_by_script(self,Clock)
+		player = NodeExtention.get_child_by_type(self,Player,true)
+		camera = NodeExtention.get_child_by_type(self,Camera,true)
+		#main = NodeExtention.get_child_by_type(NodeExtention.get_root(self),Main,true)
+		clock = NodeExtention.get_child_by_type(self,Clock)
 		
 		clock.start()
 		clock.register_timed_callback(-2, func(): 
@@ -126,16 +126,15 @@ func _enter_tree():
 			center_label.tween_text("WORK!")
 			)
 		clock.register_timed_callback(0, func(): 
-			player.process_mode = Node.PROCESS_MODE_PAUSABLE
+			player.process_mode = Node.PROCESS_MODE_INHERIT
 			center_label.tween_text("")
 			)
 		
-		if(main):
-			time_label = NodeExtention.instantiate(SceneLibrary.TIME_LABEL,main.ui)
-			center_label = NodeExtention.instantiate(SceneLibrary.CENTER_LABEL,main.ui)
+		time_label = NodeExtention.instantiate(Main.ui, SceneLibrary.TIME_LABEL)
+		center_label = NodeExtention.instantiate(Main.ui, SceneLibrary.CENTER_LABEL)
 			
-		if get_parent() == get_tree().root: # debug mode, ie started from editor
-			player.process_mode = Node.PROCESS_MODE_ALWAYS
+		#if get_parent() == get_tree().root: # debug mode, ie started from editor
+			#player.process_mode = Node.PROCESS_MODE_ALWAYS
 	adjust_lighting()
 
 
@@ -143,11 +142,14 @@ func _ready():
 	if !Engine.is_editor_hint():
 		#if !player || !camera:
 			#search_scene()
-		ghosts.assign(NodeExtention.get_children_by_script(self, Ghost, true))
+		ghosts.assign(NodeExtention.get_children_by_type(self, Ghost, true))
 	else: # things happening in the engine
 		level_name = name
 		renamed.connect(_on_renamed)
 		show_data_in_editor = false
+		
+	Main.music.cross_fade_to(Music.SONG_LEVEL, .5, 0.0)
+	EnergySaver.set_max_fps(120)
 
 
 func _process(_delta):
@@ -159,10 +161,10 @@ func _process(_delta):
 		clean_array(ghosts, func(obj): return obj == null)
 		if ghosts.size() == 0: # SUCCESS!
 			clock.stop()
-			player.process_mode = Node.PROCESS_MODE_PAUSABLE
+			player.process_mode = Node.PROCESS_MODE_INHERIT
 			GameState.level_time = clock.time
 			GameState.level_success = true
-			NodeExtention.instantiate(SceneLibrary.MENU_RETRY, main.ui)
+			NodeExtention.instantiate(Main.ui, SceneLibrary.MENU_RETRY)
 		
 		if(time_label):
 			time_label.text = Clock.float_to_string(clock.time)

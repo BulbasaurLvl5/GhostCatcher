@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://uqo8e4kn7y8f"]
 
-[ext_resource type="Texture2D" uid="uid://d4gkg7aoym7pe" path="res://resources/sprites/fog.png" id="2_0aqul"]
+[ext_resource type="Texture2D" uid="uid://d4gkg7aoym7pe" path="res://assets/sprites/fog.png" id="2_0aqul"]
 
 [node name="Haze1" type="ParallaxBackground"]
 layer = -50

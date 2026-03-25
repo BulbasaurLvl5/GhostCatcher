@@ -97,8 +97,8 @@ func _process(_delta):
 	check_environment()
 
 func pause_game() -> void:
-	var main = NodeExtention.get_child_by_script(NodeExtention.get_root(self), Main)
-	NodeExtention.instantiate(SceneLibrary.MENU_PAUSE, main.ui)
+	#var main = NodeExtention.get_child_by_type(NodeExtention.get_root(self), Main)
+	NodeExtention.instantiate(Main.ui, SceneLibrary.MENU_PAUSE)
 	pass
 
 
@@ -171,7 +171,7 @@ func check_input():
 	x_input = 0
 	#y_input = 0
 	
-	if Input.is_action_pressed("pause"):
+	if Input.is_action_pressed("ui_pause"):
 		pause_game()
 
 	if Input.is_action_pressed("left"):

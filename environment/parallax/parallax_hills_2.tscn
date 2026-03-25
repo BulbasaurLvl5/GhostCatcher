@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://b8omki2vqkyns"]
 
-[ext_resource type="Texture2D" uid="uid://b8xoka0m1lmq5" path="res://resources/sprites/landscape/hills.png" id="1_8omol"]
-[ext_resource type="Texture2D" uid="uid://q7jgjirvucvk" path="res://resources/sprites/landscape/tree_1.png" id="2_1o4px"]
-[ext_resource type="Texture2D" uid="uid://bvr3lq31x72d0" path="res://resources/sprites/landscape/tree_3.png" id="3_wavch"]
-[ext_resource type="Texture2D" uid="uid://67522rgm3ol5" path="res://resources/sprites/landscape/tree_6.png" id="4_c3agn"]
+[ext_resource type="Texture2D" uid="uid://b8xoka0m1lmq5" path="res://assets/sprites/landscape/hills.png" id="1_8omol"]
+[ext_resource type="Texture2D" uid="uid://q7jgjirvucvk" path="res://assets/sprites/landscape/tree_1.png" id="2_1o4px"]
+[ext_resource type="Texture2D" uid="uid://bvr3lq31x72d0" path="res://assets/sprites/landscape/tree_3.png" id="3_wavch"]
+[ext_resource type="Texture2D" uid="uid://67522rgm3ol5" path="res://assets/sprites/landscape/tree_6.png" id="4_c3agn"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8omol"]
 light_mode = 1

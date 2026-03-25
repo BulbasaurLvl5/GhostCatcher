@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cx7ye5k4fy4v8"]
 
-[ext_resource type="Texture2D" uid="uid://b05a0db2rhgv2" path="res://resources/sprites/coal/spikes_large.png" id="1_j6veh"]
-[ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://resources/collision_failure.tscn" id="2_u34e7"]
-[ext_resource type="Texture2D" uid="uid://c6vquhqtvvbqu" path="res://resources/radial_light.tres" id="3_qnghk"]
+[ext_resource type="Texture2D" uid="uid://b05a0db2rhgv2" path="res://assets/sprites/coal/spikes_large.png" id="1_j6veh"]
+[ext_resource type="PackedScene" uid="uid://161mbtc0vfv0" path="res://assets/collision_failure.tscn" id="2_u34e7"]
+[ext_resource type="Texture2D" uid="uid://c6vquhqtvvbqu" path="res://assets/radial_light.tres" id="3_qnghk"]
 
 [node name="Spikes_large" type="Area2D"]
 light_mask = 129
